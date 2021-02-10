@@ -7,7 +7,7 @@ const stageRoutes = require('./routes/stageRoutes');
 
 const app = express();
 
-mongoose.connect('mongodb+srv://antoine-user1:VUzxht69SnNpLdEk@cluster0.ncu2w.mongodb.net/test?retryWrites=true&w=majority',
+mongoose.connect('mongodb+srv://root:toor@cluster0.ibztb.mongodb.net/Stage?retryWrites=true&w=majority',
   { useNewUrlParser: true,
     useUnifiedTopology: true })
   .then(() => console.log('Connexion à MongoDB réussie !'))

@@ -1,7 +1,10 @@
 const Stage = require('../models/stageModel');
 
 exports.getAllStage = (req, res, next) => {
-  res.status(200).json({message : "Récupération de la liste des stages !"});
+  res.status(200).json(
+    {
+      message : "Récupération de la liste des stages !",
+    });
   /*Stage.find().then(
     (stages) => {
       res.status(200).json(stages);
@@ -14,4 +17,5 @@ exports.getAllStage = (req, res, next) => {
     }
   );*/
 };
+
 
