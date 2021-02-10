@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
-const creneauSchema = Schema({
+const entrepriseSchema = Schema({
     idRespAdm: Schema.Types.ObjectId,  // id responsable administrateur je crois
 
     nom: String,
@@ -17,10 +17,11 @@ const creneauSchema = Schema({
       codePostal: String,
       complement: String,
     }),
+    
     secteurActivite: String,
     nbSalaries: Number,
-    local: Boolean,  // true si l'entreprise possède un local, false sinon
-    chiffreAffaire: String,  // chiffre affaire de l'entreprise mais de quand ???
+    local: Boolean,             // true si l'entreprise possède un local, false sinon
+    chiffreAffaire: String,     // chiffre affaire de l'entreprise mais de quand ???
   });
 
-module.exports = mongoose.model('Creneau', creneauSchema);
+module.exports = mongoose.model('Entreprise', entrepriseSchema);
