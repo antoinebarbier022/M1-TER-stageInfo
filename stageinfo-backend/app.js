@@ -4,6 +4,7 @@ const bodyParser = require('body-parser');
 
 // Importation des routes
 const stageRoutes = require('./routes/stageRoutes');
+const salleRoutes = require('./routes/salleRoutes');
 
 const app = express();
 
@@ -21,8 +22,10 @@ app.use((req, res, next) => {
   });
 
 app.use(bodyParser.json());
+app.use(express.urlencoded());
 
 app.use('/api/stage', stageRoutes);
+app.use('/api/salle', salleRoutes);
 
 
 module.exports = app;
