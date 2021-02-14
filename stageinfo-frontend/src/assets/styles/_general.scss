@@ -1,0 +1,40 @@
+*{
+    padding:0;
+    margin:0;
+    text-decoration: none;
+    font-family: $font-regular, serif;
+}
+
+
+
+body{
+    background: $background;
+    color: text-color($surface);
+  }
+
+h1{
+    font-family: 'Silka-Medium';
+    line-height: 72px;
+    font-size:54px;
+
+}
+
+h2{
+    font-family: 'Silka-Medium';
+    font-size:42px;
+    line-height: 42px;
+    margin-bottom:10px;
+}
+
+h3{
+    font-size:12px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: rgba(25, 26, 30, 0.4);
+    line-height:30px;
+    margin-bottom:5px;
+}
+
+a{
+    color:$primary;
+}
