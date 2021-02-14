@@ -6,8 +6,8 @@ const stageCtrl = require('../controllers/stageController');
 
 router.get('/', stageCtrl.getAllStage);
 router.get('/:id',stageCtrl.getOneStage);
-router.delete('/:id',stageCtrl.deleteThing);
+router.delete('/:id',stageCtrl.deleteStage);
 router.post('/',stageCtrl.createStage);
-router.put('/:id',stageCtrl.modifyThing);
+router.put('/:id',stageCtrl.modifyStage);
 
 module.exports = router;
