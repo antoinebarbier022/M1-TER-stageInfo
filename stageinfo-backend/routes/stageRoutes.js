@@ -4,7 +4,7 @@ const router = express.Router();
 
 const stageCtrl = require('../controllers/stageController');
 
-router.get('/', stageCtrl.getAllStage);
+router.get('/', stageCtrl.getAllStage); 
 router.get('/:id', stageCtrl.getOneStage);
 router.post('/', stageCtrl.createStage);
 router.put('/:id', stageCtrl.editStage);
