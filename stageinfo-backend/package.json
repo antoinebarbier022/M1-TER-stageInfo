@@ -2,6 +2,23 @@
   "name": "stageinfo-backend",
   "version": "1.0.0",
   "description": "",
+  "apidoc": {
+    "name": "Stage Info - API REST documentation",
+    "version": "0.1.0",
+    "description": "apiDoc basic example",
+    "title": "Custom apiDoc browser title",
+    "url": "http://localhost:3000/api",
+    "useHostUrlAsSampleUrl": false,
+    "sampleUrl": "http://localhost:3000/api",
+    "order": [
+      "GetAllStage",
+      "GetOneStage",
+      "CreateStage",
+      "EditStage",
+      "DeleteAllStage"
+      
+    ]
+  },
   "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"

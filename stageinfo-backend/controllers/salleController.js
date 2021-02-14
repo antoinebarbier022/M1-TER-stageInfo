@@ -1,6 +1,12 @@
 const Salle = require('../models/salleModel');
 
 // Récupération de toutes les salles
+/**
+ * @api {get} /salle Get all Salle
+ * @apiDescription Récupération de toutes les salles
+ * @apiName GetAllSalle
+ * @apiGroup Salle
+ */
 exports.getAllSalle = ((req, res, next) => {
     Salle.find()
     .then(things => res.status(200).json(things))
