@@ -2,9 +2,15 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 const stageSchema = Schema({
-    titre: String,
+    titre: {
+      type : String,
+      required: true
+    },
     description: String,
-    duree: Number,
+    duree: {
+      type : Number,
+      required: true
+    },
     datedebut: Date,
     etat: String,
     rapport: String,
@@ -15,7 +21,10 @@ const stageSchema = Schema({
     datePropose: Date,
     dateValide : Date,
     resume : String,
-    niveauRequis : String, // M1 / M2 ...
+    niveauRequis : { // M1 / M2 ...
+      type : String,
+      required: true
+    }, 
 
     commentaires : [Schema.Types.ObjectId],
 
