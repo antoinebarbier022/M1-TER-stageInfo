@@ -5,9 +5,7 @@ const bodyParser = require('body-parser');
 // Importation des routes
 const stageRoutes = require('./routes/stageRoutes');
 const salleRoutes = require('./routes/salleRoutes');
-const pieceJointeRoutes = require('./routes/pieceJointeRouters');
-const embaucheRoutes= require('./routes/embaucheRouters');
-const entrepriseRoutes= require('./routes/entrepriseRouters');
+const userRoutes = require('./routes/user');
 
 const app = express();
 
@@ -28,9 +26,7 @@ app.use(bodyParser.json());
 
 app.use('/api/stage', stageRoutes);
 app.use('/api/salle', salleRoutes);
-app.use('api/piecejointe',pieceJointeRoutes);
-app.use('api/embauche', embaucheRoutes);
-app.use('api/entreprise', embaucheRoutes);
+app.use('/api/auth',userRoutes);
 
 
 module.exports = app;
