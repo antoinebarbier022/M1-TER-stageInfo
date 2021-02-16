@@ -6,7 +6,9 @@ const bodyParser = require('body-parser');
 const stageRoutes = require('./routes/stageRoutes');
 const salleRoutes = require('./routes/salleRoutes');
 const userRoutes = require('./routes/user');
-
+const pieceJointeRoutes = require('./routes/pieceJointeRouters');
+const embaucheRoutes= require('./routes/embaucheRouters');
+const entrepriseRoutes= require('./routes/entrepriseRouters');
 const app = express();
 
 mongoose.connect('mongodb+srv://root:toor@cluster0.ibztb.mongodb.net/Stage?retryWrites=true&w=majority',
@@ -27,6 +29,8 @@ app.use(bodyParser.json());
 app.use('/api/stage', stageRoutes);
 app.use('/api/salle', salleRoutes);
 app.use('/api/auth',userRoutes);
-
+app.use('api/piecejointe',pieceJointeRoutes);
+app.use('api/embauche', embaucheRoutes);
+app.use('api/entreprise', embaucheRoutes);
 
 module.exports = app;
