@@ -1,8 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 
-// import icons
-import { faCoffee } from '@fortawesome/free-solid-svg-icons';
-
 @Component({
   selector: 'app-sidebar',
   templateUrl: './sidebar.component.html',
@@ -10,7 +7,6 @@ import { faCoffee } from '@fortawesome/free-solid-svg-icons';
 })
 export class SidebarComponent implements OnInit {
 
-  faCoffee = faCoffee;
 
   constructor() { }
 
