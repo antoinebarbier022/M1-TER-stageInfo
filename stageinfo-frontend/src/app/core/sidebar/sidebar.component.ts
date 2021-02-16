@@ -11,59 +11,58 @@ export class SidebarComponent implements OnInit {
     {
       title:"Stages",
       items: [
-        {icon:"", nom:"Listing des stages", lien:"/", items:[]},
-        {icon:"", nom:"Étudiant sans stages", lien:"/", items:[]},
-        {icon:"", nom:"Proposer un stage", lien:"/", items:[]},
-        {icon:"", nom:"Exporter CSV des stages", lien:"/", items:[
-          {icon:"", nom:"Proposer un stage", lien:"/", items:[]},
-          {icon:"", nom:"Exporter CSV des stages", lien:"/", items:[]},
-          {icon:"", nom:"Les notes des stages", lien:"/", items:[]},
+        {icon:"fas fa-list", nom:"Listing des stages", lien:"/", items:[]},
+        {icon:"fas fa-user-friends", nom:"Étudiant sans stages", lien:"/", items:[]},
+        {icon:"fas fa-pencil-alt", nom:"Proposer un stage", lien:"/", items:[]},
+        {icon:"fas fa-table", nom:"Les notes des stages", lien:"/", items:[]},
+        {icon:"fas fa-file-csv", nom:"Exporter CSV", lien:"/", items:[
+          {icon:"", nom:"Les stages", lien:"/", items:[]},
+          {icon:"", nom:"Les soutenances", lien:"/", items:[]},
+          {icon:"", nom:"Les notes de stage", lien:"/", items:[]},
         ]},
-        {icon:"", nom:"Les notes des stages", lien:"/", items:[]},
-        {icon:"", nom:"Téléchargement", items:[
-          {icon:"", nom:"Proposer un stage", lien:"/", items:[]},
-          {icon:"", nom:"Exporter CSV des stages", lien:"/", items:[]},
-          {icon:"", nom:"Les notes des stages", lien:"/", items:[
-            {icon:"", nom:"Proposer un stage", lien:"/", items:[]},
-            {icon:"", nom:"Exporter CSV des stages", lien:"/", items:[]},
-            {icon:"", nom:"Les notes des stages", lien:"/", items:[]},
-          ]},
+        {icon:"fas fa-download", nom:"Télécharger", items:[
+          {icon:"fas fa-border-all", nom:"Feuille de stage", lien:"/", items:[]},
+          {icon:"", nom:"Fiche entreprise", lien:"/", items:[]},
+          {icon:"", nom:"Fiche de notation", lien:"/", items:[]},
         ]}
       ] 
     },
     {
-      title:"Soutenance M1",
+      title:"Soutenances",
       items: [
-        {icon:"", nom:"Planing de soutenance", lien:"/", items:[]},
-        {icon:"", nom:"Listing des soutenances", lien:"/", items:[]},
-        {icon:"", nom:"Listing des soutenances non planifiées", lien:"/", items:[]},
-        {icon:"", nom:"Télécharger fiche entreprise", lien:"/", items:[]},
-        {icon:"", nom:"Saisir fiche suivie étudiant", lien:"/", items:[]},
-        {icon:"", nom:"Télécharger la fiche de notation", lien:"/", items:[]},
-        {icon:"", nom:"Export des soutenances", lien:"/", items:[]},
+        {icon:"fas fa-list", nom:"Listing des soutenances", lien:"/", items:[]},
+        {icon:"fas fa-list", nom:"Listing des soutenances non planifiées", lien:"/", items:[]},
+        {icon:"fas fa-calendar-alt", nom:"Planing de soutenance", lien:"/", items:[]},
+
+        //{icon:"fas fa-comment", nom:"Télécharger fiche entreprise", lien:"/", items:[]},
+        //{icon:"fas fa-database", nom:"Saisir fiche suivie étudiant", lien:"/", items:[]},
+        {icon:"fas fa-pencil-alt", nom:"Saisir fiche de suivie", lien:"/", items:[]},
+        //{icon:"fas fa-file", nom:"Télécharger la fiche de notation", lien:"/", items:[]},
+        //{icon:"fas fa-file-alt", nom:"Export des soutenances", lien:"/", items:[]},
       ] 
     },
     {
       title:"Statistiques",
       items: [
-        {icon:"", nom:"Suivi embauche", lien:"/", items:[]},
-        {icon:"", nom:"Classement entreprises", lien:"/", items:[]},
-        {icon:"", nom:"Tendances-Calcul d'occurences", lien:"/", items:[]},
-        {icon:"", nom:"Etiquetage", lien:"/", items:[]}
+        {icon:"fas fa-file-archive", nom:"Suivi d'embauche", lien:"/", items:[]},
+        {icon:"fas fa-clipboard-list", nom:"Classement entreprises", lien:"/", items:[]},
+        {icon:"fas fa-chart-pie", nom:"Tendances-Calcul d'occurences", lien:"/", items:[]},
+        {icon:"fas fa-chart-bar", nom:"Etiquetage", lien:"/", items:[]}
       ]
     },
     {
       title:"Archivages",
       items: [
-        {icon:"", nom:"Rapports téléchargeables", lien:"/", items:[]},
-        {icon:"", nom:"Stages années précédentes", lien:"/", items:[]}
+        {icon:"fas fa-server", nom:"Rapports téléchargeables", lien:"/", items:[]},
+        {icon:"fas fa-book", nom:"Stages années précédentes", lien:"/", items:[]}
       ]
     },
     {
       title:"Besoin d'aide ?",
       items: [
-        {icon:"", nom:"FAQ", lien:"/", items:[]},
-        {icon:"", nom:"Nous contacter", lien:"/", items:[]},
+        {icon:"fas fa-question", nom:"FAQ", lien:"/", items:[]},
+        {icon:"fas fa-comment", nom:"Nous contacter", lien:"/", items:[]},
+        //{icon:"fas fa-phone", nom:"Nous contacter", lien:"/", items:[]},
       ] 
     }
   ];

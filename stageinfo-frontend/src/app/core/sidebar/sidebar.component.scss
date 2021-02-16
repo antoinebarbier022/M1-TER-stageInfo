@@ -29,21 +29,34 @@ aside{
      .sidebar-item{
          color: #e9ecef;
          
-     
          .sidebar-icon{
-             margin-right: .75rem;
+             display:inline-block;
+             width:1.5rem;
+             margin-right: .5rem;
              color: #adb5bd;
          }
-   
-         .sidebar-link, a{
-             display: block;
-             font-weight:400;
-             color: #adb5bd;
-             padding: .625rem 1.625rem;
+         a:hover{
+            text-decoration: none;
+            color: #adb5bd;
+            
+         }  
+
+         .sidebar-subitem{
+            width:100%;
+            margin-left:2rem; // egale au margin + width de .sidebar-icon
+            color: #adb5bd;
          }
 
-         .sidebar-item:hover{
-            color: #e9ecef;
+         .sidebar-subitem:hover{
+            color: #ced4da;
+         }
+
+
+        a{
+             display: inline-block;
+             font-weight:400;
+             color: #adb5bdc4;
+             padding: .625rem 1.625rem;
          }
 
          a[data-toggle="collapse"] {
