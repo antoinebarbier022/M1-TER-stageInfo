@@ -1,79 +1,23 @@
 <aside>
     <nav class="sidebar-content">
+
+        <!-- Title's website-->
         <div class="navbar justify-content-center">
             <a class="navbar-brand" id="website-title"  routerLink="/">StageInfo</a>
         </div>
 
-        <p class="sidebar-header">Catégorie</p>
-        <ul class="sidebar-nav">
-            <li class="sidebar-item">
-                <a class="sidebar-link" routerLink="/" > 
-                    <!--<fa-icon class="sidebar-icon" [icon]="faCoffee"></fa-icon>-->
-                    test
-                </a>
-            </li>
-            <li class="sidebar-item">
-                <!--<fa-icon class="sidebar-icon" [icon]="faCoffee"></fa-icon>-->
-                <a class="sidebar-link"  routerLink="/" >test</a>
-            </li>
-            <li class="sidebar-item">
-                <!--<fa-icon class="sidebar-icon" [icon]="faCoffee"></fa-icon>-->
-                <a class="sidebar-link"  routerLink="/" >test</a>
-            </li>
-        </ul>
+        <!-- Navigation -->
+        <div *ngFor="let categorie of navigation">
+            <p class="sidebar-header">{{ categorie.title }}</p>
+            <ul class="sidebar-nav">
+                <li *ngFor="let item of categorie.items" class="sidebar-item">
+                    <a class="sidebar-link" [routerLink]="item.lien" > 
+                        <!--<fa-icon class="sidebar-icon" [icon]="faCoffee"></fa-icon>-->
+                        {{ item.nom }}
+                    </a>
+                </li>
+            </ul>
+        </div>
 
-        <p class="sidebar-header">Catégorie</p>
-        <ul class="sidebar-nav">
-            <li class="sidebar-item">
-                <a class="sidebar-link"  routerLink="/" >test</a>
-            </li>
-            <li class="sidebar-item">
-                <a class="sidebar-link"  routerLink="/" >test</a>
-            </li>
-            <li class="sidebar-item">
-                <a class="sidebar-link"  routerLink="/" >test</a>
-            </li>
-        </ul>
-
-        <p class="sidebar-header">Catégorie</p>
-        <ul class="sidebar-nav">
-            <li class="sidebar-item">
-                <a class="sidebar-link"  routerLink="/" >test</a>
-            </li>
-            <li class="sidebar-item">
-                <a class="sidebar-link"  routerLink="/" >test</a>
-            </li>
-            <li class="sidebar-item">
-                <a class="sidebar-link"  routerLink="/" >test</a>
-            </li>
-        </ul>
-
-        <p class="sidebar-header">Catégorie</p>
-        <ul class="sidebar-nav">
-            <li class="sidebar-item">
-                <a class="sidebar-link"  routerLink="/" >test</a>
-            </li>
-            <li class="sidebar-item">
-                <a class="sidebar-link"  routerLink="/" >test</a>
-            </li>
-            <li class="sidebar-item">
-                <a class="sidebar-link"  routerLink="/" >test</a>
-            </li>
-        </ul>
-
-        <p class="sidebar-header">Catégorie</p>
-        <ul class="sidebar-nav">
-            <li class="sidebar-item">
-                <a class="sidebar-link"  routerLink="/" >test</a>
-            </li>
-            <li class="sidebar-item">
-                <a class="sidebar-link"  routerLink="/" >test</a>
-            </li>
-            <li class="sidebar-item">
-                <a class="sidebar-link"  routerLink="/" >test</a>
-            </li>
-        </ul>
-
- 
     </nav>
 </aside>
