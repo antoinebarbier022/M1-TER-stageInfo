@@ -10,6 +10,7 @@ const pieceJointeRoutes = require('./routes/pieceJointeRouters');
 const embaucheRoutes= require('./routes/embaucheRouters');
 const entrepriseRoutes= require('./routes/entrepriseRouters');
 const creneauRoutes = require('./routes/creneauRouters');
+const soutenanceRoutes = require('./routes/soutenanceRouters');
 
 const app = express();
 
@@ -35,5 +36,6 @@ app.use('api/piecejointe',pieceJointeRoutes);
 app.use('api/embauche', embaucheRoutes);
 app.use('api/entreprise', embaucheRoutes);
 app.use('/api/creneau', creneauRoutes);
+app.use('/api/soutenance', soutenanceRoutes);
 
 module.exports = app;
