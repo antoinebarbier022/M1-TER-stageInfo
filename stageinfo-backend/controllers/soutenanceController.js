@@ -69,7 +69,7 @@ exports.createSoutenance = ((req, res, next) => {
  exports.editSoutenance = ((req, res, next) => {
      console.log(req.body);
      
-     let soutenance = new Soutenance({
+     const soutenance = new Soutenance({
         _id: req.params.id,
         titre: req.body.titre,
         etudiant: req.body.etudiant,
