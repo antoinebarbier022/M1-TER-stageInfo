@@ -9,6 +9,8 @@ const userRoutes = require('./routes/user');
 const pieceJointeRoutes = require('./routes/pieceJointeRouters');
 const embaucheRoutes= require('./routes/embaucheRouters');
 const entrepriseRoutes= require('./routes/entrepriseRouters');
+const creneauRoutes = require('./routes/creneauRouters');
+
 const app = express();
 
 mongoose.connect('mongodb+srv://root:toor@cluster0.ibztb.mongodb.net/Stage?retryWrites=true&w=majority',
@@ -32,5 +34,6 @@ app.use('/api/auth',userRoutes);
 app.use('api/piecejointe',pieceJointeRoutes);
 app.use('api/embauche', embaucheRoutes);
 app.use('api/entreprise', embaucheRoutes);
+app.use('/api/creneau', creneauRoutes);
 
 module.exports = app;
