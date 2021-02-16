@@ -6,6 +6,9 @@ const salleSchema = Schema({
     batiment: String,
     capacite: Number,
     commentaire: String, 
+  },
+  {
+    collection: 'Salle'
   });
 
 module.exports = mongoose.model('Salle', salleSchema);

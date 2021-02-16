@@ -18,7 +18,11 @@ const userSchema = Schema({
     // representant_entreprise
     fonctionOccupee : String,
     idEntreprise : Schema.Types.ObjectId,
+  },
+  {
+    collection: 'User'
   });
+  
 userSchema.plugin(uniqueValidator);
 
 module.exports = mongoose.model('User', userSchema);

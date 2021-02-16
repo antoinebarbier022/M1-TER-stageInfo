@@ -19,6 +19,9 @@ const soutenanceSchema = Schema({
     
     idStage: Schema.Types.ObjectId,
     idCreneau: Schema.Types.ObjectId,
+  },
+  {
+    collection: 'Soutenance'
   });
 
 module.exports = mongoose.model('Soutenance', soutenanceSchema);

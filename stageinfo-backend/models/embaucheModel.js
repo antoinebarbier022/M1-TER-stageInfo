@@ -9,6 +9,9 @@ const embaucheSchema = Schema({
     Commentaire: String,
     contratType: String,
     dateEmbauche: Date,
+  },
+  {
+    collection: 'Embauche'
   });
 
 module.exports = mongoose.model('Embauche', embaucheSchema);
