@@ -22,6 +22,9 @@ const entrepriseSchema = Schema({
     nbSalaries: Number,
     local: Boolean,             // true si l'entreprise possède un local, false sinon
     chiffreAffaire: String,     // chiffre affaire de l'entreprise mais de quand ???
+  },
+  {
+    collection: 'Entreprise'
   });
 
 module.exports = mongoose.model('Entreprise', entrepriseSchema);

@@ -11,14 +11,17 @@ const soutenanceSchema = Schema({
     commentaire: String,        // il faudrait aussi qu'il y ai l'id de celui qui a poster le commentaire
     session: Number,            // session 1 ou 2
 
-    modifications:[{
+    modifications:{
         date: Date,
         idUser: Schema.Types.ObjectId,
         motif: String,                  // le motif sera générer automatiquement lors de la modification de la soutenance
-    }],
+    },
     
     idStage: Schema.Types.ObjectId,
     idCreneau: Schema.Types.ObjectId,
+  },
+  {
+    collection: 'Soutenance'
   });
 
 module.exports = mongoose.model('Soutenance', soutenanceSchema);

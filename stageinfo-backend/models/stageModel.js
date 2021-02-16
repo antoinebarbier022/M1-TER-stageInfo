@@ -78,6 +78,9 @@ const stageSchema = Schema({
     // je sais pas ce que c'est
     idVisite: Schema.Types.ObjectId, 
 
+  },
+  {
+    collection: 'Stage'
   });
 
 module.exports = mongoose.model('Stage', stageSchema);

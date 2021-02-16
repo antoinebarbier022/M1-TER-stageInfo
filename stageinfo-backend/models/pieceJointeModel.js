@@ -11,6 +11,9 @@ const pieceJointeSchema = Schema({
 
     idUser: Schema.Types.ObjectId, 
     idStage: Schema.Types.ObjectId, 
+  },
+  {
+    collection: 'PieceJointe'
   });
 
 module.exports = mongoose.model('PieceJointe', pieceJointeSchema);
