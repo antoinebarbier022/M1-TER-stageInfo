@@ -11,13 +11,30 @@
             <p class="sidebar-header">{{ categorie.title }}</p>
             <ul class="sidebar-nav">
                 <li *ngFor="let item of categorie.items" class="sidebar-item">
-                    <a class="sidebar-link" [routerLink]="item.lien" > 
-                        <!--<fa-icon class="sidebar-icon" [icon]="faCoffee"></fa-icon>-->
-                        {{ item.nom }}
-                    </a>
+                    <span *ngIf="item.items.length == 0"> 
+                        <a class="sidebar-link" [routerLink]="item.lien" > 
+                            <!--<fa-icon class="sidebar-icon" [icon]="faCoffee"></fa-icon>-->
+                            {{ item.nom }}
+                        </a>
+                    </span>
+
+                    <span *ngIf="!(item.items.length == 0)">
+                        <!--'#' + item.nom.split(' ').join('-') permet de générer une ancre avec le nom de la catégorie (on supprime les espaces et on les remplaces par des "-" ")-->
+                        <a  class="sidebar-link" [href]="'#' + item.nom.split(' ').join('-')" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle"> 
+                            <!--<fa-icon class="sidebar-icon" [icon]="faCoffee"></fa-icon>-->
+                            {{ item.nom }}
+                        </a>
+                        <ul  *ngFor="let subitem of item.items" class="collapse list-unstyled" [id]="item.nom.split(' ').join('-')">
+                            <li class="sidebar-item">
+                                <a class="sidebar-link" [routerLink]="subitem.lien"> 
+                                    <!--<fa-icon class="sidebar-icon" [icon]="faCoffee"></fa-icon>-->
+                                    {{ subitem.nom }}
+                                </a>
+                            </li>
+                        </ul>
+                    </span>
                 </li>
             </ul>
         </div>
-
     </nav>
 </aside>

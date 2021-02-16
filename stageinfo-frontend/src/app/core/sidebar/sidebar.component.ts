@@ -11,47 +11,59 @@ export class SidebarComponent implements OnInit {
     {
       title:"Stages",
       items: [
-        {icon:"", nom:"Listing des stages", lien:"/"},
-        {icon:"", nom:"Télécharger la fiche", lien:"/"},
-        {icon:"", nom:"Étudiant sans stages", lien:"/"},
-        {icon:"", nom:"Proposer un stage", lien:"/"},
-        {icon:"", nom:"Exporter CSV des stages", lien:"/"},
-        {icon:"", nom:"Les notes des stages", lien:"/"},
+        {icon:"", nom:"Listing des stages", lien:"/", items:[]},
+        {icon:"", nom:"Étudiant sans stages", lien:"/", items:[]},
+        {icon:"", nom:"Proposer un stage", lien:"/", items:[]},
+        {icon:"", nom:"Exporter CSV des stages", lien:"/", items:[
+          {icon:"", nom:"Proposer un stage", lien:"/", items:[]},
+          {icon:"", nom:"Exporter CSV des stages", lien:"/", items:[]},
+          {icon:"", nom:"Les notes des stages", lien:"/", items:[]},
+        ]},
+        {icon:"", nom:"Les notes des stages", lien:"/", items:[]},
+        {icon:"", nom:"Téléchargement", items:[
+          {icon:"", nom:"Proposer un stage", lien:"/", items:[]},
+          {icon:"", nom:"Exporter CSV des stages", lien:"/", items:[]},
+          {icon:"", nom:"Les notes des stages", lien:"/", items:[
+            {icon:"", nom:"Proposer un stage", lien:"/", items:[]},
+            {icon:"", nom:"Exporter CSV des stages", lien:"/", items:[]},
+            {icon:"", nom:"Les notes des stages", lien:"/", items:[]},
+          ]},
+        ]}
       ] 
     },
     {
       title:"Soutenance M1",
       items: [
-        {icon:"", nom:"Planing de soutenance", lien:"/"},
-        {icon:"", nom:"Listing des soutenances", lien:"/"},
-        {icon:"", nom:"Listing des soutenances non planifiées", lien:"/"},
-        {icon:"", nom:"Télécharger fiche entreprise", lien:"/"},
-        {icon:"", nom:"Saisir fiche suivie étudiant", lien:"/"},
-        {icon:"", nom:"Télécharger la fiche de notation", lien:"/"},
-        {icon:"", nom:"Export des soutenances", lien:"/"},
+        {icon:"", nom:"Planing de soutenance", lien:"/", items:[]},
+        {icon:"", nom:"Listing des soutenances", lien:"/", items:[]},
+        {icon:"", nom:"Listing des soutenances non planifiées", lien:"/", items:[]},
+        {icon:"", nom:"Télécharger fiche entreprise", lien:"/", items:[]},
+        {icon:"", nom:"Saisir fiche suivie étudiant", lien:"/", items:[]},
+        {icon:"", nom:"Télécharger la fiche de notation", lien:"/", items:[]},
+        {icon:"", nom:"Export des soutenances", lien:"/", items:[]},
       ] 
     },
     {
       title:"Statistiques",
       items: [
-        {icon:"", nom:"Suivi embauche", lien:"/"},
-        {icon:"", nom:"Classement entreprises", lien:"/"},
-        {icon:"", nom:"Tendances-Calcul d'occurences", lien:"/"},
-        {icon:"", nom:"Etiquetage", lien:"/"}
+        {icon:"", nom:"Suivi embauche", lien:"/", items:[]},
+        {icon:"", nom:"Classement entreprises", lien:"/", items:[]},
+        {icon:"", nom:"Tendances-Calcul d'occurences", lien:"/", items:[]},
+        {icon:"", nom:"Etiquetage", lien:"/", items:[]}
       ]
     },
     {
       title:"Archivages",
       items: [
-        {icon:"", nom:"Rapports téléchargeables", lien:"/"},
-        {icon:"", nom:"Stages années précédentes", lien:"/"}
+        {icon:"", nom:"Rapports téléchargeables", lien:"/", items:[]},
+        {icon:"", nom:"Stages années précédentes", lien:"/", items:[]}
       ]
     },
     {
       title:"Besoin d'aide ?",
       items: [
-        {icon:"", nom:"FAQ", lien:"/"},
-        {icon:"", nom:"Nous contacter", lien:"/"},
+        {icon:"", nom:"FAQ", lien:"/", items:[]},
+        {icon:"", nom:"Nous contacter", lien:"/", items:[]},
       ] 
     }
   ];
@@ -61,5 +73,6 @@ export class SidebarComponent implements OnInit {
   ngOnInit(): void {
 
   }
+
 
 }
