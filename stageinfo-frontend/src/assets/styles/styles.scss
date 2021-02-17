@@ -2,10 +2,15 @@
 
 @import "https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700";
 
+@import 'foundation/cards';
+
 body{
     font-family: 'Poppins', sans-serif;
     height:100%;
     background-color:#f7f9fc;
+    color: #6c757d;
+    text-align: left;
+    font-size: .9rem;
     
 }
 
@@ -13,3 +18,13 @@ p{
     margin:0;
     padding:0;
 }
+
+h1{
+    margin-bottom: 1rem!important;
+    font-size: 1.2375rem;
+    font-weight: 500;
+    line-height: 1.2;
+    color: #495057;
+}
+
+
