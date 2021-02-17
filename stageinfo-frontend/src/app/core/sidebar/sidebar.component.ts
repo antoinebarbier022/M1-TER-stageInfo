@@ -44,16 +44,16 @@ export class SidebarComponent implements OnInit {
     {
       title:"Statistiques",
       items: [
-        {icon:"fas fa-file-archive", nom:"Suivi d'embauche", lien:"/", items:[]},
+        {icon:"fas fa-chart-bar", nom:"Suivi d'embauche", lien:"/", items:[]},
         {icon:"fas fa-clipboard-list", nom:"Classement entreprises", lien:"/", items:[]},
         {icon:"fas fa-chart-pie", nom:"Tendances-Calcul d'occurences", lien:"/", items:[]},
-        {icon:"fas fa-chart-bar", nom:"Etiquetage", lien:"/", items:[]}
+        {icon:"fas fa-server", nom:"Etiquetage", lien:"/", items:[]}
       ]
     },
     {
       title:"Archivages",
       items: [
-        {icon:"fas fa-server", nom:"Rapports téléchargeables", lien:"/", items:[]},
+        {icon:"fas fa-file-archive", nom:"Rapports téléchargeables", lien:"/", items:[]},
         {icon:"fas fa-book", nom:"Stages années précédentes", lien:"/", items:[]}
       ]
     },

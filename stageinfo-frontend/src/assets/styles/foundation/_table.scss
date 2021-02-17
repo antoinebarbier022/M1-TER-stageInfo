@@ -1,0 +1,23 @@
+
+.table{
+    color: #6c757d;
+
+    thead th {
+        border-bottom: 2px solid #dee6ed;
+    }
+
+    
+}
+
+.card>.table tr:first-child th {
+    border-top: 0;
+}
+
+.table>tbody>tr>td {
+    vertical-align: middle;
+}
+
+.card>.table td:first-child, .card>.table th:first-child {
+    border-left: 0;
+    padding-left: 1.25rem;
+}
