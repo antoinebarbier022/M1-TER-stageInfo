@@ -26,7 +26,21 @@ const stageSchema = Schema({
       required: true
     }, 
 
-    commentaires : [Schema.Types.ObjectId],
+    commentaires : [new mongoose.Schema({
+      idUser: {
+        type : Schema.Types.ObjectId,
+        required: true
+      },
+      dateCommentaire: {
+        type : Date,
+        default: Date.now
+      },
+      message: {
+        type : String,
+        required: true
+      },
+      
+    })],
 
     // La table fiche_suivi ce situe dans le document stage
     ficheSuivi: new mongoose.Schema({ 
