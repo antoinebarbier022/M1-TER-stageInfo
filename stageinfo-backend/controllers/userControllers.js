@@ -6,7 +6,7 @@ exports.signup = (req, res, next) =>{
         .then(hash => {
             const user =new User({
                 email: req.body.email,
-                password: hash,
+                hash: hash,
                 role: req.body.role,
                 
             });
@@ -24,7 +24,7 @@ exports.login= (req, res, next) =>{
             if(!user){
                 return res.status(401).json({error : 'utilisateur non trouvé'})
             }
-            bcrypt.compare(req.body.password, user.password)
+            bcrypt.compare(req.body.password, user.hash)
                 .then(valid => {
                     if (!valid) {
                         return res.status(401).json({error : 'Mot de passe Incorrect !!'})
