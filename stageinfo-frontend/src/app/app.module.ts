@@ -10,6 +10,7 @@ import { AppComponent } from './app.component';
 import { HeaderComponent } from './core/header/header.component';
 import { FooterComponent } from './core/footer/footer.component';
 import { SidebarComponent } from './core/sidebar/sidebar.component';
+import { Error404Component } from './pages/error404/error404.component';
 
 
 
@@ -18,7 +19,8 @@ import { SidebarComponent } from './core/sidebar/sidebar.component';
     AppComponent,
     HeaderComponent,
     FooterComponent,
-    SidebarComponent
+    SidebarComponent,
+    Error404Component
   ],
   imports: [
     BrowserModule,

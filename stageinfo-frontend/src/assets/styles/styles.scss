@@ -2,7 +2,8 @@
 
 @import "https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700";
 
-@import 'foundation/cards';
+@import 'foundation/card';
+@import 'foundation/table';
 
 body{
     font-family: 'Poppins', sans-serif;
@@ -12,6 +13,10 @@ body{
     text-align: left;
     font-size: .9rem;
     
+}
+
+a{
+    font-size: .9rem;
 }
 
 p{
