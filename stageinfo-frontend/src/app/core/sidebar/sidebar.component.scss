@@ -14,6 +14,16 @@ nav{
     overflow: scroll;
 }
 
+/* Hide scrollbar for Chrome, Safari and Opera */
+.sidebar-content::-webkit-scrollbar{
+    display: none;
+}
+/* Hide scrollbar for IE, Edge and Firefox */
+.sidebar-content {
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;  /* Firefox */
+  }
+
 #website-title{
     color:#e9ecef;
     font-weight: 500;

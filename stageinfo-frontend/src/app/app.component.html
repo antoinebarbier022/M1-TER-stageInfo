@@ -1,4 +1,7 @@
-<div class="wrapper">
+<!-- Si on doit afficher une page avec header, footer et sidebar-->
+
+<!-- changer plus tard le boolean par une variable/fonction ...-->
+<div *ngIf="true" class="wrapper"> 
   <app-sidebar></app-sidebar>
 
   <div class="main">
@@ -10,6 +13,11 @@
     </div>    
     <app-footer></app-footer>
   </div>
+</div>
+
+<!-- Si on doit afficher avec seulement le contenu que l'on souhaite-->
+<div *ngIf="false" class="full-page"> 
+  <router-outlet></router-outlet>
 </div>
 
 
