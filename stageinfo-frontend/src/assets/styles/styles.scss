@@ -4,6 +4,7 @@
 
 @import 'foundation/card';
 @import 'foundation/table';
+@import 'foundation/alert';
 
 body{
     font-family: 'Poppins', sans-serif;
@@ -24,6 +25,10 @@ p{
     padding:0;
 }
 
+strong{
+    font-weight: 500;
+}
+
 h1{
     margin-bottom: 1rem!important;
     font-size: 1.2375rem;
@@ -32,4 +37,11 @@ h1{
     color: #495057;
 }
 
+h2{
+    margin-bottom: 1rem!important;
+    font-size: 1.2375rem;
+    font-weight: 500;
+    line-height: 1.2;
+    color: #495057;
+}
 
