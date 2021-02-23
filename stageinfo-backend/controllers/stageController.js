@@ -147,8 +147,6 @@ exports.editStage = (req, res, next) => {
     resume: req.body.resume,
     niveauRequis: req.body.niveauRequis,
 
-    commentaires: [], // lors de la création du stage, il n'y a aucun commentaire
-
     ficheSuivi: {
       dateDebut: req.body.dateDebut,
       dateFin: req.body.dateFin,
