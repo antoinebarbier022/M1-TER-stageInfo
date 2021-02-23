@@ -5,19 +5,11 @@ const Stage = require('../models/stageModel');
  * @apiName GetAllStage
  * @apiGroup Stage
  */
-exports.getAllStage = (req, res, next) => {
-  Stage.find().then(
-    (stages) => {
-      res.status(200).json(stages);
-    }
-  ).catch(
-    (error) => {
-      res.status(400).json({
-        error: error
-      });
-    }
-  );
-};
+exports.getAllStage = ((req, res, next) => {
+  Stage.find()
+  .then(stages => res.status(200).json(stages))
+  .catch(error => res.status(404).json({ error }));
+});
 
 /**
  * @api {get} /stage Get a Stage
@@ -27,21 +19,13 @@ exports.getAllStage = (req, res, next) => {
  * @apiParam {Number} id Stage's unique ID.
  *
  */
-exports.getOneStage = (req, res, next) => {
+exports.getOneStage = ((req, res, next) => {
   Stage.findOne({
     _id: req.params.id
-  }).then(
-    (stage) => {
-      res.status(200).json(stage);
-    }
-  ).catch(
-    (error) => {
-      res.status(404).json({
-        error: error
-      });
-    }
-  );
-};
+  })
+  .then(creneau => res.status(200).json(creneau))
+  .catch(error => res.status(404).json({ error }))
+});
 
 /**
  * @api {post} /stage Create a new Stage
@@ -50,8 +34,81 @@ exports.getOneStage = (req, res, next) => {
  */
 exports.createStage = (req, res, next) => {
   console.log(req.body);
+
   const stage = new Stage({
-    ...req.body
+    titre: req.body.titre,
+    description: req.body.description,
+    duree: req.body.duree,
+    dateDebut: req.body.date,
+    etat: req.body.etat,
+    rapport: req.body.rapport,
+    fichier: req.body.fichier,
+    conditions: req.body.conditions,
+    objectif: req.body.objectif,
+    avantages: req.body.avantages,
+    datePropose: req.body.datePropose,
+    dateValide: req.body.dateValide,
+    resume: req.body.resume,
+    niveauRequis: req.body.niveauRequis,
+
+    commentaires: [], // lors de la création du stage, il n'y a aucun commentaire
+
+    ficheSuivi: {
+      dateDebut: req.body.dateDebut,
+      dateFin: req.body.dateFin,
+      commentaireBilan: req.body.commentaireBilan,
+      embauche: req.body.embauche,
+      commentaireEmbauche: req.body.commentaireEmbauche,
+      dateFiche: req.body.dateFiche
+    },
+
+    noteStage: {
+      date: req.body.dateNoteStage,
+      valeur: req.body.noteStage,
+      commentaire: req.body.commentaireNoteStage
+    },
+
+    parcours: {
+      idParcours: req.body.idParcours,
+      nomComplet: req.body.nomCompletParcours
+    },
+
+    ajouteur: {
+      idAjouteur: req.body.idAjouteur,
+      nomComplet: req.body.nomCompletAjouteur
+    },
+
+    entreprise: {
+      idEntreprise: req.body.idEntreprise,
+      nomComplet: req.body.nomCompletEntreprise
+    },
+
+    tuteurUniv: {
+      idTuteurUniv: req.body.idTuteurUniv,
+      nomComplet: req.body.nomCompletTuteurUniv
+    },
+
+    tuteurEntreprise: {
+      idTuteurEntreprise: req.body.idTuteurEntreprise,
+      nomComplet: req.body.nomCompletTuteurEntreprise
+    },
+
+    rapporteur: {
+      idRapporteur: req.body.idRapporteur,
+      nomComplet: req.body.nomCompletRapporteur
+    },
+
+    etudiant: {
+      idEtudiant: req.body.idEtudiant,
+      nomComplet: req.body.nomCompletEtudiant
+    },
+
+    idVisite: {
+      typeContact: req.body.typeContact,
+      dateVisite: req.body.dateVisite,
+      commentaire: req.body.commentaireVisite
+    }
+
   });
 
   stage.save()
@@ -72,9 +129,82 @@ exports.createStage = (req, res, next) => {
  */
 exports.editStage = (req, res, next) => {
   console.log(req.body);
+
   const stage = new Stage({
     _id: req.params.id,
-    ...req.body
+    titre: req.body.titre,
+    description: req.body.description,
+    duree: req.body.duree,
+    dateDebut: req.body.date,
+    etat: req.body.etat,
+    rapport: req.body.rapport,
+    fichier: req.body.fichier,
+    conditions: req.body.conditions,
+    objectif: req.body.objectif,
+    avantages: req.body.avantages,
+    datePropose: req.body.datePropose,
+    dateValide: req.body.dateValide,
+    resume: req.body.resume,
+    niveauRequis: req.body.niveauRequis,
+
+    commentaires: [], // lors de la création du stage, il n'y a aucun commentaire
+
+    ficheSuivi: {
+      dateDebut: req.body.dateDebut,
+      dateFin: req.body.dateFin,
+      commentaireBilan: req.body.commentaireBilan,
+      embauche: req.body.embauche,
+      commentaireEmbauche: req.body.commentaireEmbauche,
+      dateFiche: req.body.dateFiche
+    },
+
+    noteStage: {
+      date: req.body.dateNoteStage,
+      valeur: req.body.noteStage,
+      commentaire: req.body.commentaireNoteStage
+    },
+
+    parcours: {
+      idParcours: req.body.idParcours,
+      nomComplet: req.body.nomCompletParcours
+    },
+
+    ajouteur: {
+      idAjouteur: req.body.idAjouteur,
+      nomComplet: req.body.nomCompletAjouteur
+    },
+
+    entreprise: {
+      idEntreprise: req.body.idEntreprise,
+      nomComplet: req.body.nomCompletEntreprise
+    },
+
+    tuteurUniv: {
+      idTuteurUniv: req.body.idTuteurUniv,
+      nomComplet: req.body.nomCompletTuteurUniv
+    },
+
+    tuteurEntreprise: {
+      idTuteurEntreprise: req.body.idTuteurEntreprise,
+      nomComplet: req.body.nomCompletTuteurEntreprise
+    },
+
+    rapporteur: {
+      idRapporteur: req.body.idRapporteur,
+      nomComplet: req.body.nomCompletRapporteur
+    },
+
+    etudiant: {
+      idEtudiant: req.body.idEtudiant,
+      nomComplet: req.body.nomCompletEtudiant
+    },
+
+    idVisite: {
+      typeContact: req.body.typeContact,
+      dateVisite: req.body.dateVisite,
+      commentaire: req.body.commentaireVisite
+    }
+
   });
 
   Stage.updateOne({_id: req.params.id}, stage)

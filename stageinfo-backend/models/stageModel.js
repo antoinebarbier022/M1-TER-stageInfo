@@ -21,10 +21,7 @@ const stageSchema = Schema({
     datePropose: Date,
     dateValide : Date,
     resume : String,
-    niveauRequis : { // M1 / M2 ...
-      type : String,
-      required: true
-    }, 
+    niveauRequis : String, // M1, M2...
 
     commentaires : [new mongoose.Schema({
       idUser: {
@@ -33,13 +30,12 @@ const stageSchema = Schema({
       },
       dateCommentaire: {
         type : Date,
-        default: Date.now
+        default: new Date()
       },
       message: {
         type : String,
         required: true
       },
-      
     })],
 
     // La table fiche_suivi ce situe dans le document stage
@@ -80,7 +76,7 @@ const stageSchema = Schema({
       nomComplet: String,
     },
     rapporteur: { 
-      idRaporteur: Schema.Types.ObjectId,
+      idRapporteur: Schema.Types.ObjectId,
       nomComplet: String,
     },
    
@@ -89,8 +85,11 @@ const stageSchema = Schema({
       nomComplet: String,
     },
     
-    // je sais pas ce que c'est
-    idVisite: Schema.Types.ObjectId, 
+    idVisite: {
+      typeContact: String,
+      dateVisite: Date,
+      commentaire: String
+    }
 
   },
   {

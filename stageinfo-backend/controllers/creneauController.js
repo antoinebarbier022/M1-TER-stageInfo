@@ -9,7 +9,7 @@ const Creneau = require('../models/creneauModel.js');
 exports.getAllCreneau = ((req, res, next) => {
     Creneau.find()
     .then(creneaux => res.status(200).json(creneaux))
-    .catch(error => res.status(400).json({ error }));
+    .catch(error => res.status(404).json({ error }));
 });
 
 /**
