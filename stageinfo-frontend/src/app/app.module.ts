@@ -13,7 +13,7 @@ import { HeaderComponent } from './core/header/header.component';
 import { FooterComponent } from './core/footer/footer.component';
 import { SidebarComponent } from './core/sidebar/sidebar.component';
 
-import { HomeComponent } from './pages/home/home.component';
+import { ExempleTemplateComponent } from './pages/exempleTemplate/exempleTemplate.component';
 import { Error404Component } from './pages/error404/error404.component';
 
 
@@ -25,7 +25,7 @@ import { Error404Component } from './pages/error404/error404.component';
     FooterComponent,
     SidebarComponent,
     Error404Component,
-    HomeComponent,
+    ExempleTemplateComponent,
   ],
   imports: [
     BrowserModule,

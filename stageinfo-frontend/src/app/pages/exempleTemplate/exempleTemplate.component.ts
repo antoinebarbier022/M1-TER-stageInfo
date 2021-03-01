@@ -1,14 +1,14 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { TestService } from '../../../app/core/services/test.service';
+import { TestService } from '../../core/services/test.service';
 import { Subject } from 'rxjs';
 import { takeUntil} from 'rxjs/operators';
 
 @Component({
-  selector: 'app-home',
-  templateUrl: './home.component.html',
-  styleUrls: ['./home.component.scss']
+  selector: 'exemple-template-home',
+  templateUrl: './exempleTemplate.component.html',
+  styleUrls: ['./exempleTemplate.component.scss']
 })
-export class HomeComponent implements OnInit, OnDestroy {
+export class ExempleTemplateComponent implements OnInit, OnDestroy {
 
   // tableau d'objet pour stocker les stages
   public stages: Array<any> = new Array();
