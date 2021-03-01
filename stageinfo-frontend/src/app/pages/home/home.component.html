@@ -32,30 +32,18 @@
             <thead>
             <tr>
                 <th scope="col">id</th>
-                <th scope="col">First</th>
-                <th scope="col">Last</th>
-                <th scope="col">Handle</th>
+                <th scope="col">Titre</th>
+                <th scope="col">Description</th>
+                <th scope="col">Duree</th>
             </tr>
             </thead>
             <tbody>
-            <tr>
-                <th scope="row">1</th>
-                <td>Mark</td>
-                <td>Otto</td>
-                <td>@mdo</td>
-            </tr>
-            <tr>
-                <th scope="row">2</th>
-                <td>Jacob</td>
-                <td>Thornton</td>
-                <td>@fat</td>
-            </tr>
-            <tr>
-                <th scope="row">3</th>
-                <td>Larry</td>
-                <td>the Bird</td>
-                <td>@twitter</td>
-            </tr>
+                <tr *ngFor="let stage of stages">
+                    <td>{{ stage._id }}</td>
+                    <td>{{ stage.titre }}</td>
+                    <td>{{ stage.description }}</td>
+                    <td>{{ stage.duree }} mois</td>
+                </tr>
             </tbody>
         </table>
     
