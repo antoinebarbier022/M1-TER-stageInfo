@@ -60,7 +60,7 @@ export class SidebarComponent implements OnInit {
     {
       title:"Vous êtes développeur ?",
       items: [
-        {icon:"fas fa-book", nom:"Documentation", lien:"/", items:[]},
+        {icon:"fas fa-book", nom:"Documentation", lien:"/documentation", items:[]},
         {icon:"fab fa-gitlab", nom:"Lien du GitLab", lien:"/", items:[]},
         {icon:"fas fa-comment", nom:"Contacter le support", lien:"/", items:[]},
       ]

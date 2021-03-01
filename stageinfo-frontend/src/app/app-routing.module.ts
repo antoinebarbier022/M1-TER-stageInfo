@@ -2,10 +2,12 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
 import { ExempleTemplateComponent } from './pages/exempleTemplate/exempleTemplate.component';
+import { ExempleDocComponent } from './pages/documentation/exemple-doc/exemple-doc.component';
 import { Error404Component } from './pages/error404/error404.component';
 
 const routes: Routes = [
   { path: '', component: ExempleTemplateComponent},
+  { path: 'documentation', component: ExempleDocComponent},
   { path: 'not-found', component: Error404Component },
   { path: '**', redirectTo: 'not-found' }
 ];
