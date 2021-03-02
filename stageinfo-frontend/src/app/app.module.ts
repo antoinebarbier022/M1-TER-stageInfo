@@ -31,7 +31,7 @@ import { Error404Component } from './pages/error404/error404.component';
     BrowserModule,
     HttpClientModule,
     AppRoutingModule,
-    CommonModule,
+    CommonModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -13,6 +13,6 @@ import { SidebarComponent } from './sidebar/sidebar.component';
   imports: [
     CommonModule,
     BrowserModule,
-  ]
+  ],exports:[HeaderComponent, FooterComponent, SidebarComponent],
 })
 export class CoreModule { }
