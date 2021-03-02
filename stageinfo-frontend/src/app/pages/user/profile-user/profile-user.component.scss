@@ -1,4 +1,4 @@
-#profile{
-    width:100%;
-    min-width:1000px;
+:host {             // host targets selector
+    width: 100%;    // takes parent width        
+    height: 100%;   // takes parent height    
 }
