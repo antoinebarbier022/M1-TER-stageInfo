@@ -11,9 +11,14 @@
             <li class="nav-item">
               <a class="nav-link" routerLink="/">Planing soutenance</a>
             </li>
-            <li class="nav-item">
-              <a class="nav-link disabled" routerLink="/" ></a>
+            <!-- Test des roles-->
+            <li *ngIf="monRole" class="nav-item">
+              <a class="nav-link disabled" routerLink="/" >{{ monRole }}</a>
             </li>
+            <li *ngIf="!monRole" class="nav-item">
+              <a class="nav-link disabled" routerLink="/" >Vous n'avez pas de role</a>
+            </li>
+            
           </ul>
         </div>
         <div class="navbar-collapse collapse" id="navbarRight">
