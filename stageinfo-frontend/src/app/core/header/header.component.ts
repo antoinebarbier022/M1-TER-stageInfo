@@ -7,16 +7,17 @@ import { TestService } from '../services/test.service';
   styleUrls: ['./header.component.scss']
 })
 export class HeaderComponent implements OnInit {
+  monRole = "invite";
 
-  role = "aucun";
-  monRole = "aucun";
-
-  constructor(private testService: TestService) { 
-    this.testService.setRole("etudiant");
-  }
+  constructor(private testService: TestService) { }
 
   ngOnInit(): void {
     this.monRole = this.testService.getRole();
+  }
+
+  setRole(role:string){
+    this.monRole = role;
+    this.testService.setRole(role);
   }
 
 }
