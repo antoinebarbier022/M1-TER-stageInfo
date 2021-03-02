@@ -4,10 +4,11 @@ module.exports = (req, res, next) => {
         const token = req.headers.authorization.split(' ')[1];
         const decodedToken = jwt.verify(token, 'RANDOM_TOKEN_SECRET');
         const userId = decodedToken.userId;
-        if(req.body.userId && req.body.userId !== userId && req.body.role != "admin"){
+        const role = decodedToken.role;
+        if(req.body.userId && req.body.userId !== userId){
             throw 'user id non valable !';
         } else {
-            if(role != "admin" ||role != "secretaire"){
+            if(role != "admin"|| role != "etudiant"||role!="respEntreprise" ||role!="tuteur" || role!="respParcours" || role != "respStage " || role != "secretaire"){
                 res.status(401).json("vous n'avez pas le droit d'accéder a cette requête")
 
             }
@@ -15,7 +16,7 @@ module.exports = (req, res, next) => {
         }
     }
     catch (error){
-        res.status(401).json({error: error | 'Requête non auth'})
+        res.status(401).json('Requête non auth')
     }
 
 };
