@@ -2,13 +2,14 @@ const User = require('../models/userModel');
 const bcrypt = require('bcrypt');
 const jwt = require ('jsonwebtoken');
 exports.signup = (req, res, next) =>{
+    console.log(req.body)
     bcrypt.hash(req.body.password,10)
         .then(hash => {
             const user =new User({
                 email: req.body.email,
                 hash: hash,
                 role: req.body.role,
-                
+
             });
             user.save()
                 .then(() => res.status(201).json({message: 'Utilisateur crée!'}))
@@ -32,8 +33,9 @@ exports.login= (req, res, next) =>{
                     }
                     res.status(200).json({
                         userId: user._id,
+                        role:user.role,
                         token: jwt.sign(
-                            {userId: user._id},
+                            {userId: user._id,role:user.role},
                             'RANDOM_TOKEN_SECRET',
                             {expiresIn: '24h'}
                         )
