@@ -6,12 +6,14 @@ import { ExempleDocComponent } from './pages/documentation/exemple-doc/exemple-d
 import { Error404Component } from './pages/error404/error404.component';
 import { LoginComponent } from './pages/login/login.component';
 
+import { AuthGuard } from './core/guards/auth.guard';
+
 const routes: Routes = [
-  { path: '', component: ExempleTemplateComponent},
+  { path: '', component: ExempleTemplateComponent, canActivate: [AuthGuard]},
   { path: 'login', component: LoginComponent},
-  { path: 'documentation', component: ExempleDocComponent},
-  { path: 'not-found', component: Error404Component },
-  { path: '**', redirectTo: 'not-found' }
+  { path: 'documentation', component: ExempleDocComponent, canActivate: [AuthGuard]},
+  { path: 'not-found', component: Error404Component, canActivate: [AuthGuard]},
+  { path: '**', redirectTo: 'not-found', canActivate: [AuthGuard]}
 ];
 
 @NgModule({
