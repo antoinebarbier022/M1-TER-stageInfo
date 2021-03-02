@@ -12,8 +12,8 @@ const routes: Routes = [
   { path: '', component: ExempleTemplateComponent},
   { path: 'documentation', component: ExempleDocComponent},
   { path: 'profile', component: ProfileUserComponent},
-  { path: 'list-users/user', component: InfoUserComponent},
-  { path: 'list-users', component: ListUsersComponent},
+  { path: 'liste-utilisateurs/user', component: InfoUserComponent},
+  { path: 'liste-utilisateurs', component: ListUsersComponent},
   { path: 'not-found', component: Error404Component },
   { path: '**', redirectTo: 'not-found' }
 ];

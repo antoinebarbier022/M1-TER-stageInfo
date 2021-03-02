@@ -9,14 +9,14 @@ import { TestService } from '../services/test.service';
 export class SidebarComponent implements OnInit {
 
   // On défini tous les liens possibles de navigation
-  listeStages =             {icon:"fas fa-list",          nom:"Listing des stages",       lien:"/listing-stages",       items:[]};
-  listeSoutenances =        {icon:"fas fa-list",          nom:"Listing des soutenances",  lien:"/listing-soutenance",   items:[]};
-  listeEntreprise =         {icon:"fas fa-list",          nom:"Listing des entreprise",  lien:"/listing-soutenance",   items:[]};
-  listeUtilisateurs =       {icon:"fas fa-list",          nom:"Listing des soutenances",  lien:"/listing-soutenance",   items:[]};
-  listeEtudiants =          {icon:"fas fa-user-friends",  nom:"Listing des étudiants ",   lien:"/etudiant-sans-stages", items:[]};
-  listeEnseignants =        {icon:"fas fa-user-friends",  nom:"listing des enseignants",  lien:"/etudiant-sans-stages", items:[]};
+  listeStages =             {icon:"fas fa-list",          nom:"Listing des stages",       lien:"/liste-stages",       items:[]};
+  listeSoutenances =        {icon:"fas fa-list",          nom:"Listing des soutenances",  lien:"/liste-soutenances",   items:[]};
+  listeEntreprise =         {icon:"fas fa-list",          nom:"Listing des entreprise",  lien:"/liste-entreprises",   items:[]};
+  listeUtilisateurs =       {icon:"fas fa-list",          nom:"Listing des utilisateurs",  lien:"/liste-utilisateurs",   items:[]};
+  listeEtudiants =          {icon:"fas fa-user-friends",  nom:"Listing des étudiants ",   lien:"/liste-etudiants", items:[]};
+  listeEnseignants =        {icon:"fas fa-user-friends",  nom:"listing des enseignants",  lien:"/liste-enseignants", items:[]};
   listeEtudiantsSansStage = {icon:"fas fa-user-friends",  nom:"Étudiant sans stages",     lien:"/etudiant-sans-stages", items:[]};
-  listeSoutenancesNonPlanifie = {icon:"fas fa-list",      nom:"Listing des soutenances non planifiées", lien:"/listing-soutenance", items:[]};
+  listeSoutenancesNonPlanifie = {icon:"fas fa-list",      nom:"Listing des soutenances non planifiées", lien:"/listing-soutenance-non-planifie", items:[]};
 
   planingSoutenance =       {icon:"fas fa-calendar-alt",  nom:"Planing de soutenance",    lien:"/planing-soutenance", items:[]};
   notesStage =              {icon:"fas fa-table",         nom:"Les notes des stages",     lien:"/note-de-stage", items:[]};
