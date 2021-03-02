@@ -6,23 +6,32 @@ import { HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 
-// importation mes modules
-import { PagesModule } from './pages/pages.module';
-import { CoreModule } from './core/core.module';
+
+
+
+import { HeaderComponent } from './core/header/header.component';
+import { FooterComponent } from './core/footer/footer.component';
+import { SidebarComponent } from './core/sidebar/sidebar.component';
+
+import { ExempleTemplateComponent } from './pages/exempleTemplate/exempleTemplate.component';
+import { Error404Component } from './pages/error404/error404.component';
 
 
 
 @NgModule({
   declarations: [
     AppComponent,
+    HeaderComponent,
+    FooterComponent,
+    SidebarComponent,
+    Error404Component,
+    ExempleTemplateComponent,
   ],
   imports: [
     BrowserModule,
     HttpClientModule,
     AppRoutingModule,
-    CommonModule,
-    PagesModule,
-    CoreModule
+    CommonModule
   ],
   providers: [],
   bootstrap: [AppComponent]
