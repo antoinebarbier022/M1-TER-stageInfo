@@ -20,7 +20,7 @@
                     <td><span class="badge badge-danger">Administrateur</span></td>
                     <td class="table-action">
                         <a routerLink="/edit-user"><i class="icon far fa-lg fa-edit"></i></a>
-                        <a routerLink="/edit-user"><i class="icon far fa-lg fa-trash-alt"></i></a>
+                        <a href="#" data-toggle="modal" data-target="#suppression-user"><i class="icon far fa-lg fa-trash-alt"></i></a>
                     </td>
                 </tr>
                 <tr>
@@ -30,7 +30,7 @@
                     <td><span class="badge badge-primary">Secretaire</span></td>
                     <td class="table-action">
                         <a routerLink="/edit-user"><i class="icon far fa-lg fa-edit"></i></a>
-                        <a routerLink="/edit-user"><i class="icon far fa-lg fa-trash-alt"></i></a>
+                        <a href="#" data-toggle="modal" data-target="#suppression-user"><i class="icon far fa-lg fa-trash-alt"></i></a>
                     </td>
                 </tr>
                 <tr>
@@ -40,7 +40,7 @@
                     <td><span class="badge badge-secondary">Tuteur</span></td>
                     <td class="table-action">
                         <a routerLink="/edit-user"><i class="icon far fa-lg fa-edit"></i></a>
-                        <a routerLink="/edit-user"><i class="icon far fa-lg fa-trash-alt"></i></a>
+                        <a href="#" data-toggle="modal" data-target="#suppression-user"><i class="icon far fa-lg fa-trash-alt"></i></a>
                     </td>
                 </tr>
                 <tr>
@@ -50,7 +50,7 @@
                     <td><span class="badge badge-secondary">Tuteur</span></td>
                     <td class="table-action">
                         <a routerLink="/edit-user"><i class="icon far fa-lg fa-edit"></i></a>
-                        <a routerLink="/edit-user"><i class="icon far fa-lg fa-trash-alt"></i></a>
+                        <a href="#" data-toggle="modal" data-target="#suppression-user"><i class="icon far fa-lg fa-trash-alt"></i></a>
                     </td>
                 </tr>
             </tbody>
@@ -83,7 +83,7 @@
                     <td>2020/2021</td>
                     <td class="table-action">
                         <a routerLink="/edit-user"><i class="icon far fa-lg fa-edit"></i></a>
-                        <a routerLink="/edit-user"><i class="icon far fa-lg fa-trash-alt"></i></a>
+                        <a href="#" data-toggle="modal" data-target="#suppression-user"><i class="icon far fa-lg fa-trash-alt"></i></a>
                     </td>
                 </tr>
                 <tr>
@@ -94,7 +94,7 @@
                     <td>2020/2021</td>
                     <td class="table-action">
                         <a routerLink="/edit-user"><i class="icon far fa-lg fa-edit"></i></a>
-                        <a routerLink="/edit-user"><i class="icon far fa-lg fa-trash-alt"></i></a>
+                        <a href="#" data-toggle="modal" data-target="#suppression-user"><i class="icon far fa-lg fa-trash-alt"></i></a>
                     </td>
                 </tr>
                 <tr>
@@ -105,10 +105,32 @@
                     <td>2020/2021</td>
                     <td class="table-action">
                         <a routerLink="/edit-user"><i class="icon far fa-lg fa-edit"></i></a>
-                        <a routerLink="/edit-user"><i class="icon far fa-lg fa-trash-alt"></i></a>
+                        <!-- Appel au modal  -->
+                        <a href="#" data-toggle="modal" data-target="#suppression-user"><i class="icon far fa-lg fa-trash-alt"></i></a>
                     </td>
                 </tr>
             </tbody>
         </table>
+</div>
+            
+<!-- Debut du Modal suppression utilisateur -->
+<div class="modal fade" id="suppression-user" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+    <div class="modal-content">
+        <div class="modal-header">
+        <h2 class="modal-title" id="exampleModalLabel">Suppression Utilisateur</h2>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+        </div>
+        <div class="modal-body">
+        Confirmer la suppression de l'utilisateur <strong>mario bros</strong>.
+        </div>
+        <div class="modal-footer">
+        <button type="button" class="btn btn-secondary btn-sm" data-dismiss="modal">Annuler</button>
+        <button type="button" class="btn btn-danger btn-sm" data-dismiss="modal">Supprimer</button>
+        </div>
+    </div>
+    </div>
 </div>
 
