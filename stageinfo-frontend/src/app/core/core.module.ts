@@ -13,6 +13,9 @@ import { SidebarComponent } from './sidebar/sidebar.component';
     CommonModule,
     BrowserModule,
     RouterModule
-  ],exports:[HeaderComponent, FooterComponent, SidebarComponent],
+  ],
+  exports:[
+    HeaderComponent, FooterComponent, SidebarComponent
+  ]
 })
 export class CoreModule { }

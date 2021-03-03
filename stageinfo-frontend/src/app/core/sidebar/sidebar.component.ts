@@ -1,5 +1,10 @@
 import { Component, OnInit } from '@angular/core';
+
+import {Subscription} from "rxjs";
+import {AuthService} from "../services/auth.service";
+import {Router} from "@angular/router";
 import { TestService } from '../services/test.service';
+
 
 @Component({
   selector: 'app-sidebar',
@@ -9,7 +14,7 @@ import { TestService } from '../services/test.service';
 export class SidebarComponent implements OnInit {
 
   // On défini tous les liens possibles de navigation
-  listeStages =             {icon:"fas fa-list",          nom:"Listing des stages",       lien:"/liste-stages",       items:[]};
+  listeStages =             {icon:"fas fa-list",          nom:"Listing des stages",       lien:"/list-stage",       items:[]};
   listeSoutenances =        {icon:"fas fa-list",          nom:"Listing des soutenances",  lien:"/liste-soutenances",   items:[]};
   listeEntreprise =         {icon:"fas fa-list",          nom:"Listing des entreprise",  lien:"/liste-entreprises",   items:[]};
   listeUtilisateurs =       {icon:"fas fa-list",          nom:"Listing des utilisateurs",  lien:"/liste-utilisateurs",   items:[]};
@@ -152,10 +157,19 @@ export class SidebarComponent implements OnInit {
     }
   ];
 
-  constructor(private testService: TestService) { 
-  }
+  public isAuth: boolean | undefined;
+
+  private isAuthSub: Subscription | undefined;
+  constructor(private auth: AuthService,
+              private router: Router,
+              private testService: TestService) { }
 
   ngOnInit(): void {
+    this.isAuthSub = this.auth.isAuth$.subscribe(
+      (auth) => {
+        this.isAuth = auth;
+      }
+    );
   }
 
   choixNavigation() : any{
