@@ -11,10 +11,35 @@
             <li class="nav-item">
               <a class="nav-link" routerLink="/">Planing soutenance</a>
             </li>
-            <li class="nav-item">
-              <a class="nav-link disabled" routerLink="/" ></a>
-            </li>
+            <!-- Test des roles-->
+            
+
+              
+            
+          
+           
+           
+            
+            
           </ul>
+        </div>
+        <div class="navbar-collapse" >
+
+          <div class="dropdown">
+            <a class="dropdown-toggle" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Role : {{monRole}}
+            </a>
+            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton">
+                <a class="dropdown-item" (click)="setRole('invite')">invite</a>
+                <a class="dropdown-item" (click)="setRole('etudiant')">etudiant</a>
+                <a class="dropdown-item" (click)="setRole('tuteur')">tuteur</a>
+                <a class="dropdown-item" (click)="setRole('respParcours')">respParcours</a>
+                <a class="dropdown-item" (click)="setRole('repEntreprise')">repEntreprise</a>
+                <a class="dropdown-item" (click)="setRole('secretaire')">secretaire</a>
+                <a class="dropdown-item" (click)="setRole('admin')">admin</a>
+                
+            </div>
+          </div>
         </div>
         <div class="navbar-collapse collapse" id="navbarRight">
             <p>
