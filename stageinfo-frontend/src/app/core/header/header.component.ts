@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { TestService } from '../services/test.service';
+import {Subscription} from "rxjs";
+import {Router} from "@angular/router";
+import {AuthService} from "../services/auth.service";
 
 @Component({
   selector: 'app-header',
@@ -7,17 +9,19 @@ import { TestService } from '../services/test.service';
   styleUrls: ['./header.component.scss']
 })
 export class HeaderComponent implements OnInit {
-  monRole = "invite";
+  public isAuth: boolean | undefined;
 
-  constructor(private testService: TestService) { }
-
+  private isAuthSub: Subscription | undefined;
+  constructor(private auth: AuthService,
+              private router: Router) { }
   ngOnInit(): void {
-    this.monRole = this.testService.getRole();
+    this.isAuthSub = this.auth.isAuth$.subscribe(
+      (auth) => {
+        this.isAuth = auth;
+      }
+    );
   }
 
-  setRole(role:string){
-    this.monRole = role;
-    this.testService.setRole(role);
-  }
 
 }
+

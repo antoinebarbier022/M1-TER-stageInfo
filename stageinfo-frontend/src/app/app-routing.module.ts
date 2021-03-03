@@ -4,18 +4,16 @@ import { Routes, RouterModule } from '@angular/router';
 import { ExempleTemplateComponent } from './pages/exempleTemplate/exempleTemplate.component';
 import { ExempleDocComponent } from './pages/documentation/exemple-doc/exemple-doc.component';
 import { Error404Component } from './pages/error404/error404.component';
-import { ProfileUserComponent } from './pages/user/profile-user/profile-user.component';
-import { InfoUserComponent } from './pages/user/info-user/info-user.component';
-import { ListUsersComponent } from './pages/user/list-users/list-users.component';
+import { LoginComponent } from './pages/login/login.component';
+import {AuthGuardService} from "./core/services/auth-guard.service";
+
 
 const routes: Routes = [
-  { path: '', component: ExempleTemplateComponent},
-  { path: 'documentation', component: ExempleDocComponent},
-  { path: 'profile', component: ProfileUserComponent},
-  { path: 'liste-utilisateurs/user', component: InfoUserComponent},
-  { path: 'liste-utilisateurs', component: ListUsersComponent},
-  { path: 'not-found', component: Error404Component },
-  { path: '**', redirectTo: 'not-found' }
+  { path: '', component: ExempleTemplateComponent, canActivate: [AuthGuardService]},
+  { path: 'login', component: LoginComponent},
+  { path: 'documentation', component: ExempleDocComponent, canActivate: [AuthGuardService]},
+  { path: 'not-found', component: Error404Component, canActivate: [AuthGuardService]},
+  { path: '**', redirectTo: 'not-found', canActivate: [AuthGuardService]}
 ];
 
 @NgModule({

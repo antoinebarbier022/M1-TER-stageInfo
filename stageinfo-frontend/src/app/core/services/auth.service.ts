@@ -2,7 +2,6 @@ import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { BehaviorSubject } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
-import {map} from "rxjs/operators";
 
 @Injectable({
   providedIn: 'root'
@@ -10,29 +9,59 @@ import {map} from "rxjs/operators";
 export class AuthService {
 
   isAuth$ = new BehaviorSubject<boolean>(false);
-  token: string;
-  role: string;
-  userId: string;
+  token: string | undefined;
+  userId: string | undefined;
 
   constructor(private router: Router,
               private http: HttpClient) {}
 
+  createNewUser(email: string, password: string, rolee: string) {
+    return new Promise((resolve, reject) => {
+      this.http.post(
+        'http://localhost:3000/api/signup',
+        { email: email, password: password, rolee: rolee })
+        .subscribe(
+          () => {
+            this.login(email, password).then(
+              () => {
+                resolve();
+              }
+            ).catch(
+              (error) => {
+                reject(error);
+              }
+            );
+          },
+          (error) => {
+            reject(error);
+          }
+        );
+    });
+  }
 
   login(email: string, password: string) {
+    return new Promise((resolve, reject) => {
       this.http.post(
         'http://localhost:3000/api/auth/login',
-        { email, password})
-        .pipe(map(user => {
-            this.token = user.;
-            this.userId = user.userId;
+        { email: email, password: password })
+        .subscribe(
+          (authData:any) => {
+            this.token = authData.token;
+            this.userId = authData.userId;
+
             this.isAuth$.next(true);
-            return user;
-        }));
+            resolve();
+          },
+          (error) => {
+            reject(error);
+          }
+        );
+    });
   }
 
   logout() {
     this.isAuth$.next(false);
-    this.userId = null;
-    this.token = null;
+    this.userId = '';
+    this.token = '';
   }
 }
