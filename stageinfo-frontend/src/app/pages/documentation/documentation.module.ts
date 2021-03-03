@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+
 import { ExempleDocComponent } from './exemple-doc/exemple-doc.component';
 
 
@@ -8,6 +9,6 @@ import { ExempleDocComponent } from './exemple-doc/exemple-doc.component';
   declarations: [ExempleDocComponent],
   imports: [
     CommonModule
-  ]
+  ], exports:[ExempleDocComponent]
 })
 export class DocumentationModule { }

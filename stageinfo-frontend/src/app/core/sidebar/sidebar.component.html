@@ -10,7 +10,7 @@
         </div>
 
         <!-- Navigation -->
-        <div *ngFor="let categorie of navigation">
+        <div *ngFor="let categorie of choixNavigation()">
             <p class="sidebar-header">{{ categorie.title }}</p>
             <ul class="sidebar-nav">
                 <li *ngFor="let item of categorie.items" class="sidebar-item">
