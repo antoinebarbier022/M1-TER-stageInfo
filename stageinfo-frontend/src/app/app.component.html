@@ -1,8 +1,8 @@
 <!-- Si on doit afficher une page avec header, footer et sidebar-->
 
 <!-- changer plus tard le boolean par une variable/fonction ...-->
-<div *ngIf="true" class="wrapper"> 
-  <app-sidebar></app-sidebar>
+<div  class="wrapper"> 
+  <app-sidebar *ngIf="!fullpage()"></app-sidebar>
 
   <div class="main">
     <app-header></app-header>

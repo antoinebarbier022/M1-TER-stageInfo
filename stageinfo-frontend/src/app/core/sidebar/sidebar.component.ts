@@ -1,5 +1,10 @@
 import { Component, OnInit } from '@angular/core';
+
+import {Subscription} from "rxjs";
+import {AuthService} from "../services/auth.service";
+import {Router} from "@angular/router";
 import { TestService } from '../services/test.service';
+
 
 @Component({
   selector: 'app-sidebar',
@@ -152,11 +157,19 @@ export class SidebarComponent implements OnInit {
     }
   ];
 
-  constructor(private testService: TestService) { 
-  }
+  public isAuth: boolean | undefined;
+
+  private isAuthSub: Subscription | undefined;
+  constructor(private auth: AuthService,
+              private router: Router,
+              private testService: TestService) { }
 
   ngOnInit(): void {
-  }
+    this.isAuthSub = this.auth.isAuth$.subscribe(
+      (auth) => {
+        this.isAuth = auth;
+      }
+    );
 
   choixNavigation() : any{
     switch (this.testService.getRole()){
