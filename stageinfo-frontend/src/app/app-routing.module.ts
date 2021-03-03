@@ -8,16 +8,21 @@ import { ProfileUserComponent } from './pages/user/profile-user/profile-user.com
 import { InfoUserComponent } from './pages/user/info-user/info-user.component';
 import { ListUsersComponent } from './pages/user/list-users/list-users.component';
 import { ListStagesComponent } from './pages/stage/list-stages/list-stages.component';
+import { LoginComponent } from './pages/login/login.component';
+
+//import {AuthGuardService} from "./core/services/auth-guard.service";
+
 
 const routes: Routes = [
-  { path: '', component: ExempleTemplateComponent},
-  { path: 'documentation', component: ExempleDocComponent},
-  { path: 'list-stage', component: ListStagesComponent},
-  { path: 'profile', component: ProfileUserComponent},
-  { path: 'liste-utilisateurs/user', component: InfoUserComponent},
-  { path: 'liste-utilisateurs', component: ListUsersComponent},
-  { path: 'not-found', component: Error404Component },
-  { path: '**', redirectTo: 'not-found' }
+  { path: '', component: ExempleTemplateComponent, canActivate: []},
+  { path: 'login', component: LoginComponent},
+  { path: 'documentation', component: ExempleDocComponent, canActivate: []},
+  { path: 'list-stage', component: ListStagesComponent, canActivate: []},
+  { path: 'profile', component: ProfileUserComponent, canActivate: []},
+  { path: 'liste-utilisateurs/user', component: InfoUserComponent, canActivate: []},
+  { path: 'liste-utilisateurs', component: ListUsersComponent, canActivate: []},
+  { path: 'not-found', component: Error404Component, canActivate: []},
+  { path: '**', redirectTo: 'not-found', canActivate: []}
 ];
 
 @NgModule({
