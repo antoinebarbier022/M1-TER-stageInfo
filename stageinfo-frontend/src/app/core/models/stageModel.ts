@@ -70,5 +70,5 @@ export class stageSchema = {
         dateVisite: Date;
         commentaire: string;
     }
-    
+
 }
