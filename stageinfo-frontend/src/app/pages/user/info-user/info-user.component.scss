@@ -1,4 +1,20 @@
 :host {             // host targets selector
     width: 100%;    // takes parent width        
-    height: 100%;   // takes parent height    
+    height: 100%;   // takes parent height   
+}
+
+.all-card-profile{
+    display: flex;
+
+    #info-user{
+        width:400px;
+        
+        margin-right:20px; //temporaire
+    }
+    
+    #info-user-stages{
+        width:400px;
+        margin-right:-20px;
+
+    }
 }
