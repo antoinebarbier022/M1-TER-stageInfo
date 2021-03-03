@@ -5,5 +5,5 @@ export class embaucheSchema{
 
     commentaire: string;
     contratType: string;
-    dateEmbauche; Date;
+    dateEmbauche: Date;
 }
