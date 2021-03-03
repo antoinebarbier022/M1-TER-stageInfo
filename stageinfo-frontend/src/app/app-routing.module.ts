@@ -7,10 +7,12 @@ import { Error404Component } from './pages/error404/error404.component';
 import { ProfileUserComponent } from './pages/user/profile-user/profile-user.component';
 import { InfoUserComponent } from './pages/user/info-user/info-user.component';
 import { ListUsersComponent } from './pages/user/list-users/list-users.component';
+import { ListStagesComponent } from './pages/stage/list-stages/list-stages.component';
 
 const routes: Routes = [
   { path: '', component: ExempleTemplateComponent},
   { path: 'documentation', component: ExempleDocComponent},
+  { path: 'list-stage', component: ListStagesComponent},
   { path: 'profile', component: ProfileUserComponent},
   { path: 'liste-utilisateurs/user', component: InfoUserComponent},
   { path: 'liste-utilisateurs', component: ListUsersComponent},
