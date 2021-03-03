@@ -9,7 +9,7 @@ import { TestService } from '../services/test.service';
 export class SidebarComponent implements OnInit {
 
   // On défini tous les liens possibles de navigation
-  listeStages =             {icon:"fas fa-list",          nom:"Listing des stages",       lien:"/liste-stages",       items:[]};
+  listeStages =             {icon:"fas fa-list",          nom:"Listing des stages",       lien:"/list-stage",       items:[]};
   listeSoutenances =        {icon:"fas fa-list",          nom:"Listing des soutenances",  lien:"/liste-soutenances",   items:[]};
   listeEntreprise =         {icon:"fas fa-list",          nom:"Listing des entreprise",  lien:"/liste-entreprises",   items:[]};
   listeUtilisateurs =       {icon:"fas fa-list",          nom:"Listing des utilisateurs",  lien:"/liste-utilisateurs",   items:[]};
