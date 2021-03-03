@@ -59,10 +59,11 @@ const stageSchema = Schema({
       idParcours: Schema.Types.ObjectId,
       nomComplet: String,
     },
-    ajouteur:{
+    ajouteur: {
       idAjouteur: Schema.Types.ObjectId,
       nomComplet: String,
     },
+    
     entreprise: { 
       idEntreprise: Schema.Types.ObjectId,
       nomComplet: String,
