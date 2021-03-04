@@ -3,24 +3,47 @@
     height: 100%;   // takes parent height   
 }
 
-label{
-    color:#495057;
+.all-card-profile{
+    display: grid;
+    grid-template-columns: 1fr 2fr 1fr;
+    gap: 15px 15px;
+    grid-template-areas:
+    ". card-add-user .";
+}
+
+table{
+    width:100%;
+    margin:auto;
+}
+
+.card{
+    grid-area: card-add-user;
 }
 
 
-fieldset{
-    margin-bottom:20px;
-    .fieldset-content{
-        padding:0px 15px 0px 15px;
-    }
+.form-control{
+    height: initial;
+    padding:4px;
+}
+input{
+    width:100%;
 }
 
 
-legend{
-    font-size: 0.95rem;
-    font-weight: 500;
-    color: #495057;
-    margin-bottom: 16px;
+datalist{
+    max-height: 500px;
 }
+
+th{  
+    //permet d'avoir toutes les data affiché au même niveau
+    min-width:100px;
+}
+
+td{
+    padding:2px;
+}
+
+
+
 
 

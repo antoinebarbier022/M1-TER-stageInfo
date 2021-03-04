@@ -1,127 +1,159 @@
 <p><a routerLink=".."><i class="fas fa-chevron-left"></i> Retour</a></p>
 <br/>
-<h1>Utilisateur : Antoine Barbier</h1>
-
-<div id="info-user" class="card">
-    <div class="card-body">
-        <form>
-            <fieldset>
-                <legend>Profile utilisateur</legend>
-                <div class="fieldset-content">
-
-                    <div class="form-row">
-                        <div class="form-group col-md-4">
-                            <label for="inputRole">Role</label>
-                            <!--mettre un système qui change la couleur en fonction du roles-->
-                            <select id="inputState" class="form-control badge-danger">
-                                <option>Administrateur</option>
-                                <option>Secretaire</option>
-                                <option>Etudiant</option>
-                                <option>Tuteur</option>
-                                <option>Invite</option>
-                            </select>
-                        </div>
-                    </div>
-                    <div class="form-row">
-                        <div class="form-group col-md-6">
-                            <label for="inputLastname">Nom</label>
-                            <input type="text" class="form-control" id="inputName" placeholder="Nom" value="Barbier">
-                        </div>
-                        <div class="form-group col-md-6">
-                            <label for="inputFirstname">Prénom</label>
-                            <input type="text" class="form-control" id="inputFirstname" placeholder="Prénom" value="Antoine">
-                        </div>
-                    </div>
-                </div>
-            </fieldset>
+<h1 style="text-align: center;">Modifier l'utilisateur : Antoine Barbier </h1>
 
 
-            <fieldset>
-                <legend>Coordonnées</legend>
-                <div class="fieldset-content">
-                    <div class="form-row">
-                        <div class="form-group col-md-6">
-                            <label for="inputEmail4">Email</label>
-                            <input type="email" class="form-control" id="inputEmail4" placeholder="Email">
-                        </div>
-                        <div class="form-group col-md-6">
-                            <label for="inputPassword4">Password</label>
-                            <input type="password" class="form-control" id="inputPassword4" placeholder="Password">
-                        </div>
-                    </div>
-                    <div class="form-row">
-                        <div class="form-group col-md-6" >
-                            <label for="inputFax">Fax</label>
-                            <input type="text" class="form-control" id="inputFax" placeholder="">
-                        </div>
-                        <div class="form-group col-md-6">
-                            <label for="inputPhone">Phone</label>
-                            <input type="text" class="form-control" id="inputPhone" placeholder="">
-                        </div>
-                    </div>
-                </div>
-            </fieldset>
-            
+<div class="all-card-profile">
+    <div id="info-user" class="card">
+        <div class="card-body">
 
-            
-            <fieldset>
-                <legend>Information Étudiant</legend>
-                <div class="form-row fieldset-content">
-                    <div class="form-group col-md-4">
-                        <label for="inputNumEtudiant">Numéro Étudiant</label>
-                        <input type="text" class="form-control" id="inputNumEtudiant" value="1938390">
-                    </div>
-                    <div class="form-group col-md-4">
-                        <label for="inputPromotion">Promotion</label>
-                        <select id="inputState" class="form-control">
-                            <option selected="">2020/2021</option>
-                            <option>2019/2020</option>
-                            <option>2018/2019</option>
-                            <option>2017/2018</option>
-                            <option>2016/2017</option>
-                        </select>
-                    </div>
-                    <div class="form-group col-md-4">
-                        <label for="inputParcours">Parcours</label>
-                        <select id="inputState" class="form-control">
-                            <option selected="">M2 Aigle</option>
-                            <option>M2 MIT</option>
-                            <option>M2 Decol</option>
-                            <option>M2 Imagina</option>
-                        </select>
-                    </div>
-                </div>
-            </fieldset>
-            
-            
-            
-            
-            <fieldset>
-                <legend>Information Entreprise</legend>
-                <div class="form-row fieldset-content">
-                    <div class="form-group col-md-6" >
-                        <label for="inputFonction">Fonction</label>
-                        <input type="text" class="form-control" id="inputFonction" placeholder="" value="Chef de projet">
-                    </div>
-                    <div class="form-group col-md-6">
-    
-                        <label for="inputEntreprise">Entreprise</label>
-                        <input type="text" class="form-control" id="inputEntreprises" name="entreprises" list="entreprise-list" value="IBM">
-    
-                        <datalist id="entreprise-list">
-                            <option>IBM</option>
-                            <option>Cap Gemini</option>
-                            <option>Ubisoft</option>
-                        </datalist>
-                    </div>
-                </div>
-            </fieldset>
-            
-            
-            
-            <button type="submit" class="btn btn-primary btn-sm">Mettre à jour</button>
-        </form>
+            <ul class="list-group list-group-flush">
+                <li class="list-group-item">
+                    <table class=" table-sm">
+                        <tbody>
+                            <tr>
+                                <th>Nom</th>
+                                <td>
+                                    <input type="text"  class="form-control" id="inputName" placeholder="Nom" placeholder="Nom">
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>Prénom</th>
+                                <td>
+                                    <input type="text"  class="form-control" id="inputFirstname" placeholder="Prénom" placeholder="Prénom">
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>Rôle</th>
+                                <td>
+                                    <select  id="inputRole" class="form-control">
+                                        <option>Administrateur</option>
+                                        <option>Secretaire</option>
+                                        <option>Etudiant</option>
+                                        <option>Tuteur</option>
+                                        <option selected>Invite</option>
+                                    </select>
+                                </td>
+                            </tr>
+                        
+                        </tbody>
+                    </table>
+                </li>
+                <li class="list-group-item">
+                    <table class=" table-sm">
+                        <tbody>
+                            <tr>
+                                <th>Email</th>
+                                <td>
+                                    <input type="email"  class="form-control" id="inputEmail4" placeholder="Email" placeholder="Adresse mail">
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>Fax</th>
+                                <td>
+                                    <input type="text"  class="form-control" id="inputFax" placeholder="Numéro de fax">
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>Phone</th>
+                                <td>
+                                    <input type="text"  class="form-control" id="inputPhone" placeholder="" placeholder="Numéro de Telephone">
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </li>
 
-        
+                <li class="list-group-item">
+
+                    <table class=" table-sm">
+                        <tbody>
+                        <tr>
+                            <th>N° Étudiant</th>
+                            <td>
+                                <!--<input type="text" readonly class="form-control-plaintext" id="inputNumEtudiant" value="1938390">-->
+                                <input type="text"  class="form-control" id="inputNumEtudiant" placeholder="Numéro étudiant">
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>Promotion</th>
+                            <td>
+                                <select  id="inputState" class="form-control">
+                                    <option selected="">2020/2021</option>
+                                    <option>2019/2020</option>
+                                    <option>2018/2019</option>
+                                    <option>2017/2018</option>
+                                    <option>2016/2017</option>
+                                </select>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>Parcours</th>
+                            <td>
+                                <select  id="inputState" class="form-control">
+                                    <option>M2 Aigle</option>
+                                    <option>M2 MIT</option>
+                                    <option>M2 Decol</option>
+                                    <option>M2 Imagina</option>
+                                </select>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                </li>
+
+                <li class="list-group-item">
+                    <table class=" table-sm">
+                        <tbody>
+                            <tr>
+                                <th>Fonction </th>
+                                <td>
+                                    <input type="text"  class="form-control" id="inputFonction" placeholder="" placeholder="Fonction occupée">
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>Entreprise</th>
+                                <td>
+                                    <input type="text"  class="form-control" id="inputEntreprises" name="entreprises" list="entreprise-list" placeholder="Nom de l'entreprise">
+                
+                                    <datalist id="entreprise-list">
+                                        <option>IBM</option>
+                                        <option>Cap Gemini</option>
+                                        <option>Ubisoft</option>
+
+                                    </datalist>
+                                </td>
+                            </tr>
+                            
+                        </tbody>
+                    </table>
+                    
+                </li>
+            </ul>
+            
+            <button type="submit" style="float:right;" data-toggle="modal" data-target="#suppression-user"  class="btn btn-danger btn-sm">Supprimer</button>
+            <button routerLink="/liste-utilisateurs" type="submit" style="float:right; margin-right:5px;" class="btn btn-primary btn-sm">Modifier</button>
+        </div>
+    </div>
+</div>
+
+<!-- Debut du Modal suppression utilisateur -->
+<div class="modal fade" id="suppression-user" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+    <div class="modal-content">
+        <div class="modal-header">
+        <h2 class="modal-title" id="exampleModalLabel">Suppression Utilisateur</h2>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+        </div>
+        <div class="modal-body">
+        Confirmer la suppression de l'utilisateur.
+        </div>
+        <div class="modal-footer">
+        <button type="button" class="btn btn-secondary btn-sm" data-dismiss="modal">Annuler</button>
+        <button type="button" class="btn btn-danger btn-sm" data-dismiss="modal">Supprimer</button>
+        </div>
+    </div>
     </div>
 </div>
