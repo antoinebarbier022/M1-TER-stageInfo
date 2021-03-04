@@ -1,0 +1,55 @@
+:host {             // host targets selector
+    width: 100%;    // takes parent width        
+    height: 100%;   // takes parent height   
+}
+
+.all-card-profile{
+    display: grid;
+    grid-template-columns: 1fr 2fr 1fr;
+    gap: 15px 15px;
+    grid-template-areas:
+    ". card-add-user .";
+}
+
+table{
+    width:100%;
+    margin:auto;
+}
+
+.card{
+    grid-area: card-add-user;
+    .card-header{
+        padding-bottom: 0;
+    }
+    .card-body{
+        padding-top: 0;
+    }
+}
+
+
+.form-control{
+    height: initial;
+    padding:4px;
+}
+input{
+    width:100%;
+}
+
+
+datalist{
+    max-height: 500px;
+}
+
+th{  
+    //permet d'avoir toutes les data affiché au même niveau
+    min-width:100px;
+}
+
+td{
+    padding:2px;
+}
+
+
+
+
+

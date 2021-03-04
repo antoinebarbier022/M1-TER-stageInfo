@@ -1,0 +1,142 @@
+<p><a routerLink=".."><i class="fas fa-chevron-left"></i> Retour</a></p>
+<br/>
+<!--<h1>Ajouter un utilisateur </h1>-->
+
+
+<div class="all-card-profile">
+    <div id="info-user" class="card">
+        <div class="card-header">
+            <h2 class="card-title"> Ajouter un utilisateur
+                 
+            </h2>
+        </div>
+        <div class="card-body">
+
+            <ul class="list-group list-group-flush">
+                <li class="list-group-item">
+                    <table class=" table-sm">
+                        <tbody>
+                            <tr>
+                                <th>Nom</th>
+                                <td>
+                                    <input type="text"  class="form-control" id="inputName" placeholder="Nom" placeholder="Nom">
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>Prénom</th>
+                                <td>
+                                    <input type="text"  class="form-control" id="inputFirstname" placeholder="Prénom" placeholder="Prénom">
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>Rôle</th>
+                                <td>
+                                    <select  id="inputRole" class="form-control">
+                                        <option>Administrateur</option>
+                                        <option>Secretaire</option>
+                                        <option>Etudiant</option>
+                                        <option>Tuteur</option>
+                                        <option selected>Invite</option>
+                                    </select>
+                                </td>
+                            </tr>
+                        
+                        </tbody>
+                    </table>
+                </li>
+                <li class="list-group-item">
+                    <table class=" table-sm">
+                        <tbody>
+                            <tr>
+                                <th>Email</th>
+                                <td>
+                                    <input type="email"  class="form-control" id="inputEmail4" placeholder="Email" placeholder="Adresse mail">
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>Fax</th>
+                                <td>
+                                    <input type="text"  class="form-control" id="inputFax" placeholder="Numéro de fax">
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>Phone</th>
+                                <td>
+                                    <input type="text"  class="form-control" id="inputPhone" placeholder="" placeholder="Numéro de Telephone">
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </li>
+
+                <li class="list-group-item">
+
+                    <table class=" table-sm">
+                        <tbody>
+                        <tr>
+                            <th>N° Étudiant</th>
+                            <td>
+                                <!--<input type="text" readonly class="form-control-plaintext" id="inputNumEtudiant" value="1938390">-->
+                                <input type="text"  class="form-control" id="inputNumEtudiant" placeholder="Numéro étudiant">
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>Promotion</th>
+                            <td>
+                                <select  id="inputState" class="form-control">
+                                    <option selected="">2020/2021</option>
+                                    <option>2019/2020</option>
+                                    <option>2018/2019</option>
+                                    <option>2017/2018</option>
+                                    <option>2016/2017</option>
+                                </select>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>Parcours</th>
+                            <td>
+                                <select  id="inputState" class="form-control">
+                                    <option>M2 Aigle</option>
+                                    <option>M2 MIT</option>
+                                    <option>M2 Decol</option>
+                                    <option>M2 Imagina</option>
+                                </select>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                </li>
+
+                <li class="list-group-item">
+                    <table class=" table-sm">
+                        <tbody>
+                            <tr>
+                                <th>Fonction </th>
+                                <td>
+                                    <input type="text"  class="form-control" id="inputFonction" placeholder="" placeholder="Fonction occupée">
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>Entreprise</th>
+                                <td>
+                                    <input type="text"  class="form-control" id="inputEntreprises" name="entreprises" list="entreprise-list" placeholder="Nom de l'entreprise">
+                
+                                    <datalist id="entreprise-list">
+                                        <option>IBM</option>
+                                        <option>Cap Gemini</option>
+                                        <option>Ubisoft</option>
+
+                                    </datalist>
+                                </td>
+                            </tr>
+                            
+                        </tbody>
+                    </table>
+                    
+                </li>
+            </ul>
+            <button routerLink="/liste-utilisateurs" type="submit" style="float:right;" class="btn btn-primary btn-sm">Ajouter</button>
+        </div>
+    </div>
+</div>
+
