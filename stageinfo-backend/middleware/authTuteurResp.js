@@ -8,7 +8,7 @@ module.exports = (req, res, next) => {
         if(req.body.userId && req.body.userId !== userId){
             throw 'user id non valable !';
         } else {
-            if(role != "admin"|| role!="respEntreprise" ||role!="tuteur" || role!="respParcours" || role != "respStage " || role != "secretaire"){
+            if(role != "admin" && role!="respEntreprise" && role!="tuteur" && role!="respParcours" && role != "respStage " && role != "secretaire"){
                 res.status(401).json("vous n'avez pas le droit d'accéder a cette requête")
 
             }
