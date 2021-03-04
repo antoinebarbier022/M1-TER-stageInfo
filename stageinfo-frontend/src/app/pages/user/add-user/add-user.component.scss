@@ -9,41 +9,43 @@
     gap: 15px 15px;
     grid-template-areas:
     ". card-add-user .";
-}
-
-table{
-    width:100%;
-    margin:auto;
-}
-
-.card{
-    grid-area: card-add-user;
-
+    .card{
+        grid-area: card-add-user;
+    
+    }
 }
 
 
-.form-control{
-    height: initial;
-    padding:4px;
-}
-input{
-    width:100%;
-}
 
+form{
+    margin: 10px 30px 10px 30px;
+    fieldset{
+        margin-bottom: 10px;
+    }
+    .form-group-row{
+        display: flex;
+        flex-direction: row;
+        margin:5px;
 
-datalist{
-    max-height: 500px;
+        .form-control{
+            height: initial;
+            padding: 4px;
+        }
+        label{
+            width:200px;
+            align-self:center;
+            font-weight:bold;
+            margin:0;
+        }
+        input, select{
+            width:100%;
+            padding:3px;
+        }
+    }
+    button{
+        float:right;
+    }
 }
-
-th{  
-    //permet d'avoir toutes les data affiché au même niveau
-    min-width:100px;
-}
-
-td{
-    padding:2px;
-}
-
 
 
 
