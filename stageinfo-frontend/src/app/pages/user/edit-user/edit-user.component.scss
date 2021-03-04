@@ -1,0 +1,29 @@
+:host {             // host targets selector
+    width: 100%;    // takes parent width        
+    height: 100%;   // takes parent height   
+}
+
+label{
+    color:#495057;
+}
+
+.input-role-color{
+    background-color: red;
+}
+
+fieldset{
+    margin-bottom:20px;
+    .fieldset-content{
+        padding:0px 15px 0px 15px;
+    }
+}
+
+
+legend{
+    font-size: 0.95rem;
+    font-weight: 500;
+    color: #495057;
+    margin-bottom: 16px;
+}
+
+

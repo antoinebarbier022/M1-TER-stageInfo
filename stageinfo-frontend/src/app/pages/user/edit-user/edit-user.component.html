@@ -1,0 +1,127 @@
+<p><a routerLink=".."><i class="fas fa-chevron-left"></i> Retour</a></p>
+<br/>
+<h1>Utilisateur : Antoine Barbier</h1>
+
+<div id="info-user" class="card">
+    <div class="card-body">
+        <form>
+            <fieldset>
+                <legend>Profile utilisateur</legend>
+                <div class="fieldset-content">
+
+                    <div class="form-row">
+                        <div class="form-group col-md-4">
+                            <label for="inputRole">Role</label>
+                            <!--mettre un système qui change la couleur en fonction du roles-->
+                            <select id="inputState" class="form-control badge-danger">
+                                <option>Administrateur</option>
+                                <option>Secretaire</option>
+                                <option>Etudiant</option>
+                                <option>Tuteur</option>
+                                <option>Invite</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                            <label for="inputLastname">Nom</label>
+                            <input type="text" class="form-control" id="inputName" placeholder="Nom" value="Barbier">
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label for="inputFirstname">Prénom</label>
+                            <input type="text" class="form-control" id="inputFirstname" placeholder="Prénom" value="Antoine">
+                        </div>
+                    </div>
+                </div>
+            </fieldset>
+
+
+            <fieldset>
+                <legend>Coordonnées</legend>
+                <div class="fieldset-content">
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                            <label for="inputEmail4">Email</label>
+                            <input type="email" class="form-control" id="inputEmail4" placeholder="Email">
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label for="inputPassword4">Password</label>
+                            <input type="password" class="form-control" id="inputPassword4" placeholder="Password">
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col-md-6" >
+                            <label for="inputFax">Fax</label>
+                            <input type="text" class="form-control" id="inputFax" placeholder="">
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label for="inputPhone">Phone</label>
+                            <input type="text" class="form-control" id="inputPhone" placeholder="">
+                        </div>
+                    </div>
+                </div>
+            </fieldset>
+            
+
+            
+            <fieldset>
+                <legend>Information Étudiant</legend>
+                <div class="form-row fieldset-content">
+                    <div class="form-group col-md-4">
+                        <label for="inputNumEtudiant">Numéro Étudiant</label>
+                        <input type="text" class="form-control" id="inputNumEtudiant" value="1938390">
+                    </div>
+                    <div class="form-group col-md-4">
+                        <label for="inputPromotion">Promotion</label>
+                        <select id="inputState" class="form-control">
+                            <option selected="">2020/2021</option>
+                            <option>2019/2020</option>
+                            <option>2018/2019</option>
+                            <option>2017/2018</option>
+                            <option>2016/2017</option>
+                        </select>
+                    </div>
+                    <div class="form-group col-md-4">
+                        <label for="inputParcours">Parcours</label>
+                        <select id="inputState" class="form-control">
+                            <option selected="">M2 Aigle</option>
+                            <option>M2 MIT</option>
+                            <option>M2 Decol</option>
+                            <option>M2 Imagina</option>
+                        </select>
+                    </div>
+                </div>
+            </fieldset>
+            
+            
+            
+            
+            <fieldset>
+                <legend>Information Entreprise</legend>
+                <div class="form-row fieldset-content">
+                    <div class="form-group col-md-6" >
+                        <label for="inputFonction">Fonction</label>
+                        <input type="text" class="form-control" id="inputFonction" placeholder="" value="Chef de projet">
+                    </div>
+                    <div class="form-group col-md-6">
+    
+                        <label for="inputEntreprise">Entreprise</label>
+                        <input type="text" class="form-control" id="inputEntreprises" name="entreprises" list="entreprise-list" value="IBM">
+    
+                        <datalist id="entreprise-list">
+                            <option>IBM</option>
+                            <option>Cap Gemini</option>
+                            <option>Ubisoft</option>
+                        </datalist>
+                    </div>
+                </div>
+            </fieldset>
+            
+            
+            
+            <button type="submit" class="btn btn-primary btn-sm">Mettre à jour</button>
+        </form>
+
+        
+    </div>
+</div>
