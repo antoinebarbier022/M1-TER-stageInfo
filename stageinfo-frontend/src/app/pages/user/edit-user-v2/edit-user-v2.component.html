@@ -1,18 +1,19 @@
 <p><a routerLink=".."><i class="fas fa-chevron-left"></i> Retour</a></p>
 <br/>
-<h1>Utilisateur : Antoine Barbier</h1>
+<h1>Utilisateur : Antoine Barbier </h1>
+
 
 <div class="all-card-profile">
     <div id="info-user" class="card">
         <div class="card-header">
-            <h2 class="card-title"> Profile utilisateur 
+            <h2 class="card-title"> Profile utilisateur
                 <button type="submit" 
                         style="float:right; margin-left:5px;" 
                         class="btn btn-danger btn-sm"
                         data-toggle="modal" data-target="#suppression-user">
                     <i class="icon far fa-trash-alt"></i>
                 </button>
-                <button routerLink="/liste-utilisateurs/edit-user-v2" type="submit" style="float:right;" class="btn btn-secondary btn-sm"><i class="icon far fa-edit"></i></button> 
+                <button routerLink="/liste-utilisateurs/user" type="submit" style="float:right;" class="btn btn-primary btn-sm">Update</button> 
             </h2>
         </div>
         <div class="card-body">
@@ -23,15 +24,27 @@
                         <tbody>
                             <tr>
                                 <th>Nom</th>
-                                <td>Ramos</td>
+                                <td>
+                                    <input type="text" [readonly]="isReadonly" class="form-control" id="inputName" placeholder="Nom" value="Barbier">
+                                </td>
                             </tr>
                             <tr>
                                 <th>Prénom</th>
-                                <td>Angelica</td>
+                                <td>
+                                    <input type="text" [readonly]="isReadonly" class="form-control" id="inputFirstname" placeholder="Prénom" value="Antoine">
+                                </td>
                             </tr>
                             <tr>
                                 <th>Rôle</th>
-                                <td><span class="badge badge-secondary">Administrateur</span></td>
+                                <td>
+                                    <select [disabled]="isReadonly" id="inputRole" class="form-control">
+                                        <option>Administrateur</option>
+                                        <option>Secretaire</option>
+                                        <option>Etudiant</option>
+                                        <option>Tuteur</option>
+                                        <option>Invite</option>
+                                    </select>
+                                </td>
                             </tr>
                         
                         </tbody>
@@ -42,15 +55,21 @@
                         <tbody>
                             <tr>
                                 <th>Email</th>
-                                <td>angelica@ramos.com</td>
+                                <td>
+                                    <input type="email" [readonly]="isReadonly" class="form-control" id="inputEmail4" placeholder="Email" value="angelica@ramos.com">
+                                </td>
                             </tr>
                             <tr>
                                 <th>Fax</th>
-                                <td>+1234123123123</td>
+                                <td>
+                                    <input type="text" [readonly]="isReadonly" class="form-control" id="inputFax" placeholder="">
+                                </td>
                             </tr>
                             <tr>
                                 <th>Phone</th>
-                                <td>+1234123123123</td>
+                                <td>
+                                    <input type="text" [readonly]="isReadonly" class="form-control" id="inputPhone" placeholder="" value="+1234123123123">
+                                </td>
                             </tr>
                         </tbody>
                     </table>
@@ -62,15 +81,33 @@
                         <tbody>
                         <tr>
                             <th>N° Étudiant</th>
-                            <td>1938390</td>
+                            <td>
+                                <!--<input type="text" readonly class="form-control-plaintext" id="inputNumEtudiant" value="1938390">-->
+                                <input type="text" [readonly]="isReadonly" class="form-control" id="inputNumEtudiant" value="1938390">
+                            </td>
                         </tr>
                         <tr>
                             <th>Promotion</th>
-                            <td>2020/2021</td>
+                            <td>
+                                <select [disabled]="isReadonly" id="inputState" class="form-control">
+                                    <option selected="">2020/2021</option>
+                                    <option>2019/2020</option>
+                                    <option>2018/2019</option>
+                                    <option>2017/2018</option>
+                                    <option>2016/2017</option>
+                                </select>
+                            </td>
                         </tr>
                         <tr>
                             <th>Parcours</th>
-                            <td>M2 Aigle</td>
+                            <td>
+                                <select [disabled]="isReadonly" id="inputState" class="form-control">
+                                    <option selected="">M2 Aigle</option>
+                                    <option>M2 MIT</option>
+                                    <option>M2 Decol</option>
+                                    <option>M2 Imagina</option>
+                                </select>
+                            </td>
                         </tr>
                     </tbody>
                 </table>
@@ -81,18 +118,30 @@
                         <tbody>
                             <tr>
                                 <th>Fonction </th>
-                                <td>Chef d'entreprise</td>
+                                <td>
+                                    <input type="text" [readonly]="isReadonly" class="form-control" id="inputFonction" placeholder="" value="Chef de projet">
+                                </td>
                             </tr>
                             <tr>
                                 <th>Entreprise</th>
-                                <td>IBM Montpellier</td>
+                                <td>
+                                    <input type="text" [readonly]="isReadonly" class="form-control" id="inputEntreprises" name="entreprises" list="entreprise-list" value="IBM">
+                
+                                    <datalist id="entreprise-list">
+                                        <option>IBM</option>
+                                        <option>Cap Gemini</option>
+                                        <option>Ubisoft</option>
+
+                                    </datalist>
+                                </td>
                             </tr>
+                            
                         </tbody>
                     </table>
+                    
                 </li>
             </ul>
-            
-            
+    
         </div>
     </div>
     

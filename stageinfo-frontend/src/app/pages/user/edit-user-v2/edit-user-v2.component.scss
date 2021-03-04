@@ -18,12 +18,33 @@
     }
 }
 
+
+.form-control{
+    height: initial;
+    padding:4px;
+}
+input{
+    width:100%;
+}
+#inputRole{
+    display:inline;
+    height: initial;
+    padding:5px;
+    font-weight: 500;
+    font-size: 75%;
+}
+
+datalist{
+    max-height: 500px;
+}
+
 th{  
     //permet d'avoir toutes les data affiché au même niveau
     min-width:100px;
 }
+
 td{
-    padding:6px;
+    padding:2px;
 }
 .card-stage{
     background:#f7f9fc;
