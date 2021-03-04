@@ -6,6 +6,7 @@ import { ExempleDocComponent } from './pages/documentation/exemple-doc/exemple-d
 import { Error404Component } from './pages/error404/error404.component';
 import { ProfileUserComponent } from './pages/user/profile-user/profile-user.component';
 import { InfoUserComponent } from './pages/user/info-user/info-user.component';
+import { EditUserComponent } from './pages/user/edit-user/edit-user.component';
 import { ListUsersComponent } from './pages/user/list-users/list-users.component';
 import { ListStagesComponent } from './pages/stage/list-stages/list-stages.component';
 import { LoginComponent } from './pages/login/login.component';
@@ -21,6 +22,7 @@ const routes: Routes = [
   { path: 'profile', component: ProfileUserComponent, canActivate: []},
   { path: 'liste-utilisateurs/user', component: InfoUserComponent, canActivate: []},
   { path: 'liste-utilisateurs', component: ListUsersComponent, canActivate: []},
+  { path: 'liste-utilisateurs/edit-user', component: EditUserComponent, canActivate: []},
   { path: 'not-found', component: Error404Component, canActivate: []},
   { path: '**', redirectTo: 'not-found', canActivate: []}
 ];

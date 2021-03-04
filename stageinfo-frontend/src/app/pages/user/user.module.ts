@@ -6,10 +6,12 @@ import { RouterModule } from '@angular/router';
 import { ProfileUserComponent } from './profile-user/profile-user.component';
 import { InfoUserComponent } from './info-user/info-user.component';
 import { ListUsersComponent } from './list-users/list-users.component';
+import { EditUserComponent } from './edit-user/edit-user.component';
+import { EditUserV2Component } from './edit-user-v2/edit-user-v2.component';
 
 
 @NgModule({
-  declarations: [ProfileUserComponent, InfoUserComponent, ListUsersComponent],
+  declarations: [ProfileUserComponent, InfoUserComponent, ListUsersComponent, EditUserComponent, EditUserV2Component],
   imports: [
     CommonModule,
     BrowserModule,
