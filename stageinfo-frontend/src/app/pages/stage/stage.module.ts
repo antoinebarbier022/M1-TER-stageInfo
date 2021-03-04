@@ -4,11 +4,12 @@ import { BrowserModule } from '@angular/platform-browser'
 import { RouterModule } from '@angular/router';
 
 import { ListStagesComponent } from './list-stages/list-stages.component';
+import { InfoStageComponent } from './info-stage/info-stage.component';
 
 
 
 @NgModule({
-  declarations: [ListStagesComponent],
+  declarations: [ListStagesComponent, InfoStageComponent],
   imports: [
     CommonModule,
     BrowserModule,
