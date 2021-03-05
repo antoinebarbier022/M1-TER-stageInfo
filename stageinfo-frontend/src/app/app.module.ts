@@ -9,6 +9,7 @@ import { AppComponent } from './app.component';
 // importation mes modules
 import { PagesModule } from './pages/pages.module';
 import { CoreModule } from './core/core.module';
+import { SharedModule } from './shared/shared.module';
 
 
 
@@ -22,7 +23,8 @@ import { CoreModule } from './core/core.module';
     AppRoutingModule,
     CommonModule,
     PagesModule,
-    CoreModule
+    CoreModule,
+    SharedModule
   ],
   providers: [],
   bootstrap: [AppComponent]

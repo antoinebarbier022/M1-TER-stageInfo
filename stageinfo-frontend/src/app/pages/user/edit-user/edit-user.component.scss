@@ -9,7 +9,7 @@
     gap: 15px 15px;
     grid-template-areas:
     ". card-add-user .";
-    .card{
+    #edit-user{
         grid-area: card-add-user;
     
     }
@@ -19,34 +19,6 @@ h1{
     text-align: center;
 }
 
-form{
-    margin: 10px 30px 10px 30px;
-    fieldset{
-        margin-bottom: 10px;
-    }
-    .form-group-row{
-        display: flex;
-        flex-direction: row;
-        margin:5px;
-
-        label{
-            width:200px;
-            align-self:center;
-            font-weight:bold;
-            margin:0;
-        }
-        input, select{
-            width:100%;
-            padding:3px;
-        }
-    }
-    .btn{
-        float:right;
-    }
-    .btn-modifier{
-        margin:0px 5px 0px 5px;
-    }
-}
 
 
 
