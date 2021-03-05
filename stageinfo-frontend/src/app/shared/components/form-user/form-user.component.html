@@ -1,4 +1,16 @@
 <div class="card">
+    <div *ngIf="title" class="card-header">
+        <h2 class="card-title">
+            {{ title }} 
+            <a *ngIf="viewUser"
+            routerLink="/liste-utilisateurs/edit-user" 
+            type="submit" 
+            style="float:right;" 
+            class="btn-icon-modif">
+                <i class="icon far fa-lg fa-edit"></i>
+            </a>
+        </h2>
+    </div>
     <div class="card-body">
         <form>
             <!-- Section information profile-->
@@ -7,30 +19,36 @@
                 <div class="form-group-row">
                     <label for="inputLastname">Nom</label>
                     <input  type="text" 
-                            id="inputLastname" 
-                            class="form-control" 
+                            id="inputLastname"  
+                            [ngClass]="viewUser? 'form-control-plaintext' : 'form-control'"
                             placeholder="Nom de l'utilisateur" 
                             [(ngModel)]="user.nom"
-                            name="nom">
+                            name="nom"
+                            [readonly]="viewUser">
                 </div>
                 <!-- Prénom de l'utilisateur -->
                 <div class="form-group-row">
                     <label for="inputFistname">Prénom</label>
                     <input  type="text" 
                             id="inputFistname" 
-                            class="form-control" 
+                            [ngClass]="viewUser? 'form-control-plaintext' : 'form-control'" 
                             placeholder="Prénom de l'utilisateur"
                             [(ngModel)]="user.prenom"
-                            name="prenom">
+                            name="prenom"
+                            [readonly]="viewUser">
                 </div>
                 <!-- Role de l'utilisateur -->
                 <div class="form-group-row">
                     <label for="inputRole">Role</label>
-                    <select  id="inputRole" class="form-control" [(ngModel)]="user.role" name="role" (ngModelChange)="displaySection(user.role)">
+                    <div *ngIf="viewUser" class="form-select-plaintext">
+                        <span class="badge badge-secondary">{{ user.role }}</span>
+                    </div>
+                    <select *ngIf="!(viewUser)" id="inputRole" [ngClass]="viewUser? 'form-control-plaintext' : 'form-control'" [(ngModel)]="user.role" name="role" (ngModelChange)="displaySection(user.role)">
                         <option *ngFor="let i of roles" [ngValue]="i">{{ i }}</option>
                     </select>
                 </div>
             </fieldset>
+            <hr *ngIf="viewUser">
 
             <!-- Section email/password de l'utilisateur -->
             <fieldset>
@@ -39,23 +57,25 @@
                     <label for="inputEmail">Email</label>
                     <input  type="email" 
                             id="inputEmail" 
-                            class="form-control" 
+                            [ngClass]="viewUser? 'form-control-plaintext' : 'form-control'" 
                             placeholder="Email"
                             [(ngModel)]="user.email"
-                            name="email">
+                            name="email"
+                            [readonly]="viewUser">
                 </div>
                 <!-- Password de l'utilisateur -->
                 <div class="form-group-row">
                     <label for="inputPassword">Password</label>
                     <input  type="password" 
                             id="inputPassword" 
-                            class="form-control" 
+                            [ngClass]="viewUser? 'form-control-plaintext' : 'form-control'" 
                             placeholder="Mot de passe"
                             [(ngModel)]="user.hash"
-                            name="password">
+                            name="password"
+                            [readonly]="viewUser">
                 </div>
             </fieldset>
-
+            <hr *ngIf="viewUser">
 
             <!-- Section informations Etudiant de l'utilisateur -->
             <fieldset *ngIf="displaySectionEtudiant">
@@ -64,26 +84,34 @@
                     <label for="inputNumEtudiant">N° Étudiant</label>
                     <input  type="text" 
                             id="inputNumEtudiant" 
-                            class="form-control" 
+                            [ngClass]="viewUser? 'form-control-plaintext' : 'form-control'" 
                             placeholder="Numéro étudiant"
                             [(ngModel)]="user.numeroEtudiant"
-                            name="numeroEtudiant">
+                            name="numeroEtudiant"
+                            [readonly]="viewUser">
                 </div>
                 <!-- année de la promotion de l'étudiant -->
                 <div class="form-group-row">
                     <label for="inputPromotion">Promotion</label>
-                    <select  id="inputPromotion" class="form-control" [(ngModel)]="user.promotion" name="promotion" >
+                    <div *ngIf="viewUser" class="form-select-plaintext">
+                        <span>{{ user.promotion }}</span>
+                    </div>
+                    <select *ngIf="!(viewUser)" id="inputPromotion" [ngClass]="viewUser? 'form-control-plaintext' : 'form-control'" [(ngModel)]="user.promotion" name="promotion" >
                         <option *ngFor="let i of promotions" [ngValue]="i">{{ i }}</option>
                     </select>
                 </div>
                 <!--  nom du parcours de l'étudiant -->
                 <div class="form-group-row">
                     <label for="inputParcours">Parcours</label>
-                    <select  id="inputParcours" class="form-control" [(ngModel)]="user.parcours" name="parcours">
+                    <div *ngIf="viewUser" class="form-select-plaintext">
+                        <span>{{ user.parcours }}</span>
+                    </div>
+                    <select *ngIf="!(viewUser)" id="inputParcours" [ngClass]="viewUser? 'form-control-plaintext' : 'form-control'" [(ngModel)]="user.parcours" name="parcours">
                         <option *ngFor="let i of parcours" [ngValue]="i">{{ i }}</option>
                     </select>
                 </div>
             </fieldset>
+            <hr *ngIf="viewUser">
 
             <!-- Section coordonnées de l'utilisateur -->
             <fieldset *ngIf="displaySectionCoordonnees">
@@ -92,22 +120,25 @@
                     <label for="inputFax">Fax</label>
                     <input  type="text" 
                             id="inputFax" 
-                            class="form-control" 
+                            [ngClass]="viewUser? 'form-control-plaintext' : 'form-control'" 
                             placeholder="Numéro de fax"
                             [(ngModel)]="user.fax"
-                            name="fax">
+                            name="fax"
+                            [readonly]="viewUser">
                 </div>
                 <!-- Phone de l'utilisateur -->
                 <div class="form-group-row">
                     <label for="inputPhone">Téléphone</label>
                     <input  type="text" 
                             id="inputPhone" 
-                            class="form-control" 
+                            [ngClass]="viewUser? 'form-control-plaintext' : 'form-control'" 
                             placeholder="Numéro de téléphone"
                             [(ngModel)]="user.telephone"
-                            name="telephone">
+                            name="telephone"
+                            [readonly]="viewUser">
                 </div>
             </fieldset>
+            <hr *ngIf="viewUser">
 
             <!-- Section représentant d'entreprise -->
             <fieldset *ngIf="displaySectionEntreprise">
@@ -116,22 +147,24 @@
                     <label for="inputFonction">Fonction</label>
                     <input  type="text" 
                             id="inputFonction" 
-                            class="form-control" 
+                            [ngClass]="viewUser? 'form-control-plaintext' : 'form-control'" 
                             placeholder="Fonction occupée"
                             [(ngModel)]="user.fonction"
-                            name="fonction">
+                            name="fonction"
+                            [readonly]="viewUser">
                 </div>
                 <!-- Entreprise dans laquel est l'utilisateur -->
                 <div class="form-group-row">
                     <label for="inputEntreprise">Entreprise</label>
                     <input  type="text" 
-                            class="form-control"
+                            [ngClass]="viewUser? 'form-control-plaintext' : 'form-control'"
                             id="inputEntreprise"
                             name="entreprises" 
                             list="entreprise-list"
                             placeholder="Nom de l'entreprise"
                             [(ngModel)]="user.entreprise"
-                            name="entreprise">
+                            name="entreprise"
+                            [readonly]="viewUser">
                             
                     <datalist id="entreprise-list">
                         <option>IBM</option>
