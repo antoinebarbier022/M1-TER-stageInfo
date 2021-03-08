@@ -13,11 +13,13 @@ export class AddStageComponent implements OnInit {
 
   title = "Nouveau stage";
   stage = {
-    titre :"toto",
-    description :"mateo",
-    duree :"mateo",
-    niveauRequis :"titi@gmail.com",
-    parcours :"M2 IMAGINA",
+    titre :"Développeur frontend (Angular)",
+    description :"Un excellent stage pour étudiant qui aime le web ...",
+    duree :"6",
+    dateDebut :"",
+    niveauRequis :"M1",
+    parcours :"IMAGINA",
+    entreprise:"",
     salaire:"",
     avantages:"",
     conditions:"",

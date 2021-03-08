@@ -31,12 +31,14 @@ ul{
     justify-content: space-between;
     margin:0;
     list-style-type: none;
-    background-color: aliceblue;
+    //background-color: #f7f9fc;
+    z-index: 1;
     li{
         display: flex;
         flex-direction: column;
         text-align: center;
     }
+
     li > i{
         align-self: center;
         width:50px;
@@ -44,16 +46,41 @@ ul{
         line-height: 32px;
         margin-bottom: 4px;
         border: 3px solid #49505793;
+        
         padding:5px;
         border-radius: 100%;
+        z-index: 1;
+        background-color:white;
     }
     .fieldset-active{
         color: #293042;
+        
         i{
-            border: 3px solid #293042;
+            color: white;
+            //border: 3px solid #293042;
+            background-color: #707b97;
         }
     }
 }
+ul::before {
+    content: '';
+    position: absolute;
+    top:60px;
+    left:0px;
+    width:100%;
+    flex: 1 2 auto; /* the first digint is 'flex-grow: 1', helps elemet to occupy all free space */ 
+    border-top: dashed 3px #49505793;
+    
+  }
+  ul::after {
+    content: '';
+    position: absolute;
+    top:60px;
+    left:0px;
+    width:20%;
+    flex: 1 2 auto; /* the first digint is 'flex-grow: 1', helps elemet to occupy all free space */ 
+    border-top: solid 3px #495057;
+  }
 
 hr{
     margin: 5px 0 5px 0;

@@ -7,11 +7,19 @@
     <div id="add-stage" class="card">
         <div class="card-header">
             <ul class="nav-progress">
-                <li class="fieldset-active">
+                <li [ngClass]="displayFielset('stage')? 'fieldset-active' : '' ">
                     <i class="fas fa-lg fa-bars"></i>
                     Stage</li>
-                <li><i class="fas fa-lg fa-building"></i> Entreprise</li>
-                <li><i class="far fa-lg fa-building"></i></li>
+                    <hr>
+                <li [ngClass]="displayFielset('entreprise')? 'fieldset-active' : '' ">
+                    <i class="fas fa-lg fa-building"></i> 
+                    Entreprise
+                </li>
+                <hr>
+                <li [ngClass]="displayFielset('more')? 'fieldset-active' : '' ">
+                    <i class="fas fa-lg fa-dollar-sign"></i>
+                    More
+                </li>
                 
             </ul>
         </div>
@@ -26,6 +34,7 @@
                                 id="inputTitre"  
                                 class="form-control"
                                 placeholder="titre du stage" 
+                                [(ngModel)]="stage.titre"
                                 name="titre">
                     </div>
                     <!-- Niveau requis du stage -->
@@ -48,6 +57,7 @@
                         <textarea   id="inputDescription"
                                     class="form-control"  
                                     rows="3"
+                                    [(ngModel)]="stage.description"
                                     name="description">
                         </textarea>
                         
@@ -59,6 +69,7 @@
                                 id="inputDuree" 
                                 class="form-control" 
                                 placeholder="6 mois"
+                                [(ngModel)]="stage.duree"
                                 name="duree">
                     </div>
 
@@ -69,6 +80,7 @@
                                 id="inputDateDebut" 
                                 class="form-control" 
                                 placeholder="6 mois"
+                                [(ngModel)]="stage.dateDebut"
                                 name="dateDebut">
                     </div>
                 </fieldset>
@@ -84,6 +96,7 @@
                                 name="entreprises" 
                                 list="entreprise-list"
                                 placeholder="titre de l'entreprise"
+                                [(ngModel)]="stage.entreprise"
                                 name="entreprise">
                                 
                         <datalist id="entreprise-list">
