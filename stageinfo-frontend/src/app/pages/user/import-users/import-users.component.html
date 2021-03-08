@@ -1,0 +1,29 @@
+<p><a routerLink=".."><i class="fas fa-chevron-left"></i> Retour</a></p>
+<br/>
+<h1 style="text-align: center;">Importer des utilisateurs </h1>
+
+
+<div class="all-card-profile">
+    <div id="info-user" class="card">
+        <div class="card-body">
+            <form>
+                <div class="form-group">
+                    <label for="inputImportRole">Qui voulez-vous importer ?</label>
+                    <select  id="inputImportRole" class="form-control">
+                        <option>Étudiants</option>
+                        <option>Enseignants</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <div class="custom-file">
+                        <input type="file" class="custom-file-input" id="customFile" >
+                        <label class="custom-file-label" for="customFile">Choisir un fichier</label>
+                    </div>
+                </div>
+
+                <button type="submit" routerLink="/liste-utilisateurs" style="float:right;" class="btn btn-sm btn-primary">Importer les utilisateurs</button>
+              </form>
+        </div>
+    </div>
+</div>

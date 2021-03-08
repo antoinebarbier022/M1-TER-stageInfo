@@ -9,6 +9,8 @@ import { AppComponent } from './app.component';
 // importation mes modules
 import { PagesModule } from './pages/pages.module';
 import { CoreModule } from './core/core.module';
+
+import { SharedModule } from './shared/shared.module';
 import { AuthInterceptor } from './core/interceptors/auth-interceptor';
 
 
@@ -22,7 +24,8 @@ import { AuthInterceptor } from './core/interceptors/auth-interceptor';
     AppRoutingModule,
     CommonModule,
     PagesModule,
-    CoreModule
+    CoreModule,
+    SharedModule
   ],
   providers: [{provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true}],
   bootstrap: [AppComponent]

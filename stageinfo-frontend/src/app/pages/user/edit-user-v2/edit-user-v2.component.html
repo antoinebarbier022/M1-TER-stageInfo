@@ -1,0 +1,213 @@
+<p><a routerLink=".."><i class="fas fa-chevron-left"></i> Retour</a></p>
+<br/>
+<h1>Utilisateur : Antoine Barbier </h1>
+
+
+<div class="all-card-profile">
+    <div id="info-user" class="card">
+        <div class="card-header">
+            <h2 class="card-title"> Profile utilisateur
+                <button type="submit" 
+                        style="float:right; margin-left:5px;" 
+                        class="btn btn-danger btn-sm"
+                        data-toggle="modal" data-target="#suppression-user">
+                    <i class="icon far fa-trash-alt"></i>
+                </button>
+                <button routerLink="/liste-utilisateurs/user" type="submit" style="float:right;" class="btn btn-primary btn-sm">Update</button> 
+            </h2>
+        </div>
+        <div class="card-body">
+
+            <ul class="list-group list-group-flush">
+                <li class="list-group-item">
+                    <table class=" table-sm">
+                        <tbody>
+                            <tr>
+                                <th>Nom</th>
+                                <td>
+                                    <input type="text" [readonly]="isReadonly" class="form-control" id="inputName" placeholder="Nom" value="Barbier">
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>Prénom</th>
+                                <td>
+                                    <input type="text" [readonly]="isReadonly" class="form-control" id="inputFirstname" placeholder="Prénom" value="Antoine">
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>Rôle</th>
+                                <td>
+                                    <select [disabled]="isReadonly" id="inputRole" class="form-control">
+                                        <option>Administrateur</option>
+                                        <option>Secretaire</option>
+                                        <option>Etudiant</option>
+                                        <option>Tuteur</option>
+                                        <option>Invite</option>
+                                    </select>
+                                </td>
+                            </tr>
+                        
+                        </tbody>
+                    </table>
+                </li>
+                <li class="list-group-item">
+                    <table class=" table-sm">
+                        <tbody>
+                            <tr>
+                                <th>Email</th>
+                                <td>
+                                    <input type="email" [readonly]="isReadonly" class="form-control" id="inputEmail4" placeholder="Email" value="angelica@ramos.com">
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>Fax</th>
+                                <td>
+                                    <input type="text" [readonly]="isReadonly" class="form-control" id="inputFax" placeholder="">
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>Phone</th>
+                                <td>
+                                    <input type="text" [readonly]="isReadonly" class="form-control" id="inputPhone" placeholder="" value="+1234123123123">
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </li>
+
+                <li class="list-group-item">
+
+                    <table class=" table-sm">
+                        <tbody>
+                        <tr>
+                            <th>N° Étudiant</th>
+                            <td>
+                                <!--<input type="text" readonly class="form-control-plaintext" id="inputNumEtudiant" value="1938390">-->
+                                <input type="text" [readonly]="isReadonly" class="form-control" id="inputNumEtudiant" value="1938390">
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>Promotion</th>
+                            <td>
+                                <select [disabled]="isReadonly" id="inputState" class="form-control">
+                                    <option selected="">2020/2021</option>
+                                    <option>2019/2020</option>
+                                    <option>2018/2019</option>
+                                    <option>2017/2018</option>
+                                    <option>2016/2017</option>
+                                </select>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>Parcours</th>
+                            <td>
+                                <select [disabled]="isReadonly" id="inputState" class="form-control">
+                                    <option selected="">M2 Aigle</option>
+                                    <option>M2 MIT</option>
+                                    <option>M2 Decol</option>
+                                    <option>M2 Imagina</option>
+                                </select>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                </li>
+
+                <li class="list-group-item">
+                    <table class=" table-sm">
+                        <tbody>
+                            <tr>
+                                <th>Fonction </th>
+                                <td>
+                                    <input type="text" [readonly]="isReadonly" class="form-control" id="inputFonction" placeholder="" value="Chef de projet">
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>Entreprise</th>
+                                <td>
+                                    <input type="text" [readonly]="isReadonly" class="form-control" id="inputEntreprises" name="entreprises" list="entreprise-list" value="IBM">
+                
+                                    <datalist id="entreprise-list">
+                                        <option>IBM</option>
+                                        <option>Cap Gemini</option>
+                                        <option>Ubisoft</option>
+
+                                    </datalist>
+                                </td>
+                            </tr>
+                            
+                        </tbody>
+                    </table>
+                    
+                </li>
+            </ul>
+    
+        </div>
+    </div>
+    
+    <div id="info-user-stage" class="card">
+        <div class="card-header">
+            <h2 class="card-title"> Les stages</h2>
+        </div>
+        <div class="card-body">
+            <div class="card card-stage"> 
+                <p class="stage-etat">
+                    <span class="badge badge-success">Validé</span>
+                </p>
+                <p class="stage-body">
+                     <span class="stage-titre">Stage Ingénieur SALESFORCE/CPQ</span><br>
+                     <span class="stage-entreprise">IBM Montpellier</span>
+                </p>
+                <span class="stage-date">2018/2019</span>
+            </div>
+
+            <div class="card card-stage"> 
+                <p class="stage-etat">
+                    <span class="badge badge-warning">Proposé</span>
+                </p>
+                <p class="stage-body">
+                     <span class="stage-titre">Pilotage, conception et développement d'applications web.</span><br>
+                     <span class="stage-entreprise">SMILE</span>
+                </p>
+                <span class="stage-date">2018/2019</span>
+            </div>
+
+
+            <div class="card card-stage"> 
+                <p class="stage-etat">
+                    <span class="badge badge-danger">Refusé</span>
+                </p>
+                <p class="stage-body">
+                     <span class="stage-titre">Administrateur Réseau / Système, Développement soft Interne</span><br>
+                     <span class="stage-entreprise">EIGHT.TECH</span>
+                </p>
+                <span class="stage-date">2018/2019</span>
+            </div>
+
+            
+            
+        </div>
+    </div>
+    
+</div>
+
+<!-- Debut du Modal suppression utilisateur -->
+<div class="modal fade" id="suppression-user" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+    <div class="modal-content">
+        <div class="modal-header">
+        <h2 class="modal-title" id="exampleModalLabel">Suppression Utilisateur</h2>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+        </div>
+        <div class="modal-body">
+        Confirmer la suppression de l'utilisateur.
+        </div>
+        <div class="modal-footer">
+        <button type="button" class="btn btn-secondary btn-sm" data-dismiss="modal">Annuler</button>
+        <button routerLink="/liste-utilisateurs" type="button" class="btn btn-danger btn-sm" data-dismiss="modal">Supprimer</button>
+        </div>
+    </div>
+    </div>
+</div>
