@@ -5,6 +5,16 @@
 
 <div class="all-card">
     <div id="add-stage" class="card">
+        <div class="card-header">
+            <ul class="nav-progress">
+                <li class="fieldset-active">
+                    <i class="fas fa-lg fa-bars"></i>
+                    Stage</li>
+                <li><i class="fas fa-lg fa-building"></i> Entreprise</li>
+                <li><i class="far fa-lg fa-building"></i></li>
+                
+            </ul>
+        </div>
         <div class="card-body">
             <form>
                 <!-- Section informations du stage-->
@@ -256,20 +266,18 @@
     
                
     
-                <!-- Si Ajout Utilisateur-->
-                <div *ngIf="addUser">
-                    <button routerLink="/liste-utilisateurs" type="submit" class="btn btn-primary btn-sm">Ajouter</button>
-                </div>
-                
-    
-                <!-- Si Modification Utilisateur -->
-                <div *ngIf="editUser">
-                    <a class="btn btn-danger btn-sm" data-toggle="modal" data-target="#suppression-stage">
-                        Supprimer
+                <!-- Les boutons -->
+                <div class="block-btn">
+                    <a class="btn btn-primary btn-sm btn-next" >
+                        Next
                     </a>
-                    <button routerLink="/liste-utilisateurs" type="submit" class="btn btn-primary btn-sm btn-modifier">
-                        Modifier
+                    <a class="btn btn-secondary btn-sm btn-pred" >
+                        Pred
+                    </a>
+                    <button *ngIf="false" disabled type="submit" class="btn btn-primary btn-sm btn-done">
+                        Done
                     </button>
+                    
                 </div>
                 
             </form>
