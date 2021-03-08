@@ -1,0 +1,279 @@
+<p><a routerLink=""><i class="fas fa-chevron-left"></i> Retour</a></p>
+<br/>
+<h1>{{ title }}</h1>
+
+
+<div class="all-card">
+    <div id="add-stage" class="card">
+        <div class="card-body">
+            <form>
+                <!-- Section informations du stage-->
+                <fieldset>
+                    <!-- Titre du stage -->
+                    <div class="form-group-row">
+                        <label for="inputTitre">Titre</label>
+                        <input  type="text" 
+                                id="inputTitre"  
+                                class="form-control"
+                                placeholder="titre du stage" 
+                                name="titre">
+                    </div>
+                    <!-- Niveau requis du stage -->
+                    <div class="form-group-row">
+                        <label for="inputNiveau">Niveau requis</label>
+                        <select  id="inputNiveau" class="form-control" name="niveauRequis" >
+                            <option *ngFor="let i of niveauRequis">{{ i }}</option>
+                        </select>
+                    </div>
+                    <!--  Parcours recommander pour le stage -->
+                    <div class="form-group-row">
+                        <label for="inputParcours">Parcours</label>
+                        <select id="inputParcours" class="form-control" name="parcours">
+                            <option *ngFor="let i of parcours">{{ i }}</option>
+                        </select>
+                    </div>
+                    <!--  Description du stage -->
+                    <div class="form-group-row">
+                        <label for="inputDescription">Description</label>
+                        <textarea   id="inputDescription"
+                                    class="form-control"  
+                                    rows="3"
+                                    name="description">
+                        </textarea>
+                        
+                    </div>
+                    <!-- Durée du stage -->
+                    <div class="form-group-row">
+                        <label for="inputDuree">Durée</label>
+                        <input  type="number" 
+                                id="inputDuree" 
+                                class="form-control" 
+                                placeholder="6 mois"
+                                name="duree">
+                    </div>
+
+                    <!-- Date début du stage -->
+                    <div class="form-group-row">
+                        <label for="inputDateDebut">Date de début</label>
+                        <input  type="date" 
+                                id="inputDateDebut" 
+                                class="form-control" 
+                                placeholder="6 mois"
+                                name="dateDebut">
+                    </div>
+                </fieldset>
+
+                 <!-- Section Entreprise -->
+                 <fieldset>
+                    <!-- Entreprise dans laquel est l'utilisateur -->
+                    <div class="form-group-row">
+                        <label for="inputEntreprise">Entreprise</label>
+                        <input  type="text" 
+                                class="form-control"
+                                id="inputEntreprise"
+                                name="entreprises" 
+                                list="entreprise-list"
+                                placeholder="titre de l'entreprise"
+                                name="entreprise">
+                                
+                        <datalist id="entreprise-list">
+                            <option>IBM</option>
+                            <option>Cap Gemini</option>
+                            <option>Ubisoft</option>
+                        </datalist>
+                    </div>
+                    <!-- nouvelle entreprise -->
+                    <div *ngIf="false">
+                        <!-- Nom de l'entreprise -->
+                        <div class="form-group-row">
+                            <label for="inputNomEntreprise">Nom Entreprise</label>
+                            <input  type="text" 
+                                    id="inputNomEntreprise"  
+                                    class="form-control"
+                                    placeholder="Nom de l'entreprise" 
+                                    name="entrepriseNom">
+                        </div>
+                        <div class="form-group-row">
+                            <label for="inputDescriptionEntreprise">Description</label>
+                            <textarea   id="inputDescriptionEntreprise"
+                                        class="form-control"  
+                                        rows="3"
+                                        name="entrepriseDescription">
+                            </textarea>
+                        </div>
+                        <!-- Adresse de l'entreprise -->
+                        <div class="form-group-row">
+                            <label for="inputAdresseEntreprise">Adresse</label>
+                            <input  type="text" 
+                                    id="inputAdresseEntreprise"  
+                                    class="form-control"
+                                    placeholder="Adresse de l'entreprise" 
+                                    name="entrepriseAdresse">
+                        </div>
+                        <div class="form-group-row">
+                            <label for="inputCodePostalEntreprise">Code Postal</label>
+                            <input  type="text" 
+                                    id="inputCodePostalEntreprise"  
+                                    class="form-control"
+                                    placeholder="Code Postal de l'entreprise" 
+                                    name="entrepriseCodePostal">
+                        </div>
+
+                        <div class="form-group-row">
+                            <label for="inputVilleEntreprise">Ville</label>
+                            <input  type="text" 
+                                    id="inputVilleEntreprise"  
+                                    class="form-control"
+                                    placeholder="Ville de l'entreprise" 
+                                    name="entrepriseVille">
+                        </div>
+                        <div class="form-group-row">
+                            <label for="inputPaysEntreprise">Pays</label>
+                            <input  type="text" 
+                                    id="inputPaysEntreprise"  
+                                    class="form-control"
+                                    placeholder="Pays de l'entreprise" 
+                                    name="entreprisePays">
+                        </div>
+
+                        <div class="form-group-row">
+                            <label for="inputSiteInternetEntreprise">Site Internet</label>
+                            <input  type="text" 
+                                    id="inputSiteInternetEntreprise"  
+                                    class="form-control"
+                                    placeholder="Site Internet de l'entreprise" 
+                                    name="entrepriseSiteInternet">
+                        </div>
+
+                        <div class="form-group-row">
+                            <label for="inputTelEntreprise">Tel</label>
+                            <input  type="text" 
+                                    id="inputTelEntreprise"  
+                                    class="form-control"
+                                    placeholder="Téléphone de l'entreprise" 
+                                    name="entrepriseTel">
+                        </div>
+
+                        <div class="form-group-row">
+                            <label for="inputFaxEntreprise">Fax</label>
+                            <input  type="text" 
+                                    id="inputFaxEntreprise"  
+                                    class="form-control"
+                                    placeholder="Fax de l'entreprise" 
+                                    name="entrepriseFax">
+                        </div>
+                        <div class="form-group-row">
+                            <label for="inputSiretEntreprise">Siret</label>
+                            <input  type="text" 
+                                    id="inputSiretEntreprise"  
+                                    class="form-control"
+                                    placeholder="Siret de l'entreprise" 
+                                    name="entrepriseSiret">
+                        </div>
+
+                        <div class="form-group-row">
+                            <label for="inputSecteurActiviteEntreprise">Secteur d'activité</label>
+                            <input  type="text" 
+                                    id="inputSecteurActiviteEntreprise"  
+                                    class="form-control"
+                                    placeholder="Secteur d'activité de l'entreprise" 
+                                    name="entrepriseSecteurActivite">
+                        </div>
+                        <div class="form-group-row">
+                            <label for="inputNbSalariesEntreprise">Nombre de salariés</label>
+                            <input  type="text" 
+                                    id="inputNbSalariesEntreprise"  
+                                    class="form-control"
+                                    placeholder="Nombre de salariés de l'entreprise" 
+                                    name="entrepriseNbSalaries">
+                        </div>
+                        <div class="form-group-row">
+                            <label for="inputLocal">Local</label>
+                            
+                        </div>
+                    </div>
+                    
+                    <div class="form-group-row">
+                        <label for="inputTuteur">Tuteur</label>
+                        <select id="inputParcours" class="form-control" name="parcours">
+                            <option *ngFor="let i of parcours">{{ i }}</option>
+                        </select>
+                    </div>
+                </fieldset>   
+
+                <!-- Informations complémentaire-->
+                <fieldset>
+                    
+                    
+                    
+                </fieldset>
+
+                <fieldset>
+                    <!-- Compétences attendu pour le stage -->
+                    <div class="form-group-row">
+                        <label for="inputCompetences">Compétences attendu</label>
+                        <textarea   id="inputCompetences"
+                                    class="form-control"  
+                                    rows="2"
+                                    name="competences"
+                                    placeholder="">
+                        </textarea>
+                    </div>
+                    <!-- Conditions du stage -->
+                    <div class="form-group-row">
+                        <label for="inputConditions">Conditions</label>
+                        <textarea   id="inputConditions"
+                                    class="form-control"  
+                                    rows="2"
+                                    name="conditions"
+                                    placeholder="">
+                        </textarea>
+                    </div>
+                    <!-- Date début du stage -->
+                    <div class="form-group-row">
+                        <label for="inputSalaire">Salaire</label>
+                        <div class="input-group">
+                            <input type="number" class="form-control" placeholder="">
+                            <select class="custom-select">
+                                <option>par mois (brut)</option>
+                                <option>par heure (brut)</option>
+                            </select>
+                        </div>
+                    </div>
+                    <!-- Avantages du stage -->
+                    <div class="form-group-row">
+                        <label for="inputAvantages">Avantages</label>
+                        <textarea   id="inputAvantages"
+                                    class="form-control"  
+                                    rows="2"
+                                    name="avantages"
+                                    placeholder="">
+                        </textarea>
+                    </div>
+                    
+                </fieldset>
+                
+    
+               
+    
+                <!-- Si Ajout Utilisateur-->
+                <div *ngIf="addUser">
+                    <button routerLink="/liste-utilisateurs" type="submit" class="btn btn-primary btn-sm">Ajouter</button>
+                </div>
+                
+    
+                <!-- Si Modification Utilisateur -->
+                <div *ngIf="editUser">
+                    <a class="btn btn-danger btn-sm" data-toggle="modal" data-target="#suppression-stage">
+                        Supprimer
+                    </a>
+                    <button routerLink="/liste-utilisateurs" type="submit" class="btn btn-primary btn-sm btn-modifier">
+                        Modifier
+                    </button>
+                </div>
+                
+            </form>
+        </div>
+    </div>
+</div>
+

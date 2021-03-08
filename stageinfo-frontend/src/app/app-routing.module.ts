@@ -12,6 +12,7 @@ import { AddUserComponent } from './pages/user/add-user/add-user.component';
 import { ImportUsersComponent } from './pages/user/import-users/import-users.component';
 import { ListUsersComponent } from './pages/user/list-users/list-users.component';
 import { ListStagesComponent } from './pages/stage/list-stages/list-stages.component';
+import { AddStageComponent } from './pages/stage/add-stage/add-stage.component';
 import { LoginComponent } from './pages/login/login.component';
 
 //import {AuthGuardService} from "./core/services/auth-guard.service";
@@ -22,6 +23,7 @@ const routes: Routes = [
   { path: 'login', component: LoginComponent},
   { path: 'documentation', component: ExempleDocComponent, canActivate: []},
   { path: 'list-stage', component: ListStagesComponent, canActivate: []},
+  { path: 'add-stage', component: AddStageComponent, canActivate: []},
   { path: 'profile', component: ProfileUserComponent, canActivate: []},
   { path: 'liste-utilisateurs/user', component: InfoUserComponent, canActivate: []},
   { path: 'liste-utilisateurs', component: ListUsersComponent, canActivate: []},

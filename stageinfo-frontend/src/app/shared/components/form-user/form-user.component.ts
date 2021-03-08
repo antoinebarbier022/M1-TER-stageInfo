@@ -38,7 +38,7 @@ export class FormUserComponent implements OnInit {
 
   roles = ["test", "Invite", "Etudiant","Tuteur", "Représentant entreprise", "Secretaire", "Admin"];
   promotions = ["2016/2017", "2017/2018","2018/2019", "2019/2020", "2020/2021"];
-  parcours = ["M2 AIGLE", "M2 MIT","M2 DECOL", "M2 IMAGINA"]
+  parcours = ["M2 AIGLE", "M2 MIT","M2 DECOL", "M2 IMAGINA"];
 
   constructor() { 
     this.displaySection(this.user.role);
