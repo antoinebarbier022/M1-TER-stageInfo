@@ -17,8 +17,8 @@
         </div>
         <div class="card-body">
             <form>
-                <!-- Section informations du stage-->
-                <fieldset>
+                <!-- Section informations du stage -->
+                <fieldset *ngIf="displayFielset('stage')">
                     <!-- Titre du stage -->
                     <div class="form-group-row">
                         <label for="inputTitre">Titre</label>
@@ -74,7 +74,7 @@
                 </fieldset>
 
                  <!-- Section Entreprise -->
-                 <fieldset>
+                 <fieldset *ngIf="displayFielset('entreprise')">
                     <!-- Entreprise dans laquel est l'utilisateur -->
                     <div class="form-group-row">
                         <label for="inputEntreprise">Entreprise</label>
@@ -218,7 +218,7 @@
                     
                 </fieldset>
 
-                <fieldset>
+                <fieldset *ngIf="displayFielset('more')">
                     <!-- Compétences attendu pour le stage -->
                     <div class="form-group-row">
                         <label for="inputCompetences">Compétences attendu</label>
@@ -268,10 +268,10 @@
     
                 <!-- Les boutons -->
                 <div class="block-btn">
-                    <a class="btn btn-primary btn-sm btn-next" >
+                    <a (click)="next()" class="btn btn-primary btn-sm btn-next" >
                         Next
                     </a>
-                    <a class="btn btn-secondary btn-sm btn-pred" >
+                    <a (click)="pred()" class="btn btn-secondary btn-sm btn-pred" >
                         Pred
                     </a>
                     <button *ngIf="false" disabled type="submit" class="btn btn-primary btn-sm btn-done">

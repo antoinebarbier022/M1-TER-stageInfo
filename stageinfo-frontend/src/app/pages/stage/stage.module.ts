@@ -16,6 +16,6 @@ import { AddStageComponent } from './add-stage/add-stage.component';
     BrowserModule,
     RouterModule,
     FormsModule
-  ]
+  ], exports: [ListStagesComponent, AddStageComponent]
 })
 export class StageModule { }

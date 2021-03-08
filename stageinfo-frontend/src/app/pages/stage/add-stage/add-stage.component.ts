@@ -6,6 +6,11 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./add-stage.component.scss']
 })
 export class AddStageComponent implements OnInit {
+
+  page :number = 1;
+  nbMaxPage :number = 3;
+
+
   title = "Nouveau stage";
   stage = {
     titre :"toto",
@@ -41,6 +46,33 @@ export class AddStageComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
+  }
+
+  displayFielset(theme : string) : boolean{
+    console.log(theme);
+    switch (theme) {
+      case "stage": //page 0
+        return this.page === 1 ? true : false;
+      case "entreprise": // page 1
+        return this.page === 2 ? true : false;
+      case "more": // page 1
+        return this.page === 3 ? true : false;
+      default:
+        return false;
+    }
+      
+    
+  }
+
+  next(){
+    if(this.page < this.nbMaxPage){
+      this.page++;
+    }
+  }
+  pred(){
+    if(this.page > 1){
+      this.page--;
+    }
   }
 
 }

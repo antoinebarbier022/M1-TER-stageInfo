@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { BrowserModule } from '@angular/platform-browser'
 import { RouterModule } from '@angular/router';
 import { FormsModule } from '@angular/forms';
+
 import { SharedModule } from '../../shared/shared.module';
 
 import { ProfileUserComponent } from './profile-user/profile-user.component';
@@ -30,6 +31,13 @@ import { ImportUsersComponent } from './import-users/import-users.component';
     RouterModule,
     FormsModule,
     SharedModule,
-  ],exports:[ProfileUserComponent, InfoUserComponent, ListUsersComponent],
+  ],exports:[
+    ProfileUserComponent, 
+    InfoUserComponent, 
+    ListUsersComponent, 
+    EditUserComponent, 
+    EditUserV2Component, 
+    AddUserComponent, 
+    ImportUsersComponent],
 })
 export class UserModule { }
