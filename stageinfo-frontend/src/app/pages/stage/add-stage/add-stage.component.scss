@@ -53,12 +53,12 @@ ul{
         background-color:white;
     }
     .fieldset-active{
-        color: #293042;
+        color: #495057;
         
         i{
             color: white;
             //border: 3px solid #293042;
-            background-color: #707b97;
+            background-color: #495057;
         }
     }
 }
@@ -72,7 +72,7 @@ ul::before {
     border-top: dashed 3px #49505793;
     
   }
-  ul::after {
+  .progress-first::after {
     content: '';
     position: absolute;
     top:60px;
@@ -80,6 +80,33 @@ ul::before {
     width:20%;
     flex: 1 2 auto; /* the first digint is 'flex-grow: 1', helps elemet to occupy all free space */ 
     border-top: solid 3px #495057;
+    transition-property: width;
+    transition-duration: 4s;
+    transition-delay: 2s;
+  }
+  .progress-second::after {
+    content: '';
+    position: absolute;
+    top:60px;
+    left:0px;
+    width:50%;
+    flex: 1 2 auto; /* the first digint is 'flex-grow: 1', helps elemet to occupy all free space */ 
+    border-top: solid 3px #495057;
+    transition-property: width;
+    transition-duration: 4s;
+    transition-delay: 2s;
+  }
+  .progress-third::after {
+    content: '';
+    position: absolute;
+    top:60px;
+    left:0px;
+    width:80%;
+    flex: 1 2 auto; /* the first digint is 'flex-grow: 1', helps elemet to occupy all free space */ 
+    border-top: solid 3px #495057;
+    transition-property: width;
+    transition-duration: 4s;
+    transition-delay: 2s;
   }
 
 hr{

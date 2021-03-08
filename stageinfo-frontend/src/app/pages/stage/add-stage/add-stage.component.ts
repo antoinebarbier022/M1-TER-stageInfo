@@ -62,8 +62,20 @@ export class AddStageComponent implements OnInit {
       default:
         return false;
     }
-      
-    
+  }
+
+  isDone(theme : string) : boolean{
+    console.log(theme);
+    switch (theme) {
+      case "stage": //page 0
+        return this.page >= 1 ? true : false;
+      case "entreprise": // page 1
+        return this.page >= 2 ? true : false;
+      case "more": // page 1
+        return this.page >= 3 ? true : false;
+      default:
+        return false;
+    }
   }
 
   next(){
@@ -74,6 +86,13 @@ export class AddStageComponent implements OnInit {
   pred(){
     if(this.page > 1){
       this.page--;
+    }
+  }
+  lastPage() :boolean {
+    if(this.page == this.nbMaxPage){
+      return true;
+    }else{
+      return false;
     }
   }
 

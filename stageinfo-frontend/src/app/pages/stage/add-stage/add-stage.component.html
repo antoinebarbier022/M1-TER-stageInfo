@@ -7,16 +7,16 @@
     <div id="add-stage" class="card">
         <div class="card-header">
             <ul class="nav-progress">
-                <li [ngClass]="displayFielset('stage')? 'fieldset-active' : '' ">
+                <li [ngClass]="isDone('stage')? 'fieldset-active progress-first' : '' ">
                     <i class="fas fa-lg fa-bars"></i>
                     Stage</li>
-                    <hr>
-                <li [ngClass]="displayFielset('entreprise')? 'fieldset-active' : '' ">
+                
+                <li [ngClass]="isDone('entreprise')? 'fieldset-active progress-second' : '' ">
                     <i class="fas fa-lg fa-building"></i> 
                     Entreprise
                 </li>
-                <hr>
-                <li [ngClass]="displayFielset('more')? 'fieldset-active' : '' ">
+                
+                <li [ngClass]="isDone('more')? 'fieldset-active progress-third' : '' ">
                     <i class="fas fa-lg fa-dollar-sign"></i>
                     More
                 </li>
@@ -281,15 +281,16 @@
     
                 <!-- Les boutons -->
                 <div class="block-btn">
-                    <a (click)="next()" class="btn btn-primary btn-sm btn-next" >
-                        Next
+                    <a *ngIf="!lastPage()" (click)="next()" class="btn btn-primary btn-sm btn-next" >
+                        Suivant
                     </a>
-                    <a (click)="pred()" class="btn btn-secondary btn-sm btn-pred" >
-                        Pred
-                    </a>
-                    <button *ngIf="false" disabled type="submit" class="btn btn-primary btn-sm btn-done">
-                        Done
+                    <button *ngIf="lastPage()" type="submit" class="btn btn-primary btn-sm btn-done">
+                        Terminer
                     </button>
+                    <a (click)="pred()" class="btn btn-secondary btn-sm btn-pred" >
+                        Précédent
+                    </a>
+                    
                     
                 </div>
                 
