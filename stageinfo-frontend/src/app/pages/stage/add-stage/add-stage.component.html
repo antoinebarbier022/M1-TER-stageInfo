@@ -287,7 +287,7 @@
                     <button *ngIf="lastPage()" type="submit" class="btn btn-primary btn-sm btn-done">
                         Terminer
                     </button>
-                    <a (click)="pred()" class="btn btn-secondary btn-sm btn-pred" >
+                    <a *ngIf="!firstPage()" (click)="pred()" class="btn btn-secondary btn-sm btn-pred" >
                         Précédent
                     </a>
                     

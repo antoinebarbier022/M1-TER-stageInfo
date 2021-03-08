@@ -88,8 +88,16 @@ export class AddStageComponent implements OnInit {
       this.page--;
     }
   }
+
   lastPage() :boolean {
     if(this.page == this.nbMaxPage){
+      return true;
+    }else{
+      return false;
+    }
+  }
+  firstPage() :boolean {
+    if(this.page <= 1){
       return true;
     }else{
       return false;
