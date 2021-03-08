@@ -19,7 +19,7 @@ export class FormUserComponent implements OnInit {
     telephone :"089098",
     fax :"83839200",
     hash :"ndjcndj",
-    role :"test",
+    role :"Admin",
     
     //etudiant
     numeroEtudiant :"12345689",
@@ -50,11 +50,6 @@ export class FormUserComponent implements OnInit {
 
   displaySection(role : string){
     switch (role) {
-      case "test":
-          this.displaySectionEtudiant = true;
-          this.displaySectionCoordonnees = true;
-          this.displaySectionEntreprise = true;
-          break;
       case "Représentant entreprise":
           this.displaySectionEtudiant = false;
           this.displaySectionCoordonnees = true;

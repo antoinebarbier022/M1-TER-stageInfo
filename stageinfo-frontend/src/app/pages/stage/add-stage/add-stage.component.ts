@@ -43,7 +43,7 @@ export class AddStageComponent implements OnInit {
   };
 
   niveauRequis = ["Licence 3", "Master 1", "Master 2"];
-  parcours = ["M2 AIGLE", "M2 MIT","M2 DECOL", "M2 IMAGINA"];
+  parcours = ["AIGLE", "MIT","DECOL", "IMAGINA"];
 
   constructor() { }
 

@@ -34,6 +34,5 @@ import { StageModule } from './stage/stage.module';
     LoginComponent,
     UserModule,
     StageModule],
-
 })
 export class PagesModule { }

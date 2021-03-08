@@ -10,12 +10,16 @@ import { AddStageComponent } from './add-stage/add-stage.component';
 
 
 @NgModule({
-  declarations: [ListStagesComponent, AddStageComponent],
+  declarations: [
+    ListStagesComponent, 
+    AddStageComponent],
   imports: [
     CommonModule,
     BrowserModule,
     RouterModule,
     FormsModule
-  ], exports: [ListStagesComponent, AddStageComponent]
+  ], exports: [
+    ListStagesComponent, 
+    AddStageComponent]
 })
 export class StageModule { }

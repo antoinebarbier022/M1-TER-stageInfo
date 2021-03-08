@@ -47,11 +47,13 @@
                         <option *ngFor="let i of roles" [ngValue]="i">{{ i }}</option>
                     </select>
                 </div>
+                
             </fieldset>
-            <hr *ngIf="viewUser">
+            
 
             <!-- Section email/password de l'utilisateur -->
             <fieldset>
+                <hr *ngIf="viewUser">
                 <!-- Email de l'utilisateur -->
                 <div class="form-group-row">
                     <label for="inputEmail">Email</label>
@@ -74,11 +76,13 @@
                             name="password"
                             [readonly]="viewUser">
                 </div>
+                
             </fieldset>
-            <hr *ngIf="viewUser">
+            
 
             <!-- Section informations Etudiant de l'utilisateur -->
             <fieldset *ngIf="displaySectionEtudiant">
+                <hr *ngIf="viewUser">
                 <!-- Numéro étudiant de l'utilisateur -->
                 <div class="form-group-row">
                     <label for="inputNumEtudiant">N° Étudiant</label>
@@ -111,10 +115,11 @@
                     </select>
                 </div>
             </fieldset>
-            <hr *ngIf="viewUser">
+            
 
             <!-- Section coordonnées de l'utilisateur -->
             <fieldset *ngIf="displaySectionCoordonnees">
+                <hr *ngIf="viewUser">
                 <!-- Fax de l'utilisateur -->
                 <div class="form-group-row">
                     <label for="inputFax">Fax</label>
@@ -138,10 +143,11 @@
                             [readonly]="viewUser">
                 </div>
             </fieldset>
-            <hr *ngIf="viewUser">
+            
 
             <!-- Section représentant d'entreprise -->
             <fieldset *ngIf="displaySectionEntreprise">
+                <hr *ngIf="viewUser">
                 <!-- Fonction occupée de l'utilisateur -->
                 <div class="form-group-row">
                     <label for="inputFonction">Fonction</label>

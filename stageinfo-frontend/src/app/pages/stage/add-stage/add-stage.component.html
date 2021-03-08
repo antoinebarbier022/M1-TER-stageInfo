@@ -284,7 +284,7 @@
                     <a *ngIf="!lastPage()" (click)="next()" class="btn btn-primary btn-sm btn-next" >
                         Suivant
                     </a>
-                    <button *ngIf="lastPage()" type="submit" class="btn btn-primary btn-sm btn-done">
+                    <button *ngIf="lastPage()" routerLink="/list-stage" type="submit" class="btn btn-primary btn-sm btn-done">
                         Terminer
                     </button>
                     <a *ngIf="!firstPage()" (click)="pred()" class="btn btn-secondary btn-sm btn-pred" >
