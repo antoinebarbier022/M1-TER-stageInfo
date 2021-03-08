@@ -16,7 +16,7 @@ export class SidebarComponent implements OnInit {
   // On défini tous les liens possibles de navigation
   listeStages =             {icon:"fas fa-list",          nom:"Listing des stages",       lien:"/list-stage",       items:[]};
   listeSoutenances =        {icon:"fas fa-list",          nom:"Listing des soutenances",  lien:"/liste-soutenances",   items:[]};
-  listeEntreprise =         {icon:"fas fa-list",          nom:"Listing des entreprise",  lien:"/liste-entreprises",   items:[]};
+  listeEntreprise =         {icon:"fas fa-list",          nom:"Listing des entreprises",  lien:"/liste-entreprises",   items:[]};
   listeUtilisateurs =       {icon:"fas fa-list",          nom:"Listing des utilisateurs",  lien:"/liste-utilisateurs",   items:[]};
   listeEtudiants =          {icon:"fas fa-user-friends",  nom:"Listing des étudiants ",   lien:"/liste-etudiants", items:[]};
   listeEnseignants =        {icon:"fas fa-user-friends",  nom:"listing des enseignants",  lien:"/liste-enseignants", items:[]};

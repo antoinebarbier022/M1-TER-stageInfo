@@ -11,6 +11,7 @@ import {ReactiveFormsModule} from "@angular/forms";
 
 import { UserModule } from './user/user.module';
 import { StageModule } from './stage/stage.module';
+import { EntrepriseModule } from './entreprise/entreprise.module';
 
 
 
@@ -27,12 +28,14 @@ import { StageModule } from './stage/stage.module';
     ReactiveFormsModule,
     UserModule,
     StageModule,
+    EntrepriseModule,
     FormsModule
   ], exports:[
     ExempleTemplateComponent, 
     Error404Component, 
     LoginComponent,
     UserModule,
-    StageModule],
+    StageModule,
+    EntrepriseModule,],
 })
 export class PagesModule { }
