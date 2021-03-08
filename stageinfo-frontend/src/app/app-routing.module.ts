@@ -49,7 +49,7 @@ const routes: Routes = [
   { path: 'liste-entreprises', component: ListEntreprisesComponent, canActivate: []},
   { path: 'liste-entreprises/add-entreprise', component: AddEntrepriseComponent, canActivate: []},
   { path: 'liste-entreprises/edit-entreprise', component: EditEntrepriseComponent, canActivate: []},
-  { path: 'liste-entreprises/info-entreprise', component: InfoEntrepriseComponent, canActivate: []},
+  { path: 'liste-entreprises/entreprise', component: InfoEntrepriseComponent, canActivate: []},
 
   { path: 'not-found', component: Error404Component, canActivate: []},
   { path: '**', redirectTo: 'not-found', canActivate: []}
