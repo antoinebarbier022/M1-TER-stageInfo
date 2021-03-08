@@ -6,7 +6,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./edit-entreprise.component.scss']
 })
 export class EditEntrepriseComponent implements OnInit {
-
+  title="Modier l'entreprise : "
   constructor() { }
 
   ngOnInit(): void {

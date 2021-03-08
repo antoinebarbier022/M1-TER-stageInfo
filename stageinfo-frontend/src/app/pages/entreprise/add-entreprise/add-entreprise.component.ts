@@ -6,7 +6,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./add-entreprise.component.scss']
 })
 export class AddEntrepriseComponent implements OnInit {
-
+  title = "Ajouter une entreprise"
   constructor() { }
 
   ngOnInit(): void {

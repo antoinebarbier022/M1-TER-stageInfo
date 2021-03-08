@@ -1,8 +1,9 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
-import { FormUserComponent } from './components/form-user/form-user.component';
 import { FormsModule } from '@angular/forms';
+
+import { FormUserComponent } from './components/form-user/form-user.component';
 import { FormEntrepriseComponent } from './components/form-entreprise/form-entreprise.component';
 
 
@@ -14,6 +15,6 @@ import { FormEntrepriseComponent } from './components/form-entreprise/form-entre
     RouterModule,
     FormsModule,
   ],
-  exports:[FormUserComponent]
+  exports:[FormUserComponent, FormEntrepriseComponent]
 })
 export class SharedModule { }

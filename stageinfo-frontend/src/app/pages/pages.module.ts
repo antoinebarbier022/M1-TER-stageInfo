@@ -26,16 +26,20 @@ import { EntrepriseModule } from './entreprise/entreprise.module';
     BrowserModule,
     RouterModule,
     ReactiveFormsModule,
+    FormsModule,
+
     UserModule,
     StageModule,
-    EntrepriseModule,
-    FormsModule
-  ], exports:[
+    EntrepriseModule
+    ],
+  exports:[
     ExempleTemplateComponent, 
     Error404Component, 
     LoginComponent,
+
     UserModule,
     StageModule,
-    EntrepriseModule,],
+    EntrepriseModule
+  ],
 })
 export class PagesModule { }
