@@ -8,9 +8,9 @@
     grid-template-columns: 1fr 2fr 1fr;
     gap: 15px 15px;
     grid-template-areas:
-    ". card-add-entreprise .";
+    ". card-edit-entreprise .";
     #edit-entreprise{
-        grid-area: card-add-entreprise;
+        grid-area: card-edit-entreprise;
     
     }
 }

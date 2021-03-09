@@ -1,1 +1,206 @@
-<p>form-entreprise works!</p>
+<div class="card">
+    <div *ngIf="title || addEntreprise" class="card-header">
+        <h2 *ngIf="viewEntreprise" class="card-title">
+            {{ title }} 
+            <a *ngIf="viewEntreprise"
+            routerLink="/liste-utilisateurs/edit-entreprise" 
+            type="submit" 
+            style="float:right;" 
+            class="btn-icon-modifier">
+                <i class="icon far fa-lg fa-edit"></i>
+            </a>
+        </h2>
+        <ul *ngIf="addEntreprise" class="nav-progress">
+            <li [ngClass]="isDone('entreprise')? 'fieldset-active progress-first' : '' ">
+                <i class="fas fa-lg fa-building"></i>
+                Entreprise
+            </li>
+            <li [ngClass]="isDone('adresse')? 'fieldset-active progress-second' : '' ">
+                <i class="fas fa-lg fa-map-marker-alt"></i>
+                Adresse
+            </li>
+            <li [ngClass]="isDone('contact')? 'fieldset-active progress-third' : '' ">
+                <i class="fas fa-lg fa-address-book"></i> 
+                Contact
+            </li>
+            <li [ngClass]="isDone('informations')? 'fieldset-active progress-fourth' : '' ">
+                <i class="fas fa-lg fa-info"></i>
+                Infos
+            </li>
+        </ul>
+    </div>
+    <div class="card-body">
+        <form>
+            <!-- Section information profile-->
+            <!-- nouvelle entreprise -->
+            <fieldset *ngIf="editEntreprise? true : displayFielset('entreprise')">
+                <!-- Nom de l'entreprise -->
+                <div class="form-group-row">
+                    <label for="inputNomEntreprise">Nom Entreprise</label>
+                    <input  type="text" 
+                            id="inputNomEntreprise"  
+                            class="form-control"
+                            placeholder="Nom de l'entreprise" 
+                            name="entrepriseNom">
+                </div>
+                <div class="form-group-row">
+                    <label for="inputSecteurActiviteEntreprise">Secteur d'activité</label>
+                    <input  type="text" 
+                            id="inputSecteurActiviteEntreprise"  
+                            class="form-control"
+                            placeholder="Secteur d'activité de l'entreprise" 
+                            name="entrepriseSecteurActivite">
+                </div>
+                <!-- Description de l'entreprise -->
+                <div class="form-group-row">
+                    <label for="inputDescriptionEntreprise">Description</label>
+                    <textarea   id="inputDescriptionEntreprise"
+                                class="form-control"  
+                                rows="3"
+                                name="entrepriseDescription">
+                    </textarea>
+                </div>
+            </fieldset>
+            <!-- Coordonnées de l'entreprise-->
+            <fieldset *ngIf="editEntreprise? true : displayFielset('adresse')">
+                    <!-- Adresse de l'entreprise -->
+                    <div class="form-group-row">
+                        <label for="inputAdresseEntreprise">Adresse</label>
+                        <input  type="text" 
+                                id="inputAdresseEntreprise"  
+                                class="form-control"
+                                placeholder="Adresse de l'entreprise" 
+                                name="entrepriseAdresse">
+                    </div>
+                    <div class="form-group-row">
+                        <label for="inputCodePostalEntreprise">Code Postal</label>
+                        <input  type="text" 
+                                id="inputCodePostalEntreprise"  
+                                class="form-control"
+                                placeholder="Code Postal de l'entreprise" 
+                                name="entrepriseCodePostal">
+                    </div>
+
+                    <div class="form-group-row">
+                        <label for="inputVilleEntreprise">Ville</label>
+                        <input  type="text" 
+                                id="inputVilleEntreprise"  
+                                class="form-control"
+                                placeholder="Ville de l'entreprise" 
+                                name="entrepriseVille">
+                    </div>
+                    <div class="form-group-row">
+                        <label for="inputPaysEntreprise">Pays</label>
+                        <input  type="text" 
+                                id="inputPaysEntreprise"  
+                                class="form-control"
+                                placeholder="Pays de l'entreprise" 
+                                name="entreprisePays">
+                    </div>
+                </fieldset>
+
+                <fieldset *ngIf="editEntreprise? true : displayFielset('contact')">
+                    <div class="form-group-row">
+                        <label for="inputSiretEntreprise">Siret</label>
+                        <input  type="text" 
+                                id="inputSiretEntreprise"  
+                                class="form-control"
+                                placeholder="Siret de l'entreprise" 
+                                name="entrepriseSiret">
+                    </div>
+
+                    <div class="form-group-row">
+                        <label for="inputTelEntreprise">Tel</label>
+                        <input  type="text" 
+                                id="inputTelEntreprise"  
+                                class="form-control"
+                                placeholder="Téléphone de l'entreprise" 
+                                name="entrepriseTel">
+                    </div>
+
+                    <div class="form-group-row">
+                        <label for="inputFaxEntreprise">Fax</label>
+                        <input  type="text" 
+                                id="inputFaxEntreprise"  
+                                class="form-control"
+                                placeholder="Fax de l'entreprise" 
+                                name="entrepriseFax">
+                    </div>
+                    <div class="form-group-row">
+                        <label for="inputSiteInternetEntreprise">Site Internet</label>
+                        <input  type="text" 
+                                id="inputSiteInternetEntreprise"  
+                                class="form-control"
+                                placeholder="Site Internet de l'entreprise" 
+                                name="entrepriseSiteInternet">
+                    </div>
+                </fieldset>
+
+                <fieldset *ngIf="editEntreprise? true : displayFielset('informations')">
+
+                    <div class="form-group-row">
+                        <label for="inputNbSalariesEntreprise">Nombre de salariés</label>
+                        <input  type="number" 
+                                id="inputNbSalariesEntreprise"  
+                                class="form-control"
+                                placeholder="Nombre de salariés de l'entreprise" 
+                                name="entrepriseNbSalaries"
+                                min=0>
+                    </div>
+                    <div class="form-group-row">
+                        <label for="inputLocal">Local</label>
+                        
+                    </div>
+            </fieldset>  
+
+        
+            <!-- Si Modification Entreprise -->
+            <div *ngIf="editEntreprise">
+                <a class="btn btn-danger btn-sm" data-toggle="modal" data-target="#suppression-entreprise">
+                    Supprimer
+                </a>
+                <button routerLink="/liste-entreprises" type="submit" class="btn btn-primary btn-sm btn-modifier">
+                    Modifier
+                </button>
+            </div>
+
+            <!-- Les boutons -->
+            <div *ngIf="addEntreprise" class="block-btn">
+                <a *ngIf="!lastPage()" (click)="next()" class="btn btn-primary btn-sm btn-next" >
+                    Suivant
+                </a>
+                <button *ngIf="lastPage()" routerLink="/liste-entreprises" type="submit" class="btn btn-primary btn-sm btn-done">
+                    Terminer
+                </button>
+                <a *ngIf="!firstPage()" (click)="pred()" class="btn btn-secondary btn-sm btn-pred" >
+                    Précédent
+                </a>
+                
+                
+            </div>
+            
+        </form>
+        
+    </div>
+</div>
+
+<!-- Debut du Modal suppression utilisateur -->
+<div class="modal fade" id="suppression-entreprise" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+    <div class="modal-content">
+        <div class="modal-header">
+        <h2 class="modal-title" id="exampleModalLabel">Suppression Entreprise</h2>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+        </div>
+        <div class="modal-body">
+        Confirmer la suppression de l'entreprise.
+        </div>
+        <div class="modal-footer">
+        <button type="button" class="btn btn-secondary btn-sm" data-dismiss="modal">Annuler</button>
+        <button routerLink="/liste-entreprises" type="button" class="btn btn-danger btn-sm" data-dismiss="modal">Supprimer</button>
+        </div>
+    </div>
+    </div>
+</div>
