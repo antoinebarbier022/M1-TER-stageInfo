@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnChanges, OnInit } from '@angular/core';
 import { takeUntil } from 'rxjs/operators';
 import { StageService } from 'src/app/core/services/stage.service';
 import { Subject } from 'rxjs';
@@ -19,15 +19,13 @@ export class ListStagesComponent implements OnInit {
   constructor(private stageService:StageService, private auth:AuthService) { }
 
   ngOnInit(): void {
-
-    this.auth.login("marcbigs1098@gmail.com", "Uxjr1412");
-
     this.stageService.getStages().subscribe(stages => {
       console.log(stages);
       this.stages = stages;
     })
   }
 
+  /* Récupère tous les stages */
   getStages(){
     this.stageService.getStages()
     .pipe(takeUntil(this.destroy$))
@@ -36,6 +34,16 @@ export class ListStagesComponent implements OnInit {
         console.log(this.stages);
     });
   }
+
+  getStagesByTitle(name: string){
+    this.stageService.getStageByTitle(name)
+    .pipe(takeUntil(this.destroy$))
+      .subscribe(stages => {
+        this.stages = stages as any [];
+    });
+  }
+
+
 
   ngOnDestroy() {
     this.destroy$.next(true);

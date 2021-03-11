@@ -58,6 +58,16 @@
         </tr>
         </thead>
         <tbody>
+            <!-- Ajout des stages de la BDD -->
+            <tr *ngFor="let stage of stages">
+                <td>{{ stage.titre }}</td>
+                <td>{{ stage.entreprise }}</td>
+                <td>{{ stage.parcours }}</td>
+                <td>{{ stage.promotions }}</td>
+                <td>{{ stage.duree }}</td>
+                <td>{{ stage.etat }}</td>
+            </tr>
+            <!-- Je laisse les exemples statiques pour le moment-->
             <tr>
                 <td>Web Development</td>
                 <td>Network Agency</td>

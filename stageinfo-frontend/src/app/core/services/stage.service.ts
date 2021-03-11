@@ -19,8 +19,15 @@ export class StageService {
     }
   }
 
+  /* Récupération de tous les stages */
   getStages(): Observable<any> {
     return this.httpClient.get(this.urlBase+'/api/stage');
   }
+
+  getStageByTitle(name: string){
+    return this.httpClient.get(this.urlBase+'/api/stage/title'+name);
+  }
+
+
 
 }
