@@ -37,7 +37,10 @@ export class ListStagesComponent implements OnInit {
     });
   }
 
-  getStagesByTitle(name: string){
+  getStagesByTitle(title: any){
+
+    let name = title.target.value;
+    
     this.stageService.getStageByTitle(name)
     .pipe(takeUntil(this.destroy$))
       .subscribe(stages => {
@@ -45,12 +48,6 @@ export class ListStagesComponent implements OnInit {
         console.log(stages);
     });
   }
-
-  test(val: string){
-    console.log("ca fonctionne : " + val);
-  }
-
-
 
   ngOnDestroy() {
     this.destroy$.next(true);
