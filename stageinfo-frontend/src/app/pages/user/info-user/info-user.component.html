@@ -5,49 +5,7 @@
 <div class="all-card-profile">
     <app-form-user id="info-user" [viewUser]="true" title="Profile utilisateur"></app-form-user>
     
-    <div id="info-user-stage" class="card">
-        <div class="card-header">
-            <h2 class="card-title"> Les stages</h2>
-        </div>
-        <div class="card-body">
-            <div class="card card-stage"> 
-                <p class="stage-etat">
-                    <span class="badge badge-success">Validé</span>
-                </p>
-                <p class="stage-body">
-                     <span class="stage-titre">Stage Ingénieur SALESFORCE/CPQ</span><br>
-                     <span class="stage-entreprise">IBM Montpellier</span>
-                </p>
-                <span class="stage-date">2018/2019</span>
-            </div>
-
-            <div class="card card-stage"> 
-                <p class="stage-etat">
-                    <span class="badge badge-warning">Proposé</span>
-                </p>
-                <p class="stage-body">
-                     <span class="stage-titre">Pilotage, conception et développement d'applications web.</span><br>
-                     <span class="stage-entreprise">SMILE</span>
-                </p>
-                <span class="stage-date">2018/2019</span>
-            </div>
-
-
-            <div class="card card-stage"> 
-                <p class="stage-etat">
-                    <span class="badge badge-danger">Refusé</span>
-                </p>
-                <p class="stage-body">
-                     <span class="stage-titre">Administrateur Réseau / Système, Développement soft Interne</span><br>
-                     <span class="stage-entreprise">EIGHT.TECH</span>
-                </p>
-                <span class="stage-date">2018/2019</span>
-            </div>
-
-            
-            
-        </div>
-    </div>
+    <app-card-stages id="stages-entreprise"></app-card-stages>
     
 </div>
 

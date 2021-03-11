@@ -1,0 +1,17 @@
+<div class="card">
+    <div class="card-header">
+        <h2 class="card-title"> {{ title }}</h2>
+    </div>
+    <div class="card-body" >
+        <div *ngFor="let stage of stages" class="card card-stage"> 
+            <p class="stage-etat">
+                <span class="badge badge-danger">{{ stage.etat }}</span>
+            </p>
+            <p class="stage-body">
+                 <span class="stage-titre">{{ stage.titre }}</span><br>
+                 <span class="stage-entreprise">{{ stage.entreprise }}</span>
+            </p>
+            <span class="stage-date">{{ stage.date }}</span>
+        </div>        
+    </div>
+</div>

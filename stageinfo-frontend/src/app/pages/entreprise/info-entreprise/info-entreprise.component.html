@@ -4,15 +4,27 @@
 
 
 <div class="all-card-profile">
+    <div id="presentation-entreprise"class="card">
+        <div class="card-header">
+            <h2 class="card-title">Description</h2>
+        </div>
+        <div class="card-body">
+            <p>Ubisoft est un créateur de mondes, qui a pour ambition d'enrichir la vie des joueurs en créant des expériences de jeu originales et mémorables.</p>
+        </div>
+    </div>
+
     <div id="info-entreprise"class="card">
         <div class="card-header">
             <h2 class="card-title">Informations</h2>
         </div>
         <div class="card-body">
-            <p><strong>Nom entreprise</strong></p>
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quis esse, aliquam nam aliquid eveniet, vitae est quae ut tempore iusto labore! Tenetur optio suscipit aspernatur corrupti earum sapiente, ex et?</p>
+            <p>N° Siret : 4536839028</p>
+            <p>Nombre employé : 10</p>
+            <p>Chiffre affaire en 2019 : 10M</p>
+            <p>Possède un local ? oui</p>
         </div>
     </div>
+
     <div id="adresse-entreprise"class="card">
         <div class="card-header">
             <h2 class="card-title">Localisation</h2>
@@ -28,53 +40,45 @@
             <h2 class="card-title">Contact</h2>
         </div>
         <div class="card-body">
-            <p>Site Web : https://www.google.com</p>
-            <p>Tel : 06 70 89 77 89</p>
-            <p>Fax : </p>
+            <p>Site : <a href="#">https://www.google.com</a></p>
+            <p>Tel : <a href="#">06 75 45 56 78</a></p>
+            <p>Fax : <a href="#">06 75 45 56 78</a></p>
+            <!--
+            <form >
+                <div class="form-group-row">
+                    <label for="inputSiteInternetEntreprise">Site Internet</label>
+                    <input  type="text" 
+                            id="inputSiteInternetEntreprise"  
+                            class="form-control-plaintext"
+                            value="https://www.google.com"
+                            name="entrepriseSiteInternet">
+                </div>
+
+                <div class="form-group-row">
+                    <label for="inputTelEntreprise">Tel</label>
+                    <input  type="text" 
+                            id="inputTelEntreprise"  
+                            class="form-control-plaintext"
+                            value="06 75 45 56 78"
+                            name="entrepriseTel"
+                            readonly>
+                </div>
+
+                <div class="form-group-row">
+                    <label for="inputFaxEntreprise">Fax</label>
+                    <input  type="text" 
+                            id="inputFaxEntreprise"  
+                            class="form-control-plaintext"
+                            value="06 75 45 56 78"
+                            name="entrepriseFax"
+                            readonly>
+                </div>
+            </form>
+            -->
         </div>
     </div>
 
-    <div id="stages-entreprise" class="card">
-        <div class="card-header">
-            <h2 class="card-title"> Les stages</h2>
-        </div>
-        <div class="card-body">
-            <div class="card card-stage"> 
-                <p class="stage-etat">
-                    <span class="badge badge-success">Validé</span>
-                </p>
-                <p class="stage-body">
-                     <span class="stage-titre">Stage Ingénieur SALESFORCE/CPQ</span><br>
-                     <span class="stage-entreprise">IBM Montpellier</span>
-                </p>
-                <span class="stage-date">2018/2019</span>
-            </div>
-
-            <div class="card card-stage"> 
-                <p class="stage-etat">
-                    <span class="badge badge-warning">Proposé</span>
-                </p>
-                <p class="stage-body">
-                     <span class="stage-titre">Pilotage, conception et développement d'applications web.</span><br>
-                     <span class="stage-entreprise">SMILE</span>
-                </p>
-                <span class="stage-date">2018/2019</span>
-            </div>
-
-
-            <div class="card card-stage"> 
-                <p class="stage-etat">
-                    <span class="badge badge-danger">Refusé</span>
-                </p>
-                <p class="stage-body">
-                     <span class="stage-titre">Administrateur Réseau / Système, Développement soft Interne</span><br>
-                     <span class="stage-entreprise">EIGHT.TECH</span>
-                </p>
-                <span class="stage-date">2018/2019</span>
-            </div>
-
-            
-            
-        </div>
-    </div>
+    <app-card-stages id="stages-entreprise">
+        
+    </app-card-stages>
 </div>

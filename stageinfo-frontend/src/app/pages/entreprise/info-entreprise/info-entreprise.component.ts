@@ -6,7 +6,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./info-entreprise.component.scss']
 })
 export class InfoEntrepriseComponent implements OnInit {
-  title = "Entreprise : IBM Montpellier"
+  title = "Entreprise : Ubisoft Montpellier"
   constructor() { }
 
   ngOnInit(): void {
