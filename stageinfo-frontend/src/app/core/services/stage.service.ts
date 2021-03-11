@@ -25,7 +25,7 @@ export class StageService {
   }
 
   getStageByTitle(name: string){
-    return this.httpClient.get(this.urlBase+'/api/stage/title'+name);
+    return this.httpClient.get(this.urlBase+'/api/stage/title/'+name);
   }
 
 

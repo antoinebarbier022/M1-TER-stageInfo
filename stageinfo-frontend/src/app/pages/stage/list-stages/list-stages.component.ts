@@ -19,10 +19,12 @@ export class ListStagesComponent implements OnInit {
   constructor(private stageService:StageService, private auth:AuthService) { }
 
   ngOnInit(): void {
+    /*
     this.stageService.getStages().subscribe(stages => {
       console.log(stages);
       this.stages = stages;
     })
+    */
   }
 
   /* Récupère tous les stages */
@@ -40,7 +42,12 @@ export class ListStagesComponent implements OnInit {
     .pipe(takeUntil(this.destroy$))
       .subscribe(stages => {
         this.stages = stages as any [];
+        console.log(stages);
     });
+  }
+
+  test(val: string){
+    console.log("ca fonctionne : " + val);
   }
 
 
