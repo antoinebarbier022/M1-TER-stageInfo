@@ -41,12 +41,16 @@ export class ListStagesComponent implements OnInit {
 
     let name = title.target.value;
     
-    this.stageService.getStageByTitle(name)
-    .pipe(takeUntil(this.destroy$))
-      .subscribe(stages => {
-        this.stages = stages as any [];
-        console.log(stages);
-    });
+    if(name.trim() !== ''){
+      this.stageService.getStageByTitle(name)
+        .pipe(takeUntil(this.destroy$))
+          .subscribe(stages => {
+            this.stages = stages as any [];
+      });
+    }
+    else{
+      this.getStages();
+    }
   }
 
   ngOnDestroy() {
