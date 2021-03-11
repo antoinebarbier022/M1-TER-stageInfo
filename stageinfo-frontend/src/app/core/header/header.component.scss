@@ -6,14 +6,32 @@ nav{
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    
-    #navbarRight{
+
+    #changeRole{
+        float:right;
+    }
+    a:hover{
+        text-decoration: none !important;
+    }
+    #user-name{
+        align-self: center;
+        margin-right: 1rem;
+        text-decoration: none;   
+    }
+
+    #user-icon{
+        align-self: center;
         a{
             color:#495057;
-            cursor:pointer;
+            cursor: pointer;
         }
-
-        
+    }
+    
+    #navbarRight{
+        display:flex;
+        a{
+            cursor: pointer;
+        }
         p{
             width:100%;
             text-align: right;
