@@ -1,0 +1,66 @@
+<div class="card">
+    <div class="card-header">
+        <h2 class="card-title"> {{ title }} 
+            <button routerLink="/liste-soutenances/import-soutenance" type="submit" style="float:right;margin-left:5px; " class="btn btn-secondary btn-sm">
+                <i style="margin-right:5px;" class="fas fa-file-import"></i>
+                importer
+            </button> 
+            <button routerLink="/liste-soutenances/add-soutenance" type="submit" style="float:right;" class="btn btn-secondary btn-sm">
+                <i style="margin-right:5px;" class="fas fa-plus"></i>
+                Ajouter
+            </button> 
+        </h2>
+    </div>
+        <table class="table table-striped">
+            <thead>
+            <tr>
+                <th scope="col">Date</th>
+                <th scope="col">Heure</th>
+                <th scope="col">Salle</th>
+                <th scope="col">Etudiant</th>
+                <th scope="col">Stage</th>
+                <th scope="col">Entreprise</th>
+                <th scope="col">Tuteur</th>
+                <th scope="col">Representant</th>
+                <th scope="col">actions</th>
+            </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let soutenance of soutenances">
+                    <td>{{ soutenance.date }}</td>
+                    <td>{{ soutenance.heure }}</td>
+                    <td>{{ soutenance.salle }}</td>
+                    <td><a routerLink="/liste-soutenances/soutenance">{{ soutenance.etudiant }}</a></td>
+                    <td>{{ soutenance.stage }}</td>
+                    <td>{{ soutenance.entreprise }}</td>
+                    <td>{{ soutenance.tuteur }}</td>
+                    <td>{{ soutenance.representant }}</td>
+                    <td class="table-action">
+                        <a routerLink="/liste-soutenances/edit-soutenance"><i class="icon far fa-lg fa-edit"></i></a>
+                        <a href="#" data-toggle="modal" data-target="#suppression-soutenance"><i class="icon far fa-lg fa-trash-alt"></i></a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+</div>
+
+<!-- Debut du Modal suppression soutenance -->
+<div class="modal fade" id="suppression-soutenance" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+    <div class="modal-content">
+        <div class="modal-header">
+        <h2 class="modal-title" id="exampleModalLabel">Suppression soutenance</h2>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+        </div>
+        <div class="modal-body">
+        Confirmer la suppression de l'soutenance.
+        </div>
+        <div class="modal-footer">
+        <button type="button" class="btn btn-secondary btn-sm" data-dismiss="modal">Annuler</button>
+        <button routerLink="/liste-soutenances" type="button" class="btn btn-danger btn-sm" data-dismiss="modal">Supprimer</button>
+        </div>
+    </div>
+    </div>
+</div>

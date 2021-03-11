@@ -9,9 +9,11 @@ import { ExempleTemplateComponent } from './exempleTemplate/exempleTemplate.comp
 import { LoginComponent } from './login/login.component';
 import {ReactiveFormsModule} from "@angular/forms";
 
+// Importation des modules
 import { UserModule } from './user/user.module';
 import { StageModule } from './stage/stage.module';
 import { EntrepriseModule } from './entreprise/entreprise.module';
+import { SoutenanceModule } from './soutenance/soutenance.module';
 
 
 
@@ -30,7 +32,8 @@ import { EntrepriseModule } from './entreprise/entreprise.module';
 
     UserModule,
     StageModule,
-    EntrepriseModule
+    EntrepriseModule,
+    SoutenanceModule
     ],
   exports:[
     ExempleTemplateComponent, 
@@ -39,7 +42,8 @@ import { EntrepriseModule } from './entreprise/entreprise.module';
 
     UserModule,
     StageModule,
-    EntrepriseModule
+    EntrepriseModule,
+    SoutenanceModule
   ],
 })
 export class PagesModule { }

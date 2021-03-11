@@ -24,6 +24,10 @@ import { AddEntrepriseComponent } from './pages/entreprise/add-entreprise/add-en
 import { EditEntrepriseComponent } from './pages/entreprise/edit-entreprise/edit-entreprise.component';
 import { InfoEntrepriseComponent } from './pages/entreprise/info-entreprise/info-entreprise.component';
 
+// import soutenance
+import { ListSoutenancesComponent } from './pages/soutenance/list-soutenances/list-soutenances.component';
+import { AddSoutenanceComponent } from './pages/soutenance/add-soutenance/add-soutenance.component';
+
 //import login
 import { LoginComponent } from './pages/login/login.component';
 
@@ -50,6 +54,11 @@ const routes: Routes = [
   { path: 'liste-entreprises/add-entreprise', component: AddEntrepriseComponent, canActivate: []},
   { path: 'liste-entreprises/edit-entreprise', component: EditEntrepriseComponent, canActivate: []},
   { path: 'liste-entreprises/entreprise', component: InfoEntrepriseComponent, canActivate: []},
+  // route soutenance
+  { path: 'liste-soutenances', component: ListSoutenancesComponent, canActivate: []},
+  { path: 'liste-soutenances/add-soutenance', component: AddSoutenanceComponent, canActivate: []},
+  { path: 'liste-soutenances/edit-soutenance', component: AddSoutenanceComponent, canActivate: []},
+  { path: 'liste-soutenances/soutenance', component: AddSoutenanceComponent, canActivate: []},
 
   { path: 'not-found', component: Error404Component, canActivate: []},
   { path: '**', redirectTo: 'not-found', canActivate: []}
