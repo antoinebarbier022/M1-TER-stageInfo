@@ -8,7 +8,7 @@ import { Observable } from 'rxjs';
 export class TestService {
   private urlBase: string = 'http://localhost:3000/';
 
-  private role:string = 'invite';
+  private role:string = 'admin';
 
   constructor(private httpClient: HttpClient) { }
   getRole(): string {

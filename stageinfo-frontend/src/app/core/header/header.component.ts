@@ -13,7 +13,7 @@ import { TestService } from '../services/test.service';
 export class HeaderComponent implements OnInit {
 
   public isAuth: boolean | undefined;
-  monRole = "invite";
+  monRole = "admin";
 
   private isAuthSub: Subscription | undefined;
   constructor(private auth: AuthService,

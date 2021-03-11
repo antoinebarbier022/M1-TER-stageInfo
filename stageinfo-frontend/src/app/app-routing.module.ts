@@ -42,7 +42,7 @@ const routes: Routes = [
   { path: 'login', component: LoginComponent},
   { path: 'documentation', component: ExempleDocComponent, canActivate: []},
   // routes stages
-  { path: 'list-stage', component: ListStagesComponent, canActivate: []},
+  { path: 'liste-stages', component: ListStagesComponent, canActivate: []},
   { path: 'saisir-stage', component: AddStageComponent, canActivate: []},
   { path: 'profile', component: ProfileUserComponent, canActivate: []},
   // route users
