@@ -13,6 +13,9 @@ nav{
     a:hover{
         text-decoration: none !important;
     }
+    .dropdown-item{
+        cursor: pointer;
+    }
     #user-name{
         align-self: center;
         margin-right: 1rem;
