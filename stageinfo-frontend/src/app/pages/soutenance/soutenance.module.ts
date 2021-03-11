@@ -7,13 +7,15 @@ import { SharedModule } from '../../shared/shared.module';
 
 import { ListSoutenancesComponent } from './list-soutenances/list-soutenances.component';
 import { AddSoutenanceComponent } from './add-soutenance/add-soutenance.component';
+import { ConfigCalendrierSoutenancesComponent } from './config-calendrier-soutenances/config-calendrier-soutenances.component';
 
 
 
 @NgModule({
   declarations: [
     ListSoutenancesComponent, 
-    AddSoutenanceComponent],
+    AddSoutenanceComponent, 
+    ConfigCalendrierSoutenancesComponent],
   imports: [
     CommonModule,
     RouterModule,
@@ -21,7 +23,8 @@ import { AddSoutenanceComponent } from './add-soutenance/add-soutenance.componen
     SharedModule
   ],exports:[
     ListSoutenancesComponent, 
-    AddSoutenanceComponent
+    AddSoutenanceComponent,
+    ConfigCalendrierSoutenancesComponent
   ],
 })
 export class SoutenanceModule { }

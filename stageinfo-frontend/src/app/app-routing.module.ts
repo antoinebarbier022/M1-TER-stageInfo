@@ -28,6 +28,9 @@ import { InfoEntrepriseComponent } from './pages/entreprise/info-entreprise/info
 import { ListSoutenancesComponent } from './pages/soutenance/list-soutenances/list-soutenances.component';
 import { AddSoutenanceComponent } from './pages/soutenance/add-soutenance/add-soutenance.component';
 
+// import config 
+import { ConfigCalendrierSoutenancesComponent } from './pages/soutenance/config-calendrier-soutenances/config-calendrier-soutenances.component';
+
 //import login
 import { LoginComponent } from './pages/login/login.component';
 
@@ -59,6 +62,10 @@ const routes: Routes = [
   { path: 'liste-soutenances/add-soutenance', component: AddSoutenanceComponent, canActivate: []},
   { path: 'liste-soutenances/edit-soutenance', component: AddSoutenanceComponent, canActivate: []},
   { path: 'liste-soutenances/soutenance', component: AddSoutenanceComponent, canActivate: []},
+
+  // config calendrier soutenance
+  { path: 'configuration-calendrier-soutenances', component: ConfigCalendrierSoutenancesComponent, canActivate: []},
+  
 
   { path: 'not-found', component: Error404Component, canActivate: []},
   { path: '**', redirectTo: 'not-found', canActivate: []}
