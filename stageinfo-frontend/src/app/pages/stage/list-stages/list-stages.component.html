@@ -59,7 +59,7 @@
         </thead>
         <tbody>
             <!-- Ajout des stages de la BDD -->
-            <tr *ngFor="let stage of getStagesByKeyword(searchFilter)">
+            <tr *ngFor="let stage of getStagesByKeyword()">
                 <td>{{ stage.titre }}</td>
                 <td>{{ stage.entreprise.nomComplet }}</td>
                 <td>{{ stage.parcours.nomComplet }}</td>
@@ -68,52 +68,16 @@
                 <td>{{ stage.duree }} mois</td>
                 <td><span class="badge badge-success">{{ stage.etat }}</span></td>
             </tr>
-            
-            <!--
-            <tr>
-                <td>Web Development</td>
-                <td>Network Agency</td>
-                <td>AIGLE</td>
-                <td>2020 - 2021</td>
-                <td>2 mois</td>
-                <td><span class="badge badge-success">Active</span></td>
-            </tr>
-            <tr>
-                <td>C# Development</td>
-                <td>D-ICE Engineering</td>
-                <td>IMAGINA</td>
-                <td>2020 - 2021</td>
-                <td>1 mois</td>
-                <td><span class="badge badge-warning">In progress</span></td>
-            </tr>
-            <tr>
-                <td>IEEE Transactions on Signal Processing</td>
-                <td>IBM</td>
-                <td>MIT</td>
-                <td>2019 - 2020</td>
-                <td>1.5 mois</td>
-                <td><span class="badge badge-danger">Assigned</span></td>
-            </tr>
-            <tr>
-                <td>DATA Fetching Improvements</td>
-                <td>Oracle</td>
-                <td>Decol</td>
-                <td>2020 - 2021</td>
-                <td>2 mois</td>
-                <td><span class="badge badge-success">Active</span></td>
-            </tr>
-            -->
-            
         </tbody>
     </table>
 
     <div class="card-pagination">
         <ul class="pagination">
-            <li class="page-item"><a class="page-link">Previous</a></li>
+            <li class="page-item" (click)="onClickPreviousPage()"><a class="page-link">Previous</a></li>
             <li class="page-item"><a class="page-link">1</a></li>
             <li class="page-item"><a class="page-link">2</a></li>
             <li class="page-item"><a class="page-link">3</a></li>
-            <li class="page-item"><a class="page-link">Next</a></li>
+            <li class="page-item" (click)="onClickNextPage()"><a class="page-link">Next</a></li>
         </ul>
     </div>
 </div>
