@@ -12,7 +12,7 @@ exports.getAllStage = ((req, res, next) => {
 });
 
 /**
- * @api {get} /stage Get a Stage
+ * @api {get} /stage/:id Get a Stage
  * @apiName GetOneStage
  * @apiGroup Stage
  *
@@ -23,8 +23,22 @@ exports.getOneStage = ((req, res, next) => {
   Stage.findOne({
     _id: req.params.id
   })
-  .then(creneau => res.status(200).json(creneau))
+  .then(stage => res.status(200).json(stage))
   .catch(error => res.status(404).json({ error }))
+});
+
+/**
+ * @api {get} /stage Get Stage by title
+ * @apiName getStageByTitle
+ * @apiGroup Stage
+ */
+ exports.getStageByTitle = ((req, res, next) => {
+
+  let name = req.params.name;
+
+  Stage.find({"titre": {$regex: `^${name}`, $options: "i"}})
+  .then(stages => res.status(200).json(stages))
+  .catch(error => res.status(404).json({ error }));
 });
 
 /**

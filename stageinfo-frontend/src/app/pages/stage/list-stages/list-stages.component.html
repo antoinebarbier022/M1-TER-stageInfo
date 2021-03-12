@@ -3,7 +3,7 @@
         <h2 class="card-title">Tableau des stages</h2>
     </div>
 
-    <button type="button" class="dropdown-toggle btn btn-link" data-toggle="collapse" data-target="#idFilter">Filtrer</button>	
+    <button id="btn-filter" type="button" class="dropdown-toggle btn btn-link" data-toggle="collapse" data-target="#idFilter"><i class="fas fa-filter"></i> Filtrer</button>	
     
     <div class="collapse" id="idFilter">
 
@@ -37,7 +37,7 @@
 
             <div class="card-parameters-search">
                 <div>
-                    <input type="text" placeholder="Search..." class="form-control" id="search" name="search">
+                    <input (input)="getStagesByTitle($event)" type="text" placeholder="Search..." class="form-control" id="search" name="search">
                 </div>
                 <button id="search-button" type="button" class="btn btn-primary">
                     <i class="fas fa-search"></i>
@@ -52,17 +52,27 @@
             <th scope="col">Titre</th>
             <th scope="col">Entreprise</th>
             <th scope="col">Parcours</th>
-            <th scope="col">Debut</th>
+            <th scope="col">Promotions</th>
             <th scope="col">Duree</th>
             <th scope="col">Etat</th>
         </tr>
         </thead>
         <tbody>
+            <!-- Ajout des stages de la BDD -->
+            <tr *ngFor="let stage of stages">
+                <td>{{ stage.titre }}</td>
+                <td>{{ stage.entreprise }}</td>
+                <td>{{ stage.parcours }}</td>
+                <td>{{ stage.promotions }}</td>
+                <td>{{ stage.duree }}</td>
+                <td>{{ stage.etat }}</td>
+            </tr>
+            <!--
             <tr>
                 <td>Web Development</td>
                 <td>Network Agency</td>
                 <td>AIGLE</td>
-                <td>05/03/2020</td>
+                <td>2020 - 2021</td>
                 <td>2 mois</td>
                 <td><span class="badge badge-success">Active</span></td>
             </tr>
@@ -70,7 +80,7 @@
                 <td>C# Development</td>
                 <td>D-ICE Engineering</td>
                 <td>IMAGINA</td>
-                <td>12/06/2020</td>
+                <td>2020 - 2021</td>
                 <td>1 mois</td>
                 <td><span class="badge badge-warning">In progress</span></td>
             </tr>
@@ -78,7 +88,7 @@
                 <td>IEEE Transactions on Signal Processing</td>
                 <td>IBM</td>
                 <td>MIT</td>
-                <td>11/07/2021</td>
+                <td>2019 - 2020</td>
                 <td>1.5 mois</td>
                 <td><span class="badge badge-danger">Assigned</span></td>
             </tr>
@@ -86,10 +96,11 @@
                 <td>DATA Fetching Improvements</td>
                 <td>Oracle</td>
                 <td>Decol</td>
-                <td>13/09/2021</td>
+                <td>2020 - 2021</td>
                 <td>2 mois</td>
                 <td><span class="badge badge-success">Active</span></td>
             </tr>
+            -->
         </tbody>
     </table>
 
