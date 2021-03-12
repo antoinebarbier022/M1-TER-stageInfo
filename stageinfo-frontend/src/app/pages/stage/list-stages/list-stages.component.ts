@@ -69,6 +69,25 @@ export class ListStagesComponent implements OnInit {
     });
   }
 
+  onClickPageNumber(nbr : number) {
+    console.log("click on : " + nbr);
+
+    this.lastPage = this.currentPage;
+    this.currentPage = nbr;
+
+    if(this.lastPage < this.currentPage){
+      let difference = this.currentPage-this.lastPage;
+      this.startIndex += this.nbrEntries*difference;
+    }
+    else{
+      let difference = this.lastPage-this.currentPage;
+      this.startIndex -= this.nbrEntries*difference;
+    }
+
+    this.endIndex = this.startIndex + this.nbrEntries;
+    this.getStagesByKeyword();
+  }
+
   onClickNextPage() {
     console.log("next");
     if (this.currentPage + 1 <= this.pageCount) {

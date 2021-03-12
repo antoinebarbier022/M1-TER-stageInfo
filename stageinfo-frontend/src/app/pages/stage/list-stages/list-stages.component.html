@@ -75,7 +75,7 @@
         <ul class="pagination">
             <li class="page-item" (click)="onClickPreviousPage()"><a class="page-link">Previous</a></li>
             <ng-container *ngFor="let number of [].constructor(pageCount); let i = index">
-                <li class="page-item"><a class="page-link" [ngStyle]="{'background-color': i+1==currentPage? '#f2f2f2' : '#ffffff'}">{{ i+1 }}</a></li>
+                <li class="page-item" (click)="onClickPageNumber(i+1)"><a class="page-link" [ngStyle]="{'background-color': i+1==currentPage? '#f2f2f2' : '#ffffff'}">{{ i+1 }}</a></li>
             </ng-container>
             <li class="page-item" (click)="onClickNextPage()"><a class="page-link">Next</a></li>
         </ul>
