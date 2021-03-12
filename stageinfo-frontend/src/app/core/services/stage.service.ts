@@ -23,7 +23,4 @@ export class StageService {
   getStages(): Observable<any> {
     return this.httpClient.get(this.urlBase+'/api/stage');
   }
-
-
-
 }

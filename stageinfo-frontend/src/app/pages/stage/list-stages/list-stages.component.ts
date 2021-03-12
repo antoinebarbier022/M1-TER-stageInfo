@@ -12,33 +12,48 @@ import { AuthService } from 'src/app/core/services/auth.service';
 export class ListStagesComponent implements OnInit {
 
   // tableau d'objet pour stocker les stages
-  public stages: Array<any> = new Array();
+  public allStages: Array<any> = new Array();
+  public filterStages: Array<any> = new Array();
 
   destroy$: Subject<boolean> = new Subject<boolean>();
 
-  constructor(private stageService:StageService, private auth:AuthService) { }
+  constructor(private stageService: StageService, private auth: AuthService) { }
 
   ngOnInit(): void {
-    
+
     this.stageService.getStages().subscribe(stages => {
-      console.log(stages);
-      this.stages = stages;
+      this.allStages = stages;
+      this.filterStages = stages;
     })
-  
   }
 
   /* Récupère tous les stages */
-  getStages(){
+  getStages() {
     this.stageService.getStages()
-    .pipe(takeUntil(this.destroy$))
+      .pipe(takeUntil(this.destroy$))
       .subscribe((_stages: any[]) => {
-        this.stages = _stages;
-        console.log(this.stages);
-    });
+        this.allStages = _stages;
+        console.log(this.allStages);
+      });
   }
 
-  test(){
-    console.log("ok");
+  stageHasKeyword(stage: any, str: string): boolean {
+
+    if(stage.titre.includes(str) || stage.entreprise.nomComplet.includes(str) || stage.parcours.nomComplet.includes(str))
+      return true;
+
+    return false;
+  }
+
+  getStagesByKeyword(userInput: any) {
+
+    let input = userInput.target.value;
+
+    this.filterStages = this.allStages.filter(x => {
+      if(this.stageHasKeyword(x, input)) return x;
+    });
+
+    console.log(this.filterStages);
   }
 
   ngOnDestroy() {
