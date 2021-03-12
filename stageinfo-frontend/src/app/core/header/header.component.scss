@@ -7,6 +7,13 @@ nav{
     flex-direction: row;
     justify-content: space-between;
 
+    .button-sidebar{
+        align-self:center;
+        margin:0 0.5rem;
+        color:#293042;
+        cursor: pointer;
+    }
+
     #changeRole{
         float:right;
     }

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter} from '@angular/core';
 import {Subscription} from "rxjs";
 import {Router} from "@angular/router";
 
@@ -14,6 +14,8 @@ export class HeaderComponent implements OnInit {
 
   public isAuth: boolean | undefined;
   monRole = "admin";
+  @Input() showSidebar = true;
+  @Output() sidebarEvent = new EventEmitter<boolean>();
 
   private isAuthSub: Subscription | undefined;
   constructor(private auth: AuthService,
@@ -28,12 +30,15 @@ export class HeaderComponent implements OnInit {
       }
     );}
 
+  changeDisplaySidebar() {
+    this.showSidebar = !this.showSidebar;
+    this.sidebarEvent.emit(this.showSidebar);
+  }
+
 
   setRole(role:string){
     this.monRole = role;
     this.testService.setRole(role);
   }
-
-
 }
 

@@ -7,6 +7,11 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'stageinfo';
+  sidebar = true;
+
+  displaySidebar(value :boolean){
+    this.sidebar = value;
+  }
   
   fullpage():boolean{
     return false;
