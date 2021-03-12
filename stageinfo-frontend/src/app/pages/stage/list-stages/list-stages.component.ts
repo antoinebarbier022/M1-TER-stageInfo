@@ -37,8 +37,8 @@ export class ListStagesComponent implements OnInit {
     });
   }
 
-  getStageByKeyword(){
-
+  test(){
+    console.log("ok");
   }
 
   ngOnDestroy() {
