@@ -35,7 +35,8 @@ export class ListStagesComponent implements OnInit {
 
     this.stageService.getStages().subscribe(stages => {
       this.allStages = stages;
-      this.pageCount = Math.ceil(this.allStages.length/this.nbrEntries);
+      this.pageCount = Math.ceil(this.allStages.length / this.nbrEntries);
+      console.log(this.allStages);
     })
   }
 
@@ -70,7 +71,7 @@ export class ListStagesComponent implements OnInit {
 
   onClickNextPage() {
     console.log("next");
-    if(this.currentPage+1 < this.pageCount){
+    if (this.currentPage + 1 <= this.pageCount) {
       this.lastPage = this.currentPage;
       this.currentPage++;
       this.startIndex += this.nbrEntries;
@@ -82,7 +83,7 @@ export class ListStagesComponent implements OnInit {
 
   onClickPreviousPage() {
     console.log("previous");
-    if(this.currentPage-1 > 0){
+    if (this.currentPage - 1 > 0) {
       this.lastPage = this.currentPage;
       this.currentPage--;
       this.startIndex -= this.nbrEntries;
