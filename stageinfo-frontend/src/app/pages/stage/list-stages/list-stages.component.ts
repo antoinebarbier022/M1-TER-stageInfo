@@ -38,23 +38,7 @@ export class ListStagesComponent implements OnInit {
   }
 
   getStageByKeyword(){
-    
-  }
 
-  getStagesByTitle(title: any){
-
-    let name = title.target.value;
-    
-    if(name.trim() !== ''){
-      this.stageService.getStageByTitle(name)
-        .pipe(takeUntil(this.destroy$))
-          .subscribe(stages => {
-            this.stages = stages as any [];
-      });
-    }
-    else{
-      this.getStages();
-    }
   }
 
   ngOnDestroy() {

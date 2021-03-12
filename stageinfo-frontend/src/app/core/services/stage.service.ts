@@ -23,15 +23,4 @@ export class StageService {
   getStages(): Observable<any> {
     return this.httpClient.get(this.urlBase+'/api/stage');
   }
-
-  getStageByTitle(name: string){
-    return this.httpClient.get(this.urlBase+'/api/stage/title/'+name);
-  }
-
-  getStageByKeyword(str: string){
-    return this.httpClient.get(this.urlBase+'/api/stage/search/'+str);
-  }
-
-
-
 }
