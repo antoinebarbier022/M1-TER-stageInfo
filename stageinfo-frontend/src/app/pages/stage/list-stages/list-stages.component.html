@@ -74,9 +74,7 @@
     <div class="card-pagination">
         <ul class="pagination">
             <li class="page-item" (click)="onClickPreviousPage()"><a class="page-link">Previous</a></li>
-            <li class="page-item"><a class="page-link">1</a></li>
-            <li class="page-item"><a class="page-link">2</a></li>
-            <li class="page-item"><a class="page-link">3</a></li>
+            <li class="page-item" *ngFor="let number of [].constructor(pageCount); let i = index"><a class="page-link">{{ i+1 }}</a></li>
             <li class="page-item" (click)="onClickNextPage()"><a class="page-link">Next</a></li>
         </ul>
     </div>
