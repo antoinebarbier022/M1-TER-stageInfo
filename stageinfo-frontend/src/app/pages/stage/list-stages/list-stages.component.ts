@@ -37,6 +37,10 @@ export class ListStagesComponent implements OnInit {
     });
   }
 
+  getStageByKeyword(){
+    
+  }
+
   getStagesByTitle(title: any){
 
     let name = title.target.value;

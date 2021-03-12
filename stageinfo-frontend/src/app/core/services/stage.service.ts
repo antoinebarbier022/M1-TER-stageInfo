@@ -28,6 +28,10 @@ export class StageService {
     return this.httpClient.get(this.urlBase+'/api/stage/title/'+name);
   }
 
+  getStageByKeyword(str: string){
+    return this.httpClient.get(this.urlBase+'/api/stage/search/'+str);
+  }
+
 
 
 }

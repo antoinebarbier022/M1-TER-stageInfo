@@ -28,6 +28,27 @@ exports.getOneStage = ((req, res, next) => {
 });
 
 /**
+ * @api {get} /stage Get Stage by keyword
+ * @apiName getStageByKeyword
+ * @apiGroup Stage
+ */
+exports.getStageByKeyword = ((req, res, next) => {
+
+  let keyword = req.params.keyword;
+
+  Stage.find(
+    {
+      "titre": {$regex: `^.*${keyword}.*$`, $options: "i"},
+      "entreprise.nomComplet": {$regex: `^.*${keyword}.*$`, $options: "i"},
+      "parcours.nomComplet": {$regex: `^.*${keyword}.*$`, $options: "i"},
+      "etat": {$regex: `^.*${keyword}.*$`, $options: "i"}
+    }
+  )
+  .then(stages => res.status(200).json(stages))
+  .catch(error => res.status(404).json({ error }));
+});
+
+/**
  * @api {get} /stage Get Stage by title
  * @apiName getStageByTitle
  * @apiGroup Stage
