@@ -45,3 +45,11 @@ exports.login= (req, res, next) =>{
         })
         .catch(error => res.status(500).json({error}));
 };
+exports.getemail = ((req, res, next) => {
+    User.findOne({
+        _id: req.params.id
+    })
+        .then(User => res.status(200).json(User.email),
+        console.log(User))
+        .catch(error => res.status(404).json({ error }))
+});

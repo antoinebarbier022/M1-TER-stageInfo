@@ -28,46 +28,47 @@ import { InfoEntrepriseComponent } from './pages/entreprise/info-entreprise/info
 import { ListSoutenancesComponent } from './pages/soutenance/list-soutenances/list-soutenances.component';
 import { AddSoutenanceComponent } from './pages/soutenance/add-soutenance/add-soutenance.component';
 
-// import config 
+// import config
 import { ConfigCalendrierSoutenancesComponent } from './pages/soutenance/config-calendrier-soutenances/config-calendrier-soutenances.component';
 
 //import login
 import { LoginComponent } from './pages/login/login.component';
 
-//import {AuthGuardService} from "./core/services/auth-guard.service";
+import {AuthGuardService} from "./core/services/auth-guard.service";
+import {AuthGuard} from "./core/services/guard-login.service";
 
 
 const routes: Routes = [
-  { path: '', component: ExempleTemplateComponent, canActivate: []},
-  { path: 'login', component: LoginComponent},
-  { path: 'documentation', component: ExempleDocComponent, canActivate: []},
+  { path: '', component: ExempleTemplateComponent, canActivate: [AuthGuardService]},
+  { path: 'login', component: LoginComponent, canActivate: [AuthGuard]},
+  { path: 'documentation', component: ExempleDocComponent, canActivate: [AuthGuardService]},
   // routes stages
-  { path: 'liste-stages', component: ListStagesComponent, canActivate: []},
-  { path: 'saisir-stage', component: AddStageComponent, canActivate: []},
-  { path: 'profile', component: ProfileUserComponent, canActivate: []},
+  { path: 'liste-stages', component: ListStagesComponent, canActivate: [AuthGuardService]},
+  { path: 'saisir-stage', component: AddStageComponent, canActivate: [AuthGuardService]},
+  { path: 'profile', component: ProfileUserComponent, canActivate: [AuthGuardService]},
   // route users
-  { path: 'liste-utilisateurs/user', component: InfoUserComponent, canActivate: []},
-  { path: 'liste-utilisateurs', component: ListUsersComponent, canActivate: []},
-  { path: 'liste-utilisateurs/import-users', component: ImportUsersComponent, canActivate: []},
-  { path: 'liste-utilisateurs/add-user', component: AddUserComponent, canActivate: []},
-  { path: 'liste-utilisateurs/edit-user', component: EditUserComponent, canActivate: []},
-  { path: 'liste-utilisateurs/edit-user-v2', component: EditUserV2Component, canActivate: []},
+  { path: 'liste-utilisateurs/user', component: InfoUserComponent, canActivate: [AuthGuardService]},
+  { path: 'liste-utilisateurs', component: ListUsersComponent, canActivate: [AuthGuardService]},
+  { path: 'liste-utilisateurs/import-users', component: ImportUsersComponent, canActivate: [AuthGuardService]},
+  { path: 'liste-utilisateurs/add-user', component: AddUserComponent, canActivate: [AuthGuardService]},
+  { path: 'liste-utilisateurs/edit-user', component: EditUserComponent, canActivate: [AuthGuardService]},
+  { path: 'liste-utilisateurs/edit-user-v2', component: EditUserV2Component, canActivate: [AuthGuardService]},
   //routes entreprise
-  { path: 'liste-entreprises', component: ListEntreprisesComponent, canActivate: []},
-  { path: 'liste-entreprises/add-entreprise', component: AddEntrepriseComponent, canActivate: []},
-  { path: 'liste-entreprises/edit-entreprise', component: EditEntrepriseComponent, canActivate: []},
-  { path: 'liste-entreprises/entreprise', component: InfoEntrepriseComponent, canActivate: []},
+  { path: 'liste-entreprises', component: ListEntreprisesComponent, canActivate: [AuthGuardService]},
+  { path: 'liste-entreprises/add-entreprise', component: AddEntrepriseComponent, canActivate: [AuthGuardService]},
+  { path: 'liste-entreprises/edit-entreprise', component: EditEntrepriseComponent, canActivate: [AuthGuardService]},
+  { path: 'liste-entreprises/entreprise', component: InfoEntrepriseComponent, canActivate: [AuthGuardService]},
   // route soutenance
-  { path: 'liste-soutenances', component: ListSoutenancesComponent, canActivate: []},
-  { path: 'liste-soutenances/add-soutenance', component: AddSoutenanceComponent, canActivate: []},
-  { path: 'liste-soutenances/edit-soutenance', component: AddSoutenanceComponent, canActivate: []},
-  { path: 'liste-soutenances/soutenance', component: AddSoutenanceComponent, canActivate: []},
+  { path: 'liste-soutenances', component: ListSoutenancesComponent, canActivate: [AuthGuardService]},
+  { path: 'liste-soutenances/add-soutenance', component: AddSoutenanceComponent, canActivate: [AuthGuardService]},
+  { path: 'liste-soutenances/edit-soutenance', component: AddSoutenanceComponent, canActivate: [AuthGuardService]},
+  { path: 'liste-soutenances/soutenance', component: AddSoutenanceComponent, canActivate: [AuthGuardService]},
 
   // config calendrier soutenance
-  { path: 'configuration-calendrier-soutenances', component: ConfigCalendrierSoutenancesComponent, canActivate: []},
-  
+  { path: 'configuration-calendrier-soutenances', component: ConfigCalendrierSoutenancesComponent, canActivate: [AuthGuardService]},
 
-  { path: 'not-found', component: Error404Component, canActivate: []},
+
+  { path: 'not-found', component: Error404Component, canActivate: [AuthGuardService]},
   { path: '**', redirectTo: 'not-found', canActivate: []}
 ];
 
