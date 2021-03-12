@@ -49,20 +49,6 @@ exports.getStageByKeyword = ((req, res, next) => {
 });
 
 /**
- * @api {get} /stage Get Stage by title
- * @apiName getStageByTitle
- * @apiGroup Stage
- */
- exports.getStageByTitle = ((req, res, next) => {
-
-  let name = req.params.name;
-
-  Stage.find({"titre": {$regex: `^${name}`, $options: "i"}})
-  .then(stages => res.status(200).json(stages))
-  .catch(error => res.status(404).json({ error }));
-});
-
-/**
  * @api {post} /stage Create a new Stage
  * @apiName CreateStage
  * @apiGroup Stage
