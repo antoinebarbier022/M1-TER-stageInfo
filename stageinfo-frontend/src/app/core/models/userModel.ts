@@ -1,18 +1,16 @@
-export class userModel = {
-    nom: string;
-    prenom: string;
-    email: string;
-    telephone: number;
-    fax: number;
-    hash: string;
-    role: string;
+export class userModel{
+    nom: String | undefined;
+  email: String | undefined;
+  fax: Number | undefined;
+    hash: String | undefined;
+    role: String | undefined;
 
     //etudiant
-    numeroEtudiant: string;
-    promotion: string;
-    idParcours: string;
+    numeroEtudiant: String | undefined;
+    promotion: String | undefined;
+    idParcours: String | undefined;
 
     //représentant entreprise
-    fonctionOccupee : string;
-    idEntreprise: string;
+    fonctionOccupee : String | undefined;
+    idEntreprise: String | undefined;
 }
