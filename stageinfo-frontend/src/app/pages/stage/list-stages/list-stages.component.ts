@@ -70,22 +70,26 @@ export class ListStagesComponent implements OnInit {
 
   onClickNextPage() {
     console.log("next");
-    this.lastPage = this.currentPage;
-    this.currentPage++;
-    this.startIndex += this.nbrEntries;
-    this.endIndex = this.startIndex + this.nbrEntries;
+    if(this.currentPage+1 < this.pageCount){
+      this.lastPage = this.currentPage;
+      this.currentPage++;
+      this.startIndex += this.nbrEntries;
+      this.endIndex = this.startIndex + this.nbrEntries;
 
-    this.getStagesByKeyword();
+      this.getStagesByKeyword();
+    }
   }
 
   onClickPreviousPage() {
     console.log("previous");
-    this.lastPage = this.currentPage;
-    this.currentPage--;
-    this.startIndex -= this.nbrEntries;
-    this.endIndex = this.startIndex + this.nbrEntries;
+    if(this.currentPage-1 > 0){
+      this.lastPage = this.currentPage;
+      this.currentPage--;
+      this.startIndex -= this.nbrEntries;
+      this.endIndex = this.startIndex + this.nbrEntries;
 
-    this.getStagesByKeyword();
+      this.getStagesByKeyword();
+    }
   }
 
   ngOnDestroy() {
