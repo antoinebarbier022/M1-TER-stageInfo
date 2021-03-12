@@ -13,7 +13,7 @@ export class ListStagesComponent implements OnInit {
 
   // tableau d'objet pour stocker les stages
   public allStages: Array<any> = new Array();
-  public filterStages: Array<any> = new Array();
+  public searchFilter: string = "";
 
   destroy$: Subject<boolean> = new Subject<boolean>();
 
@@ -23,8 +23,8 @@ export class ListStagesComponent implements OnInit {
 
     this.stageService.getStages().subscribe(stages => {
       this.allStages = stages;
-      this.filterStages = stages;
     })
+    
   }
 
   /* Récupère tous les stages */
@@ -47,15 +47,10 @@ export class ListStagesComponent implements OnInit {
     return false;
   }
 
-  getStagesByKeyword(userInput: any) {
-
-    let input = userInput.target.value;
-
-    this.filterStages = this.allStages.filter(x => {
-      if(this.stageHasKeyword(x, input)) return x;
+  getStagesByKeyword(userInput: string) {
+    return this.allStages.filter(x => {
+      if(this.stageHasKeyword(x, userInput)) return x;
     });
-
-    console.log(this.filterStages);
   }
 
   ngOnDestroy() {
