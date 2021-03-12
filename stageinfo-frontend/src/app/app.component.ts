@@ -15,6 +15,7 @@ export class AppComponent implements OnInit{
   public isAuth: boolean | undefined;
 
   private isAuthSub: Subscription | undefined;
+
   constructor(private auth: AuthService
   ) { }
 
