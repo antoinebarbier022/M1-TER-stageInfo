@@ -39,7 +39,9 @@ export class ListStagesComponent implements OnInit {
 
   stageHasKeyword(stage: any, str: string): boolean {
 
-    if(stage.titre.includes(str) || stage.entreprise.nomComplet.includes(str) || stage.parcours.nomComplet.includes(str))
+    str = str.toLowerCase()
+
+    if(stage.titre.toLowerCase().includes(str) || stage.entreprise.nomComplet.toLowerCase().includes(str) || stage.parcours.nomComplet.toLowerCase().includes(str))
       return true;
 
     return false;
