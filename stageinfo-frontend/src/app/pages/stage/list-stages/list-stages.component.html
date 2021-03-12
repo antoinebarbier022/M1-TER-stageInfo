@@ -61,12 +61,14 @@
             <!-- Ajout des stages de la BDD -->
             <tr *ngFor="let stage of stages">
                 <td>{{ stage.titre }}</td>
-                <td>{{ stage.entreprise }}</td>
-                <td>{{ stage.parcours }}</td>
-                <td>{{ stage.promotions }}</td>
-                <td>{{ stage.duree }}</td>
-                <td>{{ stage.etat }}</td>
+                <td>{{ stage.entreprise.nomComplet }}</td>
+                <td>{{ stage.parcours.nomComplet }}</td>
+                <!--<td>{{ stage.promotions }}</td>-->
+                <td>2020 - 2021</td>
+                <td>{{ stage.duree }} mois</td>
+                <td><span class="badge badge-success">{{ stage.etat }}</span></td>
             </tr>
+            
             <!--
             <tr>
                 <td>Web Development</td>
@@ -101,6 +103,7 @@
                 <td><span class="badge badge-success">Active</span></td>
             </tr>
             -->
+            
         </tbody>
     </table>
 
