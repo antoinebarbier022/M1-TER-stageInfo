@@ -17,7 +17,7 @@ export class ListStagesComponent implements OnInit {
   public searchFilter: string = "";
   public arrayFilter: Array<string> = [];
 
-  readonly nbrEntries: number = 30; // Nombre de stage pour une page donnée
+  public nbrEntries: number = 20; // Nombre de stage pour une page donnée
 
   public pageCount: number = 0; // Nombre total de page
 
@@ -25,19 +25,34 @@ export class ListStagesComponent implements OnInit {
   public lastPage: number = this.currentPage; // Page précédente
 
   public startIndex: number = 0;
-  public endIndex: number = this.nbrEntries;
+  public endIndex: number = this.startIndex + this.nbrEntries;
 
   destroy$: Subject<boolean> = new Subject<boolean>();
 
-  constructor(private stageService: StageService, private auth: AuthService) { }
+  constructor(private stageService: StageService, private auth: AuthService) {}
 
   ngOnInit(): void {
-
     this.stageService.getStages().subscribe(stages => {
       this.allStages = stages;
       this.pageCount = Math.ceil(this.allStages.length / this.nbrEntries);
-      console.log(this.allStages);
     })
+  }
+
+  setNumberEntries(nbr : any){
+    this.nbrEntries = parseInt(nbr.target.value);
+    this.endIndex = this.startIndex + this.nbrEntries;
+
+    this.pageCount = Math.ceil(this.allStages.length / this.nbrEntries);
+    this.lastPage = this.pageCount;
+    
+    this.currentPage = 1;
+    this.startIndex = 0;
+    this.endIndex = this.startIndex + this.nbrEntries;
+
+    console.log("startIndex : " + this.startIndex);
+    console.log("endIndex : " + this.endIndex);
+
+    this.getStagesByKeyword();
   }
 
   /* Récupère tous les stages */
@@ -61,31 +76,31 @@ export class ListStagesComponent implements OnInit {
   getStagesByKeyword() {
     this.arrayFilter = this.searchFilter.trim().split(/\s+/);
 
-    console.log(this.pageCount);
-    console.log(this.arrayFilter);
-
     return this.allStages.slice(this.startIndex, this.endIndex).filter(x => {
       if (this.stageHasAllKeywords(x, this.arrayFilter)) return x;
     });
   }
 
-  onClickPageNumber(nbr : number) {
+  onClickPageNumber(nbr: number) {
     console.log("click on : " + nbr);
 
     this.lastPage = this.currentPage;
     this.currentPage = nbr;
 
-    if(this.lastPage < this.currentPage){
-      let difference = this.currentPage-this.lastPage;
-      this.startIndex += this.nbrEntries*difference;
+    if (this.lastPage < this.currentPage) {
+      let difference = this.currentPage - this.lastPage;
+      this.startIndex += this.nbrEntries * difference;
     }
-    else{
-      let difference = this.lastPage-this.currentPage;
-      this.startIndex -= this.nbrEntries*difference;
+    else {
+      let difference = this.lastPage - this.currentPage;
+      this.startIndex -= this.nbrEntries * difference;
     }
 
     this.endIndex = this.startIndex + this.nbrEntries;
     this.getStagesByKeyword();
+
+    console.log("startIndex : " + this.startIndex);
+    console.log("endIndex : " + this.endIndex);
   }
 
   onClickNextPage() {
