@@ -10,7 +10,6 @@ const stageCtrl = require('../controllers/stageController');
 
 router.get('/',invite, stageCtrl.getAllStage);
 router.get('/:id', invite, stageCtrl.getOneStage);
-router.get('/title/:name',invite, stageCtrl.getStageByTitle);
 router.post('/',Etudiant, stageCtrl.createStage);
 router.put('/:id', Etudiant,stageCtrl.editStage);
 router.delete('/:id',Admin, stageCtrl.deleteOneStage);
