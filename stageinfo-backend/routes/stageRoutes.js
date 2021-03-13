@@ -8,9 +8,10 @@ const router = express.Router();
 
 const stageCtrl = require('../controllers/stageController');
 
-router.get('/',stageCtrl.getAllStage);
-router.get('/:id', stageCtrl.getOneStage);
-router.post('/', stageCtrl.createStage);
+router.get('/',invite, stageCtrl.getAllStage);
+router.get('/:id', invite, stageCtrl.getOneStage);
+router.get('/title/:name',invite, stageCtrl.getStageByTitle);
+router.post('/',Etudiant, stageCtrl.createStage);
 router.put('/:id', Etudiant,stageCtrl.editStage);
 router.delete('/:id',Admin, stageCtrl.deleteOneStage);
 router.delete('/', Admin, stageCtrl.deleteAllStage);
