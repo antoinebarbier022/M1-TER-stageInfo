@@ -21,3 +21,7 @@
     border-left: 0;
     padding-left: 1.25rem;
 }
+
+.table-striped tbody tr:nth-of-type(odd) {
+    background-color: #f4f7f9;
+}
