@@ -11,7 +11,7 @@ import { AuthService } from 'src/app/core/services/auth.service';
 })
 export class ListStagesComponent implements OnInit {
 
-  public visibleProperties = ['titre', 'entreprise.nomComplet', 'parcours.nomComplet', 'duree', 'etat'];
+  public visibleProperties = ['titre','entreprise.nomComplet', 'parcours.nomComplet', 'duree', 'etat'];
 
   public allStages: Array<any> = new Array();
 
@@ -56,7 +56,6 @@ export class ListStagesComponent implements OnInit {
     this.getStagesByKeyword();
   }
 
-  /* Récupère tous les stages */
   getStages() {
     this.stageService.getStages()
       .pipe(takeUntil(this.destroy$))
@@ -67,88 +66,21 @@ export class ListStagesComponent implements OnInit {
   }
 
   stageHasAllKeywords(stage: any, str: string[]): boolean {
-
-    
     const keywords = str.filter(e => e).map(v => v.toLowerCase());
 
-    console.log(stage[this.visibleProperties[0]]);
-
-    const row = stage.join(' ');
-
-    
-
-    /*
-    let includeKeyword = [];
-    //console.log(keywords);
-
-    if(Array.isArray(keywords) && keywords.length){
-
-      //console.log("salut2");
-      //console.log(keywords);
-
-      for(let [key, value] of new Map(Object.entries(stage))){
-        if(this.visibleProperties.includes(key)){
-          if(typeof value === 'object' && value !== null){
-            for(let [k, v] of new Map(Object.entries(value))){
-              //console.log("salut3");
-              for(let word of keywords){
-                if(v.toLowerCase().includes(word)) 
-                  includeKeyword.push(true);
-                else
-                  includeKeyword.push(false);
-                //console.log("word : " + word + " | " + " v : " + v.toLowerCase());
-              }
-            }
-          }
-          else{
-            if(typeof value === 'string'){
-              for(let word of keywords){
-                if(value.toLowerCase().includes(word)) 
-                  includeKeyword.push(true);
-                else
-                  includeKeyword.push(false);
-                //console.log("word : " + word + " | " + " v : " + value.toLowerCase());
-                //console.log('e'.includes(value.toLowerCase()));
-              }
-            }
-          }
-        }
-      }
+    function getNestedValue(obj: any, key : any) {
+      return key.split(".").reduce(function(result: any, key: any) {
+         return result[key] 
+      }, obj);
     }
-    else{
-      //console.log("salut");
-      return true;
-    }
-    
-    console.log(includeKeyword);
-    */
 
-    /*
-    Object.entries(stage).forEach(([key, value]) => {
-      if(this.visibleProperties.includes(key)){
-        if(typeof value === 'object' && value !== null){
-          Object.entries(value).forEach(([k, v]) => {
-            if(!keywords.includes(v))
-              result = true;
-          });
-        }
-        else{
-          if(typeof value === 'string' && !keywords.includes(value))
-            result = true;
-        }
-      }
+    let row = new Array();
+    
+    this.visibleProperties.forEach(prop => {
+      row.push(getNestedValue(stage, prop));
     });
-    */
 
-    /*
-    for (let x of str) {
-      if (!(stage.titre.toLowerCase().includes(x.toLowerCase()) || stage.entreprise.nomComplet.toLowerCase().includes(x.toLowerCase()) || stage.parcours.nomComplet.toLowerCase().includes(x.toLowerCase())))
-        return false;
-    }
-    */
-
-
-    return true;
+    return keywords.every(word => row.join(' ').toLowerCase().includes(word));
   }
 
   getStagesByKeyword() {
