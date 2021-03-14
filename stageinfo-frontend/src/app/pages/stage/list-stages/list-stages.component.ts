@@ -13,24 +13,32 @@ export class ListStagesComponent implements OnInit {
 
   public visibleProperties = ['titre','entreprise.nomComplet', 'parcours.nomComplet', 'duree', 'etat'];
 
-  public allStages: Array<any> = new Array();
+  public allStages: Array<any>;
 
-  public searchFilter: string = "";
-  public arrayFilter: Array<string> = [];
+  public searchFilter: string;
+  public arrayFilter: Array<string>;
 
-  public nbrEntries: number = 20; // Nombre de stage pour une page donnée
+  public nbrEntries: number;
+  public pageCount: number;
+  public currentPage: number;
+  public lastPage: number;
 
-  public pageCount: number = 0; // Nombre total de page
-
-  public currentPage: number = 1; // Page actuelle 
-  public lastPage: number = this.currentPage; // Page précédente
-
-  public startIndex: number = 0;
-  public endIndex: number = this.startIndex + this.nbrEntries;
+  public startIndex;
+  public endIndex;
 
   destroy$: Subject<boolean> = new Subject<boolean>();
 
-  constructor(private stageService: StageService, private auth: AuthService) {}
+  constructor(private stageService: StageService, private auth: AuthService) {
+    this.allStages = new Array();
+    this.searchFilter = "";
+    this.arrayFilter = [];
+    this.nbrEntries = 20;
+    this.pageCount = 0;
+    this.currentPage = 1;
+    this.lastPage = this.currentPage;
+    this.startIndex = 0;
+    this.endIndex = this.startIndex+this.nbrEntries;
+  }
 
   ngOnInit(): void {
     this.stageService.getStages().subscribe(stages => {
@@ -58,8 +66,8 @@ export class ListStagesComponent implements OnInit {
       .pipe(takeUntil(this.destroy$))
       .subscribe((_stages: any[]) => {
         this.allStages = _stages;
-        console.log(this.allStages);
-      });
+      }
+    );
   }
 
   stageHasAllKeywords(stage: any, str: string[]): boolean {
@@ -131,5 +139,4 @@ export class ListStagesComponent implements OnInit {
     this.destroy$.next(true);
     this.destroy$.unsubscribe();
   }
-
 }
