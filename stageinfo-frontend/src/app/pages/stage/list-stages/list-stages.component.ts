@@ -69,29 +69,40 @@ export class ListStagesComponent implements OnInit {
 
   stageHasAllKeywords(stage: any, str: string[]): boolean {
 
+    let keywords = str.map(v => v.toLowerCase());
+    let result = true;
+
+    const map = new Map(Object.entries(stage));
+
+    console.log(map);
+
+    for(let prop in map){
+      console.log("==========================> " + prop);
+    }
+
     Object.entries(stage).forEach(([key, value]) => {
-          
-      console.log(`${key}: ${value}`);
-
       if(this.visibleProperties.includes(key)){
-
         if(typeof value === 'object' && value !== null){
           Object.entries(value).forEach(([k, v]) => {
-            
-            console.log(`${k}: ${v}`);
-          
+            if(!keywords.includes(v))
+              result = true;
           });
         }
+        else{
+          if(typeof value === 'string' && !keywords.includes(value))
+            result = true;
+        }
       }
-    
     });
 
+    /*
     for (let x of str) {
-      console.log("--> " + stage);
       if (!(stage.titre.toLowerCase().includes(x.toLowerCase()) || stage.entreprise.nomComplet.toLowerCase().includes(x.toLowerCase()) || stage.parcours.nomComplet.toLowerCase().includes(x.toLowerCase())))
         return false;
     }
-    return true;
+    */
+
+    return result;
   }
 
   getStagesByKeyword() {
