@@ -50,9 +50,6 @@ export class ListStagesComponent implements OnInit {
     this.startIndex = 0;
     this.endIndex = this.startIndex + this.nbrEntries;
 
-    console.log("startIndex : " + this.startIndex);
-    console.log("endIndex : " + this.endIndex);
-
     this.getStagesByKeyword();
   }
 
@@ -92,8 +89,6 @@ export class ListStagesComponent implements OnInit {
   }
 
   onClickPageNumber(nbr: number) {
-    console.log("click on : " + nbr);
-
     this.lastPage = this.currentPage;
     this.currentPage = nbr;
 
@@ -108,13 +103,9 @@ export class ListStagesComponent implements OnInit {
 
     this.endIndex = this.startIndex + this.nbrEntries;
     this.getStagesByKeyword();
-
-    console.log("startIndex : " + this.startIndex);
-    console.log("endIndex : " + this.endIndex);
   }
 
   onClickNextPage() {
-    console.log("next");
     if (this.currentPage + 1 <= this.pageCount) {
       this.lastPage = this.currentPage;
       this.currentPage++;
@@ -126,7 +117,6 @@ export class ListStagesComponent implements OnInit {
   }
 
   onClickPreviousPage() {
-    console.log("previous");
     if (this.currentPage - 1 > 0) {
       this.lastPage = this.currentPage;
       this.currentPage--;
@@ -139,7 +129,6 @@ export class ListStagesComponent implements OnInit {
 
   ngOnDestroy() {
     this.destroy$.next(true);
-    // Now let's also unsubscribe from the subject itself:
     this.destroy$.unsubscribe();
   }
 
