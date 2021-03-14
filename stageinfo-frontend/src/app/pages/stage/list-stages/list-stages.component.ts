@@ -3,7 +3,6 @@ import { takeUntil } from 'rxjs/operators';
 import { StageService } from 'src/app/core/services/stage.service';
 import { Subject } from 'rxjs';
 import { AuthService } from 'src/app/core/services/auth.service';
-import { newArray } from '@angular/compiler/src/util';
 
 @Component({
   selector: 'app-list-stages',
@@ -70,7 +69,13 @@ export class ListStagesComponent implements OnInit {
   stageHasAllKeywords(stage: any, str: string[]): boolean {
 
     
-    let keywords = str.filter(e => e).map(v => v.toLowerCase());
+    const keywords = str.filter(e => e).map(v => v.toLowerCase());
+
+    console.log(stage[this.visibleProperties[0]]);
+
+    const row = stage.join(' ');
+
+    
 
     /*
     let includeKeyword = [];
@@ -143,7 +148,7 @@ export class ListStagesComponent implements OnInit {
     */
 
 
-    return false;
+    return true;
   }
 
   getStagesByKeyword() {
