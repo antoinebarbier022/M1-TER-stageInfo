@@ -12,7 +12,7 @@ import { newArray } from '@angular/compiler/src/util';
 })
 export class ListStagesComponent implements OnInit {
 
-  public visibleProperties = ['titre', 'entreprise', 'parcours', 'duree', 'etat'];
+  public visibleProperties = ['titre', 'entreprise.nomComplet', 'parcours.nomComplet', 'duree', 'etat'];
 
   public allStages: Array<any> = new Array();
 
@@ -69,17 +69,56 @@ export class ListStagesComponent implements OnInit {
 
   stageHasAllKeywords(stage: any, str: string[]): boolean {
 
-    let keywords = str.map(v => v.toLowerCase());
-    let result = true;
+    
+    let keywords = str.filter(e => e).map(v => v.toLowerCase());
 
-    const map = new Map(Object.entries(stage));
+    /*
+    let includeKeyword = [];
+    //console.log(keywords);
 
-    console.log(map);
+    if(Array.isArray(keywords) && keywords.length){
 
-    for(let prop in map){
-      console.log("==========================> " + prop);
+      //console.log("salut2");
+      //console.log(keywords);
+
+      for(let [key, value] of new Map(Object.entries(stage))){
+        if(this.visibleProperties.includes(key)){
+          if(typeof value === 'object' && value !== null){
+            for(let [k, v] of new Map(Object.entries(value))){
+              //console.log("salut3");
+              for(let word of keywords){
+                if(v.toLowerCase().includes(word)) 
+                  includeKeyword.push(true);
+                else
+                  includeKeyword.push(false);
+                //console.log("word : " + word + " | " + " v : " + v.toLowerCase());
+              }
+            }
+          }
+          else{
+            if(typeof value === 'string'){
+              for(let word of keywords){
+                if(value.toLowerCase().includes(word)) 
+                  includeKeyword.push(true);
+                else
+                  includeKeyword.push(false);
+                //console.log("word : " + word + " | " + " v : " + value.toLowerCase());
+                //console.log('e'.includes(value.toLowerCase()));
+              }
+            }
+          }
+        }
+      }
     }
+    else{
+      //console.log("salut");
+      return true;
+    }
+    
+    console.log(includeKeyword);
+    */
 
+    /*
     Object.entries(stage).forEach(([key, value]) => {
       if(this.visibleProperties.includes(key)){
         if(typeof value === 'object' && value !== null){
@@ -94,6 +133,7 @@ export class ListStagesComponent implements OnInit {
         }
       }
     });
+    */
 
     /*
     for (let x of str) {
@@ -102,7 +142,8 @@ export class ListStagesComponent implements OnInit {
     }
     */
 
-    return result;
+
+    return false;
   }
 
   getStagesByKeyword() {
