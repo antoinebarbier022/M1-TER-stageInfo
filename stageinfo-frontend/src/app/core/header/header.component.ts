@@ -16,6 +16,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
   public user: userModel | undefined
   public isAuth: boolean | undefined;
   monRole = "admin";
+  @Input() onlyTitle = false;
   @Input() showSidebar = true;
   @Output() sidebarEvent = new EventEmitter<boolean>();
 
