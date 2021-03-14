@@ -12,6 +12,8 @@ import { newArray } from '@angular/compiler/src/util';
 })
 export class ListStagesComponent implements OnInit {
 
+  public visibleProperties = ['titre', 'entreprise', 'parcours', 'duree', 'etat'];
+
   public allStages: Array<any> = new Array();
 
   public searchFilter: string = "";
@@ -66,7 +68,26 @@ export class ListStagesComponent implements OnInit {
   }
 
   stageHasAllKeywords(stage: any, str: string[]): boolean {
+
+    Object.entries(stage).forEach(([key, value]) => {
+          
+      console.log(`${key}: ${value}`);
+
+      if(this.visibleProperties.includes(key)){
+
+        if(typeof value === 'object' && value !== null){
+          Object.entries(value).forEach(([k, v]) => {
+            
+            console.log(`${k}: ${v}`);
+          
+          });
+        }
+      }
+    
+    });
+
     for (let x of str) {
+      console.log("--> " + stage);
       if (!(stage.titre.toLowerCase().includes(x.toLowerCase()) || stage.entreprise.nomComplet.toLowerCase().includes(x.toLowerCase()) || stage.parcours.nomComplet.toLowerCase().includes(x.toLowerCase())))
         return false;
     }
