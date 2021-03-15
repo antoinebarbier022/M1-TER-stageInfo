@@ -1,30 +1,45 @@
+<h1>{{ title }}</h1>
+<div class="card">
+    <div id="idFilter">
+        <div class="card-parameters">
+            <div class="card-parameters-search">
+                <label>Rechercher </label>
+                <input [(ngModel)]="searchFilter" type="text" placeholder="" class="form-control" id="search" name="search">
+            </div>
+        </div>
+    </div>
+</div>
+
 <div class="card">
     <div class="card-header">
-        <h2 class="card-title">Tableau des stages</h2>
+        <div class="card-parameters-sort" >
+            <p>Show</p>
+            <select (change)="setNumberEntries($event)" class="custom-select">
+                <option selected value="10">10</option>
+                <option value="20">20</option>
+                <option value="50">50</option>
+            </select>
+            <p>entries</p>
+
+            <button routerLink="/liste-stages/import-stage" type="submit" style="float:right;margin-left:5px; " class="btn btn-secondary btn-sm">
+                <i style="margin-right:5px;" class="fas fa-file-import"></i>
+                importer
+            </button> 
+            <button routerLink="/saisir-stage" type="submit" style="float:right;" class="btn btn-secondary btn-sm">
+                <i style="margin-right:5px;" class="fas fa-plus"></i>
+                Ajouter
+            </button> 
+        </div>
+
+        
+
     </div>
     <!--
     <button id="btn-filter" type="button" class="dropdown-toggle btn btn-link" data-toggle="collapse" data-target="#idFilter"><i class="fas fa-filter"></i> Filtrer</button>	
     
     <div class="collapse" id="idFilter">
     -->
-    <div id="idFilter">
-        <div class="card-parameters">
 
-            <div class="card-parameters-sort" >
-                <p>Show</p>
-                <select (change)="setNumberEntries($event)" class="custom-select">
-                    <option selected value="10">10</option>
-                    <option value="20">20</option>
-                    <option value="50">50</option>
-                </select>
-                <p>entries</p>
-            </div>
-
-            <div class="card-parameters-search">
-                <input [(ngModel)]="searchFilter" type="text" placeholder="Search..." class="form-control" id="search" name="search">
-            </div>
-        </div>
-    </div>
 
     <table class="table table-striped table-sm">
         <thead>

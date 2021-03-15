@@ -11,6 +11,7 @@ import { newArray } from '@angular/compiler/src/util';
   styleUrls: ['./list-stages.component.scss']
 })
 export class ListStagesComponent implements OnInit {
+  title="Liste des stages"
 
   public allStages: Array<any> = new Array();
 
