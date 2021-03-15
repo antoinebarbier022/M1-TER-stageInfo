@@ -1,11 +1,18 @@
 <h1>{{ title }}</h1>
+<!-- Cette card est pour la bar de recherche et les différents filtres -->
 <div class="card">
     <div id="idFilter">
         <div class="card-parameters">
             <div class="card-parameters-search">
                 <label>Rechercher </label>
                 <input [(ngModel)]="searchFilter" type="text" placeholder="" class="form-control" id="search" name="search">
+                <button class="btn btn-link"
+                        style="margin-left:5px;"
+                        class="btn btn-secondary btn-sm">
+                    <i class="fas fa-filter"></i>
+                </button> 
             </div>
+               
         </div>
     </div>
 </div>
@@ -34,11 +41,7 @@
         
 
     </div>
-    <!--
-    <button id="btn-filter" type="button" class="dropdown-toggle btn btn-link" data-toggle="collapse" data-target="#idFilter"><i class="fas fa-filter"></i> Filtrer</button>	
-    
-    <div class="collapse" id="idFilter">
-    -->
+
 
 
     <table class="table table-striped table-sm">
