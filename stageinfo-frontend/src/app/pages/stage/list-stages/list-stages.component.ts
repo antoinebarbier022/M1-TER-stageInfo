@@ -3,7 +3,6 @@ import { takeUntil } from 'rxjs/operators';
 import { StageService } from 'src/app/core/services/stage.service';
 import { Subject } from 'rxjs';
 import { AuthService } from 'src/app/core/services/auth.service';
-import { newArray } from '@angular/compiler/src/util';
 
 @Component({
   selector: 'app-list-stages',
@@ -13,24 +12,35 @@ import { newArray } from '@angular/compiler/src/util';
 export class ListStagesComponent implements OnInit {
   title="Liste des stages"
 
-  public allStages: Array<any> = new Array();
+  public visibleProperties = ['titre','entreprise.nomComplet', 'parcours.nomComplet', 'duree', 'etat'];
 
-  public searchFilter: string = "";
-  public arrayFilter: Array<string> = [];
+  public allStages: Array<any>;
 
-  public nbrEntries: number = 10; // Nombre de stage pour une page donnée
+  public searchFilter: string;
+  public arrayFilter: Array<string>;
 
-  public pageCount: number = 0; // Nombre total de page
 
-  public currentPage: number = 1; // Page actuelle 
-  public lastPage: number = this.currentPage; // Page précédente
+  public nbrEntries: number;
+  public pageCount: number;
+  public currentPage: number;
+  public lastPage: number;
 
-  public startIndex: number = 0;
-  public endIndex: number = this.startIndex + this.nbrEntries;
+  public startIndex;
+  public endIndex;
 
   destroy$: Subject<boolean> = new Subject<boolean>();
 
-  constructor(private stageService: StageService, private auth: AuthService) {}
+  constructor(private stageService: StageService, private auth: AuthService) {
+    this.allStages = new Array();
+    this.searchFilter = "";
+    this.arrayFilter = [];
+    this.nbrEntries = 20;
+    this.pageCount = 0;
+    this.currentPage = 1;
+    this.lastPage = this.currentPage;
+    this.startIndex = 0;
+    this.endIndex = this.startIndex+this.nbrEntries;
+  }
 
   ngOnInit(): void {
     this.stageService.getStages().subscribe(stages => {
@@ -50,28 +60,34 @@ export class ListStagesComponent implements OnInit {
     this.startIndex = 0;
     this.endIndex = this.startIndex + this.nbrEntries;
 
-    console.log("startIndex : " + this.startIndex);
-    console.log("endIndex : " + this.endIndex);
-
     this.getStagesByKeyword();
   }
 
-  /* Récupère tous les stages */
   getStages() {
     this.stageService.getStages()
       .pipe(takeUntil(this.destroy$))
       .subscribe((_stages: any[]) => {
         this.allStages = _stages;
-        console.log(this.allStages);
-      });
+      }
+    );
   }
 
   stageHasAllKeywords(stage: any, str: string[]): boolean {
-    for (let x of str) {
-      if (!(stage.titre.toLowerCase().includes(x.toLowerCase()) || stage.entreprise.nomComplet.toLowerCase().includes(x.toLowerCase()) || stage.parcours.nomComplet.toLowerCase().includes(x.toLowerCase())))
-        return false;
+    const keywords = str.filter(e => e).map(v => v.toLowerCase());
+
+    function getNestedValue(obj: any, key : any) {
+      return key.split(".").reduce(function(result: any, key: any) {
+         return result[key] 
+      }, obj);
     }
-    return true;
+
+    let row = new Array();
+    
+    this.visibleProperties.forEach(prop => {
+      row.push(getNestedValue(stage, prop));
+    });
+
+    return keywords.every(word => row.join(' ').toLowerCase().includes(word));
   }
 
   getStagesByKeyword() {
@@ -83,8 +99,6 @@ export class ListStagesComponent implements OnInit {
   }
 
   onClickPageNumber(nbr: number) {
-    console.log("click on : " + nbr);
-
     this.lastPage = this.currentPage;
     this.currentPage = nbr;
 
@@ -99,13 +113,9 @@ export class ListStagesComponent implements OnInit {
 
     this.endIndex = this.startIndex + this.nbrEntries;
     this.getStagesByKeyword();
-
-    console.log("startIndex : " + this.startIndex);
-    console.log("endIndex : " + this.endIndex);
   }
 
   onClickNextPage() {
-    console.log("next");
     if (this.currentPage + 1 <= this.pageCount) {
       this.lastPage = this.currentPage;
       this.currentPage++;
@@ -117,7 +127,6 @@ export class ListStagesComponent implements OnInit {
   }
 
   onClickPreviousPage() {
-    console.log("previous");
     if (this.currentPage - 1 > 0) {
       this.lastPage = this.currentPage;
       this.currentPage--;
@@ -130,8 +139,6 @@ export class ListStagesComponent implements OnInit {
 
   ngOnDestroy() {
     this.destroy$.next(true);
-    // Now let's also unsubscribe from the subject itself:
     this.destroy$.unsubscribe();
   }
-
 }
