@@ -6,16 +6,17 @@ import { FormsModule } from '@angular/forms';
 import { FormUserComponent } from './components/form-user/form-user.component';
 import { FormEntrepriseComponent } from './components/form-entreprise/form-entreprise.component';
 import { CardStagesComponent } from './components/card-stages/card-stages.component';
+import { ModalComponent } from './components/modal/modal.component';
 
 
 
 @NgModule({
-  declarations: [FormUserComponent, FormEntrepriseComponent, CardStagesComponent],
+  declarations: [FormUserComponent, FormEntrepriseComponent, CardStagesComponent, ModalComponent],
   imports: [
     CommonModule,
     RouterModule,
     FormsModule,
   ],
-  exports:[FormUserComponent, FormEntrepriseComponent, CardStagesComponent]
+  exports:[FormUserComponent, FormEntrepriseComponent, CardStagesComponent, ModalComponent]
 })
 export class SharedModule { }

@@ -10,6 +10,7 @@ import { AuthService } from 'src/app/core/services/auth.service';
   styleUrls: ['./list-stages.component.scss']
 })
 export class ListStagesComponent implements OnInit {
+  title="Liste des stages"
 
   public visibleProperties = ['titre','entreprise.nomComplet', 'parcours.nomComplet', 'duree', 'etat'];
 
@@ -17,6 +18,7 @@ export class ListStagesComponent implements OnInit {
 
   public searchFilter: string;
   public arrayFilter: Array<string>;
+
 
   public nbrEntries: number;
   public pageCount: number;

@@ -3,8 +3,13 @@
     height: 100%;   // takes parent height    
 }
 
-.card {
+.custom-select{
+    width:60px;
+    padding:3px;
+}
 
+.card {
+    margin-bottom:15px;
     position: relative;
 
     #btn-filter{
@@ -27,17 +32,42 @@
         }
 
         .card-parameters-search{
-
+            display:flex;
+            flex-direction: row;
+            width:100%;
+            label{
+                margin-bottom:0 !important;
+                align-self: center;
+                padding-right:10px;
+            }
             #search{
+                width:100%;
                 border-top-right-radius: 0%;
                 border-bottom-right-radius: 0%;
             }
         }
     }
 
+    p{
+        display: inline-block;
+        width:max-content;
+        padding:3px;
+    }
     .card-pagination{
         display: flex;
         padding: 1rem 1rem;
         justify-content: center;
+        
+
+        .current-page{
+            background-color: #3f80ea;
+            color:white;
+        }
+
+        .pagination{
+            cursor: pointer;
+        }
+
+        
     }
 }

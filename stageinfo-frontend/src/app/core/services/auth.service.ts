@@ -16,7 +16,7 @@ export class AuthService {
               private http: HttpClient) {}
 
   createNewUser(nom:string,prenom:string,email: string, password: string, rolee: string) {
-    return new Promise((resolve, reject) => {
+    return new Promise<void>((resolve, reject) => {
       this.http.post(
         'http://localhost:3000/api/signup',
         { email: email, password: password, rolee: rolee })
@@ -40,7 +40,7 @@ export class AuthService {
   }
 
   login(email: string, password: string) {
-    return new Promise((resolve, reject) => {
+    return new Promise<void>((resolve, reject) => {
       this.http.post(
         'http://localhost:3000/api/auth/login',
         { email: email, password: password })
