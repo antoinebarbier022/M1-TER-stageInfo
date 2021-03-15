@@ -58,7 +58,7 @@
         <tbody>
             <!-- Ajout des stages de la BDD -->
             <tr *ngFor="let stage of getStagesByKeyword()">
-                <td>{{ stage.titre }}</td>
+                <td><a routerLink="/liste-stages/info-stage">{{ stage.titre }}</a></td>
                 <td>{{ stage.entreprise.nomComplet }}</td>
                 <td>{{ stage.parcours.nomComplet }}</td>
                 <!-- <td>{{ stage.promotions }}</td>-->
