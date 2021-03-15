@@ -39,7 +39,6 @@
                       <button class="btn btn-primary" type="submit" [disabled]="singinForm.invalid">connexion</button>
                     </div>
                 </form>
-
             </div>
         </div>
         <div class="card">
@@ -51,7 +50,7 @@
                     <a class="btn btn-danger" routerLink="/cas">Cas ENT</a>
                 </p>
                 <br>
-                <p>
+                <p *ngIf="false">
                     <a id="btn-login" class="btn btn-outline-secondary" routerLink="/test">Autre utilisateur</a>
                 </p>
 
