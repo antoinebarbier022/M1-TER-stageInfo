@@ -3,6 +3,11 @@
     height: 100%;   // takes parent height    
 }
 
+.custom-select{
+    width:60px;
+    padding:3px;
+}
+
 .card {
 
     position: relative;
@@ -27,6 +32,7 @@
         }
 
         .card-parameters-search{
+            width:12rem;
 
             #search{
                 border-top-right-radius: 0%;
@@ -40,8 +46,15 @@
         padding: 1rem 1rem;
         justify-content: center;
 
+        .current-page{
+            background-color: #3f80ea;
+            color:white;
+        }
+
         .pagination{
             cursor: pointer;
         }
+
+        
     }
 }

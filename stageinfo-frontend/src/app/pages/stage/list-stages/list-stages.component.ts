@@ -17,7 +17,7 @@ export class ListStagesComponent implements OnInit {
   public searchFilter: string = "";
   public arrayFilter: Array<string> = [];
 
-  public nbrEntries: number = 20; // Nombre de stage pour une page donnée
+  public nbrEntries: number = 10; // Nombre de stage pour une page donnée
 
   public pageCount: number = 0; // Nombre total de page
 

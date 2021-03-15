@@ -2,19 +2,22 @@
     <div class="card-header">
         <h2 class="card-title">Tableau des stages</h2>
     </div>
-
+    <!--
     <button id="btn-filter" type="button" class="dropdown-toggle btn btn-link" data-toggle="collapse" data-target="#idFilter"><i class="fas fa-filter"></i> Filtrer</button>	
     
     <div class="collapse" id="idFilter">
-
+    -->
+    <div id="idFilter">
         <div class="card-parameters">
 
             <div class="card-parameters-sort" >
+                <p>Show</p>
                 <select (change)="setNumberEntries($event)" class="custom-select">
-                    <option value="10">Show 10 entries</option>
-                    <option selected value="20">Show 20 entries</option>
-                    <option value="50">Show 50 entries</option>
+                    <option selected value="10">10</option>
+                    <option value="20">20</option>
+                    <option value="50">50</option>
                 </select>
+                <p>entries</p>
             </div>
 
             <div class="card-parameters-search">
@@ -23,7 +26,7 @@
         </div>
     </div>
 
-    <table class="table table-striped">
+    <table class="table table-striped table-sm">
         <thead>
         <tr>
             <th scope="col">Titre</th>
@@ -53,7 +56,11 @@
             <li class="page-item" (click)="onClickPreviousPage()"><a class="page-link">Previous</a></li>
             <li class="page-item" [ngStyle]="{'display': currentPage>3? 'block':'none'}"><a class="page-link">...</a></li>
             <ng-container *ngFor="let number of [].constructor(pageCount); let i = index">
-                <li class="page-item" (click)="onClickPageNumber(i+1)" [ngStyle]="{'display': (i+1)<currentPage? currentPage-(i+1)<3? 'block':'none' : (i+1)-currentPage<3? 'block':'none'}"><a class="page-link" [ngStyle]="{'background-color': i+1==currentPage? '#f2f2f2' : '#ffffff'}">{{ i+1 }}</a></li>
+                <li class="page-item" 
+                    (click)="onClickPageNumber(i+1)" 
+                    [ngStyle]="{'display': (i+1)<currentPage? currentPage-(i+1)<3? 'block':'none' : (i+1)-currentPage<3? 'block':'none'}">
+                    <a [ngClass]="i+1==currentPage? 'current-page page-link' : 'page-link'">{{ i+1 }}</a>
+                </li>
             </ng-container>
             <li class="page-item" [ngStyle]="{'display': currentPage<=pageCount-3? 'block':'none'}"><a class="page-link">...</a></li>
             <li class="page-item" (click)="onClickNextPage()"><a class="page-link">Next</a></li>
