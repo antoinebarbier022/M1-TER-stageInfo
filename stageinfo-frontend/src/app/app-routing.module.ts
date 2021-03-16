@@ -35,8 +35,8 @@ import { ConfigCalendrierSoutenancesComponent } from './pages/soutenance/config-
 //import login
 import { LoginComponent } from './pages/login/login.component';
 
-import {AuthGuardService} from "./core/services/auth-guard.service";
-import {AuthGuard} from "./core/services/guard-login.service";
+import {AuthGuardService} from "./core/guards/auth-guard.service";
+import {AuthGuard} from "./core/guards/guard-login.service";
 
 
 const routes: Routes = [
