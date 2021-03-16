@@ -11,7 +11,7 @@ import { AuthService } from 'src/app/core/services/auth.service';
 })
 export class ListStagesComponent implements OnInit {
   
-  public title: string = "Liste des stages";
+  public readonly title: string = "Liste des stages";
   public visibleProperties = ['titre','entreprise.nomComplet', 'parcours.nomComplet', 'duree', 'etat'];
 
   public allStages: Array<any>;
@@ -56,12 +56,17 @@ export class ListStagesComponent implements OnInit {
 
     if(this.getNestedValue(obj2, this.visibleProperties[index]) > this.getNestedValue(obj1, this.visibleProperties[index]))
       return -1;
-
+   
     return 0;
   }
 
   sortByAscendingDescendingOrder(index: number){
-    this.allStages.sort((stage1, stage2) => this.compare(stage1, stage2, index));
+
+    //Croissant
+    this.allStages.sort((stage1, stage2) => (-1)*this.compare(stage1, stage2, index));
+    
+    // Décroissant
+    this.allStages.sort((stage1, stage2) => (-1)*this.compare(stage1, stage2, index));
   }
 
   setNumberEntries(nbr : any) : void{
