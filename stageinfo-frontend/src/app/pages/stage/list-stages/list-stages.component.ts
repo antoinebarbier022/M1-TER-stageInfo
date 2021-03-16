@@ -2,7 +2,7 @@ import { Component, OnChanges, OnInit } from '@angular/core';
 import { takeUntil } from 'rxjs/operators';
 import { StageService } from 'src/app/core/services/stage.service';
 import { Subject } from 'rxjs';
-import { AuthService } from 'src/app/core/guards/auth.service';
+import { AuthService } from 'src/app/core/services/auth.service';
 
 @Component({
   selector: 'app-list-stages',
