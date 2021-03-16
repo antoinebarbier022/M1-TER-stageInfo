@@ -53,7 +53,7 @@ export class ListStagesComponent implements OnInit {
 
   destroy$: Subject<boolean> = new Subject<boolean>();
 
-  constructor(private stageService: StageService, private auth: AuthService) {
+  constructor(private stageService: StageService) {
     this.allStages = new Array();
     this.searchFilter = "";
     this.arrayFilter = [];
