@@ -12,12 +12,6 @@ export class ListStagesComponent implements OnInit {
   
   public readonly title: string = "Liste des stages";
 
-  @Output() listStage = new EventEmitter<any>();
-
-  addNewItem(value: any){
-    this.listStage.emit(value);
-  }
-
   public visibleProperties = 
   [
     {
@@ -45,7 +39,6 @@ export class ListStagesComponent implements OnInit {
   public allStages: Array<any>;
 
   public searchFilter: string; // Déplacé dans list-filter
-  public arrayFilter: Array<string>; // Déplacé dans list-filter
 
   public nbrEntries: number;
   public pageCount: number;
@@ -60,7 +53,6 @@ export class ListStagesComponent implements OnInit {
   constructor(private stageService: StageService) {
     this.allStages = new Array();
     this.searchFilter = "";
-    this.arrayFilter = [];
     this.nbrEntries = 20;
     this.pageCount = 0;
     this.currentPage = 1;
@@ -139,10 +131,10 @@ export class ListStagesComponent implements OnInit {
 
   // Dans le component list-filter
   getStagesByKeyword() : any {
-    this.arrayFilter = this.searchFilter.trim().split(/\s+/);
+    let arrayFilter:string[] = this.searchFilter.trim().split(/\s+/);; 
 
     return this.allStages.slice(this.startIndex, this.endIndex).filter(x => {
-      if (this.stageHasAllKeywords(x, this.arrayFilter)) return x;
+      if (this.stageHasAllKeywords(x, arrayFilter)) return x;
     });
   }
 

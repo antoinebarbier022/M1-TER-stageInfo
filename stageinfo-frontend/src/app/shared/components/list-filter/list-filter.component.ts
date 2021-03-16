@@ -13,6 +13,8 @@ export class ListFilterComponent implements OnInit{
   @Input() public startIndex: number;
   @Input() public endIndex: number;
 
+  @Output() listOutput = new EventEmitter<any>();
+
   public arrayFilter: Array<string>;
 
   constructor() {
@@ -28,7 +30,7 @@ export class ListFilterComponent implements OnInit{
   ngOnInit(): void {}
 
   printArray(){
-    console.log(this.searchFilter);
+    console.log(this.listOutput);
   }
 
   getNestedValue(obj: any, key : any): any{
@@ -49,12 +51,14 @@ export class ListFilterComponent implements OnInit{
     return keywords.every(word => row.join(' ').toLowerCase().includes(word));
   }
 
-  getStagesByKeyword() : any {
+  getStagesByKeyword() : void {
     this.itemArray = this.searchFilter.trim().split(/\s+/);
 
-    return this.itemArray.slice(this.startIndex, this.endIndex).filter(x => {
+    this.listOutput.emit(this.itemArray.slice(this.startIndex, this.endIndex).filter(x => {
       if (this.stageHasAllKeywords(x, this.itemArray)) return x;
-    });
+    }));
+
+    console.log(this.listOutput);
   }
 
 }
