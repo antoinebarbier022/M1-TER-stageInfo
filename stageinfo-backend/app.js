@@ -32,6 +32,7 @@ app.use(bodyParser.json());
 app.use('/api/stage', stageRoutes);
 app.use('/api/salle', salleRoutes);
 app.use('/api/auth', userRoutes);
+app.use('/api/user', userRoutes);
 app.use('api/piecejointe', pieceJointeRoutes);
 app.use('api/embauche', embaucheRoutes);
 app.use('api/entreprise', entrepriseRoutes);

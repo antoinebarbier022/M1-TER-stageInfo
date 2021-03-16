@@ -18,7 +18,7 @@ export class UserService {
 
   /* Récupération de la liste de tous les utilisateurs */
   getUsers(): Observable<any> {
-    return this.httpClient.get(this.urlBase+'api/users');
+    return this.httpClient.get(this.urlBase+'api/user');
   }
 
   /* Récupération de la liste de tous les utilisateurs avec leur identifiant */

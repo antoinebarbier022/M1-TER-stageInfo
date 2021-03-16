@@ -22,46 +22,17 @@
             </tr>
             </thead>
             <tbody>
-                <tr>
-                    <td>1</td>
-                    <td><a routerLink="/liste-utilisateurs/user">Antoine Barbier</a></td>
-                    <td>antoine.barbier01@etu.umontpellier.fr</td>
-                    <td><span class="badge badge-danger">Administrateur</span></td>
+                <tr *ngFor="let user of users">
+                    <td>{{ user._id }}</td>
+                    <td><a routerLink="/liste-utilisateurs/user">{{ user.nom }} {{ user.prenom }}</a></td>
+                    <td>{{ user.email }}</td>
+                    <td><span class="badge badge-danger">{{ user.role }}</span></td>
                     <td class="table-action">
                         <a routerLink="/liste-utilisateurs/edit-user"><i class="icon far fa-lg fa-edit"></i></a>
                         <a href="#" data-toggle="modal" data-target="#suppression-user"><i class="icon far fa-lg fa-trash-alt"></i></a>
                     </td>
                 </tr>
-                <tr>
-                    <td>2</td>
-                    <td>Antoine Barbier</td>
-                    <td>antoine.barbier01@etu.umontpellier.fr</td>
-                    <td><span class="badge badge-primary">Secretaire</span></td>
-                    <td class="table-action">
-                        <a routerLink="/liste-utilisateurs/edit-user"><i class="icon far fa-lg fa-edit"></i></a>
-                        <a href="#" data-toggle="modal" data-target="#suppression-user"><i class="icon far fa-lg fa-trash-alt"></i></a>
-                    </td>
-                </tr>
-                <tr>
-                    <td>3</td>
-                    <td>Antoine Barbier</td>
-                    <td>antoine.barbier01@etu.umontpellier.fr</td>
-                    <td><span class="badge badge-secondary">Tuteur</span></td>
-                    <td class="table-action">
-                        <a routerLink="/liste-utilisateurs/edit-user"><i class="icon far fa-lg fa-edit"></i></a>
-                        <a href="#" data-toggle="modal" data-target="#suppression-user"><i class="icon far fa-lg fa-trash-alt"></i></a>
-                    </td>
-                </tr>
-                <tr>
-                    <td>4</td>
-                    <td>Antoine Barbier</td>
-                    <td>antoine.barbier01@etu.umontpellier.fr</td>
-                    <td><span class="badge badge-secondary">Tuteur</span></td>
-                    <td class="table-action">
-                        <a routerLink="/liste-utilisateurs/edit-user"><i class="icon far fa-lg fa-edit"></i></a>
-                        <a href="#" data-toggle="modal" data-target="#suppression-user"><i class="icon far fa-lg fa-trash-alt"></i></a>
-                    </td>
-                </tr>
+                
             </tbody>
         </table>
 </div>
