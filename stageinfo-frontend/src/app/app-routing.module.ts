@@ -16,6 +16,7 @@ import { ListUsersComponent } from './pages/user/list-users/list-users.component
 
 // import stages
 import { ListStagesComponent } from './pages/stage/list-stages/list-stages.component';
+import { InfoStageComponent } from './pages/stage/info-stage/info-stage.component';
 import { AddStageComponent } from './pages/stage/add-stage/add-stage.component';
 
 // import entreprise
@@ -39,13 +40,15 @@ import {AuthGuard} from "./core/services/guard-login.service";
 
 
 const routes: Routes = [
-  { path: '', component: ExempleTemplateComponent, canActivate: [AuthGuardService]},
+  { path: '', component: ListStagesComponent, canActivate: [AuthGuardService]},
   { path: 'login', component: LoginComponent, canActivate: [AuthGuard]},
   { path: 'documentation', component: ExempleDocComponent, canActivate: [AuthGuardService]},
   // routes stages
   { path: 'liste-stages', component: ListStagesComponent, canActivate: [AuthGuardService]},
+  { path: 'liste-stages/info-stage', component: InfoStageComponent, canActivate: [AuthGuardService]},
+  { path: 'liste-stages', component: ListStagesComponent, canActivate: [AuthGuardService]},
   { path: 'saisir-stage', component: AddStageComponent, canActivate: [AuthGuardService]},
-  { path: 'profile', component: ProfileUserComponent, canActivate: [AuthGuardService]},
+
   // route users
   { path: 'liste-utilisateurs/user', component: InfoUserComponent, canActivate: [AuthGuardService]},
   { path: 'liste-utilisateurs', component: ListUsersComponent, canActivate: [AuthGuardService]},
@@ -53,6 +56,7 @@ const routes: Routes = [
   { path: 'liste-utilisateurs/add-user', component: AddUserComponent, canActivate: [AuthGuardService]},
   { path: 'liste-utilisateurs/edit-user', component: EditUserComponent, canActivate: [AuthGuardService]},
   { path: 'liste-utilisateurs/edit-user-v2', component: EditUserV2Component, canActivate: [AuthGuardService]},
+  { path: 'profile', component: ProfileUserComponent, canActivate: [AuthGuardService]},
   //routes entreprise
   { path: 'liste-entreprises', component: ListEntreprisesComponent, canActivate: [AuthGuardService]},
   { path: 'liste-entreprises/add-entreprise', component: AddEntrepriseComponent, canActivate: [AuthGuardService]},
@@ -66,6 +70,7 @@ const routes: Routes = [
 
   // config calendrier soutenance
   { path: 'configuration-calendrier-soutenances', component: ConfigCalendrierSoutenancesComponent, canActivate: [AuthGuardService]},
+
 
 
   { path: 'not-found', component: Error404Component, canActivate: [AuthGuardService]},

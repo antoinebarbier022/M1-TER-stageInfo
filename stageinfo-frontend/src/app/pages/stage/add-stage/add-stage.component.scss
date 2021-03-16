@@ -80,9 +80,6 @@ ul::before {
     width:20%;
     flex: 1 2 auto; /* the first digint is 'flex-grow: 1', helps elemet to occupy all free space */ 
     border-top: solid 2px #495057;
-    transition-property: width;
-    transition-duration: 4s;
-    transition-delay: 2s;
   }
   .progress-second::after {
     content: '';
@@ -92,9 +89,6 @@ ul::before {
     width:50%;
     flex: 1 2 auto; /* the first digint is 'flex-grow: 1', helps elemet to occupy all free space */ 
     border-top: solid 2px #495057;
-    transition-property: width;
-    transition-duration: 4s;
-    transition-delay: 2s;
   }
   .progress-third::after {
     content: '';
@@ -104,9 +98,6 @@ ul::before {
     width:80%;
     flex: 1 2 auto; /* the first digint is 'flex-grow: 1', helps elemet to occupy all free space */ 
     border-top: solid 2px #495057;
-    transition-property: width;
-    transition-duration: 4s;
-    transition-delay: 2s;
   }
 
 hr{
