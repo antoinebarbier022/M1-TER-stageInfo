@@ -8,20 +8,26 @@
         <ul class="nav-progress">
             <li [ngClass]="'fieldset-active progress-first'">
                 <i class=""></i>
-                Proposition
+                Stage proposé
             </li>
             <li [ngClass]="'fieldset-active progress-second' ">
                 <i class=""></i> 
-                Validation
+                Stage validé
+                
+            </li>
+            <li [ngClass]="'fieldset-active progress-second' ">
+                <i class=""></i> 
+                
+                Affecté à un étudiant
             </li>
             <li>
                 <i class=""></i> 
-                Reservation
+                Associé à un tuteur
             </li>
             
             <li >
                 <i class=""></i> 
-                Acceptation
+                Associé à un rapporteur
             </li>
             
             <li >
@@ -127,19 +133,20 @@
 
 <div id="commentaires-stage">
     
-    <div class="card commentaire">
-        <div class="card-body">
-            <p>Antoine Barbier</p>
-            <p>05/05/2020 à 20h30</p>
+    <div *ngFor="let comment of comments" class="card commentaire">
+        <div class="card-header">
+            <p class="comment-title">
+                <span class="comment-author"><a routerLink="/liste-utilisateurs/user">{{ comment.author }}</a></span>
+                 - 
+                 <span class="comment-date">{{ comment.date | date }}</span>
+            </p>
+            <span class="comment-timeago">il y a 5 jours</span>
+        </div>
+        <div class="card-body">            
+            <p class="comment-content">
+                {{ comment.content }}
+            </p>
         </div>
     </div>
 
-    <div class="card commentaire">
-        <div class="card-body">
-            <p>Antoine Barbier</p>
-            <p>05/05/2020 à 20h30</p>
-        </div>
-    </div>
-
-    <h2>Ajouter un commentaire sur le stage :</h2>
 </div>

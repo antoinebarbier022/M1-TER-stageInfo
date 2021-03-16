@@ -48,6 +48,24 @@
         border: 1px solid #6c757d25;
         padding:1rem;
         margin: 0.75rem 1.25rem 1.25rem 1.25rem;
+        .card-header{
+            display:flex;
+            flex-direction: row;
+            justify-content: space-between;
+            padding:5px;
+            .comment-title{
+                
+                .comment-author{
+                    font-weight: 500;
+                }
+            }
+            .comment-timeago{
+                float:right;
+            }
+        }
+        .card-body{
+            padding:5px;
+        }
     }
 }
 
