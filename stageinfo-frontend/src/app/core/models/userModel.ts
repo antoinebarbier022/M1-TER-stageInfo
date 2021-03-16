@@ -1,16 +1,19 @@
 export class userModel{
-    nom: String | undefined;
-  email: String | undefined;
-  fax: Number | undefined;
-    hash: String | undefined;
-    role: String | undefined;
+    _id: string = "";
+    nom: string  = "";
+    prenom: string  = "";
+    email: string  = "";
+    telephone: string  = "";
+    fax: string  = "";
+    hash: string  = "";
+    role: string  = "";
 
     //etudiant
-    numeroEtudiant: String | undefined;
-    promotion: String | undefined;
-    idParcours: String | undefined;
+    numeroEtudiant: string  = "";
+    promotion: string  = "";
+    parcours: string  = "";
 
     //représentant entreprise
-    fonctionOccupee : String | undefined;
-    idEntreprise: String | undefined;
+    fonction : string  = "";
+    entreprise: string  = "";
 }

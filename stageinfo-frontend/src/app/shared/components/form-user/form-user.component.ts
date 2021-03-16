@@ -5,8 +5,10 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { takeUntil } from 'rxjs/operators';
 import { Subject } from 'rxjs';
 
-import {AuthService} from "../../../core/services/auth.service";
+import { AuthService } from "../../../core/services/auth.service";
 import { UserService } from '../../../core/services/user.service';
+
+import { userModel } from '../../../core/models/userModel';
 
 @Component({
   selector: 'app-form-user',
@@ -24,7 +26,7 @@ export class FormUserComponent implements OnInit {
 
   @Input() title: string = "";
 
-  user:any;
+  user: userModel = new userModel();
 
   // Boolean pour l'affichage des sections
   displaySectionEtudiant = false;
@@ -45,7 +47,10 @@ export class FormUserComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.user = this.route.snapshot.data.user;
+    if(!this.addUser){
+      this.user = this.route.snapshot.data.user;
+    }
+    
   }
 
   ngOnDestroy() {
@@ -56,7 +61,7 @@ export class FormUserComponent implements OnInit {
   getUser(id:any) {
     this.userService.getUserById(id)
       .pipe(takeUntil(this.destroy$))
-      .subscribe((_user: any[]) => {
+      .subscribe((_user: userModel) => {
         this.user = _user;
         //this.displaySection(this.user.role);
       }, (_error:any) =>{
@@ -110,7 +115,7 @@ export class FormUserComponent implements OnInit {
     const telephone = this.user.telephone;
     const fonction = this.user.fonction;
     const identreprise =" " ;// à faire
-    this.auth.createNewUser(prenom,nom,email, password,rolee,numeroEtudiant,Promotion,idParcours,Fax,telephone,fonction,identreprise).then(
+    this.auth.createNewUser(nom, prenom, email, password,rolee,numeroEtudiant,Promotion,idParcours,Fax,telephone,fonction,identreprise).then(
       () => {
         this.Message = "Utilisateur crée !! "
       }
