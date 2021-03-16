@@ -30,7 +30,8 @@ export class InfoStageComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
-    this.getStage(this.route.snapshot.paramMap.get('id'));
+    this.stage = this.route.snapshot.data.stage;  
+    //this.getStage(this.route.snapshot.paramMap.get('id'));
   }
 
   ngOnDestroy() {

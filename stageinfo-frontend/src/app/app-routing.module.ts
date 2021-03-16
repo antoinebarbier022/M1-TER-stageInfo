@@ -42,6 +42,7 @@ import {AuthGuard} from "./core/guards/guard-login.service";
 
 // Importation des resolver
 import { UserResolver } from "./core/resolves/user.resolver";
+import { StageResolver } from "./core/resolves/stage.resolver";
 
 
 const routes: Routes = [
@@ -50,7 +51,13 @@ const routes: Routes = [
   { path: 'documentation', component: ExempleDocComponent, canActivate: [AuthGuardService]},
   // routes stages
   { path: 'liste-stages', component: ListStagesComponent, canActivate: [AuthGuardService]},
-  { path: 'liste-stages/:id', component: InfoStageComponent, canActivate: [AuthGuardService]},
+  { path: 'liste-stages/:id', 
+      component: InfoStageComponent, 
+      canActivate: [AuthGuardService],
+      resolve: {
+        stage: StageResolver  // on associe un resolver à la route
+      }
+  },
   { path: 'liste-stages', component: ListStagesComponent, canActivate: [AuthGuardService]},
   { path: 'saisir-stage', component: AddStageComponent, canActivate: [AuthGuardService]},
 
@@ -59,14 +66,20 @@ const routes: Routes = [
   { path: 'liste-utilisateurs', component: ListUsersComponent, canActivate: [AuthGuardService]},
   { path: 'liste-utilisateurs/import-users', component: ImportUsersComponent, canActivate: [AuthGuardService]},
   { path: 'liste-utilisateurs/add-user', component: AddUserComponent, canActivate: [AuthGuardService]},
-  { path: 'liste-utilisateurs/edit-user/:id', component: EditUserComponent, canActivate: [AuthGuardService]},
+  { path: 'liste-utilisateurs/edit-user/:id', 
+      component: EditUserComponent, 
+      canActivate: [AuthGuardService],
+      resolve: {
+        user: UserResolver  // on associe un resolver à la route
+      }
+    },
   { path: 'liste-utilisateurs/edit-user-v2', component: EditUserV2Component, canActivate: [AuthGuardService]},
   { path: 'liste-utilisateurs/user/:id', 
-    component: InfoUserComponent, 
-    canActivate: [AuthGuardService],
-    resolve: {
-      user: UserResolver  // on associe un resolver à la route
-    },
+      component: InfoUserComponent, 
+      canActivate: [AuthGuardService],
+      resolve: {
+        user: UserResolver  // on associe un resolver à la route
+      },
   },
   { path: 'profile', component: ProfileUserComponent, canActivate: [AuthGuardService]},
   //routes entreprise
