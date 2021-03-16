@@ -1,7 +1,6 @@
 <p><a routerLink=".."><i class="fas fa-chevron-left"></i> Retour</a></p>
 <br/>
-<h1>{{ title }}</h1>
-<h1>Identifiant stage : {{ this.stageId }}</h1>
+<h1>{{ stage.titre }} (id: {{ stageId }} )</h1>
 
 
 <div class="all-card">
@@ -43,10 +42,10 @@
             <h2 class="card-title">Informations</h2>
         </div>
         <div class="card-body">
-            <p>Titre : stage developpeur web PHP</p>
-            <p>Parcours : M2 aigle</p>
-            <p>Durée : 5 mois</p>
-            <p>Date début : 05/03/2021</p>
+            <p>Titre : {{ stage.titre }}</p>
+            <p>Parcours : {{ stage.parcours.nomComplet }}</p>
+            <p>Durée : {{ stage.duree }} mois</p>
+            <p>Date début : {{ stage.datedebut }}</p>
         </div>
     </div>
 
@@ -55,8 +54,8 @@
             <h2 class="card-title">Avantages</h2>
         </div>
         <div class="card-body">
-            <p>Salaire : 1500€ net par mois</p>
-            <p>Avantages : ticket restaurant + transport en communs</p>
+            <p>Salaire : {{ stage.salaire }}</p>
+            <p>Avantages : {{ stage.avantages }}</p>
         </div>
     </div>
 
@@ -65,10 +64,8 @@
             <h2 class="card-title">Conditions</h2>
         </div>
         <div class="card-body">
-            <p>Niveau requis : bac+2</p>
-            <p>Conditions : avoir des compétence en gestion de projet.</p>
-            <p>Compétences attendu :</p>
-            
+            <p>Niveau requis : {{ stage.niveauRequis }}</p>
+            <p>Conditions : {{ stage.conditions}}</p>
         </div>
     </div>
 
@@ -77,25 +74,8 @@
             <h2 class="card-title">Description</h2>
         </div>
         <div class="card-body">
-            <p>Contexte : l'IBMM et l'ICGM sont des unités de recherche du CNRS, basées à Montpellier dans le domaine 
-                de la chimie et de la biochimie. Les laboratoires sont hébergés sur plusieurs sites, dont les principaux 
-                sont la Faculté de Pharmacie et la Faculté des Sciences.</p>
-                <!--<p>Contenu : basé à la faculté de Pharmacie, le stagiaire se verra confier le projet suivant :
-                    Reprise et poursuite du développement d'une application web de gestion de produits chimiques (chimiothèque), 
-                    en collaboration avec le service informatique de l'Institut Charles Gerhardt de Montpellier (ICGM).
-                    Ajout de fonctionnalités permettant l'utilisation par les équipes IBMM et ICGM :
-                    1) développement de la modularité des stocks (lieu de stockage, indexation,...)
-                    2) import de fichiers de stocks de produits commerciaux provenant de bases de données existantes :
-                    - Format .csv ou .sdf issus du logiciel E-Novalys pour une équipe de l'IBMM
-                    - Format .csv issus d'une base de données Microsoft SQL Server pour une équipe de l'ICGM (fichiers obtenus avec l'outil MDB tools pour transformer le fichier .mdb en .csv)
-                    3) éventuellement si 1) et 2) terminées avant la fin du stage :
-                    - gestion de la structuration des instituts avec permissions associées (authentification annuaire LDAP)
-                    - la possibilité d'interroger les bases de données des fournisseurs pour récupérer formules chimiques développées et risques chimiques.
-                    Compétences techniques développées : Langages PHP, JavaScript, HTML5, CSS, bases de données PostgreSQL, API JQuery, Bootstrap, requêtes AJAX, framework PHP.
-                    Début du stage : dès que possible. Durée : 4 à 5 mois.
-                    Encadrement : le stagiaire sera co-encadré par un ingénieur informaticien ICGM, un ingénieur informaticien IBMM et un ingénieur chimiste IBMM</p>
-            </p>-->
-                </div>
+            <p>{{ stage.description }}</p>
+        </div>
     </div>
 
     <div id="entreprise-stage"class="card">
