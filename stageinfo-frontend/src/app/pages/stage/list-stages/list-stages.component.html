@@ -47,12 +47,12 @@
     <table class="table table-striped table-sm">
         <thead>
         <tr>
-            <th scope="col">Titre</th>
-            <th scope="col">Entreprise</th>
-            <th scope="col">Parcours</th>
+            <th (click)="sortByAscendingDescendingOrder(0)" scope="col">Titre</th>
+            <th (click)="sortByAscendingDescendingOrder(1)" scope="col">Entreprise</th>
+            <th (click)="sortByAscendingDescendingOrder(2)" scope="col">Parcours</th>
             <th scope="col">Promotions</th>
-            <th scope="col">Duree</th>
-            <th scope="col">Etat</th>
+            <th (click)="sortByAscendingDescendingOrder(3)" scope="col">Duree</th>
+            <th (click)="sortByAscendingDescendingOrder(4)" scope="col">Etat</th>
         </tr>
         </thead>
         <tbody>

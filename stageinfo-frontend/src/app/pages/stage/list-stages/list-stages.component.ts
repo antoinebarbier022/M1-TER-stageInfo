@@ -12,7 +12,6 @@ import { AuthService } from 'src/app/core/services/auth.service';
 export class ListStagesComponent implements OnInit {
   
   public title: string = "Liste des stages";
-
   public visibleProperties = ['titre','entreprise.nomComplet', 'parcours.nomComplet', 'duree', 'etat'];
 
   public allStages: Array<any>;
@@ -50,8 +49,17 @@ export class ListStagesComponent implements OnInit {
     })
   }
 
-  sortByAscendingDescendingOrder(){
-    
+  compare(str1: string, str2: string, prop: string) : number {
+
+    return 0;
+  }
+
+  sortByAscendingDescendingOrder(index: number){
+    console.log(this.allStages);
+
+    console.log(this.getNestedValue(this.allStages[0], this.visibleProperties[index]));
+
+    this.allStages.sort((stage1, stage2) => (this.getNestedValue(stage1, this.visibleProperties[index]) > this.getNestedValue(stage2, this.visibleProperties[index]))? 1 : (this.getNestedValue(stage2, this.visibleProperties[index]) > this.getNestedValue(stage1, this.visibleProperties[index]))? -1 : 0);
   }
 
   setNumberEntries(nbr : any) : void{
@@ -76,19 +84,19 @@ export class ListStagesComponent implements OnInit {
     );
   }
 
+  getNestedValue(obj: any, key : any): any{
+    return key.split(".").reduce(function(result: any, key: any) {
+       return result[key] 
+    }, obj);
+  }
+
   stageHasAllKeywords(stage: any, str: string[]): boolean {
     const keywords = str.filter(e => e).map(v => v.toLowerCase());
-
-    function getNestedValue(obj: any, key : any) {
-      return key.split(".").reduce(function(result: any, key: any) {
-         return result[key] 
-      }, obj);
-    }
 
     let row = new Array();
     
     this.visibleProperties.forEach(prop => {
-      row.push(getNestedValue(stage, prop));
+      row.push(this.getNestedValue(stage, prop));
     });
 
     return keywords.every(word => row.join(' ').toLowerCase().includes(word));
