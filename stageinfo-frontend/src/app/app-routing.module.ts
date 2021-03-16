@@ -3,7 +3,7 @@ import { Routes, RouterModule } from '@angular/router';
 
 import { ExempleTemplateComponent } from './pages/exempleTemplate/exempleTemplate.component';
 import { ExempleDocComponent } from './pages/documentation/exemple-doc/exemple-doc.component';
-import { Error404Component } from './pages/error404/error404.component';
+import { Error404Component } from './pages/erreurs/error404/error404.component';
 
 // import user
 import { ProfileUserComponent } from './pages/user/profile-user/profile-user.component';
