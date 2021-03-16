@@ -1,4 +1,4 @@
-import { Component, OnChanges, OnInit } from '@angular/core';
+import { Component, Output, EventEmitter, OnInit } from '@angular/core';
 import { takeUntil } from 'rxjs/operators';
 import { StageService } from 'src/app/core/services/stage.service';
 import { Subject } from 'rxjs';
@@ -11,6 +11,12 @@ import { Subject } from 'rxjs';
 export class ListStagesComponent implements OnInit {
   
   public readonly title: string = "Liste des stages";
+
+  @Output() listStage = new EventEmitter<any>();
+
+  addNewItem(value: any){
+    this.listStage.emit(value);
+  }
 
   public visibleProperties = 
   [
@@ -41,7 +47,6 @@ export class ListStagesComponent implements OnInit {
   public searchFilter: string; // Déplacé dans list-filter
   public arrayFilter: Array<string>; // Déplacé dans list-filter
 
-
   public nbrEntries: number;
   public pageCount: number;
   public currentPage: number;
@@ -68,14 +73,6 @@ export class ListStagesComponent implements OnInit {
     this.getStages();
   }
 
-  ngAfterViewInit(): void{
-    this.getStages();
-  }
-
-  ngAfterContentInit(): void{
-    this.getStages();
-  }
-
   getStages() : void {
     this.stageService.getStages()
       .pipe(takeUntil(this.destroy$))
@@ -97,7 +94,7 @@ export class ListStagesComponent implements OnInit {
   }
 
   sortByAscendingDescendingOrder(index: number){
-    console.log(this.visibleProperties);
+    console.log(this.searchFilter);
     if(this.visibleProperties[index].sorted){
       this.allStages.sort((stage1, stage2) => (-1)*this.compare(stage1, stage2, index));
       this.visibleProperties[index].sorted = false;
@@ -127,6 +124,7 @@ export class ListStagesComponent implements OnInit {
     }, obj);
   }
 
+  // Dans le component list-filter
   stageHasAllKeywords(stage: any, str: string[]): boolean {
     const keywords = str.filter(e => e).map(v => v.toLowerCase());
 
@@ -139,6 +137,7 @@ export class ListStagesComponent implements OnInit {
     return keywords.every(word => row.join(' ').toLowerCase().includes(word));
   }
 
+  // Dans le component list-filter
   getStagesByKeyword() : any {
     this.arrayFilter = this.searchFilter.trim().split(/\s+/);
 

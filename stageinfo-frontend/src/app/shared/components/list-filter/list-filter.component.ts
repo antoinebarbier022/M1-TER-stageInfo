@@ -1,27 +1,34 @@
-import { Component, Input, OnChanges, OnInit, SimpleChange } from '@angular/core';
+import { Component, Input, Output, EventEmitter, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-list-filter',
   templateUrl: './list-filter.component.html',
   styleUrls: ['./list-filter.component.scss']
 })
-export class ListFilterComponent implements OnInit, OnChanges{
+export class ListFilterComponent implements OnInit{
 
-  @Input() public itemArray: any;
+  @Input() public itemArray: Array<any>;
   @Input() public searchFilter: string;
-  @Input() public visibleProperties: any;
+  @Input() public visibleProperties: Array<any>;
+  @Input() public startIndex: number;
+  @Input() public endIndex: number;
 
   public arrayFilter: Array<string>;
 
   constructor() {
-    this.arrayFilter = [];
+    this.itemArray = [];
     this.searchFilter = "";
+    this.visibleProperties = [];
+    this.startIndex = 0;
+    this.endIndex = 0;
+
+    this.arrayFilter = [];
   }
 
   ngOnInit(): void {}
 
   printArray(){
-    console.log(this.itemArray);
+    console.log(this.searchFilter);
   }
 
   getNestedValue(obj: any, key : any): any{
@@ -30,7 +37,6 @@ export class ListFilterComponent implements OnInit, OnChanges{
     }, obj);
   }
 
-  /*
   stageHasAllKeywords(stage: any, str: string[]): boolean {
     const keywords = str.filter(e => e).map(v => v.toLowerCase());
 
@@ -44,11 +50,11 @@ export class ListFilterComponent implements OnInit, OnChanges{
   }
 
   getStagesByKeyword() : any {
-    this.arrayFilter = this.searchFilter.trim().split(/\s+/);
+    this.itemArray = this.searchFilter.trim().split(/\s+/);
 
-    return this.allStages.slice(this.startIndex, this.endIndex).filter(x => {
-      if (this.stageHasAllKeywords(x, this.arrayFilter)) return x;
+    return this.itemArray.slice(this.startIndex, this.endIndex).filter(x => {
+      if (this.stageHasAllKeywords(x, this.itemArray)) return x;
     });
   }
-  */
+
 }
