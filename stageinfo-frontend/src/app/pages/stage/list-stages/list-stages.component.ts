@@ -50,14 +50,17 @@ export class ListStagesComponent implements OnInit {
   }
 
   compare(obj1: any, obj2: any, index: number) : number {
-    return (this.getNestedValue(obj1, this.visibleProperties[index]) > this.getNestedValue(obj2, this.visibleProperties[index]))? 1 
-            : (this.getNestedValue(obj2, this.visibleProperties[index]) > this.getNestedValue(obj1, this.visibleProperties[index]))? -1 : 0;
+
+    if(this.getNestedValue(obj1, this.visibleProperties[index]) > this.getNestedValue(obj2, this.visibleProperties[index]))
+      return 1;
+
+    if(this.getNestedValue(obj2, this.visibleProperties[index]) > this.getNestedValue(obj1, this.visibleProperties[index]))
+      return -1;
+
+    return 0;
   }
 
   sortByAscendingDescendingOrder(index: number){
-    console.log(this.allStages);
-
-    console.log(this.getNestedValue(this.allStages[0], this.visibleProperties[index]));
     this.allStages.sort((stage1, stage2) => this.compare(stage1, stage2, index));
   }
 
