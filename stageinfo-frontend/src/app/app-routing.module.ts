@@ -45,7 +45,7 @@ const routes: Routes = [
   { path: 'documentation', component: ExempleDocComponent, canActivate: [AuthGuardService]},
   // routes stages
   { path: 'liste-stages', component: ListStagesComponent, canActivate: [AuthGuardService]},
-  { path: 'liste-stages/info-stage', component: InfoStageComponent, canActivate: [AuthGuardService]},
+  { path: 'liste-stages/:id', component: InfoStageComponent, canActivate: [AuthGuardService]},
   { path: 'liste-stages', component: ListStagesComponent, canActivate: [AuthGuardService]},
   { path: 'saisir-stage', component: AddStageComponent, canActivate: [AuthGuardService]},
 
