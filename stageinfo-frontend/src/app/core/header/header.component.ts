@@ -2,7 +2,7 @@ import {Component, OnInit, Input, Output, EventEmitter, OnDestroy} from '@angula
 import {Subscription} from "rxjs";
 import {Router} from "@angular/router";
 
-import {AuthService} from "../services/auth.service";
+import {AuthService} from "../guards/auth.service";
 import { TestService } from '../services/test.service';
 import {UserService} from "../services/user.service";
 import {userModel} from "../models/userModel";

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 import {Subscription} from "rxjs";
-import {AuthService} from "../services/auth.service";
+import {AuthService} from "../guards/auth.service";
 import {Router} from "@angular/router";
 import { TestService } from '../services/test.service';
 
@@ -58,37 +58,37 @@ export class SidebarComponent implements OnInit {
   navigationInvite = [
     {
       title:"Stage",
-      items: [ this.listeStages, this.planingSoutenance] 
+      items: [ this.listeStages, this.planingSoutenance]
     },
     {
       title:"Besoin d'aide ?",
-      items: [ this.faq, this.nousContacter] 
+      items: [ this.faq, this.nousContacter]
     }
   ];
 
   navigationEtudiant = [
     {
       title:"Stage",
-      items: [ this.listeStages, this.saisirStage, this.planingSoutenance] 
+      items: [ this.listeStages, this.saisirStage, this.planingSoutenance]
     },
     {
       title:"Besoin d'aide ?",
-      items: [ this.faq, this.nousContacter] 
+      items: [ this.faq, this.nousContacter]
     }
   ];
 
   navigationTuteur = [
     {
       title:"Stage",
-      items: [ this.listeStages, this.saisirFicheSuivi, this.planingSoutenance] 
+      items: [ this.listeStages, this.saisirFicheSuivi, this.planingSoutenance]
     },
     {
       title:"Statistique",
-      items: [ this.suiviEmbauche, this.classementEntreprise] 
+      items: [ this.suiviEmbauche, this.classementEntreprise]
     },
     {
       title:"Archivage",
-      items: [ this.archivesRapports, this.archivesStages] 
+      items: [ this.archivesRapports, this.archivesStages]
     },
     {
       title:"Besoin d'aide ?",
@@ -99,7 +99,7 @@ export class SidebarComponent implements OnInit {
   navigationRepresentantEntreprise = [
     {
       title:"Stage",
-      items: [ this.listeStages, this.saisirStage, this.saisirFicheSuivi, this.planingSoutenance] 
+      items: [ this.listeStages, this.saisirStage, this.saisirFicheSuivi, this.planingSoutenance]
     },
     {
       title:"Besoin d'aide ?",
@@ -110,19 +110,19 @@ export class SidebarComponent implements OnInit {
   navigationResponsableParcours = [
     {
       title:"Stage",
-      items: [ this.listeStages, this.saisirFicheSuivi, this.planingSoutenance] 
+      items: [ this.listeStages, this.saisirFicheSuivi, this.planingSoutenance]
     },
     {
       title:"Documents",
-      items: [] 
+      items: []
     },
     {
       title:"Statistique",
-      items: [ this.suiviEmbauche, this.classementEntreprise] 
+      items: [ this.suiviEmbauche, this.classementEntreprise]
     },
     {
       title:"Archivage",
-      items: [ this.archivesRapports, this.archivesStages] 
+      items: [ this.archivesRapports, this.archivesStages]
     },
     {
       title:"Besoin d'aide ?",
@@ -133,23 +133,23 @@ export class SidebarComponent implements OnInit {
   navigationSecretaire = [
     {
       title:"Administration",
-      items: [ this.listeStages, this.listeUtilisateurs, this.listeEntreprise, this.listeSoutenances] 
+      items: [ this.listeStages, this.listeUtilisateurs, this.listeEntreprise, this.listeSoutenances]
     },
     {
       title:"Stage",
-      items: [ this.saisirStage, this.saisirFicheSuivi, this.planingSoutenance] 
+      items: [ this.saisirStage, this.saisirFicheSuivi, this.planingSoutenance]
     },
     {
       title:"Documents",
-      items: [ this.exporterCSV, this.telechargerPDF,] 
+      items: [ this.exporterCSV, this.telechargerPDF,]
     },
     {
       title:"Statistique",
-      items: [ this.suiviEmbauche, this.classementEntreprise] 
+      items: [ this.suiviEmbauche, this.classementEntreprise]
     },
     {
       title:"Archivage",
-      items: [ this.archivesRapports, this.archivesStages] 
+      items: [ this.archivesRapports, this.archivesStages]
     },
     {
       title:"Besoin d'aide ?",
