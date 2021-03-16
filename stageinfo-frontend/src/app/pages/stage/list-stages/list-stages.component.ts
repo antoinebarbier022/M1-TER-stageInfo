@@ -12,7 +12,6 @@ import { AuthService } from 'src/app/core/services/auth.service';
 export class ListStagesComponent implements OnInit {
   
   public readonly title: string = "Liste des stages";
-  public visibleProperties2 = ['titre','entreprise.nomComplet', 'parcours.nomComplet', 'duree', 'etat'];
 
   public visibleProperties = 
   [
