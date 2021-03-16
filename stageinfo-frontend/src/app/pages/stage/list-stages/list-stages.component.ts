@@ -10,7 +10,8 @@ import { AuthService } from 'src/app/core/services/auth.service';
   styleUrls: ['./list-stages.component.scss']
 })
 export class ListStagesComponent implements OnInit {
-  title="Liste des stages"
+  
+  public title: string = "Liste des stages";
 
   public visibleProperties = ['titre','entreprise.nomComplet', 'parcours.nomComplet', 'duree', 'etat'];
 
@@ -49,7 +50,11 @@ export class ListStagesComponent implements OnInit {
     })
   }
 
-  setNumberEntries(nbr : any){
+  sortByAscendingDescendingOrder(){
+    
+  }
+
+  setNumberEntries(nbr : any) : void{
     this.nbrEntries = parseInt(nbr.target.value);
     this.endIndex = this.startIndex + this.nbrEntries;
 
@@ -62,7 +67,7 @@ export class ListStagesComponent implements OnInit {
     this.getStagesByKeyword();
   }
 
-  getStages() {
+  getStages() : void {
     this.stageService.getStages()
       .pipe(takeUntil(this.destroy$))
       .subscribe((_stages: any[]) => {
@@ -89,7 +94,7 @@ export class ListStagesComponent implements OnInit {
     return keywords.every(word => row.join(' ').toLowerCase().includes(word));
   }
 
-  getStagesByKeyword() {
+  getStagesByKeyword() : any {
     this.arrayFilter = this.searchFilter.trim().split(/\s+/);
 
     return this.allStages.slice(this.startIndex, this.endIndex).filter(x => {
@@ -97,7 +102,7 @@ export class ListStagesComponent implements OnInit {
     });
   }
 
-  onClickPageNumber(nbr: number) {
+  onClickPageNumber(nbr: number) : void {
     this.lastPage = this.currentPage;
     this.currentPage = nbr;
 
@@ -114,7 +119,7 @@ export class ListStagesComponent implements OnInit {
     this.getStagesByKeyword();
   }
 
-  onClickNextPage() {
+  onClickNextPage() : void{
     if (this.currentPage + 1 <= this.pageCount) {
       this.lastPage = this.currentPage;
       this.currentPage++;
@@ -124,7 +129,7 @@ export class ListStagesComponent implements OnInit {
     }
   }
 
-  onClickPreviousPage() {
+  onClickPreviousPage() : void{
     if (this.currentPage - 1 > 0) {
       this.lastPage = this.currentPage;
       this.currentPage--;
@@ -134,7 +139,7 @@ export class ListStagesComponent implements OnInit {
     }
   }
 
-  ngOnDestroy() {
+  ngOnDestroy() : void {
     this.destroy$.next(true);
     this.destroy$.unsubscribe();
   }
