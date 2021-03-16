@@ -1,6 +1,7 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { takeUntil } from 'rxjs/operators';
 import { Subject } from 'rxjs';
+import { ActivatedRoute } from '@angular/router';
 
 import { UserService } from 'src/app/core/services/user.service';
 
@@ -15,10 +16,12 @@ export class ListUsersComponent implements OnInit, OnDestroy {
 
   destroy$: Subject<boolean> = new Subject<boolean>();
 
-  constructor(private userService: UserService) { }
+  constructor(private route:ActivatedRoute,
+              private userService: UserService) { }
 
   ngOnInit(): void {
-    this.getUsers();
+    this.users = this.route.snapshot.data.users; 
+    //this.getUsers();
   }
 
   ngOnDestroy() {

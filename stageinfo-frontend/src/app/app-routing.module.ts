@@ -41,16 +41,24 @@ import {AuthGuardService} from "./core/guards/auth-guard.service";
 import {AuthGuard} from "./core/guards/guard-login.service";
 
 // Importation des resolver
+import { UsersResolver } from "./core/resolves/users.resolver";
 import { UserResolver } from "./core/resolves/user.resolver";
+import { StagesResolver } from "./core/resolves/stages.resolver";
 import { StageResolver } from "./core/resolves/stage.resolver";
 
 
 const routes: Routes = [
-  { path: '', component: ListStagesComponent, canActivate: [AuthGuardService]},
+  { path: '', redirectTo: 'liste-stages', pathMatch: 'full', canActivate: [AuthGuardService]},
   { path: 'login', component: LoginComponent, canActivate: [AuthGuard]},
   { path: 'documentation', component: ExempleDocComponent, canActivate: [AuthGuardService]},
   // routes stages
-  { path: 'liste-stages', component: ListStagesComponent, canActivate: [AuthGuardService]},
+  { path: 'liste-stages', 
+      component: ListStagesComponent, 
+      canActivate: [AuthGuardService],
+      resolve: {
+        stages: StagesResolver  // on associe un resolver à la route
+      }
+  },
   { path: 'liste-stages/:id', 
       component: InfoStageComponent, 
       canActivate: [AuthGuardService],
@@ -63,7 +71,13 @@ const routes: Routes = [
 
   // route users
   
-  { path: 'liste-utilisateurs', component: ListUsersComponent, canActivate: [AuthGuardService]},
+  { path: 'liste-utilisateurs', 
+    component: ListUsersComponent, 
+    canActivate: [AuthGuardService],
+    resolve: {
+      users: UsersResolver  // on associe un resolver à la route
+    }
+  },
   { path: 'liste-utilisateurs/import-users', component: ImportUsersComponent, canActivate: [AuthGuardService]},
   { path: 'liste-utilisateurs/add-user', component: AddUserComponent, canActivate: [AuthGuardService]},
   { path: 'liste-utilisateurs/edit-user/:id', 

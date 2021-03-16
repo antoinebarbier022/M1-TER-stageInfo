@@ -1,7 +1,9 @@
-import { Component, OnChanges, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { takeUntil } from 'rxjs/operators';
-import { StageService } from 'src/app/core/services/stage.service';
 import { Subject } from 'rxjs';
+import { ActivatedRoute } from '@angular/router';
+
+import { StageService } from 'src/app/core/services/stage.service';
 import { AuthService } from 'src/app/core/services/auth.service';
 
 @Component({
@@ -30,7 +32,9 @@ export class ListStagesComponent implements OnInit {
 
   destroy$: Subject<boolean> = new Subject<boolean>();
 
-  constructor(private stageService: StageService, private auth: AuthService) {
+  constructor(private route:ActivatedRoute,
+              private stageService: StageService, 
+              private auth: AuthService) {
     this.allStages = new Array();
     this.searchFilter = "";
     this.arrayFilter = [];
@@ -43,10 +47,11 @@ export class ListStagesComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.stageService.getStages().subscribe(stages => {
+    this.allStages = this.route.snapshot.data.stages;  
+    /*this.stageService.getStages().subscribe(stages => {
       this.allStages = stages;
       this.pageCount = Math.ceil(this.allStages.length / this.nbrEntries);
-    })
+    })*/
   }
 
   setNumberEntries(nbr : any){
@@ -55,7 +60,7 @@ export class ListStagesComponent implements OnInit {
 
     this.pageCount = Math.ceil(this.allStages.length / this.nbrEntries);
     this.lastPage = this.pageCount;
-
+    
     this.currentPage = 1;
     this.startIndex = 0;
     this.endIndex = this.startIndex + this.nbrEntries;
@@ -77,12 +82,12 @@ export class ListStagesComponent implements OnInit {
 
     function getNestedValue(obj: any, key : any) {
       return key.split(".").reduce(function(result: any, key: any) {
-         return result[key]
+         return result[key] 
       }, obj);
     }
 
     let row = new Array();
-
+    
     this.visibleProperties.forEach(prop => {
       row.push(getNestedValue(stage, prop));
     });

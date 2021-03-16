@@ -12,6 +12,7 @@ import { StageService } from 'src/app/core/services/stage.service';
 export class InfoStageComponent implements OnInit, OnDestroy {
   // récupération du contenu du stage
   stage : any;
+  loading:any;
 
   comments = [{ author:"Antoine", 
     date:"05/04/2018", 
@@ -30,7 +31,8 @@ export class InfoStageComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
-    this.stage = this.route.snapshot.data.stage;  
+    this.stage = this.route.snapshot.data.stage.value;  
+    this.loading = this.route.snapshot.data.stage.loading;
     //this.getStage(this.route.snapshot.paramMap.get('id'));
   }
 
