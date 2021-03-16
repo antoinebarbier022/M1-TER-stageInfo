@@ -12,7 +12,31 @@ import { AuthService } from 'src/app/core/services/auth.service';
 export class ListStagesComponent implements OnInit {
   
   public readonly title: string = "Liste des stages";
-  public visibleProperties = ['titre','entreprise.nomComplet', 'parcours.nomComplet', 'duree', 'etat'];
+  //public visibleProperties = ['titre','entreprise.nomComplet', 'parcours.nomComplet', 'duree', 'etat'];
+
+  public visibleProperties = 
+  [
+    {
+      name: 'titre',
+      sorted: false
+    },
+    {
+      name: 'entreprise.nomComplet',
+      sorted: false
+    },
+    {
+      name: 'parcours.nomComplet',
+      sorted: false
+    },
+    {
+      name: 'duree',
+      sorted: false
+    },
+    {
+      name: 'etat',
+      sorted: false
+    }
+  ];
 
   public allStages: Array<any>;
 
@@ -51,10 +75,10 @@ export class ListStagesComponent implements OnInit {
 
   compare(obj1: any, obj2: any, index: number) : number {
 
-    if(this.getNestedValue(obj1, this.visibleProperties[index]) > this.getNestedValue(obj2, this.visibleProperties[index]))
+    if(this.getNestedValue(obj1, this.visibleProperties[index]).name > this.getNestedValue(obj2, this.visibleProperties[index]).name)
       return 1;
 
-    if(this.getNestedValue(obj2, this.visibleProperties[index]) > this.getNestedValue(obj1, this.visibleProperties[index]))
+    if(this.getNestedValue(obj2, this.visibleProperties[index]).name > this.getNestedValue(obj1, this.visibleProperties[index]).name)
       return -1;
    
     return 0;
@@ -63,10 +87,10 @@ export class ListStagesComponent implements OnInit {
   sortByAscendingDescendingOrder(index: number){
 
     //Croissant
-    this.allStages.sort((stage1, stage2) => (-1)*this.compare(stage1, stage2, index));
-    
+    //this.allStages.sort((stage1, stage2) => (1)*this.compare(stage1, stage2, index));
+
     // Décroissant
-    this.allStages.sort((stage1, stage2) => (-1)*this.compare(stage1, stage2, index));
+    //this.allStages.sort((stage1, stage2) => (-1)*this.compare(stage1, stage2, index));
   }
 
   setNumberEntries(nbr : any) : void{
@@ -103,7 +127,7 @@ export class ListStagesComponent implements OnInit {
     let row = new Array();
     
     this.visibleProperties.forEach(prop => {
-      row.push(this.getNestedValue(stage, prop));
+      row.push(this.getNestedValue(stage, prop.name));
     });
 
     return keywords.every(word => row.join(' ').toLowerCase().includes(word));
