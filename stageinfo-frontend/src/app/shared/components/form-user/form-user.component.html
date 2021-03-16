@@ -3,7 +3,7 @@
         <h2 class="card-title">
             {{ title }}
             <a *ngIf="viewUser"
-            routerLink="/liste-utilisateurs/edit-user"
+            [routerLink]="['/liste-utilisateurs/edit-user/', user._id]"
             type="submit"
             style="float:right;"
             class="btn-icon-modifier">
@@ -21,7 +21,7 @@
                     <input  type="text"
                             id="inputLastname"
                             [ngClass]="viewUser? 'form-control-plaintext' : 'form-control'"
-                            placeholder="Nom de l'utilisateur"
+                            placeholder=""
                             [(ngModel)]="user.nom"
                             name="nom"
                             [readonly]="viewUser">
@@ -32,7 +32,7 @@
                     <input  type="text"
                             id="inputFistname"
                             [ngClass]="viewUser? 'form-control-plaintext' : 'form-control'"
-                            placeholder="Prénom de l'utilisateur"
+                            placeholder=""
                             [(ngModel)]="user.prenom"
                             name="prenom"
                             [readonly]="viewUser">
@@ -60,7 +60,7 @@
                     <input  type="email"
                             id="inputEmail"
                             [ngClass]="viewUser? 'form-control-plaintext' : 'form-control'"
-                            placeholder="Email"
+                            placeholder=""
                             [(ngModel)]="user.email"
                             name="email"
                             [readonly]="viewUser">
@@ -71,7 +71,7 @@
                     <input  type="password"
                             id="inputPassword"
                             [ngClass]="viewUser? 'form-control-plaintext' : 'form-control'"
-                            placeholder="Mot de passe"
+                            placeholder=""
                             [(ngModel)]="user.hash"
                             name="password"
                             [readonly]="viewUser">
@@ -89,7 +89,7 @@
                     <input  type="text"
                             id="inputNumEtudiant"
                             [ngClass]="viewUser? 'form-control-plaintext' : 'form-control'"
-                            placeholder="Numéro étudiant"
+                            placeholder=""
                             [(ngModel)]="user.numeroEtudiant"
                             name="numeroEtudiant"
                             [readonly]="viewUser">
@@ -126,7 +126,7 @@
                     <input  type="text"
                             id="inputFax"
                             [ngClass]="viewUser? 'form-control-plaintext' : 'form-control'"
-                            placeholder="Numéro de fax"
+                            placeholder=""
                             [(ngModel)]="user.fax"
                             name="fax"
                             [readonly]="viewUser">
@@ -137,7 +137,7 @@
                     <input  type="text"
                             id="inputPhone"
                             [ngClass]="viewUser? 'form-control-plaintext' : 'form-control'"
-                            placeholder="Numéro de téléphone"
+                            placeholder=""
                             [(ngModel)]="user.telephone"
                             name="telephone"
                             [readonly]="viewUser">
@@ -154,7 +154,7 @@
                     <input  type="text"
                             id="inputFonction"
                             [ngClass]="viewUser? 'form-control-plaintext' : 'form-control'"
-                            placeholder="Fonction occupée"
+                            placeholder=""
                             [(ngModel)]="user.fonction"
                             name="fonction"
                             [readonly]="viewUser">
@@ -167,7 +167,7 @@
                             id="inputEntreprise"
                             name="entreprises"
                             list="entreprise-list"
-                            placeholder="Nom de l'entreprise"
+                            placeholder=""
                             [(ngModel)]="user.entreprise"
                             name="entreprise"
                             [readonly]="viewUser">

@@ -50,12 +50,13 @@ const routes: Routes = [
   { path: 'saisir-stage', component: AddStageComponent, canActivate: [AuthGuardService]},
 
   // route users
-  { path: 'liste-utilisateurs/user', component: InfoUserComponent, canActivate: [AuthGuardService]},
+  
   { path: 'liste-utilisateurs', component: ListUsersComponent, canActivate: [AuthGuardService]},
   { path: 'liste-utilisateurs/import-users', component: ImportUsersComponent, canActivate: [AuthGuardService]},
   { path: 'liste-utilisateurs/add-user', component: AddUserComponent, canActivate: [AuthGuardService]},
-  { path: 'liste-utilisateurs/edit-user', component: EditUserComponent, canActivate: [AuthGuardService]},
+  { path: 'liste-utilisateurs/edit-user/:id', component: EditUserComponent, canActivate: [AuthGuardService]},
   { path: 'liste-utilisateurs/edit-user-v2', component: EditUserV2Component, canActivate: [AuthGuardService]},
+  { path: 'liste-utilisateurs/user/:id', component: InfoUserComponent, canActivate: [AuthGuardService]},
   { path: 'profile', component: ProfileUserComponent, canActivate: [AuthGuardService]},
   //routes entreprise
   { path: 'liste-entreprises', component: ListEntreprisesComponent, canActivate: [AuthGuardService]},

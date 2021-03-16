@@ -1,5 +1,12 @@
 import { Component, OnInit, Input } from '@angular/core';
+
+
+import { ActivatedRoute, Router } from '@angular/router';
+import { takeUntil } from 'rxjs/operators';
+import { Subject } from 'rxjs';
+
 import {AuthService} from "../../../core/services/auth.service";
+import { UserService } from '../../../core/services/user.service';
 
 @Component({
   selector: 'app-form-user',
@@ -10,44 +17,57 @@ export class FormUserComponent implements OnInit {
   @Input() addUser: boolean = false;
   @Input() editUser: boolean = false;
   @Input() viewUser: boolean = false;
+
+  @Input() idUser : any = undefined;
+
   Message: string = "";
 
   @Input() title: string = "";
 
-  user = {
-    nom :"toto",
-    prenom :"mateo",
-    email :"titi@gmail.com",
-    telephone :"089098",
-    fax :"83839200",
-    hash :"ndjcndj",
-    role :"admin",
-
-    //etudiant
-    numeroEtudiant :"12345689",
-    promotion :"2019/2020",
-    parcours :"M2 IMAGINA",
-
-    // representant_entreprise
-    fonction :"dj",
-    entreprise :"dk",
-  };
+  user:any;
 
   // Boolean pour l'affichage des sections
   displaySectionEtudiant = false;
   displaySectionCoordonnees = false;
   displaySectionEntreprise = false;
 
-  roles = ["test", "invite", "etudiant","tuteur", "respEntreprise", "secretaire", "admin"];
+  roles = ["invite", "etudiant","tuteur", "respEntreprise", "secretaire", "admin"];
   promotions = ["2016/2017", "2017/2018","2018/2019", "2019/2020", "2020/2021"];
   parcours = ["M2 AIGLE", "M2 MIT","M2 DECOL", "M2 IMAGINA"];
 
-  constructor(private auth: AuthService) {
-    this.displaySection(this.user.role);
+  destroy$: Subject<boolean> = new Subject<boolean>();
+
+  constructor(private route:ActivatedRoute,
+              private router: Router,
+              private userService: UserService,
+              private auth: AuthService) { 
+
   }
 
   ngOnInit(): void {
+    this.getUser(this.idUser);
   }
+
+  ngOnDestroy() {
+    this.destroy$.next(true);
+    this.destroy$.unsubscribe();
+  }
+
+  getUser(id:any) {
+    this.userService.getUserById(id)
+      .pipe(takeUntil(this.destroy$))
+      .subscribe((_user: any[]) => {
+        this.user = _user;
+        //this.displaySection(this.user.role);
+      }, (_error:any) =>{
+        // redirection vers la page d'erreur 404 si le stage n'est pas trouvé
+        if(_error.status == "404"){
+          this.router.navigate(['not-found']);
+        }
+      }
+    );
+  }
+
 
 
   displaySection(role : string){
