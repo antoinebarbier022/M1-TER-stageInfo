@@ -131,10 +131,8 @@ export class ListStagesComponent implements OnInit {
 
   // Dans le component list-filter
   getStagesByKeyword() : any {
-    let arrayFilter:string[] = this.searchFilter.trim().split(/\s+/);; 
-
     return this.allStages.slice(this.startIndex, this.endIndex).filter(x => {
-      if (this.stageHasAllKeywords(x, arrayFilter)) return x;
+      if (this.stageHasAllKeywords(x, this.searchFilter.trim().split(/\s+/))) return x;
     });
   }
 
