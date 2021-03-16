@@ -2,7 +2,6 @@ import { Component, OnChanges, OnInit } from '@angular/core';
 import { takeUntil } from 'rxjs/operators';
 import { StageService } from 'src/app/core/services/stage.service';
 import { Subject } from 'rxjs';
-import { AuthService } from 'src/app/core/services/auth.service';
 
 @Component({
   selector: 'app-list-stages',
@@ -39,8 +38,8 @@ export class ListStagesComponent implements OnInit {
 
   public allStages: Array<any>;
 
-  public searchFilter: string;
-  public arrayFilter: Array<string>;
+  public searchFilter: string; // Déplacé dans list-filter
+  public arrayFilter: Array<string>; // Déplacé dans list-filter
 
 
   public nbrEntries: number;
@@ -66,10 +65,25 @@ export class ListStagesComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.stageService.getStages().subscribe(stages => {
-      this.allStages = stages;
-      this.pageCount = Math.ceil(this.allStages.length / this.nbrEntries);
-    })
+    this.getStages();
+  }
+
+  ngAfterViewInit(): void{
+    this.getStages();
+  }
+
+  ngAfterContentInit(): void{
+    this.getStages();
+  }
+
+  getStages() : void {
+    this.stageService.getStages()
+      .pipe(takeUntil(this.destroy$))
+      .subscribe((_stages: any[]) => {
+        this.allStages = _stages;
+        this.pageCount = Math.ceil(this.allStages.length / this.nbrEntries);
+      }
+    );
   }
 
   compare(obj1: any, obj2: any, index: number) : number {
@@ -83,6 +97,7 @@ export class ListStagesComponent implements OnInit {
   }
 
   sortByAscendingDescendingOrder(index: number){
+    console.log(this.visibleProperties);
     if(this.visibleProperties[index].sorted){
       this.allStages.sort((stage1, stage2) => (-1)*this.compare(stage1, stage2, index));
       this.visibleProperties[index].sorted = false;
@@ -104,15 +119,6 @@ export class ListStagesComponent implements OnInit {
     this.startIndex = 0;
     this.endIndex = this.startIndex + this.nbrEntries;
     this.getStagesByKeyword();
-  }
-
-  getStages() : void {
-    this.stageService.getStages()
-      .pipe(takeUntil(this.destroy$))
-      .subscribe((_stages: any[]) => {
-        this.allStages = _stages;
-      }
-    );
   }
 
   getNestedValue(obj: any, key : any): any{

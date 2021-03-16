@@ -1,11 +1,11 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnChanges, OnInit, SimpleChange } from '@angular/core';
 
 @Component({
   selector: 'app-list-filter',
   templateUrl: './list-filter.component.html',
   styleUrls: ['./list-filter.component.scss']
 })
-export class ListFilterComponent implements OnInit {
+export class ListFilterComponent implements OnInit, OnChanges{
 
   @Input() public itemArray: any;
   @Input() public searchFilter: string;
@@ -18,17 +18,10 @@ export class ListFilterComponent implements OnInit {
     this.searchFilter = "";
   }
 
-  ngOnInit(): void {
-    console.log(this.itemArray);
-  }
-
-  ngAfterContentChecked() : void{
-    //console.log(this.itemArray);
-  }
+  ngOnInit(): void {}
 
   printArray(){
-    this.visibleProperties.length = 0;
-    console.log(this.visibleProperties);
+    console.log(this.itemArray);
   }
 
   getNestedValue(obj: any, key : any): any{

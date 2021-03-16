@@ -37,12 +37,16 @@ import { LoginComponent } from './pages/login/login.component';
 
 import {AuthGuardService} from "./core/services/auth-guard.service";
 import {AuthGuard} from "./core/services/guard-login.service";
+import { ListFilterComponent } from './shared/components/list-filter/list-filter.component';
 
 
 const routes: Routes = [
   { path: '', component: ListStagesComponent, canActivate: [AuthGuardService]},
   { path: 'login', component: LoginComponent, canActivate: [AuthGuard]},
   { path: 'documentation', component: ExempleDocComponent, canActivate: [AuthGuardService]},
+
+  { path: 'list-filter', component: ListFilterComponent, canActivate: [AuthGuardService]},
+
   // routes stages
   { path: 'liste-stages', component: ListStagesComponent, canActivate: [AuthGuardService]},
   { path: 'liste-stages/info-stage', component: InfoStageComponent, canActivate: [AuthGuardService]},
@@ -57,11 +61,13 @@ const routes: Routes = [
   { path: 'liste-utilisateurs/edit-user', component: EditUserComponent, canActivate: [AuthGuardService]},
   { path: 'liste-utilisateurs/edit-user-v2', component: EditUserV2Component, canActivate: [AuthGuardService]},
   { path: 'profile', component: ProfileUserComponent, canActivate: [AuthGuardService]},
+
   //routes entreprise
   { path: 'liste-entreprises', component: ListEntreprisesComponent, canActivate: [AuthGuardService]},
   { path: 'liste-entreprises/add-entreprise', component: AddEntrepriseComponent, canActivate: [AuthGuardService]},
   { path: 'liste-entreprises/edit-entreprise', component: EditEntrepriseComponent, canActivate: [AuthGuardService]},
   { path: 'liste-entreprises/entreprise', component: InfoEntrepriseComponent, canActivate: [AuthGuardService]},
+
   // route soutenance
   { path: 'liste-soutenances', component: ListSoutenancesComponent, canActivate: [AuthGuardService]},
   { path: 'liste-soutenances/add-soutenance', component: AddSoutenanceComponent, canActivate: [AuthGuardService]},
@@ -70,8 +76,6 @@ const routes: Routes = [
 
   // config calendrier soutenance
   { path: 'configuration-calendrier-soutenances', component: ConfigCalendrierSoutenancesComponent, canActivate: [AuthGuardService]},
-
-
 
   { path: 'not-found', component: Error404Component, canActivate: [AuthGuardService]},
   { path: '**', redirectTo: 'not-found', canActivate: []}
