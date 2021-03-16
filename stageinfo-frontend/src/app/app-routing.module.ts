@@ -35,8 +35,13 @@ import { ConfigCalendrierSoutenancesComponent } from './pages/soutenance/config-
 //import login
 import { LoginComponent } from './pages/login/login.component';
 
+
+// Importation des guards
 import {AuthGuardService} from "./core/guards/auth-guard.service";
 import {AuthGuard} from "./core/guards/guard-login.service";
+
+// Importation des resolver
+import { UserResolver } from "./core/resolves/user.resolver";
 
 
 const routes: Routes = [
@@ -56,7 +61,13 @@ const routes: Routes = [
   { path: 'liste-utilisateurs/add-user', component: AddUserComponent, canActivate: [AuthGuardService]},
   { path: 'liste-utilisateurs/edit-user/:id', component: EditUserComponent, canActivate: [AuthGuardService]},
   { path: 'liste-utilisateurs/edit-user-v2', component: EditUserV2Component, canActivate: [AuthGuardService]},
-  { path: 'liste-utilisateurs/user/:id', component: InfoUserComponent, canActivate: [AuthGuardService]},
+  { path: 'liste-utilisateurs/user/:id', 
+    component: InfoUserComponent, 
+    canActivate: [AuthGuardService],
+    resolve: {
+      user: UserResolver  // on associe un resolver à la route
+    },
+  },
   { path: 'profile', component: ProfileUserComponent, canActivate: [AuthGuardService]},
   //routes entreprise
   { path: 'liste-entreprises', component: ListEntreprisesComponent, canActivate: [AuthGuardService]},
