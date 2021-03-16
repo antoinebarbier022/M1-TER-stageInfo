@@ -15,22 +15,14 @@ export class AuthService {
   constructor(private router: Router,
               private http: HttpClient) {}
 
-  createNewUser(nom:string,prenom:string,email: string, password: string, rolee: string) {
+  createNewUser(nom: string, prenom: string, email: string, password: string, rolee: string, numeroEtudiant: string, Promotion: string, idParcours: string, Fax: string, telephone: string, fonction: string, identreprise: string) {
     return new Promise<void>((resolve, reject) => {
       this.http.post(
-        'http://localhost:3000/api/signup',
-        { email: email, password: password, rolee: rolee })
+        'http://localhost:3000/api/auth/signup',
+        { nom: nom,prenom: prenom,email: email, password: password, rolee: rolee,numeroEtudiant: numeroEtudiant,idParcours: idParcours,Fax: Fax,telephone:telephone,fonction:fonction,identreprise:identreprise })
         .subscribe(
           () => {
-            this.login(email, password).then(
-              () => {
-                resolve();
-              }
-            ).catch(
-              (error) => {
-                reject(error);
-              }
-            );
+            resolve();
           },
           (error) => {
             reject(error);

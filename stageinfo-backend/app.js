@@ -11,6 +11,7 @@ const embaucheRoutes= require('./routes/embaucheRouters');
 const entrepriseRoutes= require('./routes/entrepriseRouters');
 const creneauRoutes = require('./routes/creneauRouters');
 const soutenanceRoutes = require('./routes/soutenanceRouters');
+const parcoursRoutes = require('./routes/parcoursRouters')
 
 const app = express();
 
@@ -32,6 +33,7 @@ app.use(bodyParser.json());
 app.use('/api/stage', stageRoutes);
 app.use('/api/salle', salleRoutes);
 app.use('/api/auth', userRoutes);
+app.use('/api/parcours', parcoursRoutes);
 app.use('api/piecejointe', pieceJointeRoutes);
 app.use('api/embauche', embaucheRoutes);
 app.use('api/entreprise', entrepriseRoutes);

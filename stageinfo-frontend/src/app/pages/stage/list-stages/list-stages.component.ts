@@ -55,7 +55,7 @@ export class ListStagesComponent implements OnInit {
 
     this.pageCount = Math.ceil(this.allStages.length / this.nbrEntries);
     this.lastPage = this.pageCount;
-    
+
     this.currentPage = 1;
     this.startIndex = 0;
     this.endIndex = this.startIndex + this.nbrEntries;
@@ -77,12 +77,12 @@ export class ListStagesComponent implements OnInit {
 
     function getNestedValue(obj: any, key : any) {
       return key.split(".").reduce(function(result: any, key: any) {
-         return result[key] 
+         return result[key]
       }, obj);
     }
 
     let row = new Array();
-    
+
     this.visibleProperties.forEach(prop => {
       row.push(getNestedValue(stage, prop));
     });
