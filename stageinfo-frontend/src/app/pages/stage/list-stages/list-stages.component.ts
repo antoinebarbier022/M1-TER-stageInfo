@@ -12,7 +12,7 @@ import { AuthService } from 'src/app/core/services/auth.service';
 export class ListStagesComponent implements OnInit {
   
   public readonly title: string = "Liste des stages";
-  //public visibleProperties = ['titre','entreprise.nomComplet', 'parcours.nomComplet', 'duree', 'etat'];
+  public visibleProperties2 = ['titre','entreprise.nomComplet', 'parcours.nomComplet', 'duree', 'etat'];
 
   public visibleProperties = 
   [
@@ -74,23 +74,24 @@ export class ListStagesComponent implements OnInit {
   }
 
   compare(obj1: any, obj2: any, index: number) : number {
-
-    if(this.getNestedValue(obj1, this.visibleProperties[index]).name > this.getNestedValue(obj2, this.visibleProperties[index]).name)
+    if(this.getNestedValue(obj1, this.visibleProperties[index].name) > this.getNestedValue(obj2, this.visibleProperties[index].name))
       return 1;
 
-    if(this.getNestedValue(obj2, this.visibleProperties[index]).name > this.getNestedValue(obj1, this.visibleProperties[index]).name)
+    if(this.getNestedValue(obj2, this.visibleProperties[index].name) > this.getNestedValue(obj1, this.visibleProperties[index].name))
       return -1;
-   
+    
     return 0;
   }
 
   sortByAscendingDescendingOrder(index: number){
-
-    //Croissant
-    //this.allStages.sort((stage1, stage2) => (1)*this.compare(stage1, stage2, index));
-
-    // Décroissant
-    //this.allStages.sort((stage1, stage2) => (-1)*this.compare(stage1, stage2, index));
+    if(this.visibleProperties[index].sorted){
+      this.allStages.sort((stage1, stage2) => (-1)*this.compare(stage1, stage2, index));
+      this.visibleProperties[index].sorted = false;
+    }
+    else{
+      this.allStages.sort((stage1, stage2) => (1)*this.compare(stage1, stage2, index));
+      this.visibleProperties[index].sorted = true;
+    }
   }
 
   setNumberEntries(nbr : any) : void{
