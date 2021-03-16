@@ -41,7 +41,7 @@ export class InfoStageComponent implements OnInit, OnDestroy {
   }
 
   getStage(id:any) {
-    this.stageService.getStage(id)
+    this.stageService.getStageById(id)
       .pipe(takeUntil(this.destroy$))
       .subscribe((_stage: any[]) => {
         this.stage = _stage;

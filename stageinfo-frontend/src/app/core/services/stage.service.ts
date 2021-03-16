@@ -25,7 +25,7 @@ export class StageService {
   }
 
   /* Récupération d'un stage avec son identifiant */
-  getStage(id:any): Observable<any> {
+  getStageById(id:any): Observable<any> {
     return this.httpClient.get(this.urlBase+'/api/stage/'+id);
   }
 
