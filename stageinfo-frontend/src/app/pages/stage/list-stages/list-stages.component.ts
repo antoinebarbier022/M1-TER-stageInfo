@@ -25,8 +25,8 @@ export class ListStagesComponent implements OnInit {
   public currentPage: number;
   public lastPage: number;
 
-  public startIndex;
-  public endIndex;
+  public startIndex: number;
+  public endIndex: number;
 
   destroy$: Subject<boolean> = new Subject<boolean>();
 
@@ -59,7 +59,6 @@ export class ListStagesComponent implements OnInit {
     this.currentPage = 1;
     this.startIndex = 0;
     this.endIndex = this.startIndex + this.nbrEntries;
-
     this.getStagesByKeyword();
   }
 
@@ -121,7 +120,6 @@ export class ListStagesComponent implements OnInit {
       this.currentPage++;
       this.startIndex += this.nbrEntries;
       this.endIndex = this.startIndex + this.nbrEntries;
-
       this.getStagesByKeyword();
     }
   }
@@ -132,7 +130,6 @@ export class ListStagesComponent implements OnInit {
       this.currentPage--;
       this.startIndex -= this.nbrEntries;
       this.endIndex = this.startIndex + this.nbrEntries;
-
       this.getStagesByKeyword();
     }
   }
