@@ -71,8 +71,9 @@ export class ListStagesComponent implements OnInit {
     this.getStages();
   }
 
-  printSubStageList(indexStart: number, indexEnd: number){
-
+  updateSubStageList(event: any){
+    console.log(event);
+    this.stagesPrinted2 = this.stagesPrinted.slice(event.startIndex, event.endIndex);
   }
 
   updateNbrEntries(event : any): void{
@@ -87,6 +88,7 @@ export class ListStagesComponent implements OnInit {
       .subscribe((_stages: any[]) => {
         this.allStages = _stages;
         this.stagesPrinted = _stages;
+        this.stagesPrinted2 = _stages;
         this.pageCount = Math.ceil(this.allStages.length / this.nbrEntries);
       }
     );

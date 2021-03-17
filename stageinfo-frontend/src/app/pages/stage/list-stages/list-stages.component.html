@@ -54,7 +54,7 @@
         </thead>
         <tbody>
             <!-- Ajout des stages de la BDD -->
-            <tr *ngFor="let stage of this.stagesPrinted"> <!-- slice(0,1) -->
+            <tr *ngFor="let stage of this.stagesPrinted2"> <!-- slice(0,1) -->
                 <td><a routerLink="/liste-stages/info-stage">{{ stage.titre }}</a></td>
                 <td>{{ stage.entreprise.nomComplet }}</td>
                 <td>{{ stage.parcours.nomComplet }}</td>
@@ -82,5 +82,5 @@
         </ul>
     </div>
 
-    <app-list-pagination [nbrEntries]="nbrEntries" [listSize]="this.allStages.length" (paginationChange)="printPagination($event)"></app-list-pagination>
+    <app-list-pagination [nbrEntries]="nbrEntries" [listSize]="this.allStages.length" (paginationChange)="updateSubStageList($event)"></app-list-pagination>
 </div>

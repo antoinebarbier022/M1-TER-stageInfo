@@ -35,7 +35,7 @@ export class ListPaginationComponent implements OnInit {
 
   ngOnChanges(changes: any){
     if(changes['nbrEntries'] !== undefined){
-      this.nbrEntries = changes['nbrEntries'].currentValue;
+      this.nbrEntries = parseInt(changes['nbrEntries'].currentValue);
       this.setNumberEntries(this.nbrEntries);
       console.log('ENFAAAANT');
     }
@@ -56,6 +56,7 @@ export class ListPaginationComponent implements OnInit {
     this.currentPage = 1;
     this.pagination.startIndex = 0;
     this.pagination.endIndex = this.pagination.startIndex + this.nbrEntries;
+    this.paginationChanged();
     //this.getStagesByKeyword();
   }
 
@@ -78,6 +79,7 @@ export class ListPaginationComponent implements OnInit {
     }
 
     this.pagination.endIndex = this.pagination.startIndex + this.nbrEntries;
+    this.paginationChanged();
     //this.getStagesByKeyword();
   }
 
@@ -87,6 +89,7 @@ export class ListPaginationComponent implements OnInit {
       this.currentPage++;
       this.pagination.startIndex += this.nbrEntries;
       this.pagination.endIndex = this.pagination.startIndex + this.nbrEntries;
+      this.paginationChanged();
       //this.getStagesByKeyword();
     }
   }
@@ -97,6 +100,7 @@ export class ListPaginationComponent implements OnInit {
       this.currentPage--;
       this.pagination.startIndex -= this.nbrEntries;
       this.pagination.endIndex = this.pagination.startIndex + this.nbrEntries;
+      this.paginationChanged();
       //this.getStagesByKeyword();
     }
   }
