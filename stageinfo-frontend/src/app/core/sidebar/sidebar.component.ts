@@ -17,9 +17,10 @@ export class SidebarComponent implements OnInit {
   listeStages =             {icon:"fas fa-list",          nom:"Listing des stages",       lien:"/liste-stages",       items:[]};
   listeSoutenances =        {icon:"fas fa-list",          nom:"Listing des soutenances",  lien:"/liste-soutenances",   items:[]};
   listeEntreprise =         {icon:"fas fa-list",          nom:"Listing des entreprises",  lien:"/liste-entreprises",   items:[]};
-  listeUtilisateurs =       {icon:"fas fa-list",          nom:"Listing des utilisateurs",  lien:"/liste-utilisateurs",   items:[]};
+  listeUtilisateurs =       {icon:"fas fa-list",          nom:"Listing des utilisateurs", lien:"/liste-utilisateurs",   items:[]};
   listeEtudiants =          {icon:"fas fa-user-friends",  nom:"Listing des étudiants ",   lien:"/liste-etudiants", items:[]};
   listeEnseignants =        {icon:"fas fa-user-friends",  nom:"listing des enseignants",  lien:"/liste-enseignants", items:[]};
+  listeParcours =           {icon:"fas fa-list",          nom:"Listing des parcours",     lien:"/liste-parcours",       items:[]};
   listeEtudiantsSansStage = {icon:"fas fa-user-friends",  nom:"Étudiant sans stages",     lien:"/etudiant-sans-stages", items:[]};
   listeSoutenancesNonPlanifie = {icon:"fas fa-list",      nom:"Listing des soutenances non planifiées", lien:"/listing-soutenance-non-planifie", items:[]};
 
@@ -133,7 +134,7 @@ export class SidebarComponent implements OnInit {
   navigationSecretaire = [
     {
       title:"Administration",
-      items: [ this.listeStages, this.listeUtilisateurs, this.listeEntreprise, this.listeSoutenances]
+      items: [ this.listeStages, this.listeUtilisateurs, this.listeEntreprise, this.listeSoutenances, this.listeParcours]
     },
     {
       title:"Stage",
@@ -175,6 +176,7 @@ export class SidebarComponent implements OnInit {
   choixNavigation() : any{
     switch (this.testService.getRole()){
       case "admin":
+      case "secretaire":
         return this.navigationSecretaire;
       case "etudiant":
         return this.navigationEtudiant;
