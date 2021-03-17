@@ -23,7 +23,7 @@ export class InfoStageComponent implements OnInit, OnDestroy {
   { 
     idUser:"1",
     author:"Henry", 
-    date:"05/04/2018", 
+    date:"01/01/2021", 
     content:"Lorem ipsum dolor sit amet consectetur, adipisicing elit. Dolorem a, ex voluptates aut saepe culpa, porro deserunt assumenda id quibusdam temporibus molestias quia, accusantium adipisci quasi voluptatem. Architecto, quibusdam asperiores?"
 }];
 

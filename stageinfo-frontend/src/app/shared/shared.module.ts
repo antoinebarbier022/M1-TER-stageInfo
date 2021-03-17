@@ -17,6 +17,7 @@ import { ButtonAddComponent } from './components/buttons/button-add/button-add.c
 import { CardComponent } from './components/cards/card/card.component';
 import { CardItemStageComponent } from './components/cards/card-item-stage/card-item-stage.component';
 import { CardItemCommentComponent } from './components/cards/card-item-comment/card-item-comment.component';
+import { DateAgoPipe } from './pipes/date-ago.pipe';
 
 
 
@@ -30,7 +31,8 @@ import { CardItemCommentComponent } from './components/cards/card-item-comment/c
     ButtonAddComponent, 
     CardComponent, 
     CardItemStageComponent, 
-    CardItemCommentComponent],
+    CardItemCommentComponent, 
+    DateAgoPipe],
   imports: [
     CommonModule,
     RouterModule,
@@ -45,6 +47,7 @@ import { CardItemCommentComponent } from './components/cards/card-item-comment/c
     ButtonAddComponent,
     CardComponent,
     CardItemStageComponent,
-    CardItemCommentComponent]
+    CardItemCommentComponent,
+    DateAgoPipe]
 })
 export class SharedModule { }
