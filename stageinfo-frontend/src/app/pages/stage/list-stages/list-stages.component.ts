@@ -41,7 +41,7 @@ export class ListStagesComponent implements OnInit {
 
   public searchFilter: string; // Déplacé dans list-filter
 
-  public nbrEntries: number;
+  public nbrEntries: number; // Déplacé dans list-entries-number
   public pageCount: number; // Déplacé dans list-pagination
   public currentPage: number; // Déplacé dans list-pagination
   public lastPage: number; // Déplacé dans list-pagination

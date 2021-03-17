@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Output, EventEmitter, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-list-entries-number',
@@ -7,7 +7,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ListEntriesNumberComponent implements OnInit {
 
-  constructor() { }
+  public nbrEntries: number;
+
+  @Output() nbrEntriesChange = new EventEmitter<any>();
+
+  constructor() { 
+    this.nbrEntries = 20;
+  }
 
   ngOnInit(): void {
   }
