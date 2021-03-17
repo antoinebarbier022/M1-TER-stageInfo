@@ -14,7 +14,7 @@ export class ListFilterComponent implements OnInit{
   constructor() {
     this.itemArray = [];
     this.visibleProperties = [];
-    this.commonProperties = null;
+    this.commonProperties = {};
   }
 
   ngOnInit(): void {}
@@ -44,9 +44,12 @@ export class ListFilterComponent implements OnInit{
   }
 
   getStagesByKeyword() : void {
-    this.commonProperties.filteredArray = this.itemArray.filter(x => {
+    console.log(this.itemArray);
+    console.log(this.commonProperties);
+    this.commonProperties.filteredArray = this.itemArray.slice(this.commonProperties.startIndex, this.commonProperties.endIndex).filter(x => {
       if (this.stageHasAllKeywords(x, this.commonProperties.searchFilter.trim().split(/\s+/))) return x;
     });
+    console.log(this.commonProperties);
   }
   
 
