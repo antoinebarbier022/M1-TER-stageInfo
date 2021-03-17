@@ -36,9 +36,9 @@ app.use('/api/auth', userRoutes);
 
 app.use('/api/user', userRoutes);
 app.use('/api/parcours', parcoursRoutes);
-app.use('api/piecejointe', pieceJointeRoutes);
-app.use('api/embauche', embaucheRoutes);
-app.use('api/entreprise', entrepriseRoutes);
+app.use('/api/piecejointe', pieceJointeRoutes);
+app.use('/api/embauche', embaucheRoutes);
+app.use('/api/entreprise', entrepriseRoutes);
 app.use('/api/creneau', creneauRoutes);
 app.use('/api/soutenance', soutenanceRoutes);
 

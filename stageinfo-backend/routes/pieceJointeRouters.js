@@ -9,10 +9,10 @@ const router = express.Router();
 const pieceJointeCtrl = require('../controllers/pieceJointeController');
 
 router.get('/',Admin,pieceJointeCtrl.getAllPieceJointe);
-router.get('/_id:',invite, pieceJointeCtrl.getOnePieceJointe);
+router.get('/:id',invite, pieceJointeCtrl.getOnePieceJointe);
 router.post('/',Etudiant, pieceJointeCtrl.createPieceJointe);
-router.put('/_id:', Etudiant,pieceJointeCtrl.editPieceJointe);
-router.delete('/_id:',Admin, pieceJointeCtrl.deleteOnePieceJointe);
+router.put('/:id', Etudiant,pieceJointeCtrl.editPieceJointe);
+router.delete('/:id',Admin, pieceJointeCtrl.deleteOnePieceJointe);
 router.delete('/',Admin,pieceJointeCtrl.deleteAllPieceJointe);
 
 module.exports = router;
