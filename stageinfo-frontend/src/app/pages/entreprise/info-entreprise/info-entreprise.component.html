@@ -1,19 +1,19 @@
 <!-- Navigation : bouton retour + titre de la page-->
-<app-navigation [title]="title"></app-navigation>
+<app-navigation [title]="'Entreprise :' + entreprise.nom"></app-navigation>
 
 <div class="all-card">
     
     <!-- Description de l'entreprise -->
     <app-card id="presentation-entreprise" title="Description">
-        <p>Ubisoft est un créateur de mondes, qui a pour ambition d'enrichir la vie des joueurs en créant des expériences de jeu originales et mémorables.</p>
+        <p>{{ entreprise.description }}</p>
     </app-card>
 
     <!-- Information sur l'entreprise -->
     <app-card id="info-entreprise" title="Informations">
-        <p>N° Siret : 4536839028</p>
-        <p>Nombre employé : 10</p>
-        <p>Chiffre affaire en 2019 : 10M</p>
-        <p>Possède un local ? oui</p>
+        <p>N° Siret : {{ entreprise.siret }}</p>
+        <p>Nombre employé : {{ entreprise.nbSalaries }}</p>
+        <p>Chiffre affaire en 2019 : {{ entreprise.chiffreAffaire }}</p>
+        <p>Possède un local ? {{ entreprise.local ? 'oui' : 'non' }}</p>
     </app-card>
 
     <!-- Adresse de l'entreprise -->
@@ -25,9 +25,9 @@
 
     <!-- Informations pour contacter l'entreprise -->
     <app-card id="contact-entreprise" title="Contact">
-        <p>Site : <a href="#">https://www.google.com</a></p>
-        <p>Tel : <a href="#">06 75 45 56 78</a></p>
-        <p>Fax : <a href="#">06 75 45 56 78</a></p>
+        <p>Site : <a [href]="entreprise.website">{{ entreprise.website }}</a></p>
+        <p>Tel : <a href="#">{{ entreprise.telephone }}</a></p>
+        <p>Fax : <a href="#">{{ entreprise.fax }}</a></p>
     </app-card>
 
     <!-- Les stages associées à l'entreprise -->

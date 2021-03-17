@@ -8,12 +8,12 @@ export class entrepriseModel{
     telephone: string  = "";
     fax: string  = "";
 
-    /*adresse: {
-        voie: string  = "";
-        ville: string  = "";
-        codePostal: string  = "";
-        complement: string  = "";
-    };*/
+    adresse= {
+        voie:"",
+        ville:"",
+        codePostal: "",
+        complement: "",
+    };
 
     secteurActivite: string = "";
     nbSalaries: string = "";

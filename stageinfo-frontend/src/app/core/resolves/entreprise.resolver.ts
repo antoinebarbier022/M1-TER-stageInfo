@@ -11,7 +11,7 @@ import { EntrepriseService } from '../services/entreprise.service';
 @Injectable({
   providedIn: 'root'
 })
-export class EntrepriseResolver implements Resolve<boolean> {
+export class EntrepriseResolver implements Resolve<any> {
   
   constructor(private entrepriseService : EntrepriseService, private router: Router){}
 

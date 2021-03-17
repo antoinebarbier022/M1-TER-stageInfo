@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { entrepriseModel } from 'src/app/core/models/entrepriseModel';
 
 @Component({
   selector: 'app-info-entreprise',
@@ -7,8 +9,10 @@ import { Component, OnInit } from '@angular/core';
 })
 export class InfoEntrepriseComponent implements OnInit {
   title = "Entreprise : Ubisoft Montpellier"
-  constructor() { }
+  
+  entreprise: entrepriseModel = new entrepriseModel();
 
+  // les stages de l'entreprises
   stages = [
     { titre:"Stage Ingénieur SALESFORCE/CPQ", entreprise:"IBM Montpellier", etat:"terminé", date:"2015"},
     { titre:"Pilotage, conception et développement d'applications web.", entreprise:"SMILE", etat:"terminé", date:"2019"},
@@ -17,7 +21,11 @@ export class InfoEntrepriseComponent implements OnInit {
     { titre:"Développeur web.", entreprise:"SMILE", etat:"terminé", date:"2019"}
   ];
 
+  constructor(private route:ActivatedRoute) { }
+  
   ngOnInit(): void {
+    console.log(this.route.snapshot.data.entreprise);
+    this.entreprise = this.route.snapshot.data.entreprise;  
   }
 
 }
