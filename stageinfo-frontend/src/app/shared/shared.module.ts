@@ -16,6 +16,7 @@ import { ButtonAddComponent } from './components/buttons/button-add/button-add.c
 // cards components
 import { CardComponent } from './components/cards/card/card.component';
 import { CardItemStageComponent } from './components/cards/card-item-stage/card-item-stage.component';
+import { CardItemCommentComponent } from './components/cards/card-item-comment/card-item-comment.component';
 
 
 
@@ -28,7 +29,8 @@ import { CardItemStageComponent } from './components/cards/card-item-stage/card-
     FormParcoursComponent, 
     ButtonAddComponent, 
     CardComponent, 
-    CardItemStageComponent],
+    CardItemStageComponent, 
+    CardItemCommentComponent],
   imports: [
     CommonModule,
     RouterModule,
@@ -42,6 +44,7 @@ import { CardItemStageComponent } from './components/cards/card-item-stage/card-
     FormParcoursComponent,
     ButtonAddComponent,
     CardComponent,
-    CardItemStageComponent]
+    CardItemStageComponent,
+    CardItemCommentComponent]
 })
 export class SharedModule { }

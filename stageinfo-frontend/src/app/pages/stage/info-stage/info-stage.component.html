@@ -89,23 +89,15 @@
 <h2>Commentaires sur le stage</h2>
 
 <div id="commentaires-stage">
-    
-    <div *ngFor="let comment of comments" class="card commentaire">
-        <div class="card-header">
-            <p class="comment-title">
-                <span class="comment-author"><a routerLink="/liste-utilisateurs/user">{{ comment.author }}</a></span>
-                 - 
-                 <span class="comment-date">{{ comment.date | date }}</span>
-            </p>
-            <span class="comment-timeago">il y a 5 jours</span>
-        </div>
-        <div class="card-body">            
-            <p class="comment-content">
-                {{ comment.content }}
-            </p>
-        </div>
-    </div>
+    <!-- les commentaires du stages-->
+    <app-card-item-comment *ngFor="let comment of comments"
+            [idUser]="comment.idUser"
+            [author]="comment.author"
+            [date]="comment.date">
+        <p>{{ comment.content }}</p>
+    </app-card-item-comment>
 
+    <!-- Ajouter un commentaire sur le stage -->
     <div class="add-comment">
         <form>
             <div class="form-group">
@@ -114,7 +106,7 @@
                             class="form-control"  
                             rows="3"></textarea>
             </div>
-            <button class="btn btn-secondary btn-sm">Envoyer</button>
+            <button type="submit" class="btn btn-secondary btn-sm">Envoyer</button>
         </form>
     </div>
 

@@ -1,0 +1,19 @@
+<div class="card">
+    <div class="card-header">
+        <p class="card-title">
+            <span class="comment-author">
+                <a routerLink="/liste-utilisateurs/user">
+                    {{ author }}
+                </a>
+            </span>
+            - 
+            <span class="comment-date">
+                {{ date | date }}
+            </span>
+        </p>
+        <span class="comment-timeago">il y a 5 jours</span>
+    </div>
+    <div class="card-body">
+        <ng-content></ng-content>
+    </div>
+</div>

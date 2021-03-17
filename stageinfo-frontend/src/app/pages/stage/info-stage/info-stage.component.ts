@@ -14,13 +14,17 @@ export class InfoStageComponent implements OnInit, OnDestroy {
   stage : any;
   loading:any;
 
-  comments = [{ author:"Antoine", 
+  comments = [
+    { idUser:"1",
+      author:"Antoine", 
+      date:"05/04/2018", 
+      content:"Lorem ipsum dolor sit amet consectetur, adipisicing elit. Dolorem a, ex voluptates aut saepe culpa, porro deserunt assumenda id quibusdam temporibus molestias quia, accusantium adipisci quasi voluptatem. Architecto, quibusdam asperiores?"
+  },
+  { 
+    idUser:"1",
+    author:"Henry", 
     date:"05/04/2018", 
     content:"Lorem ipsum dolor sit amet consectetur, adipisicing elit. Dolorem a, ex voluptates aut saepe culpa, porro deserunt assumenda id quibusdam temporibus molestias quia, accusantium adipisci quasi voluptatem. Architecto, quibusdam asperiores?"
-  },
-  { author:"Henry", 
-  date:"05/04/2018", 
-  content:"Lorem ipsum dolor sit amet consectetur, adipisicing elit. Dolorem a, ex voluptates aut saepe culpa, porro deserunt assumenda id quibusdam temporibus molestias quia, accusantium adipisci quasi voluptatem. Architecto, quibusdam asperiores?"
 }];
 
   destroy$: Subject<boolean> = new Subject<boolean>();
