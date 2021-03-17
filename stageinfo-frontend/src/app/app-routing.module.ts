@@ -29,6 +29,13 @@ import { InfoEntrepriseComponent } from './pages/entreprise/info-entreprise/info
 import { ListSoutenancesComponent } from './pages/soutenance/list-soutenances/list-soutenances.component';
 import { AddSoutenanceComponent } from './pages/soutenance/add-soutenance/add-soutenance.component';
 
+// import parcours
+import { ListParcoursComponent } from './pages/parcours/list-parcours/list-parcours.component';
+import { AddParcoursComponent } from './pages/parcours/add-parcours/add-parcours.component';
+import { EditParcoursComponent } from './pages/parcours/edit-parcours/edit-parcours.component';
+import { InfoParcoursComponent } from './pages/parcours/info-parcours/info-parcours.component';
+
+
 // import config
 import { ConfigCalendrierSoutenancesComponent } from './pages/soutenance/config-calendrier-soutenances/config-calendrier-soutenances.component';
 
@@ -106,6 +113,12 @@ const routes: Routes = [
   { path: 'liste-soutenances/add-soutenance', component: AddSoutenanceComponent, canActivate: [AuthGuardService]},
   { path: 'liste-soutenances/edit-soutenance', component: AddSoutenanceComponent, canActivate: [AuthGuardService]},
   { path: 'liste-soutenances/soutenance', component: AddSoutenanceComponent, canActivate: [AuthGuardService]},
+
+  // route parcours
+  { path: 'liste-parcours', component: ListParcoursComponent, canActivate: [AuthGuardService]},
+  { path: 'liste-parcours/add-parcours', component: AddParcoursComponent, canActivate: [AuthGuardService]},
+  { path: 'liste-parcours/edit-parcours', component: EditParcoursComponent, canActivate: [AuthGuardService]},
+  { path: 'liste-parcours/info-parcours', component: InfoParcoursComponent, canActivate: [AuthGuardService]},
 
   // config calendrier soutenance
   { path: 'configuration-calendrier-soutenances', component: ConfigCalendrierSoutenancesComponent, canActivate: [AuthGuardService]},
