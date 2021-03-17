@@ -140,6 +140,10 @@ export class ListStagesComponent implements OnInit {
     this.stagesPrinted = event;
   }
 
+  printPagination(event : any){
+    console.log(event);
+  }
+
   // Dans le component list-filter
   getStagesByKeyword() : any {
     return this.allStages.slice(this.startIndex, this.endIndex).filter(x => {

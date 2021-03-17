@@ -79,5 +79,6 @@
             <li class="page-item" (click)="onClickNextPage()"><a class="page-link">Next</a></li>
         </ul>
     </div>
-    <app-list-pagination [nbrEntries]="nbrEntries" [listSize]="this.allStages.length"></app-list-pagination>
+
+    <app-list-pagination [nbrEntries]="nbrEntries" [listSize]="this.allStages.length" (paginationChange)="printPagination($event)"></app-list-pagination>
 </div>

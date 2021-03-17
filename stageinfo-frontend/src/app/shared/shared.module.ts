@@ -9,11 +9,12 @@ import { CardStagesComponent } from './components/card-stages/card-stages.compon
 import { ModalComponent } from './components/modal/modal.component';
 import { ListFilterComponent } from './components/list-filter/list-filter.component';
 import { ListPaginationComponent } from './components/list-pagination/list-pagination.component';
+import { ListEntriesNumberComponent } from './components/list-entries-number/list-entries-number.component';
 
 
 
 @NgModule({
-  declarations: [FormUserComponent, FormEntrepriseComponent, CardStagesComponent, ModalComponent, ListFilterComponent, ListPaginationComponent],
+  declarations: [FormUserComponent, FormEntrepriseComponent, CardStagesComponent, ModalComponent, ListFilterComponent, ListPaginationComponent, ListEntriesNumberComponent],
   imports: [
     CommonModule,
     RouterModule,
