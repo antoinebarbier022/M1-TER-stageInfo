@@ -10,6 +10,7 @@ import { LoginComponent } from './login/login.component';
 import {ReactiveFormsModule} from "@angular/forms";
 
 // Importation des modules
+import { SharedModule } from '../shared/shared.module';
 import { UserModule } from './user/user.module';
 import { StageModule } from './stage/stage.module';
 import { EntrepriseModule } from './entreprise/entreprise.module';
@@ -29,6 +30,7 @@ import { SoutenanceModule } from './soutenance/soutenance.module';
     RouterModule,
     ReactiveFormsModule,
     FormsModule,
+    SharedModule,
 
     UserModule,
     StageModule,
@@ -40,6 +42,7 @@ import { SoutenanceModule } from './soutenance/soutenance.module';
     Error404Component, 
     LoginComponent,
 
+    SharedModule,
     UserModule,
     StageModule,
     EntrepriseModule,
