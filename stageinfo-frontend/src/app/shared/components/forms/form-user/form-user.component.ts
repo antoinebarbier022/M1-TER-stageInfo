@@ -5,10 +5,11 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { takeUntil } from 'rxjs/operators';
 import { Subject } from 'rxjs';
 
-import { AuthService } from "../../../core/services/auth.service";
-import { UserService } from '../../../core/services/user.service';
+import { userModel } from 'src/app/core/models/userModel';
+import { AuthService } from 'src/app/core/services/auth.service';
+import { UserService } from 'src/app/core/services/user.service';
 
-import { userModel } from '../../../core/models/userModel';
+
 
 @Component({
   selector: 'app-form-user',
