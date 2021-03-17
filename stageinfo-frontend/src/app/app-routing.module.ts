@@ -52,6 +52,8 @@ import { UsersResolver } from "./core/resolves/users.resolver";
 import { UserResolver } from "./core/resolves/user.resolver";
 import { StagesResolver } from "./core/resolves/stages.resolver";
 import { StageResolver } from "./core/resolves/stage.resolver";
+import { EntreprisesResolver } from './core/resolves/entreprises.resolver';
+import { EntrepriseResolver } from './core/resolves/entreprise.resolver';
 
 
 const routes: Routes = [
@@ -100,10 +102,10 @@ const routes: Routes = [
   },
   { path: 'profile', component: ProfileUserComponent, canActivate: [AuthGuardService]},
   //routes entreprise
-  { path: 'liste-entreprises', component: ListEntreprisesComponent, canActivate: [AuthGuardService]},
-  { path: 'liste-entreprises/add-entreprise', component: AddEntrepriseComponent, canActivate: [AuthGuardService]},
-  { path: 'liste-entreprises/edit-entreprise', component: EditEntrepriseComponent, canActivate: [AuthGuardService]},
-  { path: 'liste-entreprises/entreprise', component: InfoEntrepriseComponent, canActivate: [AuthGuardService]},
+  { path: 'liste-entreprises', component: ListEntreprisesComponent, canActivate: [AuthGuardService], resolve: { entreprises: EntreprisesResolver }},
+  { path: 'liste-entreprises/add-entreprise', component: AddEntrepriseComponent, canActivate: [AuthGuardService], resolve: { entreprises: EntrepriseResolver }},
+  { path: 'liste-entreprises/edit-entreprise/:id', component: EditEntrepriseComponent, canActivate: [AuthGuardService], resolve: { entreprises: EntrepriseResolver }},
+  { path: 'liste-entreprises/info/:id', component: InfoEntrepriseComponent, canActivate: [AuthGuardService], resolve: { entreprises: EntrepriseResolver }},
   // route soutenance
   { path: 'liste-soutenances', component: ListSoutenancesComponent, canActivate: [AuthGuardService]},
   { path: 'liste-soutenances/add-soutenance', component: AddSoutenanceComponent, canActivate: [AuthGuardService]},

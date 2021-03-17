@@ -23,10 +23,10 @@
             </thead>
             <tbody>
                 <tr *ngFor="let entreprise of entreprises">
-                    <td>{{ entreprise.id }}</td>
-                    <td><a routerLink="/liste-entreprises/entreprise">{{ entreprise.nom }}</a></td>
-                    <td>{{ entreprise.ville }}</td>
-                    <td>{{ entreprise.representant }}</td>
+                    <td>{{ entreprise._id }}</td>
+                    <td><a [routerLink]="['/liste-entreprises/info', entreprise._id]">{{ entreprise.nom }}</a></td>
+                    <td>{{ entreprise.nom }}</td>
+                    <td>{{ entreprise.nom }}</td>
                     <td class="table-action">
                         <a routerLink="/liste-entreprises/edit-entreprise"><i class="icon far fa-lg fa-edit"></i></a>
                         <a href="#" data-toggle="modal" data-target="#suppression-entreprise"><i class="icon far fa-lg fa-trash-alt"></i></a>

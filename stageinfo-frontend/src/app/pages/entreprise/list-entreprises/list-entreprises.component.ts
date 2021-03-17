@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { entrepriseModel } from 'src/app/core/models/entrepriseModel';
 
 @Component({
   selector: 'app-list-entreprises',
@@ -6,18 +8,14 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./list-entreprises.component.scss']
 })
 export class ListEntreprisesComponent implements OnInit {
-  title = "Liste des entreprises"
+  title = "Liste des entreprises";
 
-  // l'id de l'entreprise sert à afficher les informations de l'entreprise lors du clique sur le lien
-  entreprises = [
-    { id:"1", nom:"IBM", ville:"Montpellier", representant:"André Fernand"},
-    { id:"2", nom:"Ubisoft", ville:"Montpellier", representant:"Aymeric Dumont"},
-    { id:"3", nom:"Cap Gemini", ville:"Paris", representant:"Pascal Legrand-frère"},
-  ];
+  entreprises: entrepriseModel[] = new Array();
 
-  constructor() { }
+  constructor(private route: ActivatedRoute) { }
 
   ngOnInit(): void {
+    this.entreprises = this.route.snapshot.data.entreprises;  
   }
 
 }
