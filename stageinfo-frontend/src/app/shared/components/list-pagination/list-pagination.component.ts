@@ -61,6 +61,7 @@ export class ListPaginationComponent implements OnInit {
   }
 
   paginationChanged(): void{
+    console.log("oooook");
     this.paginationChange.emit(this.pagination);
   }
 
