@@ -8,6 +8,7 @@ import { FormEntrepriseComponent } from './components/form-entreprise/form-entre
 import { CardStagesComponent } from './components/card-stages/card-stages.component';
 import { ModalComponent } from './components/modal/modal.component';
 import { NavigationComponent } from './components/navigation/navigation.component';
+import { FormParcoursComponent } from './components/form-parcours/form-parcours.component';
 
 
 
@@ -17,7 +18,8 @@ import { NavigationComponent } from './components/navigation/navigation.componen
     FormEntrepriseComponent, 
     CardStagesComponent, 
     ModalComponent, 
-    NavigationComponent],
+    NavigationComponent, 
+    FormParcoursComponent],
   imports: [
     CommonModule,
     RouterModule,
@@ -28,6 +30,7 @@ import { NavigationComponent } from './components/navigation/navigation.componen
     FormEntrepriseComponent, 
     CardStagesComponent, 
     ModalComponent, 
-    NavigationComponent]
+    NavigationComponent,
+    FormParcoursComponent]
 })
 export class SharedModule { }

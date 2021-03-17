@@ -6,7 +6,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./edit-parcours.component.scss']
 })
 export class EditParcoursComponent implements OnInit {
-
+  title: string = "Modifier le parcours";
   constructor() { }
 
   ngOnInit(): void {

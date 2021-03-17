@@ -6,7 +6,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./add-parcours.component.scss']
 })
 export class AddParcoursComponent implements OnInit {
-
+  title: string ="Ajouter un Parcours";
   constructor() { }
 
   ngOnInit(): void {
