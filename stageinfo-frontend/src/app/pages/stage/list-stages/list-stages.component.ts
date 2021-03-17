@@ -36,6 +36,16 @@ export class ListStagesComponent implements OnInit {
     }
   ];
 
+  public commonProperties = {
+    searchFilter: '',
+    nbEntries: 20,
+    pageCount: 0,
+    currentPage: 1,
+    lastpage: 1,
+    startIndex: 0,
+    endIndex: 20
+  }
+
   public allStages: Array<any>;
   public stagesPrinted: Array<any>;
   public stagesPrinted2: Array<any>;
