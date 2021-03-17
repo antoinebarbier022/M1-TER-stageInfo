@@ -1,16 +1,12 @@
 <div class="card">
     <div class="card-header">
         <h2 class="card-title"> {{ title }} 
-            <button routerLink="/liste-parcours/add-parcours" style="float:right;" class="btn btn-secondary btn-sm">
-                <i style="margin-right:5px;" class="fas fa-plus"></i>
-                Ajouter
-            </button> 
+            <app-button-add link="/liste-parcours/add-parcours" style="float:right;"></app-button-add>
         </h2>
     </div>
         <table class="table table-striped">
             <thead>
                 <tr>
-                    
                     <th scope="col">Acronyme</th>
                     <th scope="col">Intitule</th>
                     <th scope="col">Niveau</th>
