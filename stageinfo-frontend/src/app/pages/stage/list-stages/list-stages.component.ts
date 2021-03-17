@@ -71,12 +71,13 @@ export class ListStagesComponent implements OnInit {
     this.getStages();
   }
 
-  updateSubStageList(event: any){
+  updateSubStageList(event: any) : any{
     console.log(event);
     this.stagesPrinted2 = this.stagesPrinted.slice(event.startIndex, event.endIndex);
   }
 
   updateNbrEntries(event : any): void{
+    console.log(event);
     this.nbrEntries = event;
     console.log('parent : ');
     console.log(this.nbrEntries);

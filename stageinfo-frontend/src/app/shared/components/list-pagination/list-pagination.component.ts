@@ -56,6 +56,7 @@ export class ListPaginationComponent implements OnInit {
     this.currentPage = 1;
     this.pagination.startIndex = 0;
     this.pagination.endIndex = this.pagination.startIndex + this.nbrEntries;
+    
     this.paginationChanged();
     //this.getStagesByKeyword();
   }
