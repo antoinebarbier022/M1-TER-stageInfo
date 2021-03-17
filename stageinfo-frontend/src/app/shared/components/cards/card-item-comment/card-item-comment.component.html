@@ -8,7 +8,7 @@
             </span>
             - 
             <span class="comment-date">
-                {{ date | date }}
+                {{ date | date:'fullDate':'+0200':'fr' }}
             </span>
         </p>
         <span class="comment-timeago">{{ date | dateAgo }}</span>
