@@ -12,7 +12,8 @@ export class ListFilterComponent implements OnInit{
   @Input() public startIndex: number;
   @Input() public endIndex: number;
 
-  @Output() inputChange = new EventEmitter<any>();
+  @Output() inputFilterChange = new EventEmitter<any>();
+
 
   public searchFilter: string;
 
@@ -21,14 +22,14 @@ export class ListFilterComponent implements OnInit{
     this.searchFilter = "";
     this.visibleProperties = [];
     this.startIndex = 0;
-    this.endIndex = 0;
+    this.endIndex = 10;
   }
 
   ngOnInit(): void {}
 
   inputChanged(): void{
     //console.log(this.searchFilter);
-    this.inputChange.emit(this.getStagesByKeyword());
+    this.inputFilterChange.emit(this.getStagesByKeyword());
   }
 
   printArray(){

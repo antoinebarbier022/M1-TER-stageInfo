@@ -133,10 +133,7 @@ export class ListStagesComponent implements OnInit {
   }
 
   printStages(event : any){
-    console.log(event);
     this.stagesPrinted = event;
-    console.log('-------');
-    console.log(event);
   }
 
   // Dans le component list-filter
