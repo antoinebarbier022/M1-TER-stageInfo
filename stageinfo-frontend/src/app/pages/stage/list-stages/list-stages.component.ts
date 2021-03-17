@@ -36,19 +36,9 @@ export class ListStagesComponent implements OnInit {
     }
   ];
 
-  public commonProperties = {
-    searchFilter: '',
-    nbEntries: 20,
-    pageCount: 0,
-    currentPage: 1,
-    lastpage: 1,
-    startIndex: 0,
-    endIndex: 20
-  }
-
   public allStages: Array<any>;
   public stagesPrinted: Array<any>;
-  public stagesPrinted2: Array<any>;
+  public commonProperties: any;
 
   public searchFilter: string; // Déplacé dans list-filter
 
@@ -66,8 +56,6 @@ export class ListStagesComponent implements OnInit {
   constructor(private stageService: StageService) {
     this.allStages = new Array();
     this.stagesPrinted = new Array();
-    this.stagesPrinted2 = new Array();
-
     this.searchFilter = "";
     this.nbrEntries = 20;
     this.pageCount = 0;
@@ -77,20 +65,12 @@ export class ListStagesComponent implements OnInit {
     this.endIndex = this.startIndex+this.nbrEntries;
   }
 
+  printCommon(){
+    console.log(this.commonProperties);
+  }
+
   ngOnInit(): void {
     this.getStages();
-  }
-
-  updateSubStageList(event: any) : any{
-    console.log(event);
-    this.stagesPrinted2 = this.stagesPrinted.slice(event.startIndex, event.endIndex);
-  }
-
-  updateNbrEntries(event : any): void{
-    console.log(event);
-    this.nbrEntries = event;
-    console.log('parent : ');
-    console.log(this.nbrEntries);
   }
 
   getStages() : void {
@@ -99,7 +79,18 @@ export class ListStagesComponent implements OnInit {
       .subscribe((_stages: any[]) => {
         this.allStages = _stages;
         this.stagesPrinted = _stages;
-        this.stagesPrinted2 = _stages;
+
+        this.commonProperties = {
+          searchFilter: '',
+          nbEntries: 20,
+          pageCount: Math.ceil(this.allStages.length / this.nbrEntries),
+          currentPage: 1,
+          lastpage: 1,
+          startIndex: 0,
+          endIndex: 20,
+          filteredArray: this.allStages
+        }
+
         this.pageCount = Math.ceil(this.allStages.length / this.nbrEntries);
       }
     );

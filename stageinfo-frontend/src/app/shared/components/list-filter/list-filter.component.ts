@@ -9,27 +9,20 @@ export class ListFilterComponent implements OnInit{
 
   @Input() public itemArray: Array<any>;
   @Input() public visibleProperties: Array<any>;
-
-  @Output() inputFilterChange = new EventEmitter<any>();
-
-
-  public searchFilter: string;
+  @Input() public commonProperties: any;
 
   constructor() {
     this.itemArray = [];
-    this.searchFilter = "";
     this.visibleProperties = [];
+    this.commonProperties = null;
   }
 
   ngOnInit(): void {}
 
-  inputChanged(): void{
-    //console.log(this.searchFilter);
-    this.inputFilterChange.emit(this.getStagesByKeyword());
-  }
-
   printArray(){
-    //console.log(this.itemArray);
+    //console.log(this.commonProperties);
+    this.getStagesByKeyword();
+    //console.log(this.commonProperties.filteredArray);
   }
 
   getNestedValue(obj: any, key : any): any{
@@ -38,7 +31,6 @@ export class ListFilterComponent implements OnInit{
     }, obj);
   }
   
-  // Dans le component list-filter
   stageHasAllKeywords(stage: any, str: string[]): boolean {
     const keywords = str.filter(e => e).map(v => v.toLowerCase());
 
@@ -51,10 +43,9 @@ export class ListFilterComponent implements OnInit{
     return keywords.every(word => row.join(' ').toLowerCase().includes(word));
   }
 
-  // Dans le component list-filter
-  getStagesByKeyword() : any {
-    return this.itemArray.filter(x => {
-      if (this.stageHasAllKeywords(x, this.searchFilter.trim().split(/\s+/))) return x;
+  getStagesByKeyword() : void {
+    this.commonProperties.filteredArray = this.itemArray.filter(x => {
+      if (this.stageHasAllKeywords(x, this.commonProperties.searchFilter.trim().split(/\s+/))) return x;
     });
   }
   

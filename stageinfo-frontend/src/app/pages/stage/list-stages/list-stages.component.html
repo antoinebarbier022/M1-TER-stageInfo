@@ -1,4 +1,4 @@
-<h1>{{ title }}</h1>
+<h1 (click)="printCommon()">{{ title }}</h1>
 <!-- Cette card est pour la bar de recherche et les différents filtres -->
 <div class="card">
     <div id="idFilter">
@@ -16,9 +16,9 @@
     </div>
 </div>
 
-<app-list-entries-number (nbrEntriesChange)="updateNbrEntries($event)"></app-list-entries-number>
+<app-list-entries-number></app-list-entries-number>
 
-<app-list-filter [itemArray]="allStages" [visibleProperties]="visibleProperties" (inputFilterChange)="printStages($event)"></app-list-filter>
+<app-list-filter [commonProperties]="commonProperties" [itemArray]="allStages" [visibleProperties]="visibleProperties"></app-list-filter>
 
 <div class="card">
     <div class="card-header">
@@ -54,7 +54,7 @@
         </thead>
         <tbody>
             <!-- Ajout des stages de la BDD -->
-            <tr *ngFor="let stage of this.stagesPrinted2"> <!-- slice(0,1) -->
+            <tr *ngFor="let stage of this.commonProperties.filteredArray"> <!-- slice(0,1) -->
                 <td><a routerLink="/liste-stages/info-stage">{{ stage.titre }}</a></td>
                 <td>{{ stage.entreprise.nomComplet }}</td>
                 <td>{{ stage.parcours.nomComplet }}</td>
@@ -82,5 +82,5 @@
         </ul>
     </div>
 
-    <app-list-pagination [nbrEntries]="nbrEntries" [listSize]="this.allStages.length" (paginationChange)="updateSubStageList($event)"></app-list-pagination>
+    <app-list-pagination></app-list-pagination>
 </div>
