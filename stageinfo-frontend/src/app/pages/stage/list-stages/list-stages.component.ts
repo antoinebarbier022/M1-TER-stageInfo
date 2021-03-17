@@ -42,12 +42,12 @@ export class ListStagesComponent implements OnInit {
   public searchFilter: string; // Déplacé dans list-filter
 
   public nbrEntries: number;
-  public pageCount: number;
-  public currentPage: number;
-  public lastPage: number;
+  public pageCount: number; // Déplacé dans list-pagination
+  public currentPage: number; // Déplacé dans list-pagination
+  public lastPage: number; // Déplacé dans list-pagination
 
-  public startIndex: number;
-  public endIndex: number;
+  public startIndex: number; // Déplacé dans list-pagination
+  public endIndex: number; // Déplacé dans list-pagination
 
   destroy$: Subject<boolean> = new Subject<boolean>();
 
@@ -100,8 +100,12 @@ export class ListStagesComponent implements OnInit {
     }
   }
 
+  // Dans le component list-pagination
   setNumberEntries(nbr : any) : void{
     this.nbrEntries = parseInt(nbr.target.value);
+    console.log("pere : ");
+    console.log(this.nbrEntries);
+    
     this.endIndex = this.startIndex + this.nbrEntries;
 
     this.pageCount = Math.ceil(this.allStages.length / this.nbrEntries);
@@ -143,6 +147,7 @@ export class ListStagesComponent implements OnInit {
     });
   }
 
+  // Dans le component list-pagination
   onClickPageNumber(nbr: number) : void {
     this.lastPage = this.currentPage;
     this.currentPage = nbr;
@@ -160,6 +165,7 @@ export class ListStagesComponent implements OnInit {
     this.getStagesByKeyword();
   }
 
+  // Dans le component list-pagination
   onClickNextPage() : void{
     if (this.currentPage + 1 <= this.pageCount) {
       this.lastPage = this.currentPage;
@@ -170,6 +176,7 @@ export class ListStagesComponent implements OnInit {
     }
   }
 
+  // Dans le component list-pagination
   onClickPreviousPage() : void{
     if (this.currentPage - 1 > 0) {
       this.lastPage = this.currentPage;

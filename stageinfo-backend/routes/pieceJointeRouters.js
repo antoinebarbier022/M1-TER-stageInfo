@@ -8,7 +8,7 @@ const router = express.Router();
 
 const pieceJointeCtrl = require('../controllers/pieceJointeController');
 
-router.get('/',Admin,pieceJointeCtrl.getAllPieceJointe);
+router.get('/',invite,pieceJointeCtrl.getAllPieceJointe);
 router.get('/_id:',invite, pieceJointeCtrl.getOnePieceJointe);
 router.post('/',Etudiant, pieceJointeCtrl.createPieceJointe);
 router.put('/_id:', Etudiant,pieceJointeCtrl.editPieceJointe);

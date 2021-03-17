@@ -18,7 +18,7 @@ exports.createEntreprise = (req, res, next) => {
 exports.getAllEntreprise = (req, res, next) => {
     Entreprise.find()
         .then(entreprise => res.status(200).json(entreprise))
-        .catch(error =>res.status(400).json({error}));
+        .catch(error =>res.status(404).json({error}));
 }
 exports.getOneEntreprise = (req,res, next) => {
     Entreprise.findOne({_id: req.params.id})

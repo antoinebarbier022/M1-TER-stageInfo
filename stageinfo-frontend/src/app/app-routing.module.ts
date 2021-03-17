@@ -38,14 +38,13 @@ import { LoginComponent } from './pages/login/login.component';
 import {AuthGuardService} from "./core/services/auth-guard.service";
 import {AuthGuard} from "./core/services/guard-login.service";
 import { ListFilterComponent } from './shared/components/list-filter/list-filter.component';
+import { ListPaginationComponent } from './shared/components/list-pagination/list-pagination.component';
 
 
 const routes: Routes = [
   { path: '', component: ListStagesComponent, canActivate: [AuthGuardService]},
   { path: 'login', component: LoginComponent, canActivate: [AuthGuard]},
   { path: 'documentation', component: ExempleDocComponent, canActivate: [AuthGuardService]},
-
-  { path: 'list-filter', component: ListFilterComponent, canActivate: [AuthGuardService]},
 
   // routes stages
   { path: 'liste-stages', component: ListStagesComponent, canActivate: [AuthGuardService]},

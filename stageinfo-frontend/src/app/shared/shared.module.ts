@@ -19,6 +19,6 @@ import { ListPaginationComponent } from './components/list-pagination/list-pagin
     RouterModule,
     FormsModule,
   ],
-  exports:[FormUserComponent, FormEntrepriseComponent, CardStagesComponent, ModalComponent, ListFilterComponent]
+  exports:[FormUserComponent, FormEntrepriseComponent, CardStagesComponent, ModalComponent, ListFilterComponent, ListPaginationComponent]
 })
 export class SharedModule { }

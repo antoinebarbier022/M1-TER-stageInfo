@@ -8,7 +8,7 @@ const router = express.Router();
 
 const entrepriseCtrl = require('../controllers/entrepriseController');
 
-router.get('/',Etudiant,entrepriseCtrl.getAllEntreprise);
+router.get('/',invite,entrepriseCtrl.getAllEntreprise);
 router.get('/_id:',Etudiant, entrepriseCtrl.getOneEntreprise);
 router.put('/_id:', Etudiant,entrepriseCtrl.editEntreprise);
 router.post('/', Etudiant,entrepriseCtrl.createEntreprise);
