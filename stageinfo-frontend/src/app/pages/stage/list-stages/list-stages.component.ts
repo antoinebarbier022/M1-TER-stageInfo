@@ -38,10 +38,12 @@ export class ListStagesComponent implements OnInit {
 
   public allStages: Array<any>;
   public stagesPrinted: Array<any>;
+  public stagesPrinted2: Array<any>;
 
   public searchFilter: string; // Déplacé dans list-filter
 
   public nbrEntries: number; // Déplacé dans list-entries-number
+
   public pageCount: number; // Déplacé dans list-pagination
   public currentPage: number; // Déplacé dans list-pagination
   public lastPage: number; // Déplacé dans list-pagination
@@ -54,6 +56,7 @@ export class ListStagesComponent implements OnInit {
   constructor(private stageService: StageService) {
     this.allStages = new Array();
     this.stagesPrinted = new Array();
+    this.stagesPrinted2 = new Array();
 
     this.searchFilter = "";
     this.nbrEntries = 20;
@@ -66,6 +69,16 @@ export class ListStagesComponent implements OnInit {
 
   ngOnInit(): void {
     this.getStages();
+  }
+
+  printSubStageList(indexStart: number, indexEnd: number){
+
+  }
+
+  updateNbrEntries(event : any): void{
+    this.nbrEntries = event;
+    console.log('parent : ');
+    console.log(this.nbrEntries);
   }
 
   getStages() : void {
@@ -103,8 +116,6 @@ export class ListStagesComponent implements OnInit {
   // Dans le component list-pagination
   setNumberEntries(nbr : any) : void{
     this.nbrEntries = parseInt(nbr.target.value);
-    console.log("pere : ");
-    console.log(this.nbrEntries);
     
     this.endIndex = this.startIndex + this.nbrEntries;
 
@@ -136,7 +147,11 @@ export class ListStagesComponent implements OnInit {
     return keywords.every(word => row.join(' ').toLowerCase().includes(word));
   }
 
-  printStages(event : any){
+  printMsg(): void{
+    console.log("salut");
+  }
+
+  printStages(event : any): any{
     this.stagesPrinted = event;
   }
 

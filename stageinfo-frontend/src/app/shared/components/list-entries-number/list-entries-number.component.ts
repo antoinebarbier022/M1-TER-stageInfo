@@ -15,7 +15,16 @@ export class ListEntriesNumberComponent implements OnInit {
     this.nbrEntries = 20;
   }
 
-  ngOnInit(): void {
+  printNbrEntries(): void{
+    console.log(this.nbrEntries);
   }
+
+  entriesChanged(): void{
+    this.nbrEntriesChange.emit(this.nbrEntries);
+  }
+
+  ngOnInit(): void {}
+
+
 
 }

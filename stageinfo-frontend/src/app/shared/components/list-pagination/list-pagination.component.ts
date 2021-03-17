@@ -37,14 +37,13 @@ export class ListPaginationComponent implements OnInit {
     if(changes['nbrEntries'] !== undefined){
       this.nbrEntries = changes['nbrEntries'].currentValue;
       this.setNumberEntries(this.nbrEntries);
+      console.log('ENFAAAANT');
     }
 
     if(changes['listSize'] !== undefined){
       this.listSize = changes['listSize'].currentValue;
       this.pageCount = Math.ceil(this.listSize/this.nbrEntries);
     }
-    console.log('fils :');
-    console.log(this.listSize);
   }
 
   setNumberEntries(nbr : number) : void{
