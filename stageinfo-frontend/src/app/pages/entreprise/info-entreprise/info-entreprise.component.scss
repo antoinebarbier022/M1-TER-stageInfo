@@ -2,15 +2,8 @@
     width: 100%;    // takes parent width        
     height: 100%;   // takes parent height   
 }
-.card{
-    .card-header{
-        padding-bottom: 0;
-    }
-    .card-body{
-        padding-top: 0;
-    }
-}
-.all-card-profile{
+
+.all-card{
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
     grid-template-rows: 1fr auto auto;
@@ -34,10 +27,6 @@
     #info-entreprise{
         grid-area: info;
     }
-}
-
-.card{
-    margin:0;
 }
 
 

@@ -10,6 +10,7 @@ import { ModalComponent } from './components/modal/modal.component';
 import { NavigationComponent } from './components/navigation/navigation.component';
 import { FormParcoursComponent } from './components/form-parcours/form-parcours.component';
 import { ButtonAddComponent } from './components/buttons/button-add/button-add.component';
+import { CardComponent } from './components/card/card.component';
 
 
 
@@ -20,7 +21,9 @@ import { ButtonAddComponent } from './components/buttons/button-add/button-add.c
     CardStagesComponent, 
     ModalComponent, 
     NavigationComponent, 
-    FormParcoursComponent, ButtonAddComponent],
+    FormParcoursComponent, 
+    ButtonAddComponent, 
+    CardComponent],
   imports: [
     CommonModule,
     RouterModule,
@@ -33,6 +36,7 @@ import { ButtonAddComponent } from './components/buttons/button-add/button-add.c
     ModalComponent, 
     NavigationComponent,
     FormParcoursComponent,
-    ButtonAddComponent]
+    ButtonAddComponent,
+    CardComponent]
 })
 export class SharedModule { }

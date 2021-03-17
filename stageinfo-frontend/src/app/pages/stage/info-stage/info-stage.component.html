@@ -34,62 +34,41 @@
         </ul>
     </div>
 
-    <div id="informations-stage" class="card">
-        <div class="card-header">
-            <h2 class="card-title">Informations</h2>
-        </div>
-        <div class="card-body">
-            <p>Titre : {{ stage.titre }}</p>
+    <!-- Informations du stage -->
+    <app-card id="information-stage" title="Informations">
+        <p>Titre : {{ stage.titre }}</p>
             <p>Parcours : {{ stage.parcours.nomComplet }}</p>
             <p>Durée : {{ stage.duree }} mois</p>
             <p>Date début : {{ stage.datedebut }}</p>
-        </div>
-    </div>
+    </app-card>
 
-    <div id="avantages-stage"class="card">
-        <div class="card-header">
-            <h2 class="card-title">Avantages</h2>
-        </div>
-        <div class="card-body">
-            <p>Salaire : {{ stage.salaire }}</p>
-            <p>Avantages : {{ stage.avantages }}</p>
-        </div>
-    </div>
+    <!-- Avantages du stage -->
+    <app-card id="avantages-stage" title="Avantages">
+        <p>Salaire : {{ stage.salaire }}</p>
+        <p>Avantages : {{ stage.avantages }}</p>
+    </app-card>
 
-    <div id="conditions-stage"class="card">
-        <div class="card-header">
-            <h2 class="card-title">Conditions</h2>
-        </div>
-        <div class="card-body">
-            <p>Niveau requis : {{ stage.niveauRequis }}</p>
-            <p>Conditions : {{ stage.conditions}}</p>
-        </div>
-    </div>
+    <!-- Conditions du stage -->
+    <app-card id="conditions-stage" title="Conditions">
+        <p>Niveau requis : {{ stage.niveauRequis }}</p>
+        <p>Conditions : {{ stage.conditions}}</p>
+    </app-card>
 
-    <div id="description-stage"class="card">
-        <div class="card-header">
-            <h2 class="card-title">Description</h2>
-        </div>
-        <div class="card-body">
-            <p>{{ stage.description }}</p>
-        </div>
-    </div>
-
-    <div id="entreprise-stage"class="card">
-        <div class="card-header">
-            <h2 class="card-title">Entreprise</h2>
-        </div>
-        <div class="card-body">
-            <p>Nom : IBM Montpellier</p>
-            <p>Adresse : 9 rue Ada
-            34090 Montpellier</p>
-            <p>Site internet :	http://www.lirmm.fr/</p>
-            <p>Tuteur dans l'entreprise:	Tibermacine Chouki</p>
-            <p>Email :	tibermacin@lirmm.fr</p>
-            <p>tel :	0467149724</p>
-            <p>fax :</p>
-        </div>
-    </div>
+    <!-- Description du stage -->
+    <app-card id="description-stage" title="Description">
+        <p>{{ stage.description }}</p>
+    </app-card>
+    
+    <!-- Informations sur l'entreprise du stage -->
+    <app-card id="entreprise-stage" title="Entreprise">
+        <p>Nom : IBM Montpellier</p>
+        <p>Adresse : 9 rue Ada 34090 Montpellier</p>
+        <p>Site internet :	http://www.lirmm.fr/</p>
+        <p>Tuteur dans l'entreprise:	Tibermacine Chouki</p>
+        <p>Email :	tibermacin@lirmm.fr</p>
+        <p>tel :	0467149724</p>
+        <p>fax :</p>
+    </app-card>
 </div>
 
 
