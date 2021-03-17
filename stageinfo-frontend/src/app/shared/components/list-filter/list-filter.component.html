@@ -3,7 +3,7 @@
         <div class="card-parameters">
             <div class="card-parameters-search">
                 <label>Rechercher2 </label>
-                <input [(ngModel)]="searchFilter" type="text" placeholder="" class="form-control" id="search" name="search">
+                <input [(ngModel)]="searchFilter" (input)="inputChanged()" type="text" placeholder="" class="form-control" id="search" name="search">
                 <button class="btn btn-link"
                         style="margin-left:5px;"
                         class="btn btn-secondary btn-sm"

@@ -8,14 +8,13 @@ import { Component, Input, Output, EventEmitter, OnInit } from '@angular/core';
 export class ListFilterComponent implements OnInit{
 
   @Input() public itemArray: Array<any>;
-  @Input() public searchFilter: string;
   @Input() public visibleProperties: Array<any>;
   @Input() public startIndex: number;
   @Input() public endIndex: number;
 
-  @Output() listOutput = new EventEmitter<any>();
+  @Output() inputChange = new EventEmitter<any>();
 
-  public arrayFilter: Array<string>;
+  public searchFilter: string;
 
   constructor() {
     this.itemArray = [];
@@ -23,14 +22,17 @@ export class ListFilterComponent implements OnInit{
     this.visibleProperties = [];
     this.startIndex = 0;
     this.endIndex = 0;
-
-    this.arrayFilter = [];
   }
 
   ngOnInit(): void {}
 
+  inputChanged(): void{
+    //console.log(this.searchFilter);
+    this.inputChange.emit(this.getStagesByKeyword());
+  }
+
   printArray(){
-    console.log(this.listOutput);
+    //console.log(this.itemArray);
   }
 
   getNestedValue(obj: any, key : any): any{
@@ -38,12 +40,13 @@ export class ListFilterComponent implements OnInit{
        return result[key] 
     }, obj);
   }
-
+  
+  // Dans le component list-filter
   stageHasAllKeywords(stage: any, str: string[]): boolean {
     const keywords = str.filter(e => e).map(v => v.toLowerCase());
 
     let row = new Array();
-    
+
     this.visibleProperties.forEach(prop => {
       row.push(this.getNestedValue(stage, prop.name));
     });
@@ -51,14 +54,12 @@ export class ListFilterComponent implements OnInit{
     return keywords.every(word => row.join(' ').toLowerCase().includes(word));
   }
 
-  getStagesByKeyword() : void {
-    this.itemArray = this.searchFilter.trim().split(/\s+/);
-
-    this.listOutput.emit(this.itemArray.slice(this.startIndex, this.endIndex).filter(x => {
-      if (this.stageHasAllKeywords(x, this.itemArray)) return x;
-    }));
-
-    console.log(this.listOutput);
+  // Dans le component list-filter
+  getStagesByKeyword() : any {
+    return this.itemArray.filter(x => {
+      if (this.stageHasAllKeywords(x, this.searchFilter.trim().split(/\s+/))) return x;
+    });
   }
+  
 
 }

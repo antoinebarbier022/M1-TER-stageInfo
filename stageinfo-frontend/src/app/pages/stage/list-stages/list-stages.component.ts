@@ -37,6 +37,7 @@ export class ListStagesComponent implements OnInit {
   ];
 
   public allStages: Array<any>;
+  public stagesPrinted: Array<any>;
 
   public searchFilter: string; // Déplacé dans list-filter
 
@@ -52,6 +53,8 @@ export class ListStagesComponent implements OnInit {
 
   constructor(private stageService: StageService) {
     this.allStages = new Array();
+    this.stagesPrinted = new Array();
+
     this.searchFilter = "";
     this.nbrEntries = 20;
     this.pageCount = 0;
@@ -70,6 +73,7 @@ export class ListStagesComponent implements OnInit {
       .pipe(takeUntil(this.destroy$))
       .subscribe((_stages: any[]) => {
         this.allStages = _stages;
+        this.stagesPrinted = _stages;
         this.pageCount = Math.ceil(this.allStages.length / this.nbrEntries);
       }
     );
@@ -86,7 +90,6 @@ export class ListStagesComponent implements OnInit {
   }
 
   sortByAscendingDescendingOrder(index: number){
-    console.log(this.searchFilter);
     if(this.visibleProperties[index].sorted){
       this.allStages.sort((stage1, stage2) => (-1)*this.compare(stage1, stage2, index));
       this.visibleProperties[index].sorted = false;
@@ -127,6 +130,13 @@ export class ListStagesComponent implements OnInit {
     });
 
     return keywords.every(word => row.join(' ').toLowerCase().includes(word));
+  }
+
+  printStages(event : any){
+    console.log(event);
+    this.stagesPrinted = event;
+    console.log('-------');
+    console.log(event);
   }
 
   // Dans le component list-filter
