@@ -18,8 +18,8 @@ export class SidebarComponent implements OnInit {
   listeSoutenances =        {icon:"fas fa-list",          nom:"Listing des soutenances",  lien:"/liste-soutenances",   items:[]};
   listeEntreprise =         {icon:"fas fa-list",          nom:"Listing des entreprises",  lien:"/liste-entreprises",   items:[]};
   listeUtilisateurs =       {icon:"fas fa-list",          nom:"Listing des utilisateurs", lien:"/liste-utilisateurs",   items:[]};
-  listeEtudiants =          {icon:"fas fa-user-friends",  nom:"Listing des étudiants ",   lien:"/liste-etudiants", items:[]};
-  listeEnseignants =        {icon:"fas fa-user-friends",  nom:"listing des enseignants",  lien:"/liste-enseignants", items:[]};
+  listeEtudiants =          {icon:"fas fa-list",  nom:"Listing des étudiants ",   lien:"/liste-etudiants", items:[]};
+  listeEnseignants =        {icon:"fas fa-list",  nom:"listing des enseignants",  lien:"/liste-enseignants", items:[]};
   listeParcours =           {icon:"fas fa-list",          nom:"Listing des parcours",     lien:"/liste-parcours",       items:[]};
   listeEtudiantsSansStage = {icon:"fas fa-user-friends",  nom:"Étudiant sans stages",     lien:"/etudiant-sans-stages", items:[]};
   listeSoutenancesNonPlanifie = {icon:"fas fa-list",      nom:"Listing des soutenances non planifiées", lien:"/listing-soutenance-non-planifie", items:[]};
@@ -137,7 +137,6 @@ export class SidebarComponent implements OnInit {
       items: [  this.listeStages, 
                 this.listeUtilisateurs, 
                 this.listeEtudiants,
-                this.listeEnseignants,
                 this.listeEntreprise, 
                 this.listeSoutenances, 
                 this.listeParcours]

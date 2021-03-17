@@ -1,0 +1,69 @@
+<div class="card">
+    <div class="card-header">
+        <h2 class="card-title">Tableau des étudiants
+            <button routerLink="/liste-utilisateurs/import-users" type="submit" style="float:right;margin-left:5px; " class="btn btn-secondary btn-sm">
+                <i style="margin-right:5px;" class="fas fa-file-import"></i>
+                importer
+            </button> 
+
+            <app-button-add link="/liste-utilisateurs/add-user" style="float:right;"></app-button-add>
+        </h2>
+    </div>
+        <table class="card-table table table-striped">
+            <thead>
+            <tr>
+                <th scope="col">N° Etudiant</th>
+                <th scope="col">Nom</th>
+                <th scope="col">Email</th>
+                <th scope="col">Parcours</th>
+                <th scope="col">Année Universitaire</th>
+                <th scope="col">Actions</th>
+            </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>12847389</td>
+                    <td>Antoine Barbier</td>
+                    <td>antoine.barbier01@etu.umontpellier.fr</td>
+                    <td><span class="badge badge-secondary">M2 Aigle</span></td>
+                    <td>2020/2021</td>
+                    <td class="table-action">
+                        <a routerLink="/liste-utilisateurs/edit-user"><i class="icon far fa-lg fa-edit"></i></a>
+                        <a href="#" data-toggle="modal" data-target="#suppression-user"><i class="icon far fa-lg fa-trash-alt"></i></a>
+                    </td>
+                </tr>
+                <tr>
+                    <td>12847389</td>
+                    <td>Antoine Barbier</td>
+                    <td>antoine.barbier01@etu.umontpellier.fr</td>
+                    <td><span class="badge badge-secondary">M2 Aigle</span></td>
+                    <td>2020/2021</td>
+                    <td class="table-action">
+                        <a routerLink="/liste-utilisateurs/edit-user"><i class="icon far fa-lg fa-edit"></i></a>
+                        <a href="#" data-toggle="modal" data-target="#suppression-user"><i class="icon far fa-lg fa-trash-alt"></i></a>
+                    </td>
+                </tr>
+                <tr>
+                    <td>12847389</td>
+                    <td>Antoine Barbier</td>
+                    <td>antoine.barbier01@etu.umontpellier.fr</td>
+                    <td><span class="badge badge-secondary">M2 Aigle</span></td>
+                    <td>2020/2021</td>
+                    <td class="table-action">
+                        <a routerLink="/liste-utilisateurs/edit-user"><i class="icon far fa-lg fa-edit"></i></a>
+                        <!-- Appel au modal  -->
+                        <a href="#" data-toggle="modal" data-target="#suppression-user"><i class="icon far fa-lg fa-trash-alt"></i></a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+</div>
+            
+<!-- Debut du Modal suppression utilisateur -->
+<app-modal  class="modal fade"
+            tabindex="-1" 
+            role="dialog" 
+            id="suppression-user"
+            title="Suppression Utilisateur">
+            <p>Confirmer la suppression de l'utilisateur.</p>
+</app-modal>

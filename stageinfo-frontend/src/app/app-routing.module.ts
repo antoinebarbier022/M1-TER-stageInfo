@@ -13,6 +13,7 @@ import { EditUserV2Component } from './pages/user/edit-user-v2/edit-user-v2.comp
 import { AddUserComponent } from './pages/user/add-user/add-user.component';
 import { ImportUsersComponent } from './pages/user/import-users/import-users.component';
 import { ListUsersComponent } from './pages/user/list-users/list-users.component';
+import { ListEtudiantsComponent } from './pages/user/list-etudiants/list-etudiants.component';
 
 // import stages
 import { ListStagesComponent } from './pages/stage/list-stages/list-stages.component';
@@ -56,6 +57,7 @@ import { EntreprisesResolver } from './core/resolves/entreprises.resolver';
 import { EntrepriseResolver } from './core/resolves/entreprise.resolver';
 
 
+
 const routes: Routes = [
   { path: '', redirectTo: 'liste-stages', pathMatch: 'full', canActivate: [AuthGuardService]},
   { path: 'login', component: LoginComponent, canActivate: [AuthGuard]},
@@ -81,8 +83,7 @@ const routes: Routes = [
   // route users
   
   { path: 'liste-utilisateurs', component: ListUsersComponent, canActivate: [AuthGuardService], resolve: { users: UsersResolver }},
-  { path: 'liste-etudiants', component: ListUsersComponent, canActivate: [AuthGuardService]},
-  { path: 'liste-enseignants', component: ListUsersComponent, canActivate: [AuthGuardService]},
+  { path: 'liste-etudiants', component: ListEtudiantsComponent, canActivate: [AuthGuardService]},
   { path: 'liste-utilisateurs/import-users', component: ImportUsersComponent, canActivate: [AuthGuardService]},
   { path: 'liste-utilisateurs/add-user', component: AddUserComponent, canActivate: [AuthGuardService]},
   { path: 'liste-utilisateurs/edit-user/:id', 

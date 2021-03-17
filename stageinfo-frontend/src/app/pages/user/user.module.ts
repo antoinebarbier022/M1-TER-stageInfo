@@ -13,6 +13,7 @@ import { EditUserComponent } from './edit-user/edit-user.component';
 import { EditUserV2Component } from './edit-user-v2/edit-user-v2.component';
 import { AddUserComponent } from './add-user/add-user.component';
 import { ImportUsersComponent } from './import-users/import-users.component';
+import { ListEtudiantsComponent } from './list-etudiants/list-etudiants.component';
 
 
 
@@ -24,7 +25,8 @@ import { ImportUsersComponent } from './import-users/import-users.component';
     EditUserComponent, 
     EditUserV2Component, 
     AddUserComponent, 
-    ImportUsersComponent],
+    ImportUsersComponent, 
+    ListEtudiantsComponent],
   imports: [
     CommonModule,
     BrowserModule,
@@ -38,6 +40,7 @@ import { ImportUsersComponent } from './import-users/import-users.component';
     EditUserComponent, 
     EditUserV2Component, 
     AddUserComponent, 
-    ImportUsersComponent],
+    ImportUsersComponent,
+    ListEtudiantsComponent],
 })
 export class UserModule { }
