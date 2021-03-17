@@ -5,10 +5,8 @@
                 <i style="margin-right:5px;" class="fas fa-file-import"></i>
                 importer
             </button> 
-            <button routerLink="/liste-entreprises/add-entreprise" type="submit" style="float:right;" class="btn btn-secondary btn-sm">
-                <i style="margin-right:5px;" class="fas fa-plus"></i>
-                Ajouter
-            </button> 
+    
+            <app-button-add link="/liste-entreprises/add-entreprise" style="float:right;"></app-button-add>
         </h2>
     </div>
         <table class="table table-striped">
@@ -28,7 +26,7 @@
                     <td>{{ entreprise.nom }}</td>
                     <td>{{ entreprise.nom }}</td>
                     <td class="table-action">
-                        <a routerLink="/liste-entreprises/edit-entreprise"><i class="icon far fa-lg fa-edit"></i></a>
+                        <a [routerLink]="['/liste-entreprises/edit-entreprise', entreprise._id]"><i class="icon far fa-lg fa-edit"></i></a>
                         <a href="#" data-toggle="modal" data-target="#suppression-entreprise"><i class="icon far fa-lg fa-trash-alt"></i></a>
                     </td>
                 </tr>

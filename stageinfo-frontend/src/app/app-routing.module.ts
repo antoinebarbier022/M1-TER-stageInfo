@@ -103,7 +103,7 @@ const routes: Routes = [
   { path: 'profile', component: ProfileUserComponent, canActivate: [AuthGuardService]},
   //routes entreprise
   { path: 'liste-entreprises', component: ListEntreprisesComponent, canActivate: [AuthGuardService], resolve: { entreprises: EntreprisesResolver }},
-  { path: 'liste-entreprises/add-entreprise', component: AddEntrepriseComponent, canActivate: [AuthGuardService], resolve: { entreprises: EntrepriseResolver }},
+  { path: 'liste-entreprises/add-entreprise', component: AddEntrepriseComponent, canActivate: [AuthGuardService]},
   { path: 'liste-entreprises/edit-entreprise/:id', component: EditEntrepriseComponent, canActivate: [AuthGuardService], resolve: { entreprises: EntrepriseResolver }},
   { path: 'liste-entreprises/info/:id', component: InfoEntrepriseComponent, canActivate: [AuthGuardService], resolve: { entreprises: EntrepriseResolver }},
   // route soutenance
