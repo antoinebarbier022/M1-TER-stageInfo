@@ -9,14 +9,6 @@
     gap: 15px 15px;
 }
 
-.card{
-    .card-header{
-        padding-bottom: 0;
-    }
-    .card-body{
-        padding-top: 0;
-    }
-}
 
 th{  
     //permet d'avoir toutes les data affiché au même niveau
@@ -25,41 +17,5 @@ th{
 td{
     padding:6px;
 }
-.card-stage{
-    background:#f7f9fc;
-    font-size:0.8rem;
-    border: 1px solid #6c757d25;
-    padding:1rem;
-    margin: 0.75rem 1.25rem 1.25rem 1.25rem;
-    display:flex;
-    flex-direction: row;
-    
-    .stage-body{
-        width:100%;
-        .stage-titre{
-            font-size:0.8rem;
-            font-weight:600;
-            color:#6c757d;
-        }
-
-        .stage-entreprise{
-            font-size:0.8rem;
-        }
-    }
-    
-    
-    .stage-date{
-        font-size:0.8rem;
-        margin-left:20px;
-        float:right;
-    }
-    .stage-etat{
-        display:block;
-        min-width:50px;
-        margin-right:10px;
-    }
-}
-
-
 
 

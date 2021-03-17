@@ -4,10 +4,19 @@
     <app-form-user  id="info-user" 
                     [viewUser]="true" 
                     title="Profile utilisateur"
-                    [idUser]="userId"></app-form-user>
-    
-    <app-card-stages id="stages-entreprise"></app-card-stages>
-    
+                    [idUser]="userId">
+    </app-form-user>
+
+    <!-- Les stages associées à l'utilisateur -->
+    <app-card title="Stages">
+        <!-- Card d'un stage -->
+        <app-card-item-stage *ngFor="let stage of stages"
+            [title]="stage.titre" 
+            [state]="stage.etat"
+            [entreprise]="stage.entreprise"
+            [date]="stage.date">
+        </app-card-item-stage>
+    </app-card>
 </div>
 
 <!-- Debut du Modal suppression utilisateur -->
