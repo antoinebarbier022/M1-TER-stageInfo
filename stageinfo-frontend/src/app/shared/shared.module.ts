@@ -20,6 +20,6 @@ import { ListEntriesNumberComponent } from './components/list-entries-number/lis
     RouterModule,
     FormsModule,
   ],
-  exports:[FormUserComponent, FormEntrepriseComponent, CardStagesComponent, ModalComponent, ListFilterComponent, ListPaginationComponent]
+  exports:[FormUserComponent, FormEntrepriseComponent, CardStagesComponent, ModalComponent, ListFilterComponent, ListPaginationComponent, ListEntriesNumberComponent]
 })
 export class SharedModule { }
