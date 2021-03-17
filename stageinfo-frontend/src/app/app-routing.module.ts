@@ -78,13 +78,9 @@ const routes: Routes = [
 
   // route users
   
-  { path: 'liste-utilisateurs', 
-    component: ListUsersComponent, 
-    canActivate: [AuthGuardService],
-    resolve: {
-      users: UsersResolver  // on associe un resolver à la route
-    }
-  },
+  { path: 'liste-utilisateurs', component: ListUsersComponent, canActivate: [AuthGuardService], resolve: { users: UsersResolver }},
+  { path: 'liste-etudiants', component: ListUsersComponent, canActivate: [AuthGuardService]},
+  { path: 'liste-enseignants', component: ListUsersComponent, canActivate: [AuthGuardService]},
   { path: 'liste-utilisateurs/import-users', component: ImportUsersComponent, canActivate: [AuthGuardService]},
   { path: 'liste-utilisateurs/add-user', component: AddUserComponent, canActivate: [AuthGuardService]},
   { path: 'liste-utilisateurs/edit-user/:id', 

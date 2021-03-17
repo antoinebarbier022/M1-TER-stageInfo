@@ -134,7 +134,13 @@ export class SidebarComponent implements OnInit {
   navigationSecretaire = [
     {
       title:"Administration",
-      items: [ this.listeStages, this.listeUtilisateurs, this.listeEntreprise, this.listeSoutenances, this.listeParcours]
+      items: [  this.listeStages, 
+                this.listeUtilisateurs, 
+                this.listeEtudiants,
+                this.listeEnseignants,
+                this.listeEntreprise, 
+                this.listeSoutenances, 
+                this.listeParcours]
     },
     {
       title:"Stage",
