@@ -9,8 +9,6 @@ export class ListFilterComponent implements OnInit{
 
   @Input() public itemArray: Array<any>;
   @Input() public visibleProperties: Array<any>;
-  @Input() public startIndex: number;
-  @Input() public endIndex: number;
 
   @Output() inputFilterChange = new EventEmitter<any>();
 
@@ -21,8 +19,6 @@ export class ListFilterComponent implements OnInit{
     this.itemArray = [];
     this.searchFilter = "";
     this.visibleProperties = [];
-    this.startIndex = 0;
-    this.endIndex = 10;
   }
 
   ngOnInit(): void {}
