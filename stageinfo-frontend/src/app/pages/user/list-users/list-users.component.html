@@ -24,7 +24,7 @@
             </tr>
             </thead>
             <tbody>
-                <tr *ngFor="let user of printStages()">
+                <tr *ngFor="let user of printItems()">
                     <!--<td>{{ user._id }}</td>-->
                     <td><a [routerLink]="['/liste-utilisateurs/user/', user._id]">{{ user.nom }} {{ user.prenom }}</a></td>
                     <td>{{ user.email }}</td>
