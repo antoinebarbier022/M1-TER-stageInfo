@@ -38,7 +38,17 @@ export class ListStagesComponent implements OnInit {
 
   public allStages: Array<any>;
   public stagesPrinted: Array<any>;
-  public commonProperties: any;
+
+  public commonProperties: {
+    searchFilter: string,
+    nbrEntries: number,
+    pageCount: number,
+    currentPage: number,
+    lastpage: number,
+    startIndex: number,
+    endIndex: number,
+    filteredArray: Array<any>
+  }
 
   public searchFilter: string; // Déplacé dans list-filter
 
@@ -64,7 +74,18 @@ export class ListStagesComponent implements OnInit {
     this.startIndex = 0;
     this.endIndex = this.startIndex+this.nbrEntries;
 
-    this.commonProperties = {};
+    this.commonProperties = {
+      searchFilter: '',
+      nbrEntries: 10,
+      pageCount: 1,
+      currentPage: 1,
+      lastpage: 1,
+      startIndex: 0,
+      endIndex: 10,
+      filteredArray: []
+    }
+
+    console.log("il y en a : " + this.commonProperties.nbrEntries);
   }
 
   printCommon(){
@@ -85,17 +106,12 @@ export class ListStagesComponent implements OnInit {
       .subscribe((_stages: any[]) => {
         this.allStages = _stages;
         this.stagesPrinted = _stages;
+        console.log("nombre de stage : " + this.allStages.length);
+        console.log("nombre entrées : " + this.commonProperties.nbrEntries);
 
-        this.commonProperties = {
-          searchFilter: '',
-          nbEntries: 20,
-          pageCount: Math.ceil(this.allStages.length / this.nbrEntries),
-          currentPage: 1,
-          lastpage: 1,
-          startIndex: 0,
-          endIndex: 20,
-          filteredArray: _stages
-        }
+        this.commonProperties.pageCount = Math.ceil(this.allStages.length / this.commonProperties.nbrEntries);
+        console.log("il y a 2 : " + this.commonProperties.pageCount);
+        this.commonProperties.filteredArray = _stages;
 
         this.pageCount = Math.ceil(this.allStages.length / this.nbrEntries);
       }

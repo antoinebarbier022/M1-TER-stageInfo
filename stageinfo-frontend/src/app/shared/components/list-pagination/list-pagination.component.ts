@@ -34,7 +34,6 @@ export class ListPaginationComponent implements OnInit {
     }
 
     this.commonProperties.endIndex = this.commonProperties.startIndex + this.commonProperties.nbrEntries;
-    console.log(this.commonProperties);
   }
 
   onClickNextPage() : void{
@@ -43,7 +42,6 @@ export class ListPaginationComponent implements OnInit {
       this.commonProperties.currentPage++;
       this.commonProperties.startIndex += this.commonProperties.nbrEntries;
       this.commonProperties.endIndex = this.commonProperties.startIndex + this.commonProperties.nbrEntries;
-      console.log(this.commonProperties);
     }
   }
 
@@ -53,7 +51,6 @@ export class ListPaginationComponent implements OnInit {
       this.commonProperties.currentPage--;
       this.commonProperties.startIndex -= this.commonProperties.nbrEntries;
       this.commonProperties.endIndex = this.commonProperties.startIndex + this.commonProperties.nbrEntries;
-      console.log(this.commonProperties);
     }
   }
 

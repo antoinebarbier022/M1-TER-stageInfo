@@ -1,9 +1,7 @@
 <div class="card-parameters-sort" >
-    <p (click)="printNbrEntries()">Show</p>
-    <select (change)="setNumberEntries($event)" class="custom-select">
-        <option value="10">10</option>
-        <option selected value="20">20</option>
-        <option value="50">50</option>
+    <p>Show</p>
+    <select [(ngModel)]="this.commonProperties.nbrEntries" (change)="setNumberEntries()" class="custom-select">
+        <option *ngFor="let i of values" [ngValue]="i">{{ i }}</option>
     </select>
     <p>entries2</p>
 </div>
