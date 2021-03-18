@@ -1,7 +1,10 @@
 import { Component, Input, OnInit } from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import { ActivatedRoute } from '@angular/router';
+import { Subject } from 'rxjs';
+import { takeUntil } from 'rxjs/operators';
 import { ParcoursModel } from 'src/app/core/models/ParcoursModel';
+import { ParcoursService } from 'src/app/core/services/parcours.service';
 
 @Component({
   selector: 'app-form-parcours',
@@ -21,7 +24,13 @@ export class FormParcoursComponent implements OnInit {
   // @ts-ignore
   errorMessage: String;
 
-  constructor(private formBuilder: FormBuilder, private route: ActivatedRoute) { 
+  // pour pouvoir détruire les subscribes
+  destroy$: Subject<boolean> = new Subject<boolean>();
+
+  constructor(private formBuilder: FormBuilder, 
+              private route: ActivatedRoute,
+              private parcoursService: ParcoursService) { 
+
     // Si on est sur le component formulaire ajout de parcours alors on peut récupérer les données du parcours 
     if(!this.addParcours){
       this.parcoursData = this.route.snapshot.data.parcours;  
@@ -32,6 +41,12 @@ export class FormParcoursComponent implements OnInit {
 
   ngOnInit() {
     this.initForm();
+  }
+
+  ngOnDestroy() {
+    this.destroy$.next(true);
+    // Now let's also unsubscribe from the subject itself:
+    this.destroy$.unsubscribe();
   }
 
   initForm(){
@@ -56,14 +71,30 @@ export class FormParcoursComponent implements OnInit {
 
   onSubmitForm() {
     const formValue = this.parcoursForm.value;
-    const newParcours = new ParcoursModel(
+    const parcours = new ParcoursModel(
       formValue['acronyme'],
       formValue['niveau'],
       formValue['intitule'],
       formValue['description'],
       formValue['responsable']
     );
-    console.log(newParcours);
+
+    if(this.addParcours){
+      this.parcoursService.addParcours(parcours)
+      .pipe(takeUntil(this.destroy$))
+        .subscribe((_res: any[]) => {
+          console.log(_res);
+      });
+    }else if(this.editParcours){
+      this.parcoursService.editParcours(this.route.snapshot.paramMap.get('id'), parcours)
+      .pipe(takeUntil(this.destroy$))
+        .subscribe((_res: any[]) => {
+          console.log(_res);
+      });
+    }
+
+  
+    console.log(parcours);
   }
 
 }
