@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, Output, EventEmitter, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-list-filter',
@@ -7,9 +7,48 @@ import { Component, Input, OnInit } from '@angular/core';
 })
 export class ListFilterComponent implements OnInit{
 
+  @Input() public itemArray: Array<any>;
+  @Input() public visibleProperties: Array<any>;
   @Input() public commonProperties: any;
 
-  constructor() {}
+  constructor() {
+    this.itemArray = [];
+    this.visibleProperties = [];
+    this.commonProperties = {};
+  }
 
   ngOnInit(): void {}
+
+  printArray(){
+    //console.log(this.commonProperties);
+    this.getStagesByKeyword();
+    //console.log(this.commonProperties.filteredArray);
+  }
+
+  getNestedValue(obj: any, key : any): any{
+    return key.split(".").reduce(function(result: any, key: any) {
+       return result[key] 
+    }, obj);
+  }
+  
+  stageHasAllKeywords(stage: any, str: string[]): boolean {
+    const keywords = str.filter(e => e).map(v => v.toLowerCase());
+
+    let row = new Array();
+
+    this.visibleProperties.forEach(prop => {
+      row.push(this.getNestedValue(stage, prop.name));
+    });
+
+    return keywords.every(word => row.join(' ').toLowerCase().includes(word));
+  }
+
+  // Dans le component list-filter
+  getStagesByKeyword() : void {
+    console.log(this.itemArray.filter(x => {
+      if (this.stageHasAllKeywords(x, this.commonProperties.searchFilter.trim().split(/\s+/))) return x;
+    }));
+  }
+  
+
 }
