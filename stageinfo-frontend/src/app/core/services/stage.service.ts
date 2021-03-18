@@ -29,4 +29,9 @@ export class StageService {
     return this.httpClient.get(this.urlBase+'/api/stage/'+id);
   }
 
+  /* Suppression d'un stage avec son identifiant */
+  deleteStageById(id:any): Observable<any>{
+    return this.httpClient.delete(this.urlBase+'/api/stage/'+id);
+  }
+
 }
