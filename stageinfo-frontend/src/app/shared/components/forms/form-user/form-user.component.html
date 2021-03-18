@@ -4,7 +4,6 @@
             {{ title }}
             <a *ngIf="viewUser"
             [routerLink]="['/liste-utilisateurs/edit-user/', user._id]"
-            type="submit"
             style="float:right;"
             class="btn-icon-modifier">
                 <i class="icon far fa-lg fa-edit"></i>
@@ -12,7 +11,7 @@
         </h2>
     </div>
     <div class="card-body">
-        <form>
+        <form (ngSubmit)="onSignup()">
             <!-- Section information profile-->
             <fieldset>
                 <!-- Nom de l'utilisateur -->
@@ -43,7 +42,7 @@
                     <div *ngIf="viewUser" class="form-select-plaintext">
                         <span class="badge badge-secondary">{{ user.role }}</span>
                     </div>
-                    <select *ngIf="!(viewUser)" id="inputRole" [ngClass]="viewUser? 'form-control-plaintext' : 'form-control'" [(ngModel)]="user.role" name="role" (ngModelChange)="displaySection(user.role)">
+                    <select required *ngIf="!(viewUser)" id="inputRole" [ngClass]="viewUser? 'form-control-plaintext' : 'form-control'" [(ngModel)]="user.role" name="role" (ngModelChange)="displaySection(user.role)">
                         <option value="" disabled selected>Selectionner le role</option>
                         <option *ngFor="let i of roles" [ngValue]="i">{{ i }}</option>
                     </select>
@@ -58,6 +57,7 @@
                 <div class="form-group-row">
                     <label for="inputEmail">Email</label>
                     <input  type="email"
+                            required
                             id="inputEmail"
                             [ngClass]="viewUser? 'form-control-plaintext' : 'form-control'"
                             placeholder="Email utilisateur"
@@ -184,7 +184,7 @@
 
             <!-- Si Ajout Utilisateur-->
             <div *ngIf="addUser">
-                <button routerLink="/liste-utilisateurs" (click)="onSignup()" class="btn btn-primary btn-sm">Ajouter</button>
+                <button routerLink="/liste-utilisateurs" type="submit" class="btn btn-primary btn-sm">Ajouter</button>
             </div>
 
 

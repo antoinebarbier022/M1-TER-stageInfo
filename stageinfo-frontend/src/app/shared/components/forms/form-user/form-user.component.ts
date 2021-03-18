@@ -1,6 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 
-
+import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import { ActivatedRoute, Router } from '@angular/router';
 import { takeUntil } from 'rxjs/operators';
 import { Subject } from 'rxjs';
@@ -17,6 +17,8 @@ import { UserService } from 'src/app/core/services/user.service';
   styleUrls: ['./form-user.component.scss']
 })
 export class FormUserComponent implements OnInit {
+  @Input() title: string = "";
+
   @Input() addUser: boolean = false;
   @Input() editUser: boolean = false;
   @Input() viewUser: boolean = false;
@@ -24,8 +26,6 @@ export class FormUserComponent implements OnInit {
   @Input() idUser : any = undefined;
 
   Message: string = "";
-
-  @Input() title: string = "";
 
   user: userModel = new userModel();
 
@@ -43,16 +43,13 @@ export class FormUserComponent implements OnInit {
   constructor(private route:ActivatedRoute,
               private router: Router,
               private userService: UserService,
-              private auth: AuthService) { 
-
-  }
+              private auth: AuthService) { }
 
   ngOnInit(): void {
     if(!this.addUser){
       this.user = this.route.snapshot.data.user;
     }
     this.displaySection(this.user.role);
-    
   }
 
   ngOnDestroy() {
@@ -74,7 +71,6 @@ export class FormUserComponent implements OnInit {
       }
     );
   }
-
 
 
   displaySection(role : string){

@@ -45,6 +45,7 @@
                 <label for="inputDescription">Description</label>
                 <textarea   id="inputDescription"
                             class="form-control"  
+                            placeholder="Description du parcours"
                             rows="3"
                             name="parcoursDescription"></textarea>
             </div>
@@ -53,7 +54,7 @@
             <div class="form-group-row">
                 <label for="inputResponsable">Responsable</label>
                 <select *ngIf="!(viewParcours)" id="inputResponsable" [ngClass]="viewParcours? 'form-control-plaintext' : 'form-control'" name="responsable">
-                    <option value="" selected>-- choisir --</option>
+                    <option value="" disabled selected>Selectionner le responsable</option>
                     <option value="1837290189">Pierre Pompidor</option>
                     <option value="18372901897892">Eric Burreau</option>
                 </select>
