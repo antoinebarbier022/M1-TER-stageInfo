@@ -21,7 +21,7 @@
                     <input  type="text"
                             id="inputLastname"
                             [ngClass]="viewUser? 'form-control-plaintext' : 'form-control'"
-                            placeholder=""
+                            placeholder="Nom utilisateur"
                             [(ngModel)]="user.nom"
                             name="nom"
                             [readonly]="viewUser">
@@ -32,7 +32,7 @@
                     <input  type="text"
                             id="inputFistname"
                             [ngClass]="viewUser? 'form-control-plaintext' : 'form-control'"
-                            placeholder=""
+                            placeholder="Prénom utilisateur"
                             [(ngModel)]="user.prenom"
                             name="prenom"
                             [readonly]="viewUser">
@@ -44,6 +44,7 @@
                         <span class="badge badge-secondary">{{ user.role }}</span>
                     </div>
                     <select *ngIf="!(viewUser)" id="inputRole" [ngClass]="viewUser? 'form-control-plaintext' : 'form-control'" [(ngModel)]="user.role" name="role" (ngModelChange)="displaySection(user.role)">
+                        <option value="" disabled selected>Selectionner le role</option>
                         <option *ngFor="let i of roles" [ngValue]="i">{{ i }}</option>
                     </select>
                 </div>
@@ -59,7 +60,7 @@
                     <input  type="email"
                             id="inputEmail"
                             [ngClass]="viewUser? 'form-control-plaintext' : 'form-control'"
-                            placeholder=""
+                            placeholder="Email utilisateur"
                             [(ngModel)]="user.email"
                             name="email"
                             [readonly]="viewUser">
@@ -70,7 +71,7 @@
                     <input  type="password"
                             id="inputPassword"
                             [ngClass]="viewUser? 'form-control-plaintext' : 'form-control'"
-                            placeholder=""
+                            placeholder="Mot de passe"
                             [(ngModel)]="user.hash"
                             name="password"
                             [readonly]="viewUser">
@@ -88,7 +89,7 @@
                     <input  type="text"
                             id="inputNumEtudiant"
                             [ngClass]="viewUser? 'form-control-plaintext' : 'form-control'"
-                            placeholder=""
+                            placeholder="N° Étudiant"
                             [(ngModel)]="user.numeroEtudiant"
                             name="numeroEtudiant"
                             [readonly]="viewUser">
@@ -100,6 +101,7 @@
                         <span>{{ user.promotion }}</span>
                     </div>
                     <select *ngIf="!(viewUser)" id="inputPromotion" [ngClass]="viewUser? 'form-control-plaintext' : 'form-control'" [(ngModel)]="user.promotion" name="promotion" >
+                        <option value="" disabled selected>Selectionner la promotion</option>
                         <option *ngFor="let i of promotions" [ngValue]="i">{{ i }}</option>
                     </select>
                 </div>
@@ -110,6 +112,7 @@
                         <span>{{ user.parcours }}</span>
                     </div>
                     <select *ngIf="!(viewUser)" id="inputParcours" [ngClass]="viewUser? 'form-control-plaintext' : 'form-control'" [(ngModel)]="user.parcours" name="parcours">
+                        <option value="" disabled selected>Selectionner le parcours</option>
                         <option *ngFor="let i of parcours" [ngValue]="i">{{ i }}</option>
                     </select>
                 </div>
@@ -125,7 +128,7 @@
                     <input  type="text"
                             id="inputFax"
                             [ngClass]="viewUser? 'form-control-plaintext' : 'form-control'"
-                            placeholder=""
+                            placeholder="N° de fax"
                             [(ngModel)]="user.fax"
                             name="fax"
                             [readonly]="viewUser">
@@ -136,7 +139,7 @@
                     <input  type="text"
                             id="inputPhone"
                             [ngClass]="viewUser? 'form-control-plaintext' : 'form-control'"
-                            placeholder=""
+                            placeholder="N° de téléphone"
                             [(ngModel)]="user.telephone"
                             name="telephone"
                             [readonly]="viewUser">
@@ -153,7 +156,7 @@
                     <input  type="text"
                             id="inputFonction"
                             [ngClass]="viewUser? 'form-control-plaintext' : 'form-control'"
-                            placeholder=""
+                            placeholder="Fonction occupée dans l'entreprise"
                             [(ngModel)]="user.fonction"
                             name="fonction"
                             [readonly]="viewUser">
@@ -166,7 +169,7 @@
                             id="inputEntreprise"
                             name="entreprises"
                             list="entreprise-list"
-                            placeholder=""
+                            placeholder="Nom de l'entreprise"
                             [(ngModel)]="user.entreprise"
                             name="entreprise"
                             [readonly]="viewUser">
