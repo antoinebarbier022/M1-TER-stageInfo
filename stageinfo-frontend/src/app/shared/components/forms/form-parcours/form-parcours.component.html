@@ -1,0 +1,89 @@
+<div class="card">
+    <div *ngIf="title || addParcours" class="card-header">
+        <h2 *ngIf="viewParcours" class="card-title">
+            {{ title }} 
+            <a *ngIf="viewParcours"
+            routerLink="/liste-parcours/edit-parcours" 
+            type="submit" 
+            style="float:right;" 
+            class="btn-icon-modifier">
+                <i class="icon far fa-lg fa-edit"></i>
+            </a>
+        </h2>
+    </div>
+    <div class="card-body">
+        <form>
+            <!-- Nom du parcours -->
+            <div class="form-group-row">
+                <label for="inputAcronyme">Acronyme</label>
+                <input  type="text" 
+                        id="inputAcronyme"  
+                        class="form-control"
+                        placeholder="Acronyme du parcours" 
+                        name="parcoursAcronyme">
+            </div>
+            <!-- Niveau du parcours -->
+            <div class="form-group-row">
+                <label for="inputNiveau">Niveau</label>
+                <input  type="text" 
+                        id="inputNiveau"  
+                        class="form-control"
+                        placeholder="Niveau du parcours" 
+                        name="parcoursNiveau">
+            </div>
+            <!-- Intitulé du parcours -->
+            <div class="form-group-row">
+                <label for="inputIntitule">Intitule</label>
+                <input  type="text" 
+                        id="inputIntitule"  
+                        class="form-control"
+                        placeholder="Intitule du parcours" 
+                        name="parcoursIntitule">
+            </div>
+            <!-- Description du parcours -->
+            <div class="form-group-row">
+                <label for="inputDescription">Description</label>
+                <textarea   id="inputDescription"
+                            class="form-control"  
+                            placeholder="Description du parcours"
+                            rows="3"
+                            name="parcoursDescription"></textarea>
+            </div>
+
+            <!-- Responsable du parcours -->
+            <div class="form-group-row">
+                <label for="inputResponsable">Responsable</label>
+                <select *ngIf="!(viewParcours)" id="inputResponsable" [ngClass]="viewParcours? 'form-control-plaintext' : 'form-control'" name="responsable">
+                    <option value="" disabled selected>Selectionner le responsable</option>
+                    <option value="1837290189">Pierre Pompidor</option>
+                    <option value="18372901897892">Eric Burreau</option>
+                </select>
+            </div>
+            <!-- Si Modification Parcours -->
+            <div *ngIf="editParcours">
+                <a class="btn btn-danger btn-sm" data-toggle="modal" data-target="#suppression-parcours">
+                    Supprimer
+                </a>
+                <button routerLink="/liste-parcours" type="submit" class="btn btn-primary btn-sm btn-modifier">
+                    Modifier
+                </button>
+            </div>
+            <!-- Si Ajouter un Parcours -->
+            <div *ngIf="addParcours">
+                <button routerLink="/liste-parcours" type="submit" class="btn btn-primary btn-sm btn-ajouter">
+                    Ajouter
+                </button>
+            </div>
+
+        </form>
+    </div>
+</div>
+
+<!-- Debut du Modal suppression parcours -->
+<app-modal  class="modal fade"
+            tabindex="-1" 
+            role="dialog" 
+            id="suppression-parcours"
+            title="Suppression Parcours">
+            <p>Confirmer la suppression du parcours.</p>
+</app-modal>

@@ -16,5 +16,15 @@ export class UserService {
     return this.httpClient.get(this.urlBase+'api/auth/email/'+id);
   }
 
+  /* Récupération de la liste de tous les utilisateurs */
+  getAllUsers(): Observable<any> {
+    return this.httpClient.get(this.urlBase+'api/user');
+  }
+
+  /* Récupération de la liste de tous les utilisateurs avec leur identifiant */
+  getUserById(id:any): Observable<any> {
+    return this.httpClient.get(this.urlBase+'api/user/'+id);
+  }
+
 }
 

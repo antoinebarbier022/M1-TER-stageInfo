@@ -5,16 +5,14 @@
                 <i style="margin-right:5px;" class="fas fa-file-import"></i>
                 importer
             </button> 
-            <button routerLink="/liste-utilisateurs/add-user" type="submit" style="float:right;" class="btn btn-secondary btn-sm">
-                <i style="margin-right:5px;" class="fas fa-plus"></i>
-                Ajouter
-            </button> 
+
+            <app-button-add link="/liste-utilisateurs/add-user" style="float:right;"></app-button-add>
         </h2>
     </div>
-        <table class="table table-striped">
+        <table class="card-table table table-striped table-sm">
             <thead>
             <tr>
-                <th scope="col">id</th>
+                <!--<th scope="col">id</th>-->
                 <th scope="col">nom</th>
                 <th scope="col">email</th>
                 <th scope="col">role</th>
@@ -22,102 +20,17 @@
             </tr>
             </thead>
             <tbody>
-                <tr>
-                    <td>1</td>
-                    <td><a routerLink="/liste-utilisateurs/user">Antoine Barbier</a></td>
-                    <td>antoine.barbier01@etu.umontpellier.fr</td>
-                    <td><span class="badge badge-danger">Administrateur</span></td>
+                <tr *ngFor="let user of users">
+                    <!--<td>{{ user._id }}</td>-->
+                    <td><a [routerLink]="['/liste-utilisateurs/user/', user._id]">{{ user.nom }} {{ user.prenom }}</a></td>
+                    <td>{{ user.email }}</td>
+                    <td><span class="badge badge-danger">{{ user.role }}</span></td>
                     <td class="table-action">
-                        <a routerLink="/liste-utilisateurs/edit-user"><i class="icon far fa-lg fa-edit"></i></a>
+                        <a [routerLink]="['/liste-utilisateurs/edit-user/', user._id]"><i class="icon far fa-lg fa-edit"></i></a>
                         <a href="#" data-toggle="modal" data-target="#suppression-user"><i class="icon far fa-lg fa-trash-alt"></i></a>
                     </td>
                 </tr>
-                <tr>
-                    <td>2</td>
-                    <td>Antoine Barbier</td>
-                    <td>antoine.barbier01@etu.umontpellier.fr</td>
-                    <td><span class="badge badge-primary">Secretaire</span></td>
-                    <td class="table-action">
-                        <a routerLink="/liste-utilisateurs/edit-user"><i class="icon far fa-lg fa-edit"></i></a>
-                        <a href="#" data-toggle="modal" data-target="#suppression-user"><i class="icon far fa-lg fa-trash-alt"></i></a>
-                    </td>
-                </tr>
-                <tr>
-                    <td>3</td>
-                    <td>Antoine Barbier</td>
-                    <td>antoine.barbier01@etu.umontpellier.fr</td>
-                    <td><span class="badge badge-secondary">Tuteur</span></td>
-                    <td class="table-action">
-                        <a routerLink="/liste-utilisateurs/edit-user"><i class="icon far fa-lg fa-edit"></i></a>
-                        <a href="#" data-toggle="modal" data-target="#suppression-user"><i class="icon far fa-lg fa-trash-alt"></i></a>
-                    </td>
-                </tr>
-                <tr>
-                    <td>4</td>
-                    <td>Antoine Barbier</td>
-                    <td>antoine.barbier01@etu.umontpellier.fr</td>
-                    <td><span class="badge badge-secondary">Tuteur</span></td>
-                    <td class="table-action">
-                        <a routerLink="/liste-utilisateurs/edit-user"><i class="icon far fa-lg fa-edit"></i></a>
-                        <a href="#" data-toggle="modal" data-target="#suppression-user"><i class="icon far fa-lg fa-trash-alt"></i></a>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-</div>
-
-<div class="card">
-    <div class="card-header">
-        <h2 class="card-title">Tableau des étudiants</h2>
-    </div>
-    
-    
-        <table class="table table-striped">
-            <thead>
-            <tr>
-                <th scope="col">id</th>
-                <th scope="col">nom</th>
-                <th scope="col">email</th>
-                <th scope="col">parcours</th>
-                <th scope="col">année Universitaire</th>
-                <th scope="col">actions</th>
-            </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>1</td>
-                    <td>Antoine Barbier</td>
-                    <td>antoine.barbier01@etu.umontpellier.fr</td>
-                    <td><span class="badge badge-secondary">M2 Aigle</span></td>
-                    <td>2020/2021</td>
-                    <td class="table-action">
-                        <a routerLink="/liste-utilisateurs/edit-user"><i class="icon far fa-lg fa-edit"></i></a>
-                        <a href="#" data-toggle="modal" data-target="#suppression-user"><i class="icon far fa-lg fa-trash-alt"></i></a>
-                    </td>
-                </tr>
-                <tr>
-                    <td>2</td>
-                    <td>Antoine Barbier</td>
-                    <td>antoine.barbier01@etu.umontpellier.fr</td>
-                    <td><span class="badge badge-secondary">M2 Aigle</span></td>
-                    <td>2020/2021</td>
-                    <td class="table-action">
-                        <a routerLink="/liste-utilisateurs/edit-user"><i class="icon far fa-lg fa-edit"></i></a>
-                        <a href="#" data-toggle="modal" data-target="#suppression-user"><i class="icon far fa-lg fa-trash-alt"></i></a>
-                    </td>
-                </tr>
-                <tr>
-                    <td>3</td>
-                    <td>Antoine Barbier</td>
-                    <td>antoine.barbier01@etu.umontpellier.fr</td>
-                    <td><span class="badge badge-secondary">M2 Aigle</span></td>
-                    <td>2020/2021</td>
-                    <td class="table-action">
-                        <a routerLink="/liste-utilisateurs/edit-user"><i class="icon far fa-lg fa-edit"></i></a>
-                        <!-- Appel au modal  -->
-                        <a href="#" data-toggle="modal" data-target="#suppression-user"><i class="icon far fa-lg fa-trash-alt"></i></a>
-                    </td>
-                </tr>
+                
             </tbody>
         </table>
 </div>
@@ -127,6 +40,6 @@
             tabindex="-1" 
             role="dialog" 
             id="suppression-user"
-            title="Suppression Utilisateur"
-            content="Confirmer la suppression de l'utilisateur.">
+            title="Suppression Utilisateur">
+            <p>Confirmer la suppression de l'utilisateur.</p>
 </app-modal>

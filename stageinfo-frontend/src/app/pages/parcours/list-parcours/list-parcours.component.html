@@ -1,0 +1,43 @@
+<div class="card">
+    <div class="card-header">
+        <h2 class="card-title"> {{ title }} 
+            <app-button-add link="/liste-parcours/add-parcours" style="float:right;"></app-button-add>
+        </h2>
+    </div>
+        <table class="card-table table table-striped">
+            <thead>
+                <tr>
+                    <th scope="col">Acronyme</th>
+                    <th scope="col">Intitule</th>
+                    <th scope="col">Niveau</th>
+                    <th scope="col">Responsable</th>
+                    <th scope="col">Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let parcours of allParcours">
+                    <!-- On rajoute le pipe uppercase pour mettre l'acronyme tout le temps en majuscule-->
+                    <td>{{ parcours.acronyme | uppercase }}</td>
+                    <td>{{ parcours.intitule }}</td>
+                    <td>{{ parcours.niveau }}</td>
+                    <td><a routerLink="/">{{ parcours.responsable }}</a></td>
+                    <td class="table-action">
+                        <a routerLink="/liste-parcours/edit-parcours"><i class="icon far fa-lg fa-edit"></i></a>
+                        <!--<a (click)="deleteParcours(parcours._id)"><i class="icon far fa-lg fa-trash-alt"></i></a>-->
+                        <a (click)="parcoursSelected(parcours._id)" data-toggle="modal" data-target="#suppression-parcours"><i class="icon far fa-lg fa-trash-alt"></i></a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+</div>
+
+<!-- Debut du Modal suppression parcours -->
+<app-modal  class="modal fade"
+            tabindex="-1" 
+            role="dialog" 
+            id="suppression-parcours"
+            title="Suppression Parcours">
+    <p content>Confirmer la suppression du parcours.</p>
+    <button button1 type="button" class="btn btn-secondary btn-sm" data-dismiss="modal">Annuler</button>
+    <button button2 (click)="deleteParcours()" type="button" class="btn btn-danger btn-sm" data-dismiss="modal">Supprimer</button>
+</app-modal>

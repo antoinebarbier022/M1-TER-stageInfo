@@ -9,10 +9,10 @@ const router = express.Router();
 const embaucheCtrl = require('../controllers/embaucheController');
 
 router.get('/',Etudiant, embaucheCtrl.getAllEmbauche);
-router.get('/_id:',Etudiant, embaucheCtrl.getOneEmbauche);
+router.get('/:id',Etudiant, embaucheCtrl.getOneEmbauche);
 router.post('/',Admin, embaucheCtrl.createEmbauche);
-router.put('/_id:', Admin,embaucheCtrl.editEmbauche);
-router.delete('/_id:', Admin,embaucheCtrl.deleteOneEmbauche);
+router.put('/:id', Admin,embaucheCtrl.editEmbauche);
+router.delete('/:id', Admin,embaucheCtrl.deleteOneEmbauche);
 router.delete('/', Admin,embaucheCtrl.deleteAllEmbauche);
 
 module.exports = router;

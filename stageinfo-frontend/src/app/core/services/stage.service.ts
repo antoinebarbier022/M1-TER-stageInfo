@@ -20,7 +20,18 @@ export class StageService {
   }
 
   /* Récupération de tous les stages */
-  getStages(): Observable<any> {
+  getAllStages(): Observable<any> {
     return this.httpClient.get(this.urlBase+'/api/stage');
   }
+
+  /* Récupération d'un stage avec son identifiant */
+  getStageById(id:any): Observable<any> {
+    return this.httpClient.get(this.urlBase+'/api/stage/'+id);
+  }
+
+  /* Suppression d'un stage avec son identifiant */
+  deleteStageById(id:any): Observable<any>{
+    return this.httpClient.delete(this.urlBase+'/api/stage/'+id);
+  }
+
 }

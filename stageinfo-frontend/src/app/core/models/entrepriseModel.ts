@@ -1,22 +1,22 @@
 export class entrepriseModel{
-    idRespAdm: string;
+    idRespAdm: string = "";
+    _id: string ="";
+    nom: string  = "";
+    website: string  = "";
+    description: string  = "";
+    siret: string  = "";
+    telephone: string  = "";
+    fax: string  = "";
 
-    nom: string;
-    website: string;
-    description: string;
-    siret: string;
-    telephone: number;
-    fax: number;
-
-    adresse: {
-        voie: string;
-        ville: string;
-        codePostal: string;
-        complement: string;
+    adresse= {
+        voie:"",
+        ville:"",
+        codePostal: "",
+        complement: "",
     };
 
-    secteurActivite: string;
-    nbSalaries: number;
-    local: boolean;
-    chiffreAffaire: string;
+    secteurActivite: string = "";
+    nbSalaries: string = "";
+    local: boolean = false;
+    chiffreAffaire: string = "";
 }

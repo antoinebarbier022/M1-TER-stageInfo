@@ -17,6 +17,7 @@ const stageSchema = Schema({
     fichier: String, // c'est quoi ?
     conditions: String,
     objectif: String,
+    salaire: String,
     avantages: String,
     datePropose: Date,
     dateValide : Date,

@@ -1,0 +1,213 @@
+<div class="card">
+    <div *ngIf="title" class="card-header">
+        <h2 class="card-title">
+            {{ title }}
+            <a *ngIf="viewUser"
+            [routerLink]="['/liste-utilisateurs/edit-user/', user._id]"
+            style="float:right;"
+            class="btn-icon-modifier">
+                <i class="icon far fa-lg fa-edit"></i>
+            </a>
+        </h2>
+    </div>
+    <div class="card-body">
+        <form (ngSubmit)="onSignup()">
+            <!-- Section information profile-->
+            <fieldset>
+                <!-- Nom de l'utilisateur -->
+                <div class="form-group-row">
+                    <label for="inputLastname">Nom</label>
+                    <input  type="text"
+                            id="inputLastname"
+                            [ngClass]="viewUser? 'form-control-plaintext' : 'form-control'"
+                            placeholder="Nom utilisateur"
+                            [(ngModel)]="user.nom"
+                            name="nom"
+                            [readonly]="viewUser">
+                </div>
+                <!-- Prénom de l'utilisateur -->
+                <div class="form-group-row">
+                    <label for="inputFistname">Prénom</label>
+                    <input  type="text"
+                            id="inputFistname"
+                            [ngClass]="viewUser? 'form-control-plaintext' : 'form-control'"
+                            placeholder="Prénom utilisateur"
+                            [(ngModel)]="user.prenom"
+                            name="prenom"
+                            [readonly]="viewUser">
+                </div>
+                <!-- Role de l'utilisateur -->
+                <div class="form-group-row">
+                    <label for="inputRole">Role</label>
+                    <div *ngIf="viewUser" class="form-select-plaintext">
+                        <span class="badge badge-secondary">{{ user.role }}</span>
+                    </div>
+                    <select required *ngIf="!(viewUser)" id="inputRole" [ngClass]="viewUser? 'form-control-plaintext' : 'form-control'" [(ngModel)]="user.role" name="role" (ngModelChange)="displaySection(user.role)">
+                        <option value="" disabled selected>Selectionner le role</option>
+                        <option *ngFor="let i of roles" [ngValue]="i">{{ i }}</option>
+                    </select>
+                </div>
+
+            </fieldset>
+
+
+            <!-- Section email/password de l'utilisateur -->
+            <fieldset>
+                <!-- Email de l'utilisateur -->
+                <div class="form-group-row">
+                    <label for="inputEmail">Email</label>
+                    <input  type="email"
+                            required
+                            id="inputEmail"
+                            [ngClass]="viewUser? 'form-control-plaintext' : 'form-control'"
+                            placeholder="Email utilisateur"
+                            [(ngModel)]="user.email"
+                            name="email"
+                            [readonly]="viewUser">
+                </div>
+                <!-- Password de l'utilisateur -->
+                <div *ngIf="!(viewUser)" class="form-group-row">
+                    <label for="inputPassword">Password</label>
+                    <input  type="password"
+                            id="inputPassword"
+                            [ngClass]="viewUser? 'form-control-plaintext' : 'form-control'"
+                            placeholder="Mot de passe"
+                            [(ngModel)]="user.hash"
+                            name="password"
+                            [readonly]="viewUser">
+                </div>
+
+            </fieldset>
+
+
+            <!-- Section informations Etudiant de l'utilisateur -->
+            <fieldset *ngIf="displaySectionEtudiant">
+                <hr *ngIf="viewUser">
+                <!-- Numéro étudiant de l'utilisateur -->
+                <div class="form-group-row">
+                    <label for="inputNumEtudiant">N° Étudiant</label>
+                    <input  type="text"
+                            id="inputNumEtudiant"
+                            [ngClass]="viewUser? 'form-control-plaintext' : 'form-control'"
+                            placeholder="N° Étudiant"
+                            [(ngModel)]="user.numeroEtudiant"
+                            name="numeroEtudiant"
+                            [readonly]="viewUser">
+                </div>
+                <!-- année de la promotion de l'étudiant -->
+                <div class="form-group-row">
+                    <label for="inputPromotion">Promotion</label>
+                    <div *ngIf="viewUser" class="form-select-plaintext">
+                        <span>{{ user.promotion }}</span>
+                    </div>
+                    <select *ngIf="!(viewUser)" id="inputPromotion" [ngClass]="viewUser? 'form-control-plaintext' : 'form-control'" [(ngModel)]="user.promotion" name="promotion" >
+                        <option value="" disabled selected>Selectionner la promotion</option>
+                        <option *ngFor="let i of promotions" [ngValue]="i">{{ i }}</option>
+                    </select>
+                </div>
+                <!--  nom du parcours de l'étudiant -->
+                <div class="form-group-row">
+                    <label for="inputParcours">Parcours</label>
+                    <div *ngIf="viewUser" class="form-select-plaintext">
+                        <span>{{ user.parcours }}</span>
+                    </div>
+                    <select *ngIf="!(viewUser)" id="inputParcours" [ngClass]="viewUser? 'form-control-plaintext' : 'form-control'" [(ngModel)]="user.parcours" name="parcours">
+                        <option value="" disabled selected>Selectionner le parcours</option>
+                        <option *ngFor="let i of parcours" [ngValue]="i">{{ i }}</option>
+                    </select>
+                </div>
+            </fieldset>
+
+
+            <!-- Section coordonnées de l'utilisateur -->
+            <fieldset *ngIf="displaySectionCoordonnees">
+                <hr *ngIf="viewUser">
+                <!-- Fax de l'utilisateur -->
+                <div class="form-group-row">
+                    <label for="inputFax">Fax</label>
+                    <input  type="text"
+                            id="inputFax"
+                            [ngClass]="viewUser? 'form-control-plaintext' : 'form-control'"
+                            placeholder="N° de fax"
+                            [(ngModel)]="user.fax"
+                            name="fax"
+                            [readonly]="viewUser">
+                </div>
+                <!-- Phone de l'utilisateur -->
+                <div class="form-group-row">
+                    <label for="inputPhone">Téléphone</label>
+                    <input  type="text"
+                            id="inputPhone"
+                            [ngClass]="viewUser? 'form-control-plaintext' : 'form-control'"
+                            placeholder="N° de téléphone"
+                            [(ngModel)]="user.telephone"
+                            name="telephone"
+                            [readonly]="viewUser">
+                </div>
+            </fieldset>
+
+
+            <!-- Section représentant d'entreprise -->
+            <fieldset *ngIf="displaySectionEntreprise">
+                <hr *ngIf="viewUser">
+                <!-- Fonction occupée de l'utilisateur -->
+                <div class="form-group-row">
+                    <label for="inputFonction">Fonction</label>
+                    <input  type="text"
+                            id="inputFonction"
+                            [ngClass]="viewUser? 'form-control-plaintext' : 'form-control'"
+                            placeholder="Fonction occupée dans l'entreprise"
+                            [(ngModel)]="user.fonction"
+                            name="fonction"
+                            [readonly]="viewUser">
+                </div>
+                <!-- Entreprise dans laquel est l'utilisateur -->
+                <div class="form-group-row">
+                    <label for="inputEntreprise">Entreprise</label>
+                    <input  type="text"
+                            [ngClass]="viewUser? 'form-control-plaintext' : 'form-control'"
+                            id="inputEntreprise"
+                            name="entreprises"
+                            list="entreprise-list"
+                            placeholder="Nom de l'entreprise"
+                            [(ngModel)]="user.entreprise"
+                            name="entreprise"
+                            [readonly]="viewUser">
+
+                    <datalist id="entreprise-list">
+                        <option>IBM</option>
+                        <option>Cap Gemini</option>
+                        <option>Ubisoft</option>
+                    </datalist>
+                </div>
+            </fieldset>
+
+            <!-- Si Ajout Utilisateur-->
+            <div *ngIf="addUser">
+                <button routerLink="/liste-utilisateurs" type="submit" class="btn btn-primary btn-sm">Ajouter</button>
+            </div>
+
+
+            <!-- Si Modification Utilisateur -->
+            <div *ngIf="editUser">
+                <a class="btn btn-danger btn-sm" data-toggle="modal" data-target="#suppression-user">
+                    Supprimer
+                </a>
+                <button routerLink="/liste-utilisateurs" type="submit" class="btn btn-primary btn-sm btn-modifier">
+                    Modifier
+                </button>
+            </div>
+
+        </form>
+
+    </div>
+</div>
+
+<!-- Debut du Modal suppression utilisateur -->
+<app-modal  class="modal fade"
+            tabindex="-1"
+            role="dialog"
+            id="suppression-user"
+            title="Suppression Utilisateur">
+            <p>Confirmer la suppression de l'utilisateur.</p>
+</app-modal>

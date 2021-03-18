@@ -1,27 +1,30 @@
-<p><a routerLink=".."><i class="fas fa-chevron-left"></i> Retour</a></p>
-<br/>
-<h1>{{ title }}</h1>
-
+<app-navigation [title]="stage.titre"></app-navigation>
 
 <div class="all-card">
     <div id="status-stage">
         <ul class="nav-progress">
             <li [ngClass]="'fieldset-active progress-first'">
                 <i class=""></i>
-                Proposition
+                Stage proposé
             </li>
             <li [ngClass]="'fieldset-active progress-second' ">
                 <i class=""></i> 
-                Validation
+                Stage validé
+                
+            </li>
+            <li [ngClass]="'fieldset-active progress-second' ">
+                <i class=""></i> 
+                
+                Affecté à un étudiant
             </li>
             <li>
                 <i class=""></i> 
-                Reservation
+                Associé à un tuteur
             </li>
             
             <li >
                 <i class=""></i> 
-                Acceptation
+                Associé à un rapporteur
             </li>
             
             <li >
@@ -29,83 +32,137 @@
                 Stage Terminé
             </li>
         </ul>
-    </div>
+        
+        <div class="alert alert-primary">
+            <p><strong>Validation du stage :</strong><br>
+                Cliquez sur Valider pour valider le stage et pour qu'il soit visible par les étudiants.<br>
+                Cliquez sur Supprimer pour refuser le stage et le supprimer de la base de données.
+            </p>
+                <button class="btn btn-danger btn-sm" style="margin:5px;">Supprimer</button>
+                <button class="btn btn-primary btn-sm" style="margin:5px;">Valider</button>
+        </div>
+<!-- Autres messages de changement d'état du stage -->
+<!--
+        <div class="alert alert-primary">
+            <p>
+                <strong>Validation de l'affectation Tuteur/Stage: </strong>
+                <input type="text" readonly class="form-control" value="Antoine Barbier">
+            </p>
+                <button class="btn btn-danger btn-sm" style="margin:5px;">Refuser</button>
+                <button class="btn btn-primary btn-sm" style="margin:5px;">accepter</button>
+        </div>
 
-    <div id="informations-stage" class="card">
-        <div class="card-header">
-            <h2 class="card-title">Informations</h2>
+        <div class="alert alert-primary">
+            <p>
+                <strong>Validation de l'affectation Etudiant/Stage: </strong>
+                <input type="text" readonly class="form-control" value="Antoine Barbier">
+            </p>
+                <button class="btn btn-danger btn-sm" style="margin:5px;">Refuser</button>
+                <button class="btn btn-primary btn-sm" style="margin:5px;">accepter</button>
         </div>
-        <div class="card-body">
-            <p>Titre : stage developpeur web PHP</p>
-            <p>Parcours : M2 aigle</p>
-            <p>Durée : 5 mois</p>
-            <p>Date début : 05/03/2021</p>
-        </div>
-    </div>
 
-    <div id="avantages-stage"class="card">
-        <div class="card-header">
-            <h2 class="card-title">Avantages</h2>
+        <div class="alert alert-primary">
+            <p>
+                <strong>Validation de l'affectation Rapporteur/Stage: </strong>
+                <input type="text" readonly class="form-control" value="Antoine Barbier">
+            </p>
+                <button class="btn btn-danger btn-sm" style="margin:5px;">Refuser</button>
+                <button class="btn btn-primary btn-sm" style="margin:5px;">accepter</button>
         </div>
-        <div class="card-body">
-            <p>Salaire : 1500€ net par mois</p>
-            <p>Avantages : ticket restaurant + transport en communs</p>
-        </div>
-    </div>
-
-    <div id="conditions-stage"class="card">
-        <div class="card-header">
-            <h2 class="card-title">Conditions</h2>
-        </div>
-        <div class="card-body">
-            <p>Niveau requis : bac+2</p>
-            <p>Conditions : avoir des compétence en gestion de projet.</p>
-            <p>Compétences attendu :</p>
-            
-        </div>
-    </div>
-
-    <div id="description-stage"class="card">
-        <div class="card-header">
-            <h2 class="card-title">Description</h2>
-        </div>
-        <div class="card-body">
-            <p>Contexte : l'IBMM et l'ICGM sont des unités de recherche du CNRS, basées à Montpellier dans le domaine 
-                de la chimie et de la biochimie. Les laboratoires sont hébergés sur plusieurs sites, dont les principaux 
-                sont la Faculté de Pharmacie et la Faculté des Sciences.</p>
-                <!--<p>Contenu : basé à la faculté de Pharmacie, le stagiaire se verra confier le projet suivant :
-                    Reprise et poursuite du développement d'une application web de gestion de produits chimiques (chimiothèque), 
-                    en collaboration avec le service informatique de l'Institut Charles Gerhardt de Montpellier (ICGM).
-                    Ajout de fonctionnalités permettant l'utilisation par les équipes IBMM et ICGM :
-                    1) développement de la modularité des stocks (lieu de stockage, indexation,...)
-                    2) import de fichiers de stocks de produits commerciaux provenant de bases de données existantes :
-                    - Format .csv ou .sdf issus du logiciel E-Novalys pour une équipe de l'IBMM
-                    - Format .csv issus d'une base de données Microsoft SQL Server pour une équipe de l'ICGM (fichiers obtenus avec l'outil MDB tools pour transformer le fichier .mdb en .csv)
-                    3) éventuellement si 1) et 2) terminées avant la fin du stage :
-                    - gestion de la structuration des instituts avec permissions associées (authentification annuaire LDAP)
-                    - la possibilité d'interroger les bases de données des fournisseurs pour récupérer formules chimiques développées et risques chimiques.
-                    Compétences techniques développées : Langages PHP, JavaScript, HTML5, CSS, bases de données PostgreSQL, API JQuery, Bootstrap, requêtes AJAX, framework PHP.
-                    Début du stage : dès que possible. Durée : 4 à 5 mois.
-                    Encadrement : le stagiaire sera co-encadré par un ingénieur informaticien ICGM, un ingénieur informaticien IBMM et un ingénieur chimiste IBMM</p>
-            </p>-->
+        <div class="alert alert-primary">
+            <p><strong>Demande d'association Etudiant/Stage :</strong><br>
+            </p>
+            <form>
+                <div class="form-group-row">
+                    <label for="inputEtudiantAffectation">Étudiant : </label>
+                    <select id="inputEtudiantAffectation" class="form-control">
+                        <option value="" disabled selected>Selectionner un Étudiant</option>
+                        <option value="1">Antoine</option>
+                        <option value="2">El Mokthar</option>
+                        <option value="3">Issakou</option>
+                    </select>
+                    <button class="btn btn-primary btn-sm" style="margin:5px;">Envoyer la demande</button>
                 </div>
+            </form> 
+        </div>
+
+        <div class="alert alert-primary">
+            <p><strong>Demande d'association Tuteur/Stage :</strong><br>
+            </p>
+            <form>
+                <div class="form-group-row">
+                    <label for="inputEtudiantAffectation">Tuteur : </label>
+                    <select id="inputEtudiantAffectation" class="form-control">
+                        <option value="" disabled selected>Selectionner un tuteur</option>
+                        <option value="1">Antoine</option>
+                        <option value="2">El Mokthar</option>
+                        <option value="3">Issakou</option>
+                    </select>
+                    <button class="btn btn-primary btn-sm" style="margin:5px;">Envoyer la demande</button>
+                </div>
+            </form> 
+        </div>
+        
+        <div class="alert alert-primary">
+            <p><strong>Demande d'association Rapporteur/Stage :</strong><br>
+            </p>
+            <form>
+                <div class="form-group-row">
+                    <label for="inputEtudiantAffectation">Rapporteur : </label>
+                    <select id="inputEtudiantAffectation" class="form-control">
+                        <option value="" disabled selected>Selectionner un rapporteur</option>
+                        <option value="1">Antoine</option>
+                        <option value="2">El Mokthar</option>
+                        <option value="3">Issakou</option>
+                    </select>
+                    <button class="btn btn-primary btn-sm" style="margin:5px;">Envoyer la demande</button>
+                </div>
+            </form> 
+        </div>
+
+        <div class="alert alert-danger">
+            <p>
+                <strong>Message :</strong> Affectation refusé pour l'étudiant Antoine Barbier 
+            </p>
+        </div>
+-->
     </div>
 
-    <div id="entreprise-stage"class="card">
-        <div class="card-header">
-            <h2 class="card-title">Entreprise</h2>
-        </div>
-        <div class="card-body">
-            <p>Nom : IBM Montpellier</p>
-            <p>Adresse : 9 rue Ada
-            34090 Montpellier</p>
-            <p>Site internet :	http://www.lirmm.fr/</p>
-            <p>Tuteur dans l'entreprise:	Tibermacine Chouki</p>
-            <p>Email :	tibermacin@lirmm.fr</p>
-            <p>tel :	0467149724</p>
-            <p>fax :</p>
-        </div>
-    </div>
+    <!-- Informations du stage -->
+    <app-card id="information-stage" title="Informations">
+        <p>Titre : {{ stage.titre }}</p>
+            <p>Parcours : {{ stage.parcours.nomComplet }}</p>
+            <p>Durée : {{ stage.duree }} mois</p>
+            <p>Date début : {{ stage.datedebut }}</p>
+    </app-card>
+
+    <!-- Avantages du stage -->
+    <app-card id="avantages-stage" title="Avantages">
+        <p>Salaire : {{ stage.salaire }}</p>
+        <p>Avantages : {{ stage.avantages }}</p>
+    </app-card>
+
+    <!-- Conditions du stage -->
+    <app-card id="conditions-stage" title="Conditions">
+        <p>Niveau requis : {{ stage.niveauRequis }}</p>
+        <p>Conditions : {{ stage.conditions}}</p>
+    </app-card>
+
+    <!-- Description du stage -->
+    <app-card id="description-stage" title="Description">
+        <p>{{ stage.description }}</p>
+    </app-card>
+    
+    <!-- Informations sur l'entreprise du stage -->
+    <app-card id="entreprise-stage" title="Entreprise">
+        <p>Nom : IBM Montpellier</p>
+        <p>Adresse : 9 rue Ada 34090 Montpellier</p>
+        <p>Site internet :	http://www.lirmm.fr/</p>
+        <p>Tuteur dans l'entreprise:	Tibermacine Chouki</p>
+        <p>Email :	tibermacin@lirmm.fr</p>
+        <p>tel :	0467149724</p>
+        <p>fax :</p>
+    </app-card>
 </div>
 
 
@@ -126,20 +183,25 @@
 <h2>Commentaires sur le stage</h2>
 
 <div id="commentaires-stage">
-    
-    <div class="card commentaire">
-        <div class="card-body">
-            <p>Antoine Barbier</p>
-            <p>05/05/2020 à 20h30</p>
-        </div>
+    <!-- les commentaires du stages-->
+    <app-card-item-comment *ngFor="let comment of comments"
+            [idUser]="comment.idUser"
+            [author]="comment.author"
+            [date]="comment.date">
+        <p>{{ comment.content }}</p>
+    </app-card-item-comment>
+
+    <!-- Ajouter un commentaire sur le stage -->
+    <div class="add-comment">
+        <form>
+            <div class="form-group">
+                <label for="inputComment">Ajouter un commentaire : </label>
+                <textarea   id="inputComment"
+                            class="form-control"  
+                            rows="3"></textarea>
+            </div>
+            <button type="submit" class="btn btn-secondary btn-sm">Envoyer</button>
+        </form>
     </div>
 
-    <div class="card commentaire">
-        <div class="card-body">
-            <p>Antoine Barbier</p>
-            <p>05/05/2020 à 20h30</p>
-        </div>
-    </div>
-
-    <h2>Ajouter un commentaire sur le stage :</h2>
 </div>

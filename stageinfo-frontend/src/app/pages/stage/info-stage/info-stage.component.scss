@@ -2,15 +2,7 @@
     width: 100%;    // takes parent width        
     height: 100%;   // takes parent height   
 }
-.card{
-    margin:0;
-    .card-header{
-        padding-bottom: 0;
-    }
-    .card-body{
-        padding-top: 0;
-    }
-}
+
 .all-card{
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
@@ -24,6 +16,7 @@
 
     #status-stage{
         grid-area: status;
+        height:100%;
     }
     #informations-stage{
         grid-area: info;
@@ -42,13 +35,22 @@
     }
 }
 
-#commentaires-stage{
-    padding:1rem;
-    .commentaire{
-        border: 1px solid #6c757d25;
-        padding:1rem;
-        margin: 0.75rem 1.25rem 1.25rem 1.25rem;
+.form-group-row{
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    row-gap: 15px;
+    margin:10px;
+
+    label{
+        width:100px;
+        align-self:center;
+        font-weight:bold;
+        margin:0;
     }
+    select{
+        width:100%;
+    }
+    
 }
 
 

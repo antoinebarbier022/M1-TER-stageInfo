@@ -8,8 +8,6 @@ import { Component, OnInit, Input } from '@angular/core';
 export class ModalComponent implements OnInit {
   @Input() type = ""; // confirmation supression, information ...
   @Input() title = "";
-  @Input() content = "";
-
   constructor() { }
 
   ngOnInit(): void {

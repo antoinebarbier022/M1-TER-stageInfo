@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { takeUntil } from 'rxjs/operators';
-import { StageService } from 'src/app/core/services/stage.service';
 import { Subject } from 'rxjs';
+
+import { StageService } from 'src/app/core/services/stage.service';
 
 @Component({
   selector: 'app-list-stages',
@@ -71,8 +72,8 @@ export class ListStagesComponent implements OnInit {
     this.getStages();
   }
 
-  getStages() : void {
-    this.stageService.getStages()
+  getStages() {
+    this.stageService.getAllStages()
       .pipe(takeUntil(this.destroy$))
       .subscribe((_stages: any[]) => {
         this.allStages = _stages;

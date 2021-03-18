@@ -9,11 +9,11 @@
                 <i style="margin-right:5px;" class="fas fa-file-import"></i>
                 importer
             </button>
-            <!--<app-button-add link="/saisir-stage" style="float:right;"></app-button-add>-->
+            <app-button-add link="/saisir-stage" style="float:right;"></app-button-add>
         </div>
     </div>
 
-    <table class="table table-striped table-sm">
+    <table class="card-table table table-striped table-sm">
         <thead>
             <tr>
                 <th (click)="sortByAscendingDescendingOrder(0)" scope="col">Titre</th>
@@ -25,8 +25,9 @@
             </tr>
         </thead>
         <tbody>
+            <!-- Ajout des stages de la BDD -->
             <tr *ngFor="let stage of printStages()">
-                <td><a routerLink="/liste-stages/info-stage">{{ stage.titre }}</a></td>
+                <td><a [routerLink]="['/liste-stages', stage._id]">{{ stage.titre }}</a></td>
                 <td>{{ stage.entreprise.nomComplet }}</td>
                 <td>{{ stage.parcours.nomComplet }}</td>
                 <!-- <td>{{ stage.promotions }}</td>-->

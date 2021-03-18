@@ -17,9 +17,10 @@ export class SidebarComponent implements OnInit {
   listeStages =             {icon:"fas fa-list",          nom:"Listing des stages",       lien:"/liste-stages",       items:[]};
   listeSoutenances =        {icon:"fas fa-list",          nom:"Listing des soutenances",  lien:"/liste-soutenances",   items:[]};
   listeEntreprise =         {icon:"fas fa-list",          nom:"Listing des entreprises",  lien:"/liste-entreprises",   items:[]};
-  listeUtilisateurs =       {icon:"fas fa-list",          nom:"Listing des utilisateurs",  lien:"/liste-utilisateurs",   items:[]};
-  listeEtudiants =          {icon:"fas fa-user-friends",  nom:"Listing des étudiants ",   lien:"/liste-etudiants", items:[]};
-  listeEnseignants =        {icon:"fas fa-user-friends",  nom:"listing des enseignants",  lien:"/liste-enseignants", items:[]};
+  listeUtilisateurs =       {icon:"fas fa-list",          nom:"Listing des utilisateurs", lien:"/liste-utilisateurs",   items:[]};
+  listeEtudiants =          {icon:"fas fa-list",  nom:"Listing des étudiants ",   lien:"/liste-etudiants", items:[]};
+  listeEnseignants =        {icon:"fas fa-list",  nom:"listing des enseignants",  lien:"/liste-enseignants", items:[]};
+  listeParcours =           {icon:"fas fa-list",          nom:"Listing des parcours",     lien:"/liste-parcours",       items:[]};
   listeEtudiantsSansStage = {icon:"fas fa-user-friends",  nom:"Étudiant sans stages",     lien:"/etudiant-sans-stages", items:[]};
   listeSoutenancesNonPlanifie = {icon:"fas fa-list",      nom:"Listing des soutenances non planifiées", lien:"/listing-soutenance-non-planifie", items:[]};
 
@@ -58,37 +59,37 @@ export class SidebarComponent implements OnInit {
   navigationInvite = [
     {
       title:"Stage",
-      items: [ this.listeStages, this.planingSoutenance] 
+      items: [ this.listeStages, this.planingSoutenance]
     },
     {
       title:"Besoin d'aide ?",
-      items: [ this.faq, this.nousContacter] 
+      items: [ this.faq, this.nousContacter]
     }
   ];
 
   navigationEtudiant = [
     {
       title:"Stage",
-      items: [ this.listeStages, this.saisirStage, this.planingSoutenance] 
+      items: [ this.listeStages, this.saisirStage, this.planingSoutenance]
     },
     {
       title:"Besoin d'aide ?",
-      items: [ this.faq, this.nousContacter] 
+      items: [ this.faq, this.nousContacter]
     }
   ];
 
   navigationTuteur = [
     {
       title:"Stage",
-      items: [ this.listeStages, this.saisirFicheSuivi, this.planingSoutenance] 
+      items: [ this.listeStages, this.saisirFicheSuivi, this.planingSoutenance]
     },
     {
       title:"Statistique",
-      items: [ this.suiviEmbauche, this.classementEntreprise] 
+      items: [ this.suiviEmbauche, this.classementEntreprise]
     },
     {
       title:"Archivage",
-      items: [ this.archivesRapports, this.archivesStages] 
+      items: [ this.archivesRapports, this.archivesStages]
     },
     {
       title:"Besoin d'aide ?",
@@ -99,7 +100,7 @@ export class SidebarComponent implements OnInit {
   navigationRepresentantEntreprise = [
     {
       title:"Stage",
-      items: [ this.listeStages, this.saisirStage, this.saisirFicheSuivi, this.planingSoutenance] 
+      items: [ this.listeStages, this.saisirStage, this.saisirFicheSuivi, this.planingSoutenance]
     },
     {
       title:"Besoin d'aide ?",
@@ -110,19 +111,19 @@ export class SidebarComponent implements OnInit {
   navigationResponsableParcours = [
     {
       title:"Stage",
-      items: [ this.listeStages, this.saisirFicheSuivi, this.planingSoutenance] 
+      items: [ this.listeStages, this.saisirFicheSuivi, this.planingSoutenance]
     },
     {
       title:"Documents",
-      items: [] 
+      items: []
     },
     {
       title:"Statistique",
-      items: [ this.suiviEmbauche, this.classementEntreprise] 
+      items: [ this.suiviEmbauche, this.classementEntreprise]
     },
     {
       title:"Archivage",
-      items: [ this.archivesRapports, this.archivesStages] 
+      items: [ this.archivesRapports, this.archivesStages]
     },
     {
       title:"Besoin d'aide ?",
@@ -133,23 +134,28 @@ export class SidebarComponent implements OnInit {
   navigationSecretaire = [
     {
       title:"Administration",
-      items: [ this.listeStages, this.listeUtilisateurs, this.listeEntreprise, this.listeSoutenances] 
+      items: [  this.listeStages, 
+                this.listeUtilisateurs, 
+                this.listeEtudiants,
+                this.listeEntreprise, 
+                this.listeSoutenances, 
+                this.listeParcours]
     },
     {
       title:"Stage",
-      items: [ this.saisirStage, this.saisirFicheSuivi, this.planingSoutenance] 
+      items: [ this.saisirStage, this.saisirFicheSuivi, this.planingSoutenance]
     },
     {
       title:"Documents",
-      items: [ this.exporterCSV, this.telechargerPDF,] 
+      items: [ this.exporterCSV, this.telechargerPDF,]
     },
     {
       title:"Statistique",
-      items: [ this.suiviEmbauche, this.classementEntreprise] 
+      items: [ this.suiviEmbauche, this.classementEntreprise]
     },
     {
       title:"Archivage",
-      items: [ this.archivesRapports, this.archivesStages] 
+      items: [ this.archivesRapports, this.archivesStages]
     },
     {
       title:"Besoin d'aide ?",
@@ -175,6 +181,7 @@ export class SidebarComponent implements OnInit {
   choixNavigation() : any{
     switch (this.testService.getRole()){
       case "admin":
+      case "secretaire":
         return this.navigationSecretaire;
       case "etudiant":
         return this.navigationEtudiant;

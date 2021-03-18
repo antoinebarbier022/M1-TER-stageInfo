@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-edit-user',
@@ -6,10 +7,15 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./edit-user.component.scss']
 })
 export class EditUserComponent implements OnInit {
+  title="Modifier l'utilisateur"
+  userId:any;
 
-  constructor() { }
+  constructor(private route:ActivatedRoute) { 
+    this.userId = this.route.snapshot.paramMap.get('id');
+  }
 
   ngOnInit(): void {
+    
   }
 
 }

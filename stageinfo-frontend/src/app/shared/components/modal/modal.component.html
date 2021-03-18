@@ -8,11 +8,11 @@
         </button>
         </div>
         <div class="modal-body">
-            {{ content }}
+            <ng-content select="[content]"></ng-content>
         </div>
         <div class="modal-footer">
-        <button type="button" class="btn btn-secondary btn-sm" data-dismiss="modal">Annuler</button>
-        <button type="button" class="btn btn-danger btn-sm" data-dismiss="modal">Supprimer</button>
+            <ng-content select="[button1]"></ng-content>
+            <ng-content select="[button2]"></ng-content>
         </div>
     </div>
     </div>

@@ -1,6 +1,4 @@
-<p><a routerLink=""><i class="fas fa-chevron-left"></i> Retour</a></p>
-<br/>
-<h1>{{ title }}</h1>
+<app-navigation [title]="title"></app-navigation>
 
 
 <div class="all-card">
@@ -33,7 +31,7 @@
                         <input  type="text" 
                                 id="inputTitre"  
                                 class="form-control"
-                                placeholder="titre du stage" 
+                                placeholder="Titre du stage" 
                                 [(ngModel)]="stage.titre"
                                 name="titre">
                     </div>
@@ -41,6 +39,7 @@
                     <div class="form-group-row">
                         <label for="inputNiveau">Niveau requis</label>
                         <select  id="inputNiveau" class="form-control" name="niveauRequis" >
+                            <option value="" disabled selected>Selectionner le niveau requis</option>
                             <option *ngFor="let i of niveauRequis">{{ i }}</option>
                         </select>
                     </div>
@@ -48,6 +47,7 @@
                     <div class="form-group-row">
                         <label for="inputParcours">Parcours</label>
                         <select id="inputParcours" class="form-control" name="parcours">
+                            <option value="" disabled selected>Selectionner le parcours</option>
                             <option *ngFor="let i of parcours">{{ i }}</option>
                         </select>
                     </div>
@@ -56,10 +56,10 @@
                         <label for="inputDescription">Description</label>
                         <textarea   id="inputDescription"
                                     class="form-control"  
+                                    placeholder="Description du stage"
                                     rows="3"
                                     [(ngModel)]="stage.description"
-                                    name="description">
-                        </textarea>
+                                    name="description"></textarea>
                         
                     </div>
                     <!-- Durée du stage -->
@@ -68,7 +68,7 @@
                         <input  type="number" 
                                 id="inputDuree" 
                                 class="form-control" 
-                                placeholder="6 mois"
+                                placeholder="Nombre de mois"
                                 [(ngModel)]="stage.duree"
                                 name="duree">
                     </div>
@@ -79,7 +79,6 @@
                         <input  type="date" 
                                 id="inputDateDebut" 
                                 class="form-control" 
-                                placeholder="6 mois"
                                 [(ngModel)]="stage.dateDebut"
                                 name="dateDebut">
                     </div>
@@ -95,7 +94,7 @@
                                 id="inputEntreprise"
                                 name="entreprises" 
                                 list="entreprise-list"
-                                placeholder="titre de l'entreprise"
+                                placeholder="Nom de l'entreprise"
                                 [(ngModel)]="stage.entreprise"
                                 name="entreprise">
                                 
@@ -121,8 +120,7 @@
                             <textarea   id="inputDescriptionEntreprise"
                                         class="form-control"  
                                         rows="3"
-                                        name="entrepriseDescription">
-                            </textarea>
+                                        name="entrepriseDescription"></textarea>
                         </div>
                         <!-- Adresse de l'entreprise -->
                         <div class="form-group-row">
@@ -217,8 +215,9 @@
                     </div>
                     
                     <div class="form-group-row">
-                        <label for="inputTuteur">Tuteur</label>
+                        <label for="inputTuteur">Représentant entreprise</label>
                         <select id="inputParcours" class="form-control" name="parcours">
+                            <option value="" disabled selected>Selectionner un représentant</option>
                             <option *ngFor="let i of parcours">{{ i }}</option>
                         </select>
                     </div>
@@ -239,7 +238,7 @@
                                     class="form-control"  
                                     rows="2"
                                     name="competences"
-                                    placeholder="">
+                                    placeholder="Compétences attendu durant le stage">
                         </textarea>
                     </div>
                     <!-- Conditions du stage -->
@@ -249,8 +248,7 @@
                                     class="form-control"  
                                     rows="2"
                                     name="conditions"
-                                    placeholder="">
-                        </textarea>
+                                    placeholder=""></textarea>
                     </div>
                     <!-- Date début du stage -->
                     <div class="form-group-row">
