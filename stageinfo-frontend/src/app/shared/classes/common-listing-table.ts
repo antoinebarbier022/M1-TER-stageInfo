@@ -74,9 +74,6 @@ export abstract class CommonListingTable {
             if (this.itemHasAllKeywords(x, this.commonProperties.searchFilter.trim().split(/\s+/))) return x;
         });
 
-        console.log('ok : ');
-        console.log(filteredArray);
-
         this.commonProperties.sizeFilteredArray = filteredArray.length;
         this.commonProperties.pageCount = Math.ceil(filteredArray.length / this.commonProperties.nbrEntries);
         
