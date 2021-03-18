@@ -1,9 +1,9 @@
 import { Component, Input, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'app-list-filter',
-  templateUrl: './list-filter.component.html',
-  styleUrls: ['./list-filter.component.scss']
+  selector: 'app-card-filter',
+  templateUrl: './card-filter.component.html',
+  styleUrls: ['./card-filter.component.scss']
 })
 export class ListFilterComponent implements OnInit{
 
