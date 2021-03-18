@@ -55,6 +55,8 @@ import { AllStagesResolver } from "./core/resolves/all-stages.resolver";
 import { StageResolver } from "./core/resolves/stage.resolver";
 import { AllEntreprisesResolver } from './core/resolves/all-entreprises.resolver';
 import { EntrepriseResolver } from './core/resolves/entreprise.resolver';
+import { AllParcoursResolver } from './core/resolves/all-parcours.resolver';
+import { ParcoursResolver } from './core/resolves/parcours.resolver';
 
 
 
@@ -114,10 +116,10 @@ const routes: Routes = [
   { path: 'liste-soutenances/soutenance', component: AddSoutenanceComponent, canActivate: [AuthGuardService]},
 
   // route parcours
-  { path: 'liste-parcours', component: ListParcoursComponent, canActivate: [AuthGuardService]},
+  { path: 'liste-parcours', component: ListParcoursComponent, canActivate: [AuthGuardService], resolve: { allParcours: AllParcoursResolver }},
   { path: 'liste-parcours/add-parcours', component: AddParcoursComponent, canActivate: [AuthGuardService]},
   { path: 'liste-parcours/edit-parcours', component: EditParcoursComponent, canActivate: [AuthGuardService]},
-  { path: 'liste-parcours/info-parcours', component: InfoParcoursComponent, canActivate: [AuthGuardService]},
+  { path: 'liste-parcours/info-parcours', component: InfoParcoursComponent, canActivate: [AuthGuardService], resolve: { parcours: ParcoursResolver }},
 
   // config calendrier soutenance
   { path: 'configuration-calendrier-soutenances', component: ConfigCalendrierSoutenancesComponent, canActivate: [AuthGuardService]},
