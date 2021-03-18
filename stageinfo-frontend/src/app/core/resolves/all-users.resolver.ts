@@ -13,13 +13,13 @@ import { UserService } from '../services/user.service';
 @Injectable({
   providedIn: 'root'
 })
-export class UsersResolver implements Resolve<boolean> {
+export class AllUsersResolver implements Resolve<any> {
 
   constructor(private userService : UserService, private router: Router){}
 
 
   resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<any>{
-    return this.userService.getUsers().pipe(
+    return this.userService.getAllUsers().pipe(
       map(res => res),
       catchError((error) => {
         // redirection vers la page d'erreur 404 si le stage n'est pas trouvé

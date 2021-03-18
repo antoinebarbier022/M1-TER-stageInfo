@@ -30,7 +30,7 @@ export class ListUsersComponent implements OnInit, OnDestroy {
   }
 
   getUsers() {
-    this.userService.getUsers()
+    this.userService.getAllUsers()
       .pipe(takeUntil(this.destroy$))
       .subscribe((_users: any[]) => {
         this.users = _users;

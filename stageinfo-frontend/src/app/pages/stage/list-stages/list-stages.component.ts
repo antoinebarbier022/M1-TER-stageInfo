@@ -69,7 +69,7 @@ export class ListStagesComponent implements OnInit {
   }
 
   getStages() {
-    this.stageService.getStages()
+    this.stageService.getAllStages()
       .pipe(takeUntil(this.destroy$))
       .subscribe((_stages: any[]) => {
         this.allStages = _stages;

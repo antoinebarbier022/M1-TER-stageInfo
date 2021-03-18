@@ -20,7 +20,7 @@ export class StageService {
   }
 
   /* Récupération de tous les stages */
-  getStages(): Observable<any> {
+  getAllStages(): Observable<any> {
     return this.httpClient.get(this.urlBase+'/api/stage');
   }
 

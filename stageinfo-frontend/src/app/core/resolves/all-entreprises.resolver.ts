@@ -5,19 +5,19 @@ import {
   ActivatedRouteSnapshot
 } from '@angular/router';
 import { Observable, of } from 'rxjs';
-import { catchError, map } from 'rxjs/operators';
-
-import { StageService } from '../services/stage.service';
+import { map, catchError } from 'rxjs/operators';
+import { EntrepriseService } from '../services/entreprise.service';
 
 @Injectable({
   providedIn: 'root'
 })
-export class StagesResolver implements Resolve<any> {
-
-  constructor(private stageService : StageService, private router: Router){}
+export class AllEntreprisesResolver implements Resolve<any> {
+  
+  constructor(private entrepriseService : EntrepriseService, private router: Router){}
 
   resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<any>{
-      return this.stageService.getStages().pipe(
+    // La variable loading permet de savoir lorsque les données sont en cours de chargement
+      return this.entrepriseService.getAllEntreprises().pipe(
         map(res => res),
         catchError((error) => {
           // redirection vers la page d'erreur 404 si le stage n'est pas trouvé

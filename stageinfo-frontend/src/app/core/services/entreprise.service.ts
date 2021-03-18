@@ -12,7 +12,7 @@ export class EntrepriseService {
   constructor(private httpClient: HttpClient) { }
 
   /* Récupération de toutes les entreprises */
-  getEntreprises(): Observable<any> {
+  getAllEntreprises(): Observable<any> {
     return this.httpClient.get(this.urlBase+'/api/entreprise');
   }
 

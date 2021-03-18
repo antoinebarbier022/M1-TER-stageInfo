@@ -49,11 +49,11 @@ import {AuthGuardService} from "./core/guards/auth-guard.service";
 import {AuthGuard} from "./core/guards/guard-login.service";
 
 // Importation des resolver
-import { UsersResolver } from "./core/resolves/users.resolver";
+import { AllUsersResolver } from "./core/resolves/all-users.resolver";
 import { UserResolver } from "./core/resolves/user.resolver";
-import { StagesResolver } from "./core/resolves/stages.resolver";
+import { AllStagesResolver } from "./core/resolves/all-stages.resolver";
 import { StageResolver } from "./core/resolves/stage.resolver";
-import { EntreprisesResolver } from './core/resolves/entreprises.resolver';
+import { AllEntreprisesResolver } from './core/resolves/all-entreprises.resolver';
 import { EntrepriseResolver } from './core/resolves/entreprise.resolver';
 
 
@@ -67,7 +67,7 @@ const routes: Routes = [
       component: ListStagesComponent, 
       canActivate: [AuthGuardService],
       resolve: {
-        stages: StagesResolver  // on associe un resolver à la route
+        stages: AllStagesResolver  // on associe un resolver à la route
       }
   },
   { path: 'liste-stages/:id', 
@@ -82,7 +82,7 @@ const routes: Routes = [
 
   // route users
   
-  { path: 'liste-utilisateurs', component: ListUsersComponent, canActivate: [AuthGuardService], resolve: { users: UsersResolver }},
+  { path: 'liste-utilisateurs', component: ListUsersComponent, canActivate: [AuthGuardService], resolve: { users: AllUsersResolver }},
   { path: 'liste-etudiants', component: ListEtudiantsComponent, canActivate: [AuthGuardService]},
   { path: 'liste-utilisateurs/import-users', component: ImportUsersComponent, canActivate: [AuthGuardService]},
   { path: 'liste-utilisateurs/add-user', component: AddUserComponent, canActivate: [AuthGuardService]},
@@ -103,7 +103,7 @@ const routes: Routes = [
   },
   { path: 'profile', component: ProfileUserComponent, canActivate: [AuthGuardService]},
   //routes entreprise
-  { path: 'liste-entreprises', component: ListEntreprisesComponent, canActivate: [AuthGuardService], resolve: { entreprises: EntreprisesResolver }},
+  { path: 'liste-entreprises', component: ListEntreprisesComponent, canActivate: [AuthGuardService], resolve: { entreprises: AllEntreprisesResolver }},
   { path: 'liste-entreprises/add-entreprise', component: AddEntrepriseComponent, canActivate: [AuthGuardService]},
   { path: 'liste-entreprises/edit-entreprise/:id', component: EditEntrepriseComponent, canActivate: [AuthGuardService], resolve: { entreprise: EntrepriseResolver }},
   { path: 'liste-entreprises/info/:id', component: InfoEntrepriseComponent, canActivate: [AuthGuardService], resolve: { entreprise: EntrepriseResolver }},
