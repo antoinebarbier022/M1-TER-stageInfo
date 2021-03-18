@@ -58,7 +58,8 @@ export class FormParcoursComponent implements OnInit {
       description:[''],
       responsable:['', Validators.required]
     });
-    console.log(this.parcoursData);
+
+    // Si on est sur le formulaire parcours alors on remplie les champs
     if(this.editParcours){
       this.parcoursForm.patchValue({
         acronyme:this.parcoursData.acronyme,
@@ -68,6 +69,14 @@ export class FormParcoursComponent implements OnInit {
         responsable:this.parcoursData.responsable
       });
     }
+  }
+
+  deleteParcours(){
+    this.parcoursService.deleteParcoursById(this.route.snapshot.paramMap.get('id'))
+    .pipe(takeUntil(this.destroy$))
+      .subscribe((_res: any[]) => {
+        this.router.navigate(['/liste-parcours']);
+      });
   }
 
   onSubmitForm() {
@@ -84,14 +93,12 @@ export class FormParcoursComponent implements OnInit {
       this.parcoursService.addParcours(parcours)
       .pipe(takeUntil(this.destroy$))
         .subscribe((_res: any[]) => {
-          console.log(_res);
           this.router.navigate(['/liste-parcours']);
       });
     }else if(this.editParcours){
       this.parcoursService.editParcours(this.route.snapshot.paramMap.get('id'), parcours)
       .pipe(takeUntil(this.destroy$))
         .subscribe((_res: any[]) => {
-          console.log(_res);
           this.router.navigate(['/liste-parcours']);
       });
     }
