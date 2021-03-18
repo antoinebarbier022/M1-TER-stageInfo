@@ -65,16 +65,12 @@ exports.createParcours = (req, res, next) => {
 exports.editParcours = (req, res, next) => {
     console.log(req.body);
 
-    const parcour = new Parcours({
-        niveau: req.body.niveau,
-        acronyme: req.body.acronyme,
-        intitule: req.body.intitule,
-        description: req.body.description,
-        existe: req.body.existe,
-        idResp: req.body.idResp,
+    const parcours = new Parcours({
+        _id: req.params.id,
+        ...req.body
     });
 
-    Parcours.updateOne({_id: req.params.id}, parcour)
+    Parcours.updateOne({_id: req.params.id}, parcours)
         .then(() => {
             res.status(201).json({
                 message: 'Parcours updated successfully!'

@@ -120,8 +120,8 @@ const routes: Routes = [
   // route parcours
   { path: 'liste-parcours', component: ListParcoursComponent, canActivate: [AuthGuardService], resolve: { allParcours: AllParcoursResolver }},
   { path: 'liste-parcours/add-parcours', component: AddParcoursComponent, canActivate: [AuthGuardService]},
-  { path: 'liste-parcours/edit-parcours', component: EditParcoursComponent, canActivate: [AuthGuardService]},
-  { path: 'liste-parcours/info-parcours', component: InfoParcoursComponent, canActivate: [AuthGuardService], resolve: { parcours: ParcoursResolver }},
+  { path: 'liste-parcours/edit-parcours/:id', component: EditParcoursComponent, canActivate: [AuthGuardService], resolve: { parcours: ParcoursResolver }},
+  { path: 'liste-parcours/info/:id', component: InfoParcoursComponent, canActivate: [AuthGuardService], resolve: { parcours: ParcoursResolver }},
 
   // config calendrier soutenance
   { path: 'configuration-calendrier-soutenances', component: ConfigCalendrierSoutenancesComponent, canActivate: [AuthGuardService]},

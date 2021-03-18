@@ -22,7 +22,7 @@
                     <td>{{ parcours.niveau }}</td>
                     <td><a routerLink="/">{{ parcours.responsable }}</a></td>
                     <td class="table-action">
-                        <a routerLink="/liste-parcours/edit-parcours"><i class="icon far fa-lg fa-edit"></i></a>
+                        <a [routerLink]="['/liste-parcours/edit-parcours',parcours._id]"><i class="icon far fa-lg fa-edit"></i></a>
                         <!--<a (click)="deleteParcours(parcours._id)"><i class="icon far fa-lg fa-trash-alt"></i></a>-->
                         <a (click)="parcoursSelected(parcours._id)" data-toggle="modal" data-target="#suppression-parcours"><i class="icon far fa-lg fa-trash-alt"></i></a>
                     </td>

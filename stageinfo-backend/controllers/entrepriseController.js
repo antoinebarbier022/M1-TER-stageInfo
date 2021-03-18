@@ -39,7 +39,7 @@ exports.editEntreprise = (req, res, next) => {
             message: 'Entreprise updated successfully!'
         });
     })
-        .catch((error) => { res.status(400).json({ error: error});});
+    .catch((error) => { res.status(400).json({ error: error});});
 };
 
 /**-----------------SUPPRESSION---ENTREPRISE-------------------**/

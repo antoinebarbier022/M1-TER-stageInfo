@@ -11,8 +11,9 @@
             </a>
         </h2>
     </div>
+
     <div class="card-body">
-        <form>
+        <form [formGroup]="parcoursForm"(ngSubmit)="onSubmitForm()">
             <!-- Nom du parcours -->
             <div class="form-group-row">
                 <label for="inputAcronyme">Acronyme</label>
@@ -20,16 +21,22 @@
                         id="inputAcronyme"  
                         class="form-control"
                         placeholder="Acronyme du parcours" 
-                        name="parcoursAcronyme">
+                        name="parcoursAcronyme"
+                        formControlName="acronyme">
             </div>
             <!-- Niveau du parcours -->
             <div class="form-group-row">
                 <label for="inputNiveau">Niveau</label>
-                <input  type="text" 
-                        id="inputNiveau"  
-                        class="form-control"
-                        placeholder="Niveau du parcours" 
-                        name="parcoursNiveau">
+                <select *ngIf="!(viewParcours)" 
+                        id="inputResponsable" 
+                        [ngClass]="viewParcours? 'form-control-plaintext' : 'form-control'" 
+                        name="niveau"
+                        formControlName="niveau">
+                    <option value="" disabled selected>Selectionner le niveau</option>
+                    <option value="L3">L3</option>
+                    <option value="M1">M1</option>
+                    <option value="M2">M2</option>
+                </select>
             </div>
             <!-- Intitulé du parcours -->
             <div class="form-group-row">
@@ -38,7 +45,8 @@
                         id="inputIntitule"  
                         class="form-control"
                         placeholder="Intitule du parcours" 
-                        name="parcoursIntitule">
+                        name="parcoursIntitule"
+                        formControlName="intitule">
             </div>
             <!-- Description du parcours -->
             <div class="form-group-row">
@@ -47,13 +55,18 @@
                             class="form-control"  
                             placeholder="Description du parcours"
                             rows="3"
-                            name="parcoursDescription"></textarea>
+                            name="parcoursDescription"
+                            formControlName="description"></textarea>
             </div>
 
             <!-- Responsable du parcours -->
             <div class="form-group-row">
                 <label for="inputResponsable">Responsable</label>
-                <select *ngIf="!(viewParcours)" id="inputResponsable" [ngClass]="viewParcours? 'form-control-plaintext' : 'form-control'" name="responsable">
+                <select *ngIf="!(viewParcours)" 
+                        id="inputResponsable" 
+                        [ngClass]="viewParcours? 'form-control-plaintext' : 'form-control'" 
+                        name="responsable"
+                        formControlName="responsable">
                     <option value="" disabled selected>Selectionner le responsable</option>
                     <option value="1837290189">Pierre Pompidor</option>
                     <option value="18372901897892">Eric Burreau</option>
@@ -64,17 +77,18 @@
                 <a class="btn btn-danger btn-sm" data-toggle="modal" data-target="#suppression-parcours">
                     Supprimer
                 </a>
-                <button routerLink="/liste-parcours" type="submit" class="btn btn-primary btn-sm btn-modifier">
+                <button type="submit" class="btn btn-primary btn-sm btn-modifier" [disabled]="parcoursForm.pristine">
                     Modifier
                 </button>
             </div>
             <!-- Si Ajouter un Parcours -->
             <div *ngIf="addParcours">
-                <button routerLink="/liste-parcours" type="submit" class="btn btn-primary btn-sm btn-ajouter">
+                <button type="submit" 
+                        class="btn btn-primary btn-sm btn-ajouter"
+                        [disabled]="parcoursForm.invalid">
                     Ajouter
                 </button>
             </div>
-
         </form>
     </div>
 </div>
@@ -85,5 +99,7 @@
             role="dialog" 
             id="suppression-parcours"
             title="Suppression Parcours">
-            <p>Confirmer la suppression du parcours.</p>
+    <p content>Confirmer la suppression du parcours.</p>
+    <button button1 type="button" class="btn btn-secondary btn-sm" data-dismiss="modal">Annuler</button>
+    <button button2 (click)="deleteParcours()" type="button" class="btn btn-danger btn-sm" data-dismiss="modal">Supprimer</button>
 </app-modal>

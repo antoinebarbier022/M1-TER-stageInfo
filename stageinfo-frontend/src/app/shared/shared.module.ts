@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 // forms components
 import { FormUserComponent } from './components/forms/form-user/form-user.component';
@@ -44,6 +44,7 @@ import { DateAgoPipe } from './pipes/date-ago.pipe';
     CommonModule,
     RouterModule,
     FormsModule,
+    ReactiveFormsModule,
   ],
   exports:[
     FormUserComponent, 
