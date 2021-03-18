@@ -84,8 +84,6 @@ export class ListStagesComponent implements OnInit {
       endIndex: 10,
       filteredArray: []
     }
-
-    console.log("il y en a : " + this.commonProperties.nbrEntries);
   }
 
   printCommon(){
@@ -107,10 +105,10 @@ export class ListStagesComponent implements OnInit {
         this.allStages = _stages;
         this.stagesPrinted = _stages;
         console.log("nombre de stage : " + this.allStages.length);
-        console.log("nombre entrées : " + this.commonProperties.nbrEntries);
+        
 
         this.commonProperties.pageCount = Math.ceil(this.allStages.length / this.commonProperties.nbrEntries);
-        console.log("il y a 2 : " + this.commonProperties.pageCount);
+        
         this.commonProperties.filteredArray = _stages;
 
         this.pageCount = Math.ceil(this.allStages.length / this.nbrEntries);
@@ -169,7 +167,7 @@ export class ListStagesComponent implements OnInit {
     this.visibleProperties.forEach(prop => {
       row.push(this.getNestedValue(stage, prop.name));
     });
-    console.log(keywords.every(word => row.join(' ').toLowerCase().includes(word)));
+    
     return keywords.every(word => row.join(' ').toLowerCase().includes(word));
   }
 
@@ -182,9 +180,14 @@ export class ListStagesComponent implements OnInit {
 
   /* ULTRA IMPORTANT PUTAIN */
   getStagesByKeyword2() : any {
-    return this.allStages.filter(x => {
+
+    let filteredArray = this.allStages.filter(x => {
       if (this.stageHasAllKeywords(x, this.commonProperties.searchFilter.trim().split(/\s+/))) return x;
-    }).slice(this.commonProperties.startIndex, this.commonProperties.endIndex);
+    });
+
+    this.commonProperties.pageCount = Math.ceil(filteredArray.length / this.commonProperties.nbrEntries);
+
+    return filteredArray.slice(this.commonProperties.startIndex, this.commonProperties.endIndex);;
   }
 
   // Dans le component list-pagination
