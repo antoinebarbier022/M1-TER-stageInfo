@@ -1,6 +1,7 @@
 import { CommonModule } from "@angular/common";
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { LOCALE_ID } from "@angular/core";
 import { registerLocaleData } from '@angular/common';
@@ -35,6 +36,8 @@ registerLocaleData(localeFr, 'fr');
     HttpClientModule,
     AppRoutingModule,
     CommonModule,
+    FormsModule,
+    ReactiveFormsModule,
     // Loading bar
     LoadingBarRouterModule,
     LoadingBarModule,
