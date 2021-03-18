@@ -2,7 +2,7 @@ export abstract class CommonListingTable {
 
     protected visibleProperties: any;
     protected allItems: Array<any>;
-    protected commonProperties: {
+    public commonProperties: {
         searchFilter: string,
         nbrEntries: number,
         pageCount: number,
@@ -30,7 +30,7 @@ export abstract class CommonListingTable {
         }
     }
 
-    compare(obj1: any, obj2: any, index: number) : number {
+    protected compare(obj1: any, obj2: any, index: number) : number {
         if(this.getNestedValue(obj1, this.visibleProperties[index].name) > this.getNestedValue(obj2, this.visibleProperties[index].name))
           return 1;
     
@@ -40,7 +40,7 @@ export abstract class CommonListingTable {
         return 0;
     }
     
-    sortByAscendingDescendingOrder(index: number){
+    public sortByAscendingDescendingOrder(index: number){
         if(this.visibleProperties[index].sorted){
             this.allItems.sort((item1, item2) => (-1)*this.compare(item1, item2, index));
             this.visibleProperties[index].sorted = false;
@@ -51,27 +51,27 @@ export abstract class CommonListingTable {
         }
     }
     
-    getNestedValue(obj: any, key : any): any{
+    protected getNestedValue(obj: any, key : any): any{
         return key.split(".").reduce(function(result: any, key: any) {
             return result[key] 
         }, obj);
     }
     
-    stageHasAllKeywords(stage: any, str: string[]): boolean {
+    protected itemHasAllKeywords(item: any, str: string[]): boolean {
         const keywords = str.filter(e => e).map(v => v.toLowerCase());
 
         let row = new Array();
         
         this.visibleProperties.forEach((prop: any) => {
-            row.push(this.getNestedValue(stage, prop.name));
+            row.push(this.getNestedValue(item, prop.name));
         });
         
         return keywords.every(word => row.join(' ').toLowerCase().includes(word));
     }
     
-    printStages() : any {
+    public printItems() : any {
         let filteredArray = this.allItems.filter(x => {
-            if (this.stageHasAllKeywords(x, this.commonProperties.searchFilter.trim().split(/\s+/))) return x;
+            if (this.itemHasAllKeywords(x, this.commonProperties.searchFilter.trim().split(/\s+/))) return x;
         });
 
         console.log('ok : ');
@@ -88,7 +88,4 @@ export abstract class CommonListingTable {
 
         return filteredArray.slice(this.commonProperties.startIndex, this.commonProperties.endIndex);
     }
-        
-
-
 }
