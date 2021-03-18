@@ -68,7 +68,7 @@ export class ListStagesComponent implements OnInit {
   }
 
   printCommon(){
-    console.log(this.commonProperties);
+    this.getStagesByKeyword();
   }
 
   getArrayFiltered(): any{
@@ -153,27 +153,22 @@ export class ListStagesComponent implements OnInit {
     this.visibleProperties.forEach(prop => {
       row.push(this.getNestedValue(stage, prop.name));
     });
-
+    console.log(keywords.every(word => row.join(' ').toLowerCase().includes(word)));
     return keywords.every(word => row.join(' ').toLowerCase().includes(word));
-  }
-
-  printMsg(): void{
-    console.log("salut");
-  }
-
-  printStages(event : any): any{
-    this.stagesPrinted = event;
-  }
-
-  printPagination(event : any){
-    console.log(event);
   }
 
   // Dans le component list-filter
   getStagesByKeyword() : any {
-    return this.allStages.slice(this.startIndex, this.endIndex).filter(x => {
+    return this.allStages.filter(x => {
       if (this.stageHasAllKeywords(x, this.searchFilter.trim().split(/\s+/))) return x;
-    });
+    }).slice(this.startIndex, this.endIndex);
+  }
+
+  /* ULTRA IMPORTANT PUTAIN */
+  getStagesByKeyword2() : any {
+    return this.allStages.filter(x => {
+      if (this.stageHasAllKeywords(x, this.commonProperties.searchFilter.trim().split(/\s+/))) return x;
+    }).slice(this.commonProperties.startIndex, this.commonProperties.endIndex);
   }
 
   // Dans le component list-pagination

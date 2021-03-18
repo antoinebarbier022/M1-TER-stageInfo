@@ -54,7 +54,7 @@
         </thead>
         <tbody>
             <!-- Ajout des stages de la BDD -->
-            <tr *ngFor="let stage of this.commonProperties.filteredArray">
+            <tr *ngFor="let stage of getStagesByKeyword2()">
                 <td><a routerLink="/liste-stages/info-stage">{{ stage.titre }}</a></td>
                 <td>{{ stage.entreprise.nomComplet }}</td>
                 <td>{{ stage.parcours.nomComplet }}</td>

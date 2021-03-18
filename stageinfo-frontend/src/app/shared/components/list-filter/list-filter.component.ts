@@ -43,13 +43,11 @@ export class ListFilterComponent implements OnInit{
     return keywords.every(word => row.join(' ').toLowerCase().includes(word));
   }
 
+  // Dans le component list-filter
   getStagesByKeyword() : void {
-    console.log(this.itemArray);
-    console.log(this.commonProperties);
-    this.commonProperties.filteredArray = this.itemArray.slice(this.commonProperties.startIndex, this.commonProperties.endIndex).filter(x => {
+    console.log(this.itemArray.filter(x => {
       if (this.stageHasAllKeywords(x, this.commonProperties.searchFilter.trim().split(/\s+/))) return x;
-    });
-    console.log(this.commonProperties);
+    }));
   }
   
 
