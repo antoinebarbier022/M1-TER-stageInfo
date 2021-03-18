@@ -20,5 +20,10 @@ export class EntrepriseService {
   getEntrepriseById(id:any): Observable<any> {
     return this.httpClient.get(this.urlBase+'/api/entreprise/'+id);
   }
+  
+  /* Suppression d'une entreprise avec son identifiant */
+  deleteEntrepriseById(id:any): Observable<any>{
+      return this.httpClient.delete(this.urlBase+'/api/entreprise/'+id);
+  }
 
 }
