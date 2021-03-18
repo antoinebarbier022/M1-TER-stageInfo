@@ -1,4 +1,4 @@
-import { Component, Output, EventEmitter, OnInit, Input, SimpleChange } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 
 @Component({
   selector: 'app-list-pagination',
@@ -7,14 +7,9 @@ import { Component, Output, EventEmitter, OnInit, Input, SimpleChange } from '@a
 })
 export class ListPaginationComponent implements OnInit {
 
-  @Input() public itemArray: Array<any>;
-  @Input() public visibleProperties: Array<any>;
   @Input() public commonProperties: any;
 
-
   constructor() { 
-    this.itemArray = new Array();
-    this.visibleProperties = new Array();
     this.commonProperties = {};
   }
 

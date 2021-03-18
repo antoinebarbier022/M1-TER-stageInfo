@@ -104,11 +104,8 @@ export class ListStagesComponent implements OnInit {
       .subscribe((_stages: any[]) => {
         this.allStages = _stages;
         this.stagesPrinted = _stages;
-        console.log("nombre de stage : " + this.allStages.length);
-        
 
         this.commonProperties.pageCount = Math.ceil(this.allStages.length / this.commonProperties.nbrEntries);
-        
         this.commonProperties.filteredArray = _stages;
 
         this.pageCount = Math.ceil(this.allStages.length / this.nbrEntries);
@@ -186,6 +183,9 @@ export class ListStagesComponent implements OnInit {
     });
 
     this.commonProperties.pageCount = Math.ceil(filteredArray.length / this.commonProperties.nbrEntries);
+
+    //console.log("nombre de stage : " + filteredArray.length);
+    //console.log("nombre de page : " + this.commonProperties.pageCount);
 
     return filteredArray.slice(this.commonProperties.startIndex, this.commonProperties.endIndex);;
   }

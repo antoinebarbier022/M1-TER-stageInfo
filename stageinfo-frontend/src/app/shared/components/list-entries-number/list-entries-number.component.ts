@@ -7,27 +7,19 @@ import { Component, Input, OnInit } from '@angular/core';
 })
 export class ListEntriesNumberComponent implements OnInit {
 
-  @Input() public itemArray: Array<any>;
-  @Input() public visibleProperties: Array<any>;
   @Input() public commonProperties: any;
 
-  public values = [10,20,50];
-
+  public optionEntries: Array<number>
 
   constructor() { 
-    this.itemArray = [];
-    this.visibleProperties = [];
     this.commonProperties = {};
+    this.optionEntries = [10,20,50];
   }
 
   setNumberEntries() : void{
-    //console.log(this.commonProperties.nbrEntries);
-
     this.commonProperties.endIndex = this.commonProperties.startIndex + this.commonProperties.nbrEntries;
-
     this.commonProperties.pageCount = Math.ceil(this.commonProperties.filteredArray.length / this.commonProperties.nbrEntries);
     this.commonProperties.lastPage = this.commonProperties.pageCount;
-    
     this.commonProperties.currentPage = 1;
     this.commonProperties.startIndex = 0;
     this.commonProperties.endIndex = this.commonProperties.startIndex + this.commonProperties.nbrEntries;
