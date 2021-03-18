@@ -1,5 +1,9 @@
+<h1>{{ title }}</h1>
+<app-list-filter [commonProperties]="commonProperties"></app-list-filter>
+
 <div class="card">
     <div class="card-header">
+        <app-list-entries-number [commonProperties]="commonProperties"></app-list-entries-number>
         <h2 class="card-title"> {{ title }} 
             <app-button-add link="/liste-parcours/add-parcours" style="float:right;"></app-button-add>
         </h2>
@@ -15,7 +19,7 @@
                 </tr>
             </thead>
             <tbody>
-                <tr *ngFor="let parcours of allParcours">
+                <tr *ngFor="let parcours of printStages()">
                     <!-- On rajoute le pipe uppercase pour mettre l'acronyme tout le temps en majuscule-->
                     <td>{{ parcours.acronyme | uppercase }}</td>
                     <td>{{ parcours.intitule }}</td>
@@ -29,6 +33,7 @@
                 </tr>
             </tbody>
         </table>
+        <app-list-pagination [commonProperties]="commonProperties"></app-list-pagination>
 </div>
 
 <!-- Debut du Modal suppression parcours -->
