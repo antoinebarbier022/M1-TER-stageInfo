@@ -8,14 +8,14 @@ module.exports = (req, res, next) => {
             throw 'user id non valable !';
         } else {
             if(role != "admin" && role != "secretaire"){
-                res.status(401).json("vous n'avez pas le droit d'accéder a cette requête")
+                res.status(401).json({ message: "vous n'avez pas le droit d'accéder a cette requête.", error : error})
 
             }
             next();
         }
     }
     catch (error){
-        res.status(401).json({error: error | 'Requête non auth'})
+        res.status(401).json({ message: 'Requête non auth !', error : error})
     }
 
 };
