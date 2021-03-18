@@ -29,6 +29,17 @@ export class ListUsersComponent implements OnInit, OnDestroy {
     this.destroy$.unsubscribe();
   }
 
+  deleteParcours(id:any){
+    console.log("Supprimer l'utilisateur : "+ id);
+    /*this.userService.deleteUser(id)
+    .pipe(takeUntil(this.destroy$))
+      .subscribe((_res: any[]) => {
+        console.log(_res);
+        // On supprime de l'affichage le parcours (on sait qu'il est supprimer de la base de donnée donc on peut le supprimer sans recharger les données distantes)
+        this.users = this.users.filter((object: { _id: any; }) => { return object._id != id; });
+      });*/
+  }
+
   getUsers() {
     this.userService.getAllUsers()
       .pipe(takeUntil(this.destroy$))

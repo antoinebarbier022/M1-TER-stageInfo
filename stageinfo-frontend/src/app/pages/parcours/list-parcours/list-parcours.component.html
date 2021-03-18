@@ -24,20 +24,21 @@
                     <td class="table-action">
                         <a [routerLink]="['/liste-parcours/edit-parcours',parcours._id]"><i class="icon far fa-lg fa-edit"></i></a>
                         <!--<a (click)="deleteParcours(parcours._id)"><i class="icon far fa-lg fa-trash-alt"></i></a>-->
-                        <a (click)="parcoursSelected(parcours._id)" data-toggle="modal" data-target="#suppression-parcours"><i class="icon far fa-lg fa-trash-alt"></i></a>
+                        <a data-toggle="modal" data-target="#suppression-parcours"><i class="icon far fa-lg fa-trash-alt"></i></a>
+                        <!-- Debut du Modal suppression parcours -->
+                        <app-modal  class="modal fade"
+                                tabindex="-1" 
+                                role="dialog" 
+                                id="suppression-parcours"
+                                title="Suppression Parcours">
+                            <p content>Confirmer la suppression du parcours.</p>
+                            <button button1 type="button" class="btn btn-secondary btn-sm" data-dismiss="modal">Annuler</button>
+                            <button button2 (click)="deleteParcours(parcours._id)" type="button" class="btn btn-danger btn-sm" data-dismiss="modal">Supprimer</button>
+                        </app-modal>
                     </td>
                 </tr>
             </tbody>
         </table>
 </div>
 
-<!-- Debut du Modal suppression parcours -->
-<app-modal  class="modal fade"
-            tabindex="-1" 
-            role="dialog" 
-            id="suppression-parcours"
-            title="Suppression Parcours">
-    <p content>Confirmer la suppression du parcours.</p>
-    <button button1 type="button" class="btn btn-secondary btn-sm" data-dismiss="modal">Annuler</button>
-    <button button2 (click)="deleteParcours()" type="button" class="btn btn-danger btn-sm" data-dismiss="modal">Supprimer</button>
-</app-modal>
+

@@ -13,7 +13,6 @@ export class ListParcoursComponent implements OnInit, OnDestroy {
   title="Liste des parcours"
 
   allParcours:any ;
-  idParcoursSelect:string = ""; // parcours selectionner (on sauvegarde son id) pour le supprimer
 
   // pour pouvoir détruire les subscribes
   destroy$: Subject<boolean> = new Subject<boolean>();
@@ -31,18 +30,14 @@ export class ListParcoursComponent implements OnInit, OnDestroy {
     this.destroy$.unsubscribe();
   }
 
-  parcoursSelected(id:any){
-    this.idParcoursSelect = id;
-  }
 
-  deleteParcours(){
-    this.parcoursService.deleteParcoursById(this.idParcoursSelect)
+  deleteParcours(id:any){
+    this.parcoursService.deleteParcoursById(id)
     .pipe(takeUntil(this.destroy$))
       .subscribe((_res: any[]) => {
         console.log(_res);
         // On supprime de l'affichage le parcours (on sait qu'il est supprimer de la base de donnée donc on peut le supprimer sans recharger les données distantes)
-        this.allParcours = this.allParcours.filter((object: { _id: any; }) => { return object._id != this.idParcoursSelect; });
-        this.idParcoursSelect = "";
+        this.allParcours = this.allParcours.filter((object: { _id: any; }) => { return object._id != id; });
       });
   }
 

@@ -14,7 +14,6 @@ export class ListEntreprisesComponent implements OnInit {
   title = "Liste des entreprises";
 
   allEntreprises: entrepriseModel[] = new Array();
-  idEntrepriseSelect:any;
 
   // pour pouvoir détruire les subscribes
   destroy$: Subject<boolean> = new Subject<boolean>();
@@ -25,18 +24,13 @@ export class ListEntreprisesComponent implements OnInit {
     this.allEntreprises = this.route.snapshot.data.entreprises;  
   }
 
-  entrepriseSelected(id:any){
-    this.idEntrepriseSelect = id;
-  }
-
-  deleteEntreprise(){
-    this.entrepriseService.deleteEntrepriseById(this.idEntrepriseSelect)
+  deleteEntreprise(id:any){
+    this.entrepriseService.deleteEntrepriseById(id)
     .pipe(takeUntil(this.destroy$))
       .subscribe((_res: any[]) => {
         console.log(_res);
         // On supprime de l'affichage le parcours (on sait qu'il est supprimer de la base de donnée donc on peut le supprimer sans recharger les données distantes)
-        this.allEntreprises = this.allEntreprises.filter((object: { _id: any; }) => { return object._id != this.idEntrepriseSelect; });
-        this.idEntrepriseSelect = "";
+        this.allEntreprises = this.allEntreprises.filter((object: { _id: any; }) => { return object._id != id; });
       });
   }
 

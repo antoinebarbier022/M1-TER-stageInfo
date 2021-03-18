@@ -27,19 +27,21 @@
                     <td><span class="badge badge-danger">{{ user.role }}</span></td>
                     <td class="table-action">
                         <a [routerLink]="['/liste-utilisateurs/edit-user/', user._id]"><i class="icon far fa-lg fa-edit"></i></a>
-                        <a href="#" data-toggle="modal" data-target="#suppression-user"><i class="icon far fa-lg fa-trash-alt"></i></a>
+                        <a data-toggle="modal" data-target="#suppression-user"><i class="icon far fa-lg fa-trash-alt"></i></a>
+                        <!-- Debut du Modal suppression utilisateur -->
+                        <app-modal  class="modal fade"
+                                tabindex="-1" 
+                                role="dialog" 
+                                id="suppression-user"
+                                title="Suppression Utilisateur">
+                            <p content>Confirmer la suppression de l'utilisateur : {{ user.nom }} {{ user.prenom }}</p>
+                            <button button1 type="button" class="btn btn-secondary btn-sm" data-dismiss="modal">Annuler</button>
+                            <button button2 (click)="deleteUser(user._id)" type="button" class="btn btn-danger btn-sm" data-dismiss="modal">Supprimer</button>
+                        </app-modal>
                     </td>
                 </tr>
                 
             </tbody>
         </table>
 </div>
-            
-<!-- Debut du Modal suppression utilisateur -->
-<app-modal  class="modal fade"
-            tabindex="-1" 
-            role="dialog" 
-            id="suppression-user"
-            title="Suppression Utilisateur">
-            <p>Confirmer la suppression de l'utilisateur.</p>
-</app-modal>
+        

@@ -27,21 +27,20 @@
                     <td>{{ entreprise.nom }}</td>
                     <td class="table-action">
                         <a [routerLink]="['/liste-entreprises/edit-entreprise', entreprise._id]"><i class="icon far fa-lg fa-edit"></i></a>
-                        <a (click)="entrepriseSelected(entreprise._id)" data-toggle="modal" data-target="#suppression-entreprise"><i class="icon far fa-lg fa-trash-alt"></i></a>
+                        <a data-toggle="modal" data-target="#suppression-entreprise"><i class="icon far fa-lg fa-trash-alt"></i></a>
+                        <!-- Debut du Modal suppression entreprise -->
+                        <app-modal  class="modal fade"
+                            tabindex="-1" 
+                            role="dialog" 
+                            id="suppression-entreprise"
+                            title="Suppression Entreprise">
+                            <p content>Confirmer la suppression de l'entreprise.</p>
+                            <button button1 type="button" class="btn btn-secondary btn-sm" data-dismiss="modal">Annuler</button>
+                            <button button2 (click)="deleteEntreprise(entreprise._id)" type="button" class="btn btn-danger btn-sm" data-dismiss="modal">Supprimer</button>
+                        </app-modal>
                     </td>
                 </tr>
             </tbody>
         </table>
 </div>
 
-
-<!-- Debut du Modal suppression entreprise -->
-<app-modal  class="modal fade"
-            tabindex="-1" 
-            role="dialog" 
-            id="suppression-entreprise"
-            title="Suppression Entreprise">
-    <p content>Confirmer la suppression de l'entreprise.</p>
-    <button button1 type="button" class="btn btn-secondary btn-sm" data-dismiss="modal">Annuler</button>
-    <button button2 (click)="deleteEntreprise()" type="button" class="btn btn-danger btn-sm" data-dismiss="modal">Supprimer</button>
-</app-modal>
