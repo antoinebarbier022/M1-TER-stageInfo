@@ -45,7 +45,9 @@ export class ListStagesComponent implements OnInit {
     currentPage: number,
     lastpage: number,
     startIndex: number,
-    endIndex: number
+    endIndex: number,
+
+    sizeFilteredArray: number
   }
 
   destroy$: Subject<boolean> = new Subject<boolean>();
@@ -60,7 +62,8 @@ export class ListStagesComponent implements OnInit {
       currentPage: 1,
       lastpage: 1,
       startIndex: 0,
-      endIndex: 10
+      endIndex: 10,
+      sizeFilteredArray: 0
     }
   }
 
@@ -74,6 +77,7 @@ export class ListStagesComponent implements OnInit {
       .subscribe((_stages: any[]) => {
         this.allStages = _stages;
         this.commonProperties.pageCount = Math.ceil(this.allStages.length / this.commonProperties.nbrEntries);
+        this.commonProperties.sizeFilteredArray = this.allStages.length;
       }
     );
   }
@@ -122,6 +126,7 @@ export class ListStagesComponent implements OnInit {
       if (this.stageHasAllKeywords(x, this.commonProperties.searchFilter.trim().split(/\s+/))) return x;
     });
 
+    this.commonProperties.sizeFilteredArray = filteredArray.length;
     this.commonProperties.pageCount = Math.ceil(filteredArray.length / this.commonProperties.nbrEntries);
     
     if(this.commonProperties.currentPage > this.commonProperties.pageCount){

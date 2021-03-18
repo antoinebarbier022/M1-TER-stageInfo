@@ -18,7 +18,7 @@ export class ListEntriesNumberComponent implements OnInit {
 
   setNumberEntries() : void{
     this.commonProperties.endIndex = this.commonProperties.startIndex + this.commonProperties.nbrEntries;
-    this.commonProperties.pageCount = Math.ceil(this.commonProperties.filteredArray.length / this.commonProperties.nbrEntries);
+    this.commonProperties.pageCount = Math.ceil(this.commonProperties.sizeFilteredArray / this.commonProperties.nbrEntries);
     this.commonProperties.lastPage = this.commonProperties.pageCount;
     this.commonProperties.currentPage = 1;
     this.commonProperties.startIndex = 0;
