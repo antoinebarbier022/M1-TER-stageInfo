@@ -77,7 +77,7 @@
                 <a class="btn btn-danger btn-sm" data-toggle="modal" data-target="#suppression-parcours">
                     Supprimer
                 </a>
-                <button routerLink="/liste-parcours" type="submit" class="btn btn-primary btn-sm btn-modifier">
+                <button type="submit" class="btn btn-primary btn-sm btn-modifier">
                     Modifier
                 </button>
             </div>
@@ -85,7 +85,6 @@
             <div *ngIf="addParcours">
                 <button type="submit" 
                         class="btn btn-primary btn-sm btn-ajouter"
-                        routerLink="/liste-parcours"
                         [disabled]="parcoursForm.invalid">
                     Ajouter
                 </button>

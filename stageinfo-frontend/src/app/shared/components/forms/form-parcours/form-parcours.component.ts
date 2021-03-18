@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 import { ParcoursModel } from 'src/app/core/models/ParcoursModel';
@@ -29,6 +29,7 @@ export class FormParcoursComponent implements OnInit {
 
   constructor(private formBuilder: FormBuilder, 
               private route: ActivatedRoute,
+              private router: Router,
               private parcoursService: ParcoursService) { 
 
     // Si on est sur le component formulaire ajout de parcours alors on peut récupérer les données du parcours 
@@ -84,12 +85,14 @@ export class FormParcoursComponent implements OnInit {
       .pipe(takeUntil(this.destroy$))
         .subscribe((_res: any[]) => {
           console.log(_res);
+          this.router.navigate(['/liste-parcours']);
       });
     }else if(this.editParcours){
       this.parcoursService.editParcours(this.route.snapshot.paramMap.get('id'), parcours)
       .pipe(takeUntil(this.destroy$))
         .subscribe((_res: any[]) => {
           console.log(_res);
+          this.router.navigate(['/liste-parcours']);
       });
     }
 
