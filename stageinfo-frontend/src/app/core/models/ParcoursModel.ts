@@ -5,5 +5,4 @@ export class ParcoursModel{
     public intitule: string,
     public description: string,
     public responsable: string){}
-  
 }
