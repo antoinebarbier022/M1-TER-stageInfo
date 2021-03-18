@@ -1,5 +1,9 @@
+<h1>{{ title }}</h1>
+<app-list-filter [commonProperties]="commonProperties"></app-list-filter>
+
 <div class="card">
     <div class="card-header">
+        <app-list-entries-number [commonProperties]="commonProperties"></app-list-entries-number>
         <h2 class="card-title">Tableau des Utilisateurs
             <button routerLink="/liste-utilisateurs/import-users" type="submit" style="float:right;margin-left:5px; " class="btn btn-secondary btn-sm">
                 <i style="margin-right:5px;" class="fas fa-file-import"></i>
@@ -20,7 +24,7 @@
             </tr>
             </thead>
             <tbody>
-                <tr *ngFor="let user of users">
+                <tr *ngFor="let user of printStages()">
                     <!--<td>{{ user._id }}</td>-->
                     <td><a [routerLink]="['/liste-utilisateurs/user/', user._id]">{{ user.nom }} {{ user.prenom }}</a></td>
                     <td>{{ user.email }}</td>
@@ -34,6 +38,8 @@
             </tbody>
         </table>
 </div>
+
+<app-list-pagination [commonProperties]="commonProperties"></app-list-pagination>
             
 <!-- Debut du Modal suppression utilisateur -->
 <app-modal  class="modal fade"

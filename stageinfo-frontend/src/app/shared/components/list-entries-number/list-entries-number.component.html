@@ -1,7 +1,8 @@
-<div>
+<div class='nbrEntries'>
     <p>Show</p>
     <select [(ngModel)]="this.commonProperties.nbrEntries" (change)="setNumberEntries()" class="custom-select">
         <option *ngFor="let i of optionEntries" [ngValue]="i">{{ i }}</option>
     </select>
     <p>entries</p>
 </div>
+
