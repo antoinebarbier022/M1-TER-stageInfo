@@ -94,34 +94,12 @@ export class ListStagesComponent implements OnInit {
           lastpage: 1,
           startIndex: 0,
           endIndex: 20,
-          filteredArray: _stages,
-          fun: this.getStagesByKeyword2
+          filteredArray: _stages
         }
 
         this.pageCount = Math.ceil(this.allStages.length / this.nbrEntries);
       }
     );
-  }
-
-  stageHasAllKeywords2(stage: any, str: string[]): boolean {
-    const keywords = str.filter(e => e).map(v => v.toLowerCase());
-
-    let row = new Array();
-
-    this.visibleProperties.forEach(prop => {
-      row.push(this.getNestedValue(stage, prop.name));
-    });
-
-    return keywords.every(word => row.join(' ').toLowerCase().includes(word));
-  }
-
-  getStagesByKeyword2() : void {
-    console.log(this.allStages);
-    console.log(this.commonProperties);
-    this.commonProperties.filteredArray = this.allStages.slice(this.commonProperties.startIndex, this.commonProperties.endIndex).filter(x => {
-      if (this.stageHasAllKeywords(x, this.commonProperties.searchFilter.trim().split(/\s+/))) return x;
-    });
-    console.log(this.commonProperties);
   }
 
   compare(obj1: any, obj2: any, index: number) : number {
