@@ -21,6 +21,10 @@ export class ListUsersComponent implements OnInit, OnDestroy {
       sorted: false
     },
     {
+      name: 'prenom',
+      sorted: false
+    },
+    {
       name: 'email',
       sorted: false
     },
