@@ -24,7 +24,7 @@
             </tr>
             </thead>
             <tbody>
-                <tr *ngFor="let entreprise of printStages()">
+                <tr *ngFor="let entreprise of printItems()">
                     <td>{{ entreprise._id }}</td>
                     <td><a [routerLink]="['/liste-entreprises/info', entreprise._id]">{{ entreprise.nom }}</a></td>
                     <td>Ville</td>
