@@ -51,6 +51,7 @@ export class FormUserComponent implements OnInit {
     if(!this.addUser){
       this.user = this.route.snapshot.data.user;
     }
+    this.displaySection(this.user.role);
     
   }
 
