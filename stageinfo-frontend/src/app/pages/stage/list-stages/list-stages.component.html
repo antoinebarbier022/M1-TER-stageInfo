@@ -28,7 +28,7 @@
         </thead>
         <tbody>
             <!-- Ajout des stages de la BDD -->
-            <tr *ngFor="let stage of printItems()">
+            <tr *ngFor="let stage of getItems()">
                 <td><a [routerLink]="['/liste-stages', stage._id]">{{ stage.titre }}</a></td>
                 <td>{{ stage.entreprise.nomComplet }}</td>
                 <td>{{ stage.parcours.nomComplet }}</td>

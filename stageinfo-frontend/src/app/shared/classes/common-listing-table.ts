@@ -69,7 +69,7 @@ export abstract class CommonListingTable {
         return keywords.every(word => row.join(' ').toLowerCase().includes(word));
     }
     
-    public printItems() : any {
+    public getItems() : any {
         let filteredArray = this.allItems.filter(x => {
             if (this.itemHasAllKeywords(x, this.commonProperties.searchFilter.trim().split(/\s+/))) return x;
         });
