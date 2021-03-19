@@ -1,27 +1,29 @@
 <h1>{{ title }}</h1>
 <app-card-filter [commonProperties]="commonProperties"></app-card-filter>
 
-<div class="card">
-    <div class="card-header">
-        <h2 class="card-title"> {{ title }} 
-            <button routerLink="/liste-entreprises/import-entreprise" type="submit" style="float:right;margin-left:5px; " class="btn btn-secondary btn-sm">
-                <i style="margin-right:5px;" class="fas fa-file-import"></i>
-                importer
-            </button> 
+<app-card-table>
+    <!-- component select pour le nombre de ligne à afficher sur une page dans le tableau-->
+    <app-list-entries-number entries [commonProperties]="commonProperties"></app-list-entries-number>
+
+    <app-button-add button1 link="/liste-entreprises/add-entreprise"></app-button-add>
     
+<<<<<<< HEAD
             <app-button-add link="/liste-entreprises/add-entreprise" style="float:right;"></app-button-add>
         </h2>
         <app-nbItems [commonProperties]="commonProperties"></app-nbItems>
     </div>
         <table class="card-table table table-striped">
+=======
+    <div content>
+        <table class="card-table table table-striped table-sm">
+>>>>>>> 1df46e92a73d3f1211e56e339061ce4aca23c827
             <thead>
-            <tr>
-                <th scope="col">id</th>
-                <th scope="col">Entreprise</th>
-                <th scope="col">Ville</th>
-                <th scope="col">Responsable</th>
-                <th scope="col">actions</th>
-            </tr>
+                <tr>
+                    <th (click)="sortByAscendingDescendingOrder(0)" scope="col">Entreprise</th>
+                    <th (click)="sortByAscendingDescendingOrder(1)" scope="col">Ville</th>
+                    <th (click)="sortByAscendingDescendingOrder(2)" scope="col">Responsable</th>
+                    <th (click)="sortByAscendingDescendingOrder(3)" scope="col">Actions</th>
+                </tr>
             </thead>
             <tbody>
                 <tr *ngFor="let entreprise of getItems()">
@@ -31,11 +33,22 @@
                     <td>Responsable</td>
                     <td class="table-action">
                         <a [routerLink]="['/liste-entreprises/edit-entreprise', entreprise._id]"><i class="icon far fa-lg fa-edit"></i></a>
-                        <a (click)="entrepriseSelected(entreprise._id)" data-toggle="modal" data-target="#suppression-entreprise"><i class="icon far fa-lg fa-trash-alt"></i></a>
+                        <a data-toggle="modal" data-target="#suppression-entreprise"><i class="icon far fa-lg fa-trash-alt"></i></a>
+                        <!-- Debut du Modal suppression entreprise -->
+                        <app-modal  class="modal fade"
+                            tabindex="-1" 
+                            role="dialog" 
+                            id="suppression-entreprise"
+                            title="Suppression Entreprise">
+                            <p content>Confirmer la suppression de l'entreprise.</p>
+                            <button button1 type="button" class="btn btn-secondary btn-sm" data-dismiss="modal">Annuler</button>
+                            <button button2 (click)="deleteEntreprise(entreprise._id)" type="button" class="btn btn-danger btn-sm" data-dismiss="modal">Supprimer</button>
+                        </app-modal>
                     </td>
                 </tr>
             </tbody>
         </table>
+<<<<<<< HEAD
         <app-pagination [commonProperties]="commonProperties"></app-pagination>
 </div>
 
@@ -50,3 +63,9 @@
     <button button1 type="button" class="btn btn-secondary btn-sm" data-dismiss="modal">Annuler</button>
     <button button2 (click)="deleteEntreprise()" type="button" class="btn btn-danger btn-sm" data-dismiss="modal">Supprimer</button>
 </app-modal>
+=======
+        
+        <app-list-pagination [commonProperties]="commonProperties"></app-list-pagination>
+    </div>    
+</app-card-table>
+>>>>>>> 1df46e92a73d3f1211e56e339061ce4aca23c827

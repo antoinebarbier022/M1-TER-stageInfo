@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ListFilterComponent } from './card-filter.component';
+import { ButtonDeleteModalComponent } from './button-delete-modal.component';
 
-describe('ListFilterComponent', () => {
-  let component: ListFilterComponent;
-  let fixture: ComponentFixture<ListFilterComponent>;
+describe('ButtonDeleteModalComponent', () => {
+  let component: ButtonDeleteModalComponent;
+  let fixture: ComponentFixture<ButtonDeleteModalComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ ListFilterComponent ]
+      declarations: [ ButtonDeleteModalComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(ListFilterComponent);
+    fixture = TestBed.createComponent(ButtonDeleteModalComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

@@ -1,6 +1,14 @@
-.nbrEntries{
-    .custom-select{
+:host{
+    width:max-content;
+    margin:0;
+    display:flex;
+    flex-direction: row;
+    p{
+        
+        align-self: center;
+    }
+    select{
         width:60px;
-        padding:3px;
+        margin:5px;
     }
 }

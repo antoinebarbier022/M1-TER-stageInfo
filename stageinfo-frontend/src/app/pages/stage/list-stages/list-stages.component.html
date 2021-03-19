@@ -1,10 +1,6 @@
 <h1>{{ title }}</h1>
-<app-card-filter [commonProperties]="commonProperties"></app-card-filter>
 
-<div class="card">
-    <div class="card-header">
-        <div class="card-parameters-sort" >
-
+<<<<<<< HEAD
             <app-nbItems [commonProperties]="commonProperties"></app-nbItems>
             <button routerLink="/liste-stages/import-stage" type="submit" style="float:right;margin-left:5px; " class="btn btn-secondary btn-sm">
                 <i style="margin-right:5px;" class="fas fa-file-import"></i>
@@ -14,31 +10,51 @@
             
         </div>
     </div>
+=======
+<!-- Card filtre et recherche-->
+<app-card-filter [commonProperties]="commonProperties"></app-card-filter>
+>>>>>>> 1df46e92a73d3f1211e56e339061ce4aca23c827
 
-    <table class="card-table table table-striped table-sm">
-        <thead>
-            <tr>
-                <th (click)="sortByAscendingDescendingOrder(0)" scope="col">Titre</th>
-                <th (click)="sortByAscendingDescendingOrder(1)" scope="col">Entreprise</th>
-                <th (click)="sortByAscendingDescendingOrder(2)" scope="col">Parcours</th>
-                <th scope="col">Promotions</th>
-                <th (click)="sortByAscendingDescendingOrder(3)" scope="col">Duree</th>
-                <th (click)="sortByAscendingDescendingOrder(4)" scope="col">Etat</th>
-            </tr>
-        </thead>
-        <tbody>
-            <!-- Ajout des stages de la BDD -->
-            <tr *ngFor="let stage of getItems()">
-                <td><a [routerLink]="['/liste-stages', stage._id]">{{ stage.titre }}</a></td>
-                <td>{{ stage.entreprise.nomComplet }}</td>
-                <td>{{ stage.parcours.nomComplet }}</td>
-                <!-- <td>{{ stage.promotions }}</td>-->
-                <td>2020 - 2021</td>
-                <td>{{ stage.duree }} mois</td>
-                <td><span class="badge badge-success">{{ stage.etat }}</span></td>
-            </tr>
-        </tbody>
-    </table>
+<app-card-table>
+    <!-- component select pour le nombre de ligne à afficher sur une page dans le tableau-->
+    <app-list-entries-number entries [commonProperties]="commonProperties"></app-list-entries-number>
 
+<<<<<<< HEAD
     <app-pagination [commonProperties]="commonProperties"></app-pagination>
 </div>
+=======
+    <app-button-add button1 link="/saisir-stage"></app-button-add>
+    <button button2 routerLink="/liste-stages/import-stage" type="submit" style="margin-left:5px; " class="btn btn-secondary btn-sm">
+        <i style="margin-right:5px;" class="fas fa-file-import"></i>
+        importer
+    </button>
+    
+    <div content>
+        <table class="card-table table table-striped table-sm">
+            <thead>
+                <tr>
+                    <th (click)="sortByAscendingDescendingOrder(0)" scope="col">Titre</th>
+                    <th (click)="sortByAscendingDescendingOrder(1)" scope="col">Entreprise</th>
+                    <th (click)="sortByAscendingDescendingOrder(2)" scope="col">Parcours</th>
+                    <th scope="col">Promotions</th>
+                    <th (click)="sortByAscendingDescendingOrder(3)" scope="col">Duree</th>
+                    <th (click)="sortByAscendingDescendingOrder(4)" scope="col">Etat</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Ajout des stages de la BDD -->
+                <tr *ngFor="let stage of getItems()">
+                    <td><a [routerLink]="['/liste-stages', stage._id]">{{ stage.titre }}</a></td>
+                    <td>{{ stage.entreprise.nomComplet }}</td>
+                    <td>{{ stage.parcours.nomComplet }}</td>
+                    <!-- <td>{{ stage.promotions }}</td>-->
+                    <td>2020 - 2021</td>
+                    <td>{{ stage.duree }} mois</td>
+                    <td><span class="badge badge-success">{{ stage.etat }}</span></td>
+                </tr>
+            </tbody>
+        </table>
+        <app-list-pagination [commonProperties]="commonProperties"></app-list-pagination>
+    </div>    
+</app-card-table>
+>>>>>>> 1df46e92a73d3f1211e56e339061ce4aca23c827

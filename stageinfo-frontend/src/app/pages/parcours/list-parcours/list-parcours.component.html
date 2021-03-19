@@ -1,6 +1,7 @@
 <h1>{{ title }}</h1>
 <app-card-filter [commonProperties]="commonProperties"></app-card-filter>
 
+<<<<<<< HEAD
 <div class="card">
     <div class="card-header">
         <app-nbItems [commonProperties]="commonProperties"></app-nbItems>
@@ -9,13 +10,27 @@
         </h2>
     </div>
         <table class="card-table table table-striped">
+=======
+<app-card-table>
+    <!-- component select pour le nombre de ligne à afficher sur une page dans le tableau-->
+    <app-list-entries-number entries [commonProperties]="commonProperties"></app-list-entries-number>
+
+    <!-- Bouton ajouter => ouvre un modal avec le formulaire d'ajout -->
+    <app-button-add-modal button1>
+        <span title>Ajouter le parcours</span>
+        <app-form-parcours content [addParcours]="true" (parcoursEvent)="addParcours($event)"></app-form-parcours>
+    </app-button-add-modal>
+    
+    <div content>
+        <table class="card-table table table-striped table-sm">
+>>>>>>> 1df46e92a73d3f1211e56e339061ce4aca23c827
             <thead>
                 <tr>
-                    <th scope="col">Acronyme</th>
-                    <th scope="col">Intitule</th>
-                    <th scope="col">Niveau</th>
-                    <th scope="col">Responsable</th>
-                    <th scope="col">Actions</th>
+                    <th (click)="sortByAscendingDescendingOrder(0)" scope="col">Acronyme</th>
+                    <th (click)="sortByAscendingDescendingOrder(1)" scope="col">Intitule</th>
+                    <th (click)="sortByAscendingDescendingOrder(2)" scope="col">Niveau</th>
+                    <th (click)="sortByAscendingDescendingOrder(3)" scope="col">Responsable</th>
+                    <th (click)="sortByAscendingDescendingOrder(4)" scope="col">Actions</th>
                 </tr>
             </thead>
             <tbody>
@@ -25,14 +40,30 @@
                     <td>{{ parcours.intitule }}</td>
                     <td>{{ parcours.niveau }}</td>
                     <td><a routerLink="/">{{ parcours.responsable }}</a></td>
+
                     <td class="table-action">
-                        <a [routerLink]="['/liste-parcours/edit-parcours',parcours._id]"><i class="icon far fa-lg fa-edit"></i></a>
-                        <!--<a (click)="deleteParcours(parcours._id)"><i class="icon far fa-lg fa-trash-alt"></i></a>-->
-                        <a (click)="parcoursSelected(parcours._id)" data-toggle="modal" data-target="#suppression-parcours"><i class="icon far fa-lg fa-trash-alt"></i></a>
+                        <!-- Bouton edit => ouvre un modal avec le formulaire de modification -->
+                        <app-button-edit-modal [idModal]="parcours._id">
+                            <span title>Modifier le parcours : {{ parcours.acronyme | uppercase }}</span>
+                            <app-form-parcours content 
+                                [editParcours]="true"
+                                [idParcours]="parcours._id"
+                                (parcoursEvent)="updateTable($event)">
+                            </app-form-parcours>
+                        </app-button-edit-modal>
+
+                         <!-- Bouton delete => ouvre un modal avec la demande de suppression -->
+                        <app-button-delete-modal [idModal]="parcours._id"> 
+                            <span title> Supprimer le parcours </span>
+                            <p content>Confirmer la suppression du parcours : <strong>{{ parcours.acronyme | uppercase }}</strong></p>
+                            <button button1 type="button" class="btn btn-secondary btn-sm" data-dismiss="modal">Annuler</button>
+                            <button button2 (click)="deleteParcours(parcours._id)" type="button" class="btn btn-danger btn-sm" data-dismiss="modal">Supprimer</button>
+                        </app-button-delete-modal>
                     </td>
                 </tr>
             </tbody>
         </table>
+<<<<<<< HEAD
         <app-pagination [commonProperties]="commonProperties"></app-pagination>
 </div>
 
@@ -46,3 +77,9 @@
     <button button1 type="button" class="btn btn-secondary btn-sm" data-dismiss="modal">Annuler</button>
     <button button2 (click)="deleteParcours()" type="button" class="btn btn-danger btn-sm" data-dismiss="modal">Supprimer</button>
 </app-modal>
+=======
+        
+        <app-list-pagination [commonProperties]="commonProperties"></app-list-pagination>
+    </div>    
+</app-card-table>
+>>>>>>> 1df46e92a73d3f1211e56e339061ce4aca23c827

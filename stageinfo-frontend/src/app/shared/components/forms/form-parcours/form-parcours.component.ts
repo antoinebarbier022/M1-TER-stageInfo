@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import { ActivatedRoute, Router } from '@angular/router';
 import { Subject } from 'rxjs';
@@ -13,12 +13,15 @@ import { ParcoursService } from 'src/app/core/services/parcours.service';
 })
 export class FormParcoursComponent implements OnInit {
   @Input() title: string ="";
+  @Input() idParcours: string="";
 
   @Input() addParcours: boolean=false;
   @Input() editParcours: boolean=false;
-  @Input() viewParcours: boolean=false;
 
-  parcoursData: ParcoursModel;;
+  @Output() parcoursEvent = new EventEmitter<ParcoursModel>();
+
+  parcoursData: ParcoursModel = new ParcoursModel();
+
   // @ts-ignore
   parcoursForm: FormGroup;
   // @ts-ignore
@@ -31,13 +34,6 @@ export class FormParcoursComponent implements OnInit {
               private route: ActivatedRoute,
               private router: Router,
               private parcoursService: ParcoursService) { 
-
-    // Si on est sur le component formulaire ajout de parcours alors on peut récupérer les données du parcours 
-    if(!this.addParcours){
-      this.parcoursData = this.route.snapshot.data.parcours;  
-    }else{ // sinon vide
-      this.parcoursData = new ParcoursModel('','','','','')
-    }
   }
 
   ngOnInit() {
@@ -61,50 +57,52 @@ export class FormParcoursComponent implements OnInit {
 
     // Si on est sur le formulaire parcours alors on remplie les champs
     if(this.editParcours){
-      this.parcoursForm.patchValue({
-        acronyme:this.parcoursData.acronyme,
-        niveau:this.parcoursData.niveau,
-        intitule:this.parcoursData.intitule,
-        description:this.parcoursData.description,
-        responsable:this.parcoursData.responsable
-      });
+      // récupération des données du parcours
+      this.parcoursService.getParcoursById(this.idParcours)
+      .pipe(takeUntil(this.destroy$))
+        .subscribe((_parcours: ParcoursModel) => {
+          this.parcoursData = _parcours;
+          // On set les données du parcours dans le formulaire
+          this.parcoursForm.patchValue({
+            acronyme:this.parcoursData.acronyme,
+            niveau:this.parcoursData.niveau,
+            intitule:this.parcoursData.intitule,
+            description:this.parcoursData.description,
+            responsable:this.parcoursData.responsable
+          });
+          console.log(_parcours);
+        });
     }
-  }
-
-  deleteParcours(){
-    this.parcoursService.deleteParcoursById(this.route.snapshot.paramMap.get('id'))
-    .pipe(takeUntil(this.destroy$))
-      .subscribe((_res: any[]) => {
-        this.router.navigate(['/liste-parcours']);
-      });
   }
 
   onSubmitForm() {
     const formValue = this.parcoursForm.value;
     const parcours = new ParcoursModel(
+      this.idParcours,
       formValue['acronyme'],
       formValue['niveau'],
       formValue['intitule'],
       formValue['description'],
       formValue['responsable']
     );
+    
 
     if(this.addParcours){
       this.parcoursService.addParcours(parcours)
       .pipe(takeUntil(this.destroy$))
         .subscribe((_res: any[]) => {
-          this.router.navigate(['/liste-parcours']);
+          console.log("Parcours ajouté !");
       });
-    }else if(this.editParcours){
-      this.parcoursService.editParcours(this.route.snapshot.paramMap.get('id'), parcours)
-      .pipe(takeUntil(this.destroy$))
-        .subscribe((_res: any[]) => {
-          this.router.navigate(['/liste-parcours']);
-      });
+    }else {
+      if(this.editParcours){
+        this.parcoursService.editParcours(this.idParcours, parcours)
+        .pipe(takeUntil(this.destroy$))
+          .subscribe((_res: any[]) => {
+            console.log("Parcours modifié !");
+            this.parcoursEvent.emit(parcours); // on envoie le parcours dans le component parent
+        });
+      }
+      console.log(parcours);
     }
-
-  
-    console.log(parcours);
   }
-
 }

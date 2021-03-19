@@ -7,11 +7,13 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { FormUserComponent } from './components/forms/form-user/form-user.component';
 import { FormEntrepriseComponent } from './components/forms/form-entreprise/form-entreprise.component';
 import { FormParcoursComponent } from './components/forms/form-parcours/form-parcours.component';
+
 // modal component
 import { ModalComponent } from './components/modal/modal.component';
-import { ListFilterComponent } from './components/card-filter/card-filter.component';
+//import { ListFilterComponent } from './components/cards/card/card-filter/card-filter.component';
 import { ListPaginationComponent } from './components/pagination/pagination.component';
 import { ListEntriesNumberComponent } from './components/nbItems/nbItems.component';
+
 // navigation component
 import { NavigationComponent } from './components/navigation/navigation.component';
 // buttons components
@@ -21,6 +23,10 @@ import { CardComponent } from './components/cards/card/card.component';
 import { CardItemStageComponent } from './components/cards/card-item-stage/card-item-stage.component';
 import { CardItemCommentComponent } from './components/cards/card-item-comment/card-item-comment.component';
 import { DateAgoPipe } from './pipes/date-ago.pipe';
+import { ButtonEditModalComponent } from './components/buttons/button-edit-modal/button-edit-modal.component';
+import { ButtonDeleteModalComponent } from './components/buttons/button-delete-modal/button-delete-modal.component';
+import { ButtonAddModalComponent } from './components/buttons/button-add-modal/button-add-modal.component';
+//import { CardTableComponent } from './components/cards/card-table/card-table.component';
 
 
 
@@ -35,10 +41,14 @@ import { DateAgoPipe } from './pipes/date-ago.pipe';
     CardComponent, 
     CardItemStageComponent, 
     CardItemCommentComponent, 
-    DateAgoPipe,
+    DateAgoPipe, 
+    ButtonEditModalComponent, 
+    ButtonDeleteModalComponent, 
+    ButtonAddModalComponent,
     ListFilterComponent, 
     ListPaginationComponent, 
-    ListEntriesNumberComponent
+    ListEntriesNumberComponent, 
+    CardTableComponent
   ],
   imports: [
     CommonModule,
@@ -57,9 +67,13 @@ import { DateAgoPipe } from './pipes/date-ago.pipe';
     CardItemStageComponent,
     CardItemCommentComponent,
     DateAgoPipe,
+    ButtonEditModalComponent,
+    ButtonDeleteModalComponent,
+    ButtonAddModalComponent,
     ListFilterComponent, 
     ListPaginationComponent, 
-    ListEntriesNumberComponent
+    ListEntriesNumberComponent,
+    CardTableComponent
   ]
 })
 export class SharedModule { }
