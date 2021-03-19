@@ -1,9 +1,9 @@
 import { Component, OnInit, Input } from '@angular/core';
 
 @Component({
-  selector: 'app-list-pagination',
-  templateUrl: './list-pagination.component.html',
-  styleUrls: ['./list-pagination.component.scss']
+  selector: 'app-pagination',
+  templateUrl: './pagination.component.html',
+  styleUrls: ['./pagination.component.scss']
 })
 export class ListPaginationComponent implements OnInit {
 

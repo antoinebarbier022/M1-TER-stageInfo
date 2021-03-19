@@ -10,7 +10,7 @@ import { FormParcoursComponent } from './components/forms/form-parcours/form-par
 // modal component
 import { ModalComponent } from './components/modal/modal.component';
 import { ListFilterComponent } from './components/card-filter/card-filter.component';
-import { ListPaginationComponent } from './components/list-pagination/list-pagination.component';
+import { ListPaginationComponent } from './components/pagination/pagination.component';
 import { ListEntriesNumberComponent } from './components/nbItems/nbItems.component';
 // navigation component
 import { NavigationComponent } from './components/navigation/navigation.component';
