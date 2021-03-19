@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ListFilterComponent } from './list-filter.component';
+import { ListFilterComponent } from './card-filter.component';
 
 describe('ListFilterComponent', () => {
   let component: ListFilterComponent;
