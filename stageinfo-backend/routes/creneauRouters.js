@@ -9,7 +9,7 @@ const router = express.Router();
 const creneauCtrl = require('../controllers/creneauController');
 
 router.get('/:id',Admin, creneauCtrl.getOneCreneau);
-router.get('/',Admin, creneauCtrl.getAllCreneau);
+router.get('/',invite, creneauCtrl.getAllCreneau);
 router.post('/', Admin,creneauCtrl.createCreneau);
 router.put('/:id', Admin,creneauCtrl.editCreneau);
 router.delete('/:id',Admin, creneauCtrl.deleteOneCreneau);

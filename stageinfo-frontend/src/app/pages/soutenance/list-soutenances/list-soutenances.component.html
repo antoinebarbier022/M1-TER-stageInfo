@@ -1,5 +1,9 @@
+<h1>{{ title }}</h1>
+<app-card-filter [commonProperties]="commonProperties"></app-card-filter>
+
 <div class="card">
     <div class="card-header">
+        <app-list-entries-number [commonProperties]="commonProperties"></app-list-entries-number>
         <h2 class="card-title"> {{ title }} 
             <button routerLink="/configuration-calendrier-soutenances" type="submit" style="float:right;" class="btn btn-secondary btn-sm">
                 <i style="margin-right:5px;" class="fas fa-tools"></i>
@@ -22,7 +26,7 @@
                 </tr>
             </thead>
             <tbody>
-                <tr *ngFor="let soutenance of soutenances">
+                <tr *ngFor="let soutenance of soutenances"> <!-- A remplacer par printItems()... -->
                     <td>{{ soutenance.date }}</td>
                     <td>{{ soutenance.heure }}</td>
                     <td>{{ soutenance.salle }}</td>
@@ -37,4 +41,5 @@
                 </tr>
             </tbody>
         </table>
+        <app-list-pagination [commonProperties]="commonProperties"></app-list-pagination>
 </div>
