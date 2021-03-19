@@ -74,14 +74,6 @@ export class FormParcoursComponent implements OnInit {
     }
   }
 
-  deleteParcours(){
-    this.parcoursService.deleteParcoursById(this.idParcours)
-    .pipe(takeUntil(this.destroy$))
-      .subscribe((_res: any[]) => {
-        console.log("Parcours supprimé !");
-      });
-  }
-
   onSubmitForm() {
     const formValue = this.parcoursForm.value;
     const parcours = new ParcoursModel(

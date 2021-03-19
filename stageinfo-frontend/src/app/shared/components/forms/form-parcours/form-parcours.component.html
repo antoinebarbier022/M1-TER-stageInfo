@@ -12,9 +12,8 @@
     <!-- Niveau du parcours -->
     <div class="form-group-row">
         <label for="inputNiveau">Niveau</label>
-        <select *ngIf="!(viewParcours)" 
-                id="inputResponsable" 
-                [ngClass]="viewParcours? 'form-control-plaintext' : 'form-control'" 
+        <select id="inputResponsable" 
+                class="form-control" 
                 name="niveau"
                 formControlName="niveau">
             <option value="" disabled selected>Selectionner le niveau</option>
@@ -47,9 +46,8 @@
     <!-- Responsable du parcours -->
     <div class="form-group-row">
         <label for="inputResponsable">Responsable</label>
-        <select *ngIf="!(viewParcours)" 
-                id="inputResponsable" 
-                [ngClass]="viewParcours? 'form-control-plaintext' : 'form-control'" 
+        <select id="inputResponsable" 
+                class="form-control" 
                 name="responsable"
                 formControlName="responsable">
             <option value="" disabled selected>Selectionner le responsable</option>
@@ -57,24 +55,19 @@
             <option value="18372901897892">Eric Burreau</option>
         </select>
     </div>
+
     <!-- Si Modification Parcours -->
-    <div *ngIf="editParcours">
-        <a class="btn btn-danger btn-sm" data-toggle="modal" data-target="#suppression-parcours">
-            Supprimer
-        </a>
-        <!-- On place le bouton click car sinon on ne peut pas executer la fonction car le data-dismiss apparait avant-->
-        <button type="submit" (click)="onSubmitForm()" data-dismiss="modal" class="btn btn-primary btn-sm btn-modifier" [disabled]="parcoursForm.pristine">
-            Modifier
-        </button>
-    </div>
+    <!-- On place le bouton click car sinon on ne peut pas executer la fonction car le data-dismiss apparait avant-->
+    <button *ngIf="editParcours" type="submit" (click)="onSubmitForm()" data-dismiss="modal" class="btn btn-primary btn-sm btn-modifier" [disabled]="parcoursForm.pristine">
+        Modifier
+    </button>
     <!-- Si Ajouter un Parcours -->
-    <div *ngIf="addParcours">
-        <button type="submit" 
-                (click)="onSubmitForm()"
-                data-dismiss="modal"
-                class="btn btn-primary btn-sm btn-ajouter"
-                [disabled]="parcoursForm.invalid">
-            Ajouter
-        </button>
-    </div>
+    <button *ngIf="addParcours"
+            type="submit" 
+            (click)="onSubmitForm()"
+            data-dismiss="modal"
+            class="btn btn-primary btn-sm btn-ajouter"
+            [disabled]="parcoursForm.invalid">
+        Ajouter
+    </button>
 </form>
