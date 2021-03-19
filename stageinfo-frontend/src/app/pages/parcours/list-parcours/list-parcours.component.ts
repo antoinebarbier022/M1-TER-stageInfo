@@ -32,7 +32,11 @@ export class ListParcoursComponent implements OnInit, OnDestroy {
     this.destroy$.unsubscribe();
   }
 
-  // Mise à jour du tableau local
+  /**
+   * @fonction updateTable
+   * @description Met à jour le tableau local des parcours (afin d'eviter de recharger la page pour avoir la donnée modifier)
+   * @params parcours : any -> contient toutes les données du parcours qui a été modifié
+   */
   updateTable(parcours:any){
     // on cherche l'index du parcours modifié
     var indexParcours = this.allParcours.findIndex(((obj: { _id: any; }) => obj._id == parcours._id));
@@ -45,6 +49,11 @@ export class ListParcoursComponent implements OnInit, OnDestroy {
     console.log(parcours);
   }
 
+    /**
+   * @fonction deleteParcours
+   * @description Supprime le parcours selectionné sur la base de donnée et met à jour le tableau local
+   * @params id : any -> identifiant du parcours à supprimer
+   */
   deleteParcours(id:any){
     console.log({message:"delete", id: id});
     this.parcoursService.deleteParcoursById(id)
