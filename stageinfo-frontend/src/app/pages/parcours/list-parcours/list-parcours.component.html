@@ -1,7 +1,11 @@
 <div class="card">
     <div class="card-header">
         <h2 class="card-title"> {{ title }} 
-            <app-button-add link="/liste-parcours/add-parcours" style="float:right;"></app-button-add>
+            <!-- Bouton ajouter => ouvre un modal avec le formulaire d'ajout -->
+            <app-button-add-modal style="float:right;">
+                <span title>Ajouter le parcours</span>
+                <app-form-parcours content [addParcours]="true"></app-form-parcours>
+            </app-button-add-modal>
         </h2>
     </div>
         <table class="card-table table table-striped">
@@ -21,20 +25,23 @@
                     <td>{{ parcours.intitule }}</td>
                     <td>{{ parcours.niveau }}</td>
                     <td><a routerLink="/">{{ parcours.responsable }}</a></td>
+
                     <td class="table-action">
-                        <a [routerLink]="['/liste-parcours/edit-parcours',parcours._id]"><i class="icon far fa-lg fa-edit"></i></a>
-                        <!--<a (click)="deleteParcours(parcours._id)"><i class="icon far fa-lg fa-trash-alt"></i></a>-->
-                        <a data-toggle="modal" data-target="#suppression-parcours"><i class="icon far fa-lg fa-trash-alt"></i></a>
-                        <!-- Debut du Modal suppression parcours -->
-                        <app-modal  class="modal fade"
-                                tabindex="-1" 
-                                role="dialog" 
-                                id="suppression-parcours"
-                                title="Suppression Parcours">
+                        <!-- Bouton edit => ouvre un modal avec le formulaire de modification -->
+                        <app-button-edit-modal>
+                            <span title>Modifier le parcours</span>
+                            <app-form-parcours content [editParcours]="true"
+                                [idParcours]="parcours._id">
+                            </app-form-parcours>
+                        </app-button-edit-modal>
+
+                         <!-- Bouton delete => ouvre un modal avec la demande de suppression -->
+                        <app-button-delete-modal> 
+                            <span title>Supprimer le parcours</span>
                             <p content>Confirmer la suppression du parcours.</p>
                             <button button1 type="button" class="btn btn-secondary btn-sm" data-dismiss="modal">Annuler</button>
                             <button button2 (click)="deleteParcours(parcours._id)" type="button" class="btn btn-danger btn-sm" data-dismiss="modal">Supprimer</button>
-                        </app-modal>
+                        </app-button-delete-modal>
                     </td>
                 </tr>
             </tbody>

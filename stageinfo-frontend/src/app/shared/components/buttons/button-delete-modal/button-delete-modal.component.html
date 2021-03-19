@@ -1,0 +1,12 @@
+<a data-toggle="modal" data-target="#suppression"><i class="icon far fa-lg fa-trash-alt"></i></a>
+
+<app-modal class="modal fade"
+        tabindex="-1" 
+        role="dialog" 
+        id="suppression">
+        <p></p>
+        <ng-content title select="[title]"></ng-content>
+        <ng-content content select="[content]"></ng-content>
+        <ng-content button1 select="[button1]"></ng-content>
+        <ng-content button2 select="[button2]"></ng-content>
+</app-modal>
