@@ -55,6 +55,7 @@ export class ListParcoursComponent extends CommonListingTable implements OnInit,
   updateTable(parcours:any){
     // on cherche l'index du parcours modifié
     var indexParcours = this.allParcours.findIndex(((obj: { _id: any; }) => obj._id == parcours._id));
+    console.log("index update : "+ indexParcours);
     this.allParcours[indexParcours] = parcours;  // On met a jour le tableau local avec les nouvelles datas
   }
 
