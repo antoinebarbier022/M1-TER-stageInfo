@@ -10,7 +10,7 @@ import { FormParcoursComponent } from './components/forms/form-parcours/form-par
 
 // modal component
 import { ModalComponent } from './components/modal/modal.component';
-//import { ListFilterComponent } from './components/cards/card/card-filter/card-filter.component';
+import { ListFilterComponent } from './components/cards/card-filter/card-filter.component';
 import { ListPaginationComponent } from './components/pagination/pagination.component';
 import { ListEntriesNumberComponent } from './components/nbItems/nbItems.component';
 
@@ -26,7 +26,7 @@ import { DateAgoPipe } from './pipes/date-ago.pipe';
 import { ButtonEditModalComponent } from './components/buttons/button-edit-modal/button-edit-modal.component';
 import { ButtonDeleteModalComponent } from './components/buttons/button-delete-modal/button-delete-modal.component';
 import { ButtonAddModalComponent } from './components/buttons/button-add-modal/button-add-modal.component';
-//import { CardTableComponent } from './components/cards/card-table/card-table.component';
+import { CardTableComponent } from './components/cards/card-table/card-table.component';
 
 
 

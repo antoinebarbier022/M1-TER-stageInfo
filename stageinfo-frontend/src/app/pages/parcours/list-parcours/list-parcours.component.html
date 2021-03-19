@@ -1,19 +1,9 @@
 <h1>{{ title }}</h1>
 <app-card-filter [commonProperties]="commonProperties"></app-card-filter>
 
-<<<<<<< HEAD
-<div class="card">
-    <div class="card-header">
-        <app-nbItems [commonProperties]="commonProperties"></app-nbItems>
-        <h2 class="card-title"> {{ title }} 
-            <app-button-add link="/liste-parcours/add-parcours" style="float:right;"></app-button-add>
-        </h2>
-    </div>
-        <table class="card-table table table-striped">
-=======
 <app-card-table>
     <!-- component select pour le nombre de ligne à afficher sur une page dans le tableau-->
-    <app-list-entries-number entries [commonProperties]="commonProperties"></app-list-entries-number>
+    <app-nbItems entries [commonProperties]="commonProperties"></app-nbItems>
 
     <!-- Bouton ajouter => ouvre un modal avec le formulaire d'ajout -->
     <app-button-add-modal button1>
@@ -23,7 +13,6 @@
     
     <div content>
         <table class="card-table table table-striped table-sm">
->>>>>>> 1df46e92a73d3f1211e56e339061ce4aca23c827
             <thead>
                 <tr>
                     <th (click)="sortByAscendingDescendingOrder(0)" scope="col">Acronyme</th>
@@ -63,23 +52,7 @@
                 </tr>
             </tbody>
         </table>
-<<<<<<< HEAD
-        <app-pagination [commonProperties]="commonProperties"></app-pagination>
-</div>
-
-<!-- Debut du Modal suppression parcours -->
-<app-modal  class="modal fade"
-            tabindex="-1" 
-            role="dialog" 
-            id="suppression-parcours"
-            title="Suppression Parcours">
-    <p content>Confirmer la suppression du parcours.</p>
-    <button button1 type="button" class="btn btn-secondary btn-sm" data-dismiss="modal">Annuler</button>
-    <button button2 (click)="deleteParcours()" type="button" class="btn btn-danger btn-sm" data-dismiss="modal">Supprimer</button>
-</app-modal>
-=======
         
-        <app-list-pagination [commonProperties]="commonProperties"></app-list-pagination>
+        <app-pagination [commonProperties]="commonProperties"></app-pagination>
     </div>    
 </app-card-table>
->>>>>>> 1df46e92a73d3f1211e56e339061ce4aca23c827

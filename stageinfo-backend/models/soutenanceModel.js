@@ -18,6 +18,7 @@ const soutenanceSchema = Schema({
     },
     
     idStage: Schema.Types.ObjectId,
+    idSalle: Schema.Types.ObjectId,
     idCreneau: Schema.Types.ObjectId,
   },
   {
