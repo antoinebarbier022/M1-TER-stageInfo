@@ -11,7 +11,7 @@ import { FormParcoursComponent } from './components/forms/form-parcours/form-par
 import { ModalComponent } from './components/modal/modal.component';
 import { ListFilterComponent } from './components/card-filter/card-filter.component';
 import { ListPaginationComponent } from './components/list-pagination/list-pagination.component';
-import { ListEntriesNumberComponent } from './components/list-entries-number/list-entries-number.component';
+import { ListEntriesNumberComponent } from './components/nbItems/nbItems.component';
 // navigation component
 import { NavigationComponent } from './components/navigation/navigation.component';
 // buttons components
