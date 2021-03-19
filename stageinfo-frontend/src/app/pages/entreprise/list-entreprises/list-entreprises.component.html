@@ -1,27 +1,21 @@
 <h1>{{ title }}</h1>
 <app-card-filter [commonProperties]="commonProperties"></app-card-filter>
 
-<div class="card">
-    <div class="card-header">
-        <h2 class="card-title"> {{ title }} 
-            <button routerLink="/liste-entreprises/import-entreprise" type="submit" style="float:right;margin-left:5px; " class="btn btn-secondary btn-sm">
-                <i style="margin-right:5px;" class="fas fa-file-import"></i>
-                importer
-            </button> 
+<app-card-table>
+    <!-- component select pour le nombre de ligne à afficher sur une page dans le tableau-->
+    <app-list-entries-number entries [commonProperties]="commonProperties"></app-list-entries-number>
+
+    <app-button-add button1 link="/liste-entreprises/add-entreprise"></app-button-add>
     
-            <app-button-add link="/liste-entreprises/add-entreprise" style="float:right;"></app-button-add>
-        </h2>
-        <app-list-entries-number [commonProperties]="commonProperties"></app-list-entries-number>
-    </div>
-        <table class="card-table table table-striped">
+    <div content>
+        <table class="card-table table table-striped table-sm">
             <thead>
-            <tr>
-                <th scope="col">id</th>
-                <th scope="col">Entreprise</th>
-                <th scope="col">Ville</th>
-                <th scope="col">Responsable</th>
-                <th scope="col">actions</th>
-            </tr>
+                <tr>
+                    <th (click)="sortByAscendingDescendingOrder(0)" scope="col">Entreprise</th>
+                    <th (click)="sortByAscendingDescendingOrder(1)" scope="col">Ville</th>
+                    <th (click)="sortByAscendingDescendingOrder(2)" scope="col">Responsable</th>
+                    <th (click)="sortByAscendingDescendingOrder(3)" scope="col">Actions</th>
+                </tr>
             </thead>
             <tbody>
                 <tr *ngFor="let entreprise of getItems()">
@@ -46,6 +40,7 @@
                 </tr>
             </tbody>
         </table>
+        
         <app-list-pagination [commonProperties]="commonProperties"></app-list-pagination>
-</div>
-
+    </div>    
+</app-card-table>

@@ -1,31 +1,29 @@
 <h1>{{ title }}</h1>
 <app-card-filter [commonProperties]="commonProperties"></app-card-filter>
 
-<div class="card">
-    <div class="card-header">
-        <app-list-entries-number [commonProperties]="commonProperties"></app-list-entries-number>
-        <h2 class="card-title">Tableau des Utilisateurs
-            <button routerLink="/liste-utilisateurs/import-users" type="submit" style="float:right;margin-left:5px; " class="btn btn-secondary btn-sm">
-                <i style="margin-right:5px;" class="fas fa-file-import"></i>
-                importer
-            </button> 
 
-            <app-button-add link="/liste-utilisateurs/add-user" style="float:right;"></app-button-add>
-        </h2>
-    </div>
+<app-card-table>
+    <!-- component select pour le nombre de ligne à afficher sur une page dans le tableau-->
+    <app-list-entries-number entries [commonProperties]="commonProperties"></app-list-entries-number>
+
+    <app-button-add button1 link="/liste-utilisateurs/add-user"></app-button-add>
+    <button button2 routerLink="/liste-utilisateurs/import-users" type="submit" style="margin-left:5px; " class="btn btn-secondary btn-sm">
+        <i style="margin-right:5px;" class="fas fa-file-import"></i>
+        importer
+    </button>
+    
+    <div content>
         <table class="card-table table table-striped table-sm">
             <thead>
-            <tr>
-                <!--<th scope="col">id</th>-->
-                <th scope="col">nom</th>
-                <th scope="col">email</th>
-                <th scope="col">role</th>
-                <th scope="col">actions</th>
-            </tr>
+                <tr>
+                    <th (click)="sortByAscendingDescendingOrder(0)" scope="col">nom</th>
+                    <th (click)="sortByAscendingDescendingOrder(1)" scope="col">email</th>
+                    <th (click)="sortByAscendingDescendingOrder(2)" scope="col">role</th>
+                    <th (click)="sortByAscendingDescendingOrder(3)" scope="col">action</th>
+                </tr>
             </thead>
             <tbody>
                 <tr *ngFor="let user of getItems()">
-                    <!--<td>{{ user._id }}</td>-->
                     <td><a [routerLink]="['/liste-utilisateurs/user/', user._id]">{{ user.nom }} {{ user.prenom }}</a></td>
                     <td>{{ user.email }}</td>
                     <td><span class="badge badge-danger">{{ user.role }}</span></td>
@@ -43,10 +41,10 @@
                             <button button2 type="button" class="btn btn-danger btn-sm" data-dismiss="modal">Supprimer</button>
                         </app-modal>
                     </td>
-                </tr>
-                
+                </tr>  
             </tbody>
         </table>
-        <app-list-pagination [commonProperties]="commonProperties"></app-list-pagination>
-</div>
         
+        <app-list-pagination [commonProperties]="commonProperties"></app-list-pagination>
+    </div>    
+</app-card-table>

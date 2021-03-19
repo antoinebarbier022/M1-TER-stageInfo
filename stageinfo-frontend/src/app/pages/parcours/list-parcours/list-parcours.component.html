@@ -1,25 +1,25 @@
 <h1>{{ title }}</h1>
 <app-card-filter [commonProperties]="commonProperties"></app-card-filter>
 
-<div class="card">
-    <div class="card-header">
-        <app-list-entries-number [commonProperties]="commonProperties"></app-list-entries-number>
-        <h2 class="card-title"> {{ title }} 
-            <!-- Bouton ajouter => ouvre un modal avec le formulaire d'ajout -->
-            <app-button-add-modal style="float:right;">
-                <span title>Ajouter le parcours</span>
-                <app-form-parcours content [addParcours]="true" (parcoursEvent)="addParcours($event)"></app-form-parcours>
-            </app-button-add-modal>
-        </h2>
-    </div>
-        <table class="card-table table table-striped">
+<app-card-table>
+    <!-- component select pour le nombre de ligne à afficher sur une page dans le tableau-->
+    <app-list-entries-number entries [commonProperties]="commonProperties"></app-list-entries-number>
+
+    <!-- Bouton ajouter => ouvre un modal avec le formulaire d'ajout -->
+    <app-button-add-modal button1>
+        <span title>Ajouter le parcours</span>
+        <app-form-parcours content [addParcours]="true" (parcoursEvent)="addParcours($event)"></app-form-parcours>
+    </app-button-add-modal>
+    
+    <div content>
+        <table class="card-table table table-striped table-sm">
             <thead>
                 <tr>
-                    <th scope="col">Acronyme</th>
-                    <th scope="col">Intitule</th>
-                    <th scope="col">Niveau</th>
-                    <th scope="col">Responsable</th>
-                    <th scope="col">Actions</th>
+                    <th (click)="sortByAscendingDescendingOrder(0)" scope="col">Acronyme</th>
+                    <th (click)="sortByAscendingDescendingOrder(1)" scope="col">Intitule</th>
+                    <th (click)="sortByAscendingDescendingOrder(2)" scope="col">Niveau</th>
+                    <th (click)="sortByAscendingDescendingOrder(3)" scope="col">Responsable</th>
+                    <th (click)="sortByAscendingDescendingOrder(4)" scope="col">Actions</th>
                 </tr>
             </thead>
             <tbody>
@@ -52,7 +52,7 @@
                 </tr>
             </tbody>
         </table>
+        
         <app-list-pagination [commonProperties]="commonProperties"></app-list-pagination>
-</div>
-
-
+    </div>    
+</app-card-table>
