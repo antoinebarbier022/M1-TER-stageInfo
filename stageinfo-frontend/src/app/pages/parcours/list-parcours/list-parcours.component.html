@@ -4,7 +4,7 @@
             <!-- Bouton ajouter => ouvre un modal avec le formulaire d'ajout -->
             <app-button-add-modal style="float:right;">
                 <span title>Ajouter le parcours</span>
-                <app-form-parcours content [addParcours]="true"></app-form-parcours>
+                <app-form-parcours content [addParcours]="true" (parcoursEvent)="addParcours($event)"></app-form-parcours>
             </app-button-add-modal>
         </h2>
     </div>
@@ -28,17 +28,19 @@
 
                     <td class="table-action">
                         <!-- Bouton edit => ouvre un modal avec le formulaire de modification -->
-                        <app-button-edit-modal>
-                            <span title>Modifier le parcours</span>
-                            <app-form-parcours content [editParcours]="true"
-                                [idParcours]="parcours._id">
+                        <app-button-edit-modal [idModal]="parcours._id">
+                            <span title>Modifier le parcours : {{ parcours.acronyme | uppercase }}</span>
+                            <app-form-parcours content 
+                                [editParcours]="true"
+                                [idParcours]="parcours._id"
+                                (parcoursEvent)="updateTable($event)">
                             </app-form-parcours>
                         </app-button-edit-modal>
 
                          <!-- Bouton delete => ouvre un modal avec la demande de suppression -->
-                        <app-button-delete-modal> 
-                            <span title>Supprimer le parcours</span>
-                            <p content>Confirmer la suppression du parcours.</p>
+                        <app-button-delete-modal [idModal]="parcours._id"> 
+                            <span title> Supprimer le parcours </span>
+                            <p content>Confirmer la suppression du parcours : <strong>{{ parcours.acronyme | uppercase }}</strong></p>
                             <button button1 type="button" class="btn btn-secondary btn-sm" data-dismiss="modal">Annuler</button>
                             <button button2 (click)="deleteParcours(parcours._id)" type="button" class="btn btn-danger btn-sm" data-dismiss="modal">Supprimer</button>
                         </app-button-delete-modal>

@@ -1,7 +1,8 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
+import { ParcoursModel } from 'src/app/core/models/ParcoursModel';
 import { ParcoursService } from 'src/app/core/services/parcours.service';
 
 @Component({
@@ -18,6 +19,7 @@ export class ListParcoursComponent implements OnInit, OnDestroy {
   destroy$: Subject<boolean> = new Subject<boolean>();
 
   constructor(private route:ActivatedRoute,
+              private router: Router,
               private parcoursService: ParcoursService) { }
 
   ngOnInit(): void {
@@ -30,8 +32,21 @@ export class ListParcoursComponent implements OnInit, OnDestroy {
     this.destroy$.unsubscribe();
   }
 
+  // Mise à jour du tableau local
+  updateTable(parcours:any){
+    // on cherche l'index du parcours modifié
+    var indexParcours = this.allParcours.findIndex(((obj: { _id: any; }) => obj._id == parcours._id));
+    this.allParcours[indexParcours] = parcours;  // On met a jour le tableau local avec les nouvelles datas
+  }
+
+  addParcours(parcours:any){
+    // On ajoute le nouveau parcours dans le tableau local (afin de ne pas recharger la page pour voir l'ajout)
+    //this.allParcours = this.route.snapshot.data.allParcours; 
+    console.log(parcours);
+  }
 
   deleteParcours(id:any){
+    console.log({message:"delete", id: id});
     this.parcoursService.deleteParcoursById(id)
     .pipe(takeUntil(this.destroy$))
       .subscribe((_res: any[]) => {

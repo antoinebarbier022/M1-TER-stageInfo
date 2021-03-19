@@ -7,6 +7,7 @@ import { Component, Input, OnInit } from '@angular/core';
 })
 export class ButtonEditModalComponent implements OnInit {
   @Input() link: string ="";
+  @Input() idModal :any;
   constructor() { }
 
   ngOnInit(): void {

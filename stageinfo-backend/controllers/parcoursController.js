@@ -37,7 +37,7 @@ exports.getOneParcours = ((req, res, next) => {
 exports.createParcours = (req, res, next) => {
     console.log(req.body);
 
-    const parcour = new Parcours({
+    const parcours = new Parcours({
         niveau: req.body.niveau,
         acronyme: req.body.acronyme,
         intitule: req.body.intitule,
@@ -46,7 +46,7 @@ exports.createParcours = (req, res, next) => {
         idResp: req.body.idResp,
     });
 
-    parcour.save()
+    parcours.save()
         .then(() => {
             res.status(201).json({
                 message: 'Post saved successfully!'
@@ -67,7 +67,12 @@ exports.editParcours = (req, res, next) => {
 
     const parcours = new Parcours({
         _id: req.params.id,
-        ...req.body
+        acronyme : req.body.acronyme,
+        intitule : req.body.intitule,
+        niveau : req.body.niveau,
+        description : req.body.description,
+        existe: req.body.existe,
+        idResp: req.body.idResp,
     });
 
     Parcours.updateOne({_id: req.params.id}, parcours)

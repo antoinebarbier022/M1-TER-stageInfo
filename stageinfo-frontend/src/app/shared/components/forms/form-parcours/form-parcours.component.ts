@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import { ActivatedRoute, Router } from '@angular/router';
 import { Subject } from 'rxjs';
@@ -13,14 +13,15 @@ import { ParcoursService } from 'src/app/core/services/parcours.service';
 })
 export class FormParcoursComponent implements OnInit {
   @Input() title: string ="";
-  @Input() idParcours: string | null ="";
+  @Input() idParcours: string="";
 
   @Input() addParcours: boolean=false;
   @Input() editParcours: boolean=false;
-  @Input() viewParcours: boolean=false;
 
-  
+  @Output() parcoursEvent = new EventEmitter<ParcoursModel>();
+
   parcoursData: ParcoursModel = new ParcoursModel();
+
   // @ts-ignore
   parcoursForm: FormGroup;
   // @ts-ignore
@@ -77,12 +78,14 @@ export class FormParcoursComponent implements OnInit {
   onSubmitForm() {
     const formValue = this.parcoursForm.value;
     const parcours = new ParcoursModel(
+      this.idParcours,
       formValue['acronyme'],
       formValue['niveau'],
       formValue['intitule'],
       formValue['description'],
       formValue['responsable']
     );
+    
 
     if(this.addParcours){
       this.parcoursService.addParcours(parcours)
@@ -96,6 +99,7 @@ export class FormParcoursComponent implements OnInit {
         .pipe(takeUntil(this.destroy$))
           .subscribe((_res: any[]) => {
             console.log("Parcours modifié !");
+            this.parcoursEvent.emit(parcours); // on envoie le parcours dans le component parent
         });
       }
       console.log(parcours);
