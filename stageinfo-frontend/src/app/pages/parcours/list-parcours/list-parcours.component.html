@@ -1,5 +1,9 @@
+<h1>{{ title }}</h1>
+<app-card-filter [commonProperties]="commonProperties"></app-card-filter>
+
 <div class="card">
     <div class="card-header">
+        <app-list-entries-number [commonProperties]="commonProperties"></app-list-entries-number>
         <h2 class="card-title"> {{ title }} 
             <!-- Bouton ajouter => ouvre un modal avec le formulaire d'ajout -->
             <app-button-add-modal style="float:right;">
@@ -19,7 +23,7 @@
                 </tr>
             </thead>
             <tbody>
-                <tr *ngFor="let parcours of allParcours">
+                <tr *ngFor="let parcours of getItems()">
                     <!-- On rajoute le pipe uppercase pour mettre l'acronyme tout le temps en majuscule-->
                     <td>{{ parcours.acronyme | uppercase }}</td>
                     <td>{{ parcours.intitule }}</td>
@@ -48,6 +52,7 @@
                 </tr>
             </tbody>
         </table>
+        <app-list-pagination [commonProperties]="commonProperties"></app-list-pagination>
 </div>
 
 

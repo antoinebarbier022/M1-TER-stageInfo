@@ -5,23 +5,39 @@ import { takeUntil } from 'rxjs/operators';
 import { entrepriseModel } from 'src/app/core/models/entrepriseModel';
 import { EntrepriseService } from 'src/app/core/services/entreprise.service';
 
+import { CommonListingTable } from 'src/app/shared/classes/common-listing-table';
+
 @Component({
   selector: 'app-list-entreprises',
   templateUrl: './list-entreprises.component.html',
   styleUrls: ['./list-entreprises.component.scss']
 })
-export class ListEntreprisesComponent implements OnInit {
-  title = "Liste des entreprises";
+export class ListEntreprisesComponent extends CommonListingTable implements OnInit {
+  
+  public readonly title: string = "Liste des entreprises";
 
   allEntreprises: entrepriseModel[] = new Array();
 
   // pour pouvoir détruire les subscribes
   destroy$: Subject<boolean> = new Subject<boolean>();
 
-  constructor(private route: ActivatedRoute, private entrepriseService: EntrepriseService) { }
+  constructor(private route: ActivatedRoute, private entrepriseService: EntrepriseService) { 
+    super();
+    this.visibleProperties = 
+    [
+      {
+        name: 'id',
+        sorted: false
+      },
+      {
+        name: 'nom',
+        sorted: false
+      }
+    ];
+  }
 
   ngOnInit(): void {
-    this.allEntreprises = this.route.snapshot.data.entreprises;  
+    this.allItems = this.route.snapshot.data.entreprises;  
   }
 
   deleteEntreprise(id:any){

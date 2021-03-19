@@ -9,6 +9,9 @@ import { FormEntrepriseComponent } from './components/forms/form-entreprise/form
 import { FormParcoursComponent } from './components/forms/form-parcours/form-parcours.component';
 // modal component
 import { ModalComponent } from './components/modal/modal.component';
+import { ListFilterComponent } from './components/card-filter/card-filter.component';
+import { ListPaginationComponent } from './components/list-pagination/list-pagination.component';
+import { ListEntriesNumberComponent } from './components/list-entries-number/list-entries-number.component';
 // navigation component
 import { NavigationComponent } from './components/navigation/navigation.component';
 // buttons components
@@ -38,7 +41,11 @@ import { ButtonAddModalComponent } from './components/buttons/button-add-modal/b
     DateAgoPipe, 
     ButtonEditModalComponent, 
     ButtonDeleteModalComponent, 
-    ButtonAddModalComponent],
+    ButtonAddModalComponent,
+    ListFilterComponent, 
+    ListPaginationComponent, 
+    ListEntriesNumberComponent
+  ],
   imports: [
     CommonModule,
     RouterModule,
@@ -58,6 +65,10 @@ import { ButtonAddModalComponent } from './components/buttons/button-add-modal/b
     DateAgoPipe,
     ButtonEditModalComponent,
     ButtonDeleteModalComponent,
-    ButtonAddModalComponent]
+    ButtonAddModalComponent,
+    ListFilterComponent, 
+    ListPaginationComponent, 
+    ListEntriesNumberComponent
+  ]
 })
 export class SharedModule { }

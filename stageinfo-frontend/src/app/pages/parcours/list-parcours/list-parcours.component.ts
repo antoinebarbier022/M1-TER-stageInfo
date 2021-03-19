@@ -5,31 +5,46 @@ import { takeUntil } from 'rxjs/operators';
 import { ParcoursModel } from 'src/app/core/models/ParcoursModel';
 import { ParcoursService } from 'src/app/core/services/parcours.service';
 
+import { CommonListingTable } from 'src/app/shared/classes/common-listing-table';
+
 @Component({
   selector: 'app-list-parcours',
   templateUrl: './list-parcours.component.html',
   styleUrls: ['./list-parcours.component.scss']
 })
-export class ListParcoursComponent implements OnInit, OnDestroy {
-  title="Liste des parcours"
+export class ListParcoursComponent extends CommonListingTable implements OnInit, OnDestroy {
+
+  public readonly title: string = "Liste des parcours";
 
   allParcours:any ;
 
   // pour pouvoir détruire les subscribes
   destroy$: Subject<boolean> = new Subject<boolean>();
 
-  constructor(private route:ActivatedRoute,
-              private router: Router,
-              private parcoursService: ParcoursService) { }
 
-  ngOnInit(): void {
-    this.allParcours = this.route.snapshot.data.allParcours;  
+  constructor(private route:ActivatedRoute,
+    private router: Router,
+    private parcoursService: ParcoursService) { 
+  super();
+    this.visibleProperties = 
+    [
+      {
+        name: 'acronyme',
+        sorted: false
+      },
+      {
+        name: 'intitule',
+        sorted: false
+      },
+      {
+        name: 'niveau',
+        sorted: false
+      }
+    ];
   }
 
-  ngOnDestroy() {
-    this.destroy$.next(true);
-    // Now let's also unsubscribe from the subject itself:
-    this.destroy$.unsubscribe();
+  ngOnInit(): void {
+    this.allItems = this.route.snapshot.data.allParcours;  
   }
 
   /**
@@ -65,4 +80,9 @@ export class ListParcoursComponent implements OnInit, OnDestroy {
       });
   }
 
+  ngOnDestroy() {
+    this.destroy$.next(true);
+    // Now let's also unsubscribe from the subject itself:
+    this.destroy$.unsubscribe();
+  }
 }

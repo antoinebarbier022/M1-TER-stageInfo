@@ -49,7 +49,7 @@ exports.createCreneau = ((req, res, next) => {
         .then(() => res.status(201).json({
             message: 'La Creneau a bien été envoyé'
         }))
-        .catch(error => res.status(400).json({error: error}));
+        .catch(error => res.status(404).json({error: error}));
 });
 
 /**
@@ -77,7 +77,7 @@ exports.createCreneau = ((req, res, next) => {
             });
         })
         .catch((error) => {
-            res.status(400).json({
+            res.status(404).json({
                 error : error
             });
         });
@@ -99,7 +99,7 @@ exports.deleteOneCreneau = ((req, res, next) => {
             });
         })
         .catch((error) => {
-            res.status(400).json({
+            res.status(404).json({
                 error: error
             });
         });
@@ -121,7 +121,7 @@ exports.deleteAllCreneau = ((req, res, next) => {
         });
     })
     .catch((error) => {
-        res.status(400).json({
+        res.status(404).json({
             error: error
         });
     });

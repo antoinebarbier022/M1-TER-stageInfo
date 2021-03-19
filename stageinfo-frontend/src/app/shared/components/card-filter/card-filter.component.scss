@@ -1,0 +1,29 @@
+.card-parameters{
+    display: flex;
+    justify-content: space-between;
+    padding: 1rem 1.25rem;
+
+    & > *{
+        display: flex;
+    }
+
+    .card-parameters-sort > *{
+        margin: 0em 0.5em 0em 0em;
+    }
+
+    .card-parameters-search{
+        display:flex;
+        flex-direction: row;
+        width:100%;
+        label{
+            margin-bottom:0 !important;
+            align-self: center;
+            padding-right:10px;
+        }
+        #search{
+            width:100%;
+            border-top-right-radius: 0%;
+            border-bottom-right-radius: 0%;
+        }
+    }
+}
