@@ -1,30 +1,28 @@
-<div class="card">
-    <div class="card-header">
-        <h2 class="card-title"> {{ title }} 
-            <button routerLink="/liste-entreprises/import-entreprise" type="submit" style="float:right;margin-left:5px; " class="btn btn-secondary btn-sm">
-                <i style="margin-right:5px;" class="fas fa-file-import"></i>
-                importer
-            </button> 
+<h1>{{ title }}</h1>
+<app-card-filter [commonProperties]="commonProperties"></app-card-filter>
+
+<app-card-table>
+    <!-- component select pour le nombre de ligne à afficher sur une page dans le tableau-->
+    <app-list-entries-number entries [commonProperties]="commonProperties"></app-list-entries-number>
+
+    <app-button-add button1 link="/liste-entreprises/add-entreprise"></app-button-add>
     
-            <app-button-add link="/liste-entreprises/add-entreprise" style="float:right;"></app-button-add>
-        </h2>
-    </div>
-        <table class="card-table table table-striped">
+    <div content>
+        <table class="card-table table table-striped table-sm">
             <thead>
-            <tr>
-                <th scope="col">id</th>
-                <th scope="col">Entreprise</th>
-                <th scope="col">Ville</th>
-                <th scope="col">Responsable</th>
-                <th scope="col">actions</th>
-            </tr>
+                <tr>
+                    <th (click)="sortByAscendingDescendingOrder(0)" scope="col">Entreprise</th>
+                    <th (click)="sortByAscendingDescendingOrder(1)" scope="col">Ville</th>
+                    <th (click)="sortByAscendingDescendingOrder(2)" scope="col">Responsable</th>
+                    <th (click)="sortByAscendingDescendingOrder(3)" scope="col">Actions</th>
+                </tr>
             </thead>
             <tbody>
-                <tr *ngFor="let entreprise of allEntreprises">
+                <tr *ngFor="let entreprise of getItems()">
                     <td>{{ entreprise._id }}</td>
                     <td><a [routerLink]="['/liste-entreprises/info', entreprise._id]">{{ entreprise.nom }}</a></td>
-                    <td>{{ entreprise.nom }}</td>
-                    <td>{{ entreprise.nom }}</td>
+                    <td>Ville</td>
+                    <td>Responsable</td>
                     <td class="table-action">
                         <a [routerLink]="['/liste-entreprises/edit-entreprise', entreprise._id]"><i class="icon far fa-lg fa-edit"></i></a>
                         <a data-toggle="modal" data-target="#suppression-entreprise"><i class="icon far fa-lg fa-trash-alt"></i></a>
@@ -42,5 +40,7 @@
                 </tr>
             </tbody>
         </table>
-</div>
-
+        
+        <app-list-pagination [commonProperties]="commonProperties"></app-list-pagination>
+    </div>    
+</app-card-table>

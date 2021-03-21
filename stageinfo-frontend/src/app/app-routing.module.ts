@@ -64,6 +64,7 @@ const routes: Routes = [
   { path: '', redirectTo: 'liste-stages', pathMatch: 'full', canActivate: [AuthGuardService]},
   { path: 'login', component: LoginComponent, canActivate: [AuthGuard]},
   { path: 'documentation', component: ExempleDocComponent, canActivate: [AuthGuardService]},
+
   // routes stages
   { path: 'liste-stages', 
       component: ListStagesComponent, 
@@ -104,6 +105,7 @@ const routes: Routes = [
       },
   },
   { path: 'profile', component: ProfileUserComponent, canActivate: [AuthGuardService]},
+
   //routes entreprise
   { path: 'liste-entreprises', component: ListEntreprisesComponent, canActivate: [AuthGuardService], resolve: { entreprises: AllEntreprisesResolver }},
   { path: 'liste-entreprises/add-entreprise', component: AddEntrepriseComponent, canActivate: [AuthGuardService]},
@@ -123,8 +125,6 @@ const routes: Routes = [
 
   // config calendrier soutenance
   { path: 'configuration-calendrier-soutenances', component: ConfigCalendrierSoutenancesComponent, canActivate: [AuthGuardService]},
-
-
 
   { path: 'not-found', component: Error404Component, canActivate: [AuthGuardService]},
   { path: '**', redirectTo: 'not-found', canActivate: []}

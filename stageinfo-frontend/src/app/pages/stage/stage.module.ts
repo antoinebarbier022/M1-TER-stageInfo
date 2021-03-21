@@ -10,8 +10,6 @@ import { ListStagesComponent } from './list-stages/list-stages.component';
 import { InfoStageComponent } from './info-stage/info-stage.component';
 import { AddStageComponent } from './add-stage/add-stage.component';
 
-
-
 @NgModule({
   declarations: [ListStagesComponent, InfoStageComponent, AddStageComponent],
   imports: [
@@ -20,8 +18,10 @@ import { AddStageComponent } from './add-stage/add-stage.component';
     RouterModule,
     FormsModule,
     SharedModule
-  ], exports: [
+  ], 
+  exports: [
     ListStagesComponent, 
-    AddStageComponent]
+    AddStageComponent
+  ]
 })
 export class StageModule { }

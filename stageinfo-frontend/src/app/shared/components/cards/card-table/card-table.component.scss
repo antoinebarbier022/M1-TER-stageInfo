@@ -6,9 +6,10 @@
     width:100%;
     margin:0;
     .card-header{
+        display: flex;
+        flex-direction: row;
         padding-bottom: 0;
-        h1, .card-title{
-            margin:0 !important;
-        }
+        justify-content: space-between;
     }
+
 }

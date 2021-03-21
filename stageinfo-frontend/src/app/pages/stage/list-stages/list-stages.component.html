@@ -1,79 +1,43 @@
 <h1>{{ title }}</h1>
-<!-- Cette card est pour la bar de recherche et les différents filtres -->
-<div class="card">
-    <div id="idFilter">
-        <div class="card-parameters">
-            <div class="card-parameters-search">
-                <label>Rechercher </label>
-                <input [(ngModel)]="searchFilter" type="text" placeholder="" class="form-control" id="search" name="search">
-                <button class="btn btn-link"
-                        style="margin-left:5px;"
-                        class="btn btn-secondary btn-sm">
-                    <i class="fas fa-filter"></i>
-                </button> 
-            </div>
-               
-        </div>
-    </div>
-</div>
 
-<div class="card">
-    <div class="card-header">
-        <div class="card-parameters-sort" >
-            <p>Show</p>
-            <select (change)="setNumberEntries($event)" class="custom-select">
-                <option selected value="10">10</option>
-                <option value="20">20</option>
-                <option value="50">50</option>
-            </select>
-            <p>entries</p>
+<!-- Card filtre et recherche-->
+<app-card-filter [commonProperties]="commonProperties"></app-card-filter>
 
-            <button routerLink="/liste-stages/import-stage" type="submit" style="float:right;margin-left:5px; " class="btn btn-secondary btn-sm">
-                <i style="margin-right:5px;" class="fas fa-file-import"></i>
-                importer
-            </button>
-            <app-button-add link="/saisir-stage" style="float:right;"></app-button-add>
-        </div>
-    </div>
+<app-card-table>
+    <!-- component select pour le nombre de ligne à afficher sur une page dans le tableau-->
+    <app-list-entries-number entries [commonProperties]="commonProperties"></app-list-entries-number>
 
-    <table class="card-table table table-striped table-sm">
-        <thead>
-        <tr>
-            <th scope="col">Titre</th>
-            <th scope="col">Entreprise</th>
-            <th scope="col">Parcours</th>
-            <th scope="col">Promotions</th>
-            <th scope="col">Duree</th>
-            <th scope="col">Etat</th>
-        </tr>
-        </thead>
-        <tbody>
-            <!-- Ajout des stages de la BDD -->
-            <tr *ngFor="let stage of getStagesByKeyword()">
-                <td><a [routerLink]="['/liste-stages', stage._id]">{{ stage.titre }}</a></td>
-                <td>{{ stage.entreprise.nomComplet }}</td>
-                <td>{{ stage.parcours.nomComplet }}</td>
-                <!-- <td>{{ stage.promotions }}</td>-->
-                <td>2020 - 2021</td>
-                <td>{{ stage.duree }} mois</td>
-                <td><span class="badge badge-success">{{ stage.etat }}</span></td>
-            </tr>
-        </tbody>
-    </table>
-
-    <div class="card-pagination">
-        <ul class="pagination">
-            <li class="page-item" (click)="onClickPreviousPage()"><a class="page-link">Previous</a></li>
-            <li class="page-item" [ngStyle]="{'display': currentPage>3? 'block':'none'}"><a class="page-link">...</a></li>
-            <ng-container *ngFor="let number of [].constructor(pageCount); let i = index">
-                <li class="page-item" 
-                    (click)="onClickPageNumber(i+1)" 
-                    [ngStyle]="{'display': (i+1)<currentPage? currentPage-(i+1)<3? 'block':'none' : (i+1)-currentPage<3? 'block':'none'}">
-                    <a [ngClass]="i+1==currentPage? 'current-page page-link' : 'page-link'">{{ i+1 }}</a>
-                </li>
-            </ng-container>
-            <li class="page-item" [ngStyle]="{'display': currentPage<=pageCount-3? 'block':'none'}"><a class="page-link">...</a></li>
-            <li class="page-item" (click)="onClickNextPage()"><a class="page-link">Next</a></li>
-        </ul>
-    </div>
-</div>
+    <app-button-add button1 link="/saisir-stage"></app-button-add>
+    <button button2 routerLink="/liste-stages/import-stage" type="submit" style="margin-left:5px; " class="btn btn-secondary btn-sm">
+        <i style="margin-right:5px;" class="fas fa-file-import"></i>
+        importer
+    </button>
+    
+    <div content>
+        <table class="card-table table table-striped table-sm">
+            <thead>
+                <tr>
+                    <th (click)="sortByAscendingDescendingOrder(0)" scope="col">Titre</th>
+                    <th (click)="sortByAscendingDescendingOrder(1)" scope="col">Entreprise</th>
+                    <th (click)="sortByAscendingDescendingOrder(2)" scope="col">Parcours</th>
+                    <th scope="col">Promotions</th>
+                    <th (click)="sortByAscendingDescendingOrder(3)" scope="col">Duree</th>
+                    <th (click)="sortByAscendingDescendingOrder(4)" scope="col">Etat</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Ajout des stages de la BDD -->
+                <tr *ngFor="let stage of getItems()">
+                    <td><a [routerLink]="['/liste-stages', stage._id]">{{ stage.titre }}</a></td>
+                    <td>{{ stage.entreprise.nomComplet }}</td>
+                    <td>{{ stage.parcours.nomComplet }}</td>
+                    <!-- <td>{{ stage.promotions }}</td>-->
+                    <td>2020 - 2021</td>
+                    <td>{{ stage.duree }} mois</td>
+                    <td><span class="badge badge-success">{{ stage.etat }}</span></td>
+                </tr>
+            </tbody>
+        </table>
+        <app-list-pagination [commonProperties]="commonProperties"></app-list-pagination>
+    </div>    
+</app-card-table>
