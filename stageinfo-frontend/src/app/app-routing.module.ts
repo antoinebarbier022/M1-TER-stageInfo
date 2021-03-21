@@ -80,7 +80,7 @@ const routes: Routes = [
         stage: StageResolver  // on associe un resolver à la route
       }
   },
-  { path: 'liste-stages', component: ListStagesComponent, canActivate: [AuthGuardService]},
+
   { path: 'saisir-stage', component: AddStageComponent, canActivate: [AuthGuardService]},
 
   // route users
