@@ -16,15 +16,19 @@ export class ListParcoursComponent extends CommonListingTable implements OnInit,
 
   public readonly title: string = "Liste des parcours";
 
-  allParcours:any ;
-
   // pour pouvoir détruire les subscribes
   destroy$: Subject<boolean> = new Subject<boolean>();
 
+  selectItem:ParcoursModel; // item entier qui est selectionné
+
+  selectedItem(item:ParcoursModel){
+    this.selectItem = item;
+  }
 
   constructor(private route:ActivatedRoute,
     private router: Router,
     private parcoursService: ParcoursService) { 
+      
   super();
     this.visibleProperties = 
     [
@@ -41,6 +45,7 @@ export class ListParcoursComponent extends CommonListingTable implements OnInit,
         sorted: false
       }
     ];
+    this.selectItem = new ParcoursModel();
   }
 
   ngOnInit(): void {
@@ -54,14 +59,14 @@ export class ListParcoursComponent extends CommonListingTable implements OnInit,
    */
   updateTable(parcours:any){
     // on cherche l'index du parcours modifié
-    var indexParcours = this.allParcours.findIndex(((obj: { _id: any; }) => obj._id == parcours._id));
+    var indexParcours = this.allItems.findIndex(((obj: { _id: any; }) => obj._id == parcours._id));
     console.log("index update : "+ indexParcours);
-    this.allParcours[indexParcours] = parcours;  // On met a jour le tableau local avec les nouvelles datas
+    this.allItems[indexParcours] = parcours;  // On met a jour le tableau local avec les nouvelles datas
   }
 
   addParcours(parcours:any){
     // On ajoute le nouveau parcours dans le tableau local (afin de ne pas recharger la page pour voir l'ajout)
-    //this.allParcours = this.route.snapshot.data.allParcours; 
+    //this.allItems = this.route.snapshot.data.allItems; 
     console.log(parcours);
   }
 
@@ -77,7 +82,7 @@ export class ListParcoursComponent extends CommonListingTable implements OnInit,
       .subscribe((_res: any[]) => {
         console.log(_res);
         // On supprime de l'affichage le parcours (on sait qu'il est supprimer de la base de donnée donc on peut le supprimer sans recharger les données distantes)
-        this.allParcours = this.allParcours.filter((object: { _id: any; }) => { return object._id != id; });
+        this.allItems = this.allItems.filter((object: { _id: any; }) => { return object._id != id; });
       });
   }
 

@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnChanges, OnInit, Output } from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import { ActivatedRoute, Router } from '@angular/router';
 import { Subject } from 'rxjs';
@@ -11,9 +11,10 @@ import { ParcoursService } from 'src/app/core/services/parcours.service';
   templateUrl: './form-parcours.component.html',
   styleUrls: ['./form-parcours.component.scss']
 })
-export class FormParcoursComponent implements OnInit {
+export class FormParcoursComponent implements OnInit, OnChanges {
   @Input() title: string ="";
   @Input() idParcours: string="";
+  @Input() selectedParcours :ParcoursModel = new ParcoursModel();
 
   @Input() addParcours: boolean=false;
   @Input() editParcours: boolean=false;
@@ -34,15 +35,24 @@ export class FormParcoursComponent implements OnInit {
               private route: ActivatedRoute,
               private router: Router,
               private parcoursService: ParcoursService) { 
+
+    this.selectedParcours =  new ParcoursModel();
   }
 
   ngOnInit() {
     this.initForm();
     if(this.editParcours){  // Si on est sur le formulaire parcours alors on remplie les champs
-      this.setInputForm(this.idParcours);
+      this.setInputForm(this.selectedParcours._id);
     } 
   }
 
+  // lorsque le parcours selectionner à changer :
+  ngOnChanges(){
+    this.initForm();
+    if(this.editParcours){  // Si on est sur le formulaire parcours alors on remplie les champs
+      this.setInputForm(this.selectedParcours._id);
+    } 
+  }
   ngOnDestroy() {
     this.destroy$.next(true);
     // Now let's also unsubscribe from the subject itself:

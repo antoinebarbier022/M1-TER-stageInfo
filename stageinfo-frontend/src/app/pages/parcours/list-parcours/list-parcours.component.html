@@ -32,14 +32,16 @@
 
                     <td class="table-action">
                         <!-- Bouton edit => ouvre un modal avec le formulaire de modification -->
-                        <app-button-edit-modal [idModal]="parcours._id">
+                        <a  data-toggle="modal" (click)="selectedItem(parcours)" data-target="#modifier"><i class="icon far fa-lg fa-edit"></i></a>
+                        
+                        <!--<app-button-edit-modal [idModal]="parcours._id">
                             <span title>Modifier le parcours : {{ parcours.acronyme | uppercase }}</span>
                             <app-form-parcours content 
                                 [editParcours]="true"
                                 [idParcours]="parcours._id"
                                 (parcoursEvent)="updateTable($event)">
                             </app-form-parcours>
-                        </app-button-edit-modal>
+                        </app-button-edit-modal>-->
 
                          <!-- Bouton delete => ouvre un modal avec la demande de suppression -->
                         <app-button-delete-modal [idModal]="parcours._id"> 
@@ -56,3 +58,18 @@
         <app-list-pagination [commonProperties]="commonProperties"></app-list-pagination>
     </div>    
 </app-card-table>
+
+
+<!-- Modal avec le formulaire de modification de l'objet selectionné -->
+<app-modal class="modal fade"
+        tabindex="-1" 
+        role="dialog" 
+        id="modifier">
+        <span title>Modifier le parcours : {{ selectItem.acronyme | uppercase }}</span>
+        <app-form-parcours content 
+                                [editParcours]="true"
+                                [idParcours]="selectItem._id"
+                                [(selectedParcours)]="selectItem"
+                                (parcoursEvent)="updateTable($event)">
+        </app-form-parcours>
+</app-modal>

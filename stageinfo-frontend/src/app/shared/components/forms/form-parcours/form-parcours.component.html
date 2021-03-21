@@ -1,9 +1,9 @@
 <form [formGroup]="parcoursForm"(ngSubmit)="onSubmitForm()">
     <!-- Nom du parcours -->
     <div class="form-group-row">
-        <label for="inputAcronyme">Acronyme</label>
+        <label [for]="addParcours ? 'addInputAcronyme':'editInputAcronyme'">Acronyme</label>
         <input  type="text" 
-                id="inputAcronyme"  
+                [id]="addParcours ? 'addInputAcronyme':'editInputAcronyme'"  
                 class="form-control"
                 placeholder="Acronyme du parcours" 
                 name="parcoursAcronyme"
@@ -11,8 +11,8 @@
     </div>
     <!-- Niveau du parcours -->
     <div class="form-group-row">
-        <label for="inputNiveau">Niveau</label>
-        <select id="inputNiveau" 
+        <label [for]="addParcours ? 'addInputNiveau':'editInputNiveau'">Niveau</label>
+        <select [id]="addParcours ? 'addInputNiveau':'editInputNiveau'"
                 class="form-control" 
                 name="niveau"
                 formControlName="niveau">
@@ -24,9 +24,9 @@
     </div>
     <!-- Intitulé du parcours -->
     <div class="form-group-row">
-        <label for="inputIntitule">Intitule</label>
+        <label [for]="addParcours ? 'addInputIntitule':'editInputIntitule'">Intitule</label>
         <input  type="text" 
-                id="inputIntitule"  
+                [id]="addParcours ? 'addInputIntitule':'editInputIntitule'" 
                 class="form-control"
                 placeholder="Intitule du parcours" 
                 name="parcoursIntitule"
@@ -34,8 +34,8 @@
     </div>
     <!-- Description du parcours -->
     <div class="form-group-row">
-        <label for="inputDescription">Description</label>
-        <textarea   id="inputDescription"
+        <label [for]="addParcours ? 'addInputDescription':'editInputDescription'">Description</label>
+        <textarea   [id]="addParcours ? 'addInputDescription':'editInputDescription'"
                     class="form-control"  
                     placeholder="Description du parcours"
                     rows="3"
@@ -45,8 +45,8 @@
 
     <!-- Responsable du parcours -->
     <div class="form-group-row">
-        <label for="inputResponsable">Responsable</label>
-        <select id="inputResponsable" 
+        <label [for]="addParcours ? 'addInputResponsable':'editInputResponsable'">Responsable</label>
+        <select [id]="addParcours ? 'addInputResponsable':'editInputResponsable'"
                 class="form-control" 
                 name="responsable"
                 formControlName="responsable">
