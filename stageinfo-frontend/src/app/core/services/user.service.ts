@@ -16,6 +16,10 @@ export class UserService {
     return this.httpClient.get(this.urlBase+'api/auth/email/'+id);
   }
 
+  getRoleById(id: string | null): Observable<any>{
+    return this.httpClient.get(this.urlBase+'api/auth/role/'+id);
+  }
+
   /* Récupération de la liste de tous les utilisateurs */
   getAllUsers(): Observable<any> {
     return this.httpClient.get(this.urlBase+'api/user');
