@@ -32,24 +32,9 @@
 
                     <td class="table-action">
                         <!-- Bouton edit => ouvre un modal avec le formulaire de modification -->
-                        <a  data-toggle="modal" (click)="selectedItem(parcours)" data-target="#modifier"><i class="icon far fa-lg fa-edit"></i></a>
-                        
-                        <!--<app-button-edit-modal [idModal]="parcours._id">
-                            <span title>Modifier le parcours : {{ parcours.acronyme | uppercase }}</span>
-                            <app-form-parcours content 
-                                [editParcours]="true"
-                                [idParcours]="parcours._id"
-                                (parcoursEvent)="updateTable($event)">
-                            </app-form-parcours>
-                        </app-button-edit-modal>-->
-
-                         <!-- Bouton delete => ouvre un modal avec la demande de suppression -->
-                        <app-button-delete-modal [idModal]="parcours._id"> 
-                            <span title> Supprimer le parcours </span>
-                            <p content>Confirmer la suppression du parcours : <strong>{{ parcours.acronyme | uppercase }}</strong></p>
-                            <button button1 type="button" class="btn btn-secondary btn-sm" data-dismiss="modal">Annuler</button>
-                            <button button2 (click)="deleteParcours(parcours._id)" type="button" class="btn btn-danger btn-sm" data-dismiss="modal">Supprimer</button>
-                        </app-button-delete-modal>
+                        <app-button-edit data-toggle="modal" (click)="selectedItem(parcours)" data-target="#modifier"></app-button-edit>
+                        <!-- Bouton delete => ouvre un modal avec la demande de suppression -->
+                        <app-button-delete data-toggle="modal" (click)="selectedItem(parcours)" data-target="#suppression"></app-button-delete>
                     </td>
                 </tr>
             </tbody>
@@ -65,11 +50,22 @@
         tabindex="-1" 
         role="dialog" 
         id="modifier">
-        <span title>Modifier le parcours : {{ selectItem.acronyme | uppercase }}</span>
-        <app-form-parcours content 
-                                [editParcours]="true"
-                                [idParcours]="selectItem._id"
-                                [(selectedParcours)]="selectItem"
-                                (parcoursEvent)="updateTable($event)">
-        </app-form-parcours>
+    <span title>Modifier le parcours : {{ selectItem.acronyme | uppercase }}</span>
+    <app-form-parcours content 
+                            [editParcours]="true"
+                            [idParcours]="selectItem._id"
+                            [selectedParcours]="selectItem"
+                            (parcoursEvent)="updateTable($event)">
+    </app-form-parcours>
+</app-modal>
+
+<!-- Modal pour supprimer l'objet selectionné -->
+<app-modal class="modal fade"
+        tabindex="-1" 
+        role="dialog" 
+        id="suppression">
+    <span title> Supprimer le parcours </span>
+    <p content>Confirmer la suppression du parcours : <strong>{{ selectItem.acronyme | uppercase }}</strong></p>
+    <button button1 type="button" class="btn btn-secondary btn-sm" data-dismiss="modal">Annuler</button>
+    <button button2 (click)="deleteParcours(selectItem._id)" type="button" class="btn btn-danger btn-sm" data-dismiss="modal">Supprimer</button>
 </app-modal>

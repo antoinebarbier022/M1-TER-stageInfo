@@ -19,37 +19,30 @@ export class ListParcoursComponent extends CommonListingTable implements OnInit,
   // pour pouvoir détruire les subscribes
   destroy$: Subject<boolean> = new Subject<boolean>();
 
-  selectItem:ParcoursModel; // item entier qui est selectionné
-
-  selectedItem(item:ParcoursModel){
-    this.selectItem = item;
-  }
+  selectItem:ParcoursModel; // item qui est selectionné 
 
   constructor(private route:ActivatedRoute,
-    private router: Router,
-    private parcoursService: ParcoursService) { 
-      
-  super();
-    this.visibleProperties = 
-    [
-      {
-        name: 'acronyme',
-        sorted: false
-      },
-      {
-        name: 'intitule',
-        sorted: false
-      },
-      {
-        name: 'niveau',
-        sorted: false
-      }
+              private parcoursService: ParcoursService) { 
+    super();
+    this.visibleProperties = [
+      { name: 'acronyme', sorted: false},
+      { name: 'intitule', sorted: false },
+      { name: 'niveau', sorted: false }
     ];
     this.selectItem = new ParcoursModel();
   }
 
   ngOnInit(): void {
-    this.allItems = this.route.snapshot.data.allParcours;  
+    this.allItems = this.route.snapshot.data.allParcours;  // on récupère les parcours qui sont dans le resolver
+  }
+
+  /**
+   * @fonction selectedItem
+   * @description Met à jour le parcours selectionné, permet au modal de savoir quelle contenu afficher
+   * @params item : ParcoursModel -> contient les informations du parcours selectionné
+   */
+  selectedItem(item:ParcoursModel){
+    this.selectItem = item;
   }
 
   /**
@@ -70,7 +63,7 @@ export class ListParcoursComponent extends CommonListingTable implements OnInit,
     console.log(parcours);
   }
 
-    /**
+  /**
    * @fonction deleteParcours
    * @description Supprime le parcours selectionné sur la base de donnée et met à jour le tableau local
    * @params id : any -> identifiant du parcours à supprimer
