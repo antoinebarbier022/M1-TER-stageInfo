@@ -10,8 +10,8 @@ export class EntrepriseModel{
         //public adresse: AdresseModel = new AdresseModel(),
 
         public voie:string ="",
-        public ville:string ="",
         public codePostal: string ="",
+        public ville:string ="",
         public pays: string ="",
 
         public siteweb: string  = "",
