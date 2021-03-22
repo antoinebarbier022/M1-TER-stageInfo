@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot, UrlTree, Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { AuthService } from '../services/auth.service';
-import decode, { JwtPayload } from 'jwt-decode';
+import decode from 'jwt-decode';
 import jwtDecode from 'jwt-decode';
 import { IToken } from '../../shared/interfaces/itoken';
 
