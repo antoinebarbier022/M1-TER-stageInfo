@@ -32,7 +32,7 @@ export class RouteGuard implements CanActivate {
       return true;
     }
     else{
-      this.router.navigateByUrl('not-found');
+      this.router.navigateByUrl('error401');
     }
 
     return false;
