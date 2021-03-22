@@ -1,9 +1,9 @@
 export class embaucheSchema{
-    idStage: string;
-    idEtudiant: string;
-    idEntreprise: string;
+    idStage: string = "";
+    idEtudiant: string = "";
+    idEntreprise: string = "";
 
-    commentaire: string;
-    contratType: string;
-    dateEmbauche: Date;
+    commentaire: string = "";
+    contratType: string= "";
+    dateEmbauche: Date= new Date();
 }

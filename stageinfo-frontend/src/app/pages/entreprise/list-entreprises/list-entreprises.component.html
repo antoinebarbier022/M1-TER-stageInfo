@@ -48,6 +48,7 @@
         role="dialog" 
         id="modifier">
     <span title>Modifier l'entreprise : nom entreprise</span>
+    <app-form-entreprise content [editEntreprise]="true"> </app-form-entreprise>
 </app-modal>
 
 <!-- Modal pour supprimer l'objet selectionné -->
@@ -67,5 +68,6 @@
         role="dialog" 
         id="ajouter">
         <span title>Ajouter une entreprise</span>
-        
+
+    <app-form-entreprise content [addEntreprise]="true"> </app-form-entreprise>
 </app-modal>
