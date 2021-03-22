@@ -26,11 +26,6 @@ export class HeaderComponent implements OnInit, OnDestroy {
               private router: Router,
               private testService: TestService,
               private userservice: UserService) {
-this.userservice.getemailById(this.auth.getUserid()).subscribe(
-  (email) => {
-    this.monEmail=email;
-  }
-)
   }
 
   ngOnInit(): void {
@@ -39,9 +34,15 @@ this.userservice.getemailById(this.auth.getUserid()).subscribe(
       (auth) => {
         this.isAuth = auth;
       });
-
-
+      this.userservice.getemailById(this.auth.getUserid()).subscribe(
+        (email) => { this.monEmail=email; });
   }
+
+  ngOnChanges(){
+    this.userservice.getemailById(this.auth.getUserid()).subscribe(
+      (email) => { this.monEmail=email; });
+  }
+  
   onLogout() {
     this.auth.logout();
     this.router.navigate(['/login']);

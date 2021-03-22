@@ -36,7 +36,6 @@ import { AddParcoursComponent } from './pages/parcours/add-parcours/add-parcours
 import { EditParcoursComponent } from './pages/parcours/edit-parcours/edit-parcours.component';
 import { InfoParcoursComponent } from './pages/parcours/info-parcours/info-parcours.component';
 
-
 // import config
 import { ConfigCalendrierSoutenancesComponent } from './pages/soutenance/config-calendrier-soutenances/config-calendrier-soutenances.component';
 
@@ -57,8 +56,6 @@ import { AllEntreprisesResolver } from './core/resolves/all-entreprises.resolver
 import { EntrepriseResolver } from './core/resolves/entreprise.resolver';
 import { AllParcoursResolver } from './core/resolves/all-parcours.resolver';
 import { ParcoursResolver } from './core/resolves/parcours.resolver';
-
-
 
 const routes: Routes = [
   { path: '', redirectTo: 'liste-stages', pathMatch: 'full', canActivate: [AuthGuardService]},

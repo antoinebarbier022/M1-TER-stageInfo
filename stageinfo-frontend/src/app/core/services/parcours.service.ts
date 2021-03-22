@@ -38,7 +38,6 @@ export class ParcoursService {
 
   /* Modifier un parcours */
   editParcours(id:any, data:ParcoursModel):Observable<any>{
-    console.log({message:"edit : "+ id, data : data});
     return this.httpClient.put(this.urlBase+'/api/parcours/'+ id, data);
   }
   

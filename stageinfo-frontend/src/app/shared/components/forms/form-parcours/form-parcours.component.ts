@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnChanges, OnInit, Output } from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import { ActivatedRoute, Router } from '@angular/router';
 import { Subject } from 'rxjs';
@@ -11,9 +11,10 @@ import { ParcoursService } from 'src/app/core/services/parcours.service';
   templateUrl: './form-parcours.component.html',
   styleUrls: ['./form-parcours.component.scss']
 })
-export class FormParcoursComponent implements OnInit {
+export class FormParcoursComponent implements OnInit, OnChanges {
   @Input() title: string ="";
   @Input() idParcours: string="";
+  @Input() selectedParcours :ParcoursModel = new ParcoursModel();
 
   @Input() addParcours: boolean=false;
   @Input() editParcours: boolean=false;
@@ -34,12 +35,24 @@ export class FormParcoursComponent implements OnInit {
               private route: ActivatedRoute,
               private router: Router,
               private parcoursService: ParcoursService) { 
+
+    this.selectedParcours =  new ParcoursModel();
   }
 
   ngOnInit() {
     this.initForm();
+    if(this.editParcours){  // Si on est sur le formulaire parcours alors on remplie les champs
+      this.setInputForm(this.selectedParcours._id);
+    } 
   }
 
+  // lorsque le parcours selectionner à changer :
+  ngOnChanges(){
+    this.initForm();
+    if(this.editParcours){  // Si on est sur le formulaire parcours alors on remplie les champs
+      this.setInputForm(this.selectedParcours._id);
+    } 
+  }
   ngOnDestroy() {
     this.destroy$.next(true);
     // Now let's also unsubscribe from the subject itself:
@@ -54,25 +67,23 @@ export class FormParcoursComponent implements OnInit {
       description:[''],
       responsable:['', Validators.required]
     });
+  }
 
-    // Si on est sur le formulaire parcours alors on remplie les champs
-    if(this.editParcours){
-      // récupération des données du parcours
-      this.parcoursService.getParcoursById(this.idParcours)
-      .pipe(takeUntil(this.destroy$))
-        .subscribe((_parcours: ParcoursModel) => {
-          this.parcoursData = _parcours;
-          // On set les données du parcours dans le formulaire
-          this.parcoursForm.patchValue({
-            acronyme:this.parcoursData.acronyme,
-            niveau:this.parcoursData.niveau,
-            intitule:this.parcoursData.intitule,
-            description:this.parcoursData.description,
-            responsable:this.parcoursData.responsable
-          });
-          console.log(_parcours);
-        });
-    }
+  setInputForm(id:any){
+  // récupération des données du parcours
+  this.parcoursService.getParcoursById(id)
+    .pipe(takeUntil(this.destroy$))
+    .subscribe((_parcours: ParcoursModel) => {
+      this.parcoursData = _parcours;
+      // On set les données du parcours dans le formulaire
+      this.parcoursForm.patchValue({
+        acronyme:this.parcoursData.acronyme,
+        niveau:this.parcoursData.niveau,
+        intitule:this.parcoursData.intitule,
+        description:this.parcoursData.description,
+        responsable:this.parcoursData.responsable
+      });
+    });
   }
 
   onSubmitForm() {
@@ -86,23 +97,30 @@ export class FormParcoursComponent implements OnInit {
       formValue['responsable']
     );
     
-
     if(this.addParcours){
-      this.parcoursService.addParcours(parcours)
-      .pipe(takeUntil(this.destroy$))
-        .subscribe((_res: any[]) => {
-          console.log("Parcours ajouté !");
-      });
+      this.ajouterParcours(parcours);
     }else {
-      if(this.editParcours){
-        this.parcoursService.editParcours(this.idParcours, parcours)
-        .pipe(takeUntil(this.destroy$))
-          .subscribe((_res: any[]) => {
-            console.log("Parcours modifié !");
-            this.parcoursEvent.emit(parcours); // on envoie le parcours dans le component parent
-        });
-      }
-      console.log(parcours);
+      //alors on est dans editParcours
+      this.supprimerParcours(this.idParcours, parcours);
     }
+  }
+
+  ajouterParcours(parcours:any){
+    this.parcoursService.addParcours(parcours)
+    .pipe(takeUntil(this.destroy$))
+      .subscribe((_res: any[]) => {
+        console.log("Parcours ajouté !");
+        this.parcoursForm.reset();  // on reset les données dans le forumulaire
+    });
+  }
+
+  supprimerParcours(id:any, parcours:any){
+    this.parcoursService.editParcours(id, parcours)
+    .pipe(takeUntil(this.destroy$))
+      .subscribe((_res: any[]) => {
+        console.log("Parcours modifié !");
+        this.parcoursForm.reset(); // on reset les données dans le forumulaire
+        this.parcoursEvent.emit(parcours); // on envoie le parcours dans le component parent
+    });
   }
 }

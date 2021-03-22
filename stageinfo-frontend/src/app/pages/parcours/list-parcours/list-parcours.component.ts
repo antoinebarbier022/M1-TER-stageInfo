@@ -19,6 +19,12 @@ export class ListParcoursComponent extends CommonListingTable implements OnInit,
   // pour pouvoir détruire les subscribes
   destroy$: Subject<boolean> = new Subject<boolean>();
 
+  /* Je l'ai passé de 'parcoursModel' à 'any' pour le moment car j'ai une erreur sinon, je remodifierai */
+  selectItem: any; // item entier qui est selectionné  
+
+  selectedItem(item:ParcoursModel){
+    this.selectItem = item;
+  }
 
   constructor(private route:ActivatedRoute,
     private router: Router,
@@ -39,6 +45,7 @@ export class ListParcoursComponent extends CommonListingTable implements OnInit,
         sorted: false
       }
     ];
+    this.selectItem = new ParcoursModel();
   }
 
   ngOnInit(): void {
@@ -53,12 +60,13 @@ export class ListParcoursComponent extends CommonListingTable implements OnInit,
   updateTable(parcours:any){
     // on cherche l'index du parcours modifié
     var indexParcours = this.allItems.findIndex(((obj: { _id: any; }) => obj._id == parcours._id));
+    console.log("index update : "+ indexParcours);
     this.allItems[indexParcours] = parcours;  // On met a jour le tableau local avec les nouvelles datas
   }
 
   addParcours(parcours:any){
     // On ajoute le nouveau parcours dans le tableau local (afin de ne pas recharger la page pour voir l'ajout)
-    //this.allParcours = this.route.snapshot.data.allParcours; 
+    //this.allItems = this.route.snapshot.data.allItems; 
     console.log(parcours);
   }
 
