@@ -32,8 +32,6 @@ import { AddSoutenanceComponent } from './pages/soutenance/add-soutenance/add-so
 
 // import parcours
 import { ListParcoursComponent } from './pages/parcours/list-parcours/list-parcours.component';
-import { AddParcoursComponent } from './pages/parcours/add-parcours/add-parcours.component';
-import { EditParcoursComponent } from './pages/parcours/edit-parcours/edit-parcours.component';
 import { InfoParcoursComponent } from './pages/parcours/info-parcours/info-parcours.component';
 
 
@@ -119,9 +117,7 @@ const routes: Routes = [
 
   // route parcours
   { path: 'liste-parcours', component: ListParcoursComponent, canActivate: [AuthGuardService], resolve: { allParcours: AllParcoursResolver }},
-  { path: 'liste-parcours/add-parcours', component: AddParcoursComponent, canActivate: [AuthGuardService]},
-  { path: 'liste-parcours/edit-parcours/:id', component: EditParcoursComponent, canActivate: [AuthGuardService], resolve: { parcours: ParcoursResolver }},
-  { path: 'liste-parcours/info/:id', component: InfoParcoursComponent, canActivate: [AuthGuardService], resolve: { parcours: ParcoursResolver }},
+  { path: 'liste-parcours/:id', component: InfoParcoursComponent, canActivate: [AuthGuardService], resolve: { parcours: ParcoursResolver }},
 
   // config calendrier soutenance
   { path: 'configuration-calendrier-soutenances', component: ConfigCalendrierSoutenancesComponent, canActivate: [AuthGuardService]},
