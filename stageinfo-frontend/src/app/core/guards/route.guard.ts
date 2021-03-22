@@ -25,8 +25,20 @@ export class RouteGuard implements CanActivate {
 
 
     const decodedToken = jwtDecode<IToken>(this.auth.getJwtToken() || '');
-    const role = decodedToken.role;
+    var role = this.auth.getRole();
     const path = route.url[0].path;
+
+    // ---------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------------
+    // pour les test : si on est administrateur alors le role pris en compte par le guards est le viewRole
+    // ---------------------------------------------------------------------------------------------------
+    if(this.auth.getRole() == 'admin'){
+      role = this.auth.getViewRole();
+    }else{
+      role = this.auth.getRole();
+    }
+    // ---------------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------------
 
     if(this.checkRoleAccess(role, path)) {
       return true;
