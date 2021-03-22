@@ -3,7 +3,7 @@
 
 <div class="card">
     <div class="card-header">
-        <app-list-entries-number [commonProperties]="commonProperties"></app-list-entries-number>
+        <app-nbItems [commonProperties]="commonProperties"></app-nbItems>
         <h2 class="card-title"> {{ title }} 
             <button routerLink="/configuration-calendrier-soutenances" type="submit" style="float:right;" class="btn btn-secondary btn-sm">
                 <i style="margin-right:5px;" class="fas fa-tools"></i>
@@ -26,20 +26,20 @@
                 </tr>
             </thead>
             <tbody>
-                <tr *ngFor="let soutenance of soutenances"> <!-- A remplacer par printItems()... -->
-                    <td>{{ soutenance.date }}</td>
-                    <td>{{ soutenance.heure }}</td>
-                    <td>{{ soutenance.salle }}</td>
+                <tr *ngFor="let soutenance of getItems()">
+                    <td>Date</td>
+                    <td>Heure</td>
+                    <td>Salle</td>
                     <td><a routerLink="/liste-soutenances/soutenance">{{ soutenance.etudiant }}</a></td>
-                    <td>{{ soutenance.stage }}</td>
-                    <td>{{ soutenance.entreprise }}</td>
-                    <td>{{ soutenance.tuteur }}</td>
-                    <td>{{ soutenance.representant }}</td>
+                    <td>id du Stage</td>
+                    <td>{{ soutenance.tuteurUniv}}</td>
+                    <td>{{ soutenance.tuteurEntreprise }}</td>
+                    <td>Edit?</td>
                     <td class="table-action">
                         <a routerLink="/liste-soutenances/edit-soutenance"><i class="icon far fa-lg fa-edit"></i></a>
                     </td>
                 </tr>
             </tbody>
         </table>
-        <app-list-pagination [commonProperties]="commonProperties"></app-list-pagination>
+        <app-pagination [commonProperties]="commonProperties"></app-pagination>
 </div>

@@ -7,11 +7,13 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { FormUserComponent } from './components/forms/form-user/form-user.component';
 import { FormEntrepriseComponent } from './components/forms/form-entreprise/form-entreprise.component';
 import { FormParcoursComponent } from './components/forms/form-parcours/form-parcours.component';
+
 // modal component
 import { ModalComponent } from './components/modal/modal.component';
 import { ListFilterComponent } from './components/cards/card-filter/card-filter.component';
-import { ListPaginationComponent } from './components/list-pagination/list-pagination.component';
-import { ListEntriesNumberComponent } from './components/list-entries-number/list-entries-number.component';
+import { ListPaginationComponent } from './components/pagination/pagination.component';
+import { ListEntriesNumberComponent } from './components/nbItems/nbItems.component';
+
 // navigation component
 import { NavigationComponent } from './components/navigation/navigation.component';
 // buttons components

@@ -3,10 +3,10 @@
 
 <app-card-table>
     <!-- component select pour le nombre de ligne à afficher sur une page dans le tableau-->
-    <app-list-entries-number entries [commonProperties]="commonProperties"></app-list-entries-number>
+    <app-nbItems entries [commonProperties]="commonProperties"></app-nbItems>
 
     <app-button-add button1 link="/liste-entreprises/add-entreprise"></app-button-add>
-    
+
     <div content>
         <table class="card-table table table-striped table-sm">
             <thead>
@@ -41,6 +41,6 @@
             </tbody>
         </table>
         
-        <app-list-pagination [commonProperties]="commonProperties"></app-list-pagination>
+        <app-pagination [commonProperties]="commonProperties"></app-pagination>
     </div>    
 </app-card-table>

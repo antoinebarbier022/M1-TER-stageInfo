@@ -39,8 +39,8 @@ export class AuthService {
         .subscribe(
           (authData:any) => {
             this.token = authData.token;
-            this.userId = authData.userId;
             this.isAuth$.next(true);
+            this.userId = authData.userId;
             if (typeof this.token === "string") {
               sessionStorage.setItem('JWT_TOKEN', this.token);
             }
@@ -63,7 +63,7 @@ export class AuthService {
 
   }
   isLoggedIn() {
-    return !!this.getJwtToken();
+    return !!this.getJwtToken() && !!this.getUserid();
   }
   logout() {
     this.isAuth$.next(false);

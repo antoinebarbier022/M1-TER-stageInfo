@@ -1,5 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonListingTable } from 'src/app/shared/classes/common-listing-table';
+import { takeUntil } from 'rxjs/operators';
+import { Subject } from 'rxjs';
+import { ActivatedRoute } from '@angular/router';
+import { SoutenanceService } from 'src/app/core/services/soutenance.service';
 
 @Component({
   selector: 'app-list-soutenances',
@@ -7,44 +11,38 @@ import { CommonListingTable } from 'src/app/shared/classes/common-listing-table'
   styleUrls: ['./list-soutenances.component.scss']
 })
 export class ListSoutenancesComponent extends CommonListingTable implements OnInit {
-  
+
   public readonly title: string = "Liste des soutenances";
 
-  // l'id de l'entreprise sert à afficher les informations de l'entreprise lors du clique sur le lien
-  soutenances = [
-    { id:"1", etudiant:"Antoine Barbier", stage:"Developpeur Angular", entreprise:"Shadow",tuteur:"Pascal", representant:"André Fernand", date:"25/05/21", salle:"TD12",heure:"11h30"},
-    { id:"1", etudiant:"Eric Terreau", stage:"Architecte systeme", entreprise:"IBM",tuteur:"Marie", representant:"André Fernand", date:"25/05/21", salle:"TD12",heure:"11h30"},
-    { id:"1", etudiant:"Hervé Fontaine", stage:"Refonte site web", entreprise:"Ubisoft",tuteur:"Diego", representant:"André Fernand", date:"25/05/21", salle:"TD12",heure:"11h30"},
-  ];
+  destroy$: Subject<boolean> = new Subject<boolean>();
 
-  constructor() { 
+  constructor(private route:ActivatedRoute, private soutenanceService: SoutenanceService) { 
     super();
     this.visibleProperties = 
     [
       {
-        name: 'nom',
+        name: 'etudiant',
         sorted: false
       },
       {
-        name: 'prenom',
+        name: 'entreprise',
         sorted: false
       },
       {
-        name: 'email',
+        name: 'tuteurUniv',
         sorted: false
       },
       {
-        name: 'role',
+        name: 'tuteurEntreprise',
         sorted: false
       }
     ];
   }
 
   ngOnInit(): void {
-    // this.getSoutenances();
+    this.getSoutenances();
   }
 
-  /* Service soutenance pas encore implémenté
 
   getSoutenances() {
     this.soutenanceService.getAllSoutenances()
@@ -56,6 +54,5 @@ export class ListSoutenancesComponent extends CommonListingTable implements OnIn
       }
     );
   }
-  */
 
 }

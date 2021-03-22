@@ -46,6 +46,7 @@ export class ListStagesComponent extends CommonListingTable implements OnInit {
 
   ngOnInit(): void {
     this.getStages();
+    console.log(sessionStorage.getItem('userid'));
   }
 
   getStages() {

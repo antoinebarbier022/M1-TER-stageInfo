@@ -4,7 +4,7 @@
 
 <app-card-table>
     <!-- component select pour le nombre de ligne à afficher sur une page dans le tableau-->
-    <app-list-entries-number entries [commonProperties]="commonProperties"></app-list-entries-number>
+    <app-nbItems entries [commonProperties]="commonProperties"></app-nbItems>
 
     <app-button-add button1 link="/liste-utilisateurs/add-user"></app-button-add>
     <button button2 routerLink="/liste-utilisateurs/import-users" type="submit" style="margin-left:5px; " class="btn btn-secondary btn-sm">
@@ -45,6 +45,6 @@
             </tbody>
         </table>
         
-        <app-list-pagination [commonProperties]="commonProperties"></app-list-pagination>
+        <app-pagination [commonProperties]="commonProperties"></app-pagination>
     </div>    
 </app-card-table>

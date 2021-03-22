@@ -5,13 +5,14 @@
 
 <app-card-table>
     <!-- component select pour le nombre de ligne à afficher sur une page dans le tableau-->
-    <app-list-entries-number entries [commonProperties]="commonProperties"></app-list-entries-number>
+    <app-nbItems entries [commonProperties]="commonProperties"></app-nbItems>
 
     <app-button-add button1 link="/saisir-stage"></app-button-add>
     <button button2 routerLink="/liste-stages/import-stage" type="submit" style="margin-left:5px; " class="btn btn-secondary btn-sm">
         <i style="margin-right:5px;" class="fas fa-file-import"></i>
         importer
     </button>
+
     
     <div content>
         <table class="card-table table table-striped table-sm">
@@ -38,6 +39,6 @@
                 </tr>
             </tbody>
         </table>
-        <app-list-pagination [commonProperties]="commonProperties"></app-list-pagination>
+        <app-pagination [commonProperties]="commonProperties"></app-pagination>
     </div>    
 </app-card-table>

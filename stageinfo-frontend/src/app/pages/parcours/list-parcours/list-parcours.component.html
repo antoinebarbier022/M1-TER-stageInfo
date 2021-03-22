@@ -3,7 +3,8 @@
 
 <app-card-table>
     <!-- component select pour le nombre de ligne à afficher sur une page dans le tableau-->
-    <app-list-entries-number entries [commonProperties]="commonProperties"></app-list-entries-number>
+
+    <app-nbItems entries [commonProperties]="commonProperties"></app-nbItems>
 
     <!-- Bouton ajouter => ouvre un modal avec le formulaire d'ajout -->
     <app-button-add button1 data-toggle="modal" data-target="#ajouter"></app-button-add>
@@ -12,11 +13,11 @@
         <table class="card-table table table-striped table-sm">
             <thead>
                 <tr>
-                    <th (click)="sortByAscendingDescendingOrder(0)" scope="col">Acronyme</th>
-                    <th (click)="sortByAscendingDescendingOrder(1)" scope="col">Intitule</th>
-                    <th (click)="sortByAscendingDescendingOrder(2)" scope="col">Niveau</th>
-                    <th (click)="sortByAscendingDescendingOrder(3)" scope="col">Responsable</th>
-                    <th (click)="sortByAscendingDescendingOrder(4)" scope="col">Actions</th>
+                    <th scope="col">Acronyme</th>
+                    <th scope="col">Intitule</th>
+                    <th scope="col">Niveau</th>
+                    <th scope="col">Responsable</th>
+                    <th scope="col">Actions</th>
                 </tr>
             </thead>
             <tbody>
@@ -37,7 +38,7 @@
             </tbody>
         </table>
         
-        <app-list-pagination [commonProperties]="commonProperties"></app-list-pagination>
+        <app-pagination [commonProperties]="commonProperties"></app-pagination>
     </div>    
 </app-card-table>
 

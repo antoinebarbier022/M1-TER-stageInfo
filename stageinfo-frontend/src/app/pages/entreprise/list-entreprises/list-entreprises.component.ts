@@ -16,23 +16,14 @@ export class ListEntreprisesComponent extends CommonListingTable implements OnIn
   
   public readonly title: string = "Liste des entreprises";
 
-  allEntreprises: entrepriseModel[] = new Array();
-
   // pour pouvoir détruire les subscribes
   destroy$: Subject<boolean> = new Subject<boolean>();
 
   constructor(private route: ActivatedRoute, private entrepriseService: EntrepriseService) { 
     super();
-    this.visibleProperties = 
-    [
-      {
-        name: 'id',
-        sorted: false
-      },
-      {
-        name: 'nom',
-        sorted: false
-      }
+    this.visibleProperties = [ 
+      { name: 'id', sorted: false },
+      { ame: 'nom', sorted: false }
     ];
   }
 
@@ -46,7 +37,7 @@ export class ListEntreprisesComponent extends CommonListingTable implements OnIn
       .subscribe((_res: any[]) => {
         console.log(_res);
         // On supprime de l'affichage le parcours (on sait qu'il est supprimer de la base de donnée donc on peut le supprimer sans recharger les données distantes)
-        this.allEntreprises = this.allEntreprises.filter((object: { _id: any; }) => { return object._id != id; });
+        this.allItems = this.allItems.filter((object: { _id: any; }) => { return object._id != id; });
       });
   }
 

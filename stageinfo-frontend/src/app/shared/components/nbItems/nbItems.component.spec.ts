@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ListEntriesNumberComponent } from './list-entries-number.component';
+import { ListEntriesNumberComponent } from './nbItems.component';
 
 describe('ListEntriesNumberComponent', () => {
   let component: ListEntriesNumberComponent;

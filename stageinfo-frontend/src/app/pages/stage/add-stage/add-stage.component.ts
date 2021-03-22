@@ -7,7 +7,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AddStageComponent implements OnInit {
 
-  page :number = 1;
+  page: number = 1;
   nbMaxPage :number = 3;
 
 

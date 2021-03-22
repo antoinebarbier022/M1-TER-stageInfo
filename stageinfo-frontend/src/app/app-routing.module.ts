@@ -34,7 +34,6 @@ import { AddSoutenanceComponent } from './pages/soutenance/add-soutenance/add-so
 import { ListParcoursComponent } from './pages/parcours/list-parcours/list-parcours.component';
 import { InfoParcoursComponent } from './pages/parcours/info-parcours/info-parcours.component';
 
-
 // import config
 import { ConfigCalendrierSoutenancesComponent } from './pages/soutenance/config-calendrier-soutenances/config-calendrier-soutenances.component';
 
@@ -56,8 +55,6 @@ import { EntrepriseResolver } from './core/resolves/entreprise.resolver';
 import { AllParcoursResolver } from './core/resolves/all-parcours.resolver';
 import { ParcoursResolver } from './core/resolves/parcours.resolver';
 
-
-
 const routes: Routes = [
   { path: '', redirectTo: 'liste-stages', pathMatch: 'full', canActivate: [AuthGuardService]},
   { path: 'login', component: LoginComponent, canActivate: [AuthGuard]},
@@ -78,7 +75,7 @@ const routes: Routes = [
         stage: StageResolver  // on associe un resolver à la route
       }
   },
-  { path: 'liste-stages', component: ListStagesComponent, canActivate: [AuthGuardService]},
+
   { path: 'saisir-stage', component: AddStageComponent, canActivate: [AuthGuardService]},
 
   // route users
@@ -109,6 +106,7 @@ const routes: Routes = [
   { path: 'liste-entreprises/add-entreprise', component: AddEntrepriseComponent, canActivate: [AuthGuardService]},
   { path: 'liste-entreprises/edit-entreprise/:id', component: EditEntrepriseComponent, canActivate: [AuthGuardService], resolve: { entreprise: EntrepriseResolver }},
   { path: 'liste-entreprises/info/:id', component: InfoEntrepriseComponent, canActivate: [AuthGuardService], resolve: { entreprise: EntrepriseResolver }},
+  
   // route soutenance
   { path: 'liste-soutenances', component: ListSoutenancesComponent, canActivate: [AuthGuardService]},
   { path: 'liste-soutenances/add-soutenance', component: AddSoutenanceComponent, canActivate: [AuthGuardService]},

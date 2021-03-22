@@ -19,7 +19,8 @@ export class ListParcoursComponent extends CommonListingTable implements OnInit,
   // pour pouvoir détruire les subscribes
   destroy$: Subject<boolean> = new Subject<boolean>();
 
-  selectItem:ParcoursModel; // item qui est selectionné 
+/* Je l'ai passé de 'parcoursModel' à 'any' pour le moment car j'ai une erreur sinon, je remodifierai */
+  selectItem:any; // item qui est selectionné 
 
   constructor(private route:ActivatedRoute,
               private parcoursService: ParcoursService) { 
@@ -28,6 +29,7 @@ export class ListParcoursComponent extends CommonListingTable implements OnInit,
       { name: 'acronyme', sorted: false},
       { name: 'intitule', sorted: false },
       { name: 'niveau', sorted: false }
+
     ];
     this.selectItem = new ParcoursModel();
   }

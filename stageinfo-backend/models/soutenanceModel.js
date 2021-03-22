@@ -10,6 +10,7 @@ const soutenanceSchema = Schema({
     entreprise: String,         // nom entreprise	
     commentaire: String,        // il faudrait aussi qu'il y ai l'id de celui qui a poster le commentaire
     session: Number,            // session 1 ou 2
+    date: Date,
 
     modifications:{
         date: Date,
@@ -18,6 +19,7 @@ const soutenanceSchema = Schema({
     },
     
     idStage: Schema.Types.ObjectId,
+    idSalle: Schema.Types.ObjectId,
     idCreneau: Schema.Types.ObjectId,
   },
   {
