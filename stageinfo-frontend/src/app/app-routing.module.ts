@@ -52,6 +52,7 @@ import { AllEntreprisesResolver } from './core/resolves/all-entreprises.resolver
 import { EntrepriseResolver } from './core/resolves/entreprise.resolver';
 import { AllParcoursResolver } from './core/resolves/all-parcours.resolver';
 import { ParcoursResolver } from './core/resolves/parcours.resolver';
+import { AllSoutenancesResolver } from './core/resolves/all-soutenances.resolver';
 
 const routes: Routes = [
   { path: '', redirectTo: 'liste-stages', pathMatch: 'full', canActivate: [AuthGuardService]},
@@ -104,7 +105,7 @@ const routes: Routes = [
   { path: 'liste-entreprises/:id', component: InfoEntrepriseComponent, canActivate: [AuthGuardService], resolve: { entreprise: EntrepriseResolver }},
   
   // route soutenance
-  { path: 'liste-soutenances', component: ListSoutenancesComponent, canActivate: [AuthGuardService]},
+  { path: 'liste-soutenances', component: ListSoutenancesComponent, canActivate: [AuthGuardService], resolve: { soutenances: AllSoutenancesResolver }},
   { path: 'liste-soutenances/add-soutenance', component: AddSoutenanceComponent, canActivate: [AuthGuardService]},
   { path: 'liste-soutenances/edit-soutenance', component: AddSoutenanceComponent, canActivate: [AuthGuardService]},
   { path: 'liste-soutenances/soutenance', component: AddSoutenanceComponent, canActivate: [AuthGuardService]},
