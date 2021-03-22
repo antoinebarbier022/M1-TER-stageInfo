@@ -22,8 +22,6 @@ import { AddStageComponent } from './pages/stage/add-stage/add-stage.component';
 
 // import entreprise
 import { ListEntreprisesComponent } from './pages/entreprise/list-entreprises/list-entreprises.component';
-import { AddEntrepriseComponent } from './pages/entreprise/add-entreprise/add-entreprise.component';
-import { EditEntrepriseComponent } from './pages/entreprise/edit-entreprise/edit-entreprise.component';
 import { InfoEntrepriseComponent } from './pages/entreprise/info-entreprise/info-entreprise.component';
 
 // import soutenance
