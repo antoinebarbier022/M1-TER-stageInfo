@@ -15,6 +15,16 @@ export class ListPaginationComponent implements OnInit {
 
   ngOnInit(): void {}
 
+  numFirstItemOfPage():number{
+    return (this.commonProperties.currentPage * this.commonProperties.nbrEntries) -  this.commonProperties.nbrEntries + 1;
+  }
+
+  numLastItemOfPage():number{
+    return (this.commonProperties.pageCount) != this.commonProperties.currentPage ?  
+      (this.commonProperties.currentPage * this.commonProperties.nbrEntries) : 
+      (this.commonProperties.sizeFilteredArray);
+  }
+
   onClickPageNumber(nbr: number) : void {
     this.commonProperties.lastPage = this.commonProperties.currentPage;
     this.commonProperties.currentPage = nbr;

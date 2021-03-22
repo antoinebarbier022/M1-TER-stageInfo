@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ListPaginationComponent } from './list-pagination.component';
+import { ListPaginationComponent } from './pagination.component';
 
 describe('ListPaginationComponent', () => {
   let component: ListPaginationComponent;

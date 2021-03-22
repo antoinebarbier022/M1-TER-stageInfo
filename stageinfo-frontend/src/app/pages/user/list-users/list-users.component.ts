@@ -6,6 +6,7 @@ import { ActivatedRoute } from '@angular/router';
 import { UserService } from 'src/app/core/services/user.service';
 
 import { CommonListingTable } from 'src/app/shared/classes/common-listing-table';
+import { userModel } from 'src/app/core/models/userModel';
 
 @Component({
   selector: 'app-list-users',
@@ -18,52 +19,65 @@ export class ListUsersComponent extends CommonListingTable implements OnInit, On
 
   destroy$: Subject<boolean> = new Subject<boolean>();
 
+  selectItem:any; // item qui est selectionné 
+
   constructor(private route:ActivatedRoute, private userService: UserService) { 
     super();
-    this.visibleProperties = 
-    [
-      {
-        name: 'nom',
-        sorted: false
-      },
-      {
-        name: 'prenom',
-        sorted: false
-      },
-      {
-        name: 'email',
-        sorted: false
-      },
-      {
-        name: 'role',
-        sorted: false
-      }
+    this.visibleProperties = [
+      { name: 'nom', sorted: false },
+      { name: 'prenom', sorted: false },
+      { name: 'email', sorted: false },
+      { name: 'role', sorted: false }
     ];
+    this.selectItem = new userModel();
   }
 
   ngOnInit(): void {
     this.allItems = this.route.snapshot.data.users; 
   }
 
-  deleteParcours(id:any){
-    console.log("Supprimer l'utilisateur : "+ id);
-    /*this.userService.deleteUser(id)
+  /**
+   * @fonction selectedItem
+   * @description Met à jour le parcours selectionné, permet au modal de savoir quelle contenu afficher
+   * @params item : ParcoursModel -> contient les informations du parcours selectionné
+   */
+  selectedItem(item:any){
+    this.selectItem = item;
+  }
+
+    /**
+   * @fonction updateTable
+   * @description Met à jour le tableau local des entreprises (afin d'eviter de recharger la page pour avoir la donnée modifier)
+   * @params parcours : any -> contient toutes les données de l'entreprise qui a été modifié
+   */
+  updateTable(item:any){
+    // on cherche l'index de l'entreprise modifié
+    var index = this.allItems.findIndex(((obj: { _id: any; }) => obj._id == item._id));
+    console.log("index update : "+ index);
+    this.allItems[index] = item;  // On met a jour le tableau local avec les nouvelles datas
+  }
+
+
+  addUser(item:any){
+    console.log(item);
+  }
+
+  /**
+   * @fonction deleteParcours
+   * @description Supprime le parcours selectionné sur la base de donnée et met à jour le tableau local
+   * @params id : any -> identifiant du parcours à supprimer
+   */
+  deleteUser(id:any){
+    console.log({message:"delete", id: id});
+    /*this.userService.deleteUserById(id)
     .pipe(takeUntil(this.destroy$))
       .subscribe((_res: any[]) => {
         console.log(_res);
         // On supprime de l'affichage le parcours (on sait qu'il est supprimer de la base de donnée donc on peut le supprimer sans recharger les données distantes)
-        this.users = this.users.filter((object: { _id: any; }) => { return object._id != id; });
+        this.allItems = this.allItems.filter((object: { _id: any; }) => { return object._id != id; });
       });*/
   }
 
-  getUsers() {
-    this.userService.getAllUsers()
-      .pipe(takeUntil(this.destroy$))
-      .subscribe((_users: any[]) => {
-        this.allItems = _users;
-      }
-    );
-  }
 
   ngOnDestroy() {
     this.destroy$.next(true);

@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { EditParcoursComponent } from './edit-parcours.component';
+import { ButtonEditComponent } from './button-edit.component';
 
-describe('EditParcoursComponent', () => {
-  let component: EditParcoursComponent;
-  let fixture: ComponentFixture<EditParcoursComponent>;
+describe('ButtonEditComponent', () => {
+  let component: ButtonEditComponent;
+  let fixture: ComponentFixture<ButtonEditComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ EditParcoursComponent ]
+      declarations: [ ButtonEditComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(EditParcoursComponent);
+    fixture = TestBed.createComponent(ButtonEditComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
