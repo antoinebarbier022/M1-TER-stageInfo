@@ -5,13 +5,6 @@ import { UserService } from '../services/user.service';
 import decode, { JwtPayload } from 'jwt-decode';
 import jwtDecode from 'jwt-decode';
 
-interface IToken {
-  exp: number;
-  iat: number;
-  role: string;
-  userId: string;
-}
-
 @Injectable({
   providedIn: 'root'
 })
