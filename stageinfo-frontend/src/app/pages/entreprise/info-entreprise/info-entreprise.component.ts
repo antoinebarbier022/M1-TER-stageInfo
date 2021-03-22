@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { entrepriseModel } from 'src/app/core/models/entrepriseModel';
+import { EntrepriseModel } from 'src/app/core/models/EntrepriseModel';
 
 @Component({
   selector: 'app-info-entreprise',
@@ -10,7 +10,7 @@ import { entrepriseModel } from 'src/app/core/models/entrepriseModel';
 export class InfoEntrepriseComponent implements OnInit {
   title = "Entreprise : Ubisoft Montpellier"
   
-  entreprise: entrepriseModel = new entrepriseModel();
+  entreprise: EntrepriseModel = new EntrepriseModel();
 
   // les stages de l'entreprises
   stages = [
