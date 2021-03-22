@@ -7,7 +7,7 @@ export abstract class CommonListingTable {
         nbrEntries: number,
         pageCount: number,
         currentPage: number,
-        lastpage: number,
+        lastPage: number,
         startIndex: number,
         endIndex: number,
     
@@ -23,7 +23,7 @@ export abstract class CommonListingTable {
             nbrEntries: 10,
             pageCount: 1,
             currentPage: 1,
-            lastpage: 1,
+            lastPage: 1,
             startIndex: 0,
             endIndex: 10,
             sizeFilteredArray: 0

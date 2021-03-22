@@ -1,15 +1,14 @@
-.card-pagination{
+:host{
     display: flex;
     padding: 1rem 1rem;
-    justify-content: center;
+    justify-content: space-between;
     
-
-    .current-page{
-        background-color: #3f80ea;
-        color:white;
-    }
-
     .pagination{
-        cursor: pointer;
+        .current-page{
+            background-color: #3f80ea;
+            color:white;
+        }
     }
+
+
 }
