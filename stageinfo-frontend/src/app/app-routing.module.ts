@@ -46,6 +46,7 @@ import { LoginComponent } from './pages/login/login.component';
 // Importation des guards
 import {AuthGuardService} from "./core/guards/auth-guard.service";
 import {AuthGuard} from "./core/guards/guard-login.service";
+import { RouteGuard } from "./core/guards/route.guard";
 
 // Importation des resolver
 import { AllUsersResolver } from "./core/resolves/all-users.resolver";
@@ -65,7 +66,7 @@ const routes: Routes = [
   // routes stages
   { path: 'liste-stages', 
       component: ListStagesComponent, 
-      canActivate: [AuthGuardService],
+      canActivate: [AuthGuardService, RouteGuard],
       resolve: {
         stages: AllStagesResolver  // on associe un resolver à la route
       }
