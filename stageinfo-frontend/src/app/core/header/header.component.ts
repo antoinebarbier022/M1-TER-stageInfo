@@ -34,14 +34,14 @@ export class HeaderComponent implements OnInit, OnDestroy {
       (auth) => {
         this.isAuth = auth;
       });
-      this.userservice.getemailById(this.auth.getUserid()).subscribe( 
-      (email) => { this.monEmail=email; });
+      //this.userservice.getemailById(this.auth.getUserid()).subscribe( 
+      //(email) => { this.monEmail=email; });
   }
 
-  ngOnChanges(){
+  /*ngOnChanges(){
     this.userservice.getemailById(this.auth.getUserid()).subscribe(
       (email) => { this.monEmail=email; });
-  }
+  }*/
   
   onLogout() {
     this.auth.logout();
