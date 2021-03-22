@@ -73,7 +73,7 @@ const routes: Routes = [
   },
   { path: 'liste-stages/:id', 
       component: InfoStageComponent, 
-      canActivate: [AuthGuardService],
+      canActivate: [AuthGuardService, RouteGuard],
       resolve: {
         stage: StageResolver  // on associe un resolver à la route
       }
@@ -83,47 +83,47 @@ const routes: Routes = [
 
   // route users
   
-  { path: 'liste-utilisateurs', component: ListUsersComponent, canActivate: [AuthGuardService], resolve: { users: AllUsersResolver }},
-  { path: 'liste-etudiants', component: ListEtudiantsComponent, canActivate: [AuthGuardService]},
-  { path: 'liste-utilisateurs/import-users', component: ImportUsersComponent, canActivate: [AuthGuardService]},
-  { path: 'liste-utilisateurs/add-user', component: AddUserComponent, canActivate: [AuthGuardService]},
+  { path: 'liste-utilisateurs', component: ListUsersComponent, canActivate: [AuthGuardService, RouteGuard], resolve: { users: AllUsersResolver }},
+  { path: 'liste-etudiants', component: ListEtudiantsComponent, canActivate: [AuthGuardService, RouteGuard]},
+  { path: 'liste-utilisateurs/import-users', component: ImportUsersComponent, canActivate: [AuthGuardService, RouteGuard]},
+  { path: 'liste-utilisateurs/add-user', component: AddUserComponent, canActivate: [AuthGuardService, RouteGuard]},
   { path: 'liste-utilisateurs/edit-user/:id', 
       component: EditUserComponent, 
-      canActivate: [AuthGuardService],
+      canActivate: [AuthGuardService, RouteGuard],
       resolve: {
         user: UserResolver  // on associe un resolver à la route
       }
     },
-  { path: 'liste-utilisateurs/edit-user-v2', component: EditUserV2Component, canActivate: [AuthGuardService]},
+  { path: 'liste-utilisateurs/edit-user-v2', component: EditUserV2Component, canActivate: [AuthGuardService, RouteGuard]},
   { path: 'liste-utilisateurs/user/:id', 
       component: InfoUserComponent, 
-      canActivate: [AuthGuardService],
+      canActivate: [AuthGuardService, RouteGuard],
       resolve: {
         user: UserResolver  // on associe un resolver à la route
       },
   },
-  { path: 'profile', component: ProfileUserComponent, canActivate: [AuthGuardService]},
+  { path: 'profile', component: ProfileUserComponent, canActivate: [AuthGuardService, RouteGuard]},
 
   //routes entreprise
-  { path: 'liste-entreprises', component: ListEntreprisesComponent, canActivate: [AuthGuardService], resolve: { entreprises: AllEntreprisesResolver }},
-  { path: 'liste-entreprises/add-entreprise', component: AddEntrepriseComponent, canActivate: [AuthGuardService]},
-  { path: 'liste-entreprises/edit-entreprise/:id', component: EditEntrepriseComponent, canActivate: [AuthGuardService], resolve: { entreprise: EntrepriseResolver }},
-  { path: 'liste-entreprises/info/:id', component: InfoEntrepriseComponent, canActivate: [AuthGuardService], resolve: { entreprise: EntrepriseResolver }},
+  { path: 'liste-entreprises', component: ListEntreprisesComponent, canActivate: [AuthGuardService, RouteGuard], resolve: { entreprises: AllEntreprisesResolver }},
+  { path: 'liste-entreprises/add-entreprise', component: AddEntrepriseComponent, canActivate: [AuthGuardService, RouteGuard]},
+  { path: 'liste-entreprises/edit-entreprise/:id', component: EditEntrepriseComponent, canActivate: [AuthGuardService, RouteGuard], resolve: { entreprise: EntrepriseResolver }},
+  { path: 'liste-entreprises/info/:id', component: InfoEntrepriseComponent, canActivate: [AuthGuardService, RouteGuard], resolve: { entreprise: EntrepriseResolver }},
   
   // route soutenance
-  { path: 'liste-soutenances', component: ListSoutenancesComponent, canActivate: [AuthGuardService]},
-  { path: 'liste-soutenances/add-soutenance', component: AddSoutenanceComponent, canActivate: [AuthGuardService]},
-  { path: 'liste-soutenances/edit-soutenance', component: AddSoutenanceComponent, canActivate: [AuthGuardService]},
-  { path: 'liste-soutenances/soutenance', component: AddSoutenanceComponent, canActivate: [AuthGuardService]},
+  { path: 'liste-soutenances', component: ListSoutenancesComponent, canActivate: [AuthGuardService, RouteGuard]},
+  { path: 'liste-soutenances/add-soutenance', component: AddSoutenanceComponent, canActivate: [AuthGuardService, RouteGuard]},
+  { path: 'liste-soutenances/edit-soutenance', component: AddSoutenanceComponent, canActivate: [AuthGuardService, RouteGuard]},
+  { path: 'liste-soutenances/soutenance', component: AddSoutenanceComponent, canActivate: [AuthGuardService, RouteGuard]},
 
   // route parcours
-  { path: 'liste-parcours', component: ListParcoursComponent, canActivate: [AuthGuardService], resolve: { allParcours: AllParcoursResolver }},
-  { path: 'liste-parcours/add-parcours', component: AddParcoursComponent, canActivate: [AuthGuardService]},
-  { path: 'liste-parcours/edit-parcours/:id', component: EditParcoursComponent, canActivate: [AuthGuardService], resolve: { parcours: ParcoursResolver }},
-  { path: 'liste-parcours/info/:id', component: InfoParcoursComponent, canActivate: [AuthGuardService], resolve: { parcours: ParcoursResolver }},
+  { path: 'liste-parcours', component: ListParcoursComponent, canActivate: [AuthGuardService, RouteGuard], resolve: { allParcours: AllParcoursResolver }},
+  { path: 'liste-parcours/add-parcours', component: AddParcoursComponent, canActivate: [AuthGuardService, RouteGuard]},
+  { path: 'liste-parcours/edit-parcours/:id', component: EditParcoursComponent, canActivate: [AuthGuardService, RouteGuard], resolve: { parcours: ParcoursResolver }},
+  { path: 'liste-parcours/info/:id', component: InfoParcoursComponent, canActivate: [AuthGuardService, RouteGuard], resolve: { parcours: ParcoursResolver }},
 
   // config calendrier soutenance
-  { path: 'configuration-calendrier-soutenances', component: ConfigCalendrierSoutenancesComponent, canActivate: [AuthGuardService]},
+  { path: 'configuration-calendrier-soutenances', component: ConfigCalendrierSoutenancesComponent, canActivate: [AuthGuardService, RouteGuard]},
 
   { path: 'not-found', component: Error404Component, canActivate: [AuthGuardService]},
   { path: '**', redirectTo: 'not-found', canActivate: []}
