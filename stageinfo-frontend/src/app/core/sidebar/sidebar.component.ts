@@ -166,12 +166,11 @@ export class SidebarComponent implements OnInit {
   public isAuth: boolean | undefined;
 
   private isAuthSub: Subscription | undefined;
-  constructor(private auth: AuthService,
-              private router: Router,
-              private testService: TestService) { }
+  constructor(private authService: AuthService,
+              private router: Router) { }
 
   ngOnInit(): void {
-    this.isAuthSub = this.auth.isAuth$.subscribe(
+    this.isAuthSub = this.authService.isAuth$.subscribe(
       (auth) => {
         this.isAuth = auth;
       }
@@ -179,23 +178,29 @@ export class SidebarComponent implements OnInit {
   }
 
   choixNavigation() : any{
-    switch (this.testService.getRole()){
-      case "admin":
-      case "secretaire":
-        return this.navigationSecretaire;
-      case "etudiant":
-        return this.navigationEtudiant;
-      case "tuteur":
-        return this.navigationTuteur;
-      case "respParcours":
-        return this.navigationResponsableParcours;
-      case "repEntreprise":
-        return this.navigationRepresentantEntreprise;
-      case "invite":
+    if(this.authService.getViewAllRoute()){
+      // alors on peut voir la vue secretaire (par contre on aura des problème d'autorisation si on a pas les droits)
+      return this.navigationSecretaire;
+    }else{
+      switch (this.authService.getViewRole()){
+        case "admin":
+        case "secretaire":
+          return this.navigationSecretaire;
+        case "etudiant":
+          return this.navigationEtudiant;
+        case "tuteur":
+          return this.navigationTuteur;
+        case "respParcours":
+          return this.navigationResponsableParcours;
+        case "repEntreprise":
+          return this.navigationRepresentantEntreprise;
+        case "invite":
+            return this.navigationInvite;
+        default:
           return this.navigationInvite;
-      default:
-        return this.navigationInvite;
+      }
     }
+
   }
 
 

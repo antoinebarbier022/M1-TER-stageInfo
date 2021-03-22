@@ -2,7 +2,7 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
-import { entrepriseModel } from 'src/app/core/models/entrepriseModel';
+import { EntrepriseModel } from 'src/app/core/models/EntrepriseModel';
 
 import { EntrepriseService } from 'src/app/core/services/entreprise.service';
 
@@ -27,7 +27,7 @@ export class ListEntreprisesComponent extends CommonListingTable implements OnIn
     this.visibleProperties = [ 
       { name: 'nom', sorted: false }
     ];
-    this.selectItem = new entrepriseModel();
+    this.selectItem = new EntrepriseModel();
   }
 
   ngOnInit(): void {

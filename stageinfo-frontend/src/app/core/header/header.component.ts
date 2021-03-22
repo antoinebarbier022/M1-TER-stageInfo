@@ -1,11 +1,10 @@
-import {Component, OnInit, Input, Output, EventEmitter, OnDestroy} from '@angular/core';
-import {Subscription} from "rxjs";
-import {Router} from "@angular/router";
+import { Component, OnInit, Input, Output, EventEmitter, OnDestroy } from '@angular/core';
+import { Subscription } from "rxjs";
+import { Router } from "@angular/router";
 
-import {AuthService} from "../services/auth.service";
-import { TestService } from '../services/test.service';
-import {UserService} from "../services/user.service";
-import {userModel} from "../models/userModel";
+import { AuthService } from "../services/auth.service";
+import { UserService } from "../services/user.service";
+import { userModel } from "../models/userModel";
 
 @Component({
   selector: 'app-header',
@@ -15,22 +14,28 @@ import {userModel} from "../models/userModel";
 export class HeaderComponent implements OnInit, OnDestroy {
   public user: userModel | undefined
   public isAuth: boolean | undefined;
-  monRole = "admin";
+
+  getSwitch():boolean{
+    return this.authService.getViewAllRoute();
+  }
+
+  changeSwitch(){
+    this.authService.changeViewAllRoute();
+  }
+
   @Input() onlyTitle = false;
   @Input() showSidebar = true;
   @Output() sidebarEvent = new EventEmitter<boolean>();
 
   private isAuthSub: Subscription | undefined;
   monEmail: Object | undefined;
-  constructor(private auth: AuthService,
+  constructor(private authService: AuthService,
               private router: Router,
-              private testService: TestService,
               private userservice: UserService) {
   }
 
   ngOnInit(): void {
-    this.monRole = this.testService.getRole();
-    this.isAuthSub = this.auth.isAuth$.subscribe(
+    this.isAuthSub = this.authService.isAuth$.subscribe(
       (auth) => {
         this.isAuth = auth;
       });
@@ -44,7 +49,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
   }*/
   
   onLogout() {
-    this.auth.logout();
+    this.authService.logout();
     this.router.navigate(['/login']);
   }
 
@@ -53,11 +58,17 @@ export class HeaderComponent implements OnInit, OnDestroy {
     this.sidebarEvent.emit(this.showSidebar);
   }
 
-
-  setRole(role:string){
-    this.monRole = role;
-    this.testService.setRole(role);
+  getRole(){
+    return this.authService.getRole();
   }
+
+  getViewRole(){ // on recupère le role de test
+    return this.authService.getViewRole();
+  }
+  setViewRole(role:string){
+    this.authService.setViewRole(role);
+  }
+
   ngOnDestroy() {
   this.isAuthSub?.unsubscribe();
   }

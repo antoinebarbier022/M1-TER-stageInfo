@@ -3,6 +3,9 @@ import { Router } from '@angular/router';
 import { BehaviorSubject } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 
+import jwtDecode from 'jwt-decode';
+import { IToken } from '../../shared/interfaces/itoken';
+
 @Injectable({
   providedIn: 'root'
 })
@@ -12,8 +15,39 @@ export class AuthService {
   token: string | undefined;
   userId: string | undefined;
 
+  private role:any; // le vrai role de l'utilisateur
+  private viewRole:any; // Pour le changement de role dans le header
+  private viewAllRoute: boolean; // pour savoir si la sidebar affiche toutes les routes que voit un admin
+
   constructor(private router: Router,
-              private http: HttpClient) {}
+              private http: HttpClient) {
+    const decodedToken = jwtDecode<IToken>(this.getJwtToken() || '');
+    this.role = decodedToken.role;
+    this.viewRole = this.role;
+    this.viewAllRoute = false;
+  }
+
+  getViewAllRoute():boolean{
+    return this.viewAllRoute;
+  }
+
+  changeViewAllRoute(){
+    this.viewAllRoute = !this.viewAllRoute;
+  }
+
+  getRole(): string {
+    return this.role;
+  }
+
+  getViewRole(): string {
+    return this.viewRole;
+  }
+
+  setViewRole(newRole: string ){
+    if(['admin', 'invite', 'etudiant','secretaire','respParcours','repEntreprise','tuteur'].includes(newRole)){
+      this.viewRole = newRole;
+    }
+  }
 
   createNewUser(nom: string, prenom: string, email: string, password: string, rolee: string, numeroEtudiant: string, Promotion: string, idParcours: string, Fax: string, telephone: string, fonction: string, identreprise: string) {
     return new Promise<void>((resolve, reject) => {
@@ -47,6 +81,10 @@ export class AuthService {
             if (typeof this.userId === "string") {
               sessionStorage.setItem('userid', this.userId);
             }
+            // On set le role quand on se connect (seulement le role visuel car meme si on change se role, le role inscrit dans le token ne peut pas être modifier par l'utilisateur)
+            const decodedToken = jwtDecode<IToken>(this.token || '');
+            this.role = decodedToken.role;
+            this.viewRole = this.role;
             resolve();
           },
           (error) => {
@@ -66,10 +104,13 @@ export class AuthService {
     return !!this.getJwtToken() && !!this.getUserid();
   }
   logout() {
-    this.isAuth$.next(false);
-    sessionStorage.removeItem('JWT_TOKEN');
-    sessionStorage.removeItem('userid')
     this.userId = '';
     this.token = '';
+    this.role = '';
+    this.viewRole = '';
+    sessionStorage.removeItem('JWT_TOKEN');
+    sessionStorage.removeItem('userid')
+    this.viewAllRoute = false;
+    this.isAuth$.next(false);
   }
 }

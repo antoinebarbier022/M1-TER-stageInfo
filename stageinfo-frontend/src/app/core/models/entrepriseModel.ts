@@ -1,13 +1,4 @@
-export class entrepriseModel{
-    idRespAdm: string = "";
-    _id: string ="";
-    nom: string  = "";
-    website: string  = "";
-    description: string  = "";
-    siret: string  = "";
-    telephone: string  = "";
-    fax: string  = "";
-
+export class EntrepriseModel{
     adresse= {
         voie:"",
         ville:"",
@@ -15,8 +6,17 @@ export class entrepriseModel{
         complement: "",
     };
 
-    secteurActivite: string = "";
-    nbSalaries: string = "";
-    local: boolean = false;
-    chiffreAffaire: string = "";
+    constructor(
+        public _id: string ="",
+        public idRespAdm: string = "",
+        public nom: string  = "",
+        public website: string  = "",
+        public description: string  = "",
+        public siret: string  = "",
+        public telephone: string  = "",
+        public fax: string  = "",
+        public secteurActivite: string = "",
+        public nbSalaries: string = "",
+        public local: boolean = false,
+        public chiffreAffaire: string = ""){}
 }

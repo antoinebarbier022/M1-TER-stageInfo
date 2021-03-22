@@ -16,6 +16,7 @@ import { StageModule } from './stage/stage.module';
 import { ParcoursModule } from './parcours/parcours.module';
 import { EntrepriseModule } from './entreprise/entreprise.module';
 import { SoutenanceModule } from './soutenance/soutenance.module';
+import { Error401Component } from './erreurs/error401/error401.component';
 
 
 
@@ -23,7 +24,7 @@ import { SoutenanceModule } from './soutenance/soutenance.module';
   declarations: [
     ExempleTemplateComponent, 
     Error404Component, 
-    LoginComponent,
+    LoginComponent, Error401Component,
    ],
   imports: [
     CommonModule,
