@@ -11,6 +11,7 @@ export class EntrepriseService {
 
   constructor(private httpClient: HttpClient) { }
 
+  
   /* Récupération de toutes les entreprises */
   getAllEntreprises(): Observable<any> {
     return this.httpClient.get(this.urlBase+'/api/entreprise');
@@ -20,7 +21,17 @@ export class EntrepriseService {
   getEntrepriseById(id:any): Observable<any> {
     return this.httpClient.get(this.urlBase+'/api/entreprise/'+id);
   }
-  
+
+  /* Ajouter une entreprise */
+  addEntreprise(data:any):Observable<any>{
+    return this.httpClient.post(this.urlBase+'/api/entreprise/', data); 
+  }
+
+  /* Modifier une entreprise */
+  editEntreprise(id:any, data:any):Observable<any>{
+    return this.httpClient.put(this.urlBase+'/api/entreprise/'+ id, data);
+  }
+
   /* Suppression d'une entreprise avec son identifiant */
   deleteEntrepriseById(id:any): Observable<any>{
       return this.httpClient.delete(this.urlBase+'/api/entreprise/'+id);
