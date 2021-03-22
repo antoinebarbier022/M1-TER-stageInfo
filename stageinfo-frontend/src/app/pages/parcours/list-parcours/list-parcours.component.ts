@@ -1,5 +1,5 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 import { ParcoursModel } from 'src/app/core/models/ParcoursModel';
@@ -52,11 +52,11 @@ export class ListParcoursComponent extends CommonListingTable implements OnInit,
    * @description Met à jour le tableau local des parcours (afin d'eviter de recharger la page pour avoir la donnée modifier)
    * @params parcours : any -> contient toutes les données du parcours qui a été modifié
    */
-  updateTable(parcours:any){
+  updateTable(item:any){
     // on cherche l'index du parcours modifié
-    var indexParcours = this.allItems.findIndex(((obj: { _id: any; }) => obj._id == parcours._id));
-    console.log("index update : "+ indexParcours);
-    this.allItems[indexParcours] = parcours;  // On met a jour le tableau local avec les nouvelles datas
+    var index = this.allItems.findIndex(((obj: { _id: any; }) => obj._id == item._id));
+    console.log("index update : "+ index);
+    this.allItems[index] = item;  // On met a jour le tableau local avec les nouvelles datas
   }
 
   addParcours(parcours:any){
