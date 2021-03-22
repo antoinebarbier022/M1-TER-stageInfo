@@ -1,22 +1,29 @@
 import { Injectable } from '@angular/core';
-import { CanActivate, CanLoad, Router } from '@angular/router';
+import { CanActivate, CanLoad, Router, ActivatedRouteSnapshot } from '@angular/router';
 import { AuthService } from '../services/auth.service';
 import { UserService } from '../services/user.service';
+import decode, { JwtPayload } from 'jwt-decode';
+import jwtDecode from 'jwt-decode';
+
+interface IToken {
+  exp: number;
+  iat: number;
+  role: string;
+  userId: string;
+}
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthGuardService implements CanActivate, CanLoad {
 
-  private userRole: string = '';
+  private auth: AuthService;
 
   constructor(private authService: AuthService, private router: Router, private userService: UserService) {
-    this.userService.getRoleById(this.authService.getUserid()).subscribe(role => {
-      this.userRole = role;
-    });
+    this.auth = authService;
   }
 
-  canActivate() {
+  canActivate(route: ActivatedRouteSnapshot) {
     return this.canLoad();
   }
 
@@ -27,7 +34,11 @@ export class AuthGuardService implements CanActivate, CanLoad {
       this.authService.isAuth$.next(true);
     } 
 
-    console.log(this.userRole);
+    const token = this.auth.getJwtToken();
+    const decodedToken = jwtDecode<IToken>(token || '');
+
+    console.log('THIS : ');
+    console.log(decodedToken.role);
 
     return this.authService.isLoggedIn();
     
