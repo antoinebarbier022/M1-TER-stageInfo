@@ -9,7 +9,7 @@ import { IToken } from '../../shared/interfaces/itoken';
 @Injectable({
   providedIn: 'root'
 })
-export class RouteGuard implements CanActivate {
+export class RoleGuard implements CanActivate {
 
   private auth: AuthService;
   private router: Router

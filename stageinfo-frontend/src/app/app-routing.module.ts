@@ -42,7 +42,7 @@ import { LoginComponent } from './pages/login/login.component';
 // Importation des guards
 import {AuthGuardService} from "./core/guards/auth-guard.service";
 import {AuthGuard} from "./core/guards/guard-login.service";
-import { RouteGuard } from "./core/guards/route.guard";
+import { RoleGuard } from "./core/guards/role.guard";
 
 // Importation des resolver
 import { AllUsersResolver } from "./core/resolves/all-users.resolver";
@@ -56,21 +56,21 @@ import { ParcoursResolver } from './core/resolves/parcours.resolver';
 import { AllSoutenancesResolver } from './core/resolves/all-soutenances.resolver';
 
 const routes: Routes = [
-  { path: '', redirectTo: 'liste-stages', pathMatch: 'full', canActivate: [AuthGuardService, RouteGuard]},
+  { path: '', redirectTo: 'liste-stages', pathMatch: 'full', canActivate: [AuthGuardService, RoleGuard]},
   { path: 'login', component: LoginComponent, canActivate: [AuthGuard]},
-  { path: 'documentation', component: ExempleDocComponent, canActivate: [AuthGuardService, RouteGuard]},
+  { path: 'documentation', component: ExempleDocComponent, canActivate: [AuthGuardService, RoleGuard]},
 
   // routes stages
   { path: 'liste-stages', 
       component: ListStagesComponent, 
-      canActivate: [AuthGuardService, RouteGuard],
+      canActivate: [AuthGuardService, RoleGuard],
       resolve: {
         allStages: AllStagesResolver  // on associe un resolver à la route
       }
   },
   { path: 'liste-stages/:id', 
       component: InfoStageComponent, 
-      canActivate: [AuthGuardService, RouteGuard],
+      canActivate: [AuthGuardService, RoleGuard],
       resolve: {
         stage: StageResolver  // on associe un resolver à la route
       }
@@ -80,43 +80,43 @@ const routes: Routes = [
 
   // route users
   
-  { path: 'liste-utilisateurs', component: ListUsersComponent, canActivate: [AuthGuardService, RouteGuard], resolve: { users: AllUsersResolver }},
-  { path: 'liste-etudiants', component: ListEtudiantsComponent, canActivate: [AuthGuardService, RouteGuard], resolve: { AllEtudiants: AllUsersResolver }},
-  { path: 'liste-utilisateurs/import-users', component: ImportUsersComponent, canActivate: [AuthGuardService, RouteGuard]},
-  { path: 'liste-utilisateurs/add-user', component: AddUserComponent, canActivate: [AuthGuardService, RouteGuard]},
+  { path: 'liste-utilisateurs', component: ListUsersComponent, canActivate: [AuthGuardService, RoleGuard], resolve: { users: AllUsersResolver }},
+  { path: 'liste-etudiants', component: ListEtudiantsComponent, canActivate: [AuthGuardService, RoleGuard], resolve: { AllEtudiants: AllUsersResolver }},
+  { path: 'liste-utilisateurs/import-users', component: ImportUsersComponent, canActivate: [AuthGuardService, RoleGuard]},
+  { path: 'liste-utilisateurs/add-user', component: AddUserComponent, canActivate: [AuthGuardService, RoleGuard]},
   { path: 'liste-utilisateurs/edit-user/:id', 
       component: EditUserComponent, 
-      canActivate: [AuthGuardService, RouteGuard],
+      canActivate: [AuthGuardService, RoleGuard],
       resolve: {
         user: UserResolver  // on associe un resolver à la route
       }
     },
-  { path: 'liste-utilisateurs/edit-user-v2', component: EditUserV2Component, canActivate: [AuthGuardService, RouteGuard]},
+  { path: 'liste-utilisateurs/edit-user-v2', component: EditUserV2Component, canActivate: [AuthGuardService, RoleGuard]},
   { path: 'liste-utilisateurs/user/:id', 
       component: InfoUserComponent, 
-      canActivate: [AuthGuardService, RouteGuard],
+      canActivate: [AuthGuardService, RoleGuard],
       resolve: {
         user: UserResolver  // on associe un resolver à la route
       },
   },
-  { path: 'profile', component: ProfileUserComponent, canActivate: [AuthGuardService, RouteGuard]},
+  { path: 'profile', component: ProfileUserComponent, canActivate: [AuthGuardService, RoleGuard]},
 
   //routes entreprise
-  { path: 'liste-entreprises', component: ListEntreprisesComponent, canActivate: [AuthGuardService, RouteGuard], resolve: { entreprises: AllEntreprisesResolver }},
-  { path: 'liste-entreprises/:id', component: InfoEntrepriseComponent, canActivate: [AuthGuardService, RouteGuard], resolve: { entreprise: EntrepriseResolver }},
+  { path: 'liste-entreprises', component: ListEntreprisesComponent, canActivate: [AuthGuardService, RoleGuard], resolve: { entreprises: AllEntreprisesResolver }},
+  { path: 'liste-entreprises/:id', component: InfoEntrepriseComponent, canActivate: [AuthGuardService, RoleGuard], resolve: { entreprise: EntrepriseResolver }},
   
   // route soutenance
-  { path: 'liste-soutenances', component: ListSoutenancesComponent, canActivate: [AuthGuardService, RouteGuard], resolve: { soutenances: AllSoutenancesResolver }},
-  { path: 'liste-soutenances/add-soutenance', component: AddSoutenanceComponent, canActivate: [AuthGuardService, RouteGuard]},
-  { path: 'liste-soutenances/edit-soutenance', component: AddSoutenanceComponent, canActivate: [AuthGuardService, RouteGuard]},
-  { path: 'liste-soutenances/soutenance', component: AddSoutenanceComponent, canActivate: [AuthGuardService, RouteGuard]},
+  { path: 'liste-soutenances', component: ListSoutenancesComponent, canActivate: [AuthGuardService, RoleGuard], resolve: { soutenances: AllSoutenancesResolver }},
+  { path: 'liste-soutenances/add-soutenance', component: AddSoutenanceComponent, canActivate: [AuthGuardService, RoleGuard]},
+  { path: 'liste-soutenances/edit-soutenance', component: AddSoutenanceComponent, canActivate: [AuthGuardService, RoleGuard]},
+  { path: 'liste-soutenances/soutenance', component: AddSoutenanceComponent, canActivate: [AuthGuardService, RoleGuard]},
 
   // route parcours
-  { path: 'liste-parcours', component: ListParcoursComponent, canActivate: [AuthGuardService, RouteGuard], resolve: { allParcours: AllParcoursResolver }},
-  { path: 'liste-parcours/:id', component: InfoParcoursComponent, canActivate: [AuthGuardService, RouteGuard], resolve: { parcours: ParcoursResolver }},
+  { path: 'liste-parcours', component: ListParcoursComponent, canActivate: [AuthGuardService, RoleGuard], resolve: { allParcours: AllParcoursResolver }},
+  { path: 'liste-parcours/:id', component: InfoParcoursComponent, canActivate: [AuthGuardService, RoleGuard], resolve: { parcours: ParcoursResolver }},
 
   // config calendrier soutenance
-  { path: 'configuration-calendrier-soutenances', component: ConfigCalendrierSoutenancesComponent, canActivate: [AuthGuardService, RouteGuard]},
+  { path: 'configuration-calendrier-soutenances', component: ConfigCalendrierSoutenancesComponent, canActivate: [AuthGuardService, RoleGuard]},
 
   { path: 'not-found', component: Error404Component, canActivate: [AuthGuardService]},
   { path: '**', redirectTo: 'not-found', canActivate: []}
