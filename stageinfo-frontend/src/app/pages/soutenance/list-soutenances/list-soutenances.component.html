@@ -35,7 +35,7 @@
                     <td>{{ soutenance.tuteurEntreprise }}</td>
                     <td class="table-action">
                         <!-- Bouton edit => ouvre un modal avec le formulaire de modification -->
-                        <app-button-edit data-toggle="modal" (click)="selectedItem(entreprise)" data-target="#modifier"></app-button-edit>
+                        <app-button-edit data-toggle="modal" (click)="selectedItem(entreprise)" data-target="#planificationSoutenance"></app-button-edit>
                     </td>
                 </tr>
             </tbody>
@@ -43,3 +43,22 @@
         <app-pagination [commonProperties]="commonProperties"></app-pagination> 
     </div>
 </app-card-table>
+
+<!---------------------------------------------------->
+<!-------------------- LES MODALS -------------------->
+<!---------------------------------------------------->
+
+
+<!-- Modal avec le formulaire planification soutenance -->
+<app-modal class="modal fade"
+        tabindex="-1" 
+        role="dialog" 
+        id="planificationSoutenance">
+    <span title>Planifier la soutenance </span>
+    <!--<app-form-parcours content 
+                            [editParcours]="true"
+                            [idParcours]="selectItem._id"
+                            [selectedParcours]="selectItem"
+                            (parcoursEvent)="updateTable($event)">
+    </app-form-parcours>-->
+</app-modal>
