@@ -40,7 +40,7 @@ export class RouteGuard implements CanActivate {
 
   checkRoleAccess(role: string, route: string){
 
-    //['etudiant', 'representantEntreprise', 'tuteur', 'secretaire', 'responsableParcours', 'responsablePedagogique', 'admin', 'invite']
+    /* ['etudiant', 'representantEntreprise', 'tuteur', 'secretaire', 'responsableParcours', 'responsablePedagogique', 'admin', 'invite'] */
 
     switch(route){
       case 'documentation':
@@ -93,4 +93,5 @@ export class RouteGuard implements CanActivate {
         return false;
     }
   }
+  
 }
