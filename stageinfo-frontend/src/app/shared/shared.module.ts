@@ -23,7 +23,6 @@ import { CardItemCommentComponent } from './components/cards/card-item-comment/c
 import { DateAgoPipe } from './pipes/date-ago.pipe';
 import { ButtonEditComponent } from './components/buttons/button-edit/button-edit.component';
 import { ButtonDeleteComponent } from './components/buttons/button-delete/button-delete.component';
-import { ButtonAddModalComponent } from './components/buttons/button-add-modal/button-add-modal.component';
 import { CardTableComponent } from './components/cards/card-table/card-table.component';
 
 
@@ -42,7 +41,6 @@ import { CardTableComponent } from './components/cards/card-table/card-table.com
     DateAgoPipe, 
     ButtonEditComponent, 
     ButtonDeleteComponent, 
-    ButtonAddModalComponent,
     ListFilterComponent, 
     ListPaginationComponent, 
     ListEntriesNumberComponent, 
@@ -67,7 +65,6 @@ import { CardTableComponent } from './components/cards/card-table/card-table.com
     DateAgoPipe,
     ButtonEditComponent,
     ButtonDeleteComponent,
-    ButtonAddModalComponent,
     ListFilterComponent, 
     ListPaginationComponent, 
     ListEntriesNumberComponent,
