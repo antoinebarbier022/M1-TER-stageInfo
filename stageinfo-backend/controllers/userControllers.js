@@ -26,7 +26,7 @@ exports.signup = (req, res, next) =>{
                 hash: hash,
                 role: req.body.role,
                 numeroEtudiant: req.body.numeroEtudiant,
-                Fax: req.body.Fax,
+                Fax: req.body.fax,
                 telephone: req.body.telephone,
                 fonction:req.body.fonction,
                 nom: req.body.nom,
@@ -110,10 +110,10 @@ exports.getRole = ((req, res, next) => {
        entreprise: req.body.entreprise
     });
 
-    User.updateOne({_id: req.params.id}, salle)
+    User.updateOne({_id: req.params.id}, user)
        .then(() => {
            res.status(201).json({
-               message: 'Salle updated successfully'
+               message: 'User updated successfully'
            });
        })
        .catch((error) => {
