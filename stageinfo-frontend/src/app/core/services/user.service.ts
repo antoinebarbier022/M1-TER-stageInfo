@@ -32,7 +32,7 @@ export class UserService {
   }
 
   deleteUserById(id: any){
-    return this.httpClient.delete(this.urlBase+'/api/stage/'+id);
+    return this.httpClient.delete(this.urlBase+'api/user/'+id);
   }
 
   getemailById(id: string | null): Observable<any> {
