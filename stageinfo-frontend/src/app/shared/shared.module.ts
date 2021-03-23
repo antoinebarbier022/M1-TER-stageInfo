@@ -26,6 +26,7 @@ import { DateAgoPipe } from './pipes/date-ago.pipe';
 import { ButtonEditComponent } from './components/buttons/button-edit/button-edit.component';
 import { ButtonDeleteComponent } from './components/buttons/button-delete/button-delete.component';
 import { CardTableComponent } from './components/cards/card-table/card-table.component';
+import { FormStageComponent } from './components/forms/form-stage/form-stage.component';
 
 
 
@@ -46,7 +47,8 @@ import { CardTableComponent } from './components/cards/card-table/card-table.com
     ListFilterComponent, 
     ListPaginationComponent, 
     ListEntriesNumberComponent, 
-    CardTableComponent
+    CardTableComponent, 
+    FormStageComponent
   ],
   imports: [
     CommonModule,
@@ -70,7 +72,8 @@ import { CardTableComponent } from './components/cards/card-table/card-table.com
     ListFilterComponent, 
     ListPaginationComponent, 
     ListEntriesNumberComponent,
-    CardTableComponent
+    CardTableComponent,
+    FormStageComponent
   ]
 })
 export class SharedModule { }

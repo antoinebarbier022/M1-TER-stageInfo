@@ -7,7 +7,8 @@
     <!-- component select pour le nombre de ligne à afficher sur une page dans le tableau-->
     <app-nbItems entries [commonProperties]="commonProperties"></app-nbItems>
 
-    <app-button-add button1 link="/saisir-stage"></app-button-add>
+    <!-- Bouton ajouter => ouvre un modal avec le formulaire d'ajout -->
+    <app-button-add button1 data-toggle="modal" data-target="#ajouter"></app-button-add>
     
     <div content>
         <table class="card-table table table-striped table-sm">
@@ -19,6 +20,7 @@
                     <th scope="col">Promotions</th>
                     <th (click)="sortByAscendingDescendingOrder(3)" scope="col">Duree</th>
                     <th (click)="sortByAscendingDescendingOrder(4)" scope="col">Etat</th>
+                    <th scope="col">Actions</th>
                 </tr>
             </thead>
             <tbody>
@@ -31,9 +33,50 @@
                     <td>2020 - 2021</td>
                     <td>{{ stage.duree }} mois</td>
                     <td><span class="badge badge-success">{{ stage.etat }}</span></td>
+                    <td class="table-action">
+                        <!-- Bouton edit => ouvre un modal avec le formulaire de modification -->
+                        <app-button-edit data-toggle="modal" (click)="selectedItem(parcours)" data-target="#modifier"></app-button-edit>
+                        <!-- Bouton delete => ouvre un modal avec la demande de suppression -->
+                        <app-button-delete data-toggle="modal" (click)="selectedItem(parcours)" data-target="#suppression"></app-button-delete>
+                    </td>
                 </tr>
             </tbody>
         </table>
         <app-pagination [commonProperties]="commonProperties"></app-pagination>
     </div>    
 </app-card-table>
+
+
+
+<!---------------------------------------------------->
+<!-------------------- LES MODALS -------------------->
+<!---------------------------------------------------->
+
+<!-- Modal avec le formulaire de modification de l'objet selectionné -->
+<app-modal class="modal fade"
+        tabindex="-1" 
+        role="dialog" 
+        id="modifier">
+    <span title>Modifier le Stage : </span>
+    <app-form-stage content></app-form-stage>
+</app-modal>
+
+<!-- Modal pour supprimer l'objet selectionné -->
+<app-modal class="modal fade"
+        tabindex="-1" 
+        role="dialog" 
+        id="suppression">
+    <span title> Supprimer le stage </span>
+    <p content>Confirmer la suppression du stage : <strong></strong></p>
+    <button button1 type="button" class="btn btn-secondary btn-sm" data-dismiss="modal">Annuler</button>
+    <button button2 (click)="deleteParcours(selectItem._id)" type="button" class="btn btn-danger btn-sm" data-dismiss="modal">Supprimer</button>
+</app-modal>
+
+<!-- Modal pour Ajouter un item (formulaire d'ajout) -->
+<app-modal class="modal fade"
+        tabindex="-1" 
+        role="dialog" 
+        id="ajouter">
+        <span title>Ajouter le stage</span>
+        <app-form-stage content></app-form-stage>
+</app-modal>
