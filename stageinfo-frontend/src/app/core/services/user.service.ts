@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { AuthService } from '../services/auth.service';
+import { userModel } from '../models/userModel';
 
 @Injectable({
   providedIn: 'root'
@@ -11,6 +12,11 @@ export class UserService {
 
   constructor(private httpClient: HttpClient, private auth: AuthService) {
     
+  }
+
+  /* Ajouter un parcours */
+  addUser(user:userModel):Observable<any>{
+    return this.httpClient.post(this.urlBase+'/api/auth/signup/', user); 
   }
 
   getemailById(id: string | null): Observable<any> {
