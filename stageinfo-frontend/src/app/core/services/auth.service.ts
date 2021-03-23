@@ -21,11 +21,20 @@ export class AuthService {
 
   constructor(private router: Router,
               private http: HttpClient) {
-    
-    //const decodedToken = jwtDecode<IToken>(this.getJwtToken() || '');
-    //this.role = decodedToken.role;
+    if(this.isLoggedIn()) {
+      const decodedToken = jwtDecode<IToken>(this.getJwtToken() || '');
+      this.role = decodedToken.role;
+    }
     this.viewRole = this.role;
     this.viewAllRoute = false;
+  }
+  ngOnChanges(){
+    if(this.isLoggedIn()) {
+      const decodedToken = jwtDecode<IToken>(this.getJwtToken() || '');
+      this.role = decodedToken.role;
+      console.log(this.role);
+    }
+
   }
 
   getViewAllRoute():boolean{

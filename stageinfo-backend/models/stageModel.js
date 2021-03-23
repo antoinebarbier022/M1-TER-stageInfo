@@ -2,22 +2,18 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 const stageSchema = Schema({
-    titre: {
-      type : String,
-      required: true
-    },
+    titre: String,
     description: String,
-    duree: {
-      type : Number,
-      required: true
-    },
-    datedebut: Date,
+    duree: String,
+      
+    dateDebut: String,
     etat: String,
     rapport: String,
     fichier: String, // c'est quoi ?
     conditions: String,
     objectif: String,
     salaire: String,
+    competences: String,
     avantages: String,
     datePropose: Date,
     dateValide : Date,
@@ -55,20 +51,20 @@ const stageSchema = Schema({
       valeur: String,
       commentaire: String,
     }),
-    
-    parcours: { 
+    parcours : String,
+    /*parcours: { 
       idParcours: Schema.Types.ObjectId,
       nomComplet: String,
-    },
+    },*/
     ajouteur: {
       idAjouteur: Schema.Types.ObjectId,
       nomComplet: String,
     },
-    
-    entreprise: { 
+    entreprise:String,
+    /*entreprise: { 
       idEntreprise: Schema.Types.ObjectId,
       nomComplet: String,
-    },
+    },*/
     tuteurUniv: { 
       idTuteurUniv: Schema.Types.ObjectId,
       nomComplet: String,

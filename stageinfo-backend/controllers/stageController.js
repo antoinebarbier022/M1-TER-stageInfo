@@ -65,7 +65,8 @@ exports.createStage = (req, res, next) => {
     rapport: req.body.rapport,
     fichier: req.body.fichier,
     conditions: req.body.conditions,
-    objectif: req.body.objectif,
+    competences: req.body.competences,
+    objectifs: req.body.objectifs,
     avantages: req.body.avantages,
     datePropose: req.body.datePropose,
     dateValide: req.body.dateValide,
@@ -88,21 +89,22 @@ exports.createStage = (req, res, next) => {
       valeur: req.body.noteStage,
       commentaire: req.body.commentaireNoteStage
     },
-
-    parcours: {
+    parcours: req.body.parcours,
+    /*parcours: {
       idParcours: req.body.idParcours,
       nomComplet: req.body.nomCompletParcours
-    },
+    },*/
 
     ajouteur: {
       idAjouteur: req.body.idAjouteur,
       nomComplet: req.body.nomCompletAjouteur
     },
-
+    entreprise:req.body.entreprise,
+    /*
     entreprise: {
       idEntreprise: req.body.idEntreprise,
       nomComplet: req.body.nomCompletEntreprise
-    },
+    },*/
 
     tuteurUniv: {
       idTuteurUniv: req.body.idTuteurUniv,
@@ -152,78 +154,8 @@ exports.editStage = (req, res, next) => {
   console.log(req.body);
 
   const stage = new Stage({
-    _id: req.params.id,
-    titre: req.body.titre,
-    description: req.body.description,
-    duree: req.body.duree,
-    dateDebut: req.body.date,
-    etat: req.body.etat,
-    rapport: req.body.rapport,
-    fichier: req.body.fichier,
-    conditions: req.body.conditions,
-    objectif: req.body.objectif,
-    avantages: req.body.avantages,
-    datePropose: req.body.datePropose,
-    dateValide: req.body.dateValide,
-    resume: req.body.resume,
-    niveauRequis: req.body.niveauRequis,
-
-    ficheSuivi: {
-      dateDebut: req.body.dateDebut,
-      dateFin: req.body.dateFin,
-      commentaireBilan: req.body.commentaireBilan,
-      embauche: req.body.embauche,
-      commentaireEmbauche: req.body.commentaireEmbauche,
-      dateFiche: req.body.dateFiche
-    },
-
-    noteStage: {
-      date: req.body.dateNoteStage,
-      valeur: req.body.noteStage,
-      commentaire: req.body.commentaireNoteStage
-    },
-
-    parcours: {
-      idParcours: req.body.idParcours,
-      nomComplet: req.body.nomCompletParcours
-    },
-
-    ajouteur: {
-      idAjouteur: req.body.idAjouteur,
-      nomComplet: req.body.nomCompletAjouteur
-    },
-
-    entreprise: {
-      idEntreprise: req.body.idEntreprise,
-      nomComplet: req.body.nomCompletEntreprise
-    },
-
-    tuteurUniv: {
-      idTuteurUniv: req.body.idTuteurUniv,
-      nomComplet: req.body.nomCompletTuteurUniv
-    },
-
-    tuteurEntreprise: {
-      idTuteurEntreprise: req.body.idTuteurEntreprise,
-      nomComplet: req.body.nomCompletTuteurEntreprise
-    },
-
-    rapporteur: {
-      idRapporteur: req.body.idRapporteur,
-      nomComplet: req.body.nomCompletRapporteur
-    },
-
-    etudiant: {
-      idEtudiant: req.body.idEtudiant,
-      nomComplet: req.body.nomCompletEtudiant
-    },
-
-    idVisite: {
-      typeContact: req.body.typeContact,
-      dateVisite: req.body.dateVisite,
-      commentaire: req.body.commentaireVisite
-    }
-
+      _id: req.params.id,
+      ...req.body
   });
 
   Stage.updateOne({_id: req.params.id}, stage)

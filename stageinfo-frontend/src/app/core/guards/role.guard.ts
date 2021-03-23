@@ -24,9 +24,10 @@ export class RoleGuard implements CanActivate {
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
 
 
-    const decodedToken = jwtDecode<IToken>(this.auth.getJwtToken() || '');
+
     //var role = this.auth.getRole();
-    let role = decodedToken.role;
+    let role = this.auth.getRole();
+
     console.log('ROOOOOOOOOOOOOOOOOOOOOOLE : ' + role);
     const path = route.url[0].path;
 
@@ -34,11 +35,11 @@ export class RoleGuard implements CanActivate {
     // ---------------------------------------------------------------------------------------------------
     // pour les test : si on est administrateur alors le role pris en compte par le guards est le viewRole
     // ---------------------------------------------------------------------------------------------------
-    /*if(this.auth.getRole() == 'admin'){
+    if(this.auth.getRole() == 'admin'){
       role = this.auth.getViewRole();
     }else{
       role = this.auth.getRole();
-    }*/
+    }
     // ---------------------------------------------------------------------------------------------------
     // ---------------------------------------------------------------------------------------------------
 
@@ -107,5 +108,5 @@ export class RoleGuard implements CanActivate {
         return false;
     }
   }
-  
+
 }

@@ -156,7 +156,7 @@ export class FormEntrepriseComponent implements OnInit {
         this.ajouterEntreprise(entreprise);
       }else {
         //alors on est dans editParcours
-        this.supprimerEntreprise(this.idEntreprise, entreprise);
+        this.modifierEntreprise(this.idEntreprise, entreprise);
       }
     }
 
@@ -166,20 +166,23 @@ export class FormEntrepriseComponent implements OnInit {
     .pipe(takeUntil(this.destroy$))
       .subscribe((_res: any[]) => {
         console.log("Entreprise ajouté !");
-        this.entrepriseForm.reset();  // on reset les données dans le forumulaire
+        this.onReset(); // on reset les données dans le forumulaire
     });
   }
 
-  supprimerEntreprise(id:any, entreprise:any){
+  modifierEntreprise(id:any, entreprise:any){
     this.parcoursService.editEntreprise(id, entreprise)
     .pipe(takeUntil(this.destroy$))
       .subscribe((_res: any[]) => {
         console.log("Entreprise modifié !");
-        this.entrepriseForm.reset(); // on reset les données dans le forumulaire
+        this.onReset(); // on reset les données dans le forumulaire
         this.entrepriseEvent.emit(entreprise); // on envoie le parcours dans le component parent
     });
   }
 
+  onReset(){
+    this.entrepriseForm.reset(); 
+  }
 
   displayFielset(theme : string) : boolean{
     switch (theme) {
@@ -206,6 +209,38 @@ export class FormEntrepriseComponent implements OnInit {
         return this.page >= 3 ? true : false;
       case "informations": // page 4
         return this.page >= 4 ? true : false;
+      default:
+        return false;
+    }
+  }
+
+
+  // Fonction qui permet de retourner true ou false pour pouvoir dire si on peut passé à la suite (bouton next)
+  disabledNext() : boolean{
+    switch (this.page) {
+      case 1: //page 1 entreprise
+        if( this.entrepriseForm.get('nom').invalid || 
+            this.entrepriseForm.get('secteurActivite').invalid){
+          return true;
+        }else{
+          return false;
+        }
+        
+      case 2: // page 2 adresse
+        if( this.entrepriseForm.get('voie').invalid || 
+            this.entrepriseForm.get('codePostal').invalid ||
+            this.entrepriseForm.get('ville').invalid ||
+            this.entrepriseForm.get('pays').invalid){
+          return true;
+        }else{
+          return false;
+        }
+      case 3: // page 3 contact
+        // les informations de contact sont facultative
+        return false; 
+      case 4: // page 4 informations
+        // les informations de contact sont facultative
+        return false;
       default:
         return false;
     }

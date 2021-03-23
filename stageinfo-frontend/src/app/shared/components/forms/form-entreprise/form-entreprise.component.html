@@ -25,13 +25,13 @@
     <fieldset *ngIf="editEntreprise? true : displayFielset('entreprise')">
         <!-- Nom de l'entreprise -->
         <div class="form-group-row">
-            <label [for]="addEntreprise ? 'addInputNomEntreprise':'editInputNomEntreprise'">Entreprise</label>
+            <label  [for]="addEntreprise ? 'addInputNomEntreprise':'editInputNomEntreprise'">Entreprise</label>
             <input  type="text" 
                     [id]="addEntreprise ? 'addInputNomEntreprise':'editInputNomEntreprise'"
                     class="form-control"
                     placeholder="Nom de l'entreprise" 
                     name="entrepriseNom"
-                    formControlName="nom">
+                    formControlName="nom">                    
         </div>
         <!-- Secteur d'activité de l'entreprise -->
         <div class="form-group-row">
@@ -184,7 +184,7 @@
 
     <!-- Si Modification Entreprise -->
     <button *ngIf="editEntreprise" 
-            type="submit" 
+            type="submit" id="editButton" name="editButton" value="Submit"
             (click)="onSubmitForm()" 
             data-dismiss="modal" 
             class="btn btn-primary btn-sm btn-modifier" 
@@ -194,20 +194,26 @@
 
     <!-- Les boutons -->
     <div *ngIf="addEntreprise" class="block-btn">
-        <a *ngIf="!lastPage()" (click)="next()" class="btn btn-primary btn-sm btn-next" >
+        <button *ngIf="!lastPage()" 
+                type="button" id="nextButton" name="nextButton" value="Next"
+                (click)="next()" 
+                [disabled]="disabledNext()" 
+                class="btn btn-primary btn-sm btn-next" >
             Suivant
-        </a>
+        </button>
         <button *ngIf="lastPage()" 
-                type="submit" 
-                (click)="onSubmitForm()"
+                type="submit" id="addButton" name="addButton" value="Submit"
+                (click)="onSubmitForm()" 
                 data-dismiss="modal"
-                class="btn btn-primary btn-sm btn-done"
-                >
+                class="btn btn-primary btn-sm btn-done">
             Terminer
         </button>
-        <a *ngIf="!firstPage()" (click)="pred()" class="btn btn-secondary btn-sm btn-pred" >
+        <button *ngIf="!firstPage()" 
+                type="button" id="predButton" name="predButton" value="Pred"
+                (click)="pred()" 
+                class="btn btn-secondary btn-sm btn-pred" >
             Précédent
-        </a>
+        </button>
     </div>
     
 </form>

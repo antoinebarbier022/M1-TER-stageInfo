@@ -1,18 +1,23 @@
-export class stageSchema = {
-    titre: string;
-    description: string;
-    duree: number;
-    dateDebut: Date;
-    etat: string;
-    rapport: string;
-    fichier: string;
-    conditions: string;
-    objectif: string;
-    avantages: string;
-    datePropose: Date;
-    resume: string;
-    niveauRequis: string;
-
+export class StageModel {
+    constructor(
+        public _id: string ="",
+        public titre: string ="",
+        public description: string ="",
+        public duree: string ="",
+        public dateDebut: string = "",
+        public niveauRequis: string ="",
+        public parcours : string ="",
+        public entreprise: string ="",
+        public competences: string ="",
+        public conditions: string ="",
+        public avantages: string = "",
+        ){}
+    
+/*
+ et plein d'autre
+        public rapport: string ="",
+        public fichier: string ="",
+        public etat: string = "",
     commentaires : any[];
 
     ficheSuivi: {
@@ -70,5 +75,5 @@ export class stageSchema = {
         dateVisite: Date;
         commentaire: string;
     }
-
+*/
 }
