@@ -211,6 +211,38 @@ export class FormEntrepriseComponent implements OnInit {
     }
   }
 
+
+  // Fonction qui permet de retourner true ou false pour pouvoir dire si on peut passé à la suite (bouton next)
+  disabledNext() : boolean{
+    switch (this.page) {
+      case 1: //page 1 entreprise
+        if( this.entrepriseForm.get('nom').invalid || 
+            this.entrepriseForm.get('secteurActivite').invalid){
+          return true;
+        }else{
+          return false;
+        }
+        
+      case 2: // page 2 adresse
+        if( this.entrepriseForm.get('voie').invalid || 
+            this.entrepriseForm.get('codePostal').invalid ||
+            this.entrepriseForm.get('ville').invalid ||
+            this.entrepriseForm.get('pays').invalid){
+          return true;
+        }else{
+          return false;
+        }
+      case 3: // page 3 contact
+        // les informations de contact sont facultative
+        return false; 
+      case 4: // page 4 informations
+        // les informations de contact sont facultative
+        return false;
+      default:
+        return false;
+    }
+  }
+
   next(){
     if(this.page < this.nbMaxPage){
       this.page++;
