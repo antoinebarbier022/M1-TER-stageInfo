@@ -7,6 +7,7 @@ router.get('/:id', userctrl.getOneUser);
 
 router.post('/signup',userctrl.signup);
 router.post('/login',userctrl.login);
+router.put('/:id', userctrl.editUser);
 router.get('/email/:id', userctrl.getemail);
 router.get('/role/:id', userctrl.getRole);
 

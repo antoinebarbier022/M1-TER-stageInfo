@@ -86,7 +86,7 @@ exports.getRole = ((req, res, next) => {
 
 
 /**
- * @api {put} /auth/signup Edit a User
+ * @api {put} /auth/:id Edit a User
  * @apiName EditUser
  * @apiGroup User
  *
@@ -100,10 +100,17 @@ exports.getRole = ((req, res, next) => {
        nom: req.body.nom,
        email: req.body.email,
        prenom: req.body.prenom,
-       telephone: req.body.telephone
+       telephone: req.body.telephone,
+       fax: req.body.fax,
+       role: req.body.role,
+       numeroEtudiant: req.body.numeroEtudiant,
+       promotion: req.body.promotion,
+       parcours: req.body.parcours,
+       fonction: req.body.fonction,
+       entreprise: req.body.entreprise
     });
 
-    Salle.updateOne({_id: req.params.id}, salle)
+    User.updateOne({_id: req.params.id}, salle)
        .then(() => {
            res.status(201).json({
                message: 'Salle updated successfully'
