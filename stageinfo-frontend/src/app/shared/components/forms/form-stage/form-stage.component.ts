@@ -13,7 +13,9 @@ import { StageService } from 'src/app/core/services/stage.service';
 })
 export class FormStageComponent implements OnInit {
   @Input() title: string = "";
+  @Input() showMessages : boolean = false;
   @Input() selectedStage :StageModel = new StageModel();
+
   @Input() addStage: boolean = false;
   @Input() editStage: boolean = false;
 
@@ -21,6 +23,7 @@ export class FormStageComponent implements OnInit {
 
   idStage = "";
   stageData: StageModel = new StageModel();
+  message:string = "";
 
   // @ts-ignore
   stageForm: FormGroup;
@@ -133,8 +136,10 @@ export class FormStageComponent implements OnInit {
   ajouterStage(stage:any){
     this.stageService.addStage(stage)
     .pipe(takeUntil(this.destroy$))
-      .subscribe((_res: any[]) => {
+      .subscribe((_res: any) => {
         console.log("Stage ajouté !");
+        this.page = 1;
+        this.message = "Le stage "+ stage.titre + " à été ajouté à la plateforme !";
         this.stageForm.reset();  // on reset les données dans le forumulaire
     });
   }
@@ -142,8 +147,10 @@ export class FormStageComponent implements OnInit {
   modifierStage(stage:any){
     this.stageService.editStage(stage._id, stage)
     .pipe(takeUntil(this.destroy$))
-      .subscribe((_res: any[]) => {
+      .subscribe((_res: any) => {
         console.log("Stage modifié !");
+        this.page = 1;
+        this.message = "Stage modifié !";
         this.stageForm.reset(); // on reset les données dans le forumulaire
         this.stageEvent.emit(stage); // on envoie le parcours dans le component parent
     });

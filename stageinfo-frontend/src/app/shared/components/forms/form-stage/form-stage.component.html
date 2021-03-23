@@ -14,8 +14,17 @@
     </li>
 </ul>
 
-
-
+<!-- affichage du message d'ajout ou de modification quand la variable showMessages est true-->
+<div *ngIf="showMessages && message" class="alert alert-primary">
+    <p><strong>Message : </strong>{{ message }}</p>
+</div>
+<div *ngIf="showMessages && message" 
+    class="alert alert-primary alert-dismissible fade show" role="alert">
+    <p><strong>Message : </strong>{{ message }}</p>
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+    </button>
+</div>
 
 
 <form [formGroup]="stageForm" (ngSubmit)="onSubmitForm()">
@@ -176,5 +185,5 @@
             Précédent
         </button>
     </div>
-    
 </form>
+
