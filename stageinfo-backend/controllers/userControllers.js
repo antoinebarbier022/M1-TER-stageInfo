@@ -122,3 +122,27 @@ exports.getRole = ((req, res, next) => {
            });
        });
 });
+
+/**
+ * @api {delete} /user Delete a user
+ * @apiName DeleteOneUser
+ * 
+ * @apiGroup User
+ *
+ * @apiParam {Number} id User's unique ID.
+ */
+ exports.deleteOneUser = (req, res, next) => {
+    User.deleteOne({_id: req.params.id}).then(
+      () => {
+        res.status(200).json({
+          message: 'User deleted!'
+        });
+      }
+    ).catch(
+      (error) => {
+        res.status(400).json({
+          error: error
+        });
+      }
+    );
+  };

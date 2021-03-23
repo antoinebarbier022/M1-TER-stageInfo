@@ -134,7 +134,9 @@ export class FormUserComponent implements OnInit {
       });
     }
     else{
-      console.log('ici on update');
+      this.userService.updateUser(this.idUser,newUser).subscribe(x => {
+        console.log(x);
+      });
     }
   }
 
