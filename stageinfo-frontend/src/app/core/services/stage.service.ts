@@ -2,6 +2,8 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
+import { StageModel } from '../models/StageModel';
+
 @Injectable({
   providedIn: 'root'
 })
@@ -13,11 +15,6 @@ export class StageService {
 
   constructor(private httpClient: HttpClient) { }
 
-  setRole(newRole: string){
-    if(['admin', 'invite', 'etudiant','secretaire','respParcours','repEntreprise','tuteur'].includes(newRole)){
-      this.role = newRole;
-    }
-  }
 
   /* Récupération de tous les stages */
   getAllStages(): Observable<any> {
@@ -27,6 +24,16 @@ export class StageService {
   /* Récupération d'un stage avec son identifiant */
   getStageById(id:any): Observable<any> {
     return this.httpClient.get(this.urlBase+'/api/stage/'+id);
+  }
+
+  /* Ajouter un parcours */
+  addStage(data:StageModel):Observable<any>{
+    return this.httpClient.post(this.urlBase+'/api/stage', data); 
+  }
+
+  /* Modifier un parcours */
+  editStage(id:any, data:StageModel):Observable<any>{
+    return this.httpClient.put(this.urlBase+'/api/stage/'+ id, data);
   }
 
   /* Suppression d'un stage avec son identifiant */

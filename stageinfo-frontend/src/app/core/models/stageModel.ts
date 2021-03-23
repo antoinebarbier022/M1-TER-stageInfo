@@ -1,20 +1,23 @@
 export class StageModel {
     constructor(
+        public id: string ="",
         public titre: string ="",
         public description: string ="",
         public duree: string ="",
-        public dateDebut: Date = new Date(),
-        public etat: string = "",
-        public rapport: string ="",
-        public fichier: string ="",
+        public dateDebut: string = "",
+        public niveauRequis: string ="",
+        public parcours : string ="",
+        public entreprise: string ="",
+        public competences: string ="",
         public conditions: string ="",
-        public objectif: string ="",
-        public avantages: string ="",
-        public datePropose: Date = new Date(),
-        public resume: string ="",
-        public niveauRequis: string ="",){}
+        public avantages: string = "",
+        ){}
     
 /*
+ et plein d'autre
+        public rapport: string ="",
+        public fichier: string ="",
+        public etat: string = "",
     commentaires : any[];
 
     ficheSuivi: {

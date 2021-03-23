@@ -25,7 +25,7 @@
     <fieldset *ngIf="editEntreprise? true : displayFielset('entreprise')">
         <!-- Nom de l'entreprise -->
         <div class="form-group-row">
-            <label [for]="addEntreprise ? 'addInputNomEntreprise':'editInputNomEntreprise'">Entreprise</label>
+            <label  [for]="addEntreprise ? 'addInputNomEntreprise':'editInputNomEntreprise'">Entreprise</label>
             <input  type="text" 
                     [id]="addEntreprise ? 'addInputNomEntreprise':'editInputNomEntreprise'"
                     class="form-control"

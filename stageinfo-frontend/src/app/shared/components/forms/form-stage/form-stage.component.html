@@ -12,26 +12,32 @@
         <i class="fas fa-lg fa-info"></i>
         More
     </li>
-    
 </ul>
 
-<form>
+
+
+
+
+<form [formGroup]="stageForm" (ngSubmit)="onSubmitForm()">
     <!-- Section informations du stage -->
     <fieldset *ngIf="displayFielset('stage')">
         <!-- Titre du stage -->
         <div class="form-group-row">
-            <label for="inputTitre">Titre</label>
+            <label  for="inputTitre">Titre</label>
             <input  type="text" 
                     id="inputTitre"  
                     class="form-control"
                     placeholder="Titre du stage" 
-                    [(ngModel)]="stage.titre"
-                    name="titre">
+                    name="titre"
+                    formControlName="titre">
         </div>
         <!-- Niveau requis du stage -->
         <div class="form-group-row">
             <label for="inputNiveau">Niveau requis</label>
-            <select  id="inputNiveau" class="form-control" name="niveauRequis" >
+            <select  id="inputNiveau" 
+                    class="form-control" 
+                    name="niveauRequis" 
+                    formControlName="niveauRequis">
                 <option value="" disabled selected>Selectionner le niveau requis</option>
                 <option *ngFor="let i of niveauRequis">{{ i }}</option>
             </select>
@@ -39,7 +45,10 @@
         <!--  Parcours recommander pour le stage -->
         <div class="form-group-row">
             <label for="inputParcours">Parcours</label>
-            <select id="inputParcours" class="form-control" name="parcours">
+            <select id="inputParcours" 
+                    class="form-control" 
+                    name="parcours"
+                    formControlName="parcours">
                 <option value="" disabled selected>Selectionner le parcours</option>
                 <option *ngFor="let i of parcours">{{ i }}</option>
             </select>
@@ -51,8 +60,8 @@
                         class="form-control"  
                         placeholder="Description du stage"
                         rows="3"
-                        [(ngModel)]="stage.description"
-                        name="description"></textarea>
+                        name="description"
+                        formControlName="description"></textarea>
             
         </div>
         <!-- Durée du stage -->
@@ -62,8 +71,8 @@
                     id="inputDuree" 
                     class="form-control" 
                     placeholder="Nombre de mois"
-                    [(ngModel)]="stage.duree"
-                    name="duree">
+                    name="duree"
+                    formControlName="duree">
         </div>
 
         <!-- Date début du stage -->
@@ -72,8 +81,8 @@
             <input  type="date" 
                     id="inputDateDebut" 
                     class="form-control" 
-                    [(ngModel)]="stage.dateDebut"
-                    name="dateDebut">
+                    name="dateDebut"
+                    formControlName="dateDebut">
         </div>
     </fieldset>
 
@@ -85,11 +94,10 @@
             <input  type="text" 
                     class="form-control"
                     id="inputEntreprise"
-                    name="entreprises" 
                     list="entreprise-list"
                     placeholder="Nom de l'entreprise"
-                    [(ngModel)]="stage.entreprise"
-                    name="entreprise">
+                    name="entreprise"
+                    formControlName="entreprise">
                     
             <datalist id="entreprise-list">
                 <option>IBM</option>
@@ -97,130 +105,6 @@
                 <option>Ubisoft</option>
             </datalist>
         </div>
-        <!-- nouvelle entreprise -->
-        <div *ngIf="false">
-            <!-- Nom de l'entreprise -->
-            <div class="form-group-row">
-                <label for="inputNomEntreprise">Nom Entreprise</label>
-                <input  type="text" 
-                        id="inputNomEntreprise"  
-                        class="form-control"
-                        placeholder="Nom de l'entreprise" 
-                        name="entrepriseNom">
-            </div>
-            <div class="form-group-row">
-                <label for="inputDescriptionEntreprise">Description</label>
-                <textarea   id="inputDescriptionEntreprise"
-                            class="form-control"  
-                            rows="3"
-                            name="entrepriseDescription"></textarea>
-            </div>
-            <!-- Adresse de l'entreprise -->
-            <div class="form-group-row">
-                <label for="inputAdresseEntreprise">Adresse</label>
-                <input  type="text" 
-                        id="inputAdresseEntreprise"  
-                        class="form-control"
-                        placeholder="Adresse de l'entreprise" 
-                        name="entrepriseAdresse">
-            </div>
-            <div class="form-group-row">
-                <label for="inputCodePostalEntreprise">Code Postal</label>
-                <input  type="text" 
-                        id="inputCodePostalEntreprise"  
-                        class="form-control"
-                        placeholder="Code Postal de l'entreprise" 
-                        name="entrepriseCodePostal">
-            </div>
-
-            <div class="form-group-row">
-                <label for="inputVilleEntreprise">Ville</label>
-                <input  type="text" 
-                        id="inputVilleEntreprise"  
-                        class="form-control"
-                        placeholder="Ville de l'entreprise" 
-                        name="entrepriseVille">
-            </div>
-            <div class="form-group-row">
-                <label for="inputPaysEntreprise">Pays</label>
-                <input  type="text" 
-                        id="inputPaysEntreprise"  
-                        class="form-control"
-                        placeholder="Pays de l'entreprise" 
-                        name="entreprisePays">
-            </div>
-
-            <div class="form-group-row">
-                <label for="inputSiteInternetEntreprise">Site Internet</label>
-                <input  type="text" 
-                        id="inputSiteInternetEntreprise"  
-                        class="form-control"
-                        placeholder="Site Internet de l'entreprise" 
-                        name="entrepriseSiteInternet">
-            </div>
-
-            <div class="form-group-row">
-                <label for="inputTelEntreprise">Tel</label>
-                <input  type="text" 
-                        id="inputTelEntreprise"  
-                        class="form-control"
-                        placeholder="Téléphone de l'entreprise" 
-                        name="entrepriseTel">
-            </div>
-
-            <div class="form-group-row">
-                <label for="inputFaxEntreprise">Fax</label>
-                <input  type="text" 
-                        id="inputFaxEntreprise"  
-                        class="form-control"
-                        placeholder="Fax de l'entreprise" 
-                        name="entrepriseFax">
-            </div>
-            <div class="form-group-row">
-                <label for="inputSiretEntreprise">Siret</label>
-                <input  type="text" 
-                        id="inputSiretEntreprise"  
-                        class="form-control"
-                        placeholder="Siret de l'entreprise" 
-                        name="entrepriseSiret">
-            </div>
-
-            <div class="form-group-row">
-                <label for="inputSecteurActiviteEntreprise">Secteur d'activité</label>
-                <input  type="text" 
-                        id="inputSecteurActiviteEntreprise"  
-                        class="form-control"
-                        placeholder="Secteur d'activité de l'entreprise" 
-                        name="entrepriseSecteurActivite">
-            </div>
-            <div class="form-group-row">
-                <label for="inputNbSalariesEntreprise">Nombre de salariés</label>
-                <input  type="text" 
-                        id="inputNbSalariesEntreprise"  
-                        class="form-control"
-                        placeholder="Nombre de salariés de l'entreprise" 
-                        name="entrepriseNbSalaries">
-            </div>
-            <div class="form-group-row">
-                <label for="inputLocal">Local</label>
-                
-            </div>
-        </div>
-        
-        <div class="form-group-row">
-            <label for="inputTuteur">Représentant entreprise</label>
-            <select id="inputParcours" class="form-control" name="parcours">
-                <option value="" disabled selected>Selectionner un représentant</option>
-                <option *ngFor="let i of parcours">{{ i }}</option>
-            </select>
-        </div>
-    </fieldset>   
-
-    <!-- Informations complémentaire-->
-    <fieldset>
-        
-        
-        
     </fieldset>
 
     <fieldset *ngIf="displayFielset('more')">
@@ -231,7 +115,8 @@
                         class="form-control"  
                         rows="2"
                         name="competences"
-                        placeholder="Compétences attendu durant le stage">
+                        placeholder="Compétences attendu durant le stage"
+                        formControlName="competences">
             </textarea>
         </div>
         <!-- Conditions du stage -->
@@ -241,7 +126,8 @@
                         class="form-control"  
                         rows="2"
                         name="conditions"
-                        placeholder=""></textarea>
+                        placeholder="conditions du stage"
+                        formControlName="conditions"></textarea>
         </div>
         <!-- Date début du stage -->
         <div class="form-group-row">
@@ -261,28 +147,33 @@
                         class="form-control"  
                         rows="2"
                         name="avantages"
-                        placeholder="">
+                        placeholder="Avantages du stage"
+                        formControlName="avantages">
             </textarea>
         </div>
-        
     </fieldset>
     
-
-   
-
     <!-- Les boutons -->
     <div class="block-btn">
-        <a *ngIf="!lastPage()" (click)="next()" class="btn btn-primary btn-sm btn-next" >
+        <button *ngIf="!lastPage()" 
+            type="button" id="nextButton" name="nextButton" value="Next"
+            (click)="next()" 
+            [disabled]="disabledNext()" 
+            class="btn btn-primary btn-sm btn-next" >
             Suivant
-        </a>
-        <button *ngIf="lastPage()" routerLink="/list-stage" type="submit" class="btn btn-primary btn-sm btn-done">
+        </button>
+        <button *ngIf="lastPage()" 
+                type="submit" id="addButton" name="addButton" value="Submit" 
+                (click)="onSubmitForm()" 
+                data-dismiss="modal"
+                class="btn btn-primary btn-sm btn-done">
             Terminer
         </button>
-        <a *ngIf="!firstPage()" (click)="pred()" class="btn btn-secondary btn-sm btn-pred" >
+        <button *ngIf="!firstPage()" 
+            (click)="pred()" 
+            class="btn btn-secondary btn-sm btn-pred" >
             Précédent
-        </a>
-        
-        
+        </button>
     </div>
     
 </form>

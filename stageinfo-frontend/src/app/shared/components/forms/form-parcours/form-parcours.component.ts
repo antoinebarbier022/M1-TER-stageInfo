@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, OnChanges, OnInit, Output } from '@angular/core';
-import {FormBuilder, FormGroup, Validators} from "@angular/forms";
+import { FormBuilder, FormGroup, Validators} from "@angular/forms";
 import { ActivatedRoute, Router } from '@angular/router';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
@@ -104,7 +104,7 @@ export class FormParcoursComponent implements OnInit, OnChanges {
       this.ajouterParcours(parcours);
     }else {
       //alors on est dans editParcours
-      this.supprimerParcours(this.idParcours, parcours);
+      this.modifierParcours(this.idParcours, parcours);
     }
   }
 
@@ -117,7 +117,7 @@ export class FormParcoursComponent implements OnInit, OnChanges {
     });
   }
 
-  supprimerParcours(id:any, parcours:any){
+  modifierParcours(id:any, parcours:any){
     this.parcoursService.editParcours(id, parcours)
     .pipe(takeUntil(this.destroy$))
       .subscribe((_res: any[]) => {

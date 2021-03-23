@@ -27,8 +27,8 @@
                 <!-- Ajout des stages de la BDD -->
                 <tr *ngFor="let stage of getItems()">
                     <td><a [routerLink]="['/liste-stages', stage._id]">{{ stage.titre }}</a></td>
-                    <td>{{ stage.entreprise.nomComplet }}</td>
-                    <td>{{ stage.parcours.nomComplet }}</td>
+                    <td>{{ stage.entreprise }}</td>
+                    <td>{{ stage.parcours }}</td>
                     <!-- <td>{{ stage.promotions }}</td>-->
                     <td>2020 - 2021</td>
                     <td>{{ stage.duree }} mois</td>
@@ -58,7 +58,9 @@
         role="dialog" 
         id="modifier">
     <span title>Modifier le Stage : {{ selectItem.titre | uppercase}} </span>
-    <app-form-stage content></app-form-stage>
+    <app-form-stage content [editStage]="true" 
+                            [selectedStage]="selectItem"
+                            (stageEvent)="updateTable($event)" ></app-form-stage>
 </app-modal>
 
 <!-- Modal pour supprimer l'objet selectionné -->
@@ -78,5 +80,5 @@
         role="dialog" 
         id="ajouter">
         <span title>Ajouter le stage</span>
-        <app-form-stage content></app-form-stage>
+        <app-form-stage content [addStage]="true" (stageEvent)="updateTable($event)" ></app-form-stage>
 </app-modal>

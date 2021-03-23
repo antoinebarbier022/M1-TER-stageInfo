@@ -6,7 +6,7 @@ import { StageService } from 'src/app/core/services/stage.service';
 
 import { CommonListingTable } from 'src/app/shared/classes/common-listing-table';
 import { ActivatedRoute } from '@angular/router';
-import { StageModel } from 'src/app/core/models/stageModel';
+import { StageModel } from 'src/app/core/models/StageModel';
 
 @Component({
   selector: 'app-list-stages',
@@ -24,8 +24,8 @@ export class ListStagesComponent extends CommonListingTable implements OnInit {
     super();
     this.visibleProperties = [
       { name: 'titre', sorted: false },
-      { name: 'entreprise.nomComplet',sorted: false },
-      { name: 'parcours.nomComplet',sorted: false },
+      { name: 'entreprise',sorted: false },
+      { name: 'parcours',sorted: false },
       { name: 'duree',sorted: false },
       { name: 'etat',sorted: false }
     ];
@@ -34,7 +34,6 @@ export class ListStagesComponent extends CommonListingTable implements OnInit {
 
   ngOnInit(): void {
     this.allItems = this.route.snapshot.data.allStages;
-    console.log(sessionStorage.getItem('userid'));
   }
 
   ngOnDestroy() : void {
@@ -80,7 +79,6 @@ export class ListStagesComponent extends CommonListingTable implements OnInit {
     this.stageService.deleteStageById(id)
     .pipe(takeUntil(this.destroy$))
       .subscribe((_res: any[]) => {
-        console.log(_res);
         // On supprime de l'affichage le parcours (on sait qu'il est supprimer de la base de donnée donc on peut le supprimer sans recharger les données distantes)
         this.allItems = this.allItems.filter((object: { _id: any; }) => { return object._id != id; });
       });
