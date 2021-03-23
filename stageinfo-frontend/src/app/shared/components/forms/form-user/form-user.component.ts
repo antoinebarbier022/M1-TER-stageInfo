@@ -58,12 +58,21 @@ export class FormUserComponent implements OnInit {
   ngOnInit(): void {
     this.initForm();
 
-
     if(this.editUser){
       this.idUser = this.selectedUser._id;
+      this.setInputForm(this.selectedUser._id);
     }
 
     this.displaySection(this.user.role);
+  }
+
+  // lorsque le user selectionner à changer :
+  ngOnChanges(){
+    this.initForm();
+    if(this.editUser){  // Si on est sur le formulaire edit parcours alors on remplie les champs
+      this.idUser = this.selectedUser._id;
+      this.setInputForm(this.selectedUser._id);
+    } 
   }
 
   initForm(){
@@ -87,6 +96,35 @@ export class FormUserComponent implements OnInit {
     });
   }
 
+  setInputForm(id:any){
+    // récupération des données du user
+    this.userService.getUserById(id)
+      .pipe(takeUntil(this.destroy$))
+      .subscribe((_parcours: userModel) => {
+        this.user = _parcours;
+        // On set les données du user dans le formulaire
+        this.userForm.patchValue({
+          nom: this.user.nom,
+          prenom: this.user.prenom,
+          email: this.user.email,
+          telephone: this.user.telephone,
+          fax: this.user.fax,
+          password: this.user.password,
+          role: this.user.role,
+
+          // Étudiant
+          numeroEtudiant: this.user.numeroEtudiant,
+          promotion: this.user.promotion,
+          parcours: this.user.parcours,
+
+          // Entreprise
+          fonction: this.user.fonction,
+          entreprise: this.user.entreprise
+        });
+      });
+  }
+  
+
 
   onSubmitForm(){
     const formValue = this.userForm.value;
@@ -109,6 +147,8 @@ export class FormUserComponent implements OnInit {
       formValue['fonction'],
       formValue['entreprise']
     );
+
+    console.log(newUser);
     
     if(this.addUser){
       this.userService.addUser(newUser).subscribe(x => {
@@ -117,7 +157,7 @@ export class FormUserComponent implements OnInit {
     }
     else{
       newUser.email = this.selectedUser.email;
-      this.userService.updateUser(this.idUser,newUser).subscribe(x => {
+      this.userService.updateUser(this.idUser, newUser).subscribe(x => {
         console.log(x);
       });
     }
