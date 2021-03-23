@@ -77,7 +77,7 @@ const routes: Routes = [
       }
   },
 
-  { path: 'saisir-stage', component: AddStageComponent, canActivate: [AuthGuardService]},
+  { path: 'saisir-stage', component: AddStageComponent, canActivate: [AuthGuardService, RoleGuard]},
 
   // route users
   

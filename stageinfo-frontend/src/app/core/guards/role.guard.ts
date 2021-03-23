@@ -27,17 +27,18 @@ export class RoleGuard implements CanActivate {
     const decodedToken = jwtDecode<IToken>(this.auth.getJwtToken() || '');
     //var role = this.auth.getRole();
     let role = decodedToken.role;
+    console.log('ROOOOOOOOOOOOOOOOOOOOOOLE : ' + role);
     const path = route.url[0].path;
 
     // ---------------------------------------------------------------------------------------------------
     // ---------------------------------------------------------------------------------------------------
     // pour les test : si on est administrateur alors le role pris en compte par le guards est le viewRole
     // ---------------------------------------------------------------------------------------------------
-    if(this.auth.getRole() == 'admin'){
+    /*if(this.auth.getRole() == 'admin'){
       role = this.auth.getViewRole();
     }else{
       role = this.auth.getRole();
-    }
+    }*/
     // ---------------------------------------------------------------------------------------------------
     // ---------------------------------------------------------------------------------------------------
 
