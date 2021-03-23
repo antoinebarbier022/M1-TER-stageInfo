@@ -23,9 +23,9 @@
     <fieldset *ngIf="displayFielset('stage')">
         <!-- Titre du stage -->
         <div class="form-group-row">
-            <label  for="inputTitre">Titre</label>
-            <input  type="text" 
-                    id="inputTitre"  
+            <label  [for]="addStage ? 'addInputTitre':'editInputTitre'">Titre</label>
+            <input  [id]="addStage ? 'addInputTitre':'editInputTitre'" 
+                    type="text" 
                     class="form-control"
                     placeholder="Titre du stage" 
                     name="titre"
@@ -33,8 +33,8 @@
         </div>
         <!-- Niveau requis du stage -->
         <div class="form-group-row">
-            <label for="inputNiveau">Niveau requis</label>
-            <select  id="inputNiveau" 
+            <label  [for]="addStage ? 'addInputNiveauRequis':'editInputNiveauRequis'">Niveau requis</label>
+            <select [id]="addStage ? 'addInputNiveauRequis':'editInputNiveauRequis'"
                     class="form-control" 
                     name="niveauRequis" 
                     formControlName="niveauRequis">
@@ -44,8 +44,8 @@
         </div>
         <!--  Parcours recommander pour le stage -->
         <div class="form-group-row">
-            <label for="inputParcours">Parcours</label>
-            <select id="inputParcours" 
+            <label  [for]="addStage ? 'addInputParcours':'editInputParcours'">Parcours</label>
+            <select [id]="addStage ? 'addInputParcours':'editInputParcours'"  
                     class="form-control" 
                     name="parcours"
                     formControlName="parcours">
@@ -55,8 +55,8 @@
         </div>
         <!--  Description du stage -->
         <div class="form-group-row">
-            <label for="inputDescription">Description</label>
-            <textarea   id="inputDescription"
+            <label      [for]="addStage ? 'addInputDescription':'editInputDescription'">Description</label>
+            <textarea   [id]="addStage ? 'addInputDescription':'editInputDescription'"
                         class="form-control"  
                         placeholder="Description du stage"
                         rows="3"
@@ -66,9 +66,9 @@
         </div>
         <!-- Durée du stage -->
         <div class="form-group-row">
-            <label for="inputDuree">Durée</label>
-            <input  type="number" 
-                    id="inputDuree" 
+            <label  [for]="addStage ? 'addInputDuree':'editInputDuree'">Durée</label>
+            <input  [id]="addStage ? 'addInputDuree':'editInputDuree'"
+                    type="number" 
                     class="form-control" 
                     placeholder="Nombre de mois"
                     name="duree"
@@ -77,9 +77,9 @@
 
         <!-- Date début du stage -->
         <div class="form-group-row">
-            <label for="inputDateDebut">Date de début</label>
-            <input  type="date" 
-                    id="inputDateDebut" 
+            <label  [for]="addStage ? 'addInputDateDebut':'editInputDateDebut'">Date de début</label>
+            <input  [id]="addStage ? 'addInputDateDebut':'editInputDateDebut'"
+                    type="date" 
                     class="form-control" 
                     name="dateDebut"
                     formControlName="dateDebut">
@@ -90,10 +90,10 @@
      <fieldset *ngIf="displayFielset('entreprise')">
         <!-- Entreprise dans laquel est l'utilisateur -->
         <div class="form-group-row">
-            <label for="inputEntreprise">Entreprise</label>
-            <input  type="text" 
+            <label  [for]="addStage ? 'addInputEntreprise':'editInputEntreprise'">Entreprise</label>
+            <input  [id]="addStage ? 'addInputEntreprise':'editInputEntreprise'"
+                    type="text" 
                     class="form-control"
-                    id="inputEntreprise"
                     list="entreprise-list"
                     placeholder="Nom de l'entreprise"
                     name="entreprise"
@@ -110,8 +110,8 @@
     <fieldset *ngIf="displayFielset('more')">
         <!-- Compétences attendu pour le stage -->
         <div class="form-group-row">
-            <label for="inputCompetences">Compétences attendu</label>
-            <textarea   id="inputCompetences"
+            <label      [for]="addStage ? 'addInputCompetences':'editInputCompetences'">Compétences attendu</label>
+            <textarea   [id]="addStage ? 'addInputCompetences':'editInputCompetences'"
                         class="form-control"  
                         rows="2"
                         name="competences"
@@ -121,8 +121,8 @@
         </div>
         <!-- Conditions du stage -->
         <div class="form-group-row">
-            <label for="inputConditions">Conditions</label>
-            <textarea   id="inputConditions"
+            <label      [for]="addStage ? 'addInputConditions':'editInputConditions'">Conditions</label>
+            <textarea   [id]="addStage ? 'addInputConditions':'editInputConditions'"
                         class="form-control"  
                         rows="2"
                         name="conditions"
@@ -131,9 +131,9 @@
         </div>
         <!-- Date début du stage -->
         <div class="form-group-row">
-            <label for="inputSalaire">Salaire</label>
+            <label [for]="addStage ? 'addInputSalaire':'editInputSalaire'">Salaire</label>
             <div class="input-group">
-                <input type="number" class="form-control" placeholder="">
+                <input type="number" class="form-control" placeholder="" [id]="addStage ? 'addInputSalaire':'editInputSalaire'">
                 <select class="custom-select">
                     <option>par mois (brut)</option>
                     <option>par heure (brut)</option>
@@ -142,8 +142,8 @@
         </div>
         <!-- Avantages du stage -->
         <div class="form-group-row">
-            <label for="inputAvantages">Avantages</label>
-            <textarea   id="inputAvantages"
+            <label      [for]="addStage ? 'addInputAvantages':'editInputAvantages'">Avantages</label>
+            <textarea   [id]="addStage ? 'addInputAvantages':'editInputAvantages'"
                         class="form-control"  
                         rows="2"
                         name="avantages"
@@ -156,20 +156,21 @@
     <!-- Les boutons -->
     <div class="block-btn">
         <button *ngIf="!lastPage()" 
-            type="button" id="nextButton" name="nextButton" value="Next"
+            type="button" [id]="addStage ? 'addNextButton':'editNextButton'" name="nextButton" value="Next"
             (click)="next()" 
             [disabled]="disabledNext()" 
             class="btn btn-primary btn-sm btn-next" >
             Suivant
         </button>
         <button *ngIf="lastPage()" 
-                type="submit" id="addButton" name="addButton" value="Submit" 
+                type="submit" [id]="addStage ? 'addSubmitButton':'editSubmitButton'" name="addButton" value="Submit" 
                 (click)="onSubmitForm()" 
                 data-dismiss="modal"
                 class="btn btn-primary btn-sm btn-done">
             Terminer
         </button>
         <button *ngIf="!firstPage()" 
+            type="button" [id]="addStage ? 'addPredButton':'editPredButton'" name="predButton" value="Pred"
             (click)="pred()" 
             class="btn btn-secondary btn-sm btn-pred" >
             Précédent
