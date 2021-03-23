@@ -130,5 +130,6 @@ export class AuthService {
     sessionStorage.removeItem('userid')
     this.viewAllRoute = false;
     this.isAuth$.next(false);
+    this.router.navigate(['/login']);
   }
 }
