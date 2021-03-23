@@ -58,11 +58,6 @@ export class ListUsersComponent extends CommonListingTable implements OnInit, On
     this.allItems[index] = item;  // On met a jour le tableau local avec les nouvelles datas
   }
 
-
-  addUser(item:any){
-    console.log(item);
-  }
-
   /**
    * @fonction deleteParcours
    * @description Supprime le parcours selectionné sur la base de donnée et met à jour le tableau local

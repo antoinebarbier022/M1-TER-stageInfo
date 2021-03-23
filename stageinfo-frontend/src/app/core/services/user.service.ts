@@ -31,6 +31,10 @@ export class UserService {
     return this.httpClient.put(this.urlBase+'api/auth/' + id, user); 
   }
 
+  deleteUserById(id: any){
+    return this.httpClient.delete(this.urlBase+'/api/stage/'+id);
+  }
+
   getemailById(id: string | null): Observable<any> {
     return this.httpClient.get(this.urlBase+'api/user/email/'+id);
   }
