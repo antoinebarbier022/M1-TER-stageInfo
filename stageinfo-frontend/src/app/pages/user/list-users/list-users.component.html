@@ -53,7 +53,13 @@
         tabindex="-1" 
         role="dialog" 
         id="modifier">
-    <span title>Modifier l'utilisateur : {{ selectItem.nom }}</span>
+    <span title>Modifier l'utilisateur : {{ selectItem.nom + ' ' + selectItem.prenom }}</span>
+    <app-form-user content 
+        [editUser]="true"
+        [idUser]="selectItem._id"
+        [selectedUser]="selectItem"
+        (userEvent)="updateTable($event)">
+    </app-form-user>
 </app-modal>
 
 <!-- Modal pour supprimer l'objet selectionné -->
@@ -73,5 +79,8 @@
         role="dialog" 
         id="ajouter">
         <span title>Ajouter un utilisateur</span>
-        <app-form-user content></app-form-user>
+        <app-form-user content 
+            [addUser]="true"
+            (userEvent)="addUser($event)">
+        </app-form-user>
 </app-modal>

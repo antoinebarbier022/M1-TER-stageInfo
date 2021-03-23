@@ -46,8 +46,19 @@
             </select>
         </div>
 
+        <!-- Email de l'utilisateur -->
+        <div class="form-group-row" *ngIf="addUser">
+            <label [for]="addUser ? 'addUserEmail':'editUserEmail'">Email</label>
+            <input  type="text" 
+                    [id]="addUser ? 'addUserEmail':'editUserEmail'"
+                    class="form-control"
+                    placeholder="Email de l'utilisateur" 
+                    name="email"
+                    formControlName="email">
+        </div>
+
         <!-- Mot de passe de l'utilisateur -->
-        <div class="form-group-row">
+        <div class="form-group-row" *ngIf="addUser">
             <label [for]="addUser ? 'addUserPassword':'editUserPassword'">Mot de passe</label>
             <input  type="password" 
                     [id]="addUser ? 'addUserPassword':'editUserPassword'"
@@ -146,15 +157,6 @@
             <option>Ubisoft</option>
         </datalist>
     </fieldset>
-
-    <!-- Soumettre -->
-    <button
-        type="submit"
-        (click)="onSubmitForm();"
-        data-dismiss="modal"
-        class="btn btn-primary btn-sm btn-ajouter">
-        Ajouter
-    </button>
 
     <!--------------------------------->
     <!-- Si Modification Utilisateur -->

@@ -61,7 +61,6 @@ export class FormUserComponent implements OnInit {
 
     if(this.editUser){
       this.idUser = this.selectedUser._id;
-      
     }
 
     this.displaySection(this.user.role);
@@ -87,6 +86,25 @@ export class FormUserComponent implements OnInit {
       entreprise:''
     });
   }
+
+  /*
+  setInputForm(id:any){
+    // récupération des données du parcours
+    this.parcoursService.getParcoursById(id)
+      .pipe(takeUntil(this.destroy$))
+      .subscribe((_parcours: ParcoursModel) => {
+        this.parcoursData = _parcours;
+        // On set les données du parcours dans le formulaire
+        this.parcoursForm.patchValue({
+          acronyme:this.parcoursData.acronyme,
+          niveau:this.parcoursData.niveau,
+          intitule:this.parcoursData.intitule,
+          description:this.parcoursData.description,
+          responsable:this.parcoursData.responsable
+        });
+      });
+  }
+  */
 
   onSubmitForm(){
     const formValue = this.userForm.value;
