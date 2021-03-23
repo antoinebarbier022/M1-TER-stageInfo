@@ -1,6 +1,6 @@
 export abstract class CommonListingTable {
 
-    protected visibleProperties: any;
+    public visibleProperties: any;
     protected allItems: Array<any>;
     public commonProperties: {
         searchFilter: string,
