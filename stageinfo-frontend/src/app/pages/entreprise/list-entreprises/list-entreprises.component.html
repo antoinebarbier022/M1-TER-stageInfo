@@ -21,8 +21,8 @@
             <tbody>
                 <tr *ngFor="let entreprise of getItems()">
                     <td><a [routerLink]="['/liste-entreprises', entreprise._id]">{{ entreprise.nom }}</a></td>
-                    <td>{{ entreprise.nom }}</td>
-                    <td>{{ entreprise.nom }}</td>
+                    <td>{{ entreprise.ville }}</td>
+                    <td>{{ entreprise.responsable }}</td>
                     <td class="table-action">
                         <!-- Bouton edit => ouvre un modal avec le formulaire de modification -->
                         <app-button-edit data-toggle="modal" (click)="selectedItem(entreprise)" data-target="#modifier"></app-button-edit>
@@ -47,7 +47,12 @@
         tabindex="-1" 
         role="dialog" 
         id="modifier">
-    <span title>Modifier l'entreprise : nom entreprise</span>
+    <span title>Modifier l'entreprise : {{ selectItem.nom | uppercase }}</span>
+    <app-form-entreprise content [editEntreprise]="true" 
+                                [idEntreprise]="selectItem._id"
+                                [selectedEntreprise]="selectItem"
+                                (entrepriseEvent)="updateTable($event)">
+    </app-form-entreprise>
 </app-modal>
 
 <!-- Modal pour supprimer l'objet selectionné -->
@@ -56,7 +61,7 @@
         role="dialog" 
         id="suppression">
     <span title> Supprimer l'entreprise </span>
-    <p content>Confirmer la suppression de l'entreprise : <strong> nom entreprise</strong></p>
+    <p content>Confirmer la suppression de l'entreprise : <strong> {{ selectItem.nom | uppercase }}</strong></p>
     <button button1 type="button" class="btn btn-secondary btn-sm" data-dismiss="modal">Annuler</button>
     <button button2 (click)="deleteEntreprise(selectItem._id)" type="button" class="btn btn-danger btn-sm" data-dismiss="modal">Supprimer</button>
 </app-modal>
@@ -67,5 +72,6 @@
         role="dialog" 
         id="ajouter">
         <span title>Ajouter une entreprise</span>
-        
+
+    <app-form-entreprise content [addEntreprise]="true"> </app-form-entreprise>
 </app-modal>

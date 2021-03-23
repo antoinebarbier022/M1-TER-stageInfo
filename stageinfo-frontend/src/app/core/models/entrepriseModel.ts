@@ -1,22 +1,28 @@
-export class EntrepriseModel{
-    adresse= {
-        voie:"",
-        ville:"",
-        codePostal: "",
-        complement: "",
-    };
+import { AdresseModel } from "./AdresseModel";
 
+export class EntrepriseModel{
     constructor(
         public _id: string ="",
-        public idRespAdm: string = "",
         public nom: string  = "",
-        public website: string  = "",
-        public description: string  = "",
-        public siret: string  = "",
-        public telephone: string  = "",
-        public fax: string  = "",
         public secteurActivite: string = "",
+        public description: string  = "",
+        
+        //public adresse: AdresseModel = new AdresseModel(),
+
+        public voie:string ="",
+        public codePostal: string ="",
+        public ville:string ="",
+        public pays: string ="",
+
+        public siteweb: string  = "",
+        public tel: string  = "",
+        public fax: string  = "",
+        
+        public siret: string  = "",
+        
         public nbSalaries: string = "",
+        
         public local: boolean = false,
-        public chiffreAffaire: string = ""){}
+        public chiffreAffaire: string = "",
+        public responsable:string = ""){}
 }

@@ -32,7 +32,6 @@ export class ListEntreprisesComponent extends CommonListingTable implements OnIn
 
   ngOnInit(): void {
     this.allItems = this.route.snapshot.data.entreprises;  
-    console.log(this.allItems);
   }
 
   /**

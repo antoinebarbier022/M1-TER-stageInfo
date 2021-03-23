@@ -1,4 +1,4 @@
-<form [formGroup]="parcoursForm"(ngSubmit)="onSubmitForm()">
+<form [formGroup]="parcoursForm" (ngSubmit)="onSubmitForm()">
     <!-- Nom du parcours -->
     <div class="form-group-row">
         <label [for]="addParcours ? 'addInputAcronyme':'editInputAcronyme'">Acronyme</label>
@@ -58,7 +58,12 @@
 
     <!-- Si Modification Parcours -->
     <!-- On place le bouton click car sinon on ne peut pas executer la fonction car le data-dismiss apparait avant-->
-    <button *ngIf="editParcours" type="submit" (click)="onSubmitForm()" data-dismiss="modal" class="btn btn-primary btn-sm btn-modifier" [disabled]="parcoursForm.pristine">
+    <button *ngIf="editParcours" 
+            type="submit" 
+            (click)="onSubmitForm()" 
+            data-dismiss="modal" 
+            class="btn btn-primary btn-sm btn-modifier" 
+            [disabled]="parcoursForm.pristine">
         Modifier
     </button>
     <!-- Si Ajouter un Parcours -->

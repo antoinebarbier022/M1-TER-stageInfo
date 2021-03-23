@@ -1,17 +1,6 @@
 const Entreprise = require('../models/entrepriseModel');
 
-/**-------------------CREATION-ENTREPRISE-----------------------**/
 
-exports.createEntreprise = (req, res, next) => {
-  const entreprise = new Entreprise ({
-      ...req.body
-    });
-  entreprise.save()
-      .then(() => {
-          res.status(201).json({message: 'Entreprise created!'})
-      })
-      .catch((error) => { res.status(400).json({ error: error});});
-};
 
 /**----------------------AFFICHAGE--ENTREPRISE-------------------**/
 
@@ -42,6 +31,41 @@ exports.editEntreprise = (req, res, next) => {
     .catch((error) => { res.status(400).json({ error: error});});
 };
 
+/**-------------------CREATION-ENTREPRISE-----------------------**/
+
+/**
+ * @api {post} /entreprise Create a new Entreprise
+ * @apiName createEntreprise
+ * @apiGroup Entreprise
+ */
+exports.createEntreprise = (req, res, next) => {
+    console.log(req.body);
+
+    const entreprise = new Entreprise({
+        nom: req.body.nom,
+        secteurActivite: req.body.secteurActivite,
+        description: req.body.description,
+        voie: req.body.voie,
+        codePostal: req.body.codePostal,
+        ville: req.body.ville,
+        siteweb: req.body.siteweb,
+        tel: req.body.tel,
+        fax: req.body.fax,
+        siret: req.body.siret,
+        nbSalaries: req.body.nbSalaries,
+        local: req.body.local,
+        chiffreAffaire: req.body.chiffreAffaire,
+    });
+    console.log(req.body);
+
+    entreprise.save()
+        .then(() => {
+            res.status(201).json({
+                message: 'Post saved successfully!'
+            });
+        })
+        .catch((error) => { res.status(400).json({ error: error});});
+};
 /**-----------------SUPPRESSION---ENTREPRISE-------------------**/
 
 exports.deleteOneEntreprise = (req, res, next) => {

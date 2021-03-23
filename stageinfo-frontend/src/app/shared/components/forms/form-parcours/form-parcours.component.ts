@@ -41,7 +41,8 @@ export class FormParcoursComponent implements OnInit, OnChanges {
 
   ngOnInit() {
     this.initForm();
-    if(this.editParcours){  // Si on est sur le formulaire parcours alors on remplie les champs
+    if(this.editParcours){  // Si on est sur le formulaire edit parcours alors on remplie les champs
+      this.idParcours = this.selectedParcours._id;
       this.setInputForm(this.selectedParcours._id);
     } 
   }
@@ -49,10 +50,12 @@ export class FormParcoursComponent implements OnInit, OnChanges {
   // lorsque le parcours selectionner à changer :
   ngOnChanges(){
     this.initForm();
-    if(this.editParcours){  // Si on est sur le formulaire parcours alors on remplie les champs
+    if(this.editParcours){  // Si on est sur le formulaire edit parcours alors on remplie les champs
+      this.idParcours = this.selectedParcours._id;
       this.setInputForm(this.selectedParcours._id);
     } 
   }
+
   ngOnDestroy() {
     this.destroy$.next(true);
     // Now let's also unsubscribe from the subject itself:
