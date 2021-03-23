@@ -127,10 +127,15 @@ export class FormUserComponent implements OnInit {
       formValue['fonction'],
       formValue['entreprise']
     );
-
-    this.userService.addUser(newUser).subscribe(x => {
-      console.log(x);
-    });
+    
+    if(this.addUser){
+      this.userService.addUser(newUser).subscribe(x => {
+        console.log(x);
+      });
+    }
+    else{
+      console.log('ici on update');
+    }
   }
 
   ngOnDestroy() {
