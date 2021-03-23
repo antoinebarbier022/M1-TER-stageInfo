@@ -26,7 +26,7 @@ export class ListEtudiantsComponent extends CommonListingTable implements OnInit
       { name: 'email', sorted: false },
       { name: 'role', sorted: false }
     ];
-    this.selectItem = new userModel();
+    //this.selectItem = new userModel();
   }
 
   ngOnInit(): void {

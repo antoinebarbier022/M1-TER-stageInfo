@@ -1,31 +1,32 @@
-<form>
+<form [formGroup]="userForm" (ngSubmit)="onSubmitForm()">
     <!-- Nom de l'utilisateur -->
     <div class="form-group-row">
-        <label [for]="">Nom</label>
+        <label for="nom">Nom</label>
         <input  type="text" 
-                [id]=""  
+                id="nom"  
                 class="form-control"
                 placeholder="Nom de l'utilisateur" 
                 name="parcoursAcronyme"
-                formControlName="acronyme">
+                formControlName="nom">
     </div>
     <!-- Prénom de l'utilisateur -->
     <div class="form-group-row">
-        <label [for]="">Prénom</label>
+        <label for="prenom">Prénom</label>
         <input  type="text" 
-                [id]=""  
+                id="prenom"  
                 class="form-control"
                 placeholder="Prénom de l'utilisateur" 
                 name="parcoursAcronyme"
-                formControlName="acronyme">
+                formControlName="prenom">
     </div>
     <!-- Rôle de l'utilisateur -->
     <div class="form-group-row">
-        <label [for]="">Rôle</label>
-        <select [id]=""
+        <label (click)="printRole()" [for]="role">Rôle</label>
+        <select id="role"
                 class="form-control" 
                 name="niveau"
-                formControlName="niveau">
+                formControlName="role"
+                [(ngModel)]="role">
             <option value="" disabled selected>Selectionner un rôle</option>
             <option value="invite">Invité</option>
             <option value="etudiant">Étudiant</option>
@@ -38,30 +39,29 @@
     </div>
     <!-- Email de l'utilisateur -->
     <div class="form-group-row">
-        <label [for]="">Email</label>
+        <label for="email">Email</label>
         <input  type="text" 
-                [id]="" 
+                id="email" 
                 class="form-control"
                 placeholder="Email de l'utilisateur" 
                 name="parcoursIntitule"
-                formControlName="intitule">
+                formControlName="email">
     </div>
     <!-- Mot de passe de l'utilisateur -->
     <div class="form-group-row">
-        <label [for]="">Mot de passe</label>
+        <label for="hash">Mot de passe</label>
         <input  type="password" 
-                [id]="" 
+                id="hash" 
                 class="form-control"
                 placeholder="Mot de passe de l'utilisateur" 
                 name="parcoursIntitule"
-                formControlName="intitule">
+                formControlName="hash">
     </div>
     <!-- Si Ajouter un Utilisateur -->
     <button
-            type="submit"
-            data-dismiss="modal"
-            class="btn btn-primary btn-sm btn-ajouter"
-            >
+        type="submit"
+        data-dismiss="modal"
+        class="btn btn-primary btn-sm btn-ajouter">
         Ajouter
     </button>
 </form>

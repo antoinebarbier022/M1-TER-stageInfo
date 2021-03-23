@@ -1,6 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 
-import {FormBuilder, FormGroup, Validators} from "@angular/forms";
+import { FormBuilder, FormGroup, Validators, ReactiveFormsModule} from "@angular/forms";
 import { ActivatedRoute, Router } from '@angular/router';
 import { takeUntil } from 'rxjs/operators';
 import { Subject } from 'rxjs';
@@ -26,29 +26,66 @@ export class FormUserComponent implements OnInit {
 
   Message: string = "";
 
-  user: userModel = new userModel();
+  //user: userModel = new userModel();
 
   // Boolean pour l'affichage des sections
   displaySectionEtudiant = false;
   displaySectionCoordonnees = false;
   displaySectionEntreprise = false;
 
-  roles = ["invite", "etudiant","tuteur", "respEntreprise", "secretaire", "admin"];
-  promotions = ["2016/2017", "2017/2018","2018/2019", "2019/2020", "2020/2021"];
-  parcours = ["M2 AIGLE", "M2 MIT","M2 DECOL", "M2 IMAGINA"];
+  public role: string = '';
+
+  // @ts-ignore
+  userForm: FormGroup;
+
+  printRole(): void{
+    console.log('selected role : ' + this.role);
+  }
+
+  //roles = ["invite", "etudiant","tuteur", "respEntreprise", "secretaire", "admin"];
+  //promotions = ["2016/2017", "2017/2018","2018/2019", "2019/2020", "2020/2021"];
+  //parcours = ["M2 AIGLE", "M2 MIT","M2 DECOL", "M2 IMAGINA"];
 
   destroy$: Subject<boolean> = new Subject<boolean>();
 
-  constructor(private route:ActivatedRoute,
+  constructor(private formBuilder: FormBuilder,
+              private route:ActivatedRoute,
               private router: Router,
               private userService: UserService,
               private auth: AuthService) { }
 
   ngOnInit(): void {
+    /*
     if(!this.addUser){
       this.user = this.route.snapshot.data.user;
     }
     this.displaySection(this.user.role);
+    */
+  }
+
+  initForm(){
+    this.userForm = this.formBuilder.group({
+      nom:['', Validators.required],
+      prenom:['', Validators.required],
+      email:['', Validators.required],
+      telephone:['', Validators.required],
+      fax:[''],
+      hash:['', Validators.required],
+      role:['', Validators.required],
+
+      // Étudiant
+      numeroEtudiant:[''],
+      promotion:[''],
+      parcours:[''],
+
+      // Entreprise
+      fonction:[''],
+      entreprise:['']
+    });
+  }
+
+  onSubmitForm(){
+    
   }
 
   ngOnDestroy() {
@@ -57,6 +94,7 @@ export class FormUserComponent implements OnInit {
   }
 
   getUser(id:any) {
+    /*
     this.userService.getUserById(id)
       .pipe(takeUntil(this.destroy$))
       .subscribe((_user: userModel) => {
@@ -69,6 +107,7 @@ export class FormUserComponent implements OnInit {
         }
       }
     );
+    */
   }
 
 
@@ -100,6 +139,7 @@ export class FormUserComponent implements OnInit {
     }
   }
   onSignup() {
+    /*
     const prenom = this.user.prenom;
     const nom = this.user.nom;
     const email = this.user.email;
@@ -122,6 +162,7 @@ export class FormUserComponent implements OnInit {
         this.Message = error.message;
       }
     );
+    */
   }
 
 
