@@ -84,6 +84,22 @@ exports.getRole = ((req, res, next) => {
         .catch(error => res.status(404).json({ error }))
 });
 
+/**
+ * @api {get} /auth/getuser/:role Get a user by role
+ * @apiName getAllUserByRole
+ * @apiGroup User
+ *
+ * @apiParam {string} role User's
+ *
+ */
+ exports.getAllUserByRole = ((req, res, next) => {
+    Salle.findOne({
+        role: req.params.role
+    })
+    .then(salle => res.status(200).json(salle))
+    .catch(error => res.status(404).json({ error }))
+});
+
 
 /**
  * @api {put} /auth/:id Edit a User
