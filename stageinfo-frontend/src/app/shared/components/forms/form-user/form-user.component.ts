@@ -87,24 +87,6 @@ export class FormUserComponent implements OnInit {
     });
   }
 
-  /*
-  setInputForm(id:any){
-    // récupération des données du parcours
-    this.parcoursService.getParcoursById(id)
-      .pipe(takeUntil(this.destroy$))
-      .subscribe((_parcours: ParcoursModel) => {
-        this.parcoursData = _parcours;
-        // On set les données du parcours dans le formulaire
-        this.parcoursForm.patchValue({
-          acronyme:this.parcoursData.acronyme,
-          niveau:this.parcoursData.niveau,
-          intitule:this.parcoursData.intitule,
-          description:this.parcoursData.description,
-          responsable:this.parcoursData.responsable
-        });
-      });
-  }
-  */
 
   onSubmitForm(){
     const formValue = this.userForm.value;
@@ -134,6 +116,7 @@ export class FormUserComponent implements OnInit {
       });
     }
     else{
+      newUser.email = this.selectedUser.email;
       this.userService.updateUser(this.idUser,newUser).subscribe(x => {
         console.log(x);
       });
@@ -144,24 +127,6 @@ export class FormUserComponent implements OnInit {
     this.destroy$.next(true);
     this.destroy$.unsubscribe();
   }
-
-  getUser(id:any) {
-    /*
-    this.userService.getUserById(id)
-      .pipe(takeUntil(this.destroy$))
-      .subscribe((_user: userModel) => {
-        this.user = _user;
-        //this.displaySection(this.user.role);
-      }, (_error:any) =>{
-        // redirection vers la page d'erreur 404 si le stage n'est pas trouvé
-        if(_error.status == "404"){
-          this.router.navigate(['not-found']);
-        }
-      }
-    );
-    */
-  }
-
 
   displaySection(role : string){
 
@@ -191,32 +156,4 @@ export class FormUserComponent implements OnInit {
         break;
     }
   }
-  onSignup() {
-    /*
-    const prenom = this.user.prenom;
-    const nom = this.user.nom;
-    const email = this.user.email;
-    const password = this.user.hash;
-    const rolee = this.user.role;
-    const numeroEtudiant=this.user.numeroEtudiant;
-    const Promotion="" ;//  à faire
-    const idParcours= "" ;// à faire
-    const Fax = this.user.fax;
-    const telephone = this.user.telephone;
-    const fonction = this.user.fonction;
-    const identreprise =" " ;// à faire
-    this.auth.createNewUser(nom, prenom, email, password,rolee,numeroEtudiant,Promotion,idParcours,Fax,telephone,fonction,identreprise).then(
-      () => {
-        this.Message = "Utilisateur crée !! "
-      }
-    ).catch(
-      (error) => {
-
-        this.Message = error.message;
-      }
-    );
-    */
-  }
-
-
 }
