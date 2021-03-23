@@ -8,6 +8,7 @@ import { Subject } from 'rxjs';
 import { userModel } from 'src/app/core/models/userModel';
 import { AuthService } from 'src/app/core/services/auth.service';
 import { UserService } from 'src/app/core/services/user.service';
+import { UserModule } from 'src/app/pages/user/user.module';
 
 
 @Component({
@@ -85,7 +86,25 @@ export class FormUserComponent implements OnInit {
   }
 
   onSubmitForm(){
-    
+    const formValue = this.userForm.value;
+    const newUser = new userModel(
+      formValue['nom'],
+      formValue['prenom'],
+      formValue['email'],
+      formValue['telephone'],
+      formValue['fax'],
+      formValue['hash'],
+      formValue['role'],
+
+      // Étudiant
+      formValue['numeroEtudiant'],
+      formValue['promotion'],
+      formValue['parcours'],
+
+      // Entreprise
+      formValue['fonction'],
+      formValue['entreprise']
+    );
   }
 
   ngOnDestroy() {
