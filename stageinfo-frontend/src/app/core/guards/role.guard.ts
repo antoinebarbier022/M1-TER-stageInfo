@@ -25,7 +25,8 @@ export class RoleGuard implements CanActivate {
 
 
     const decodedToken = jwtDecode<IToken>(this.auth.getJwtToken() || '');
-    var role = this.auth.getRole();
+    //var role = this.auth.getRole();
+    let role = decodedToken.role;
     const path = route.url[0].path;
 
     // ---------------------------------------------------------------------------------------------------

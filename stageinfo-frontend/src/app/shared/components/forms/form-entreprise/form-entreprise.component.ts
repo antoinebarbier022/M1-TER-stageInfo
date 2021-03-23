@@ -3,7 +3,7 @@ import { FormBuilder, Validators } from '@angular/forms';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 import { AdresseModel } from 'src/app/core/models/AdresseModel';
-import { EntrepriseModel } from 'src/app/core/models/EntrepriseModel';
+import { EntrepriseModel } from '../../../../core/models/entrepriseModel';
 import { EntrepriseService } from 'src/app/core/services/entreprise.service';
 
 @Component({

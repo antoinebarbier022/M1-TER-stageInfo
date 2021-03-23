@@ -21,8 +21,9 @@ export class AuthService {
 
   constructor(private router: Router,
               private http: HttpClient) {
-    const decodedToken = jwtDecode<IToken>(this.getJwtToken() || '');
-    this.role = decodedToken.role;
+    
+    //const decodedToken = jwtDecode<IToken>(this.getJwtToken() || '');
+    //this.role = decodedToken.role;
     this.viewRole = this.role;
     this.viewAllRoute = false;
   }

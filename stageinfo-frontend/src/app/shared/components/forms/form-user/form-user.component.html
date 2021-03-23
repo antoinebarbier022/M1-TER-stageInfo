@@ -1,9 +1,9 @@
-<form [formGroup]="parcoursForm"(ngSubmit)="onSubmitForm()">
+<form>
     <!-- Nom de l'utilisateur -->
     <div class="form-group-row">
-        <label [for]="addParcours ? 'addInputAcronyme':'editInputAcronyme'">Nom</label>
+        <label [for]="">Nom</label>
         <input  type="text" 
-                [id]="addParcours ? 'addInputAcronyme':'editInputAcronyme'"  
+                [id]=""  
                 class="form-control"
                 placeholder="Nom de l'utilisateur" 
                 name="parcoursAcronyme"
@@ -11,9 +11,9 @@
     </div>
     <!-- Prénom de l'utilisateur -->
     <div class="form-group-row">
-        <label [for]="addParcours ? 'addInputAcronyme':'editInputAcronyme'">Prénom</label>
+        <label [for]="">Prénom</label>
         <input  type="text" 
-                [id]="addParcours ? 'addInputAcronyme':'editInputAcronyme'"  
+                [id]=""  
                 class="form-control"
                 placeholder="Prénom de l'utilisateur" 
                 name="parcoursAcronyme"
@@ -21,8 +21,8 @@
     </div>
     <!-- Rôle de l'utilisateur -->
     <div class="form-group-row">
-        <label [for]="addParcours ? 'addInputNiveau':'editInputNiveau'">Rôle</label>
-        <select [id]="addParcours ? 'addInputNiveau':'editInputNiveau'"
+        <label [for]="">Rôle</label>
+        <select [id]=""
                 class="form-control" 
                 name="niveau"
                 formControlName="niveau">
@@ -38,9 +38,9 @@
     </div>
     <!-- Email de l'utilisateur -->
     <div class="form-group-row">
-        <label [for]="addParcours ? 'addInputIntitule':'editInputIntitule'">Email</label>
+        <label [for]="">Email</label>
         <input  type="text" 
-                [id]="addParcours ? 'addInputIntitule':'editInputIntitule'" 
+                [id]="" 
                 class="form-control"
                 placeholder="Email de l'utilisateur" 
                 name="parcoursIntitule"
@@ -48,9 +48,9 @@
     </div>
     <!-- Mot de passe de l'utilisateur -->
     <div class="form-group-row">
-        <label [for]="addParcours ? 'addInputDescription':'editInputDescription'">Mot de passe</label>
+        <label [for]="">Mot de passe</label>
         <input  type="password" 
-                [id]="addParcours ? 'addInputIntitule':'editInputIntitule'" 
+                [id]="" 
                 class="form-control"
                 placeholder="Mot de passe de l'utilisateur" 
                 name="parcoursIntitule"
