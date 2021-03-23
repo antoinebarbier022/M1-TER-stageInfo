@@ -27,13 +27,13 @@ export class FormUserComponent implements OnInit {
   Message: string = "";
 
   //user: userModel = new userModel();
+  //public role: string = '';
 
   // Boolean pour l'affichage des sections
   displaySectionEtudiant = false;
   displaySectionCoordonnees = false;
   displaySectionEntreprise = false;
 
-  //public role: string = '';
 
   // @ts-ignore
   userForm: FormGroup;
@@ -43,7 +43,7 @@ export class FormUserComponent implements OnInit {
   }*/
 
   //roles = ["invite", "etudiant","tuteur", "respEntreprise", "secretaire", "admin"];
-  //promotions = ["2016/2017", "2017/2018","2018/2019", "2019/2020", "2020/2021"];
+  promotions = ["2016/2017", "2017/2018","2018/2019", "2019/2020", "2020/2021"];
   //parcours = ["M2 AIGLE", "M2 MIT","M2 DECOL", "M2 IMAGINA"];
 
   destroy$: Subject<boolean> = new Subject<boolean>();
@@ -137,8 +137,9 @@ export class FormUserComponent implements OnInit {
 
 
   displaySection(role : string){
+
     switch (role) {
-      case "respEntreprise":
+      case "representantEntreprise":
           this.displaySectionEtudiant = false;
           this.displaySectionCoordonnees = true;
           this.displaySectionEntreprise = true;
