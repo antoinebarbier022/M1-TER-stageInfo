@@ -28,11 +28,12 @@
         <!-- Rôle de l'utilisateur -->
         <div class="form-group-row">
             <label [for]="addUser ? 'addUserRole':'editUserRole'">Rôle</label>
-            <select id="role"
+            <select [id]="addUser ? 'addUserRole':'editUserRole'"
                     class="form-control" 
                     name="role"
                     formControlName="role"
-                    (ngModelChange)="displaySection($event)">
+                    [(ngModel)]="user.role"
+                    (ngModelChange)="displaySection(user.role)">
                 <option value="" disabled selected>Selectionner un rôle</option>
                 <option value="invite">Invité</option>
                 <option value="etudiant">Étudiant</option>
@@ -49,7 +50,7 @@
         <div class="form-group-row">
             <label [for]="addUser ? 'addUserPassword':'editUserPassword'">Mot de passe</label>
             <input  type="password" 
-                    id="password" 
+                    [id]="addUser ? 'addUserPassword':'editUserPassword'"
                     class="form-control"
                     placeholder="Mot de passe de l'utilisateur" 
                     name="password"
@@ -63,9 +64,9 @@
 
         <!-- Téléphone de l'utilisateur -->
         <div class="form-group-row">
-            <label [for]="addUser ? 'addUserPhone:'editUserPhone'">Téléphone</label>
+            <label [for]="addUser ? 'addUserPhone':'editUserPhone'">Téléphone</label>
             <input  type="text" 
-                    id="telephone"  
+                    [id]="addUser ? 'addUserPhone':'editUserPhone'"
                     class="form-control"
                     placeholder="Telephone de l'utilisateur" 
                     name="telephone"
@@ -76,7 +77,7 @@
         <div class="form-group-row">
             <label [for]="addUser ? 'addUserFax':'editUserFax'">Fax</label>
             <input  type="text" 
-                    id="fax"  
+                    [id]="addUser ? 'addUserFax':'editUserFax'"  
                     class="form-control"
                     placeholder="Fax de l'utilisateur" 
                     name="fax"
@@ -90,9 +91,9 @@
 
         <!-- Numéro de l'étudiant -->
         <div class="form-group-row">
-            <label [for]="addUser ? 'addUserNumEtudiant:'editUserNumEtudiant'">Numéro</label>
+            <label [for]="addUser ? 'addUserNumEtudiant':'editUserNumEtudiant'">Numéro</label>
             <input  type="text" 
-                    id="numEtudiant" 
+                    [id]="addUser ? 'addUserNumEtudiant':'editUserNumEtudiant'"
                     class="form-control"
                     placeholder="Numéro de l'Étudiant" 
                     name="numEtudiant"
@@ -102,7 +103,7 @@
         <!-- Promotion de l'étudiant -->
         <div class="form-group-row">
             <label [for]="addUser ? 'addUserPromotion':'editUserPromotion'">Promotion</label>
-            <select id="promotionEtudiant"
+            <select [id]="addUser ? 'addUserPromotion':'editUserPromotion'"
                     class="form-control" 
                     name="promotionEtudiant"
                     formControlName="promotion">
@@ -121,7 +122,7 @@
         <div class="form-group-row">
             <label [for]="addUser ? 'addUserFonction':'editUserFonction'">Fonction</label>
             <input  type="text" 
-                    id="fonction" 
+                    [id]="addUser ? 'addUserFonction':'editUserFonction'"
                     class="form-control"
                     placeholder="Fonction occupée dans l'entreprise" 
                     name="fonction"
@@ -132,7 +133,7 @@
         <div class="form-group-row">
             <label [for]="addUser ? 'addUserEntreprise':'editUserEntreprise'">Nom</label>
             <input  type="text" 
-                    id="entreprise" 
+                    [id]="addUser ? 'addUserEntreprise':'editUserEntreprise'"
                     class="form-control"
                     placeholder="Nom de l'entreprise" 
                     name="fonction"

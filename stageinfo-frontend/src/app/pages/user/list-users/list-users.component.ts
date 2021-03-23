@@ -19,7 +19,7 @@ export class ListUsersComponent extends CommonListingTable implements OnInit, On
 
   destroy$: Subject<boolean> = new Subject<boolean>();
 
-  selectItem:any; // item qui est selectionné 
+  selectItem: userModel; // item qui est selectionné 
 
   constructor(private route:ActivatedRoute, private userService: UserService) { 
     super();
@@ -41,7 +41,8 @@ export class ListUsersComponent extends CommonListingTable implements OnInit, On
    * @description Met à jour le parcours selectionné, permet au modal de savoir quelle contenu afficher
    * @params item : ParcoursModel -> contient les informations du parcours selectionné
    */
-  selectedItem(item:any){
+  selectedItem(item: userModel){
+    console.log(item);
     this.selectItem = item;
   }
 

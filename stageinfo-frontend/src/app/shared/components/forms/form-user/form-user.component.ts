@@ -1,4 +1,4 @@
-import { Component, OnInit, EventEmitter, Input } from '@angular/core';
+import { Component, OnInit, EventEmitter, Input, Output } from '@angular/core';
 
 import { FormBuilder, FormGroup, Validators, ReactiveFormsModule} from "@angular/forms";
 import { ActivatedRoute, Router } from '@angular/router';
@@ -20,13 +20,16 @@ export class FormUserComponent implements OnInit {
 
   @Input() addUser: boolean = false;
   @Input() editUser: boolean = false;
+  @Input() selectedUser: userModel = new userModel();
   @Input() viewUser: boolean = false;
 
   @Input() idUser: any = '';
 
+  @Output() userEvent = new EventEmitter<userModel>();
+
   Message: string = "";
 
-  //user: userModel = new userModel();
+  user: userModel = new userModel();
   //public role: string = '';
 
   // Boolean pour l'affichage des sections
@@ -37,10 +40,6 @@ export class FormUserComponent implements OnInit {
 
   // @ts-ignore
   userForm: FormGroup;
-
-  /*printRole(): void{
-    console.log('selected role : ' + this.role);
-  }*/
 
   //roles = ["invite", "etudiant","tuteur", "respEntreprise", "secretaire", "admin"];
   promotions = ["2016/2017", "2017/2018","2018/2019", "2019/2020", "2020/2021"];
@@ -53,16 +52,19 @@ export class FormUserComponent implements OnInit {
               private router: Router,
               private userService: UserService,
               private auth: AuthService) { 
+    this.selectedUser = new userModel();
   }
 
   ngOnInit(): void {
     this.initForm();
-    /*
-    if(!this.addUser){
-      this.user = this.route.snapshot.data.user;
+
+
+    if(this.editUser){
+      this.idUser = this.selectedUser._id;
+      
     }
+
     this.displaySection(this.user.role);
-    */
   }
 
   initForm(){

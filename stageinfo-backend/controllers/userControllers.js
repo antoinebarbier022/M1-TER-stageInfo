@@ -83,3 +83,35 @@ exports.getRole = ((req, res, next) => {
         console.log(User))
         .catch(error => res.status(404).json({ error }))
 });
+
+
+/**
+ * @api {put} /auth/signup Edit a User
+ * @apiName EditUser
+ * @apiGroup User
+ *
+ * @apiParam {Number} id User's unique ID.
+ */
+ exports.editUser = ((req, res, next) => {
+    console.log(req.body);
+    
+    const user = new User({
+       _id: req.params.id,
+       nom: req.body.nom,
+       email: req.body.email,
+       prenom: req.body.prenom,
+       telephone: req.body.telephone
+    });
+
+    Salle.updateOne({_id: req.params.id}, salle)
+       .then(() => {
+           res.status(201).json({
+               message: 'Salle updated successfully'
+           });
+       })
+       .catch((error) => {
+           res.status(400).json({
+               error : error
+           });
+       });
+});
