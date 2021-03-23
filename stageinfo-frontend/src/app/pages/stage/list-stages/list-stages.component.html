@@ -14,25 +14,26 @@
         <table class="card-table table table-striped table-sm">
             <thead>
                 <tr>
+                    <th (click)="sortByAscendingDescendingOrder(4)" scope="col">Etat</th>
                     <th (click)="sortByAscendingDescendingOrder(0)" scope="col">Titre</th>
                     <th (click)="sortByAscendingDescendingOrder(1)" scope="col">Entreprise</th>
                     <th (click)="sortByAscendingDescendingOrder(2)" scope="col">Parcours</th>
                     <th scope="col">Promotions</th>
                     <th (click)="sortByAscendingDescendingOrder(3)" scope="col">Duree</th>
-                    <th (click)="sortByAscendingDescendingOrder(4)" scope="col">Etat</th>
                     <th scope="col">Actions</th>
                 </tr>
             </thead>
             <tbody>
                 <!-- Ajout des stages de la BDD -->
                 <tr *ngFor="let stage of getItems()">
+                    <td><span class="badge badge-success">{{ stage.etat }}</span></td>
                     <td><a [routerLink]="['/liste-stages', stage._id]">{{ stage.titre }}</a></td>
                     <td>{{ stage.entreprise }}</td>
                     <td>{{ stage.parcours }}</td>
                     <!-- <td>{{ stage.promotions }}</td>-->
                     <td>2020 - 2021</td>
                     <td>{{ stage.duree }} mois</td>
-                    <td><span class="badge badge-success">{{ stage.etat }}</span></td>
+                    
                     <td class="table-action">
                         <!-- Bouton edit => ouvre un modal avec le formulaire de modification -->
                         <app-button-edit data-toggle="modal" (click)="selectedItem(stage)" data-target="#modifier"></app-button-edit>
