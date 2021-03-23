@@ -156,7 +156,7 @@ export class FormEntrepriseComponent implements OnInit {
         this.ajouterEntreprise(entreprise);
       }else {
         //alors on est dans editParcours
-        this.supprimerEntreprise(this.idEntreprise, entreprise);
+        this.modifierEntreprise(this.idEntreprise, entreprise);
       }
     }
 
@@ -166,20 +166,23 @@ export class FormEntrepriseComponent implements OnInit {
     .pipe(takeUntil(this.destroy$))
       .subscribe((_res: any[]) => {
         console.log("Entreprise ajouté !");
-        this.entrepriseForm.reset();  // on reset les données dans le forumulaire
+        this.onReset(); // on reset les données dans le forumulaire
     });
   }
 
-  supprimerEntreprise(id:any, entreprise:any){
+  modifierEntreprise(id:any, entreprise:any){
     this.parcoursService.editEntreprise(id, entreprise)
     .pipe(takeUntil(this.destroy$))
       .subscribe((_res: any[]) => {
         console.log("Entreprise modifié !");
-        this.entrepriseForm.reset(); // on reset les données dans le forumulaire
+        this.onReset(); // on reset les données dans le forumulaire
         this.entrepriseEvent.emit(entreprise); // on envoie le parcours dans le component parent
     });
   }
 
+  onReset(){
+    this.entrepriseForm.reset(); 
+  }
 
   displayFielset(theme : string) : boolean{
     switch (theme) {
