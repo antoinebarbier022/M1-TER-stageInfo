@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, EventEmitter, Input } from '@angular/core';
 
 import { FormBuilder, FormGroup, Validators, ReactiveFormsModule} from "@angular/forms";
 import { ActivatedRoute, Router } from '@angular/router';
@@ -53,7 +53,8 @@ export class FormUserComponent implements OnInit {
               private route:ActivatedRoute,
               private router: Router,
               private userService: UserService,
-              private auth: AuthService) { }
+              private auth: AuthService) { 
+  }
 
   ngOnInit(): void {
     /*
@@ -105,6 +106,8 @@ export class FormUserComponent implements OnInit {
       formValue['fonction'],
       formValue['entreprise']
     );
+
+    this.userService.addUser(newUser);
   }
 
   ngOnDestroy() {
