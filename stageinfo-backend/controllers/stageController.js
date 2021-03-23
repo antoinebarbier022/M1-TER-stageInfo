@@ -156,7 +156,6 @@ exports.editStage = (req, res, next) => {
   const stage = new Stage({
       _id: req.params.id,
       ...req.body
-
   });
 
   Stage.updateOne({_id: req.params.id}, stage)

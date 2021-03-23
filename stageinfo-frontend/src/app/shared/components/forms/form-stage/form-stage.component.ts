@@ -14,12 +14,12 @@ import { StageService } from 'src/app/core/services/stage.service';
 export class FormStageComponent implements OnInit {
   @Input() title: string = "";
   @Input() selectedStage :StageModel = new StageModel();
-  
   @Input() addStage: boolean = false;
   @Input() editStage: boolean = false;
 
   @Output() stageEvent = new EventEmitter<StageModel>();
 
+  idStage = "";
   stageData: StageModel = new StageModel();
 
   // @ts-ignore
@@ -49,7 +49,8 @@ export class FormStageComponent implements OnInit {
   ngOnInit() {
     this.initForm();
     if(this.editStage){  // Si on est sur le formulaire edit parcours alors on remplie les champs
-      this.setInputForm(this.selectedStage.id);
+      this.idStage = this.selectedStage._id;
+      this.setInputForm(this.idStage);
     }
   }
 
@@ -57,7 +58,8 @@ export class FormStageComponent implements OnInit {
   ngOnChanges(){
     this.initForm();
     if(this.editStage){  // Si on est sur le formulaire edit parcours alors on remplie les champs
-      this.setInputForm(this.selectedStage.id);
+      this.idStage = this.selectedStage._id;
+      this.setInputForm(this.idStage);
     }
   }
 
@@ -107,7 +109,7 @@ export class FormStageComponent implements OnInit {
     onSubmitForm() {
       const formValue = this.stageForm.value;
       const stage = new StageModel(
-        this.stageData.id,
+        this.idStage,
         formValue['titre'],
         formValue['description'],
         formValue['duree'],
@@ -138,7 +140,7 @@ export class FormStageComponent implements OnInit {
   }
 
   modifierStage(stage:any){
-    this.stageService.editStage(stage.id, stage)
+    this.stageService.editStage(stage._id, stage)
     .pipe(takeUntil(this.destroy$))
       .subscribe((_res: any[]) => {
         console.log("Stage modifié !");
