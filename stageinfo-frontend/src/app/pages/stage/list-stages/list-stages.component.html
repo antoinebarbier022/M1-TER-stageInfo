@@ -35,9 +35,9 @@
                     <td><span class="badge badge-success">{{ stage.etat }}</span></td>
                     <td class="table-action">
                         <!-- Bouton edit => ouvre un modal avec le formulaire de modification -->
-                        <app-button-edit data-toggle="modal" (click)="selectedItem(parcours)" data-target="#modifier"></app-button-edit>
+                        <app-button-edit data-toggle="modal" (click)="selectedItem(stage)" data-target="#modifier"></app-button-edit>
                         <!-- Bouton delete => ouvre un modal avec la demande de suppression -->
-                        <app-button-delete data-toggle="modal" (click)="selectedItem(parcours)" data-target="#suppression"></app-button-delete>
+                        <app-button-delete data-toggle="modal" (click)="selectedItem(stage)" data-target="#suppression"></app-button-delete>
                     </td>
                 </tr>
             </tbody>
@@ -57,7 +57,7 @@
         tabindex="-1" 
         role="dialog" 
         id="modifier">
-    <span title>Modifier le Stage : </span>
+    <span title>Modifier le Stage : {{ selectItem.titre | uppercase}} </span>
     <app-form-stage content></app-form-stage>
 </app-modal>
 
@@ -67,9 +67,9 @@
         role="dialog" 
         id="suppression">
     <span title> Supprimer le stage </span>
-    <p content>Confirmer la suppression du stage : <strong></strong></p>
+    <p content>Confirmer la suppression du stage : <strong>{{ selectItem.titre | uppercase}}</strong></p>
     <button button1 type="button" class="btn btn-secondary btn-sm" data-dismiss="modal">Annuler</button>
-    <button button2 (click)="deleteParcours(selectItem._id)" type="button" class="btn btn-danger btn-sm" data-dismiss="modal">Supprimer</button>
+    <button button2 (click)="deleteStage(selectItem._id)" type="button" class="btn btn-danger btn-sm" data-dismiss="modal">Supprimer</button>
 </app-modal>
 
 <!-- Modal pour Ajouter un item (formulaire d'ajout) -->
