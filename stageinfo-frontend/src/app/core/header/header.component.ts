@@ -39,15 +39,13 @@ export class HeaderComponent implements OnInit, OnDestroy {
       (auth) => {
         this.isAuth = auth;
       });
-      //this.userservice.getemailById(this.auth.getUserid()).subscribe( 
-      //(email) => { this.monEmail=email; });
+
   }
 
-  /*ngOnChanges(){
-    this.userservice.getemailById(this.auth.getUserid()).subscribe(
-      (email) => { this.monEmail=email; });
-  }*/
-  
+  ngOnChanges(){
+
+  }
+
   onLogout() {
     this.authService.logout();
     this.router.navigate(['/login']);
@@ -60,6 +58,9 @@ export class HeaderComponent implements OnInit, OnDestroy {
 
   getRole(){
     return this.authService.getRole();
+  }
+  getEmail(){
+    return this.authService.getEmail();
   }
 
   getViewRole(){ // on recupère le role de test
