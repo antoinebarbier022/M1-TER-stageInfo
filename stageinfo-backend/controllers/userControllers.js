@@ -93,10 +93,10 @@ exports.getRole = ((req, res, next) => {
  *
  */
  exports.getAllUserByRole = ((req, res, next) => {
-    Salle.findOne({
+    User.find({
         role: req.params.role
     })
-    .then(salle => res.status(200).json(salle))
+    .then(user => res.status(200).json(user))
     .catch(error => res.status(404).json({ error }))
 });
 
