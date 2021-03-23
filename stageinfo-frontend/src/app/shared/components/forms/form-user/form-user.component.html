@@ -25,8 +25,7 @@
         <select id="role"
                 class="form-control" 
                 name="niveau"
-                formControlName="role"
-                [(ngModel)]="role">
+                formControlName="role">
             <option value="" disabled selected>Selectionner un rôle</option>
             <option value="invite">Invité</option>
             <option value="etudiant">Étudiant</option>
@@ -61,7 +60,8 @@
     <button
         type="submit"
         data-dismiss="modal"
-        class="btn btn-primary btn-sm btn-ajouter">
+        class="btn btn-primary btn-sm btn-ajouter"
+        [disabled]="userForm.invalid">
         Ajouter
     </button>
 </form>

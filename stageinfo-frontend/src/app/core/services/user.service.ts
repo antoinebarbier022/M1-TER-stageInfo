@@ -15,8 +15,8 @@ export class UserService {
   }
 
   /* Ajouter un parcours */
-  addUser(user:userModel):Observable<any>{
-    return this.httpClient.post(this.urlBase+'/api/auth/signup/', user); 
+  addUser(user:userModel): void {
+    this.httpClient.post(this.urlBase+'/api/auth/signup/', user); 
   }
 
   getemailById(id: string | null): Observable<any> {

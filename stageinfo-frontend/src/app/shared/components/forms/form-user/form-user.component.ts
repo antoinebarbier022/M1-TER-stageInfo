@@ -57,6 +57,7 @@ export class FormUserComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.initForm();
     /*
     if(!this.addUser){
       this.user = this.route.snapshot.data.user;

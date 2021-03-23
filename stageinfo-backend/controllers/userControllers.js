@@ -24,7 +24,7 @@ exports.signup = (req, res, next) =>{
                 prenom: req.body.prenom,
                 email: req.body.email,
                 hash: hash,
-                role: req.body.rolee,
+                role: req.body.role,
                 numeroEtudiant: req.body.numeroEtudiant,
                 Fax: req.body.Fax,
                 telephone: req.body.telephone,
