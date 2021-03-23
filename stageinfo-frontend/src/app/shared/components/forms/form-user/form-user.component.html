@@ -21,7 +21,7 @@
     </div>
     <!-- Rôle de l'utilisateur -->
     <div class="form-group-row">
-        <label (click)="printRole()" for="role">Rôle</label>
+        <label for="role">Rôle</label>
         <select id="role"
                 class="form-control" 
                 name="niveau"
@@ -48,20 +48,20 @@
     </div>
     <!-- Mot de passe de l'utilisateur -->
     <div class="form-group-row">
-        <label for="hash">Mot de passe</label>
+        <label for="password">Mot de passe</label>
         <input  type="password" 
-                id="hash" 
+                id="password" 
                 class="form-control"
                 placeholder="Mot de passe de l'utilisateur" 
                 name="parcoursIntitule"
-                formControlName="hash">
+                formControlName="password">
     </div>
     <!-- Si Ajouter un Utilisateur -->
     <button
         type="submit"
+        (click)="onSubmitForm()"
         data-dismiss="modal"
-        class="btn btn-primary btn-sm btn-ajouter"
-        [disabled]="userForm.invalid">
+        class="btn btn-primary btn-sm btn-ajouter">
         Ajouter
     </button>
 </form>

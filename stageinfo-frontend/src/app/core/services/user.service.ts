@@ -1,8 +1,17 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { AuthService } from '../services/auth.service';
 import { userModel } from '../models/userModel';
+
+const httpOptions = {
+  headers: new HttpHeaders({
+    "Access-Control-Allow-Methods": "GET,POST",	  
+    "Access-Control-Allow-Headers": "Content-type",  
+    "Content-Type": "application/json",
+    "Access-Control-Allow-Origin": "*"
+  })
+};
 
 @Injectable({
   providedIn: 'root'
@@ -15,8 +24,8 @@ export class UserService {
   }
 
   /* Ajouter un parcours */
-  addUser(user:userModel): void {
-    this.httpClient.post(this.urlBase+'/api/auth/signup/', user); 
+  addUser(user:userModel): Observable<any> {
+    return this.httpClient.post(this.urlBase+'api/auth/signup', user); 
   }
 
   getemailById(id: string | null): Observable<any> {

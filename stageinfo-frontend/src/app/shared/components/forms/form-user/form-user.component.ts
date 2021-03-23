@@ -8,7 +8,6 @@ import { Subject } from 'rxjs';
 import { userModel } from 'src/app/core/models/userModel';
 import { AuthService } from 'src/app/core/services/auth.service';
 import { UserService } from 'src/app/core/services/user.service';
-import { UserModule } from 'src/app/pages/user/user.module';
 
 
 @Component({
@@ -23,7 +22,7 @@ export class FormUserComponent implements OnInit {
   @Input() editUser: boolean = false;
   @Input() viewUser: boolean = false;
 
-  @Input() idUser : any = undefined;
+  @Input() idUser: any = '';
 
   Message: string = "";
 
@@ -34,14 +33,14 @@ export class FormUserComponent implements OnInit {
   displaySectionCoordonnees = false;
   displaySectionEntreprise = false;
 
-  public role: string = '';
+  //public role: string = '';
 
   // @ts-ignore
   userForm: FormGroup;
 
-  printRole(): void{
+  /*printRole(): void{
     console.log('selected role : ' + this.role);
-  }
+  }*/
 
   //roles = ["invite", "etudiant","tuteur", "respEntreprise", "secretaire", "admin"];
   //promotions = ["2016/2017", "2017/2018","2018/2019", "2019/2020", "2020/2021"];
@@ -68,34 +67,35 @@ export class FormUserComponent implements OnInit {
 
   initForm(){
     this.userForm = this.formBuilder.group({
-      nom:['', Validators.required],
-      prenom:['', Validators.required],
-      email:['', Validators.required],
-      telephone:['', Validators.required],
-      fax:[''],
-      hash:['', Validators.required],
-      role:['', Validators.required],
+      nom: ['',Validators.required],
+      prenom: ['',Validators.required], 
+      email: ['',Validators.required],
+      telephone: '',
+      fax:'',
+      password: ['',Validators.required],
+      role: ['',Validators.required],
 
       // Étudiant
-      numeroEtudiant:[''],
-      promotion:[''],
-      parcours:[''],
+      numeroEtudiant: '',
+      promotion:'',
+      parcours:'',
 
       // Entreprise
-      fonction:[''],
-      entreprise:['']
+      fonction:'',
+      entreprise:''
     });
   }
 
   onSubmitForm(){
     const formValue = this.userForm.value;
     const newUser = new userModel(
+      this.idUser,
       formValue['nom'],
       formValue['prenom'],
       formValue['email'],
       formValue['telephone'],
       formValue['fax'],
-      formValue['hash'],
+      formValue['password'],
       formValue['role'],
 
       // Étudiant
@@ -108,7 +108,9 @@ export class FormUserComponent implements OnInit {
       formValue['entreprise']
     );
 
-    this.userService.addUser(newUser);
+    this.userService.addUser(newUser).subscribe(x => {
+      console.log(x);
+    });
   }
 
   ngOnDestroy() {
