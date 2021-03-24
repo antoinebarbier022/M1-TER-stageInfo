@@ -7,33 +7,42 @@
         <div class="form-group-row">
             <label [for]="addUser ? 'addUserNom':'editUserNom'">Nom</label>
             <input  type="text" 
-                    [id]="addUser ? 'addUserNom':'editUserNom'"  
-                    class="form-control"
-                    placeholder="Nom de l'utilisateur" 
+                    [id]="addUser ? 'addUserNom':'editUserNom'" 
+                    [ngClass]="viewUser? 'form-control-plaintext' : 'form-control'"
+                    placeholder="Nom de l'utilisateur"
+                    [(ngModel)]="user.nom"
                     name="nom"
-                    formControlName="nom">
+                    formControlName="nom"
+                    [readonly]="viewUser">
         </div>
 
         <!-- Prénom de l'utilisateur -->
         <div class="form-group-row">
             <label [for]="addUser ? 'addUserPrenom':'addUserPrenom'">Prénom</label>
             <input  type="text" 
-                    id="prenom"  
-                    class="form-control"
+                    [id]="addUser ? 'addUserPrenom':'editUserPrenom'" 
+                    [ngClass]="viewUser? 'form-control-plaintext' : 'form-control'"  
+                    [(ngModel)]="user.prenom"
                     placeholder="Prénom de l'utilisateur" 
                     name="prenom"
-                    formControlName="prenom">
+                    formControlName="prenom"
+                    [readonly]="viewUser">
         </div>
 
         <!-- Rôle de l'utilisateur -->
         <div class="form-group-row">
-            <label [for]="addUser ? 'addUserRole':'editUserRole'">Rôle</label>
-            <select [id]="addUser ? 'addUserRole':'editUserRole'"
-                    class="form-control" 
-                    name="role"
-                    formControlName="role"
+            <label for="inputRole">Role</label>
+            <div *ngIf="viewUser" class="form-select-plaintext">
+                <span class="badge badge-secondary">{{ user.role }}</span>
+            </div>    
+            <select required 
+                    [id]="addUser ? 'addUserInput':'editUserInput'"  
+                    *ngIf="!(viewUser)"
+                    [ngClass]="viewUser? 'form-control-plaintext' : 'form-control'"
                     [(ngModel)]="user.role"
-                    (ngModelChange)="displaySection(user.role)">
+                    (ngModelChange)="displaySection(user.role)"
+                    name="role"
+                    formControlName="role">
                 <option value="" disabled selected>Selectionner un rôle</option>
                 <option value="invite">Invité</option>
                 <option value="etudiant">Étudiant</option>
@@ -51,10 +60,12 @@
             <label [for]="addUser ? 'addUserEmail':'editUserEmail'">Email</label>
             <input  type="text" 
                     [id]="addUser ? 'addUserEmail':'editUserEmail'"
-                    class="form-control"
+                    [ngClass]="viewUser? 'form-control-plaintext' : 'form-control'"
+                    [(ngModel)]="user.email"
                     placeholder="Email de l'utilisateur" 
                     name="email"
-                    formControlName="email">
+                    formControlName="email"
+                    [readonly]="viewUser">
         </div>
 
         <!-- Mot de passe de l'utilisateur -->
@@ -62,10 +73,13 @@
             <label [for]="addUser ? 'addUserPassword':'editUserPassword'">Mot de passe</label>
             <input  type="password" 
                     [id]="addUser ? 'addUserPassword':'editUserPassword'"
+                    [ngClass]="viewUser? 'form-control-plaintext' : 'form-control'"
+                    [(ngModel)]="user.password"
                     class="form-control"
                     placeholder="Mot de passe de l'utilisateur" 
                     name="password"
-                    formControlName="password">
+                    formControlName="password"
+                    [readonly]="viewUser">
         </div>
     </fieldset>
 
@@ -78,10 +92,12 @@
             <label [for]="addUser ? 'addUserPhone':'editUserPhone'">Téléphone</label>
             <input  type="text" 
                     [id]="addUser ? 'addUserPhone':'editUserPhone'"
-                    class="form-control"
+                    [ngClass]="viewUser? 'form-control-plaintext' : 'form-control'"
+                    [(ngModel)]="user.telephone"
                     placeholder="Telephone de l'utilisateur" 
                     name="telephone"
-                    formControlName="telephone">
+                    formControlName="telephone"
+                    [readonly]="viewUser">
         </div>
 
         <!-- Fax de l'utilisateur -->
@@ -89,10 +105,12 @@
             <label [for]="addUser ? 'addUserFax':'editUserFax'">Fax</label>
             <input  type="text" 
                     [id]="addUser ? 'addUserFax':'editUserFax'"  
-                    class="form-control"
+                    [ngClass]="viewUser? 'form-control-plaintext' : 'form-control'"
+                    [(ngModel)]="user.fax"
                     placeholder="Fax de l'utilisateur" 
                     name="fax"
-                    formControlName="fax">
+                    formControlName="fax"
+                    [readonly]="viewUser">
         </div>
     </fieldset>
 
@@ -105,16 +123,24 @@
             <label [for]="addUser ? 'addUserNumEtudiant':'editUserNumEtudiant'">Numéro</label>
             <input  type="text" 
                     [id]="addUser ? 'addUserNumEtudiant':'editUserNumEtudiant'"
-                    class="form-control"
+                    [ngClass]="viewUser? 'form-control-plaintext' : 'form-control'"
+                    [(ngModel)]="user.numeroEtudiant"
                     placeholder="Numéro de l'Étudiant" 
                     name="numEtudiant"
-                    formControlName="numeroEtudiant">
+                    formControlName="numeroEtudiant"
+                    [readonly]="viewUser">
         </div>
 
         <!-- Promotion de l'étudiant -->
         <div class="form-group-row">
             <label [for]="addUser ? 'addUserPromotion':'editUserPromotion'">Promotion</label>
-            <select [id]="addUser ? 'addUserPromotion':'editUserPromotion'"
+            <div *ngIf="viewUser" class="form-select-plaintext">
+                <span>{{ user.promotion }}</span>
+            </div>
+            <select *ngIf="!(viewUser)"
+                    [id]="addUser ? 'addUserPromotion':'editUserPromotion'"
+                    [ngClass]="viewUser? 'form-control-plaintext' : 'form-control'"
+                    [(ngModel)]="user.promotion"
                     class="form-control" 
                     name="promotionEtudiant"
                     formControlName="promotion">
@@ -134,10 +160,12 @@
             <label [for]="addUser ? 'addUserFonction':'editUserFonction'">Fonction</label>
             <input  type="text" 
                     [id]="addUser ? 'addUserFonction':'editUserFonction'"
-                    class="form-control"
+                    [ngClass]="viewUser? 'form-control-plaintext' : 'form-control'"
+                    [(ngModel)]="user.fonction"
                     placeholder="Fonction occupée dans l'entreprise" 
                     name="fonction"
-                    formControlName="fonction">
+                    formControlName="fonction"
+                    [readonly]="viewUser">
         </div>
 
         <!-- Entreprise du représentant -->
@@ -145,10 +173,12 @@
             <label [for]="addUser ? 'addUserEntreprise':'editUserEntreprise'">Nom</label>
             <input  type="text" 
                     [id]="addUser ? 'addUserEntreprise':'editUserEntreprise'"
-                    class="form-control"
+                    [ngClass]="viewUser? 'form-control-plaintext' : 'form-control'"
+                    [(ngModel)]="user.entreprise"
                     placeholder="Nom de l'entreprise" 
                     name="fonction"
-                    formControlName="entreprise">
+                    formControlName="entreprise"
+                    [readonly]="viewUser">
         </div>
 
         <datalist id="entreprise-list">
