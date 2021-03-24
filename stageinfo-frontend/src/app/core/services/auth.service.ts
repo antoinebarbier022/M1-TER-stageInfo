@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { BehaviorSubject } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
-
+import {HeaderComponent} from "../header/header.component";
 import jwtDecode from 'jwt-decode';
 import { IToken } from '../../shared/interfaces/itoken';
 
@@ -16,6 +16,7 @@ export class AuthService {
   userId: string | undefined;
 
   private role:any; // le vrai role de l'utilisateur
+  private email:any;
   private viewRole:any; // Pour le changement de role dans le header
   private viewAllRoute: boolean; // pour savoir si la sidebar affiche toutes les routes que voit un admin
 
@@ -24,6 +25,8 @@ export class AuthService {
     if(this.isLoggedIn()) {
       const decodedToken = jwtDecode<IToken>(this.getJwtToken() || '');
       this.role = decodedToken.role;
+      this.email = decodedToken.email;
+
     }
     this.viewRole = this.role;
     this.viewAllRoute = false;
@@ -32,6 +35,7 @@ export class AuthService {
     if(this.isLoggedIn()) {
       const decodedToken = jwtDecode<IToken>(this.getJwtToken() || '');
       this.role = decodedToken.role;
+      this.email = decodedToken.email;
       console.log(this.role);
     }
 
@@ -47,6 +51,9 @@ export class AuthService {
 
   getRole(): string {
     return this.role;
+  }
+  getEmail(): string {
+    return this.email;
   }
 
   getViewRole(): string {
@@ -95,6 +102,7 @@ export class AuthService {
             const decodedToken = jwtDecode<IToken>(this.token || '');
             this.role = decodedToken.role;
             this.viewRole = this.role;
+            window.location.reload();
             resolve();
           },
           (error) => {
@@ -122,5 +130,6 @@ export class AuthService {
     sessionStorage.removeItem('userid')
     this.viewAllRoute = false;
     this.isAuth$.next(false);
+    this.router.navigate(['/login']);
   }
 }
