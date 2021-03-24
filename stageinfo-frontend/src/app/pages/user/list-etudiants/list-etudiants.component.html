@@ -52,12 +52,30 @@
 <!-------------------- LES MODALS -------------------->
 <!---------------------------------------------------->
 
+<!-- Modal pour Ajouter un item (formulaire d'ajout) -->
+<app-modal class="modal fade"
+        tabindex="-1" 
+        role="dialog" 
+        id="ajouter">
+        <span title>Ajouter un utilisateur</span>
+        <app-form-user content 
+            [addUser]="true"
+            (userEvent)="addUser($event)">
+        </app-form-user>
+</app-modal>
+
 <!-- Modal avec le formulaire de modification de l'objet selectionné -->
 <app-modal class="modal fade"
         tabindex="-1" 
         role="dialog" 
         id="modifier">
-    <span title>Modifier l'utilisateur : nom utilisateur</span>
+    <span title>Modifier l'utilisateur : {{ selectItem.nom + ' ' + selectItem.prenom }}</span>
+    <app-form-user content 
+        [editUser]="true"
+        [idUser]="selectItem._id"
+        [selectedUser]="selectItem"
+        (userEvent)="updateTable($event)">
+    </app-form-user>
 </app-modal>
 
 <!-- Modal pour supprimer l'objet selectionné -->
@@ -66,16 +84,7 @@
         role="dialog" 
         id="suppression">
     <span title> Supprimer l'utilisateur </span>
-    <p content>Confirmer la suppression de l'utilisateur : <strong> nom utilisateur</strong></p>
+    <p content>Confirmer la suppression de l'utilisateur : <strong> {{ selectItem.nom + ' ' + selectItem.prenom }}</strong></p>
     <button button1 type="button" class="btn btn-secondary btn-sm" data-dismiss="modal">Annuler</button>
-    <button button2 type="button" class="btn btn-danger btn-sm" data-dismiss="modal">Supprimer</button>
-</app-modal>
-
-<!-- Modal pour Ajouter un item (formulaire d'ajout) -->
-<app-modal class="modal fade"
-        tabindex="-1" 
-        role="dialog" 
-        id="ajouter">
-        <span title>Ajouter un utilisateur</span>
-        
+    <button button2 (click)="deleteUser(selectItem._id)" type="button" class="btn btn-danger btn-sm" data-dismiss="modal">Supprimer</button>
 </app-modal>

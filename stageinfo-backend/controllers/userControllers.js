@@ -24,9 +24,9 @@ exports.signup = (req, res, next) =>{
                 prenom: req.body.prenom,
                 email: req.body.email,
                 hash: hash,
-                role: req.body.rolee,
+                role: req.body.role,
                 numeroEtudiant: req.body.numeroEtudiant,
-                Fax: req.body.Fax,
+                Fax: req.body.fax,
                 telephone: req.body.telephone,
                 fonction:req.body.fonction,
                 nom: req.body.nom,
@@ -84,3 +84,84 @@ exports.getRole = ((req, res, next) => {
         console.log(User))
         .catch(error => res.status(404).json({ error }))
 });
+
+
+/**
+ * @api {get} /auth/getuser/:role Get a user by role
+ * @apiName getAllUserByRole
+ * @apiGroup User
+ *
+ * @apiParam {string} role User's
+ *
+ */
+ exports.getAllUserByRole = ((req, res, next) => {
+    User.find({
+        role: req.params.role
+    })
+    .then(user => res.status(200).json(user))
+    .catch(error => res.status(404).json({ error }))
+});
+
+
+/**
+ * @api {put} /auth/:id Edit a User
+ * @apiName EditUser
+ * @apiGroup User
+ *
+ * @apiParam {Number} id User's unique ID.
+ */
+ exports.editUser = ((req, res, next) => {
+    console.log(req.body);
+    
+    const user = new User({
+       _id: req.params.id,
+       nom: req.body.nom,
+       email: req.body.email,
+       prenom: req.body.prenom,
+       telephone: req.body.telephone,
+       fax: req.body.fax,
+       role: req.body.role,
+       numeroEtudiant: req.body.numeroEtudiant,
+       promotion: req.body.promotion,
+       parcours: req.body.parcours,
+       fonction: req.body.fonction,
+       entreprise: req.body.entreprise
+    });
+
+    User.updateOne({_id: req.params.id}, user)
+       .then(() => {
+           res.status(201).json({
+               message: 'User updated successfully'
+           });
+       })
+       .catch((error) => {
+           res.status(400).json({
+               error : error
+           });
+       });
+});
+
+/**
+ * @api {delete} /user Delete a user
+ * @apiName DeleteOneUser
+ * 
+ * @apiGroup User
+ *
+ * @apiParam {Number} id User's unique ID.
+ */
+ exports.deleteOneUser = (req, res, next) => {
+    User.deleteOne({_id: req.params.id}).then(
+      () => {
+        res.status(200).json({
+          message: 'User deleted!'
+        });
+      }
+    ).catch(
+      (error) => {
+        res.status(400).json({
+          error: error
+        });
+      }
+    );
+  };
+
