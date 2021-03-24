@@ -36,6 +36,7 @@ export class ListParcoursComponent extends CommonListingTable implements OnInit,
 
   ngOnInit(): void {
     this.allItems = this.route.snapshot.data.allParcours;  // on récupère les parcours qui sont dans le resolver
+    console.log(this.allItems);
   }
 
   /**

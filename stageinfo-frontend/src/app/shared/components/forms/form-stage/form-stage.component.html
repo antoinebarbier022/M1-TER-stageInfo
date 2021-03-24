@@ -171,17 +171,17 @@
             class="btn btn-primary btn-sm btn-next" >
             Suivant
         </button>
-        <button *ngIf="lastPage()" 
+        <button *ngIf="lastPage() || (editStage ? true : false)" 
                 type="submit" [id]="addStage ? 'addSubmitButton':'editSubmitButton'" name="addButton" value="Submit" 
                 (click)="onSubmitForm()" 
                 data-dismiss="modal"
                 class="btn btn-primary btn-sm btn-done">
-            Terminer
+            {{ editStage ? 'Modifier' : 'Ajouter' }}
         </button>
         <button *ngIf="!firstPage()" 
             type="button" [id]="addStage ? 'addPredButton':'editPredButton'" name="predButton" value="Pred"
             (click)="pred()" 
-            class="btn btn-secondary btn-sm btn-pred" >
+            class="btn btn-secondary btn-sm btn-pred">
             Précédent
         </button>
     </div>

@@ -162,3 +162,4 @@ exports.getRole = ((req, res, next) => {
       }
     );
   };
+
