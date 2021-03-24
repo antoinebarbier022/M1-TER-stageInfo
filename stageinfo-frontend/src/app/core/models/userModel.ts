@@ -1,19 +1,21 @@
 export class userModel{
-    _id: string = "";
-    nom: string  = "";
-    prenom: string  = "";
-    email: string  = "";
-    telephone: string  = "";
-    fax: string  = "";
-    hash: string  = "";
-    role: string  = "";
+    constructor(
+        public _id: string = "",
+        public nom: string  = "",
+        public prenom: string  = "",
+        public email: string  = "",
+        public telephone: string  = "",
+        public fax: string  = "",
+        public password: string  = "",
+        public role: string  = "",
 
-    //etudiant
-    numeroEtudiant: string  = "";
-    promotion: string  = "";
-    parcours: string  = "";
+        // Si étudiant
+        public numeroEtudiant: string  = "",
+        public promotion: string  = "",
+        public parcours: string  = "",
 
-    //représentant entreprise
-    fonction : string  = "";
-    entreprise: string  = "";
+        // Si représentant entreprise
+        public fonction : string  = "",
+        public entreprise: string  = ""
+    ){}
 }
