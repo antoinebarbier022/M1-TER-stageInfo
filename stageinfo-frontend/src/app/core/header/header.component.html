@@ -27,7 +27,7 @@
         </div>
 
         <!-- Test des roles-->
-        <div id="changeRole">
+        <div id="changeRole" *ngIf="getRole()=='admin'">
           <p>real Role : {{ getRole()}}</p>
           <div class="dropdown">
             <a class="dropdown-toggle btn btn-sm btn-secondary" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -49,6 +49,9 @@
             <label class="custom-control-label" for="customSwitch1">View all sidebar routes</label>
           </div>
       </div>
+      <p *ngIf="getRole()!='admin'"> Vous êtes : {{getRole()}}</p>
+
+
 
       <div id="navbarRight">
         <div class="dropdown" id="user-icon">
