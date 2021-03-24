@@ -1,11 +1,14 @@
 <app-navigation title="Utilisateur : test"></app-navigation>
 
 <div class="all-card-profile">
-    <app-form-user  id="info-user" 
-                    [viewUser]="true" 
-                    title="Profile utilisateur"
-                    [idUser]="userId">
-    </app-form-user>
+    <app-card id="info-user" >
+        <app-form-user  
+            [viewUser]="true" 
+            title="Profile utilisateur"
+            [idUser]="userId">
+        </app-form-user>
+    </app-card>
+
 
     <!-- Les stages associées à l'utilisateur -->
     <app-card title="Stages">

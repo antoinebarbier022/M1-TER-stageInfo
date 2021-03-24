@@ -1,8 +1,6 @@
 <form [formGroup]="userForm" (ngSubmit)="onSubmitForm()">
     <!-- Section information profile-->
     <fieldset>
-        <legend>Infos Utilisateur</legend>
-
         <!-- Nom de l'utilisateur -->
         <div class="form-group-row">
             <label [for]="addUser ? 'addUserNom':'editUserNom'">Nom</label>
@@ -11,6 +9,7 @@
                     class="form-control"
                     placeholder="Nom de l'utilisateur" 
                     name="nom"
+                    [readonly]="viewUser ? true : false"
                     formControlName="nom">
         </div>
 
@@ -71,7 +70,6 @@
 
     <!-- Section coordonnées de l'utilisateur -->
     <fieldset *ngIf="displaySectionCoordonnees">
-        <legend>Infos Coordonnées</legend>
 
         <!-- Téléphone de l'utilisateur -->
         <div class="form-group-row">
@@ -98,7 +96,6 @@
 
     <!-- Section informations Etudiant de l'utilisateur -->
     <fieldset *ngIf="displaySectionEtudiant">
-        <legend>Infos Étudiant</legend>
 
         <!-- Numéro de l'étudiant -->
         <div class="form-group-row">
@@ -127,7 +124,6 @@
 
     <!-- Section représentant d'entreprise -->
     <fieldset *ngIf="displaySectionEntreprise">
-        <legend>Infos Entreprise</legend>
 
         <!-- Fonction du représentant -->
         <div class="form-group-row">
