@@ -62,6 +62,7 @@ export class FormStageComponent implements OnInit {
     this.initForm();
     if(this.editStage){  // Si on est sur le formulaire edit parcours alors on remplie les champs
       this.idStage = this.selectedStage._id;
+      this.page = 1;
       this.setInputForm(this.idStage);
     }
   }

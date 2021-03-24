@@ -54,8 +54,9 @@ exports.login= (req, res, next) =>{
                     res.status(200).json({
                         userId: user._id,
                         role:user.role,
+                        email:user.email,
                         token: jwt.sign(
-                            {userId: user._id,role:user.role},
+                            {userId: user._id,role:user.role,email:user.email},
                             'RANDOM_TOKEN_SECRET',
                             {expiresIn: '24h'}
                         )
@@ -83,6 +84,7 @@ exports.getRole = ((req, res, next) => {
         console.log(User))
         .catch(error => res.status(404).json({ error }))
 });
+
 
 /**
  * @api {get} /auth/getuser/:role Get a user by role
@@ -162,3 +164,4 @@ exports.getRole = ((req, res, next) => {
       }
     );
   };
+

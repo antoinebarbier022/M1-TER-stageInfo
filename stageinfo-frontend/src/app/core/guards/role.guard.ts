@@ -28,6 +28,7 @@ export class RoleGuard implements CanActivate {
     //var role = this.auth.getRole();
     let role = this.auth.getRole();
 
+
     console.log('ROOOOOOOOOOOOOOOOOOOOOOLE : ' + role);
     const path = route.url[0].path;
 

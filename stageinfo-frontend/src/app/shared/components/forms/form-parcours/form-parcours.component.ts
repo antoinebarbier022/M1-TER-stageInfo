@@ -22,7 +22,7 @@ export class FormParcoursComponent implements OnInit, OnChanges {
   @Output() parcoursEvent = new EventEmitter<ParcoursModel>();
 
   parcoursData: ParcoursModel = new ParcoursModel();
-
+  allResponsable: any;
   // @ts-ignore
   parcoursForm: FormGroup;
   // @ts-ignore
@@ -35,7 +35,8 @@ export class FormParcoursComponent implements OnInit, OnChanges {
               private route: ActivatedRoute,
               private router: Router,
               private parcoursService: ParcoursService) { 
-
+    this.allResponsable = this.route.snapshot.data.allResponsables;
+    console.log(this.allResponsable);
     this.selectedParcours =  new ParcoursModel();
   }
 

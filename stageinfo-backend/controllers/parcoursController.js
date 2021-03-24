@@ -7,6 +7,7 @@ const Parcours = require('../models/pacoursModel');
  */
 exports.getAllParcours = ((req, res, next) => {
     Parcours.find()
+        .populate('responsable', 'nom prenom')
         .then(Parcours => res.status(200).json(Parcours))
         .catch(error => res.status(404).json({ error }));
 });
@@ -24,6 +25,7 @@ exports.getOneParcours = ((req, res, next) => {
     Parcours.findOne({
         _id: req.params.id
     })
+        .populate('responsable', 'nom prenom')
         .then(parcours => res.status(200).json(parcours))
         .catch(error => res.status(404).json({ error}))
 
@@ -43,7 +45,7 @@ exports.createParcours = (req, res, next) => {
         intitule: req.body.intitule,
         description: req.body.description,
         existe: req.body.existe,
-        idResp: req.body.idResp,
+        responsable: req.body.responsable,
     });
 
     parcours.save()
@@ -72,7 +74,7 @@ exports.editParcours = (req, res, next) => {
         niveau : req.body.niveau,
         description : req.body.description,
         existe: req.body.existe,
-        idResp: req.body.idResp,
+        responsable: req.body.responsable,
     });
 
     Parcours.updateOne({_id: req.params.id}, parcours)

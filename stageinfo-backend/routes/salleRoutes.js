@@ -8,7 +8,7 @@ const router = express.Router();
 
 const salleCtrl = require('../controllers/salleController');
 
-router.get('/:id',invite, salleCtrl.getOneSalle);
+router.get('/:id',Etudiant, salleCtrl.getOneSalle);
 router.get('/', Etudiant,salleCtrl.getAllSalle);
 router.post('/', Admin,salleCtrl.createSalle);
 router.put('/:id', Admin,salleCtrl.editSalle);

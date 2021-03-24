@@ -16,7 +16,8 @@ export class LoginComponent implements OnInit {
   constructor(private formBuilder: FormBuilder,
               private authService: AuthService,
               private router: Router
-  ) { }
+  ) {
+  }
 
   ngOnInit(): void {
     this.initForm();
@@ -34,6 +35,7 @@ export class LoginComponent implements OnInit {
       ()=> {
         // @ts-ignore
         this.router.navigate(['/']);
+
       },
       (error) =>{
         this.errorMessage = error.error.error;
