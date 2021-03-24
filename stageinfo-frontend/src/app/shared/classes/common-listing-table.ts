@@ -52,6 +52,7 @@ export abstract class CommonListingTable {
     }
     
     protected getNestedValue(obj: any, key : any): any{
+
         return key.split(".").reduce(function(result: any, key: any) {
             return result[key] 
         }, obj);
@@ -70,6 +71,9 @@ export abstract class CommonListingTable {
     }
     
     public getItems() : any {
+
+        if(!Array.isArray(this.allItems)) return new Array();
+
         let filteredArray = this.allItems.filter(x => {
             if (this.itemHasAllKeywords(x, this.commonProperties.searchFilter.trim().split(/\s+/))) return x;
         });
