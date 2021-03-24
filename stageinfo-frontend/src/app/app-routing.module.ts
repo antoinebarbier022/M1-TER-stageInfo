@@ -40,8 +40,8 @@ import { LoginComponent } from './pages/login/login.component';
 
 
 // Importation des guards
-import {AuthGuardService} from "./core/guards/auth-guard.service";
-import {AuthGuard} from "./core/guards/guard-login.service";
+import { AuthGuardService } from "./core/guards/auth.guard";
+import { AuthGuard } from "./core/guards/login.guard";
 import { RoleGuard } from "./core/guards/role.guard";
 
 // Importation des resolver

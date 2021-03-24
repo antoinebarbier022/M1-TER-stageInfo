@@ -25,7 +25,6 @@ export class InfoEntrepriseComponent implements OnInit {
   constructor(private route:ActivatedRoute) { }
   
   ngOnInit(): void {
-    console.log(this.route.snapshot.data.entreprise);
     this.entreprise = this.route.snapshot.data.entreprise;  
   }
 

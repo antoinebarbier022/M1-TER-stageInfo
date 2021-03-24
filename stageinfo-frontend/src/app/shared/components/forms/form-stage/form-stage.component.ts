@@ -138,7 +138,7 @@ export class FormStageComponent implements OnInit {
     this.stageService.addStage(stage)
     .pipe(takeUntil(this.destroy$))
       .subscribe((_res: any) => {
-        console.log("Stage ajouté !");
+        console.log("Stage : "+ stage.titre + " ajouté à la plateforme !");
         this.page = 1;
         this.message = "Le stage "+ stage.titre + " à été ajouté à la plateforme !";
         this.stageForm.reset();  // on reset les données dans le forumulaire
@@ -149,7 +149,7 @@ export class FormStageComponent implements OnInit {
     this.stageService.editStage(stage._id, stage)
     .pipe(takeUntil(this.destroy$))
       .subscribe((_res: any) => {
-        console.log("Stage modifié !");
+        console.log("Stage : "+ stage.titre + " modifié !");
         this.page = 1;
         this.message = "Stage modifié !";
         this.stageForm.reset(); // on reset les données dans le forumulaire

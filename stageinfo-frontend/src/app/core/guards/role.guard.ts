@@ -23,13 +23,8 @@ export class RoleGuard implements CanActivate {
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
 
-
-
     //var role = this.auth.getRole();
     let role = this.auth.getRole();
-
-
-    console.log('ROOOOOOOOOOOOOOOOOOOOOOLE : ' + role);
     const path = route.url[0].path;
 
     // ---------------------------------------------------------------------------------------------------

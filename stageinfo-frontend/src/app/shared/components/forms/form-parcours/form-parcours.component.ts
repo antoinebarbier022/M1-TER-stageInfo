@@ -113,7 +113,7 @@ export class FormParcoursComponent implements OnInit, OnChanges {
     this.parcoursService.addParcours(parcours)
     .pipe(takeUntil(this.destroy$))
       .subscribe((_res: any[]) => {
-        console.log("Parcours ajouté !");
+        console.log("Parcours : "+ parcours.acronyme + " ajouté à la plateforme !");
         this.parcoursForm.reset();  // on reset les données dans le forumulaire
     });
   }
@@ -122,7 +122,7 @@ export class FormParcoursComponent implements OnInit, OnChanges {
     this.parcoursService.editParcours(id, parcours)
     .pipe(takeUntil(this.destroy$))
       .subscribe((_res: ParcoursModel[]) => {
-        console.log("Parcours modifié !");
+        console.log("Parcours : "+ parcours.acronyme + " modifié !");
         this.parcoursForm.reset(); // on reset les données dans le forumulaire
 
         // On met place les infos du responsable dans le tableau parcours

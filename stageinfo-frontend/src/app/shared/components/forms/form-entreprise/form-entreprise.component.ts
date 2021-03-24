@@ -165,7 +165,7 @@ export class FormEntrepriseComponent implements OnInit {
     this.parcoursService.addEntreprise(entreprise)
     .pipe(takeUntil(this.destroy$))
       .subscribe((_res: any[]) => {
-        console.log("Entreprise ajouté !");
+        console.log("Entreprise : "+ entreprise.nom +" ajouté sur la plateforme !");
         this.onReset(); // on reset les données dans le forumulaire
     });
   }
@@ -174,7 +174,7 @@ export class FormEntrepriseComponent implements OnInit {
     this.parcoursService.editEntreprise(id, entreprise)
     .pipe(takeUntil(this.destroy$))
       .subscribe((_res: any[]) => {
-        console.log("Entreprise modifié !");
+        console.log("Entreprise : "+ entreprise.nom +" modifié !");
         this.onReset(); // on reset les données dans le forumulaire
         this.entrepriseEvent.emit(entreprise); // on envoie le parcours dans le component parent
     });

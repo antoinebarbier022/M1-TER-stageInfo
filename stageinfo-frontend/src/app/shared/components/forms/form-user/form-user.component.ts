@@ -162,7 +162,7 @@ export class FormUserComponent implements OnInit {
     this.userService.addUser(user)
     .pipe(takeUntil(this.destroy$))
       .subscribe((_res: any[]) => {
-        console.log("User ajouté !");
+        console.log("User : "+ user.nom + " "+ user.prenom + " ajouté à la plateforme !");
         this.userForm.reset();  // on reset les données dans le forumulaire
     });
   }
@@ -171,7 +171,7 @@ export class FormUserComponent implements OnInit {
     this.userService.updateUser(id, user)
     .pipe(takeUntil(this.destroy$))
       .subscribe((_res: any[]) => {
-        console.log("Parcours modifié !");
+        console.log("User : "+ user.nom + " "+ user.prenom + " modifié !");
         this.userForm.reset(); // on reset les données dans le forumulaire
         this.userEvent.emit(user); // on envoie le parcours dans le component parent
     });
