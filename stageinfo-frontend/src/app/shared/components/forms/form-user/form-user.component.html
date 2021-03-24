@@ -6,10 +6,10 @@
             <label [for]="addUser ? 'addUserNom':'editUserNom'">Nom</label>
             <input  type="text" 
                     [id]="addUser ? 'addUserNom':'editUserNom'"  
-                    class="form-control"
+                    [ngClass]="viewUser? 'form-control-plaintext' : 'form-control'"
                     placeholder="Nom de l'utilisateur" 
                     name="nom"
-                    [readonly]="viewUser ? true : false"
+                    [readonly]="viewUser"
                     formControlName="nom">
         </div>
 
@@ -18,17 +18,22 @@
             <label [for]="addUser ? 'addUserPrenom':'editUserPrenom'">Prénom</label>
             <input  type="text" 
                     [id]="addUser ? 'addUserPrenom':'editUserPrenom'"
-                    class="form-control"
+                    [ngClass]="viewUser? 'form-control-plaintext' : 'form-control'"
                     placeholder="Prénom de l'utilisateur" 
                     name="prenom"
+                    [readonly]="viewUser"
                     formControlName="prenom">
         </div>
 
         <!-- Rôle de l'utilisateur -->
         <div class="form-group-row">
             <label [for]="addUser ? 'addUserRole':'editUserRole'">Rôle</label>
+            <div *ngIf="viewUser" class="form-select-plaintext">
+                <span class="badge badge-secondary">{{ user.role }}</span>
+            </div>
             <select [id]="addUser ? 'addUserRole':'editUserRole'"
-                    class="form-control" 
+                    *ngIf="!(viewUser)"
+                    [ngClass]="viewUser? 'form-control-plaintext' : 'form-control'" 
                     name="role"
                     formControlName="role"
                     [(ngModel)]="user.role"
@@ -46,13 +51,14 @@
         </div>
 
         <!-- Email de l'utilisateur -->
-        <div class="form-group-row" *ngIf="addUser">
+        <div class="form-group-row" *ngIf="!editUser">
             <label [for]="addUser ? 'addUserEmail':'editUserEmail'">Email</label>
             <input  type="text" 
                     [id]="addUser ? 'addUserEmail':'editUserEmail'"
-                    class="form-control"
+                    [ngClass]="viewUser? 'form-control-plaintext' : 'form-control'"
                     placeholder="Email de l'utilisateur" 
                     name="email"
+                    [readonly]="viewUser"
                     formControlName="email">
         </div>
 
@@ -61,7 +67,7 @@
             <label [for]="addUser ? 'addUserPassword':'editUserPassword'">Mot de passe</label>
             <input  type="password" 
                     [id]="addUser ? 'addUserPassword':'editUserPassword'"
-                    class="form-control"
+                    [ngClass]="viewUser? 'form-control-plaintext' : 'form-control'"
                     placeholder="Mot de passe de l'utilisateur" 
                     name="password"
                     formControlName="password">
@@ -76,9 +82,10 @@
             <label [for]="addUser ? 'addUserPhone':'editUserPhone'">Téléphone</label>
             <input  type="text" 
                     [id]="addUser ? 'addUserPhone':'editUserPhone'"
-                    class="form-control"
+                    [ngClass]="viewUser? 'form-control-plaintext' : 'form-control'"
                     placeholder="Telephone de l'utilisateur" 
                     name="telephone"
+                    [readonly]="viewUser"
                     formControlName="telephone">
         </div>
 
@@ -87,9 +94,10 @@
             <label [for]="addUser ? 'addUserFax':'editUserFax'">Fax</label>
             <input  type="text" 
                     [id]="addUser ? 'addUserFax':'editUserFax'"  
-                    class="form-control"
+                    [ngClass]="viewUser? 'form-control-plaintext' : 'form-control'"
                     placeholder="Fax de l'utilisateur" 
                     name="fax"
+                    [readonly]="viewUser"
                     formControlName="fax">
         </div>
     </fieldset>
@@ -102,17 +110,22 @@
             <label [for]="addUser ? 'addUserNumEtudiant':'editUserNumEtudiant'">Numéro</label>
             <input  type="text" 
                     [id]="addUser ? 'addUserNumEtudiant':'editUserNumEtudiant'"
-                    class="form-control"
+                    [ngClass]="viewUser? 'form-control-plaintext' : 'form-control'"
                     placeholder="Numéro de l'Étudiant" 
                     name="numEtudiant"
+                    [readonly]="viewUser"
                     formControlName="numeroEtudiant">
         </div>
 
         <!-- Promotion de l'étudiant -->
         <div class="form-group-row">
             <label [for]="addUser ? 'addUserPromotion':'editUserPromotion'">Promotion</label>
+            <div *ngIf="viewUser" class="form-select-plaintext">
+                <span class="badge badge-secondary">{{ user.promotion }}</span>
+            </div>
             <select [id]="addUser ? 'addUserPromotion':'editUserPromotion'"
-                    class="form-control" 
+                    *ngIf="!(viewUser)"
+                    [ngClass]="viewUser? 'form-control-plaintext' : 'form-control'" 
                     name="promotionEtudiant"
                     formControlName="promotion">
                 <option value="" disabled selected>Selectionner la promotion</option>
@@ -130,9 +143,10 @@
             <label [for]="addUser ? 'addUserFonction':'editUserFonction'">Fonction</label>
             <input  type="text" 
                     [id]="addUser ? 'addUserFonction':'editUserFonction'"
-                    class="form-control"
+                    [ngClass]="viewUser? 'form-control-plaintext' : 'form-control'"
                     placeholder="Fonction occupée dans l'entreprise" 
                     name="fonction"
+                    [readonly]="viewUser"
                     formControlName="fonction">
         </div>
 
@@ -141,9 +155,10 @@
             <label [for]="addUser ? 'addUserEntreprise':'editUserEntreprise'">Nom</label>
             <input  type="text" 
                     [id]="addUser ? 'addUserEntreprise':'editUserEntreprise'"
-                    class="form-control"
+                    [ngClass]="viewUser? 'form-control-plaintext' : 'form-control'"
                     placeholder="Nom de l'entreprise" 
                     name="fonction"
+                    [readonly]="viewUser"
                     formControlName="entreprise">
         </div>
 

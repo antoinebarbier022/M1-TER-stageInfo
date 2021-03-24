@@ -1,11 +1,11 @@
-<app-navigation title="Utilisateur : test"></app-navigation>
+<app-navigation [title]="'Utilisateur : ' + user.nom + ' ' + user.prenom"></app-navigation>
 
 <div class="all-card-profile">
-    <app-card id="info-user" >
+    <app-card id="info-user" title="Informations Utilisateur">
         <app-form-user  
             [viewUser]="true" 
             title="Profile utilisateur"
-            [idUser]="userId">
+            [selectedUser]="user">
         </app-form-user>
     </app-card>
 

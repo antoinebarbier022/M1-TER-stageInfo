@@ -58,21 +58,21 @@ export class FormUserComponent implements OnInit {
   ngOnInit(): void {
     this.initForm();
 
-    if(this.editUser){
+    if(!this.addUser){
       this.idUser = this.selectedUser._id;
       this.setInputForm(this.selectedUser._id);
     }
-
-    this.displaySection(this.user.role);
+    this.displaySection(this.selectedUser.role);
   }
 
   // lorsque le user selectionner à changer :
   ngOnChanges(){
     this.initForm();
-    if(this.editUser){  // Si on est sur le formulaire edit parcours alors on remplie les champs
+    if(!this.addUser){  // Si on est sur le formulaire edit parcours alors on remplie les champs
       this.idUser = this.selectedUser._id;
       this.setInputForm(this.selectedUser._id);
     } 
+    this.displaySection(this.selectedUser.role);
   }
 
   initForm(){
