@@ -113,7 +113,7 @@ const routes: Routes = [
   { path: 'liste-soutenances/soutenance', component: AddSoutenanceComponent, canActivate: [AuthGuardService, RoleGuard]},
 
   // route parcours
-  { path: 'liste-parcours', component: ListParcoursComponent, canActivate: [AuthGuardService, RoleGuard], resolve: { allParcours: AllParcoursResolver }},
+  { path: 'liste-parcours', component: ListParcoursComponent, canActivate: [AuthGuardService, RoleGuard], resolve: { allParcours: AllParcoursResolver , allResponsables: AllUsersResolver }},
   { path: 'liste-parcours/:id', component: InfoParcoursComponent, canActivate: [AuthGuardService, RoleGuard], resolve: { parcours: ParcoursResolver }},
 
   // config calendrier soutenance

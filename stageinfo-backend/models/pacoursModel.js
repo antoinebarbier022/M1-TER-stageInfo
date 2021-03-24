@@ -7,7 +7,7 @@ const parcoursSchema = Schema({
         intitule: String,
         description: String,
         existe: Boolean, // si le parcours n'existe plus il ne sera plus proposé mais existera toujours
-        idResp: { type: Schema.ObjectId, ref: 'User' }  // id responsable parcours
+        responsable: { type: Schema.ObjectId, ref: 'User' }  // id responsable parcours
     },
     {
         collection: 'Parcours'

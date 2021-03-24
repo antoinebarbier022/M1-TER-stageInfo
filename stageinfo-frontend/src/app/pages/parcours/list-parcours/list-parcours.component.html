@@ -25,7 +25,7 @@
                     <td>{{ parcours.acronyme | uppercase }}</td>
                     <td>{{ parcours.intitule }}</td>
                     <td>{{ parcours.niveau }}</td>
-                    <td><a routerLink="/">{{ parcours.responsable }}</a></td>
+                    <td><a [routerLink]="['/liste-utilisateurs/user/', parcours.responsable]">{{ parcours.responsable.nom + ' ' + parcours.responsable.prenom }}</a></td>
 
                     <td class="table-action">
                         <!-- Bouton edit => ouvre un modal avec le formulaire de modification -->
