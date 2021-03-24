@@ -51,7 +51,7 @@
                 name="responsable"
                 formControlName="responsable">
             <option value="" disabled selected>Selectionner le responsable</option>
-            <option *ngFor="let resp of allResponsable" [ngvalue]="resp._id">{{ resp.nom + ' ' + resp.prenom }}</option>
+            <option *ngFor="let resp of allResponsable" [ngValue]="resp._id">{{ resp.nom + ' ' + resp.prenom }}</option>
         </select>
     </div>
 

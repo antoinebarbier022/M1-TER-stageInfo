@@ -25,8 +25,9 @@
                     <td>{{ parcours.acronyme | uppercase }}</td>
                     <td>{{ parcours.intitule }}</td>
                     <td>{{ parcours.niveau }}</td>
-                    <td><a [routerLink]="['/liste-utilisateurs/user/', parcours.responsable]">{{ parcours.responsable.nom + ' ' + parcours.responsable.prenom }}</a></td>
-
+                    
+                    <td *ngIf="parcours.responsable"><a [routerLink]="['/liste-utilisateurs/user/', parcours.responsable._id]">{{ parcours.responsable.nom + ' ' + parcours.responsable.prenom }}</a></td>
+                    <td *ngIf="!parcours.responsable"> undefined </td>
                     <td class="table-action">
                         <!-- Bouton edit => ouvre un modal avec le formulaire de modification -->
                         <app-button-edit data-toggle="modal" (click)="selectedItem(parcours)" data-target="#modifier"></app-button-edit>

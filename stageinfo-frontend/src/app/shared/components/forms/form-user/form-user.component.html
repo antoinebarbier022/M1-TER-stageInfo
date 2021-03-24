@@ -16,9 +16,9 @@
 
         <!-- Prénom de l'utilisateur -->
         <div class="form-group-row">
-            <label [for]="addUser ? 'addUserPrenom':'addUserPrenom'">Prénom</label>
+            <label [for]="addUser ? 'addUserPrenom':'editUserPrenom'">Prénom</label>
             <input  type="text" 
-                    id="prenom"  
+                    [id]="addUser ? 'addUserPrenom':'editUserPrenom'"
                     class="form-control"
                     placeholder="Prénom de l'utilisateur" 
                     name="prenom"

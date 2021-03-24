@@ -7,6 +7,7 @@ const Parcours = require('../models/pacoursModel');
  */
 exports.getAllParcours = ((req, res, next) => {
     Parcours.find()
+        .populate('responsable', 'nom prenom')
         .then(Parcours => res.status(200).json(Parcours))
         .catch(error => res.status(404).json({ error }));
 });
