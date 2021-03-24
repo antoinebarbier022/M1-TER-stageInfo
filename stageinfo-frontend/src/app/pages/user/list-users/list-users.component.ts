@@ -6,7 +6,7 @@ import { ActivatedRoute } from '@angular/router';
 import { UserService } from 'src/app/core/services/user.service';
 
 import { CommonListingTable } from 'src/app/shared/classes/common-listing-table';
-import { userModel } from 'src/app/core/models/userModel';
+import { UserModel } from 'src/app/core/models/UserModel';
 
 @Component({
   selector: 'app-list-users',
@@ -19,7 +19,7 @@ export class ListUsersComponent extends CommonListingTable implements OnInit, On
 
   destroy$: Subject<boolean> = new Subject<boolean>();
 
-  selectItem: userModel; // item qui est selectionné 
+  selectItem: UserModel; // item qui est selectionné 
 
   constructor(private route:ActivatedRoute, private userService: UserService) { 
     super();
@@ -29,7 +29,7 @@ export class ListUsersComponent extends CommonListingTable implements OnInit, On
       { name: 'email', sorted: false },
       { name: 'role', sorted: false }
     ];
-    this.selectItem = new userModel();
+    this.selectItem = new UserModel();
   }
 
   ngOnInit(): void {
@@ -41,7 +41,7 @@ export class ListUsersComponent extends CommonListingTable implements OnInit, On
    * @description Met à jour le parcours selectionné, permet au modal de savoir quelle contenu afficher
    * @params item : ParcoursModel -> contient les informations du parcours selectionné
    */
-  selectedItem(item: userModel){
+  selectedItem(item: UserModel){
     console.log(item);
     this.selectItem = item;
   }

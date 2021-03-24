@@ -5,7 +5,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { takeUntil } from 'rxjs/operators';
 import { Subject } from 'rxjs';
 
-import { userModel } from 'src/app/core/models/userModel';
+import { UserModel } from 'src/app/core/models/UserModel';
 import { AuthService } from 'src/app/core/services/auth.service';
 import { UserService } from 'src/app/core/services/user.service';
 
@@ -20,16 +20,16 @@ export class FormUserComponent implements OnInit {
 
   @Input() addUser: boolean = false;
   @Input() editUser: boolean = false;
-  @Input() selectedUser: userModel = new userModel();
+  @Input() selectedUser: UserModel = new UserModel();
   @Input() viewUser: boolean = false;
 
   @Input() idUser: any = '';
 
-  @Output() userEvent = new EventEmitter<userModel>();
+  @Output() userEvent = new EventEmitter<UserModel>();
 
   Message: string = "";
 
-  user: userModel = new userModel();
+  user: UserModel = new UserModel();
   //public role: string = '';
 
   // Boolean pour l'affichage des sections
@@ -52,7 +52,7 @@ export class FormUserComponent implements OnInit {
               private router: Router,
               private userService: UserService,
               private auth: AuthService) { 
-    this.selectedUser = new userModel();
+    this.selectedUser = new UserModel();
   }
 
   ngOnInit(): void {
@@ -100,7 +100,7 @@ export class FormUserComponent implements OnInit {
     // récupération des données du user
     this.userService.getUserById(id)
       .pipe(takeUntil(this.destroy$))
-      .subscribe((_parcours: userModel) => {
+      .subscribe((_parcours: UserModel) => {
         this.user = _parcours;
         // On set les données du user dans le formulaire
         this.userForm.patchValue({
@@ -128,7 +128,7 @@ export class FormUserComponent implements OnInit {
 
   onSubmitForm(){
     const formValue = this.userForm.value;
-    const newUser = new userModel(
+    const newUser = new UserModel(
       this.idUser,
       formValue['nom'],
       formValue['prenom'],

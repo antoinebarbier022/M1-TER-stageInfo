@@ -4,7 +4,7 @@ import { Router } from "@angular/router";
 
 import { AuthService } from "../services/auth.service";
 import { UserService } from "../services/user.service";
-import { userModel } from "../models/userModel";
+import { UserModel } from '../models/UserModel';
 
 @Component({
   selector: 'app-header',
@@ -12,7 +12,7 @@ import { userModel } from "../models/userModel";
   styleUrls: ['./header.component.scss']
 })
 export class HeaderComponent implements OnInit, OnDestroy {
-  public user: userModel | undefined
+  public user: UserModel | undefined;
   public isAuth: boolean | undefined;
 
   getSwitch():boolean{

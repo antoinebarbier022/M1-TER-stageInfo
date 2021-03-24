@@ -1,7 +1,7 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Subject } from 'rxjs';
-import { userModel } from 'src/app/core/models/userModel';
+import { UserModel } from 'src/app/core/models/UserModel';
 import { UserService } from 'src/app/core/services/user.service';
 import { CommonListingTable } from 'src/app/shared/classes/common-listing-table';
 
@@ -26,7 +26,7 @@ export class ListEtudiantsComponent extends CommonListingTable implements OnInit
       { name: 'email', sorted: false },
       { name: 'role', sorted: false }
     ];
-    this.selectItem = new userModel();
+    this.selectItem = new UserModel();
   }
 
   ngOnInit(): void {

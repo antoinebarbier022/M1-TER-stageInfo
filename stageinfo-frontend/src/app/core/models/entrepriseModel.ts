@@ -1,5 +1,3 @@
-import { AdresseModel } from "./AdresseModel";
-
 export class EntrepriseModel{
     constructor(
         public _id: string ="",
@@ -25,4 +23,13 @@ export class EntrepriseModel{
         public local: boolean = false,
         public chiffreAffaire: string = "",
         public responsable:string = ""){}
+}
+
+export class AdresseModel{
+    constructor(
+        public voie:string ="",
+        public ville:string ="",
+        public codePostal: string ="",
+        public pays: string ="",
+        ){}
 }

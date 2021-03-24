@@ -1,9 +1,11 @@
-export class embaucheSchema{
-    idStage: string = "";
-    idEtudiant: string = "";
-    idEntreprise: string = "";
+export class EmbaucheSchema{
+    constructor(
+        public idStage:string = "",
+        public idEtudiant:string ="",
+        public idEntreprise: string = "",
+        public commentaire: string ="",
 
-    commentaire: string = "";
-    contratType: string= "";
-    dateEmbauche: Date= new Date();
+        public contratType: boolean = false,
+        public dateEmbauche: Date = new Date(),
+        ){}
 }

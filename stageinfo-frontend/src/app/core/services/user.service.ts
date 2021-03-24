@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { AuthService } from '../services/auth.service';
-import { userModel } from '../models/userModel';
+import { UserModel } from '../models/UserModel';
 
 const httpOptions = {
   headers: new HttpHeaders({
@@ -23,11 +23,11 @@ export class UserService {
     
   }
 
-  addUser(user: userModel): Observable<any> {
+  addUser(user: UserModel): Observable<any> {
     return this.httpClient.post(this.urlBase+'api/auth/signup', user); 
   }
 
-  updateUser(id: any, user: userModel): Observable<any> {
+  updateUser(id: any, user: UserModel): Observable<any> {
     return this.httpClient.put(this.urlBase+'api/auth/' + id, user); 
   }
 
