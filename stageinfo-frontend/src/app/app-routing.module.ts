@@ -55,6 +55,7 @@ import { AllParcoursResolver } from './core/resolves/all-parcours.resolver';
 import { ParcoursResolver } from './core/resolves/parcours.resolver';
 import { AllSoutenancesResolver } from './core/resolves/all-soutenances.resolver';
 import { Error401Component } from './pages/erreurs/error401/error401.component';
+import { AllRespParcoursResolver } from './core/resolves/all-resp-parcours.resolver';
 
 const routes: Routes = [
   { path: '', redirectTo: 'liste-stages', pathMatch: 'full', canActivate: [AuthGuardService, RoleGuard]},
@@ -113,7 +114,7 @@ const routes: Routes = [
   { path: 'liste-soutenances/soutenance', component: AddSoutenanceComponent, canActivate: [AuthGuardService, RoleGuard]},
 
   // route parcours
-  { path: 'liste-parcours', component: ListParcoursComponent, canActivate: [AuthGuardService, RoleGuard], resolve: { allParcours: AllParcoursResolver , allResponsables: AllUsersResolver }},
+  { path: 'liste-parcours', component: ListParcoursComponent, canActivate: [AuthGuardService, RoleGuard], resolve: { allParcours: AllParcoursResolver , allResponsables: AllRespParcoursResolver }},
   { path: 'liste-parcours/:id', component: InfoParcoursComponent, canActivate: [AuthGuardService, RoleGuard], resolve: { parcours: ParcoursResolver }},
 
   // config calendrier soutenance
