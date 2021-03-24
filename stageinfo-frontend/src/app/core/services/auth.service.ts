@@ -4,7 +4,7 @@ import { BehaviorSubject } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import {HeaderComponent} from "../header/header.component";
 import jwtDecode from 'jwt-decode';
-import { IToken } from '../../shared/interfaces/itoken';
+import { IToken } from '../interfaces/itoken';
 
 @Injectable({
   providedIn: 'root'
