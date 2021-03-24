@@ -67,13 +67,15 @@ export class ListUsersComponent extends CommonListingTable implements OnInit, On
    * @description Supprime le parcours selectionné sur la base de donnée et met à jour le tableau local
    * @params id : any -> identifiant du parcours à supprimer
    */
-   deleteUser(id: any){
-     console.log('saaalut');
-    this.userService.deleteUserById(id).subscribe(x => {
-      console.log(x);
-    });
+  deleteUser(id:any){
+    console.log({message:"delete", id: id});
+    this.userService.deleteUserById(id)
+    .pipe(takeUntil(this.destroy$))
+      .subscribe((_res: any) => {
+        // On supprime de l'affichage le parcours (on sait qu'il est supprimer de la base de donnée donc on peut le supprimer sans recharger les données distantes)
+        this.allItems = this.allItems.filter((object: { _id: any; }) => { return object._id != id; });
+      });
   }
-
 
   ngOnDestroy() {
     this.destroy$.next(true);

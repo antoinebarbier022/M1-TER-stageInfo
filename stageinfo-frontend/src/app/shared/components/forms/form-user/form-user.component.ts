@@ -151,16 +151,30 @@ export class FormUserComponent implements OnInit {
     console.log(newUser);
     
     if(this.addUser){
-      this.userService.addUser(newUser).subscribe(x => {
-        console.log(x);
-      });
+      this.ajouterUser(newUser);
     }
     else{
-      newUser.email = this.selectedUser.email;
-      this.userService.updateUser(this.idUser, newUser).subscribe(x => {
-        console.log(x);
-      });
+      this.modifierUser(this.idUser, newUser);
     }
+  }
+
+  ajouterUser(user:any){
+    this.userService.addUser(user)
+    .pipe(takeUntil(this.destroy$))
+      .subscribe((_res: any[]) => {
+        console.log("User ajouté !");
+        this.userForm.reset();  // on reset les données dans le forumulaire
+    });
+  }
+
+  modifierUser(id:any, user:any){
+    this.userService.updateUser(id, user)
+    .pipe(takeUntil(this.destroy$))
+      .subscribe((_res: any[]) => {
+        console.log("Parcours modifié !");
+        this.userForm.reset(); // on reset les données dans le forumulaire
+        this.userEvent.emit(user); // on envoie le parcours dans le component parent
+    });
   }
 
   ngOnDestroy() {
