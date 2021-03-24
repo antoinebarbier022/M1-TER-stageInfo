@@ -4,6 +4,8 @@ const jwt = require ('jsonwebtoken');
 
 exports.getAllUser = ((req, res, next) => {
     User.find()
+        .populate('idEntreprise', 'nom')
+        .populate('idParcours', 'acronyme')
         .then(users => res.status(200).json(users))
         .catch(error => res.status(404).json({ error }));
 });
@@ -12,6 +14,8 @@ exports.getOneUser = ((req, res, next) => {
     User.findOne({
       _id: req.params.id
     })
+    .populate('idEntreprise', 'nom')
+    .populate('idParcours', 'acronyme')
     .then(user => res.status(200).json(user))
     .catch(error => res.status(404).json({ error }))
   });
@@ -21,15 +25,19 @@ exports.signup = (req, res, next) =>{
     bcrypt.hash(req.body.password,10)
         .then(hash => {
             const user =new User({
+                nom: req.body.nom,
                 prenom: req.body.prenom,
                 email: req.body.email,
                 hash: hash,
                 role: req.body.role,
+                idParcours: req.body.parcours,
                 numeroEtudiant: req.body.numeroEtudiant,
                 Fax: req.body.fax,
                 telephone: req.body.telephone,
                 fonction:req.body.fonction,
-                nom: req.body.nom,
+                idEntreprise: req.body.entreprise
+                
+                
             });
             user.save()
                 .then(() => res.status(201).json({message: 'Utilisateur crée!'}))
@@ -114,16 +122,15 @@ exports.getRole = ((req, res, next) => {
     const user = new User({
        _id: req.params.id,
        nom: req.body.nom,
-       email: req.body.email,
        prenom: req.body.prenom,
        telephone: req.body.telephone,
        fax: req.body.fax,
        role: req.body.role,
        numeroEtudiant: req.body.numeroEtudiant,
        promotion: req.body.promotion,
-       parcours: req.body.parcours,
+       idParcours: req.body.parcours,
        fonction: req.body.fonction,
-       entreprise: req.body.entreprise
+       idEntreprise: req.body.entreprise
     });
 
     User.updateOne({_id: req.params.id}, user)
