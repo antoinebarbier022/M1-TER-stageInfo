@@ -118,12 +118,24 @@ export class FormParcoursComponent implements OnInit, OnChanges {
     });
   }
 
-  modifierParcours(id:any, parcours:any){
+  modifierParcours(id:any, parcours:ParcoursModel){
     this.parcoursService.editParcours(id, parcours)
     .pipe(takeUntil(this.destroy$))
-      .subscribe((_res: any[]) => {
+      .subscribe((_res: ParcoursModel[]) => {
         console.log("Parcours modifié !");
         this.parcoursForm.reset(); // on reset les données dans le forumulaire
+
+        // On met place les infos du responsable dans le tableau parcours
+        var idResp = parcours.responsable;
+        var index = this.allResponsable.findIndex(((obj: { _id: any; }) => obj._id == idResp));
+      
+        parcours.responsable = { 
+          _id:idResp, 
+          nom:this.allResponsable[index].nom,
+          prenom:this.allResponsable[index].prenom
+        }
+
+        console.log(parcours);
         this.parcoursEvent.emit(parcours); // on envoie le parcours dans le component parent
     });
   }
