@@ -24,6 +24,7 @@ exports.getOneParcours = ((req, res, next) => {
     Parcours.findOne({
         _id: req.params.id
     })
+        .populate('idResp', 'nom prenom')
         .then(parcours => res.status(200).json(parcours))
         .catch(error => res.status(404).json({ error}))
 

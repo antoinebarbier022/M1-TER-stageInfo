@@ -52,42 +52,43 @@ const stageSchema = Schema({
       commentaire: String,
     }),
     parcours : String,
-    /*parcours: { 
-      idParcours: Schema.Types.ObjectId,
-      nomComplet: String,
-    },*/
+    entreprise: String,
+    /*
+    parcours: {
+      Type: Schema.Types.ObjectId,
+      ref: 'Parcours',
+    },
     ajouteur: {
-      idAjouteur: Schema.Types.ObjectId,
-      nomComplet: String,
+      Type: Schema.Types.ObjectId,
+      ref: 'Users',
     },
-    entreprise:String,
-    /*entreprise: { 
-      idEntreprise: Schema.Types.ObjectId,
-      nomComplet: String,
-    },*/
-    tuteurUniv: { 
-      idTuteurUniv: Schema.Types.ObjectId,
-      nomComplet: String,
+    entreprise: {
+      Type: Schema.Types.ObjectId,
+      ref: 'Entreprise',
     },
-    tuteurEntreprise: { 
-      idTuteurEntreprise: Schema.Types.ObjectId,
-      nomComplet: String,
+    tuteurUniv: {
+      Type: Schema.Types.ObjectId,
+      ref: 'Users',
     },
-    rapporteur: { 
-      idRapporteur: Schema.Types.ObjectId,
-      nomComplet: String,
+    tuteurEntreprise: {
+      Type: Schema.Types.ObjectId,
+      ref: 'Users',
+    },
+    rapporteur: {
+      Type: Schema.Types.ObjectId,
+      ref: 'Users',
     },
    
-    etudiant: { 
-      idEtudiant: Schema.Types.ObjectId,
-      nomComplet: String,
+    etudiant: {
+      Type: Schema.Types.ObjectId,
+      ref: 'Users',
     },
     
     idVisite: {
       typeContact: String,
       dateVisite: Date,
       commentaire: String
-    }
+    }*/
 
   },
   {
