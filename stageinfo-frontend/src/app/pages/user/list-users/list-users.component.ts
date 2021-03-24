@@ -19,7 +19,7 @@ export class ListUsersComponent extends CommonListingTable implements OnInit, On
 
   destroy$: Subject<boolean> = new Subject<boolean>();
 
-  selectItem:any; // item qui est selectionné 
+  selectItem: userModel; // item qui est selectionné 
 
   constructor(private route:ActivatedRoute, private userService: UserService) { 
     super();
@@ -41,7 +41,8 @@ export class ListUsersComponent extends CommonListingTable implements OnInit, On
    * @description Met à jour le parcours selectionné, permet au modal de savoir quelle contenu afficher
    * @params item : ParcoursModel -> contient les informations du parcours selectionné
    */
-  selectedItem(item:any){
+  selectedItem(item: userModel){
+    console.log(item);
     this.selectItem = item;
   }
 
@@ -57,7 +58,6 @@ export class ListUsersComponent extends CommonListingTable implements OnInit, On
     this.allItems[index] = item;  // On met a jour le tableau local avec les nouvelles datas
   }
 
-
   addUser(item:any){
     console.log(item);
   }
@@ -67,15 +67,11 @@ export class ListUsersComponent extends CommonListingTable implements OnInit, On
    * @description Supprime le parcours selectionné sur la base de donnée et met à jour le tableau local
    * @params id : any -> identifiant du parcours à supprimer
    */
-  deleteUser(id:any){
-    console.log({message:"delete", id: id});
-    /*this.userService.deleteUserById(id)
-    .pipe(takeUntil(this.destroy$))
-      .subscribe((_res: any[]) => {
-        console.log(_res);
-        // On supprime de l'affichage le parcours (on sait qu'il est supprimer de la base de donnée donc on peut le supprimer sans recharger les données distantes)
-        this.allItems = this.allItems.filter((object: { _id: any; }) => { return object._id != id; });
-      });*/
+   deleteUser(id: any){
+     console.log('saaalut');
+    this.userService.deleteUserById(id).subscribe(x => {
+      console.log(x);
+    });
   }
 
 

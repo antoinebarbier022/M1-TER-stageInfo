@@ -1,6 +1,6 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, EventEmitter, Input, Output } from '@angular/core';
 
-import {FormBuilder, FormGroup, Validators} from "@angular/forms";
+import { FormBuilder, FormGroup, Validators, ReactiveFormsModule} from "@angular/forms";
 import { ActivatedRoute, Router } from '@angular/router';
 import { takeUntil } from 'rxjs/operators';
 import { Subject } from 'rxjs';
@@ -20,35 +20,147 @@ export class FormUserComponent implements OnInit {
 
   @Input() addUser: boolean = false;
   @Input() editUser: boolean = false;
+  @Input() selectedUser: userModel = new userModel();
   @Input() viewUser: boolean = false;
 
-  @Input() idUser : any = undefined;
+  @Input() idUser: any = '';
+
+  @Output() userEvent = new EventEmitter<userModel>();
 
   Message: string = "";
 
   user: userModel = new userModel();
+  //public role: string = '';
 
   // Boolean pour l'affichage des sections
   displaySectionEtudiant = false;
   displaySectionCoordonnees = false;
   displaySectionEntreprise = false;
 
-  roles = ["invite", "etudiant","tuteur", "respEntreprise", "secretaire", "admin"];
+
+  // @ts-ignore
+  userForm: FormGroup;
+
+  //roles = ["invite", "etudiant","tuteur", "respEntreprise", "secretaire", "admin"];
   promotions = ["2016/2017", "2017/2018","2018/2019", "2019/2020", "2020/2021"];
-  parcours = ["M2 AIGLE", "M2 MIT","M2 DECOL", "M2 IMAGINA"];
+  //parcours = ["M2 AIGLE", "M2 MIT","M2 DECOL", "M2 IMAGINA"];
 
   destroy$: Subject<boolean> = new Subject<boolean>();
 
-  constructor(private route:ActivatedRoute,
+  constructor(private formBuilder: FormBuilder,
+              private route:ActivatedRoute,
               private router: Router,
               private userService: UserService,
-              private auth: AuthService) { }
+              private auth: AuthService) { 
+    this.selectedUser = new userModel();
+  }
 
   ngOnInit(): void {
-    if(!this.addUser){
-      this.user = this.route.snapshot.data.user;
+    this.initForm();
+
+    if(this.editUser){
+      this.idUser = this.selectedUser._id;
+      this.setInputForm(this.selectedUser._id);
     }
+
     this.displaySection(this.user.role);
+  }
+
+  // lorsque le user selectionner à changer :
+  ngOnChanges(){
+    this.initForm();
+    if(this.editUser){  // Si on est sur le formulaire edit parcours alors on remplie les champs
+      this.idUser = this.selectedUser._id;
+      this.setInputForm(this.selectedUser._id);
+    } 
+  }
+
+  initForm(){
+    this.userForm = this.formBuilder.group({
+      nom: ['',Validators.required],
+      prenom: ['',Validators.required], 
+      email: ['',Validators.required],
+      telephone: '',
+      fax:'',
+      password: ['',Validators.required],
+      role: ['',Validators.required],
+
+      // Étudiant
+      numeroEtudiant: '',
+      promotion:'',
+      parcours:'',
+
+      // Entreprise
+      fonction:'',
+      entreprise:''
+    });
+  }
+
+  setInputForm(id:any){
+    // récupération des données du user
+    this.userService.getUserById(id)
+      .pipe(takeUntil(this.destroy$))
+      .subscribe((_parcours: userModel) => {
+        this.user = _parcours;
+        // On set les données du user dans le formulaire
+        this.userForm.patchValue({
+          nom: this.user.nom,
+          prenom: this.user.prenom,
+          email: this.user.email,
+          telephone: this.user.telephone,
+          fax: this.user.fax,
+          password: this.user.password,
+          role: this.user.role,
+
+          // Étudiant
+          numeroEtudiant: this.user.numeroEtudiant,
+          promotion: this.user.promotion,
+          parcours: this.user.parcours,
+
+          // Entreprise
+          fonction: this.user.fonction,
+          entreprise: this.user.entreprise
+        });
+      });
+  }
+  
+
+
+  onSubmitForm(){
+    const formValue = this.userForm.value;
+    const newUser = new userModel(
+      this.idUser,
+      formValue['nom'],
+      formValue['prenom'],
+      formValue['email'],
+      formValue['telephone'],
+      formValue['fax'],
+      formValue['password'],
+      formValue['role'],
+
+      // Étudiant
+      formValue['numeroEtudiant'],
+      formValue['promotion'],
+      formValue['parcours'],
+
+      // Entreprise
+      formValue['fonction'],
+      formValue['entreprise']
+    );
+
+    console.log(newUser);
+    
+    if(this.addUser){
+      this.userService.addUser(newUser).subscribe(x => {
+        console.log(x);
+      });
+    }
+    else{
+      newUser.email = this.selectedUser.email;
+      this.userService.updateUser(this.idUser, newUser).subscribe(x => {
+        console.log(x);
+      });
+    }
   }
 
   ngOnDestroy() {
@@ -56,25 +168,10 @@ export class FormUserComponent implements OnInit {
     this.destroy$.unsubscribe();
   }
 
-  getUser(id:any) {
-    this.userService.getUserById(id)
-      .pipe(takeUntil(this.destroy$))
-      .subscribe((_user: userModel) => {
-        this.user = _user;
-        //this.displaySection(this.user.role);
-      }, (_error:any) =>{
-        // redirection vers la page d'erreur 404 si le stage n'est pas trouvé
-        if(_error.status == "404"){
-          this.router.navigate(['not-found']);
-        }
-      }
-    );
-  }
-
-
   displaySection(role : string){
+
     switch (role) {
-      case "respEntreprise":
+      case "representantEntreprise":
           this.displaySectionEtudiant = false;
           this.displaySectionCoordonnees = true;
           this.displaySectionEntreprise = true;
@@ -99,30 +196,4 @@ export class FormUserComponent implements OnInit {
         break;
     }
   }
-  onSignup() {
-    const prenom = this.user.prenom;
-    const nom = this.user.nom;
-    const email = this.user.email;
-    const password = this.user.hash;
-    const rolee = this.user.role;
-    const numeroEtudiant=this.user.numeroEtudiant;
-    const Promotion="" ;//  à faire
-    const idParcours= "" ;// à faire
-    const Fax = this.user.fax;
-    const telephone = this.user.telephone;
-    const fonction = this.user.fonction;
-    const identreprise =" " ;// à faire
-    this.auth.createNewUser(nom, prenom, email, password,rolee,numeroEtudiant,Promotion,idParcours,Fax,telephone,fonction,identreprise).then(
-      () => {
-        this.Message = "Utilisateur crée !! "
-      }
-    ).catch(
-      (error) => {
-
-        this.Message = error.message;
-      }
-    );
-  }
-
-
 }

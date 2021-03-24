@@ -1,72 +1,188 @@
-<form>
-    <!-- Nom de l'utilisateur -->
-    <div class="form-group-row">
-        <label [for]="">Nom</label>
-        <input  type="text" 
-                [id]=""  
-                class="form-control"
-                placeholder="Nom de l'utilisateur" 
-                name="parcoursAcronyme"
-                formControlName="acronyme">
-    </div>
-    <!-- Prénom de l'utilisateur -->
-    <div class="form-group-row">
-        <label [for]="">Prénom</label>
-        <input  type="text" 
-                [id]=""  
-                class="form-control"
-                placeholder="Prénom de l'utilisateur" 
-                name="parcoursAcronyme"
-                formControlName="acronyme">
-    </div>
-    <!-- Rôle de l'utilisateur -->
-    <div class="form-group-row">
-        <label [for]="">Rôle</label>
-        <select [id]=""
-                class="form-control" 
-                name="niveau"
-                formControlName="niveau">
-            <option value="" disabled selected>Selectionner un rôle</option>
-            <option value="invite">Invité</option>
-            <option value="etudiant">Étudiant</option>
-            <option value="tuteur">Enseignant (Tuteur)</option>
-            <option value="secretaire">Secrétaire</option>
-            <option value="responsableParcours">Responsable de parcours</option>
-            <option value="responsablePedagogique">Responsable pédagogique</option>
-            <option value="admin">Admin</option>
-        </select>
-    </div>
-    <!-- Email de l'utilisateur -->
-    <div class="form-group-row">
-        <label [for]="">Email</label>
-        <input  type="text" 
-                [id]="" 
-                class="form-control"
-                placeholder="Email de l'utilisateur" 
-                name="parcoursIntitule"
-                formControlName="intitule">
-    </div>
-    <!-- Mot de passe de l'utilisateur -->
-    <div class="form-group-row">
-        <label [for]="">Mot de passe</label>
-        <input  type="password" 
-                [id]="" 
-                class="form-control"
-                placeholder="Mot de passe de l'utilisateur" 
-                name="parcoursIntitule"
-                formControlName="intitule">
-    </div>
-    <!-- Si Ajouter un Utilisateur -->
-    <button
-            type="submit"
+<form [formGroup]="userForm" (ngSubmit)="onSubmitForm()">
+    <!-- Section information profile-->
+    <fieldset>
+        <legend>Infos Utilisateur</legend>
+
+        <!-- Nom de l'utilisateur -->
+        <div class="form-group-row">
+            <label [for]="addUser ? 'addUserNom':'editUserNom'">Nom</label>
+            <input  type="text" 
+                    [id]="addUser ? 'addUserNom':'editUserNom'"  
+                    class="form-control"
+                    placeholder="Nom de l'utilisateur" 
+                    name="nom"
+                    formControlName="nom">
+        </div>
+
+        <!-- Prénom de l'utilisateur -->
+        <div class="form-group-row">
+            <label [for]="addUser ? 'addUserPrenom':'addUserPrenom'">Prénom</label>
+            <input  type="text" 
+                    id="prenom"  
+                    class="form-control"
+                    placeholder="Prénom de l'utilisateur" 
+                    name="prenom"
+                    formControlName="prenom">
+        </div>
+
+        <!-- Rôle de l'utilisateur -->
+        <div class="form-group-row">
+            <label [for]="addUser ? 'addUserRole':'editUserRole'">Rôle</label>
+            <select [id]="addUser ? 'addUserRole':'editUserRole'"
+                    class="form-control" 
+                    name="role"
+                    formControlName="role"
+                    [(ngModel)]="user.role"
+                    (ngModelChange)="displaySection(user.role)">
+                <option value="" disabled selected>Selectionner un rôle</option>
+                <option value="invite">Invité</option>
+                <option value="etudiant">Étudiant</option>
+                <option value="tuteur">Enseignant (Tuteur)</option>
+                <option value="secretaire">Secrétaire</option>
+                <option value="representantEntreprise">Représentant Entreprise</option>
+                <option value="responsableParcours">Responsable de parcours</option>
+                <option value="responsablePedagogique">Responsable pédagogique</option>
+                <option value="admin">Admin</option>
+            </select>
+        </div>
+
+        <!-- Email de l'utilisateur -->
+        <div class="form-group-row" *ngIf="addUser">
+            <label [for]="addUser ? 'addUserEmail':'editUserEmail'">Email</label>
+            <input  type="text" 
+                    [id]="addUser ? 'addUserEmail':'editUserEmail'"
+                    class="form-control"
+                    placeholder="Email de l'utilisateur" 
+                    name="email"
+                    formControlName="email">
+        </div>
+
+        <!-- Mot de passe de l'utilisateur -->
+        <div class="form-group-row" *ngIf="addUser">
+            <label [for]="addUser ? 'addUserPassword':'editUserPassword'">Mot de passe</label>
+            <input  type="password" 
+                    [id]="addUser ? 'addUserPassword':'editUserPassword'"
+                    class="form-control"
+                    placeholder="Mot de passe de l'utilisateur" 
+                    name="password"
+                    formControlName="password">
+        </div>
+    </fieldset>
+
+    <!-- Section coordonnées de l'utilisateur -->
+    <fieldset *ngIf="displaySectionCoordonnees">
+        <legend>Infos Coordonnées</legend>
+
+        <!-- Téléphone de l'utilisateur -->
+        <div class="form-group-row">
+            <label [for]="addUser ? 'addUserPhone':'editUserPhone'">Téléphone</label>
+            <input  type="text" 
+                    [id]="addUser ? 'addUserPhone':'editUserPhone'"
+                    class="form-control"
+                    placeholder="Telephone de l'utilisateur" 
+                    name="telephone"
+                    formControlName="telephone">
+        </div>
+
+        <!-- Fax de l'utilisateur -->
+        <div class="form-group-row">
+            <label [for]="addUser ? 'addUserFax':'editUserFax'">Fax</label>
+            <input  type="text" 
+                    [id]="addUser ? 'addUserFax':'editUserFax'"  
+                    class="form-control"
+                    placeholder="Fax de l'utilisateur" 
+                    name="fax"
+                    formControlName="fax">
+        </div>
+    </fieldset>
+
+    <!-- Section informations Etudiant de l'utilisateur -->
+    <fieldset *ngIf="displaySectionEtudiant">
+        <legend>Infos Étudiant</legend>
+
+        <!-- Numéro de l'étudiant -->
+        <div class="form-group-row">
+            <label [for]="addUser ? 'addUserNumEtudiant':'editUserNumEtudiant'">Numéro</label>
+            <input  type="text" 
+                    [id]="addUser ? 'addUserNumEtudiant':'editUserNumEtudiant'"
+                    class="form-control"
+                    placeholder="Numéro de l'Étudiant" 
+                    name="numEtudiant"
+                    formControlName="numeroEtudiant">
+        </div>
+
+        <!-- Promotion de l'étudiant -->
+        <div class="form-group-row">
+            <label [for]="addUser ? 'addUserPromotion':'editUserPromotion'">Promotion</label>
+            <select [id]="addUser ? 'addUserPromotion':'editUserPromotion'"
+                    class="form-control" 
+                    name="promotionEtudiant"
+                    formControlName="promotion">
+                <option value="" disabled selected>Selectionner la promotion</option>
+                <option *ngFor="let i of promotions.reverse()" [ngValue]="i">{{ i }}</option>
+            </select>
+        </div>
+        
+    </fieldset>
+
+    <!-- Section représentant d'entreprise -->
+    <fieldset *ngIf="displaySectionEntreprise">
+        <legend>Infos Entreprise</legend>
+
+        <!-- Fonction du représentant -->
+        <div class="form-group-row">
+            <label [for]="addUser ? 'addUserFonction':'editUserFonction'">Fonction</label>
+            <input  type="text" 
+                    [id]="addUser ? 'addUserFonction':'editUserFonction'"
+                    class="form-control"
+                    placeholder="Fonction occupée dans l'entreprise" 
+                    name="fonction"
+                    formControlName="fonction">
+        </div>
+
+        <!-- Entreprise du représentant -->
+        <div class="form-group-row">
+            <label [for]="addUser ? 'addUserEntreprise':'editUserEntreprise'">Nom</label>
+            <input  type="text" 
+                    [id]="addUser ? 'addUserEntreprise':'editUserEntreprise'"
+                    class="form-control"
+                    placeholder="Nom de l'entreprise" 
+                    name="fonction"
+                    formControlName="entreprise">
+        </div>
+
+        <datalist id="entreprise-list">
+            <option>IBM</option>
+            <option>Cap Gemini</option>
+            <option>Ubisoft</option>
+        </datalist>
+    </fieldset>
+
+    <!--------------------------------->
+    <!-- Si Modification Utilisateur -->
+    <!--------------------------------->
+
+    <!-- On place le bouton click car sinon on ne peut pas executer la fonction car le data-dismiss apparait avant-->
+    <button *ngIf="editUser" 
+            type="submit" 
+            (click)="onSubmitForm()" 
+            data-dismiss="modal" 
+            class="btn btn-primary btn-sm btn-modifier" 
+            [disabled]="userForm.pristine">
+        Modifier
+    </button>
+
+    <!-- Si Ajouter un Parcours -->
+    <button *ngIf="addUser"
+            type="submit" 
+            (click)="onSubmitForm()"
             data-dismiss="modal"
             class="btn btn-primary btn-sm btn-ajouter"
-            >
+            [disabled]="userForm.invalid">
         Ajouter
     </button>
+
 </form>
-
-
 
 <!-- Debut du Modal suppression utilisateur -->
 <app-modal  class="modal fade"
