@@ -4,8 +4,8 @@ const jwt = require ('jsonwebtoken');
 
 exports.getAllUser = ((req, res, next) => {
     User.find()
-        .populate('idEntreprise', 'nom')
-        .populate('idParcours', 'acronyme')
+        .populate('entreprise', 'nom')
+        .populate('parcours', 'acronyme')
         .then(users => res.status(200).json(users))
         .catch(error => res.status(404).json({ error }));
 });
@@ -14,13 +14,13 @@ exports.getOneUser = ((req, res, next) => {
     User.findOne({
       _id: req.params.id
     })
-    .populate('idEntreprise', 'nom')
-    .populate('idParcours', 'acronyme')
+    .populate('entreprise', 'nom')
+    .populate('parcours', 'acronyme')
     .then(user => res.status(200).json(user))
     .catch(error => res.status(404).json({ error }))
   });
 
-exports.signup = (req, res, next) =>{
+exports.addUser = (req, res, next) =>{
     console.log(req.body)
     bcrypt.hash(req.body.password,10)
         .then(hash => {
@@ -30,12 +30,13 @@ exports.signup = (req, res, next) =>{
                 email: req.body.email,
                 hash: hash,
                 role: req.body.role,
-                idParcours: req.body.parcours,
+                parcours: req.body.parcours,
                 numeroEtudiant: req.body.numeroEtudiant,
-                Fax: req.body.fax,
+                promotion: req.body.promotion,
+                fax: req.body.fax,
                 telephone: req.body.telephone,
                 fonction:req.body.fonction,
-                idEntreprise: req.body.entreprise
+                entreprise: req.body.entreprise
                 
                 
             });
@@ -120,17 +121,18 @@ exports.getRole = ((req, res, next) => {
     console.log(req.body);
     
     const user = new User({
-       _id: req.params.id,
-       nom: req.body.nom,
-       prenom: req.body.prenom,
-       telephone: req.body.telephone,
-       fax: req.body.fax,
-       role: req.body.role,
-       numeroEtudiant: req.body.numeroEtudiant,
-       promotion: req.body.promotion,
-       idParcours: req.body.parcours,
-       fonction: req.body.fonction,
-       idEntreprise: req.body.entreprise
+        _id: req.params.id,
+        nom: req.body.nom,
+        prenom: req.body.prenom,
+        email: req.body.email,
+        role: req.body.role,
+        parcours: req.body.parcours,
+        numeroEtudiant: req.body.numeroEtudiant,
+        promotion: req.body.promotion,
+        fax: req.body.fax,
+        telephone: req.body.telephone,
+        fonction:req.body.fonction,
+        entreprise: req.body.entreprise
     });
 
     User.updateOne({_id: req.params.id}, user)

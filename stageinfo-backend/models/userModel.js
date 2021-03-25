@@ -13,11 +13,11 @@ const userSchema = Schema({
     //etudiant
     numeroEtudiant : String,
     promotion : String,
-    idParcours : { type: Schema.ObjectId, ref: 'Parcours' },
+    parcours : { type: Schema.ObjectId, ref: 'Parcours' },
     
     // representant_entreprise
     fonctionOccupee : String,
-    idEntreprise : { type: Schema.ObjectId, ref: 'Entreprise' },
+    entreprise : { type: Schema.ObjectId, ref: 'Entreprise' },
   },
   {
     collection: 'User'

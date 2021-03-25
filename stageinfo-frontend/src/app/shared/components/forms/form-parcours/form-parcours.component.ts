@@ -85,7 +85,7 @@ export class FormParcoursComponent implements OnInit, OnChanges {
         niveau:this.parcoursData.niveau,
         intitule:this.parcoursData.intitule,
         description:this.parcoursData.description,
-        responsable:this.parcoursData.responsable
+        responsable:this.parcoursData.responsable?._id
       });
     });
   }

@@ -30,6 +30,7 @@ export class FormUserComponent implements OnInit {
   Message: string = "";
 
   user: UserModel = new UserModel();
+  allParcours: any;
   //public role: string = '';
 
   // Boolean pour l'affichage des sections
@@ -49,10 +50,9 @@ export class FormUserComponent implements OnInit {
 
   constructor(private formBuilder: FormBuilder,
               private route:ActivatedRoute,
-              private router: Router,
-              private userService: UserService,
-              private auth: AuthService) { 
+              private userService: UserService) { 
     this.selectedUser = new UserModel();
+    this.allParcours = this.route.snapshot.data.allParcours;
   }
 
   ngOnInit(): void {
@@ -88,11 +88,11 @@ export class FormUserComponent implements OnInit {
       // Étudiant
       numeroEtudiant: '',
       promotion:'',
-      parcours:'',
+      parcours:null,
 
       // Entreprise
       fonction:'',
-      entreprise:''
+      entreprise:null
     });
   }
 
@@ -100,29 +100,30 @@ export class FormUserComponent implements OnInit {
     // récupération des données du user
     this.userService.getUserById(id)
       .pipe(takeUntil(this.destroy$))
-      .subscribe((_parcours: UserModel) => {
+      .subscribe((_parcours: any) => {
         this.user = _parcours;
         // On set les données du user dans le formulaire
         this.userForm.patchValue({
-          nom: this.user.nom,
-          prenom: this.user.prenom,
-          email: this.user.email,
-          telephone: this.user.telephone,
-          fax: this.user.fax,
-          password: this.user.password,
-          role: this.user.role,
+          nom: _parcours.nom,
+          prenom: _parcours.prenom,
+          email: _parcours.email,
+          telephone: _parcours.telephone,
+          fax: _parcours.fax,
+          password: _parcours.password,
+          role: _parcours.role,
 
           // Étudiant
-          numeroEtudiant: this.user.numeroEtudiant,
-          promotion: this.user.promotion,
-          parcours: this.user.parcours,
+          numeroEtudiant: _parcours.numeroEtudiant,
+          promotion: _parcours.promotion,
+          parcours: _parcours.parcours?._id,
 
           // Entreprise
-          fonction: this.user.fonction,
-          entreprise: this.user.entreprise
+          fonction: _parcours.fonction,
+          entreprise: _parcours.entreprise?._id
         });
       });
   }
+
   
 
 

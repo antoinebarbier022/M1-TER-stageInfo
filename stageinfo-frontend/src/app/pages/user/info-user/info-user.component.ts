@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { UserModel } from 'src/app/core/models/UserModel';
 
 
 @Component({
@@ -9,7 +10,7 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class InfoUserComponent implements OnInit {
 
-  user:any;
+  user:UserModel;
 
   stages = [
     { titre:"Stage Ingénieur SALESFORCE/CPQ", entreprise:"IBM Montpellier", etat:"terminé", date:"2015"},
@@ -21,6 +22,7 @@ export class InfoUserComponent implements OnInit {
 
   constructor(private route:ActivatedRoute) { 
     this.user = this.route.snapshot.data.user; 
+    console.log(this.user);
   }
 
   ngOnInit(): void {
