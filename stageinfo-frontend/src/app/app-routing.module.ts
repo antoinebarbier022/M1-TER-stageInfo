@@ -56,6 +56,7 @@ import { ParcoursResolver } from './core/resolves/parcours.resolver';
 import { AllSoutenancesResolver } from './core/resolves/all-soutenances.resolver';
 import { Error401Component } from './pages/erreurs/error401/error401.component';
 import { AllRespParcoursResolver } from './core/resolves/all-resp-parcours.resolver';
+import { AllEtudiantsResolver } from './core/resolves/all-etudiants.resolver';
 
 const routes: Routes = [
   { path: '', redirectTo: 'liste-stages', pathMatch: 'full', canActivate: [AuthGuardService, RoleGuard]},
@@ -83,7 +84,7 @@ const routes: Routes = [
   // route users
   
   { path: 'liste-utilisateurs', component: ListUsersComponent, canActivate: [AuthGuardService, RoleGuard], resolve: { users: AllUsersResolver, allParcours: AllParcoursResolver }},
-  { path: 'liste-etudiants', component: ListEtudiantsComponent, canActivate: [AuthGuardService, RoleGuard], resolve: { AllEtudiants: AllUsersResolver }},
+  { path: 'liste-etudiants', component: ListEtudiantsComponent, canActivate: [AuthGuardService, RoleGuard], resolve: { AllEtudiants: AllEtudiantsResolver, allParcours: AllParcoursResolver }},
   { path: 'liste-utilisateurs/import-users', component: ImportUsersComponent, canActivate: [AuthGuardService, RoleGuard]},
   { path: 'liste-utilisateurs/add-user', component: AddUserComponent, canActivate: [AuthGuardService, RoleGuard]},
   { path: 'liste-utilisateurs/edit-user/:id', 

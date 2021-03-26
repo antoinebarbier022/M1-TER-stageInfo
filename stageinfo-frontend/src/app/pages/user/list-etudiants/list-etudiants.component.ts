@@ -1,6 +1,7 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Subject } from 'rxjs';
+import { takeUntil } from 'rxjs/operators';
 import { UserModel } from 'src/app/core/models/UserModel';
 import { UserService } from 'src/app/core/services/user.service';
 import { CommonListingTable } from 'src/app/shared/classes/common-listing-table';
@@ -27,10 +28,12 @@ export class ListEtudiantsComponent extends CommonListingTable implements OnInit
       { name: 'role', sorted: false }
     ];
     this.selectItem = new UserModel();
+    
   }
 
   ngOnInit(): void {
     this.allItems = this.route.snapshot.data.AllEtudiants; 
+    console.log(this.allItems);
   }
 
   /**
@@ -66,13 +69,13 @@ export class ListEtudiantsComponent extends CommonListingTable implements OnInit
    */
   deleteUser(id:any){
     console.log({message:"delete", id: id});
-    /*this.userService.deleteUserById(id)
+    this.userService.deleteUserById(id)
     .pipe(takeUntil(this.destroy$))
-      .subscribe((_res: any[]) => {
+      .subscribe((_res: any) => {
         console.log(_res);
         // On supprime de l'affichage le parcours (on sait qu'il est supprimer de la base de donnée donc on peut le supprimer sans recharger les données distantes)
         this.allItems = this.allItems.filter((object: { _id: any; }) => { return object._id != id; });
-      });*/
+      });
   }
 
 

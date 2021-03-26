@@ -1,18 +1,6 @@
 <form [formGroup]="userForm" (ngSubmit)="onSubmitForm()">
     <!-- Section information profile-->
     <fieldset>
-        <!-- Nom de l'utilisateur -->
-        <div class="form-group-row">
-            <label [for]="addUser ? 'addUserNom':'editUserNom'">Nom</label>
-            <input  type="text" 
-                    [id]="addUser ? 'addUserNom':'editUserNom'"  
-                    [ngClass]="viewUser? 'form-control-plaintext' : 'form-control'"
-                    placeholder="{{ viewUser ? 'undefined' : 'Nom de l\'utilisateur' }}"
-                    name="nom"
-                    [readonly]="viewUser"
-                    formControlName="nom">
-        </div>
-
         <!-- Prénom de l'utilisateur -->
         <div class="form-group-row">
             <label [for]="addUser ? 'addUserPrenom':'editUserPrenom'">Prénom</label>
@@ -23,6 +11,18 @@
                     name="prenom"
                     [readonly]="viewUser"
                     formControlName="prenom">
+        </div>
+
+        <!-- Nom de l'utilisateur -->
+        <div class="form-group-row">
+            <label [for]="addUser ? 'addUserNom':'editUserNom'">Nom</label>
+            <input  type="text" 
+                    [id]="addUser ? 'addUserNom':'editUserNom'"  
+                    [ngClass]="viewUser? 'form-control-plaintext' : 'form-control'"
+                    placeholder="{{ viewUser ? 'undefined' : 'Nom de l\'utilisateur' }}"
+                    name="nom"
+                    [readonly]="viewUser"
+                    formControlName="nom">
         </div>
 
         <!-- Rôle de l'utilisateur -->
@@ -73,6 +73,8 @@
         </div>
     </fieldset>
 
+    <hr *ngIf="viewUser && displaySectionCoordonnees">
+
     <!-- Section coordonnées de l'utilisateur -->
     <fieldset *ngIf="displaySectionCoordonnees">
 
@@ -100,6 +102,8 @@
                     formControlName="fax">
         </div>
     </fieldset>
+
+    <hr *ngIf="viewUser && displaySectionEtudiant">
 
     <!-- Section informations Etudiant de l'utilisateur -->
     <fieldset *ngIf="displaySectionEtudiant">
@@ -150,6 +154,8 @@
         </div>
         
     </fieldset>
+
+    <hr *ngIf="viewUser && displaySectionEntreprise">
 
     <!-- Section représentant d'entreprise -->
     <fieldset *ngIf="displaySectionEntreprise">

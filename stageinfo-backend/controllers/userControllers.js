@@ -20,6 +20,24 @@ exports.getOneUser = ((req, res, next) => {
     .catch(error => res.status(404).json({ error }))
   });
 
+/**
+ * @api {get} /api/user/role/:role Get a user by role
+ * @apiName getAllUserByRole
+ * @apiGroup User
+ *
+ * @apiParam {string} role User's
+ *
+ */
+ exports.getAllUserByRole = ((req, res, next) => {
+    User.find({
+        role: req.params.role
+    })
+    .populate('entreprise', 'nom')
+    .populate('parcours', 'acronyme')
+    .then(user => res.status(200).json(user))
+    .catch(error => res.status(404).json({ error }))
+});
+
 exports.addUser = (req, res, next) =>{
     console.log(req.body)
     bcrypt.hash(req.body.password,10)
@@ -91,22 +109,6 @@ exports.getRole = ((req, res, next) => {
         .then(User => res.status(200).json(User.role),
         console.log(User))
         .catch(error => res.status(404).json({ error }))
-});
-
-/**
- * @api {get} /auth/getuser/:role Get a user by role
- * @apiName getAllUserByRole
- * @apiGroup User
- *
- * @apiParam {string} role User's
- *
- */
- exports.getAllUserByRole = ((req, res, next) => {
-    User.find({
-        role: req.params.role
-    })
-    .then(user => res.status(200).json(user))
-    .catch(error => res.status(404).json({ error }))
 });
 
 
