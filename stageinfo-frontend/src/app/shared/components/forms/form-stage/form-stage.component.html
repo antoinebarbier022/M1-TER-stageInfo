@@ -58,8 +58,8 @@
                     class="form-control" 
                     name="parcours"
                     formControlName="parcours">
-                <option value="" disabled selected>Selectionner le parcours</option>
-                <option *ngFor="let i of parcours">{{ i }}</option>
+                <option [ngValue]="null" disabled selected>Selectionner le parcours</option>
+                <option *ngFor="let parcours of allParcours" [ngValue]="parcours?._id">{{ parcours.acronyme }}</option>
             </select>
         </div>
         <!--  Description du stage -->
@@ -97,22 +97,20 @@
 
      <!-- Section Entreprise -->
      <fieldset *ngIf="displayFielset('entreprise')">
-        <!-- Entreprise dans laquel est l'utilisateur -->
+        <!-- Entreprise du stage -->
         <div class="form-group-row">
-            <label  [for]="addStage ? 'addInputEntreprise':'editInputEntreprise'">Entreprise</label>
-            <input  [id]="addStage ? 'addInputEntreprise':'editInputEntreprise'"
-                    type="text" 
-                    class="form-control"
-                    list="entreprise-list"
-                    placeholder="Nom de l'entreprise"
-                    name="entreprise"
+            <label [for]="addUser ? 'addEntreprise':'editEntreprise'">Entreprise</label>
+            <div *ngIf="viewUser" class="form-select-plaintext">
+                <!-- ?. car on est pas sur qu'il soit défini -->
+                <span>{{ stage?.entreprise?.nom }}</span> 
+            </div>
+            <select [id]="addUser ? 'addEntreprise':'editEntreprise'"
+                    *ngIf="!(viewUser)"
+                    [ngClass]="viewUser? 'form-control-plaintext' : 'form-control'" 
                     formControlName="entreprise">
-                    
-            <datalist id="entreprise-list">
-                <option>IBM</option>
-                <option>Cap Gemini</option>
-                <option>Ubisoft</option>
-            </datalist>
+                <option [ngValue]="null" disabled selected>Selectionner l'entreprise</option>
+                <option *ngFor="let entreprise of allEntreprises" [ngValue]="entreprise?._id">{{ entreprise?.nom }}</option>
+            </select>
         </div>
     </fieldset>
 

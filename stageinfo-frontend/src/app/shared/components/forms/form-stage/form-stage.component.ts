@@ -25,6 +25,9 @@ export class FormStageComponent implements OnInit {
   stageData: StageModel = new StageModel();
   message:string = "";
 
+  allParcours:any;
+  allEntreprises:any;
+
   // @ts-ignore
   stageForm: FormGroup;
   // @ts-ignore
@@ -39,7 +42,6 @@ export class FormStageComponent implements OnInit {
 
 
   niveauRequis = ["Licence 3", "Master 1", "Master 2"];
-  parcours = ["AIGLE", "MIT","DECOL", "IMAGINA"];
 
   constructor(private formBuilder: FormBuilder, 
     private route: ActivatedRoute,
@@ -47,6 +49,8 @@ export class FormStageComponent implements OnInit {
     private stageService: StageService) {
 
     this.selectedStage = new StageModel();
+    this.allParcours = this.route.snapshot.data.allParcours;
+    this.allEntreprises = this.route.snapshot.data.allEntreprises;
   }
 
   ngOnInit() {
@@ -77,11 +81,11 @@ export class FormStageComponent implements OnInit {
     this.stageForm = this.formBuilder.group({
       titre:['',Validators.required],
       niveauRequis:['',Validators.required],
-      parcours:['',Validators.required],
+      parcours:[null,Validators.required],
       description:[''],
       duree:['', Validators.required],
       dateDebut:['', Validators.required],
-      entreprise:['', Validators.required],
+      entreprise:[null, Validators.required],
       competences:['', Validators.required],
       conditions:['', Validators.required],
       avantages:['', Validators.required]

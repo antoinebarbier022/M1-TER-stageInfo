@@ -170,7 +170,6 @@
             <select [id]="addUser ? 'addUserEntreprise':'editUserEntreprise'"
                     *ngIf="!(viewUser)"
                     [ngClass]="viewUser? 'form-control-plaintext' : 'form-control'" 
-                    name="promotionEtudiant"
                     formControlName="entreprise">
                 <option [ngValue]="null" disabled selected>Selectionner l'entreprise</option>
                 <option *ngFor="let entreprise of allEntreprises" [ngValue]="entreprise?._id">{{ entreprise?.nom }}</option>

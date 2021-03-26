@@ -68,7 +68,9 @@ const routes: Routes = [
       component: ListStagesComponent, 
       canActivate: [AuthGuardService, RoleGuard],
       resolve: {
-        allStages: AllStagesResolver  // on associe un resolver à la route
+        allStages: AllStagesResolver,  // on associe un resolver à la route
+        allParcours: AllParcoursResolver, 
+        allEntreprises: AllEntreprisesResolver
       }
   },
   { path: 'liste-stages/:id', 
