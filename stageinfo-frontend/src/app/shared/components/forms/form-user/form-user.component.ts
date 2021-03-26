@@ -63,6 +63,14 @@ export class FormUserComponent implements OnInit {
       this.setInputForm(this.selectedUser._id);
     }
     this.displaySection(this.selectedUser.role);
+    this.onRoleValueChanges();
+  }
+
+  // detecte les changements de valeur pour le role
+  onRoleValueChanges(): void {
+    this.userForm.get('role')?.valueChanges.subscribe((newRole: any)=>{
+      this.displaySection(newRole);
+    });
   }
 
   // lorsque le user selectionner à changer :
