@@ -99,14 +99,9 @@
      <fieldset *ngIf="displayFielset('entreprise')">
         <!-- Entreprise du stage -->
         <div class="form-group-row">
-            <label [for]="addUser ? 'addEntreprise':'editEntreprise'">Entreprise</label>
-            <div *ngIf="viewUser" class="form-select-plaintext">
-                <!-- ?. car on est pas sur qu'il soit défini -->
-                <span>{{ stage?.entreprise?.nom }}</span> 
-            </div>
-            <select [id]="addUser ? 'addEntreprise':'editEntreprise'"
-                    *ngIf="!(viewUser)"
-                    [ngClass]="viewUser? 'form-control-plaintext' : 'form-control'" 
+            <label [for]="addStage ? 'addEntreprise':'editEntreprise'">Entreprise</label>
+            <select [id]="addStage ? 'addEntreprise':'editEntreprise'"
+                    class="form-control" 
                     formControlName="entreprise">
                 <option [ngValue]="null" disabled selected>Selectionner l'entreprise</option>
                 <option *ngFor="let entreprise of allEntreprises" [ngValue]="entreprise?._id">{{ entreprise?.nom }}</option>

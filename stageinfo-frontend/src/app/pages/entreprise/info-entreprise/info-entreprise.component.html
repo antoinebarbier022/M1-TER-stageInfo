@@ -17,11 +17,18 @@
     </app-card>
 
     <!-- Adresse de l'entreprise -->
-    <app-card id="adresse-entreprise" title="Localisation">
+    <!--
+    <app-card title="Localisation">
         <p>{{ entreprise.voie }}</p>
         <p>{{ entreprise.ville }} - {{ entreprise.codePostal }}</p>
         <p>{{ entreprise.pays }}</p>
-    </app-card>
+    </app-card>-->
+
+    <app-card-map id="adresse-entreprise" title="Localisation">
+        <p>{{ entreprise.voie }}</p>
+        <p>{{ entreprise.ville }} - {{ entreprise.codePostal }}</p>
+        <p>{{ entreprise.pays }}</p>
+    </app-card-map>
 
     <!-- Informations pour contacter l'entreprise -->
     <app-card id="contact-entreprise" title="Contact">
