@@ -31,7 +31,7 @@ export class FormUserComponent implements OnInit {
 
   user: UserModel = new UserModel();
   allParcours: any;
-  //public role: string = '';
+  allEntreprises: any;
 
   // Boolean pour l'affichage des sections
   displaySectionEtudiant = false;
@@ -44,7 +44,6 @@ export class FormUserComponent implements OnInit {
 
   //roles = ["invite", "etudiant","tuteur", "respEntreprise", "secretaire", "admin"];
   promotions = ["2016/2017", "2017/2018","2018/2019", "2019/2020", "2020/2021"];
-  //parcours = ["M2 AIGLE", "M2 MIT","M2 DECOL", "M2 IMAGINA"];
 
   destroy$: Subject<boolean> = new Subject<boolean>();
 
@@ -53,6 +52,7 @@ export class FormUserComponent implements OnInit {
               private userService: UserService) { 
     this.selectedUser = new UserModel();
     this.allParcours = this.route.snapshot.data.allParcours;
+    this.allEntreprises = this.route.snapshot.data.allEntreprises;
   }
 
   ngOnInit(): void {
@@ -68,6 +68,7 @@ export class FormUserComponent implements OnInit {
 
   // detecte les changements de valeur pour le role
   onRoleValueChanges(): void {
+    console.log("changement de role utilisateur");
     this.userForm.get('role')?.valueChanges.subscribe((newRole: any)=>{
       this.displaySection(newRole);
     });
@@ -81,6 +82,7 @@ export class FormUserComponent implements OnInit {
       this.setInputForm(this.selectedUser._id);
     } 
     this.displaySection(this.selectedUser.role);
+    this.onRoleValueChanges();
   }
 
   initForm(){
@@ -205,6 +207,8 @@ export class FormUserComponent implements OnInit {
           this.displaySectionEntreprise = false;
           break;
       case "tuteur":
+      case "responsableParcours":
+      case "responsablePedagogique":
       case "secretaire":
       case "admin":
           this.displaySectionEtudiant = false;

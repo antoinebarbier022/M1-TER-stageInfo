@@ -83,7 +83,7 @@ const routes: Routes = [
 
   // route users
   
-  { path: 'liste-utilisateurs', component: ListUsersComponent, canActivate: [AuthGuardService, RoleGuard], resolve: { users: AllUsersResolver, allParcours: AllParcoursResolver }},
+  { path: 'liste-utilisateurs', component: ListUsersComponent, canActivate: [AuthGuardService, RoleGuard], resolve: { users: AllUsersResolver, allParcours: AllParcoursResolver, allEntreprises: AllEntreprisesResolver }},
   { path: 'liste-etudiants', component: ListEtudiantsComponent, canActivate: [AuthGuardService, RoleGuard], resolve: { AllEtudiants: AllEtudiantsResolver, allParcours: AllParcoursResolver }},
   { path: 'liste-utilisateurs/import-users', component: ImportUsersComponent, canActivate: [AuthGuardService, RoleGuard]},
   { path: 'liste-utilisateurs/add-user', component: AddUserComponent, canActivate: [AuthGuardService, RoleGuard]},

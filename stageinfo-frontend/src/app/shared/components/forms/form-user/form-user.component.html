@@ -73,7 +73,7 @@
         </div>
     </fieldset>
 
-    <hr *ngIf="viewUser && displaySectionCoordonnees">
+    <hr *ngIf="displaySectionCoordonnees">
 
     <!-- Section coordonnées de l'utilisateur -->
     <fieldset *ngIf="displaySectionCoordonnees">
@@ -103,7 +103,7 @@
         </div>
     </fieldset>
 
-    <hr *ngIf="viewUser && displaySectionEtudiant">
+    <hr *ngIf="displaySectionEtudiant">
 
     <!-- Section informations Etudiant de l'utilisateur -->
     <fieldset *ngIf="displaySectionEtudiant">
@@ -148,35 +148,35 @@
                     [ngClass]="viewUser? 'form-control-plaintext' : 'form-control'" 
                     name="parcoursEtudiant"
                     formControlName="parcours">
-                <option value="" disabled selected>Selectionner le parcours</option>
+                <option [ngValue]="null" disabled selected>Selectionner le parcours</option>
                 <option *ngFor="let parcours of allParcours" [ngValue]="parcours?._id">{{ parcours.acronyme }}</option>
             </select>
         </div>
         
     </fieldset>
 
-    <hr *ngIf="viewUser && displaySectionEntreprise">
+    <hr *ngIf="displaySectionEntreprise">
 
     <!-- Section représentant d'entreprise -->
     <fieldset *ngIf="displaySectionEntreprise">
 
         <!-- Entreprise du représentant -->
         <div class="form-group-row">
-            <label [for]="addUser ? 'addUserEntreprise':'editUserEntreprise'">Nom</label>
-            <input  type="text" 
-                    [id]="addUser ? 'addUserEntreprise':'editUserEntreprise'"
-                    [ngClass]="viewUser? 'form-control-plaintext' : 'form-control'"
-                    name="fonction"
-                    placeholder="{{ viewUser ? 'undefined' : 'Nom de l\'entreprise' }}"
-                    [readonly]="viewUser"
+            <label [for]="addUser ? 'addUserEntreprise':'editUserEntreprise'">Entreprise</label>
+            <div *ngIf="viewUser" class="form-select-plaintext">
+                <!-- ?. car on est pas sur qu'il soit défini -->
+                <span>{{ user?.entreprise?.nom }}</span> 
+            </div>
+            <select [id]="addUser ? 'addUserEntreprise':'editUserEntreprise'"
+                    *ngIf="!(viewUser)"
+                    [ngClass]="viewUser? 'form-control-plaintext' : 'form-control'" 
+                    name="promotionEtudiant"
                     formControlName="entreprise">
+                <option [ngValue]="null" disabled selected>Selectionner l'entreprise</option>
+                <option *ngFor="let entreprise of allEntreprises" [ngValue]="entreprise?._id">{{ entreprise?.nom }}</option>
+            </select>
         </div>
 
-        <datalist id="entreprise-list">
-            <option>IBM</option>
-            <option>Cap Gemini</option>
-            <option>Ubisoft</option>
-        </datalist>
         <!-- Fonction du représentant -->
         <div class="form-group-row">
             <label [for]="addUser ? 'addUserFonction':'editUserFonction'">Fonction</label>
