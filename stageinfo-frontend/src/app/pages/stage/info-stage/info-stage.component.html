@@ -155,12 +155,13 @@
     
     <!-- Informations sur l'entreprise du stage -->
     <app-card id="entreprise-stage" title="Entreprise">
-        <p>Nom : IBM Montpellier</p>
-        <p>Adresse : 9 rue Ada 34090 Montpellier</p>
-        <p>Site internet :	http://www.lirmm.fr/</p>
-        <p>Tuteur dans l'entreprise:	Tibermacine Chouki</p>
-        <p>Email :	tibermacin@lirmm.fr</p>
-        <p>tel :	0467149724</p>
+        <p>Nom : <a [routerLink]="['/liste-entreprises', stage?.entreprise?._id]">{{ stage?.entreprise?.nom }}</a> </p>
+        <p>Adresse : {{ stage?.entreprise?.voie }}</p>
+        <p>Site internet : <a [href]="stage?.entreprise?.siteweb" target="_blank">{{ stage?.entreprise?.siteweb }}</a> </p>
+        <br>
+        <p>Tuteur dans l'entreprise: {{ stage?.entreprise }}</p>
+        <p>Email :</p>
+        <p>tel : </p>
         <p>fax :</p>
     </app-card>
 </div>
