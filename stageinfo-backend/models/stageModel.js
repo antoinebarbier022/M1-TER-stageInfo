@@ -44,14 +44,14 @@ const visiteStageSchema = Schema({
 
 const stageSchema = Schema({
 
-    etat: String,
+    etat: { type:String, default : 'proposé'},
 
     titre: String,
     description: String,
     duree: String,
     
     dateDebut: String, // début du stage
-    datePropose: Date, // date de la saisie du stage
+    datePropose: {type: Date, default: new Date()}, // date de la saisie du stage
     dateValide : Date, // date de la validation du stage, sert a quoi ?
 
     rapport: String, // c'est quoi ?

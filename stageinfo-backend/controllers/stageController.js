@@ -7,12 +7,19 @@ const Stage = require('../models/stageModel');
  */
 exports.getAllStage = ((req, res, next) => {
   Stage.find()
-  //.populate('entreprise')
-  //.populate('parcours', 'acronyme')
-  //.populate('entreprise')
-  //.populate('parcours', 'acronyme')
+  .populate('commentaires')
+  .populate('ficheSuivi')
   .populate('noteStage')
-  .populate('ajouteur')
+  .populate('visiteStage')
+
+  .populate('entreprise')
+  .populate('parcours', 'acronyme')
+
+  .populate('ajouteur', 'nom prenom')
+  .populate('tuteurEntreprise', 'nom prenom')
+  .populate('tuteurUniv', 'nom prenom')
+  .populate('rapporteur', 'nom prenom')
+  .populate('etudiant', 'nom prenom')
   .then(stages => res.status(200).json(stages))
   .catch(error => res.status(404).json({ error }));
 });
@@ -42,7 +49,7 @@ exports.getOneStage = ((req, res, next) => {
   .populate('tuteurUniv', 'nom prenom')
   .populate('rapporteur', 'nom prenom')
   .populate('etudiant', 'nom prenom')
-  
+
   .then(stage => res.status(200).json(stage))
   .catch(error => res.status(404).json({ error }))
 });
