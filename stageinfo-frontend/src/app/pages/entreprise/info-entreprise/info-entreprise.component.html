@@ -13,7 +13,7 @@
         <p>N° Siret : {{ entreprise.siret }}</p>
         <p>Nombre employé : {{ entreprise.nbSalaries }}</p>
         <p>Chiffre affaire en 2019 : {{ entreprise.chiffreAffaire }}</p>
-        <p>Possède un local ? {{ entreprise.local ? 'oui' : 'non' }}</p>
+        <p>Représentant : <a [routerLink]="['/liste-utilisateurs/user', entreprise?.representant?._id]">{{ entreprise?.representant?.nom + ' ' + entreprise?.representant?.prenom }}</a></p>
     </app-card>
 
     <!-- Adresse de l'entreprise -->
