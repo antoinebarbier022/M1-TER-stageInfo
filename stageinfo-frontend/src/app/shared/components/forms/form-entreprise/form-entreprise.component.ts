@@ -5,6 +5,7 @@ import { takeUntil } from 'rxjs/operators';
 
 import { EntrepriseModel } from '../../../../core/models/EntrepriseModel';
 import { EntrepriseService } from 'src/app/core/services/entreprise.service';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-form-entreprise',
@@ -22,6 +23,7 @@ export class FormEntrepriseComponent implements OnInit {
   @Output() entrepriseEvent = new EventEmitter<EntrepriseModel>();
 
   entrepriseData: EntrepriseModel = new EntrepriseModel();
+  allUsers:any;
 
   // @ts-ignore
   entrepriseForm: FormGroup;
@@ -35,9 +37,11 @@ export class FormEntrepriseComponent implements OnInit {
   nbMaxPage :number = 4;
 
   constructor(private formBuilder: FormBuilder, 
+              private route:ActivatedRoute,
               private parcoursService: EntrepriseService) { 
     
   this.selectedEntreprise =  new EntrepriseModel();
+  this.allUsers = this.route.snapshot.data.allUsers;
   }
 
   ngOnInit(): void {
@@ -80,9 +84,8 @@ export class FormEntrepriseComponent implements OnInit {
       fax:['', Validators.required],
       siret:['', Validators.required],
       nbSalaries:['', Validators.required],
-      local:[false, Validators.required],
       chiffreAffaire:['', Validators.required],
-      responsable:['', Validators.required],
+      representant:[null, Validators.required],
     });
   }
 
@@ -113,9 +116,8 @@ export class FormEntrepriseComponent implements OnInit {
           fax:this.entrepriseData.fax,
           siret:this.entrepriseData.siret,
           nbSalaries:this.entrepriseData.nbSalaries,
-          local:this.entrepriseData.local,
           chiffreAffaire:this.entrepriseData.chiffreAffaire,
-          responsable:this.entrepriseData.responsable,
+          representant:this.entrepriseData.representant?._id,
         });
       });
     }
@@ -148,9 +150,8 @@ export class FormEntrepriseComponent implements OnInit {
         formValue['siret'],
         formValue['nbSalaries'],
         
-        formValue['local'],
         formValue['chiffreAffaire'],
-        formValue['responsable']);
+        formValue['representant']);
       
       if(this.addEntreprise){
         this.ajouterEntreprise(entreprise);
@@ -171,10 +172,21 @@ export class FormEntrepriseComponent implements OnInit {
   }
 
   modifierEntreprise(id:any, entreprise:any){
+    
     this.parcoursService.editEntreprise(id, entreprise)
     .pipe(takeUntil(this.destroy$))
       .subscribe((_res: any[]) => {
         console.log("Entreprise : "+ entreprise.nom +" modifié !");
+
+        // On met place les infos du representant dans le tableau entreprise local
+        var idRep = entreprise.representant;
+        var index = this.allUsers.findIndex(((obj: { _id: any; }) => obj._id == idRep));
+        console.log(this.allUsers)
+        entreprise.representant = { 
+          _id:idRep, 
+          nom:this.allUsers[index]?.nom,
+          prenom:this.allUsers[index]?.prenom
+        }
         this.onReset(); // on reset les données dans le forumulaire
         this.entrepriseEvent.emit(entreprise); // on envoie le parcours dans le component parent
     });

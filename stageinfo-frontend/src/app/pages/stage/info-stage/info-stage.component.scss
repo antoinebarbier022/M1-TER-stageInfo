@@ -14,6 +14,8 @@
     "description description entreprise"
     "avantages avantages avantages";
 
+    margin: 1rem;
+
     #status-stage{
         grid-area: status;
         height:100%;
@@ -53,6 +55,9 @@
     
 }
 
+#commentaires-stage, #pieces-jointes-stage{
+    margin: 1rem;
+}
 
 ul{
     padding:20px 40px;

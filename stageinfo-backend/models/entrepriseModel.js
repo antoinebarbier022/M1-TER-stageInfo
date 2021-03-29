@@ -21,7 +21,7 @@ const entrepriseSchema = Schema({
     codePostal: String,
     pays: String,
 
-    idRespAdm: Schema.Types.ObjectId,  // id responsable administrateur je crois
+    representant: { type: Schema.Types.ObjectId, ref: 'User'},  // id responsable administrateur je crois
 
     secteurActivite: String,
     nbSalaries: Number,

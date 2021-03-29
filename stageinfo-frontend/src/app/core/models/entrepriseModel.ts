@@ -19,10 +19,8 @@ export class EntrepriseModel{
         public siret: string  = "",
         
         public nbSalaries: string = "",
-        
-        public local: boolean = false,
         public chiffreAffaire: string = "",
-        public responsable:string = ""){}
+        public representant:{ _id :string, nom:string, prenom: string} | any  = {_id: "", nom:"", prenom:""}){}
 }
 
 export class AdresseModel{

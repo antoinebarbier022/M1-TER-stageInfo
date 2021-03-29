@@ -26,7 +26,7 @@
             <tbody>
                 <!-- Ajout des stages de la BDD -->
                 <tr *ngFor="let stage of getItems()">
-                    <td><span class="badge badge-success">{{ stage.etat ? stage.etat : 'Aucun' }}</span></td>
+                    <td><span class="badge badge-warning">{{ stage.etat ? stage.etat : 'Aucun' }}</span></td>
                     <td><a [routerLink]="['/liste-stages', stage._id]">{{ stage.titre }}</a></td>
                     <td>{{ stage?.entreprise?.nom }}</td>
                     <td><span class="badge badge-secondary">{{ stage?.parcours?.acronyme }}</span></td>

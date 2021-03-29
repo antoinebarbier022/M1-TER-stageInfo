@@ -69,7 +69,7 @@ export class FormParcoursComponent implements OnInit, OnChanges {
       niveau:['',Validators.required],
       intitule:['',Validators.required],
       description:[''],
-      responsable:['', Validators.required]
+      responsable:[null, Validators.required]
     });
   }
 
@@ -124,15 +124,15 @@ export class FormParcoursComponent implements OnInit, OnChanges {
       .subscribe((_res: ParcoursModel[]) => {
         console.log("Parcours : "+ parcours.acronyme + " modifié !");
         this.parcoursForm.reset(); // on reset les données dans le forumulaire
-
+        console.log(parcours)
         // On met place les infos du responsable dans le tableau parcours
         var idResp = parcours.responsable;
         var index = this.allResponsable.findIndex(((obj: { _id: any; }) => obj._id == idResp));
       
         parcours.responsable = { 
           _id:idResp, 
-          nom:this.allResponsable[index].nom,
-          prenom:this.allResponsable[index].prenom
+          nom:this.allResponsable[index]?.nom,
+          prenom:this.allResponsable[index]?.prenom
         }
 
         console.log(parcours);

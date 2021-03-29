@@ -9,6 +9,9 @@
     gap: 15px 15px;
     grid-template-areas:
     ". card-info-parcours .";
+
+    margin: 1rem;
+    
     #info-parcours{
         grid-area: card-info-parcours;
     }
