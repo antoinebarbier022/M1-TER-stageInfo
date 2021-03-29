@@ -5,7 +5,6 @@ const Schema = mongoose.Schema;
 const commentaireSchema = Schema({
   idUser: {
     type : Schema.Types.ObjectId,
-    required: true, 
     ref : 'User'
   },
   dateCommentaire: {
@@ -14,7 +13,6 @@ const commentaireSchema = Schema({
   },
   message: {
     type : String,
-    required: true
   },
 });
 
@@ -62,7 +60,7 @@ const stageSchema = Schema({
 
     niveauRequis : String, // M1, M2...
     conditions: String,
-    objectif: String,
+    objectifs: String,
     competences: String,
 
     salaire: String,
@@ -72,7 +70,7 @@ const stageSchema = Schema({
     commentaires : [{   type: Schema.Types.ObjectId, ref: 'Commentaire' }],
     ficheSuivi: {       type: Schema.Types.ObjectId, ref: 'FicheSuivi' },
     noteStage: {        type: Schema.Types.ObjectId, ref: 'NoteStage' },
-    idVisite: {         type: Schema.Types.ObjectId, ref: 'VisiteStage' },
+    visiteStage: {      type: Schema.Types.ObjectId, ref: 'VisiteStage' },
 
     parcours: {         type: Schema.Types.ObjectId, ref: 'Parcours' },
     entreprise: {       type: Schema.Types.ObjectId, ref: 'Entreprise' },
