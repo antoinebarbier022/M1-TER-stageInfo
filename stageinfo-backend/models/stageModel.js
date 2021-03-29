@@ -1,98 +1,98 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
+// Modèle pour le commentaire d'un stage
+const commentaireSchema = Schema({
+  idUser: {
+    type : Schema.Types.ObjectId,
+    required: true, 
+    ref : 'User'
+  },
+  dateCommentaire: {
+    type : Date,
+    default: new Date()
+  },
+  message: {
+    type : String,
+    required: true
+  },
+});
+
+// Modèle de la fiche de suivi
+const ficheSuiviSchema = Schema({
+  dateDebut: Date,
+  dateFin: Date,
+  commentaireBilan: String,
+  embauche: String,
+  commentaireEmbauche : String,
+  dateFiche : Date,
+});
+
+// Modèle de la fiche de suivi
+const noteStageSchema = Schema({
+  date: Date,
+  valeur: String,
+  commentaire: String,
+});
+
+const visiteStageSchema = Schema({
+  typeContact: String,
+  dateVisite: Date,
+  commentaire: String
+});
+
+
+
+
 const stageSchema = Schema({
+
+    etat: String,
+
     titre: String,
     description: String,
     duree: String,
-      
-    dateDebut: String,
-    etat: String,
-    rapport: String,
+    
+    dateDebut: String, // début du stage
+    datePropose: Date, // date de la saisie du stage
+    dateValide : Date, // date de la validation du stage, sert a quoi ?
+
+    rapport: String, // c'est quoi ?
     fichier: String, // c'est quoi ?
+    resume : String, // c'est quoi ? resume de quoi
+
+    niveauRequis : String, // M1, M2...
     conditions: String,
     objectif: String,
-    salaire: String,
     competences: String,
+
+    salaire: String,
     avantages: String,
-    datePropose: Date,
-    dateValide : Date,
-    resume : String,
-    niveauRequis : String, // M1, M2...
 
-    commentaires : [new mongoose.Schema({
-      idUser: {
-        type : Schema.Types.ObjectId,
-        required: true
-      },
-      dateCommentaire: {
-        type : Date,
-        default: new Date()
-      },
-      message: {
-        type : String,
-        required: true
-      },
-    })],
 
-    // La table fiche_suivi ce situe dans le document stage
-    ficheSuivi: new mongoose.Schema({ 
-      dateDebut: Date,
-      dateFin: Date,
-      commentaireBilan: String,
-      embauche: String,
-      commentaireEmbauche : String,
-      dateFiche : Date,
-    }),
+    commentaires : [{   type: Schema.Types.ObjectId, ref: 'Commentaire' }],
+    ficheSuivi: {       type: Schema.Types.ObjectId, ref: 'FicheSuivi' },
+    noteStage: {        type: Schema.Types.ObjectId, ref: 'NoteStage' },
+    idVisite: {         type: Schema.Types.ObjectId, ref: 'VisiteStage' },
 
-    // La table note_stage ce situe dans le document stage
-    noteStage: new mongoose.Schema({
-      date: Date,
-      valeur: String,
-      commentaire: String,
-    }),
-    parcours : String,
-    entreprise: String,
-    /*
-    parcours: {
-      Type: Schema.Types.ObjectId,
-      ref: 'Parcours',
-    },
-    ajouteur: {
-      Type: Schema.Types.ObjectId,
-      ref: 'Users',
-    },
-    entreprise: {
-      Type: Schema.Types.ObjectId,
-      ref: 'Entreprise',
-    },
-    tuteurUniv: {
-      Type: Schema.Types.ObjectId,
-      ref: 'Users',
-    },
-    tuteurEntreprise: {
-      Type: Schema.Types.ObjectId,
-      ref: 'Users',
-    },
-    rapporteur: {
-      Type: Schema.Types.ObjectId,
-      ref: 'Users',
-    },
-   
-    etudiant: {
-      Type: Schema.Types.ObjectId,
-      ref: 'Users',
-    },
+    parcours: {         type: Schema.Types.ObjectId, ref: 'Parcours' },
+    entreprise: {       type: Schema.Types.ObjectId, ref: 'Entreprise' },
+
     
-    idVisite: {
-      typeContact: String,
-      dateVisite: Date,
-      commentaire: String
-    }*/
+    ajouteur: {         type: Schema.Types.ObjectId, ref: 'User' }, // Personne qui ajoute le stage
+    tuteurEntreprise: { type: Schema.Types.ObjectId, ref: 'User' }, // tuteut entreprise == représentant entreprise ???
+    tuteurUniv: {       type: Schema.Types.ObjectId, ref: 'User' }, // Tuteur du stage
+    rapporteur: {       type: Schema.Types.ObjectId, ref: 'User' }, // rapporteur du stage
+    etudiant: {         type: Schema.Types.ObjectId, ref: 'User' }, // étudiant affecté au stage
 
   },
   {
     collection: 'Stage'
   });
+  
+  
+module.exports = mongoose.model('Commentaire', commentaireSchema);
+module.exports = mongoose.model('FicheSuivi', ficheSuiviSchema);
+module.exports = mongoose.model('NoteStage', noteStageSchema);
+module.exports = mongoose.model('VisiteStage', visiteStageSchema);
 
 module.exports = mongoose.model('Stage', stageSchema);
