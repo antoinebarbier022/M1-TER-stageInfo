@@ -28,6 +28,7 @@ import { ButtonDeleteComponent } from './components/buttons/button-delete/button
 import { CardTableComponent } from './components/cards/card-table/card-table.component';
 import { FormStageComponent } from './components/forms/form-stage/form-stage.component';
 import { CardMapComponent } from './components/cards/card-map/card-map.component';
+import { FormFicheSuiviComponent } from './components/forms/form-fiche-suivi/form-fiche-suivi.component';
 
 
 
@@ -50,7 +51,7 @@ import { CardMapComponent } from './components/cards/card-map/card-map.component
     ListEntriesNumberComponent, 
     CardTableComponent, 
     FormStageComponent, 
-    CardMapComponent
+    CardMapComponent, FormFicheSuiviComponent
   ],
   imports: [
     CommonModule,
