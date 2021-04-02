@@ -9,9 +9,10 @@ import { SharedModule } from '../../shared/shared.module';
 import { ListStagesComponent } from './list-stages/list-stages.component';
 import { InfoStageComponent } from './info-stage/info-stage.component';
 import { AddStageComponent } from './add-stage/add-stage.component';
+import { FicheSuiviComponent } from './fiche-suivi/fiche-suivi.component';
 
 @NgModule({
-  declarations: [ListStagesComponent, InfoStageComponent, AddStageComponent],
+  declarations: [ListStagesComponent, InfoStageComponent, AddStageComponent, FicheSuiviComponent],
   imports: [
     CommonModule,
     BrowserModule,
