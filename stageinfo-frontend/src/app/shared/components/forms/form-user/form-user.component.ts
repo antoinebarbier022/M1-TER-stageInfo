@@ -5,7 +5,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { takeUntil } from 'rxjs/operators';
 import { Subject } from 'rxjs';
 
-import { userModel } from 'src/app/core/models/userModel';
+import { UserModel } from 'src/app/core/models/UserModel';
 import { AuthService } from 'src/app/core/services/auth.service';
 import { UserService } from 'src/app/core/services/user.service';
 
@@ -20,17 +20,18 @@ export class FormUserComponent implements OnInit {
 
   @Input() addUser: boolean = false;
   @Input() editUser: boolean = false;
-  @Input() selectedUser: userModel = new userModel();
+  @Input() selectedUser: UserModel = new UserModel();
   @Input() viewUser: boolean = false;
 
   @Input() idUser: any = '';
 
-  @Output() userEvent = new EventEmitter<userModel>();
+  @Output() userEvent = new EventEmitter<UserModel>();
 
   Message: string = "";
 
-  user: userModel = new userModel();
-  //public role: string = '';
+  user: UserModel = new UserModel();
+  allParcours: any;
+  allEntreprises: any;
 
   // Boolean pour l'affichage des sections
   displaySectionEtudiant = false;
@@ -43,36 +44,45 @@ export class FormUserComponent implements OnInit {
 
   //roles = ["invite", "etudiant","tuteur", "respEntreprise", "secretaire", "admin"];
   promotions = ["2016/2017", "2017/2018","2018/2019", "2019/2020", "2020/2021"];
-  //parcours = ["M2 AIGLE", "M2 MIT","M2 DECOL", "M2 IMAGINA"];
 
   destroy$: Subject<boolean> = new Subject<boolean>();
 
   constructor(private formBuilder: FormBuilder,
               private route:ActivatedRoute,
-              private router: Router,
-              private userService: UserService,
-              private auth: AuthService) { 
-    this.selectedUser = new userModel();
+              private userService: UserService) { 
+    this.selectedUser = new UserModel();
+    this.allParcours = this.route.snapshot.data.allParcours;
+    this.allEntreprises = this.route.snapshot.data.allEntreprises;
   }
 
   ngOnInit(): void {
     this.initForm();
 
-    if(this.editUser){
+    if(!this.addUser){
       this.idUser = this.selectedUser._id;
       this.setInputForm(this.selectedUser._id);
     }
+    this.displaySection(this.selectedUser.role);
+    this.onRoleValueChanges();
+  }
 
-    this.displaySection(this.user.role);
+  // detecte les changements de valeur pour le role
+  onRoleValueChanges(): void {
+    console.log("changement de role utilisateur");
+    this.userForm.get('role')?.valueChanges.subscribe((newRole: any)=>{
+      this.displaySection(newRole);
+    });
   }
 
   // lorsque le user selectionner à changer :
   ngOnChanges(){
     this.initForm();
-    if(this.editUser){  // Si on est sur le formulaire edit parcours alors on remplie les champs
+    if(!this.addUser){  // Si on est sur le formulaire edit parcours alors on remplie les champs
       this.idUser = this.selectedUser._id;
       this.setInputForm(this.selectedUser._id);
     } 
+    this.displaySection(this.selectedUser.role);
+    this.onRoleValueChanges();
   }
 
   initForm(){
@@ -88,11 +98,11 @@ export class FormUserComponent implements OnInit {
       // Étudiant
       numeroEtudiant: '',
       promotion:'',
-      parcours:'',
+      parcours:null,
 
       // Entreprise
       fonction:'',
-      entreprise:''
+      entreprise:null
     });
   }
 
@@ -100,35 +110,36 @@ export class FormUserComponent implements OnInit {
     // récupération des données du user
     this.userService.getUserById(id)
       .pipe(takeUntil(this.destroy$))
-      .subscribe((_parcours: userModel) => {
+      .subscribe((_parcours: any) => {
         this.user = _parcours;
         // On set les données du user dans le formulaire
         this.userForm.patchValue({
-          nom: this.user.nom,
-          prenom: this.user.prenom,
-          email: this.user.email,
-          telephone: this.user.telephone,
-          fax: this.user.fax,
-          password: this.user.password,
-          role: this.user.role,
+          nom: _parcours.nom,
+          prenom: _parcours.prenom,
+          email: _parcours.email,
+          telephone: _parcours.telephone,
+          fax: _parcours.fax,
+          password: _parcours.password,
+          role: _parcours.role,
 
           // Étudiant
-          numeroEtudiant: this.user.numeroEtudiant,
-          promotion: this.user.promotion,
-          parcours: this.user.parcours,
+          numeroEtudiant: _parcours.numeroEtudiant,
+          promotion: _parcours.promotion,
+          parcours: _parcours.parcours?._id,
 
           // Entreprise
-          fonction: this.user.fonction,
-          entreprise: this.user.entreprise
+          fonction: _parcours.fonction,
+          entreprise: _parcours.entreprise?._id
         });
       });
   }
+
   
 
 
   onSubmitForm(){
     const formValue = this.userForm.value;
-    const newUser = new userModel(
+    const newUser = new UserModel(
       this.idUser,
       formValue['nom'],
       formValue['prenom'],
@@ -151,16 +162,30 @@ export class FormUserComponent implements OnInit {
     console.log(newUser);
     
     if(this.addUser){
-      this.userService.addUser(newUser).subscribe(x => {
-        console.log(x);
-      });
+      this.ajouterUser(newUser);
     }
     else{
-      newUser.email = this.selectedUser.email;
-      this.userService.updateUser(this.idUser, newUser).subscribe(x => {
-        console.log(x);
-      });
+      this.modifierUser(this.idUser, newUser);
     }
+  }
+
+  ajouterUser(user:any){
+    this.userService.addUser(user)
+    .pipe(takeUntil(this.destroy$))
+      .subscribe((_res: any[]) => {
+        console.log("User : "+ user.nom + " "+ user.prenom + " ajouté à la plateforme !");
+        this.userForm.reset();  // on reset les données dans le forumulaire
+    });
+  }
+
+  modifierUser(id:any, user:any){
+    this.userService.updateUser(id, user)
+    .pipe(takeUntil(this.destroy$))
+      .subscribe((_res: any[]) => {
+        console.log("User : "+ user.nom + " "+ user.prenom + " modifié !");
+        this.userForm.reset(); // on reset les données dans le forumulaire
+        this.userEvent.emit(user); // on envoie le parcours dans le component parent
+    });
   }
 
   ngOnDestroy() {
@@ -182,6 +207,8 @@ export class FormUserComponent implements OnInit {
           this.displaySectionEntreprise = false;
           break;
       case "tuteur":
+      case "responsableParcours":
+      case "responsablePedagogique":
       case "secretaire":
       case "admin":
           this.displaySectionEtudiant = false;

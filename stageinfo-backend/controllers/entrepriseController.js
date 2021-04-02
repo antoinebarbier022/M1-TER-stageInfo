@@ -6,11 +6,14 @@ const Entreprise = require('../models/entrepriseModel');
 
 exports.getAllEntreprise = (req, res, next) => {
     Entreprise.find()
+        .populate('representant', 'nom prenom')
         .then(entreprise => res.status(200).json(entreprise))
         .catch(error =>res.status(404).json({error}));
 }
+
 exports.getOneEntreprise = (req,res, next) => {
     Entreprise.findOne({_id: req.params.id})
+        .populate('representant', 'nom prenom')
         .then(entreprise => res.status(200).json(entreprise))
         .catch(error => res.status(404).json(error));
 };
@@ -55,6 +58,7 @@ exports.createEntreprise = (req, res, next) => {
         nbSalaries: req.body.nbSalaries,
         local: req.body.local,
         chiffreAffaire: req.body.chiffreAffaire,
+        representant: req.body.representant
     });
     console.log(req.body);
 

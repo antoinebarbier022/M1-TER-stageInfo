@@ -3,19 +3,12 @@
     height: 100%;   // takes parent height   
 }
 
-.all-card-profile{
+.all-card{
     display: grid;
     grid-template-columns: 1fr 2fr;
     gap: 15px 15px;
+    margin: 1rem;
 }
 
-
-th{  
-    //permet d'avoir toutes les data affiché au même niveau
-    min-width:100px;
-}
-td{
-    padding:6px;
-}
 
 

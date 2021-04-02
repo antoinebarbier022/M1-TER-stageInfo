@@ -1,4 +1,4 @@
-export class userModel{
+export class UserModel{
     constructor(
         public _id: string = "",
         public nom: string  = "",
@@ -12,10 +12,11 @@ export class userModel{
         // Si étudiant
         public numeroEtudiant: string  = "",
         public promotion: string  = "",
-        public parcours: string  = "",
+        public parcours : { _id :string, acronyme:string} | any  = {_id: "", acronyme:""},
 
         // Si représentant entreprise
         public fonction : string  = "",
-        public entreprise: string  = ""
+        public entreprise: { _id :string, nom:string} | any  = {_id: "", nom:""},
+
     ){}
 }

@@ -27,6 +27,7 @@ import { ButtonEditComponent } from './components/buttons/button-edit/button-edi
 import { ButtonDeleteComponent } from './components/buttons/button-delete/button-delete.component';
 import { CardTableComponent } from './components/cards/card-table/card-table.component';
 import { FormStageComponent } from './components/forms/form-stage/form-stage.component';
+import { CardMapComponent } from './components/cards/card-map/card-map.component';
 
 
 
@@ -48,7 +49,8 @@ import { FormStageComponent } from './components/forms/form-stage/form-stage.com
     ListPaginationComponent, 
     ListEntriesNumberComponent, 
     CardTableComponent, 
-    FormStageComponent
+    FormStageComponent, 
+    CardMapComponent
   ],
   imports: [
     CommonModule,
@@ -73,7 +75,8 @@ import { FormStageComponent } from './components/forms/form-stage/form-stage.com
     ListPaginationComponent, 
     ListEntriesNumberComponent,
     CardTableComponent,
-    FormStageComponent
+    FormStageComponent,
+    CardMapComponent
   ]
 })
 export class SharedModule { }

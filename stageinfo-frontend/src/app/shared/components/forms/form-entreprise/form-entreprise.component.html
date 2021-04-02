@@ -144,12 +144,15 @@
             </div>
 
             <div class="form-group-row">
-                <label  [for]="addEntreprise ? 'addInputResponsableEntreprise':'editInputResponsableEntreprise'">Responsable Administration</label>
-                <input  type="text" 
-                        [id]="addEntreprise ? 'addInputResponsableEntreprise':'editInputResponsableEntreprise'"  
+                <label  [for]="addEntreprise ? 'addInputRepresentantEntreprise':'editInputRepresentantEntreprise'">Représentant</label>
+                <select  type="text" 
+                        [id]="addEntreprise ? 'addInputRepresentantEntreprise':'editInputRepresentantEntreprise'"  
                         class="form-control"
-                        name="entrepriseResponsable"
-                        formControlName="responsable">
+                        name="entrepriseRepresentant"
+                        formControlName="representant">
+                    <option [ngValue]="null" disabled selected>Selectionner le représentant</option>
+                    <option *ngFor="let user of allUsers" [ngValue]="user?._id">{{ user?.nom + ' ' + user?.prenom }}</option>     
+                </select>
             </div>
 
             <div class="form-group-row">
@@ -161,13 +164,6 @@
                         name="entrepriseNbSalaries"
                         min=0
                         formControlName="nbSalaries">
-            </div>
-            <div class="form-group-row">
-                <label  [for]="addEntreprise ? 'addInputLocalEntreprise':'editInputLocalEntreprise'">Local</label>
-                <input  type="checkbox" 
-                        [id]="addEntreprise ? 'addInputLocalEntreprise':'editInputLocalEntreprise'"  
-                        class="form-control"
-                        formControlName="local">
             </div>
 
             <div class="form-group-row" >

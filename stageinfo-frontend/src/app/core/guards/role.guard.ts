@@ -4,7 +4,7 @@ import { Observable } from 'rxjs';
 import { AuthService } from '../services/auth.service';
 import decode from 'jwt-decode';
 import jwtDecode from 'jwt-decode';
-import { IToken } from '../../shared/interfaces/itoken';
+import { IToken } from '../interfaces/itoken';
 
 @Injectable({
   providedIn: 'root'
@@ -23,12 +23,8 @@ export class RoleGuard implements CanActivate {
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
 
-
-
     //var role = this.auth.getRole();
     let role = this.auth.getRole();
-
-    console.log('ROOOOOOOOOOOOOOOOOOOOOOLE : ' + role);
     const path = route.url[0].path;
 
     // ---------------------------------------------------------------------------------------------------

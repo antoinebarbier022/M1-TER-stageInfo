@@ -13,26 +13,26 @@
     <div content>
         <table class="card-table table table-striped table-sm">
             <thead>
-                <tr>
-                    <th (click)="sortByAscendingDescendingOrder(4)" scope="col">Etat</th>
-                    <th (click)="sortByAscendingDescendingOrder(0)" scope="col">Titre</th>
-                    <th (click)="sortByAscendingDescendingOrder(1)" scope="col">Entreprise</th>
-                    <th (click)="sortByAscendingDescendingOrder(2)" scope="col">Parcours</th>
+                <tr class="sorted">
+                    <th (click)="sortByAscendingDescendingOrder(4)" scope="col">Etat <i [style.color]=" visibleProperties[4].sorted ? 'grey' : 'silver' " class="fas fa-long-arrow-alt-up"></i> <i [style.color]=" !visibleProperties[4].sorted ? 'grey' : 'silver' " class="fas fa-long-arrow-alt-down"></i></th>
+                    <th (click)="sortByAscendingDescendingOrder(0)" scope="col">Titre <i [style.color]=" visibleProperties[0].sorted ? 'grey' : 'silver' " class="fas fa-long-arrow-alt-up"></i> <i [style.color]=" !visibleProperties[0].sorted ? 'grey' : 'silver' " class="fas fa-long-arrow-alt-down"></i></th>
+                    <th (click)="sortByAscendingDescendingOrder(1)" scope="col">Entreprise <i [style.color]=" visibleProperties[1].sorted ? 'grey' : 'silver' " class="fas fa-long-arrow-alt-up"></i> <i [style.color]=" !visibleProperties[1].sorted ? 'grey' : 'silver' " class="fas fa-long-arrow-alt-down"></i></th>
+                    <th (click)="sortByAscendingDescendingOrder(2)" scope="col">Parcours <i [style.color]=" visibleProperties[2].sorted ? 'grey' : 'silver' " class="fas fa-long-arrow-alt-up"></i> <i [style.color]=" !visibleProperties[2].sorted ? 'grey' : 'silver' " class="fas fa-long-arrow-alt-down"></i></th>
                     <th scope="col">Promotions</th>
-                    <th (click)="sortByAscendingDescendingOrder(3)" scope="col">Duree</th>
+                    <th (click)="sortByAscendingDescendingOrder(3)" scope="col">Duree <i [style.color]=" visibleProperties[3].sorted ? 'grey' : 'silver' " class="fas fa-long-arrow-alt-up"></i> <i [style.color]=" !visibleProperties[3].sorted ? 'grey' : 'silver' " class="fas fa-long-arrow-alt-down"></i></th>
                     <th scope="col">Actions</th>
                 </tr>
             </thead>
             <tbody>
                 <!-- Ajout des stages de la BDD -->
                 <tr *ngFor="let stage of getItems()">
-                    <td><span class="badge badge-success">{{ stage.etat ? stage.etat : 'Aucun' }}</span></td>
+                    <td><span class="badge badge-warning">{{ stage.etat ? stage.etat : 'Aucun' }}</span></td>
                     <td><a [routerLink]="['/liste-stages', stage._id]">{{ stage.titre }}</a></td>
-                    <td>{{ stage.entreprise }}</td>
-                    <td>{{ stage.parcours }}</td>
+                    <td>{{ stage?.entreprise?.nom }}</td>
+                    <td><span class="badge badge-secondary">{{ stage?.parcours?.acronyme }}</span></td>
                     <!-- <td>{{ stage.promotions }}</td>-->
                     <td>2020 - 2021</td>
-                    <td>{{ stage.duree }} mois</td>
+                    <td>{{ stage.duree ? stage.duree + ' mois' : '' }} </td>
                     
                     <td class="table-action">
                         <!-- Bouton edit => ouvre un modal avec le formulaire de modification -->

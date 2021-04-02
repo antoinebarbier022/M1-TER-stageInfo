@@ -4,6 +4,8 @@ const jwt = require ('jsonwebtoken');
 
 exports.getAllUser = ((req, res, next) => {
     User.find()
+        .populate('entreprise', 'nom')
+        .populate('parcours', 'acronyme')
         .then(users => res.status(200).json(users))
         .catch(error => res.status(404).json({ error }));
 });
@@ -12,24 +14,49 @@ exports.getOneUser = ((req, res, next) => {
     User.findOne({
       _id: req.params.id
     })
+    .populate('entreprise', 'nom')
+    .populate('parcours', 'acronyme')
     .then(user => res.status(200).json(user))
     .catch(error => res.status(404).json({ error }))
   });
 
-exports.signup = (req, res, next) =>{
+/**
+ * @api {get} /api/user/role/:role Get a user by role
+ * @apiName getAllUserByRole
+ * @apiGroup User
+ *
+ * @apiParam {string} role User's
+ *
+ */
+ exports.getAllUserByRole = ((req, res, next) => {
+    User.find({
+        role: req.params.role
+    })
+    .populate('entreprise', 'nom')
+    .populate('parcours', 'acronyme')
+    .then(user => res.status(200).json(user))
+    .catch(error => res.status(404).json({ error }))
+});
+
+exports.addUser = (req, res, next) =>{
     console.log(req.body)
     bcrypt.hash(req.body.password,10)
         .then(hash => {
             const user =new User({
+                nom: req.body.nom,
                 prenom: req.body.prenom,
                 email: req.body.email,
                 hash: hash,
                 role: req.body.role,
+                parcours: req.body.parcours,
                 numeroEtudiant: req.body.numeroEtudiant,
-                Fax: req.body.fax,
+                promotion: req.body.promotion,
+                fax: req.body.fax,
                 telephone: req.body.telephone,
                 fonction:req.body.fonction,
-                nom: req.body.nom,
+                entreprise: req.body.entreprise
+                
+                
             });
             user.save()
                 .then(() => res.status(201).json({message: 'Utilisateur crée!'}))
@@ -55,7 +82,7 @@ exports.login= (req, res, next) =>{
                         userId: user._id,
                         role:user.role,
                         token: jwt.sign(
-                            {userId: user._id,role:user.role},
+                            {userId: user._id,role:user.role,email: user.email},
                             'RANDOM_TOKEN_SECRET',
                             {expiresIn: '24h'}
                         )
@@ -84,22 +111,6 @@ exports.getRole = ((req, res, next) => {
         .catch(error => res.status(404).json({ error }))
 });
 
-/**
- * @api {get} /auth/getuser/:role Get a user by role
- * @apiName getAllUserByRole
- * @apiGroup User
- *
- * @apiParam {string} role User's
- *
- */
- exports.getAllUserByRole = ((req, res, next) => {
-    User.find({
-        role: req.params.role
-    })
-    .then(user => res.status(200).json(user))
-    .catch(error => res.status(404).json({ error }))
-});
-
 
 /**
  * @api {put} /auth/:id Edit a User
@@ -112,18 +123,18 @@ exports.getRole = ((req, res, next) => {
     console.log(req.body);
     
     const user = new User({
-       _id: req.params.id,
-       nom: req.body.nom,
-       email: req.body.email,
-       prenom: req.body.prenom,
-       telephone: req.body.telephone,
-       fax: req.body.fax,
-       role: req.body.role,
-       numeroEtudiant: req.body.numeroEtudiant,
-       promotion: req.body.promotion,
-       parcours: req.body.parcours,
-       fonction: req.body.fonction,
-       entreprise: req.body.entreprise
+        _id: req.params.id,
+        nom: req.body.nom,
+        prenom: req.body.prenom,
+        email: req.body.email,
+        role: req.body.role,
+        parcours: req.body.parcours,
+        numeroEtudiant: req.body.numeroEtudiant,
+        promotion: req.body.promotion,
+        fax: req.body.fax,
+        telephone: req.body.telephone,
+        fonction:req.body.fonction,
+        entreprise: req.body.entreprise
     });
 
     User.updateOne({_id: req.params.id}, user)
@@ -162,3 +173,4 @@ exports.getRole = ((req, res, next) => {
       }
     );
   };
+

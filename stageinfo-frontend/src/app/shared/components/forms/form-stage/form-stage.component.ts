@@ -25,6 +25,9 @@ export class FormStageComponent implements OnInit {
   stageData: StageModel = new StageModel();
   message:string = "";
 
+  allParcours:any;
+  allEntreprises:any;
+
   // @ts-ignore
   stageForm: FormGroup;
   // @ts-ignore
@@ -39,7 +42,6 @@ export class FormStageComponent implements OnInit {
 
 
   niveauRequis = ["Licence 3", "Master 1", "Master 2"];
-  parcours = ["AIGLE", "MIT","DECOL", "IMAGINA"];
 
   constructor(private formBuilder: FormBuilder, 
     private route: ActivatedRoute,
@@ -47,6 +49,8 @@ export class FormStageComponent implements OnInit {
     private stageService: StageService) {
 
     this.selectedStage = new StageModel();
+    this.allParcours = this.route.snapshot.data.allParcours;
+    this.allEntreprises = this.route.snapshot.data.allEntreprises;
   }
 
   ngOnInit() {
@@ -62,6 +66,7 @@ export class FormStageComponent implements OnInit {
     this.initForm();
     if(this.editStage){  // Si on est sur le formulaire edit parcours alors on remplie les champs
       this.idStage = this.selectedStage._id;
+      this.page = 1;
       this.setInputForm(this.idStage);
     }
   }
@@ -76,11 +81,11 @@ export class FormStageComponent implements OnInit {
     this.stageForm = this.formBuilder.group({
       titre:['',Validators.required],
       niveauRequis:['',Validators.required],
-      parcours:['',Validators.required],
+      parcours:[null,Validators.required],
       description:[''],
       duree:['', Validators.required],
       dateDebut:['', Validators.required],
-      entreprise:['', Validators.required],
+      entreprise:[null, Validators.required],
       competences:['', Validators.required],
       conditions:['', Validators.required],
       avantages:['', Validators.required]
@@ -137,7 +142,7 @@ export class FormStageComponent implements OnInit {
     this.stageService.addStage(stage)
     .pipe(takeUntil(this.destroy$))
       .subscribe((_res: any) => {
-        console.log("Stage ajouté !");
+        console.log("Stage : "+ stage.titre + " ajouté à la plateforme !");
         this.page = 1;
         this.message = "Le stage "+ stage.titre + " à été ajouté à la plateforme !";
         this.stageForm.reset();  // on reset les données dans le forumulaire
@@ -148,7 +153,7 @@ export class FormStageComponent implements OnInit {
     this.stageService.editStage(stage._id, stage)
     .pipe(takeUntil(this.destroy$))
       .subscribe((_res: any) => {
-        console.log("Stage modifié !");
+        console.log("Stage : "+ stage.titre + " modifié !");
         this.page = 1;
         this.message = "Stage modifié !";
         this.stageForm.reset(); // on reset les données dans le forumulaire

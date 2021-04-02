@@ -4,7 +4,7 @@ import { Router } from "@angular/router";
 
 import { AuthService } from "../services/auth.service";
 import { UserService } from "../services/user.service";
-import { userModel } from "../models/userModel";
+import { UserModel } from '../../core/models/userModel';
 
 @Component({
   selector: 'app-header',
@@ -12,7 +12,7 @@ import { userModel } from "../models/userModel";
   styleUrls: ['./header.component.scss']
 })
 export class HeaderComponent implements OnInit, OnDestroy {
-  public user: userModel | undefined
+  public user: UserModel | undefined;
   public isAuth: boolean | undefined;
 
   getSwitch():boolean{
@@ -39,18 +39,16 @@ export class HeaderComponent implements OnInit, OnDestroy {
       (auth) => {
         this.isAuth = auth;
       });
-      //this.userservice.getemailById(this.auth.getUserid()).subscribe( 
-      //(email) => { this.monEmail=email; });
+
   }
 
-  /*ngOnChanges(){
-    this.userservice.getemailById(this.auth.getUserid()).subscribe(
-      (email) => { this.monEmail=email; });
-  }*/
-  
+  ngOnChanges(){
+
+  }
+
   onLogout() {
     this.authService.logout();
-    this.router.navigate(['/login']);
+
   }
 
   changeDisplaySidebar() {
@@ -60,6 +58,9 @@ export class HeaderComponent implements OnInit, OnDestroy {
 
   getRole(){
     return this.authService.getRole();
+  }
+  getEmail(){
+    return this.authService.getEmail();
   }
 
   getViewRole(){ // on recupère le role de test

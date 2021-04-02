@@ -13,15 +13,22 @@
         <p>N° Siret : {{ entreprise.siret }}</p>
         <p>Nombre employé : {{ entreprise.nbSalaries }}</p>
         <p>Chiffre affaire en 2019 : {{ entreprise.chiffreAffaire }}</p>
-        <p>Possède un local ? {{ entreprise.local ? 'oui' : 'non' }}</p>
+        <p>Représentant : <a [routerLink]="['/liste-utilisateurs/user', entreprise?.representant?._id]">{{ entreprise?.representant?.nom + ' ' + entreprise?.representant?.prenom }}</a></p>
     </app-card>
 
     <!-- Adresse de l'entreprise -->
-    <app-card id="adresse-entreprise" title="Localisation">
+    <!--
+    <app-card title="Localisation">
         <p>{{ entreprise.voie }}</p>
         <p>{{ entreprise.ville }} - {{ entreprise.codePostal }}</p>
         <p>{{ entreprise.pays }}</p>
-    </app-card>
+    </app-card>-->
+
+    <app-card-map id="adresse-entreprise" title="Localisation">
+        <p>{{ entreprise.voie }}</p>
+        <p>{{ entreprise.ville }} - {{ entreprise.codePostal }}</p>
+        <p>{{ entreprise.pays }}</p>
+    </app-card-map>
 
     <!-- Informations pour contacter l'entreprise -->
     <app-card id="contact-entreprise" title="Contact">

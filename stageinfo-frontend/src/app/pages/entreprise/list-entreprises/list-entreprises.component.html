@@ -14,7 +14,7 @@
                 <tr>
                     <th (click)="sortByAscendingDescendingOrder(0)" scope="col">Entreprise</th>
                     <th scope="col">Ville</th>
-                    <th scope="col">Responsable</th>
+                    <th scope="col">Représentant</th>
                     <th scope="col">Actions</th>
                 </tr>
             </thead>
@@ -22,7 +22,7 @@
                 <tr *ngFor="let entreprise of getItems()">
                     <td><a [routerLink]="['/liste-entreprises', entreprise._id]">{{ entreprise.nom }}</a></td>
                     <td>{{ entreprise.ville }}</td>
-                    <td>{{ entreprise.responsable }}</td>
+                    <td><a [routerLink]="['/liste-utilisateurs/user', entreprise?.representant?._id]">{{ entreprise?.representant?._id ? entreprise?.representant?.nom + ' ' + entreprise?.representant?.prenom : ''}}</a></td>
                     <td class="table-action">
                         <!-- Bouton edit => ouvre un modal avec le formulaire de modification -->
                         <app-button-edit data-toggle="modal" (click)="selectedItem(entreprise)" data-target="#modifier"></app-button-edit>

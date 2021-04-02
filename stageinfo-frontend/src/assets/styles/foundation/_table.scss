@@ -5,8 +5,9 @@
         border-bottom: 2px solid #dee6ed;
         font-weight: 600;
     }
-
-    
+    td{
+        max-width:300px;
+    }
 }
 
 .table tr:first-child th {

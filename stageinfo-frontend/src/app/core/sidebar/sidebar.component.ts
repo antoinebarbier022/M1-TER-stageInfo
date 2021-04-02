@@ -24,7 +24,7 @@ export class SidebarComponent implements OnInit {
   listeEtudiantsSansStage = {icon:"fas fa-user-friends",  nom:"Étudiant sans stages",     lien:"/etudiant-sans-stages", items:[]};
   listeSoutenancesNonPlanifie = {icon:"fas fa-list",      nom:"Listing des soutenances non planifiées", lien:"/listing-soutenance-non-planifie", items:[]};
 
-  planingSoutenance =       {icon:"fas fa-calendar-alt",  nom:"Planing de soutenance",    lien:"/planing-soutenance", items:[]};
+  planningSoutenance =       {icon:"fas fa-calendar-alt",  nom:"Planning de soutenance",    lien:"/planning-soutenance", items:[]};
   notesStage =              {icon:"fas fa-table",         nom:"Les notes des stages",     lien:"/note-de-stage", items:[]};
 
   saisirStage =             {icon:"fas fa-pencil-alt",    nom:"Proposer un stage",        lien:"/saisir-stage", items:[]};
@@ -59,7 +59,7 @@ export class SidebarComponent implements OnInit {
   navigationInvite = [
     {
       title:"Stage",
-      items: [ this.listeStages, this.planingSoutenance]
+      items: [ this.listeStages, this.planningSoutenance]
     },
     {
       title:"Besoin d'aide ?",
@@ -70,7 +70,7 @@ export class SidebarComponent implements OnInit {
   navigationEtudiant = [
     {
       title:"Stage",
-      items: [ this.listeStages, this.saisirStage, this.planingSoutenance]
+      items: [ this.listeStages, this.saisirStage, this.planningSoutenance]
     },
     {
       title:"Besoin d'aide ?",
@@ -81,7 +81,7 @@ export class SidebarComponent implements OnInit {
   navigationTuteur = [
     {
       title:"Stage",
-      items: [ this.listeStages, this.saisirFicheSuivi, this.planingSoutenance]
+      items: [ this.listeStages, this.saisirFicheSuivi, this.planningSoutenance]
     },
     {
       title:"Statistique",
@@ -100,7 +100,7 @@ export class SidebarComponent implements OnInit {
   navigationRepresentantEntreprise = [
     {
       title:"Stage",
-      items: [ this.listeStages, this.saisirStage, this.saisirFicheSuivi, this.planingSoutenance]
+      items: [ this.listeStages, this.saisirStage, this.saisirFicheSuivi, this.planningSoutenance]
     },
     {
       title:"Besoin d'aide ?",
@@ -111,7 +111,7 @@ export class SidebarComponent implements OnInit {
   navigationResponsableParcours = [
     {
       title:"Stage",
-      items: [ this.listeStages, this.saisirFicheSuivi, this.planingSoutenance]
+      items: [ this.listeStages, this.saisirFicheSuivi, this.planningSoutenance]
     },
     {
       title:"Documents",
@@ -143,7 +143,7 @@ export class SidebarComponent implements OnInit {
     },
     {
       title:"Stage",
-      items: [ this.saisirStage, this.saisirFicheSuivi, this.planingSoutenance]
+      items: [ this.saisirStage, this.saisirFicheSuivi, this.planningSoutenance]
     },
     {
       title:"Documents",

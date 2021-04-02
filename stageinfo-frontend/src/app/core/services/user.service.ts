@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { AuthService } from '../services/auth.service';
-import { userModel } from '../models/userModel';
+import { UserModel } from '../models/UserModel';
 
 const httpOptions = {
   headers: new HttpHeaders({
@@ -23,11 +23,21 @@ export class UserService {
     
   }
 
-  addUser(user: userModel): Observable<any> {
-    return this.httpClient.post(this.urlBase+'api/auth/signup', user); 
+  /* Récupération de la liste de tous les utilisateurs */
+  getAllUsers(): Observable<any> {
+    return this.httpClient.get(this.urlBase+'api/user');
   }
 
-  updateUser(id: any, user: userModel): Observable<any> {
+  /* Récupération de la liste de tous les utilisateurs avec leur identifiant */
+  getUserById(id:any): Observable<any> {
+    return this.httpClient.get(this.urlBase+'api/user/'+id);
+  }
+
+  addUser(user: UserModel): Observable<any> {
+    return this.httpClient.post(this.urlBase+'api/user', user); 
+  }
+
+  updateUser(id: any, user: UserModel): Observable<any> {
     return this.httpClient.put(this.urlBase+'api/auth/' + id, user); 
   }
 
@@ -36,7 +46,7 @@ export class UserService {
   }
 
   getAllUserByRole(role: string): Observable<any> {
-    return this.httpClient.get(this.urlBase+'api/auth/getuser/'+role);
+    return this.httpClient.get(this.urlBase+'api/user/role/'+role);
   }
 
   getemailById(id: string | null): Observable<any> {
@@ -47,15 +57,7 @@ export class UserService {
     return this.httpClient.get(this.urlBase+'api/auth/role/'+id);
   }
 
-  /* Récupération de la liste de tous les utilisateurs */
-  getAllUsers(): Observable<any> {
-    return this.httpClient.get(this.urlBase+'api/user');
-  }
 
-  /* Récupération de la liste de tous les utilisateurs avec leur identifiant */
-  getUserById(id:any): Observable<any> {
-    return this.httpClient.get(this.urlBase+'api/user/'+id);
-  }
 
 }
 

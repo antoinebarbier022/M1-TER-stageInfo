@@ -8,10 +8,10 @@ const router = express.Router();
 
 const parcoursCtrl = require('../controllers/parcoursController');
 
-router.get('/', parcoursCtrl.getAllParcours);
-router.get('/:id' , parcoursCtrl.getOneParcours);
-router.post('/', parcoursCtrl.createParcours);
-router.put('/:id',parcoursCtrl.editParcours);
-router.delete('/:id', parcoursCtrl.deleteOneParcours);
+router.get('/', invite,parcoursCtrl.getAllParcours);
+router.get('/:id' ,invite, parcoursCtrl.getOneParcours);
+router.post('/', Admin,parcoursCtrl.createParcours);
+router.put('/:id',Admin, parcoursCtrl.editParcours);
+router.delete('/:id',Admin, parcoursCtrl.deleteOneParcours);
 
 module.exports = router;

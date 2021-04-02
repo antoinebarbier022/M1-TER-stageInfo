@@ -19,7 +19,7 @@
             <thead>
                 <tr>
                     <th scope="col">N° Etudiant</th>
-                    <th scope="col">Nom</th>
+                    <th scope="col">Nom </th>
                     <th scope="col">Email</th>
                     <th scope="col">Parcours</th>
                     <th scope="col">Année Universitaire</th>
@@ -31,7 +31,7 @@
                     <td>12847389</td>
                     <td><a [routerLink]="['/liste-utilisateurs/user/', user._id]">{{ user.nom }} {{ user.prenom }}</a></td>
                     <td>{{ user.email }}</td>
-                    <td><span class="badge badge-secondary">{{ user.parcours }}</span></td>
+                    <td><span class="badge badge-secondary">{{ user.parcours?.acronyme }}</span></td>
                     <td>{{ user.promotion }}</td>
                     <td class="table-action">
                         <!-- Bouton edit => ouvre un modal avec le formulaire de modification -->

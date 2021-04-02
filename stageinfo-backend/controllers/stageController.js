@@ -7,6 +7,19 @@ const Stage = require('../models/stageModel');
  */
 exports.getAllStage = ((req, res, next) => {
   Stage.find()
+  .populate('commentaires')
+  .populate('ficheSuivi')
+  .populate('noteStage')
+  .populate('visiteStage')
+
+  .populate('entreprise')
+  .populate('parcours', 'acronyme')
+
+  .populate('ajouteur', 'nom prenom')
+  .populate('tuteurEntreprise', 'nom prenom')
+  .populate('tuteurUniv', 'nom prenom')
+  .populate('rapporteur', 'nom prenom')
+  .populate('etudiant', 'nom prenom')
   .then(stages => res.status(200).json(stages))
   .catch(error => res.status(404).json({ error }));
 });
@@ -23,6 +36,20 @@ exports.getOneStage = ((req, res, next) => {
   Stage.findOne({
     _id: req.params.id
   })
+  .populate('commentaires')
+  .populate('ficheSuivi')
+  .populate('noteStage')
+  .populate('visiteStage')
+
+  .populate('entreprise')
+  .populate('parcours', 'acronyme')
+
+  .populate('ajouteur', 'nom prenom')
+  .populate('tuteurEntreprise', 'nom prenom')
+  .populate('tuteurUniv', 'nom prenom')
+  .populate('rapporteur', 'nom prenom')
+  .populate('etudiant', 'nom prenom')
+
   .then(stage => res.status(200).json(stage))
   .catch(error => res.status(404).json({ error }))
 });
@@ -38,10 +65,12 @@ exports.getStageByKeyword = ((req, res, next) => {
 
   Stage.find(
     {
+      /*
       "titre": {$regex: `^.*${keyword}.*$`, $options: "i"},
       "entreprise.nomComplet": {$regex: `^.*${keyword}.*$`, $options: "i"},
       "parcours.nomComplet": {$regex: `^.*${keyword}.*$`, $options: "i"},
       "etat": {$regex: `^.*${keyword}.*$`, $options: "i"}
+    */
     }
   )
   .then(stages => res.status(200).json(stages))
@@ -57,24 +86,45 @@ exports.createStage = (req, res, next) => {
   console.log(req.body);
 
   const stage = new Stage({
+    etat: req.body.etat,
+
     titre: req.body.titre,
     description: req.body.description,
     duree: req.body.duree,
+
     dateDebut: req.body.date,
-    etat: req.body.etat,
-    rapport: req.body.rapport,
-    fichier: req.body.fichier,
-    conditions: req.body.conditions,
-    competences: req.body.competences,
-    objectifs: req.body.objectifs,
-    avantages: req.body.avantages,
     datePropose: req.body.datePropose,
     dateValide: req.body.dateValide,
+
+    rapport: req.body.rapport,
+    fichier: req.body.fichier,
     resume: req.body.resume,
+
     niveauRequis: req.body.niveauRequis,
+    conditions: req.body.conditions,
+    objectifs: req.body.objectifs,
+    competences: req.body.competences,
+    
+    salaire: req.body.salaire,
+    avantages: req.body.avantages,
 
     commentaires: [], // lors de la création du stage, il n'y a aucun commentaire
 
+    ficheSuivi: req.body.ficheSuivi,
+    noteStage: req.body.noteStage,
+    visiteStage: req.body.visiteStage,
+
+    parcours: req.body.parcours,
+    entreprise: req.body.entreprise,
+
+    ajouteur: req.body.ajouteur ,
+    tuteurEntreprise: req.body.tuteurEntreprise ,
+    tuteurUniv: req.body.tuteurUniv ,
+    rapporteur: req.body.rapporteur ,
+    etudiant: req.body.etudiant ,    
+
+
+    /*
     ficheSuivi: {
       dateDebut: req.body.dateDebut,
       dateFin: req.body.dateFin,
@@ -93,7 +143,7 @@ exports.createStage = (req, res, next) => {
     /*parcours: {
       idParcours: req.body.idParcours,
       nomComplet: req.body.nomCompletParcours
-    },*/
+    },
 
     ajouteur: {
       idAjouteur: req.body.idAjouteur,
@@ -104,7 +154,7 @@ exports.createStage = (req, res, next) => {
     entreprise: {
       idEntreprise: req.body.idEntreprise,
       nomComplet: req.body.nomCompletEntreprise
-    },*/
+    },
 
     tuteurUniv: {
       idTuteurUniv: req.body.idTuteurUniv,
@@ -130,7 +180,7 @@ exports.createStage = (req, res, next) => {
       typeContact: req.body.typeContact,
       dateVisite: req.body.dateVisite,
       commentaire: req.body.commentaireVisite
-    }
+    }*/
 
   });
 

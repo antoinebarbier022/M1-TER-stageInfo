@@ -130,37 +130,45 @@
 
     <!-- Informations du stage -->
     <app-card id="information-stage" title="Informations">
-        <p>Titre : {{ stage.titre }}</p>
-            <p>Parcours : {{ stage.parcours }}</p>
-            <p>Durée : {{ stage.duree }} mois</p>
-            <p>Date début : {{ stage.datedebut }}</p>
+        <p>Titre : {{ stage?.titre }}</p>
+            <p>Parcours : {{ stage?.parcours?.acronyme }}</p>
+            <p>Durée : {{ stage?.duree }} mois</p>
+            <p>Date de saisi du stage : {{ stage?.datePropose | date:'fullDate':'+0200':'fr' }}</p>
+            <p>Date de validation du stage : {{ stage?.dateValide | date:'fullDate':'+0200':'fr' }}</p>
+            <p>Date de début du stage : {{ stage?.datedebut | date:'fullDate':'+0200':'fr' }}</p>
     </app-card>
 
     <!-- Avantages du stage -->
     <app-card id="avantages-stage" title="Avantages">
-        <p>Salaire : {{ stage.salaire }}</p>
-        <p>Avantages : {{ stage.avantages }}</p>
+        <p>Salaire : {{ stage?.salaire }}</p>
+        <p>Avantages : {{ stage?.avantages }}</p>
     </app-card>
 
     <!-- Conditions du stage -->
     <app-card id="conditions-stage" title="Conditions">
-        <p>Niveau requis : {{ stage.niveauRequis }}</p>
-        <p>Conditions : {{ stage.conditions}}</p>
+        <p>Niveau requis : {{ stage?.niveauRequis }}</p>
+        <p>Conditions : {{ stage?.conditions}}</p>
+        <br>
+        <p>Ajouteur : {{ stage?.ajouteur?.nom + ' ' + stage?.ajouteur?.prenom }}</p>
+        <p>tuteurUniv : {{ stage?.tuteurUniv?.nom + ' ' + stage?.tuteurUniv?.prenom }}</p>
+        <p>rapporteur : {{ stage?.rapporteur?.nom + ' ' + stage?.rapporteur?.prenom }}</p>
+        <p>etudiant : {{ stage?.etudiant?.nom + ' ' + stage?.etudiant?.prenom }}</p>
     </app-card>
 
     <!-- Description du stage -->
     <app-card id="description-stage" title="Description">
-        <p>{{ stage.description }}</p>
+        <p>{{ stage?.description }}</p>
     </app-card>
     
     <!-- Informations sur l'entreprise du stage -->
     <app-card id="entreprise-stage" title="Entreprise">
-        <p>Nom : IBM Montpellier</p>
-        <p>Adresse : 9 rue Ada 34090 Montpellier</p>
-        <p>Site internet :	http://www.lirmm.fr/</p>
-        <p>Tuteur dans l'entreprise:	Tibermacine Chouki</p>
-        <p>Email :	tibermacin@lirmm.fr</p>
-        <p>tel :	0467149724</p>
+        <p>Nom : <a [routerLink]="['/liste-entreprises', stage?.entreprise?._id]">{{ stage?.entreprise?.nom }}</a> </p>
+        <p>Adresse : {{ stage?.entreprise?.voie }}</p>
+        <p>Site internet : <a [href]="stage?.entreprise?.siteweb" target="_blank">{{ stage?.entreprise?.siteweb }}</a> </p>
+        <br>
+        <p>Tuteur dans l'entreprise: {{ stage?.entreprise }}</p>
+        <p>Email :</p>
+        <p>tel : </p>
         <p>fax :</p>
     </app-card>
 </div>
@@ -168,7 +176,7 @@
 
 <hr>
 <h2>Pièces Jointes</h2>
-<div id="commentaires-stage">
+<div id="pieces-jointes-stage">
     
     <div class="card commentaire">
         <div class="card-body">

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { EntrepriseModel } from '../../../core/models/entrepriseModel';
+import { EntrepriseModel } from 'src/app/core/models/EntrepriseModel';
+
 
 @Component({
   selector: 'app-info-entreprise',
@@ -24,7 +25,6 @@ export class InfoEntrepriseComponent implements OnInit {
   constructor(private route:ActivatedRoute) { }
   
   ngOnInit(): void {
-    console.log(this.route.snapshot.data.entreprise);
     this.entreprise = this.route.snapshot.data.entreprise;  
   }
 

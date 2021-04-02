@@ -22,7 +22,7 @@ export class FormParcoursComponent implements OnInit, OnChanges {
   @Output() parcoursEvent = new EventEmitter<ParcoursModel>();
 
   parcoursData: ParcoursModel = new ParcoursModel();
-
+  allResponsable: any;
   // @ts-ignore
   parcoursForm: FormGroup;
   // @ts-ignore
@@ -35,7 +35,8 @@ export class FormParcoursComponent implements OnInit, OnChanges {
               private route: ActivatedRoute,
               private router: Router,
               private parcoursService: ParcoursService) { 
-
+    this.allResponsable = this.route.snapshot.data.allResponsables;
+    console.log(this.allResponsable);
     this.selectedParcours =  new ParcoursModel();
   }
 
@@ -68,7 +69,7 @@ export class FormParcoursComponent implements OnInit, OnChanges {
       niveau:['',Validators.required],
       intitule:['',Validators.required],
       description:[''],
-      responsable:['', Validators.required]
+      responsable:[null, Validators.required]
     });
   }
 
@@ -84,7 +85,7 @@ export class FormParcoursComponent implements OnInit, OnChanges {
         niveau:this.parcoursData.niveau,
         intitule:this.parcoursData.intitule,
         description:this.parcoursData.description,
-        responsable:this.parcoursData.responsable
+        responsable:this.parcoursData.responsable?._id
       });
     });
   }
@@ -112,17 +113,29 @@ export class FormParcoursComponent implements OnInit, OnChanges {
     this.parcoursService.addParcours(parcours)
     .pipe(takeUntil(this.destroy$))
       .subscribe((_res: any[]) => {
-        console.log("Parcours ajouté !");
+        console.log("Parcours : "+ parcours.acronyme + " ajouté à la plateforme !");
         this.parcoursForm.reset();  // on reset les données dans le forumulaire
     });
   }
 
-  modifierParcours(id:any, parcours:any){
+  modifierParcours(id:any, parcours:ParcoursModel){
     this.parcoursService.editParcours(id, parcours)
     .pipe(takeUntil(this.destroy$))
-      .subscribe((_res: any[]) => {
-        console.log("Parcours modifié !");
+      .subscribe((_res: ParcoursModel[]) => {
+        console.log("Parcours : "+ parcours.acronyme + " modifié !");
         this.parcoursForm.reset(); // on reset les données dans le forumulaire
+        console.log(parcours)
+        // On met place les infos du responsable dans le tableau parcours
+        var idResp = parcours.responsable;
+        var index = this.allResponsable.findIndex(((obj: { _id: any; }) => obj._id == idResp));
+      
+        parcours.responsable = { 
+          _id:idResp, 
+          nom:this.allResponsable[index]?.nom,
+          prenom:this.allResponsable[index]?.prenom
+        }
+
+        console.log(parcours);
         this.parcoursEvent.emit(parcours); // on envoie le parcours dans le component parent
     });
   }
