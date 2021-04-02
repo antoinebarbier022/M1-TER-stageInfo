@@ -3,7 +3,7 @@ import { FormBuilder, Validators } from '@angular/forms';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 
-import { EntrepriseModel } from '../../../../core/models/EntrepriseModel';
+import { EntrepriseModel } from '../../../../core/models/entrepriseModel';
 import { EntrepriseService } from 'src/app/core/services/entreprise.service';
 import { ActivatedRoute } from '@angular/router';
 
