@@ -29,6 +29,7 @@ import { CardTableComponent } from './components/cards/card-table/card-table.com
 import { FormStageComponent } from './components/forms/form-stage/form-stage.component';
 import { CardMapComponent } from './components/cards/card-map/card-map.component';
 import { FormFicheSuiviComponent } from './components/forms/form-fiche-suivi/form-fiche-suivi.component';
+import { FormFicheNotationComponent } from './components/forms/form-fiche-notation/form-fiche-notation.component';
 
 
 
@@ -51,7 +52,7 @@ import { FormFicheSuiviComponent } from './components/forms/form-fiche-suivi/for
     ListEntriesNumberComponent, 
     CardTableComponent, 
     FormStageComponent, 
-    CardMapComponent, FormFicheSuiviComponent
+    CardMapComponent, FormFicheSuiviComponent, FormFicheNotationComponent
   ],
   imports: [
     CommonModule,
