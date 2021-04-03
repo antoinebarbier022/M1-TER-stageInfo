@@ -12,7 +12,7 @@ const multer = require('../middleware/multer-config')
 router.get('/',invite, stageCtrl.getAllStage);
 router.get('/:id', invite, stageCtrl.getOneStage);
 router.post('/',Etudiant,multer, stageCtrl.createStage);
-router.put('/:id', Etudiant,stageCtrl.editStage);
+router.put('/:id', Etudiant,multer,stageCtrl.editStage);
 router.delete('/:id',Admin, stageCtrl.deleteOneStage);
 router.delete('/', Admin, stageCtrl.deleteAllStage);
 
