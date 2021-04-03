@@ -159,6 +159,7 @@ export class FormStageComponent implements OnInit {
   }
 
   modifierStage(stage:any){
+    if(!this.uploaded){
     this.stageService.editStage(stage._id, stage)
     .pipe(takeUntil(this.destroy$))
       .subscribe((_res: any) => {
@@ -167,7 +168,18 @@ export class FormStageComponent implements OnInit {
         this.message = "Stage modifié !";
         this.stageForm.reset(); // on reset les données dans le forumulaire
         this.stageEvent.emit(stage); // on envoie le parcours dans le component parent
-    });
+    });}
+    else{
+      this.stageService.editStageWhitePdf(stage._id, stage,this.pdf)
+        .pipe(takeUntil(this.destroy$))
+        .subscribe((_res: any) => {
+          console.log("Stage : "+ stage.titre + " modifié !");
+          this.page = 1;
+          this.message = "Stage modifié !";
+          this.stageForm.reset(); // on reset les données dans le forumulaire
+          this.stageEvent.emit(stage); // on envoie le parcours dans le component parent
+        });
+    }
   }
 
   displayFielset(theme : string) : boolean{
