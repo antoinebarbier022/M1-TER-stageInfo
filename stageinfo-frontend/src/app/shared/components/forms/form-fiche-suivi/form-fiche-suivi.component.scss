@@ -29,7 +29,7 @@ form{
     .form-control-plaintext{
         outline : none;
     }
-    .form-group-row{
+    .form-group-row, .form-group{
         display: flex;
         flex-direction: row;
         margin:5px;
