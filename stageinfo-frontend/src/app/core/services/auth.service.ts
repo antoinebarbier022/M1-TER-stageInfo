@@ -93,10 +93,10 @@ export class AuthService {
             this.isAuth$.next(true);
             this.userId = authData.userId;
             if (typeof this.token === "string") {
-              sessionStorage.setItem('JWT_TOKEN', this.token);
+              localStorage.setItem('JWT_TOKEN', this.token);
             }
             if (typeof this.userId === "string") {
-              sessionStorage.setItem('userid', this.userId);
+              localStorage.setItem('userid', this.userId);
             }
             // On set le role quand on se connect (seulement le role visuel car meme si on change se role, le role inscrit dans le token ne peut pas être modifier par l'utilisateur)
             const decodedToken = jwtDecode<IToken>(this.token || '');
@@ -112,10 +112,10 @@ export class AuthService {
     });
   }
   getJwtToken() {
-    return sessionStorage.getItem('JWT_TOKEN');
+    return localStorage.getItem('JWT_TOKEN');
   }
   getUserid(){
-    return sessionStorage.getItem('userid');
+    return localStorage.getItem('userid');
 
   }
   isLoggedIn() {
@@ -126,8 +126,8 @@ export class AuthService {
     this.token = '';
     this.role = '';
     this.viewRole = '';
-    sessionStorage.removeItem('JWT_TOKEN');
-    sessionStorage.removeItem('userid')
+    localStorage.removeItem('JWT_TOKEN');
+    localStorage.removeItem('userid')
     this.viewAllRoute = false;
     this.isAuth$.next(false);
     this.router.navigate(['/login']);
