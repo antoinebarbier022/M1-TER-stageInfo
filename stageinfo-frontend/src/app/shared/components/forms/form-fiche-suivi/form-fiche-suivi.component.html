@@ -18,7 +18,7 @@
         <!-- Parcours étudiant -->
         <div class="form-group-row">
             <label>Parcours :</label>
-            <select name="role" formControlName="role">
+            <select>
                 <option value="" disabled selected>Parcours</option>
                 <option value="MIT">MIT</option>
                 <option value="AIGLE">AIGLE</option>
@@ -30,7 +30,7 @@
         <!-- Niveau étudiant -->
         <div class="form-group-row">
             <label>Niveau :</label>
-            <select name="role" formControlName="role">
+            <select>
                 <option value="" disabled selected>Niveau</option>
                 <option value="M2">M2</option>
                 <option value="M1">M1</option>
@@ -43,7 +43,7 @@
         <!-- Tuteur de l'étudiant -->
         <div class="form-group-row">
             <label>Enseignant tuteur :</label>
-            <select name="role" formControlName="role">
+            <select>
                 <option value="" disabled selected>Enseignant tuteur</option>
                 <option value="tuteur1">tuteur1</option>
                 <option value="tuteur2">tuteur2</option>
@@ -64,29 +64,99 @@
 
     <!-- Section échanges étudiant/tuteur -->
     <fieldset>
-        <!-- Date visite -->
+        <fieldset>
+            <legend>Contact 1 ?</legend>
+            <!-- Date visite -->
+            <div class="form-group-row">
+                <label>Date de visite :</label>
+                <input type="date">
+            </div>
+
+            <!-- Type de contact -->
+            <div class="form-group-row">
+                <label>Type de contact :</label>
+                <select>
+                    <option value="" disabled selected>Type de contact</option>
+                    <option value="telephone">Téléphone</option>
+                    <option value="mail">Mail</option>
+                    <option value="visite">Visite</option>
+                </select>
+            </div>
+
+            <!-- Commentaire -->
+            <div class="form-group">
+                <label>Commentaire :</label>
+                <textarea class="form-control" rows="3"></textarea>
+            </div>
+        </fieldset>
+        <fieldset>
+            <legend>Contact 2 ?</legend>
+            <!-- Date visite -->
+            <div class="form-group-row">
+                <label>Date de visite :</label>
+                <input type="date">
+            </div>
+
+            <!-- Type de contact -->
+            <div class="form-group-row">
+                <label>Type :</label>
+                <select>
+                    <option value="" disabled selected>Type de contact</option>
+                    <option value="telephone">Téléphone</option>
+                    <option value="mail">Mail</option>
+                    <option value="visite">Visite</option>
+                </select>
+            </div>
+
+            <!-- Commentaire -->
+            <div class="form-group">
+                <label>Commentaire :</label>
+                <textarea class="form-control" rows="3"></textarea>
+            </div>
+        </fieldset>
+    </fieldset>
+
+    <hr>
+
+    <!-- Bilan du stage -->
+    <fieldset>
+        <!-- Date début -->
         <div class="form-group-row">
-            <label>Date de visite :</label>
+            <label>Date de début :</label>
             <input type="date">
         </div>
 
-        <!-- Type de contact -->
+        <!-- Date fin -->
         <div class="form-group-row">
-            <label>Type de contact :</label>
-            <select name="typeContact" formControlName="typeContact">
-                <option value="" disabled selected>Type</option>
-                <option value="telephone">Téléphone</option>
-                <option value="mail">Mail</option>
-                <option value="visite">Visite</option>
-            </select>
+            <label>Date de fin :</label>
+            <input type="date">
         </div>
 
-        <!-- Commentaire -->
+        <!-- Bilan explicatif -->
         <div class="form-group">
-            <label>Commentaire :</label>
-            <textarea class="form-control" rows="3"></textarea>
-          </div>
+            <label>Bilan :</label>
+            <textarea 
+                class="form-control" 
+                rows="3"
+                placeholder="Bilan du stage pratique (sur l'entreprise, votre encadrement, l'adéquation de votre formation, autre...)">
+            </textarea>
+        </div>
 
+        <!-- Embauche -->
+        <div class="form-group-row">
+            <label>Embauche :</label>
+            <select>
+                <option value="" disabled selected>L'entreprise est-elle prete a embaucher ?</option>
+                <option value="oui">Oui</option>
+                <option value="non">Non</option>
+            </select>
+        </div>
     </fieldset>
+
+    <hr>
+
+    <p>Fait le : (date actuelle)</p>
+
+    <button class="btn btn-primary" type="submit">Valider</button>
 </form>
 
