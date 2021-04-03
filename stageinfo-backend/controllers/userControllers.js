@@ -40,6 +40,7 @@ exports.getOneUser = ((req, res, next) => {
 
 exports.addUser = (req, res, next) =>{
     console.log(req.body)
+    delete req.param._id;
     bcrypt.hash(req.body.password,10)
         .then(hash => {
             const user =new User({
@@ -65,6 +66,7 @@ exports.addUser = (req, res, next) =>{
         .catch(error => res.status(500).json({error}));
 
 };
+
 
 exports.login= (req, res, next) =>{
     User.findOne({email: req.body.email})

@@ -17,6 +17,7 @@ import { ParcoursModule } from './parcours/parcours.module';
 import { EntrepriseModule } from './entreprise/entreprise.module';
 import { SoutenanceModule } from './soutenance/soutenance.module';
 import { Error401Component } from './erreurs/error401/error401.component';
+import { ImportationCsvComponent } from './importation-csv/importation-csv.component';
 
 
 
@@ -24,7 +25,7 @@ import { Error401Component } from './erreurs/error401/error401.component';
   declarations: [
     ExempleTemplateComponent, 
     Error404Component, 
-    LoginComponent, Error401Component,
+    LoginComponent, Error401Component, ImportationCsvComponent,
    ],
   imports: [
     CommonModule,

@@ -24,6 +24,7 @@ import { CoreModule } from './core/core.module';
 import { SharedModule } from './shared/shared.module';
 import { AuthInterceptor } from './core/interceptors/auth-interceptor';
 import { AngularFileUploaderModule } from "angular-file-uploader";
+import {PapaParseModule} from "ngx-papaparse";
 
 // Par exemple pour obtenir les dates en fr
 registerLocaleData(localeFr, 'fr');
@@ -33,6 +34,7 @@ registerLocaleData(localeFr, 'fr');
     AppComponent,
   ],
   imports: [
+    PapaParseModule,
     BrowserModule,
     HttpClientModule,
     AppRoutingModule,

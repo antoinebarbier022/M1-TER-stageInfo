@@ -22,6 +22,7 @@
                         </a>
                     </span>
 
+
                     <span *ngIf="!(item.items.length == 0)">
                         <!--'#' + item.nom.split(' ').join('-') permet de générer une ancre avec le nom de la catégorie (on supprime les espaces et on les remplaces par des "-" ")-->
                         <a  class="sidebar-link" [href]="'#' + item.nom.split(' ').join('-')" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
@@ -34,6 +35,7 @@
                                     {{ subitem.nom }}
                                 </a>
                             </li>
+
                         </ul>
                     </span>
                 </li>
