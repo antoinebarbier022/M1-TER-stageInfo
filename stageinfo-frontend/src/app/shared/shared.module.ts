@@ -7,6 +7,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { FormUserComponent } from './components/forms/form-user/form-user.component';
 import { FormEntrepriseComponent } from './components/forms/form-entreprise/form-entreprise.component';
 import { FormParcoursComponent } from './components/forms/form-parcours/form-parcours.component';
+import { FormFicheSuiviComponent } from './components/forms/form-fiche-suivi/form-fiche-suivi.component';
+import { FormFicheNotationComponent } from './components/forms/form-fiche-notation/form-fiche-notation.component';
 
 // modal component
 import { ModalComponent } from './components/modal/modal.component';
@@ -28,8 +30,6 @@ import { ButtonDeleteComponent } from './components/buttons/button-delete/button
 import { CardTableComponent } from './components/cards/card-table/card-table.component';
 import { FormStageComponent } from './components/forms/form-stage/form-stage.component';
 import { CardMapComponent } from './components/cards/card-map/card-map.component';
-import { FormFicheSuiviComponent } from './components/forms/form-fiche-suivi/form-fiche-suivi.component';
-import { FormFicheNotationComponent } from './components/forms/form-fiche-notation/form-fiche-notation.component';
 
 
 
@@ -52,7 +52,9 @@ import { FormFicheNotationComponent } from './components/forms/form-fiche-notati
     ListEntriesNumberComponent, 
     CardTableComponent, 
     FormStageComponent, 
-    CardMapComponent, FormFicheSuiviComponent, FormFicheNotationComponent
+    CardMapComponent, 
+    FormFicheSuiviComponent, 
+    FormFicheNotationComponent
   ],
   imports: [
     CommonModule,
@@ -78,7 +80,9 @@ import { FormFicheNotationComponent } from './components/forms/form-fiche-notati
     ListEntriesNumberComponent,
     CardTableComponent,
     FormStageComponent,
-    CardMapComponent
+    CardMapComponent,
+    FormFicheSuiviComponent, 
+    FormFicheNotationComponent
   ]
 })
 export class SharedModule { }

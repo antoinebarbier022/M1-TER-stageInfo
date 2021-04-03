@@ -59,6 +59,8 @@ import { AllSoutenancesResolver } from './core/resolves/all-soutenances.resolver
 import { Error401Component } from './pages/erreurs/error401/error401.component';
 import { AllRespParcoursResolver } from './core/resolves/all-resp-parcours.resolver';
 import { AllEtudiantsResolver } from './core/resolves/all-etudiants.resolver';
+import { FicheSuiviComponent } from './pages/stage/fiche-suivi/fiche-suivi.component';
+import { FicheNotationComponent } from './pages/stage/fiche-notation/fiche-notation.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'liste-stages', pathMatch: 'full', canActivate: [AuthGuardService, RoleGuard]},
@@ -86,8 +88,10 @@ const routes: Routes = [
   { path: 'saisir-stage', component: AddStageComponent, canActivate: [AuthGuardService, RoleGuard]},
   
   // temporaires
-  { path: 'fiche-suivi', component: FormFicheSuiviComponent},
-  { path: 'fiche-notation', component: FormFicheNotationComponent},
+  { path: 'fiche-suivi', component: FicheSuiviComponent},
+  { path: 'fiche-notation', component: FicheNotationComponent},
+  { path: 'fiche-suivi-form', component: FormFicheSuiviComponent},
+  { path: 'fiche-notation-form', component: FormFicheNotationComponent},
 
   // route users
   

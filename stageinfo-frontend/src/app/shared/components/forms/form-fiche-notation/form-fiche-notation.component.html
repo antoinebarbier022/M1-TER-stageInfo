@@ -1,1 +1,111 @@
 <p>form-fiche-notation works!</p>
+
+<form>
+    <!-- Section infos étudiant -->
+    <fieldset>
+        <legend>Informations sur l'étudiant</legend>
+        <!-- Nom étudiant -->
+        <div class="form-group-row">
+            <label>Nom :</label>
+            <input type="text">
+        </div>
+
+        <!-- Prénom étudiant -->
+        <div class="form-group-row">
+            <label>Prénom :</label>
+            <input type="text">
+        </div>
+    </fieldset>
+
+    <hr>
+
+    <!-- Section infos soutenance -->
+    <fieldset>
+        <legend>Informations sur la soutenance</legend>
+        <!-- Date soutenance -->
+        <div class="form-group-row">
+            <label>Date :</label>
+            <input type="date">
+        </div>
+
+        <!-- Heure soutenance -->
+        <div class="form-group-row">
+            <label>Heure :</label>
+            <input type="time">
+        </div>
+    </fieldset>
+
+    <hr>
+
+    <!-- Section infos encadrants (université et entreprise) -->
+    <fieldset>
+        <legend>Informations sur les encadrants</legend>
+        <!-- Encadrant entreprise -->
+        <fieldset>
+            <legend>Encadrant entreprise</legend>
+            <div class="form-group-row">
+                <label>Prénom :</label>
+                <input type="text">
+            </div>
+            <div class="form-group-row">
+                <label>Nom :</label>
+                <input type="text">
+            </div>
+        </fieldset>
+
+        <!-- Tuteur université 1 -->
+        <fieldset>
+            <legend>Tuteur université 1</legend>
+            <div class="form-group-row">
+                <label>Prénom :</label>
+                <input type="text">
+            </div>
+            <div class="form-group-row">
+                <label>Nom :</label>
+                <input type="text">
+            </div>
+        </fieldset>
+
+        <!-- Tuteur université 2 -->
+        <fieldset>
+            <legend>Tuteur université 2</legend>
+            <div class="form-group-row">
+                <label>Prénom :</label>
+                <input type="text">
+            </div>
+            <div class="form-group-row">
+                <label>Nom :</label>
+                <input type="text">
+            </div>
+        </fieldset>
+    </fieldset>
+
+    <hr>
+
+    <!-- Section commentaire & notation -->
+    <fieldset>
+        <legend>Commentaire et notation</legend>
+        
+        <!-- Commentaire -->
+        <div class="form-group">
+            <label>Commentaire :</label>
+            <textarea 
+                class="form-control" 
+                rows="3"
+                placeholder="">
+            </textarea>
+        </div>
+
+        <!-- Note -->
+        <div class="form-group">
+            <label for="customRange2">Note :</label>
+            <input type="range" class="custom-range" min="0" max="20" step="1" id="customRange2">
+        </div>
+    </fieldset>
+
+    <hr>
+
+    <p>Fait le : (date actuelle)</p>
+
+    <button class="btn btn-primary" type="submit">Valider</button>
+</form>

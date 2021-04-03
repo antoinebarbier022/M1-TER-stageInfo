@@ -23,7 +23,7 @@ import { FicheNotationComponent } from './fiche-notation/fiche-notation.componen
   ], 
   exports: [
     ListStagesComponent, 
-    AddStageComponent
+    AddStageComponent,
   ]
 })
 export class StageModule { }
