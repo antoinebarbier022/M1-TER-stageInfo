@@ -9,18 +9,20 @@ import { SharedModule } from '../../shared/shared.module';
 import { ListStagesComponent } from './list-stages/list-stages.component';
 import { InfoStageComponent } from './info-stage/info-stage.component';
 import { AddStageComponent } from './add-stage/add-stage.component';
+import {AngularFileUploaderModule} from "angular-file-uploader";
 
 @NgModule({
   declarations: [ListStagesComponent, InfoStageComponent, AddStageComponent],
-  imports: [
-    CommonModule,
-    BrowserModule,
-    RouterModule,
-    FormsModule,
-    SharedModule
-  ], 
+    imports: [
+        CommonModule,
+        BrowserModule,
+        RouterModule,
+        FormsModule,
+        SharedModule,
+        AngularFileUploaderModule
+    ],
   exports: [
-    ListStagesComponent, 
+    ListStagesComponent,
     AddStageComponent
   ]
 })

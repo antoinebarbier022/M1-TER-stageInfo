@@ -52,8 +52,8 @@ export class SidebarComponent implements OnInit {
 
   telechargerPDF = {icon:"fas fa-download", nom:"Télécharger", items:[
     {icon:"fas fa-border-all", nom:"Feuille de stage", lien:"/fiche-stage"},
-    {icon:"", nom:"Fiche entreprise", lien:"/fiche-entreprise"},
-    {icon:"", nom:"Fiche de notation", lien:"/fiche-notation"}]};
+    {icon:"", nom:"Fiche entreprise", lien:"http://localhost:3000/docs/Fiche_appreciation_stage.doc"},
+    {icon:"", nom:"Fiche de notation", lien:"http://localhost:3000/docs/Fiche_notation.doc"}]};
 
 
   navigationInvite = [
@@ -134,11 +134,11 @@ export class SidebarComponent implements OnInit {
   navigationSecretaire = [
     {
       title:"Administration",
-      items: [  this.listeStages, 
-                this.listeUtilisateurs, 
+      items: [  this.listeStages,
+                this.listeUtilisateurs,
                 this.listeEtudiants,
-                this.listeEntreprise, 
-                this.listeSoutenances, 
+                this.listeEntreprise,
+                this.listeSoutenances,
                 this.listeParcours]
     },
     {
