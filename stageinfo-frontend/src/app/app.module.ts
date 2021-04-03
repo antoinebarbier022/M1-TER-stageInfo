@@ -23,6 +23,7 @@ import { CoreModule } from './core/core.module';
 
 import { SharedModule } from './shared/shared.module';
 import { AuthInterceptor } from './core/interceptors/auth-interceptor';
+import { AngularFileUploaderModule } from "angular-file-uploader";
 
 // Par exemple pour obtenir les dates en fr
 registerLocaleData(localeFr, 'fr');
@@ -35,6 +36,7 @@ registerLocaleData(localeFr, 'fr');
     BrowserModule,
     HttpClientModule,
     AppRoutingModule,
+    AngularFileUploaderModule,
     CommonModule,
     FormsModule,
     ReactiveFormsModule,
