@@ -208,13 +208,15 @@ console.log(req.files[0]);
  */
 exports.editStage = (req, res, next) => {
   console.log(req.body);
+  const stage =req.files[0] ?
+      {
+          ...JSON.parse(req.body.data),
+          fichier: `${req.protocol}://${req.get('host')}/docs/${req.files[0].filename}`
+      } : {...req.body }
 
-  const stage = new Stage({
-      _id: req.params.id,
-      ...req.body
-  });
 
-  Stage.updateOne({_id: req.params.id}, stage)
+
+  Stage.updateOne({_id: req.params.id},{...stage,_id:req.params._id} )
     .then(() => {
       res.status(201).json({
         message: 'Stage updated successfully!'
