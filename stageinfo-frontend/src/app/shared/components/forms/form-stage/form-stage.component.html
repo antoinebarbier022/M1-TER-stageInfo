@@ -2,12 +2,12 @@
     <li [ngClass]="isDone('stage')? 'fieldset-active progress-first' : '' ">
         <i class="fas fa-lg fa-bars"></i>
         Stage</li>
-    
+
     <li [ngClass]="isDone('entreprise')? 'fieldset-active progress-second' : '' ">
-        <i class="fas fa-lg fa-building"></i> 
+        <i class="fas fa-lg fa-building"></i>
         Entreprise
     </li>
-    
+
     <li [ngClass]="isDone('more')? 'fieldset-active progress-third' : '' ">
         <i class="fas fa-lg fa-info"></i>
         More
@@ -18,7 +18,7 @@
 <div *ngIf="showMessages && message" class="alert alert-primary">
     <p><strong>Message : </strong>{{ message }}</p>
 </div>
-<div *ngIf="showMessages && message" 
+<div *ngIf="showMessages && message"
     class="alert alert-primary alert-dismissible fade show" role="alert">
     <p><strong>Message : </strong>{{ message }}</p>
     <button type="button" class="close" data-dismiss="alert" aria-label="Close">
@@ -33,10 +33,10 @@
         <!-- Titre du stage -->
         <div class="form-group-row">
             <label  [for]="addStage ? 'addInputTitre':'editInputTitre'">Titre</label>
-            <input  [id]="addStage ? 'addInputTitre':'editInputTitre'" 
-                    type="text" 
+            <input  [id]="addStage ? 'addInputTitre':'editInputTitre'"
+                    type="text"
                     class="form-control"
-                    placeholder="Titre du stage" 
+                    placeholder="Titre du stage"
                     name="titre"
                     formControlName="titre">
         </div>
@@ -44,8 +44,8 @@
         <div class="form-group-row">
             <label  [for]="addStage ? 'addInputNiveauRequis':'editInputNiveauRequis'">Niveau requis</label>
             <select [id]="addStage ? 'addInputNiveauRequis':'editInputNiveauRequis'"
-                    class="form-control" 
-                    name="niveauRequis" 
+                    class="form-control"
+                    name="niveauRequis"
                     formControlName="niveauRequis">
                 <option value="" disabled selected>Selectionner le niveau requis</option>
                 <option *ngFor="let i of niveauRequis">{{ i }}</option>
@@ -54,31 +54,35 @@
         <!--  Parcours recommander pour le stage -->
         <div class="form-group-row">
             <label  [for]="addStage ? 'addInputParcours':'editInputParcours'">Parcours</label>
-            <select [id]="addStage ? 'addInputParcours':'editInputParcours'"  
-                    class="form-control" 
+            <select [id]="addStage ? 'addInputParcours':'editInputParcours'"
+                    class="form-control"
                     name="parcours"
                     formControlName="parcours">
                 <option [ngValue]="null" disabled selected>Selectionner le parcours</option>
                 <option *ngFor="let parcours of allParcours" [ngValue]="parcours?._id">{{ parcours.acronyme }}</option>
             </select>
         </div>
-        <!--  Description du stage -->
+      <div class="form-group-row">
+        <label for='files'>Select files</label>
+        <input id='files' type="file" (input)="fileChoosen($event)" >
+      </div>
+      <!--  Description du stage -->
         <div class="form-group-row">
             <label      [for]="addStage ? 'addInputDescription':'editInputDescription'">Description</label>
             <textarea   [id]="addStage ? 'addInputDescription':'editInputDescription'"
-                        class="form-control"  
+                        class="form-control"
                         placeholder="Description du stage"
                         rows="3"
                         name="description"
                         formControlName="description"></textarea>
-            
+
         </div>
         <!-- Durée du stage -->
         <div class="form-group-row">
             <label  [for]="addStage ? 'addInputDuree':'editInputDuree'">Durée</label>
             <input  [id]="addStage ? 'addInputDuree':'editInputDuree'"
-                    type="number" 
-                    class="form-control" 
+                    type="number"
+                    class="form-control"
                     placeholder="Nombre de mois"
                     name="duree"
                     formControlName="duree">
@@ -88,8 +92,8 @@
         <div class="form-group-row">
             <label  [for]="addStage ? 'addInputDateDebut':'editInputDateDebut'">Date de début</label>
             <input  [id]="addStage ? 'addInputDateDebut':'editInputDateDebut'"
-                    type="date" 
-                    class="form-control" 
+                    type="date"
+                    class="form-control"
                     name="dateDebut"
                     formControlName="dateDebut">
         </div>
@@ -101,7 +105,7 @@
         <div class="form-group-row">
             <label [for]="addStage ? 'addEntreprise':'editEntreprise'">Entreprise</label>
             <select [id]="addStage ? 'addEntreprise':'editEntreprise'"
-                    class="form-control" 
+                    class="form-control"
                     formControlName="entreprise">
                 <option [ngValue]="null" disabled selected>Selectionner l'entreprise</option>
                 <option *ngFor="let entreprise of allEntreprises" [ngValue]="entreprise?._id">{{ entreprise?.nom }}</option>
@@ -114,7 +118,7 @@
         <div class="form-group-row">
             <label      [for]="addStage ? 'addInputCompetences':'editInputCompetences'">Compétences attendu</label>
             <textarea   [id]="addStage ? 'addInputCompetences':'editInputCompetences'"
-                        class="form-control"  
+                        class="form-control"
                         rows="2"
                         name="competences"
                         placeholder="Compétences attendu durant le stage"
@@ -125,7 +129,7 @@
         <div class="form-group-row">
             <label      [for]="addStage ? 'addInputConditions':'editInputConditions'">Conditions</label>
             <textarea   [id]="addStage ? 'addInputConditions':'editInputConditions'"
-                        class="form-control"  
+                        class="form-control"
                         rows="2"
                         name="conditions"
                         placeholder="conditions du stage"
@@ -146,7 +150,7 @@
         <div class="form-group-row">
             <label      [for]="addStage ? 'addInputAvantages':'editInputAvantages'">Avantages</label>
             <textarea   [id]="addStage ? 'addInputAvantages':'editInputAvantages'"
-                        class="form-control"  
+                        class="form-control"
                         rows="2"
                         name="avantages"
                         placeholder="Avantages du stage"
@@ -154,26 +158,26 @@
             </textarea>
         </div>
     </fieldset>
-    
+
     <!-- Les boutons -->
     <div class="block-btn">
-        <button *ngIf="!lastPage()" 
+        <button *ngIf="!lastPage()"
             type="button" [id]="addStage ? 'addNextButton':'editNextButton'" name="nextButton" value="Next"
-            (click)="next()" 
-            [disabled]="disabledNext()" 
+            (click)="next()"
+            [disabled]="disabledNext()"
             class="btn btn-primary btn-sm btn-next" >
             Suivant
         </button>
-        <button *ngIf="lastPage() || (editStage ? true : false)" 
-                type="submit" [id]="addStage ? 'addSubmitButton':'editSubmitButton'" name="addButton" value="Submit" 
-                (click)="onSubmitForm()" 
+        <button *ngIf="lastPage() || (editStage ? true : false)"
+                type="submit" [id]="addStage ? 'addSubmitButton':'editSubmitButton'" name="addButton" value="Submit"
+                (click)="onSubmitForm()"
                 data-dismiss="modal"
                 class="btn btn-primary btn-sm btn-done">
             {{ editStage ? 'Modifier' : 'Ajouter' }}
         </button>
-        <button *ngIf="!firstPage()" 
+        <button *ngIf="!firstPage()"
             type="button" [id]="addStage ? 'addPredButton':'editPredButton'" name="predButton" value="Pred"
-            (click)="pred()" 
+            (click)="pred()"
             class="btn btn-secondary btn-sm btn-pred">
             Précédent
         </button>

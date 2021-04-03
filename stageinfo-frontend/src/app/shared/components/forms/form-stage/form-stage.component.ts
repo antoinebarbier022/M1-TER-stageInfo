@@ -5,7 +5,6 @@ import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 import { StageModel } from 'src/app/core/models/StageModel';
 import { StageService } from 'src/app/core/services/stage.service';
-
 @Component({
   selector: 'app-form-stage',
   templateUrl: './form-stage.component.html',
@@ -36,14 +35,14 @@ export class FormStageComponent implements OnInit {
   // pour pouvoir détruire les subscribes
   destroy$: Subject<boolean> = new Subject<boolean>();
 
-
+  pdf : any;
   page: number = 1;
   nbMaxPage :number = 3;
 
 
   niveauRequis = ["Licence 3", "Master 1", "Master 2"];
 
-  constructor(private formBuilder: FormBuilder, 
+  constructor(private formBuilder: FormBuilder,
     private route: ActivatedRoute,
     private router: Router,
     private stageService: StageService) {
@@ -129,7 +128,7 @@ export class FormStageComponent implements OnInit {
         formValue['conditions'],
         formValue['avantages'],
       );
-      
+
       if(this.addStage){
         this.ajouterStage(stage);
       }else {
@@ -139,7 +138,7 @@ export class FormStageComponent implements OnInit {
     }
 
   ajouterStage(stage:any){
-    this.stageService.addStage(stage)
+    this.stageService.addStage(stage,this.pdf)
     .pipe(takeUntil(this.destroy$))
       .subscribe((_res: any) => {
         console.log("Stage : "+ stage.titre + " ajouté à la plateforme !");
@@ -190,12 +189,12 @@ export class FormStageComponent implements OnInit {
   // Fonction qui permet de retourner true ou false pour pouvoir dire si on peut passé à la suite (bouton next)
   disabledNext() : boolean{
     switch (this.page) {
-      case 1: //page 1 
+      case 1: //page 1
         return false;
-      case 2: // page 2 
+      case 2: // page 2
         return false
-      case 3: // page 3 
-        return false; 
+      case 3: // page 3
+        return false;
 
       default:
         return false;
@@ -228,4 +227,13 @@ export class FormStageComponent implements OnInit {
     }
   }
 
+
+
+
+  fileChoosen(event: any) {
+    if(event.target.value){
+      this.pdf=<File>event.target.files[0];
+    }
+
+  }
 }
