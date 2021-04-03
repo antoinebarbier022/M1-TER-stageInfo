@@ -19,6 +19,8 @@ import { ListEtudiantsComponent } from './pages/user/list-etudiants/list-etudian
 import { ListStagesComponent } from './pages/stage/list-stages/list-stages.component';
 import { InfoStageComponent } from './pages/stage/info-stage/info-stage.component';
 import { AddStageComponent } from './pages/stage/add-stage/add-stage.component';
+import { FormFicheSuiviComponent } from './shared/components/forms/form-fiche-suivi/form-fiche-suivi.component';
+import { FormFicheNotationComponent } from './shared/components/forms/form-fiche-notation/form-fiche-notation.component';
 
 // import entreprise
 import { ListEntreprisesComponent } from './pages/entreprise/list-entreprises/list-entreprises.component';
@@ -82,6 +84,10 @@ const routes: Routes = [
   },
 
   { path: 'saisir-stage', component: AddStageComponent, canActivate: [AuthGuardService, RoleGuard]},
+  
+  // temporaires
+  { path: 'fiche-suivi', component: FormFicheSuiviComponent},
+  { path: 'fiche-notation', component: FormFicheNotationComponent},
 
   // route users
   
