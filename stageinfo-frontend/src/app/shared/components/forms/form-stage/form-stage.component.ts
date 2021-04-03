@@ -38,6 +38,7 @@ export class FormStageComponent implements OnInit {
   pdf : any;
   page: number = 1;
   nbMaxPage :number = 3;
+  uploaded = false;
 
 
   niveauRequis = ["Licence 3", "Master 1", "Master 2"];
@@ -138,6 +139,7 @@ export class FormStageComponent implements OnInit {
     }
 
   ajouterStage(stage:any){
+    if(this.uploaded){
     this.stageService.addStage(stage,this.pdf)
     .pipe(takeUntil(this.destroy$))
       .subscribe((_res: any) => {
@@ -145,7 +147,15 @@ export class FormStageComponent implements OnInit {
         this.page = 1;
         this.message = "Le stage "+ stage.titre + " à été ajouté à la plateforme !";
         this.stageForm.reset();  // on reset les données dans le forumulaire
-    });
+    });}else {
+      this.stageService.addStageSansFichier(stage)
+        .pipe(takeUntil(this.destroy$))
+        .subscribe((_res: any) => {
+          console.log("Stage : "+ stage.titre + " ajouté à la plateforme !");
+          this.page = 1;
+          this.message = "Le stage "+ stage.titre + " à été ajouté à la plateforme !";
+          this.stageForm.reset();  // on reset les données dans le forumulaire
+        });}
   }
 
   modifierStage(stage:any){
@@ -233,6 +243,7 @@ export class FormStageComponent implements OnInit {
   fileChoosen(event: any) {
     if(event.target.value){
       this.pdf=<File>event.target.files[0];
+      this.uploaded =true;
     }
 
   }

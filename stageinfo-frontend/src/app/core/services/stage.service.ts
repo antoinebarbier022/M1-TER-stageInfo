@@ -44,4 +44,7 @@ export class StageService {
     return this.httpClient.delete(this.urlBase+'/api/stage/'+id);
   }
 
+  addStageSansFichier(stage: StageModel) :Observable<any>{
+    return this.httpClient.post(this.urlBase+'/api/stage', stage);
+  }
 }
