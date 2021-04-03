@@ -1,4 +1,6 @@
 const Stage = require('../models/stageModel');
+const fs = require('fs');
+const multer =require('../middleware/multer-config')
 
 /**
  * @api {get} /stage Get all Stages
@@ -83,9 +85,13 @@ exports.getStageByKeyword = ((req, res, next) => {
  * @apiGroup Stage
  */
 exports.createStage = (req, res, next) => {
-  console.log(req.body);
-
-  const stage = new Stage({
+  console.log(req.body.data);
+console.log(req.files[0]);
+  const stageobject =JSON.parse(req.body.data);
+  delete  stageobject._id;
+  const stage =new Stage({...stageobject,
+      fichier: `${req.protocol}://${req.get('host')}/docs/${req.files[0].filename}`}) ;
+      /*new Stage({
     etat: req.body.etat,
 
     titre: req.body.titre,
@@ -97,7 +103,7 @@ exports.createStage = (req, res, next) => {
     dateValide: req.body.dateValide,
 
     rapport: req.body.rapport,
-    fichier: req.body.fichier,
+    fichier: `${req.protocol}://${req.get('host')}/docs/${req.file.filename}`,
     resume: req.body.resume,
 
     niveauRequis: req.body.niveauRequis,
@@ -122,7 +128,7 @@ exports.createStage = (req, res, next) => {
     tuteurUniv: req.body.tuteurUniv ,
     rapporteur: req.body.rapporteur ,
     etudiant: req.body.etudiant ,    
-
+*/
 
     /*
     ficheSuivi: {
@@ -182,7 +188,7 @@ exports.createStage = (req, res, next) => {
       commentaire: req.body.commentaireVisite
     }*/
 
-  });
+
 
   stage.save()
     .then(() => {
