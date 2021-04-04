@@ -1,37 +1,38 @@
+// les variables couleurs sont importé du fichier scss colors
 @import '/src/assets/styles/colors.scss';
 
 // couleur des état d'un stage
 .state-propose{
     color: #000;
-    background-color: $color-yellow;
+    background-color: $color-propose;
 }
 
 .state-valide{
     color: #fff;
-    background-color: $color-green;
+    background-color: $color-valide;
 }
 
 .state-refuse{
     color: #fff;
-    background-color: $color-red;
+    background-color: $color-refuse;
 }
 .state-reserve{
     color: #fff;
-    background-color: $color-purple;
+    background-color: $color-reserve;
 }
 .state-affectEtudiant{
     color: #fff;
-    background-color: $color-blue;
+    background-color: $color-affectEtudiant;
 }
 .state-affectTuteur{
     color: #fff;
-    background-color: $color-blue-silver;
+    background-color: $color-affectTuteur;
 }
 .state-affectRapporteur{
     color: #000;
-    background-color: $color-blue-livid;
+    background-color: $color-affectRapporteur;
 }
 .state-termine{
     color: #fff;
-    background-color: $color-black;
+    background-color: $color-termine;
 }

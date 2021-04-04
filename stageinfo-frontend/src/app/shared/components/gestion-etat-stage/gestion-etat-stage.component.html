@@ -92,6 +92,11 @@
 <!-- Apprès la validation, si l'ajouteur est un étudiant il est automatiquement reservé pour lui -->
 <!-- Cependant, l'étudiant peut rendre le stage en non reservé si il souhaite le laisser pour un autre étudiant -->
 <div class="alert alert-reserve" *ngIf="(getState() == 'reserve') && ((getViewRole() =='etudiant') && (getRole() == 'admin')) || (getRole() == 'etudiant')">
+    <p>Ce stage est déjà <strong>réservé</strong> à un étudiant. 
+    </p>
+</div>
+
+<div class="alert alert-reserve" *ngIf="(getState() == 'reserve') && ((getViewRole() =='etudiant') && (getRole() == 'admin')) || (getRole() == 'etudiant')">
     <p><strong></strong>
         <button class="btn btn btn-sm btn-outline-danger btn-sm"  (click)="changerEtat('valide')">Rendre ce stage disponible pour tous les étudiants</button>
     </p>

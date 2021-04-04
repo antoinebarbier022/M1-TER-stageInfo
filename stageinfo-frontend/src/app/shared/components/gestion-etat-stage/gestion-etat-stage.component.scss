@@ -1,3 +1,4 @@
+// les variables couleurs sont importé du fichier scss colors
 @import '/src/assets/styles/colors.scss';
 
 .admin-change-state{
@@ -6,30 +7,30 @@
 
 // couleur des alertes
 .alert-propose{
-    background-color: rgba($color-yellow, .2);
+    background-color: rgba($color-propose, .2);
 }
 
 .alert-valide{
-    background-color: rgba($color-green, .2);
+    background-color: rgba($color-valide, .2);
 }
 
 .alert-refuse{
-    background-color: rgba($color-red, .2);
+    background-color: rgba($color-refuse, .2);
 }
 .alert-reserve{
-    background-color: rgba($color-purple, .2);
+    background-color: rgba($color-reserve, .2);
 }
 .alert-affectEtudiant{
-    background-color: rgba($color-blue, .2);
+    background-color: rgba($color-affectEtudiant, .2);
 }
 .alert-affectTuteur{
-    background-color: rgba($color-blue-silver, .2);
+    background-color: rgba($color-affectTuteur, .2);
 }
 .alert-affectRapporteur{
-    background-color: rgba($color-blue-livid, .4);
+    background-color: rgba($color-affectRapporteur, .4);
 }
 .alert-termine{
-    background-color: rgba($color-black, .1);
+    background-color: rgba($color-termine, .1);
 }
 
 ul{
