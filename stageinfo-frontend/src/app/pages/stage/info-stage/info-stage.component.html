@@ -166,7 +166,7 @@
         <p>Adresse : {{ stage?.entreprise?.voie }}</p>
         <p>Site internet : <a [href]="stage?.entreprise?.siteweb" target="_blank">{{ stage?.entreprise?.siteweb }}</a> </p>
         <br>
-        <p>Tuteur dans l'entreprise: {{ stage?.entreprise }}</p>
+        <p>Tuteur dans l'entreprise: <a [routerLink]="['/liste-utilisateurs/user', stage.entreprise?.representant]">{{ entreprise?.representant?._id ? entreprise?.representant?.nom + ' ' + entreprise?.representant?.prenom : 'undefined'}}</a></p>
         <p>Email :</p>
         <p>tel : </p>
         <p>fax :</p>
