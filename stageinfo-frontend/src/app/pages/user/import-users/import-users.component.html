@@ -1,25 +1,30 @@
-<app-navigation title="Importer des utilisateurs"></app-navigation>
+<app-navigation title="Importer des Étudiants"></app-navigation>
 
 <div class="all-card-profile">
     <div id="info-user" class="card">
         <div class="card-body">
-            <form>
+          <form [formGroup]="importForm" (ngSubmit)="envoyer()">
                 <div class="form-group">
-                    <label for="inputImportRole">Qui voulez-vous importer ?</label>
-                    <select  id="inputImportRole" class="form-control">
-                        <option>Étudiants</option>
-                        <option>Enseignants</option>
-                    </select>
+
+                    <label for="ann">Importation des étudiants :</label>
+                  <input  id="ann"
+                          type="text"
+                          class="form-control"
+                          placeholder="Année universitaire"
+                          name="Année universitaire"
+                          formControlName="ann"
+                          >
                 </div>
 
-                <div class="form-group">
-                    <div class="custom-file">
-                        <input type="file" class="custom-file-input" id="customFile" >
-                        <label class="custom-file-label" for="customFile">Choisir un fichier</label>
-                    </div>
+                <div class="form-group-row">
+
+                      <label for='files'>Select files <input id='files' type="file" (input)="fileChoosen($event)"  ></label>
+
+
                 </div>
 
-                <button type="submit" routerLink="/liste-utilisateurs" style="float:right;" class="btn btn-sm btn-primary">Importer les utilisateurs</button>
+
+                <button type="submit" style="float:right;" class="btn btn-sm btn-primary">Importer les utilisateurs</button>
               </form>
         </div>
     </div>
