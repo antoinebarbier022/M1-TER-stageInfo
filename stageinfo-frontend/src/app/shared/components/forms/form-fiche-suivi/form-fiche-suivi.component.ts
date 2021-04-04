@@ -33,6 +33,7 @@ export class FormFicheSuiviComponent implements OnInit {
     this.initForm();
   }
 
+  /*
   formatter = (result: string) => result.toUpperCase();
 
   search: OperatorFunction<string, readonly string[]> = (text$: Observable<string>) =>
@@ -42,6 +43,7 @@ export class FormFicheSuiviComponent implements OnInit {
       map(term => term === '' ? []
         : this.allUsers.filter(v => console.log(v)))
   );
+  */
 
   initForm(){
     this.ficheSuiviForm = this.formBuilder.group({

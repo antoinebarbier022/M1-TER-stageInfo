@@ -1,18 +1,18 @@
-<form>
+<form [formGroup]="ficheNotationForm" (ngSubmit)="onSubmitForm()">
     <h1>{{ title }}</h1>
     <!-- Section infos étudiant -->
     <fieldset>
         <legend>Informations sur l'étudiant</legend>
         <!-- Nom étudiant -->
         <div class="form-group-row">
-            <label>Nom :</label>
-            <input type="text">
+            <label for="nomEtudiant">Nom :</label>
+            <input type="text" id="nomEtudiant" class="form-control" formControlName="nomEtudiant">
         </div>
 
         <!-- Prénom étudiant -->
         <div class="form-group-row">
-            <label>Prénom :</label>
-            <input type="text">
+            <label for="prenomEtudiant">Prénom :</label>
+            <input type="text" id="prenomEtudiant" class="form-control" formControlName="prenomEtudiant">
         </div>
     </fieldset>
 
@@ -23,14 +23,14 @@
         <legend>Informations sur la soutenance</legend>
         <!-- Date soutenance -->
         <div class="form-group-row">
-            <label>Date :</label>
-            <input type="date">
+            <label for="date">Date :</label>
+            <input type="date" id="date" class="form-control" formControlName="date">
         </div>
 
         <!-- Heure soutenance -->
         <div class="form-group-row">
-            <label>Heure :</label>
-            <input type="time">
+            <label for="heure">Heure :</label>
+            <input type="time" id="heure" class="form-control" formControlName="heure">
         </div>
     </fieldset>
 
@@ -39,16 +39,16 @@
     <!-- Section infos encadrants (université et entreprise) -->
     <fieldset>
         <legend>Informations sur les encadrants</legend>
-        <!-- Encadrant entreprise -->
+        <!-- Representant entreprise -->
         <fieldset>
-            <legend>Encadrant entreprise</legend>
+            <legend>Représentant entreprise</legend>
             <div class="form-group-row">
-                <label>Prénom :</label>
-                <input type="text">
+                <label for="prenomRepresentant">Prénom :</label>
+                <input type="text" id="prenomRepresentant" class="form-control" formControlName="prenomRepresentant">
             </div>
             <div class="form-group-row">
-                <label>Nom :</label>
-                <input type="text">
+                <label for="nomRepresentant">Nom :</label>
+                <input type="text" id="nomRepresentant" class="form-control" formControlName="nomRepresentant">
             </div>
         </fieldset>
 
@@ -56,12 +56,12 @@
         <fieldset>
             <legend>Tuteur université 1</legend>
             <div class="form-group-row">
-                <label>Prénom :</label>
-                <input type="text">
+                <label for="prenomTuteur1">Prénom :</label>
+                <input type="text" id="prenomTuteur1" class="form-control" formControlName="prenomTuteur1"> 
             </div>
             <div class="form-group-row">
-                <label>Nom :</label>
-                <input type="text">
+                <label for="nomTuteur1">Nom :</label>
+                <input type="text" id="nomTuteur1" class="form-control" formControlName="nomTuteur1">
             </div>
         </fieldset>
 
@@ -69,12 +69,12 @@
         <fieldset>
             <legend>Tuteur université 2</legend>
             <div class="form-group-row">
-                <label>Prénom :</label>
-                <input type="text">
+                <label for="prenomTuteur2">Prénom :</label>
+                <input type="text" id="prenomTuteur2" class="form-control" formControlName="prenomTuteur2">
             </div>
             <div class="form-group-row">
-                <label>Nom :</label>
-                <input type="text">
+                <label for="nomTuteur2">Nom :</label>
+                <input type="text" id="nomTuteur2" class="form-control" formControlName="nomTuteur2">
             </div>
         </fieldset>
     </fieldset>
@@ -87,9 +87,11 @@
         
         <!-- Commentaire -->
         <div class="form-group">
-            <label>Commentaire :</label>
+            <label for="commentaire">Commentaire :</label>
             <textarea 
-                class="form-control" 
+                id="commentaire"
+                class="form-control"
+                formControlName="commentaire" 
                 rows="3"
                 placeholder="">
             </textarea>
@@ -97,8 +99,8 @@
 
         <!-- Note -->
         <div class="form-group">
-            <label for="customRange2">Note :</label>
-            <input type="range" class="custom-range" min="0" max="20" step="1" id="customRange2">
+            <label for="note">Note :</label>
+            <input id="note" type="number" class="form-control" formControlName="note" step="1" min="0" max="20" value="10">
         </div>
     </fieldset>
 
