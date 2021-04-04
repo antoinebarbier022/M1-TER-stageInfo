@@ -58,13 +58,11 @@ import { AllSoutenancesResolver } from './core/resolves/all-soutenances.resolver
 import { Error401Component } from './pages/erreurs/error401/error401.component';
 import { AllRespParcoursResolver } from './core/resolves/all-resp-parcours.resolver';
 import { AllEtudiantsResolver } from './core/resolves/all-etudiants.resolver';
-import {ImportationCsvComponent} from "./pages/importation-csv/importation-csv.component";
 
 const routes: Routes = [
   { path: '', redirectTo: 'liste-stages', pathMatch: 'full', canActivate: [AuthGuardService, RoleGuard]},
   { path: 'login', component: LoginComponent, canActivate: [AuthGuard]},
   { path: 'documentation', component: ExempleDocComponent, canActivate: [AuthGuardService, RoleGuard]},
-  {path:'impo',component:ImportationCsvComponent, resolve: {allParcours: AllParcoursResolver}},
 
   // routes stages
   { path: 'liste-stages',
