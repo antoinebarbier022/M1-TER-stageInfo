@@ -1,3 +1,4 @@
+
 const User = require('../models/userModel');
 const bcrypt = require('bcrypt');
 const jwt = require ('jsonwebtoken');
@@ -87,8 +88,8 @@ exports.addUser = (req, res, next) =>{
                 
             });
             user.save()
-                .then(() => {res.status(201).json({message: 'Utilisateur crée!'}),
-                    SendEmail(user)
+                .then(() => {res.status(201).json({message: 'Utilisateur crée!'})
+                    //SendEmail(user)
 
                 })
                 .catch(error => res.status(400).json({error}));
@@ -205,4 +206,20 @@ exports.getRole = ((req, res, next) => {
       }
     );
   };
+exports.deleteall = (req, res, next) => {
+    User.deleteMany({}).then(
+    () => {
+        res.status(200).json({
+            message: 'All Stages deleted!'
+        });
+    }
+).catch(
+    (error) => {
+        res.status(400).json({
+            error: error
+        });
+    }
+);
+};
+
 
