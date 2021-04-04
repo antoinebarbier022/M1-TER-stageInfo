@@ -55,7 +55,8 @@ export class FormFicheNotationComponent extends AutocompletionSearch implements 
   }
   
   onSubmitForm() {
-    console.log("Submit");
+    const formValue = this.ficheNotationForm.value;
+    console.log(formValue)
   }
 
 }
