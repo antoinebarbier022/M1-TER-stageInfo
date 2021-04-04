@@ -53,7 +53,8 @@ import { GestionEtatStageComponent } from './components/gestion-etat-stage/gesti
     CardTableComponent, 
     FormStageComponent, 
     CardMapComponent, 
-    StateBadgeComponent, GestionEtatStageComponent
+    StateBadgeComponent, 
+    GestionEtatStageComponent
   ],
   imports: [
     CommonModule,
@@ -80,7 +81,8 @@ import { GestionEtatStageComponent } from './components/gestion-etat-stage/gesti
     CardTableComponent,
     FormStageComponent,
     CardMapComponent,
-    StateBadgeComponent
+    StateBadgeComponent,
+    GestionEtatStageComponent
   ]
 })
 export class SharedModule { }

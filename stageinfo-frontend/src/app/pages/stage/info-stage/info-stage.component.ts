@@ -52,14 +52,6 @@ export class InfoStageComponent implements OnInit, OnDestroy {
     this.destroy$.unsubscribe();
   }
 
-  changerEtat(newState:string){
-    this.stageService.editState(this.stage._id, newState)
-      .pipe(takeUntil(this.destroy$))
-      .subscribe((_res: any) => {
-        console.log("L'état du stage "+ this.stage.titre + " est passé à ["+newState+"] !");
-        this.stage.etat = newState;
-      });
-  }
 
   fileChoosen(event: any) {
     if(event.target.value){

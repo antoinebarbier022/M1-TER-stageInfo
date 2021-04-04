@@ -31,14 +31,14 @@ export class StateBadgeComponent implements OnInit {
           case "reserve":
             return "Reservé";
           case "affectEtudiant":
-            return "Affecté à un étudiant";
+            return "Étudiant affecté";
           case "affectTuteur":
-            return "Affecté à un tuteur";
+            return "Tuteur affecté";
           case "affectRapporteur":
-            return "Affecté à un étudiant";
+            return "Rapporteur affecté";
     
       default:
-        return "Undefined";
+        return "Non définie";
     }
   }
 }
