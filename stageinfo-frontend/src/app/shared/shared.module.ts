@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 // forms components
 import { FormUserComponent } from './components/forms/form-user/form-user.component';
@@ -61,6 +62,7 @@ import { CardMapComponent } from './components/cards/card-map/card-map.component
     RouterModule,
     FormsModule,
     ReactiveFormsModule,
+    NgbModule
   ],
   exports:[
     FormUserComponent, 
