@@ -1,19 +1,13 @@
 <form [formGroup]="ficheNotationForm" (ngSubmit)="onSubmitForm()">
     <h1>{{ title }}</h1>
-    
+
     <!-- Section infos étudiant -->
     <fieldset>
         <legend>Informations sur l'étudiant</legend>
         <!-- Nom étudiant -->
         <div class="form-group-row">
             <label for="nomEtudiant">Nom :</label>
-            <input type="text" id="nomEtudiant" class="form-control" formControlName="nomEtudiant">
-        </div>
-
-        <!-- Prénom étudiant -->
-        <div class="form-group-row">
-            <label for="prenomEtudiant">Prénom :</label>
-            <input type="text" id="prenomEtudiant" class="form-control" formControlName="prenomEtudiant">
+            <input id="nomEtudiant" type="text" class="form-control" formControlName="nomEtudiant" [ngbTypeahead]="searchUser" />
         </div>
     </fieldset>
 
@@ -39,17 +33,12 @@
 
     <!-- Section infos encadrants (université et entreprise) -->
     <fieldset>
-        <legend>Informations sur les encadrants</legend>
         <!-- Representant entreprise -->
         <fieldset>
             <legend>Représentant entreprise</legend>
             <div class="form-group-row">
-                <label for="prenomRepresentant">Prénom :</label>
-                <input type="text" id="prenomRepresentant" class="form-control" formControlName="prenomRepresentant">
-            </div>
-            <div class="form-group-row">
                 <label for="nomRepresentant">Nom :</label>
-                <input type="text" id="nomRepresentant" class="form-control" formControlName="nomRepresentant">
+                <input id="nomRepresentant" type="text" class="form-control" formControlName="nomRepresentant" [ngbTypeahead]="searchUser" />
             </div>
         </fieldset>
 
@@ -57,12 +46,8 @@
         <fieldset>
             <legend>Tuteur université 1</legend>
             <div class="form-group-row">
-                <label for="prenomTuteur1">Prénom :</label>
-                <input type="text" id="prenomTuteur1" class="form-control" formControlName="prenomTuteur1"> 
-            </div>
-            <div class="form-group-row">
                 <label for="nomTuteur1">Nom :</label>
-                <input type="text" id="nomTuteur1" class="form-control" formControlName="nomTuteur1">
+                <input id="nomTuteur1" type="text" class="form-control" formControlName="nomTuteur1" [ngbTypeahead]="searchUser" />
             </div>
         </fieldset>
 
@@ -70,12 +55,8 @@
         <fieldset>
             <legend>Tuteur université 2</legend>
             <div class="form-group-row">
-                <label for="prenomTuteur2">Prénom :</label>
-                <input type="text" id="prenomTuteur2" class="form-control" formControlName="prenomTuteur2">
-            </div>
-            <div class="form-group-row">
                 <label for="nomTuteur2">Nom :</label>
-                <input type="text" id="nomTuteur2" class="form-control" formControlName="nomTuteur2">
+                <input id="nomTuteur2" type="text" class="form-control" formControlName="nomTuteur2" [ngbTypeahead]="searchUser" />
             </div>
         </fieldset>
     </fieldset>

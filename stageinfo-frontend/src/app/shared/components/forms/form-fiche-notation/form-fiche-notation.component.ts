@@ -3,6 +3,7 @@ import { Observable, OperatorFunction } from 'rxjs';
 import { FormBuilder, Validators } from '@angular/forms';
 import { debounceTime, distinctUntilChanged, map } from 'rxjs/operators';
 import { ActivatedRoute } from '@angular/router';
+import { UserModel } from 'src/app/core/models/userModel';
 
 @Component({
   selector: 'app-form-fiche-notation',
@@ -14,6 +15,8 @@ export class FormFicheNotationComponent implements OnInit {
   public readonly title: string = "Fiche de notation";
 
   allUsers: Array<any>;
+
+  role: string = "admin";
 
   todayNumber: number = Date.now();
 
@@ -29,23 +32,22 @@ export class FormFicheNotationComponent implements OnInit {
     this.initForm();
   }
 
-  /*
-  formatter = (result: string) => result.toUpperCase();
-
-  search: OperatorFunction<string, readonly string[]> = (text$: Observable<string>) =>
+  searchUser: OperatorFunction<string, readonly string[]> = (text$: Observable<string>) =>
     text$.pipe(
       debounceTime(200),
       distinctUntilChanged(),
-      map(term => term === '' ? []
-        : this.allUsers.filter(v => console.log(v)))
+      map(term => term === '' ? [] : this.allUsers.filter(x => {
+        if(this.role === "all") return x;
+        else if(x.role === this.role) return x;
+      })
+      .map(x => x.prenom + ' ' + x.nom)
+      .filter(x => x.toLowerCase().indexOf(term.toLowerCase()) > -1).slice(0, 10))
   );
-  */
 
   initForm(){
     this.ficheNotationForm = this.formBuilder.group({
       // Étudiant
       nomEtudiant:['',Validators.required],
-      prenomEtudiant:['',Validators.required],
 
       // Soutenance
       date:['',Validators.required],

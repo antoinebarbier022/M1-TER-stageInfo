@@ -89,7 +89,7 @@ const routes: Routes = [
   
   // temporaires
   { path: 'saisir-fiche-suivi', component: FicheSuiviComponent, resolve: {allParcours: AllParcoursResolver, allUsers: AllUsersResolver}},
-  { path: 'saisir-fiche-notation', component: FicheNotationComponent},
+  { path: 'saisir-fiche-notation', component: FicheNotationComponent, resolve: {allUsers: AllUsersResolver}},
   { path: 'fiche-suivi-form', component: FormFicheSuiviComponent},
   { path: 'fiche-notation-form', component: FormFicheNotationComponent},
 
