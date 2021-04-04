@@ -1,0 +1,40 @@
+// couleur des état d'un stage
+.state-propose{
+    color: #000;
+    background-color: #ffc107;
+}
+
+.state-valide{
+    color: #fff;
+    background-color: #28a745;
+}
+
+.state-refuse{
+    color: #fff;
+    background-color: #eb5a46;
+}
+.state-reserve{
+    color: #fff;
+    background-color: #c377e0;
+}
+.state-affectEtudiant{
+    color: #fff;
+    background-color: #007bff;
+}
+.state-affectTuteur{
+    color: #fff;
+    background-color: #455877;
+}
+.state-affectRapporteur{
+    color: #000;
+    background-color: #9bafcf;
+}
+.state-termine{
+    color: #fff;
+    background-color: rgb(10, 10, 10);
+}
+
+.badge-state{
+    color: #fff;
+    background-color: rgb(10, 10, 10);
+}

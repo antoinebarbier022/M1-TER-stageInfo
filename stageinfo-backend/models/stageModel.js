@@ -44,7 +44,7 @@ const visiteStageSchema = Schema({
 
 const stageSchema = Schema({
 
-    etat: { type: String, enum: ['propose', 'valide', 'termine']},
+    etat: { type: String, default:'propose'},
 
     titre: String,
     description: String,

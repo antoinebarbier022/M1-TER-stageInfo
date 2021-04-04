@@ -33,16 +33,19 @@
             </li>
         </ul>
 
+        <p>Etat du stage : 
+            <app-state-badge [state]="stage?.etat"></app-state-badge>
+        </p>
         <div class="alert alert-primary">
             <p><strong>Validation du stage :</strong><br>
                 Cliquez sur Valider pour valider le stage et pour qu'il soit visible par les étudiants.<br>
                 Cliquez sur Supprimer pour refuser le stage et le supprimer de la base de données.
             </p>
-                <button class="btn btn-danger btn-sm" style="margin:5px;">Supprimer</button>
-                <button class="btn btn-primary btn-sm" style="margin:5px;">Valider</button>
+                <button class="btn btn-danger btn-sm" style="margin:5px;" (click)="changerEtat('refuse')">Refuser</button>
+                <button class="btn btn-primary btn-sm" style="margin:5px;" (click)="changerEtat('valide')">Valider</button>
         </div>
 <!-- Autres messages de changement d'état du stage -->
-<!--
+        <!--
         <div class="alert alert-primary">
             <p>
                 <strong>Validation de l'affectation Tuteur/Stage: </strong>
@@ -69,8 +72,9 @@
                 <button class="btn btn-danger btn-sm" style="margin:5px;">Refuser</button>
                 <button class="btn btn-primary btn-sm" style="margin:5px;">accepter</button>
         </div>
+    -->
         <div class="alert alert-primary">
-            <p><strong>Demande d'association Etudiant/Stage :</strong><br>
+            <p><strong>Affecter un étudiant:</strong><br>
             </p>
             <form>
                 <div class="form-group-row">
@@ -87,7 +91,16 @@
         </div>
 
         <div class="alert alert-primary">
-            <p><strong>Demande d'association Tuteur/Stage :</strong><br>
+            <p><strong>Devenir le tuteur de ce stage :</strong><br>
+                Cliquez sur Valider pour valider le stage et pour qu'il soit visible par les étudiants.<br>
+                Cliquez sur Supprimer pour refuser le stage et le supprimer de la base de données.
+            </p>
+                <button class="btn btn-danger btn-sm" style="margin:5px;">Refuser</button>
+                <button class="btn btn-primary btn-sm" style="margin:5px;" (click)="changerEtat('affectTuteur')">Valider</button>
+        </div>
+
+        <div class="alert alert-primary">
+            <p><strong>Affecter un tuteur :</strong><br>
             </p>
             <form>
                 <div class="form-group-row">
@@ -104,7 +117,7 @@
         </div>
 
         <div class="alert alert-primary">
-            <p><strong>Demande d'association Rapporteur/Stage :</strong><br>
+            <p><strong>Affecter un Rapporteur :</strong><br>
             </p>
             <form>
                 <div class="form-group-row">
@@ -125,7 +138,6 @@
                 <strong>Message :</strong> Affectation refusé pour l'étudiant Antoine Barbier
             </p>
         </div>
--->
     </div>
 
     <!-- Informations du stage -->
@@ -166,7 +178,7 @@
         <p>Adresse : {{ stage?.entreprise?.voie }}</p>
         <p>Site internet : <a [href]="stage?.entreprise?.siteweb" target="_blank">{{ stage?.entreprise?.siteweb }}</a> </p>
         <br>
-        <p>Tuteur dans l'entreprise: <a [routerLink]="['/liste-utilisateurs/user', stage.entreprise?.representant]">{{ entreprise?.representant?._id ? entreprise?.representant?.nom + ' ' + entreprise?.representant?.prenom : 'undefined'}}</a></p>
+        <p>Tuteur dans l'entreprise: <a [routerLink]="['/liste-utilisateurs/user', stage.entreprise?.representant]">{{ stage.entreprise?.representant ? 'undefined': 'undefined'}}</a></p>
         <p>Email :</p>
         <p>tel : </p>
         <p>fax :</p>
@@ -194,9 +206,9 @@
                     
                     <td class="table-action">
                         <!-- Bouton edit => ouvre un modal avec le formulaire de modification -->
-                        <app-button-edit data-toggle="modal" (click)="selectedItem(stage)" data-target="#modifier"></app-button-edit>
+                        <app-button-edit data-toggle="modal"  data-target="#modifier"></app-button-edit>
                         <!-- Bouton delete => ouvre un modal avec la demande de suppression -->
-                        <app-button-delete data-toggle="modal" (click)="selectedItem(stage)" data-target="#suppression"></app-button-delete>
+                        <app-button-delete data-toggle="modal"  data-target="#suppression"></app-button-delete>
                     </td>
                 </tr>
             </tbody>

@@ -28,6 +28,8 @@ import { ButtonDeleteComponent } from './components/buttons/button-delete/button
 import { CardTableComponent } from './components/cards/card-table/card-table.component';
 import { FormStageComponent } from './components/forms/form-stage/form-stage.component';
 import { CardMapComponent } from './components/cards/card-map/card-map.component';
+import { StateBadgeComponent } from './components/badges/state-badge/state-badge.component';
+import { GestionEtatStageComponent } from './components/gestion-etat-stage/gestion-etat-stage.component';
 
 
 
@@ -50,7 +52,8 @@ import { CardMapComponent } from './components/cards/card-map/card-map.component
     ListEntriesNumberComponent, 
     CardTableComponent, 
     FormStageComponent, 
-    CardMapComponent
+    CardMapComponent, 
+    StateBadgeComponent, GestionEtatStageComponent
   ],
   imports: [
     CommonModule,
@@ -76,7 +79,8 @@ import { CardMapComponent } from './components/cards/card-map/card-map.component
     ListEntriesNumberComponent,
     CardTableComponent,
     FormStageComponent,
-    CardMapComponent
+    CardMapComponent,
+    StateBadgeComponent
   ]
 })
 export class SharedModule { }

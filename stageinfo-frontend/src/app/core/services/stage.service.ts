@@ -26,7 +26,7 @@ export class StageService {
     return this.httpClient.get(this.urlBase+'/api/stage/'+id);
   }
 
-  /* Ajouter un parcours */
+  /* Ajouter un stage */
   addStage(stage: StageModel) :Observable<any>{
     return this.httpClient.post(this.urlBase+'/api/stage', stage);
   }
@@ -39,9 +39,17 @@ export class StageService {
     return this.httpClient.post(this.urlBase+'/api/stage', datastage);
   }
 
-  /* Modifier un parcours */
+  /* Modifier un stage */
   editStage(id:any, data:StageModel):Observable<any>{
     return this.httpClient.put(this.urlBase+'/api/stage/'+ id, data);
+  }
+
+  /* changer l'état d'un stage */
+  editState(id:any, state:string):Observable<any>{
+    const newState = {
+      etat: state
+    };
+    return this.httpClient.put(this.urlBase+'/api/stage/'+ id+'/changement-etat', newState);
   }
 
   /* Suppression d'un stage avec son identifiant */
