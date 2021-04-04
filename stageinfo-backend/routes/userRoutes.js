@@ -12,6 +12,7 @@ router.post('/signup',userctrl.addUser);
 router.post('/login',userctrl.login);
 router.put('/:id', userctrl.editUser);
 router.delete('/:id', userctrl.deleteOneUser);
+router.delete('/',userctrl.deleteall)
 router.get('/email/:id', userctrl.getemail);
 router.get('/role/:id', userctrl.getRole);
 
