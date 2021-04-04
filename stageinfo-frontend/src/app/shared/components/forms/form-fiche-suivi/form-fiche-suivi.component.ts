@@ -3,13 +3,14 @@ import { Observable, OperatorFunction } from 'rxjs';
 import { FormBuilder, Validators } from '@angular/forms';
 import { debounceTime, distinctUntilChanged, map } from 'rxjs/operators';
 import { ActivatedRoute } from '@angular/router';
+import { AutocompletionSearch } from 'src/app/shared/classes/autocompletion-search';
 
 @Component({
   selector: 'app-form-fiche-suivi',
   templateUrl: './form-fiche-suivi.component.html',
   styleUrls: ['./form-fiche-suivi.component.scss']
 })
-export class FormFicheSuiviComponent implements OnInit {
+export class FormFicheSuiviComponent extends AutocompletionSearch implements OnInit {
 
   public readonly title: string = "Fiche de suivi";
   niveau = ["M2", "M1", "L3"];
@@ -27,22 +28,15 @@ export class FormFicheSuiviComponent implements OnInit {
 
   constructor(private route: ActivatedRoute,
               private formBuilder: FormBuilder) { 
+    super();
     this.allParcours = this.route.snapshot.data.allParcours;
     this.allUsers = this.route.snapshot.data.allUsers;
+    this.userItems = this.allUsers;
   }
 
   ngOnInit(): void {
     this.initForm();
   }
-
-  search: OperatorFunction<string, readonly string[]> = (text$: Observable<string>) =>
-    text$.pipe(
-      debounceTime(200),
-      distinctUntilChanged(),
-      map(term => term === '' ? [] : this.allUsers.filter(x => x.role === 'etudiant')
-      .map(function(x){ return x.prenom + ' ' + x.nom;})
-      .filter(x => x.toLowerCase().indexOf(term.toLowerCase()) > -1).slice(0, 10))
-  );
 
   initForm(){
     this.ficheSuiviForm = this.formBuilder.group({

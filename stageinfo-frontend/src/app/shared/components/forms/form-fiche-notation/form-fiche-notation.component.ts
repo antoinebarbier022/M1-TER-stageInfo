@@ -1,7 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Observable, OperatorFunction } from 'rxjs';
 import { FormBuilder, Validators } from '@angular/forms';
-import { debounceTime, distinctUntilChanged, map } from 'rxjs/operators';
 import { ActivatedRoute } from '@angular/router';
 import { AutocompletionSearch } from 'src/app/shared/classes/autocompletion-search';
 

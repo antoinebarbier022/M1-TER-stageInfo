@@ -6,7 +6,7 @@
         <!-- Nom étudiant -->
         <div class="form-group-row">
             <label for="nom">Nom :</label>
-            <input id="nom" type="text" class="form-control" formControlName="nom" [ngbTypeahead]="search" />
+            <input id="nom" type="text" class="form-control" formControlName="nom" [ngbTypeahead]="searchUser" (click)="setRoleUser('etudiant')"/>
         </div>
 
         <!-- Parcours étudiant -->
