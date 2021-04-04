@@ -173,12 +173,13 @@ exports.createStage = (req, res, next) => {
         console.log(req.body);
         console.log(req.files);
 
-        const stage = req.files   ?
+        const stage  =
+        /*= req.files ?
             {
                 ...JSON.parse(req.body.data),
                 fichier: `${req.protocol}://${req.get('host')}/docs/${req.files[0].filename}`,
                 _id: req.params.id
-            } : {
+            } : */{
                 ...req.body,
                 _id: req.params.id
             }
@@ -193,6 +194,7 @@ exports.createStage = (req, res, next) => {
             })
             .catch((error) => {
                 res.status(400).json({error: error});
+                console.log({error: error});
             });
     };
 

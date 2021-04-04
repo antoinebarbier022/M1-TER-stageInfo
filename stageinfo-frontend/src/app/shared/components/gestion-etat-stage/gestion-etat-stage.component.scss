@@ -1,0 +1,44 @@
+.admin-change-state{
+    float:right;
+}
+
+ul{
+    padding:20px 40px;
+    display: flex;
+    width:100%;
+    justify-content: space-between;
+    margin:0;
+    list-style-type: none;
+    z-index: 1;
+    li{
+        display: flex;
+        flex-direction: column;
+        text-align: center;
+    }
+
+    li > i{
+        align-self: center;
+        width:20px;
+        height:20px;
+        margin-bottom: 4px;
+        border: 3px solid #495057;
+        
+        padding:5px;
+        border-radius: 100%;
+        z-index: 1;
+    }
+    .fieldset-active{
+        color: #495057;
+        
+        i{
+            color: white;
+            //border: 3px solid #293042;
+            background-color: #495057;
+        }
+    }
+}
+
+.alert{
+    margin-top:15px;
+    margin-bottom:0;
+}

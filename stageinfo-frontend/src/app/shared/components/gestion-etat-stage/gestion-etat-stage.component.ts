@@ -28,7 +28,7 @@ export class GestionEtatStageComponent implements OnInit, OnDestroy {
     this.destroy$.unsubscribe();
   }
 
-  getState():any{
+  getState():string{
     return this.stage.etat;
   }
 
@@ -38,6 +38,24 @@ export class GestionEtatStageComponent implements OnInit, OnDestroy {
 
   getViewRole(){
     return this.authService.getViewRole();
+  }
+
+  etatPrecedent():void{
+    switch(this.getState()){
+      case 'valide':
+        return this.changerEtat('propose');
+      case 'refuse':
+        return this.changerEtat('propose');
+      case 'affectEtudiant':
+        return this.changerEtat('valide');
+      case 'affectTuteur':
+        return this.changerEtat('affectEtudiant');
+      case 'affectRapporteur':
+        return this.changerEtat('affectTuteur');
+      case 'termine':
+        return this.changerEtat('affectRapporteur');
+
+    }
   }
 
   changerEtat(newState:string){

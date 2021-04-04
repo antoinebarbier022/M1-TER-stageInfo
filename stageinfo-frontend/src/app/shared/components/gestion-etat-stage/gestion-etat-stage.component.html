@@ -1,6 +1,36 @@
+<ul class="nav-progress" *ngIf="false">
+    <li [ngClass]="'fieldset-active progress-first'">
+        <i class=""></i>
+        Stage proposé
+    </li>
+    <li [ngClass]="'fieldset-active progress-second' ">
+        <i class=""></i>
+        Stage validé
 
-<div *ngIf="getViewRole() == 'admin'">
-    <button class="btn btn-primary btn-sm" style="margin:5px;" (click)="changerEtat('propose')">Proposer</button>
+    </li>
+    <li [ngClass]="'fieldset-active progress-second' ">
+        <i class=""></i>
+
+        Affecté à un étudiant
+    </li>
+    <li>
+        <i class=""></i>
+        Associé à un tuteur
+    </li>
+
+    <li >
+        <i class=""></i>
+        Associé à un rapporteur
+    </li>
+
+    <li >
+        <i class=""></i>
+        Stage Terminé
+    </li>
+</ul>
+
+<div *ngIf="false" style="margin-bottom:10px;">
+    <button class="btn btn-primary btn-sm" (click)="changerEtat('propose')">Proposer</button>
     <button class="btn btn-primary btn-sm" style="margin:5px;" (click)="changerEtat('refuse')">Refuser</button>
     <button class="btn btn-primary btn-sm" style="margin:5px;" (click)="changerEtat('valide')">Valider</button>
     
@@ -13,6 +43,23 @@
     <button class="btn btn-primary btn-sm" style="margin:5px;" (click)="changerEtat('termine')">terminer</button>
     
 </div>
+
+<div class="admin-change-state" *ngIf="!(getState() == 'propose')">
+    <button *ngIf="(getViewRole() =='admin') && (getRole() == 'admin')"
+    class="btn btn-outline-danger btn-sm" 
+    style="margin:5px;"
+    (click)="etatPrecedent()">Annuler le dernier changement d'état</button>
+    
+    <button *ngIf="getState() == 'affectRapporteur' && (getViewRole() =='admin') && (getRole() == 'admin')"
+    class="btn btn-outline-secondary btn-sm" 
+    style="margin:5px;"
+    (click)="changerEtat('termine')">Terminer</button>
+</div>
+
+<p>
+    <strong>Etat du stage : </strong>  <app-state-badge [state]="stage?.etat"></app-state-badge>
+</p>
+
 
 
 
@@ -30,13 +77,13 @@
 
 <div class="alert alert-danger" *ngIf="getState() == 'refuse'">
     <p>
-        <strong>Message :</strong> Le stage a été refusé.
+        <strong>Le stage a été refusé.</strong> 
     </p>
 </div>
 
-<div class="alert alert-success" *ngIf="getState() == 'valide'">
+<div class="alert alert-success" *ngIf="getState() == 'valide' && ((getViewRole() =='etudiant') && (getRole() == 'admin')) || (getRole() == 'etudiant')">
     <p><strong>Pour postuler à ce stage, veuillez contacter l'entreprise.</strong><br>
-        Après l'accord de l'entreprise, veuillez signaler l'optention du stage au responsable de stage.</p>
+        Après l'accord de l'entreprise, veuillez signaler l'obtention de votre stage au responsable des stages.</p>
         <button class="btn btn btn-sm btn-success btn-sm" >Contacter l'entreprise</button>
         <button class="btn btn btn-sm btn-outline-success btn-sm" style="margin:5px;">Contacter le responsable</button>
 </div>
@@ -44,7 +91,7 @@
 <!-- Deuxième étape -->
 <!-- Apprès la validation, si l'ajouteur est un étudiant il est automatiquement reservé pour lui -->
 <!-- Cependant, l'étudiant peut rendre le stage en non reservé si il souhaite le laisser pour un autre étudiant -->
-<div class="alert alert-primary" *ngIf="getState() == 'reserve'">
+<div class="alert alert-primary" *ngIf="(getState() == 'reserve') && ((getViewRole() =='etudiant') && (getRole() == 'admin')) || (getRole() == 'etudiant')">
     <p><strong>Rendre ce stage disponible pour tous les étudiants</strong>
         <button class="btn btn btn-sm btn-outline-danger btn-sm"  (click)="changerEtat('valide')">Supprimer la réservation</button>
     </p>
@@ -52,7 +99,7 @@
 
 <!-- Troisième étape -->
 <!-- Le stage peut être affecté à un étudiant-->
-<div class="alert alert-primary" *ngIf="getState() == ('valide' || 'reserve') && (getViewRole() =='admin')">
+<div class="alert alert-success" *ngIf="getState() == ('valide' || 'reserve') && ( ((getViewRole() =='respParcours') && (getRole() == 'admin')) || (getViewRole() =='admin' && getRole() == 'admin') || (getRole() == 'respParcours'))">
     <p><strong>Selectionner un étudiant pour ce stage :</strong><br>
     </p>
     <form>
@@ -63,16 +110,20 @@
                 <option value="2">El Mokthar</option>
                 <option value="3">Issakou</option>
             </select>
-            <button class="btn btn-primary btn-sm" (click)="changerEtat('affectEtudiant')">Affecté l'étudiant</button>
+            <button class="btn btn-success btn-sm" (click)="changerEtat('affectEtudiant')">Affecté l'étudiant</button>
         </div>
     </form>
 </div>
 
 <!-- Quatrième étape -->
 <!-- Un enseignant peut choisir de devenir le tuteur du stage -->
-<div class="alert alert-primary" *ngIf="getState() == 'affectEtudiant' && (getViewRole() =='admin')">
-    <p><strong>Devenir le tuteur de ce stage</strong></p>
-        <button class="btn btn-sm btn-outline-primary" style="margin:5px;" (click)="changerEtat('affectTuteur')">Devenir Tuteur</button>
+<div class="alert alert-primary" *ngIf="getState() == 'affectEtudiant' && ((getViewRole() =='tuteur') && (getRole() == 'admin')) || (getRole() == 'tuteur')">
+    <p><strong></strong>
+        <button class="btn btn-sm btn-outline-primary" style="margin:5px;" (click)="changerEtat('affectTuteur')">Devenir le tuteur de ce stage</button>
+    </p>
+</div>
+<div class="alert alert-primary" *ngIf="getState() == 'affectEtudiant' && ((getViewRole() =='etudiant') && (getRole() == 'admin')) || (getRole() == 'etudiant')">
+    <p><strong>Information : </strong> Un étudiant à déja été affecté pour ce stage.</p>
 </div>
 <!-- Ou bien l'administrateur ou le responsable de stage peut affecté un tuteur -->
 <div class="alert alert-primary" *ngIf="getState() == 'affectEtudiant' && (getViewRole() =='admin')">
@@ -93,9 +144,10 @@
 
 <!-- Cinquième étape -->
 <!-- un enseignant peut choisir de devenir rapporteur du stage -->
-<div class="alert alert-primary" *ngIf="getState() == 'affectTuteur' && (getViewRole() == ('admin'))">
-    <p><strong>Devenir rapporteur de ce stage</strong></p>
-        <button class="btn btn-sm btn-outline-primary" (click)="changerEtat('affectTuteur')">Devenir Rapporteur</button>
+<div class="alert alert-primary" *ngIf="getState() == 'affectTuteur' && ((getViewRole() =='tuteur') && (getRole() == 'admin')) || (getRole() == 'tuteur')">
+    <p><strong></strong>
+        <button class="btn btn-sm btn-outline-primary" (click)="changerEtat('affectRapporteur')">Devenir rapporteur de ce stage</button>
+    </p>
 </div>
 <!-- ou bien on peut afffecté un rapporteur au stage-->
 <div class="alert alert-primary" *ngIf="getState() == 'affectTuteur' && (getViewRole() == ('admin'))">
@@ -109,7 +161,7 @@
                 <option value="2">El Mokthar</option>
                 <option value="3">Issakou</option>
             </select>
-            <button class="btn btn-primary btn-sm" (click)="changerEtat('affectTuteur')">Affecter le rapporteur</button>
+            <button class="btn btn-primary btn-sm" (click)="changerEtat('affectRapporteur')">Affecter le rapporteur</button>
         </div>
     </form>
 </div>
@@ -119,3 +171,4 @@
 <div class="alert alert-secondary" *ngIf="getState() == 'termine'">
     <p><strong>Stage terminé :</strong> La fiche du stage a été placé dans les archives.</p>
 </div>
+

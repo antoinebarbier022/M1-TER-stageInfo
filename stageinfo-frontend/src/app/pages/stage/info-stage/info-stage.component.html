@@ -1,44 +1,8 @@
-<app-navigation [title]="stage.titre" xmlns="http://www.w3.org/1999/html"></app-navigation>
+<app-navigation [title]="stage.titre"></app-navigation>
 
-<div class="all-card">
-    <div id="status-stage">
-        <ul class="nav-progress">
-            <li [ngClass]="'fieldset-active progress-first'">
-                <i class=""></i>
-                Stage proposé
-            </li>
-            <li [ngClass]="'fieldset-active progress-second' ">
-                <i class=""></i>
-                Stage validé
+<div class="all-card">      
 
-            </li>
-            <li [ngClass]="'fieldset-active progress-second' ">
-                <i class=""></i>
-
-                Affecté à un étudiant
-            </li>
-            <li>
-                <i class=""></i>
-                Associé à un tuteur
-            </li>
-
-            <li >
-                <i class=""></i>
-                Associé à un rapporteur
-            </li>
-
-            <li >
-                <i class=""></i>
-                Stage Terminé
-            </li>
-        </ul>
-
-        <p>Etat du stage : 
-            <app-state-badge [state]="stage?.etat"></app-state-badge>
-        </p>
-        
-        <app-gestion-etat-stage [stage]="stage"></app-gestion-etat-stage>
-    </div>
+    <app-gestion-etat-stage id="status-stage" [stage]="stage"></app-gestion-etat-stage>
 
     <!-- Informations du stage -->
     <app-card id="information-stage" title="Informations">
