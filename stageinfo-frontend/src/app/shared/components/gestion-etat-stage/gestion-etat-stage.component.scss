@@ -1,5 +1,35 @@
+@import '/src/assets/styles/colors.scss';
+
 .admin-change-state{
     float:right;
+}
+
+// couleur des alertes
+.alert-propose{
+    background-color: rgba($color-yellow, .2);
+}
+
+.alert-valide{
+    background-color: rgba($color-green, .2);
+}
+
+.alert-refuse{
+    background-color: rgba($color-red, .2);
+}
+.alert-reserve{
+    background-color: rgba($color-purple, .2);
+}
+.alert-affectEtudiant{
+    background-color: rgba($color-blue, .2);
+}
+.alert-affectTuteur{
+    background-color: rgba($color-blue-silver, .2);
+}
+.alert-affectRapporteur{
+    background-color: rgba($color-blue-livid, .4);
+}
+.alert-termine{
+    background-color: rgba($color-black, .1);
 }
 
 ul{

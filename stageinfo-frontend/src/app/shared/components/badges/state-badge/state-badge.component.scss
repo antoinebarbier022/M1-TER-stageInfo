@@ -1,40 +1,37 @@
+@import '/src/assets/styles/colors.scss';
+
 // couleur des état d'un stage
 .state-propose{
     color: #000;
-    background-color: #ffc107;
+    background-color: $color-yellow;
 }
 
 .state-valide{
     color: #fff;
-    background-color: #28a745;
+    background-color: $color-green;
 }
 
 .state-refuse{
     color: #fff;
-    background-color: #eb5a46;
+    background-color: $color-red;
 }
 .state-reserve{
     color: #fff;
-    background-color: #c377e0;
+    background-color: $color-purple;
 }
 .state-affectEtudiant{
     color: #fff;
-    background-color: #007bff;
+    background-color: $color-blue;
 }
 .state-affectTuteur{
     color: #fff;
-    background-color: #455877;
+    background-color: $color-blue-silver;
 }
 .state-affectRapporteur{
     color: #000;
-    background-color: #9bafcf;
+    background-color: $color-blue-livid;
 }
 .state-termine{
     color: #fff;
-    background-color: rgb(10, 10, 10);
-}
-
-.badge-state{
-    color: #fff;
-    background-color: rgb(10, 10, 10);
+    background-color: $color-black;
 }
