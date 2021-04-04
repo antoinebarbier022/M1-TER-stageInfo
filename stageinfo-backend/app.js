@@ -11,7 +11,7 @@ const embaucheRoutes= require('./routes/embaucheRouters');
 const entrepriseRoutes= require('./routes/entrepriseRouters');
 const creneauRoutes = require('./routes/creneauRouters');
 const soutenanceRoutes = require('./routes/soutenanceRouters');
-const parcoursRoutes = require('./routes/parcoursRouters')
+const parcoursRoutes = require('./routes/parcoursRouters');
 const path = require("path");
 
 const app = express();
