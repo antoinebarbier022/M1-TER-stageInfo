@@ -3,14 +3,14 @@ import { Observable, OperatorFunction } from 'rxjs';
 import { FormBuilder, Validators } from '@angular/forms';
 import { debounceTime, distinctUntilChanged, map } from 'rxjs/operators';
 import { ActivatedRoute } from '@angular/router';
-import { UserModel } from 'src/app/core/models/userModel';
+import { AutocompletionSearch } from 'src/app/shared/classes/autocompletion-search';
 
 @Component({
   selector: 'app-form-fiche-notation',
   templateUrl: './form-fiche-notation.component.html',
   styleUrls: ['./form-fiche-notation.component.scss']
 })
-export class FormFicheNotationComponent implements OnInit {
+export class FormFicheNotationComponent extends AutocompletionSearch implements OnInit {
 
   public readonly title: string = "Fiche de notation";
 
@@ -25,24 +25,13 @@ export class FormFicheNotationComponent implements OnInit {
 
   constructor(private route: ActivatedRoute,
               private formBuilder: FormBuilder) { 
+    super();
     this.allUsers = this.route.snapshot.data.allUsers;
   }
 
   ngOnInit(): void {
     this.initForm();
   }
-
-  searchUser: OperatorFunction<string, readonly string[]> = (text$: Observable<string>) =>
-    text$.pipe(
-      debounceTime(200),
-      distinctUntilChanged(),
-      map(term => term === '' ? [] : this.allUsers.filter(x => {
-        if(this.role === "all") return x;
-        else if(x.role === this.role) return x;
-      })
-      .map(x => x.prenom + ' ' + x.nom)
-      .filter(x => x.toLowerCase().indexOf(term.toLowerCase()) > -1).slice(0, 10))
-  );
 
   initForm(){
     this.ficheNotationForm = this.formBuilder.group({
