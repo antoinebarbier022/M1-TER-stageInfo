@@ -86,8 +86,8 @@ exports.getStageByKeyword = ((req, res, next) => {
  */
 exports.createStage = (req, res, next) => {
     console.log(req.body.data);
-    let stage=new Stage();
-    if (req?.files) {
+    let stage = new Stage();
+    if(req.files) {
         const stageobject = JSON.parse(req.body.data);
         delete stageobject._id;
          stage = new Stage({
