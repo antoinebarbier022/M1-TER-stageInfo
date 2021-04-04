@@ -22,8 +22,7 @@ export class FormFicheNotationComponent extends AutocompletionSearch implements 
   constructor(private route: ActivatedRoute,
               private formBuilder: FormBuilder) { 
     super();
-    this.allItems = this.route.snapshot.data.allUsers;
-    
+    this.userItems = this.route.snapshot.data.allUsers;
   }
 
   ngOnInit(): void {

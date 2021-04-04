@@ -7,7 +7,7 @@
         <!-- Nom étudiant -->
         <div class="form-group-row">
             <label for="nomEtudiant">Nom :</label>
-            <input id="nomEtudiant" type="text" class="form-control" formControlName="nomEtudiant" [ngbTypeahead]="searchUser" />
+            <input id="nomEtudiant" type="text" class="form-control" formControlName="nomEtudiant" [ngbTypeahead]="searchUser" (click)="setRoleUser('etudiant')"/>
         </div>
     </fieldset>
 
@@ -38,7 +38,7 @@
             <legend>Représentant entreprise</legend>
             <div class="form-group-row">
                 <label for="nomRepresentant">Nom :</label>
-                <input id="nomRepresentant" type="text" class="form-control" formControlName="nomRepresentant" [ngbTypeahead]="searchUser" />
+                <input id="nomRepresentant" type="text" class="form-control" formControlName="nomRepresentant" [ngbTypeahead]="searchUser" (click)="setRoleUser('representantEntreprise')"/>
             </div>
         </fieldset>
 
@@ -47,7 +47,7 @@
             <legend>Tuteur université 1</legend>
             <div class="form-group-row">
                 <label for="nomTuteur1">Nom :</label>
-                <input id="nomTuteur1" type="text" class="form-control" formControlName="nomTuteur1" [ngbTypeahead]="searchUser" />
+                <input id="nomTuteur1" type="text" class="form-control" formControlName="nomTuteur1" [ngbTypeahead]="searchUser" (click)="setRoleUser('tuteur')"/>
             </div>
         </fieldset>
 
@@ -56,7 +56,7 @@
             <legend>Tuteur université 2</legend>
             <div class="form-group-row">
                 <label for="nomTuteur2">Nom :</label>
-                <input id="nomTuteur2" type="text" class="form-control" formControlName="nomTuteur2" [ngbTypeahead]="searchUser" />
+                <input id="nomTuteur2" type="text" class="form-control" formControlName="nomTuteur2" [ngbTypeahead]="searchUser" (click)="setRoleUser('tuteur')"/>
             </div>
         </fieldset>
     </fieldset>

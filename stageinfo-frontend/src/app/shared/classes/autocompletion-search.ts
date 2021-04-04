@@ -3,12 +3,12 @@ import { Observable, OperatorFunction } from 'rxjs';
 
 export abstract class AutocompletionSearch {
 
-    public userRole: string;
-    protected allItems: Array<any>;
+    protected userRole: string;
+    protected userItems: Array<any>;
 
     constructor(){
         this.userRole = "all";
-        this.allItems = new Array();
+        this.userItems = new Array();
     }
 
     /* User's autocompletion */
@@ -16,11 +16,15 @@ export abstract class AutocompletionSearch {
         text$.pipe(
         debounceTime(200),
         distinctUntilChanged(),
-        map(term => term === '' ? [] : this.allItems.filter(x => {
+        map(term => term === '' ? [] : this.userItems.filter(x => {
             if(this.userRole === "all") return x;
             else if(x.role === this.userRole) return x;
         })
         .map(x => x.prenom + ' ' + x.nom)
         .filter(x => x.toLowerCase().indexOf(term.toLowerCase()) > -1).slice(0, 10))
     );
+
+    setRoleUser(role: string){
+        this.userRole = role;
+    }
 }
