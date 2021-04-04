@@ -61,6 +61,7 @@ export class FormFicheSuiviComponent extends AutocompletionSearch implements OnI
   }
   
   onSubmitForm() {
-    console.log("Submit");
+    const formValue = this.ficheSuiviForm.value;
+    console.log(formValue)
   }
 }
