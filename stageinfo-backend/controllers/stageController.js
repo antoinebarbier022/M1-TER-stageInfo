@@ -56,6 +56,23 @@ exports.getOneStage = ((req, res, next) => {
   .catch(error => res.status(404).json({ error }))
 });
 
+// changement de l'état du stage
+exports.editState = (req, res, next) => {
+  const stage = {
+        etat: req.body.etat,
+      }
+
+  Stage.updateOne({_id: req.params.id}, stage)
+      .then(() => {
+          res.status(201).json({
+              message: 'Changement de l\'état du stage : '+ req.params.id + ' -> le nouvel état est [' + req.body.etat +']'
+          });
+      })
+      .catch((error) => {
+          res.status(400).json({error: error});
+      });
+};
+
 /**
  * @api {get} /stage Get Stage by keyword
  * @apiName getStageByKeyword
