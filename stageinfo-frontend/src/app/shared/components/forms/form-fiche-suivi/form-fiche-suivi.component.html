@@ -2,10 +2,9 @@
     <h1>{{ title }}</h1>
     <!-- Section information -->
     <fieldset>
-        <legend>Informations générales</legend>
         <!-- Nom étudiant -->
         <div class="form-group-row">
-            <label for="nom">Nom :</label>
+            <label for="nom">Étudiant :</label>
             <input id="nom" type="text" class="form-control" formControlName="nom" [ngbTypeahead]="searchUser" (click)="setRoleUser('etudiant')"/>
         </div>
 
@@ -55,7 +54,6 @@
     <!-- Section échanges étudiant/tuteur -->
     <fieldset>
         <fieldset>
-            <legend>Contact 1</legend>
             <!-- Date visite -->
             <div class="form-group-row">
                 <label for="dateVisite">Date de visite :</label>
@@ -83,7 +81,6 @@
 
     <!-- Bilan du stage -->
     <fieldset>
-        <legend>Bilan du stage</legend>
         <!-- Date début -->
         <div class="form-group-row">
             <label for="dateDebut">Date de début :</label>

@@ -3,70 +3,63 @@
 
     <!-- Section infos étudiant -->
     <fieldset>
-        <legend>Informations sur l'étudiant</legend>
         <!-- Nom étudiant -->
         <div class="form-group-row">
-            <label for="nomEtudiant">Nom :</label>
-            <input id="nomEtudiant" type="text" class="form-control" formControlName="nomEtudiant" [ngbTypeahead]="searchUser" (click)="setRoleUser('etudiant')"/>
+            <label for="nomEtudiant">Étudiant :</label>
+            <input id="nomEtudiant" type="text" class="form-control" formControlName="nomEtudiant" [ngbTypeahead]="searchUser" aria-describedby="nomEtudiantHelper" (click)="setRoleUser('etudiant')"/>
+            <small id="nomEtudiantHelper" class="form-text text-muted">Nom et prénom</small>
         </div>
     </fieldset>
 
-    <hr>
-
     <!-- Section infos soutenance -->
     <fieldset>
-        <legend>Informations sur la soutenance</legend>
         <!-- Date soutenance -->
         <div class="form-group-row">
             <label for="date">Date :</label>
-            <input type="date" id="date" class="form-control" formControlName="date">
+            <input type="date" id="date" class="form-control" formControlName="date" aria-describedby="dateHelper">
+            <small id="dateHelper" class="form-text text-muted">Date de la soutenance</small>
         </div>
 
         <!-- Heure soutenance -->
         <div class="form-group-row">
             <label for="heure">Heure :</label>
-            <input type="time" id="heure" class="form-control" formControlName="heure">
+            <input type="time" id="heure" class="form-control" formControlName="heure" aria-describedby="heureHelper">
+            <small id="heureHelper" class="form-text text-muted">Heure de la soutenance</small>
         </div>
     </fieldset>
-
-    <hr>
 
     <!-- Section infos encadrants (université et entreprise) -->
     <fieldset>
         <!-- Representant entreprise -->
         <fieldset>
-            <legend>Représentant entreprise</legend>
             <div class="form-group-row">
-                <label for="nomRepresentant">Nom :</label>
-                <input id="nomRepresentant" type="text" class="form-control" formControlName="nomRepresentant" [ngbTypeahead]="searchUser" (click)="setRoleUser('representantEntreprise')"/>
+                <label for="nomRepresentant">Représentant :</label>
+                <input id="nomRepresentant" type="text" class="form-control" formControlName="nomRepresentant" [ngbTypeahead]="searchUser" (click)="setRoleUser('representantEntreprise')" aria-describedby="representantHelper"/>
+                <small id="representantHelper" class="form-text text-muted">Représentant de l'entreprise</small>
             </div>
         </fieldset>
 
         <!-- Tuteur université 1 -->
         <fieldset>
-            <legend>Tuteur université 1</legend>
             <div class="form-group-row">
-                <label for="nomTuteur1">Nom :</label>
-                <input id="nomTuteur1" type="text" class="form-control" formControlName="nomTuteur1" [ngbTypeahead]="searchUser" (click)="setRoleUser('tuteur')"/>
+                <label for="nomTuteur1">Tuteur principal :</label>
+                <input id="nomTuteur1" type="text" class="form-control" formControlName="nomTuteur1" [ngbTypeahead]="searchUser" (click)="setRoleUser('tuteur')" aria-describedby="nomTuteur1"/>
+                <small id="nomTuteur1Helper" class="form-text text-muted">Professeur encadrant 1</small>
             </div>
         </fieldset>
 
         <!-- Tuteur université 2 -->
         <fieldset>
-            <legend>Tuteur université 2</legend>
             <div class="form-group-row">
-                <label for="nomTuteur2">Nom :</label>
-                <input id="nomTuteur2" type="text" class="form-control" formControlName="nomTuteur2" [ngbTypeahead]="searchUser" (click)="setRoleUser('tuteur')"/>
+                <label for="nomTuteur2">Tuteur secondaire :</label>
+                <input id="nomTuteur2" type="text" class="form-control" formControlName="nomTuteur2" [ngbTypeahead]="searchUser" (click)="setRoleUser('tuteur')" aria-describedby="nomTuteur2"/>
+                <small id="nomTuteur2Helper" class="form-text text-muted">Professeur encadrant 2</small>
             </div>
         </fieldset>
     </fieldset>
 
-    <hr>
-
     <!-- Section commentaire & notation -->
     <fieldset>
-        <legend>Commentaire et notation</legend>
-        
         <!-- Commentaire -->
         <div class="form-group">
             <label for="commentaire">Commentaire :</label>

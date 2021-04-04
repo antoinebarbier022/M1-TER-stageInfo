@@ -30,8 +30,6 @@ form{
         outline : none;
     }
     .form-group-row, .form-group{
-        display: flex;
-        flex-direction: row;
         margin:5px;
 
         label{
@@ -40,6 +38,7 @@ form{
             font-weight:bold;
             margin:0;
         }
+        
         input, select, .form-select-plaintext{
             width:100%;
             padding:3px;
