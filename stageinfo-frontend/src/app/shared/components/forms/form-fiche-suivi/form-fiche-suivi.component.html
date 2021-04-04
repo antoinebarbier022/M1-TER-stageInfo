@@ -7,6 +7,10 @@
         <div class="form-group-row">
             <label>Nom :</label>
             <input type="text">
+            <!--
+            <label for="typeahead-format">Nom :</label>
+            <input id="typeahead-format" type="text" class="form-control" [(ngModel)]="model" [ngbTypeahead]="search" [resultFormatter]="formatter" />
+            -->
         </div>
 
         <!-- Prénom étudiant -->
@@ -48,7 +52,7 @@
         <div class="form-group-row">
             <label>Responsable :</label>
             <select>
-                <option value="" disabled selected>Enseignant tuteur</option>
+                <option value="" disabled selected>Responsable entreprise</option>
                 <ng-container *ngFor="let x of allUsers" >
                     <option *ngIf="x.role === 'representantEntreprise'">{{ x.prenom }} {{ x.nom }}</option>
                 </ng-container>
