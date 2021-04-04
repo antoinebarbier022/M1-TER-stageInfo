@@ -14,6 +14,7 @@ export class FormFicheSuiviComponent implements OnInit {
   public readonly title: string = "Fiche de suivi";
   niveau = ["M2", "M1", "L3"];
   contact = ["Téléphone", "Mail", "Visite"];
+  reponseBinaire = ['Oui', 'Non'];
   allParcours:any;
   allUsers: Array<any>;
 
@@ -26,10 +27,10 @@ export class FormFicheSuiviComponent implements OnInit {
               private formBuilder: FormBuilder) { 
     this.allParcours = this.route.snapshot.data.allParcours;
     this.allUsers = this.route.snapshot.data.allUsers;
-    console.log(this.allUsers);
   }
 
   ngOnInit(): void {
+    this.initForm();
   }
 
   formatter = (result: string) => result.toUpperCase();
