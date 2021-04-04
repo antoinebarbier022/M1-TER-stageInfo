@@ -1,8 +1,8 @@
-<p>form-fiche-suivi works!</p>
-
 <form>
+    <h1>{{ title }}</h1>
     <!-- Section information -->
     <fieldset>
+        <legend>Informations générales</legend>
         <!-- Nom étudiant -->
         <div class="form-group-row">
             <label>Nom :</label>
@@ -20,10 +20,7 @@
             <label>Parcours :</label>
             <select>
                 <option value="" disabled selected>Parcours</option>
-                <option value="MIT">MIT</option>
-                <option value="AIGLE">AIGLE</option>
-                <option value="DECOL">DECOL</option>
-                <option value="IMAGINA">IMAGINA</option>
+                <option *ngFor="let x of allParcours"> {{ x.acronyme }} </option>
             </select>
         </div>
 
@@ -32,31 +29,30 @@
             <label>Niveau :</label>
             <select>
                 <option value="" disabled selected>Niveau</option>
-                <option value="M2">M2</option>
-                <option value="M1">M1</option>
-                <option value="L3">L3</option>
-                <option value="L2">L2</option>
-                <option value="L1">L1</option>
+                <option *ngFor="let x of niveau"> {{ x }} </option>
             </select>
         </div>
 
         <!-- Tuteur de l'étudiant -->
         <div class="form-group-row">
-            <label>Enseignant tuteur :</label>
+            <label>Tuteur :</label>
             <select>
                 <option value="" disabled selected>Enseignant tuteur</option>
-                <option value="tuteur1">tuteur1</option>
-                <option value="tuteur2">tuteur2</option>
-                <option value="tuteur3">tuteur3</option>
-                <option value="tuteur4">tuteur4</option>
-                <option value="tuteur5">tuteur5</option>
+                <ng-container *ngFor="let x of allUsers" >
+                    <option *ngIf="x.role === 'tuteur'">{{ x.prenom }} {{ x.nom }}</option>
+                </ng-container>
             </select>
         </div>
 
         <!-- Responsable entreprise -->
         <div class="form-group-row">
             <label>Responsable :</label>
-            <input type="text">
+            <select>
+                <option value="" disabled selected>Enseignant tuteur</option>
+                <ng-container *ngFor="let x of allUsers" >
+                    <option *ngIf="x.role === 'representantEntreprise'">{{ x.prenom }} {{ x.nom }}</option>
+                </ng-container>
+            </select>
         </div>
     </fieldset>
 
@@ -65,7 +61,7 @@
     <!-- Section échanges étudiant/tuteur -->
     <fieldset>
         <fieldset>
-            <legend>Contact 1 ?</legend>
+            <legend>Contact 1</legend>
             <!-- Date visite -->
             <div class="form-group-row">
                 <label>Date de visite :</label>
@@ -77,34 +73,7 @@
                 <label>Type de contact :</label>
                 <select>
                     <option value="" disabled selected>Type de contact</option>
-                    <option value="telephone">Téléphone</option>
-                    <option value="mail">Mail</option>
-                    <option value="visite">Visite</option>
-                </select>
-            </div>
-
-            <!-- Commentaire -->
-            <div class="form-group">
-                <label>Commentaire :</label>
-                <textarea class="form-control" rows="3"></textarea>
-            </div>
-        </fieldset>
-        <fieldset>
-            <legend>Contact 2 ?</legend>
-            <!-- Date visite -->
-            <div class="form-group-row">
-                <label>Date de visite :</label>
-                <input type="date">
-            </div>
-
-            <!-- Type de contact -->
-            <div class="form-group-row">
-                <label>Type :</label>
-                <select>
-                    <option value="" disabled selected>Type de contact</option>
-                    <option value="telephone">Téléphone</option>
-                    <option value="mail">Mail</option>
-                    <option value="visite">Visite</option>
+                    <option *ngFor="let x of contact">{{ x }}</option>
                 </select>
             </div>
 
@@ -120,6 +89,7 @@
 
     <!-- Bilan du stage -->
     <fieldset>
+        <legend>Bilan du stage</legend>
         <!-- Date début -->
         <div class="form-group-row">
             <label>Date de début :</label>

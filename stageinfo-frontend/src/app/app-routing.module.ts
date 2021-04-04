@@ -88,7 +88,7 @@ const routes: Routes = [
   { path: 'saisir-stage', component: AddStageComponent, canActivate: [AuthGuardService, RoleGuard]},
   
   // temporaires
-  { path: 'saisir-fiche-suivi', component: FicheSuiviComponent},
+  { path: 'saisir-fiche-suivi', component: FicheSuiviComponent, resolve: {allParcours: AllParcoursResolver, allUsers: AllUsersResolver}},
   { path: 'saisir-fiche-notation', component: FicheNotationComponent},
   { path: 'fiche-suivi-form', component: FormFicheSuiviComponent},
   { path: 'fiche-notation-form', component: FormFicheNotationComponent},

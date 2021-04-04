@@ -7,6 +7,8 @@ import { Component, OnInit } from '@angular/core';
 })
 export class FormFicheNotationComponent implements OnInit {
 
+  public readonly title: string = "Fiche de notation";
+
   constructor() { }
 
   ngOnInit(): void {
