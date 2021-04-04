@@ -35,10 +35,9 @@ export class FormStageComponent implements OnInit {
   // pour pouvoir détruire les subscribes
   destroy$: Subject<boolean> = new Subject<boolean>();
 
-  pdf : any;
   page: number = 1;
   nbMaxPage :number = 3;
-  uploaded = false;
+
 
 
   niveauRequis = ["Licence 3", "Master 1", "Master 2"];
@@ -139,37 +138,46 @@ export class FormStageComponent implements OnInit {
     }
 
   ajouterStage(stage:any){
-    if(this.uploaded){
-    this.stageService.addStage(stage,this.pdf)
-    .pipe(takeUntil(this.destroy$))
-      .subscribe((_res: any) => {
-        console.log("Stage : "+ stage.titre + " ajouté à la plateforme !");
-        this.page = 1;
-        this.message = "Le stage "+ stage.titre + " à été ajouté à la plateforme !";
-        this.stageForm.reset();  // on reset les données dans le forumulaire
-    });}else {
-      this.stageService.addStageSansFichier(stage)
+    //if(!this.uploaded){
+      this.stageService.addStage(stage)
+      .pipe(takeUntil(this.destroy$))
+        .subscribe((_res: any) => {
+          console.log("Stage : "+ stage.titre + " ajouté à la plateforme !");
+          this.page = 1;
+          this.message = "Le stage "+ stage.titre + " à été ajouté à la plateforme !";
+          this.stageForm.reset();  // on reset les données dans le forumulaire
+      });
+    /*}else {
+      this.stageService.addStageAvecFichier(stage,this.pdf)
         .pipe(takeUntil(this.destroy$))
         .subscribe((_res: any) => {
           console.log("Stage : "+ stage.titre + " ajouté à la plateforme !");
           this.page = 1;
           this.message = "Le stage "+ stage.titre + " à été ajouté à la plateforme !";
           this.stageForm.reset();  // on reset les données dans le forumulaire
-        });}
+        });}*/
   }
 
   modifierStage(stage:any){
-    if(!this.uploaded){
-    this.stageService.editStage(stage._id, stage)
-    .pipe(takeUntil(this.destroy$))
-      .subscribe((_res: any) => {
-        console.log("Stage : "+ stage.titre + " modifié !");
-        this.page = 1;
-        this.message = "Stage modifié !";
-        this.stageForm.reset(); // on reset les données dans le forumulaire
-        this.stageEvent.emit(stage); // on envoie le parcours dans le component parent
-    });}
-    else{
+    //if(this.uploaded){
+      this.stageService.editStage(stage._id, stage)
+      .pipe(takeUntil(this.destroy$))
+        .subscribe((_res: any) => {
+          console.log("Stage : "+ stage.titre + " modifié !");
+          this.page = 1;
+          this.message = "Stage modifié !";
+          this.stageForm.reset(); // on reset les données dans le forumulaire
+          var idEntreprise = stage.entreprise;
+          var idParcours = stage.parcours;
+          var indexEntreprise = this.allEntreprises.findIndex(((obj: { _id: any; }) => obj._id == idEntreprise));
+          var indexParcours = this.allParcours.findIndex(((obj: { _id: any; }) => obj._id == idParcours));
+          
+          stage.entreprise = this.allEntreprises[indexEntreprise];
+          stage.parcours = this.allParcours[indexParcours];
+          console.log(stage);
+          this.stageEvent.emit(stage); // on envoie le stage dans le component parent
+      });
+    /*}else{
       this.stageService.editStageWhitePdf(stage._id, stage,this.pdf)
         .pipe(takeUntil(this.destroy$))
         .subscribe((_res: any) => {
@@ -177,9 +185,18 @@ export class FormStageComponent implements OnInit {
           this.page = 1;
           this.message = "Stage modifié !";
           this.stageForm.reset(); // on reset les données dans le forumulaire
+                  // On met place les infos du responsable dans le tableau parcours
+        var idEntreprise = stage.entreprise;
+        var idParcours = stage.parcours;
+        var indexEntreprise = this.allEntreprises.findIndex(((obj: { _id: any; }) => obj._id == idEntreprise));
+        var indexParcours = this.allParcours.findIndex(((obj: { _id: any; }) => obj._id == idParcours));
+        
+        stage.entreprise = this.allEntreprises[indexEntreprise];
+        stage.parcours = this.allParcours[indexParcours];
+        console.log(stage);
           this.stageEvent.emit(stage); // on envoie le parcours dans le component parent
         });
-    }
+    }*/
   }
 
   displayFielset(theme : string) : boolean{
@@ -252,11 +269,5 @@ export class FormStageComponent implements OnInit {
 
 
 
-  fileChoosen(event: any) {
-    if(event.target.value){
-      this.pdf=<File>event.target.files[0];
-      this.uploaded =true;
-    }
 
-  }
 }

@@ -95,8 +95,6 @@ exports.createStage = (req, res, next) => {
             fichier: `${req.protocol}://${req.get('host')}/docs/${req.files[0].filename}`
         });
     } else {
-
-
        stage = new Stage({
             etat: req.body.etat,
 
@@ -104,7 +102,7 @@ exports.createStage = (req, res, next) => {
             description: req.body.description,
             duree: req.body.duree,
 
-            dateDebut: req.body.date,
+            dateDebut: req.body.dateDebut,
             datePropose: req.body.datePropose,
             dateValide: req.body.dateValide,
 
@@ -135,66 +133,6 @@ exports.createStage = (req, res, next) => {
             etudiant: req.body.etudiant,
         });
     }
-        /*
-        ficheSuivi: {
-          dateDebut: req.body.dateDebut,
-          dateFin: req.body.dateFin,
-          commentaireBilan: req.body.commentaireBilan,
-          embauche: req.body.embauche,
-          commentaireEmbauche: req.body.commentaireEmbauche,
-          dateFiche: req.body.dateFiche
-        },
-
-        noteStage: {
-          date: req.body.dateNoteStage,
-          valeur: req.body.noteStage,
-          commentaire: req.body.commentaireNoteStage
-        },
-        parcours: req.body.parcours,
-        /*parcours: {
-          idParcours: req.body.idParcours,
-          nomComplet: req.body.nomCompletParcours
-        },
-
-        ajouteur: {
-          idAjouteur: req.body.idAjouteur,
-          nomComplet: req.body.nomCompletAjouteur
-        },
-        entreprise:req.body.entreprise,
-        /*
-        entreprise: {
-          idEntreprise: req.body.idEntreprise,
-          nomComplet: req.body.nomCompletEntreprise
-        },
-
-        tuteurUniv: {
-          idTuteurUniv: req.body.idTuteurUniv,
-          nomComplet: req.body.nomCompletTuteurUniv
-        },
-
-        tuteurEntreprise: {
-          idTuteurEntreprise: req.body.idTuteurEntreprise,
-          nomComplet: req.body.nomCompletTuteurEntreprise
-        },
-
-        rapporteur: {
-          idRapporteur: req.body.idRapporteur,
-          nomComplet: req.body.nomCompletRapporteur
-        },
-
-        etudiant: {
-          idEtudiant: req.body.idEtudiant,
-          nomComplet: req.body.nomCompletEtudiant
-        },
-
-        idVisite: {
-          typeContact: req.body.typeContact,
-          dateVisite: req.body.dateVisite,
-          commentaire: req.body.commentaireVisite
-        }*/
-
-
-
     stage.save()
             .then(() => {
                 res.status(201).json({
@@ -216,7 +154,9 @@ exports.createStage = (req, res, next) => {
      */
     exports.editStage = (req, res, next) => {
         console.log(req.body);
-        const stage = req.files[0] ?
+        console.log(req.files);
+
+        const stage = req.files   ?
             {
                 ...JSON.parse(req.body.data),
                 fichier: `${req.protocol}://${req.get('host')}/docs/${req.files[0].filename}`,
@@ -225,6 +165,7 @@ exports.createStage = (req, res, next) => {
                 ...req.body,
                 _id: req.params.id
             }
+        console.log(stage);
 
 
         Stage.updateOne({_id: req.params.id}, stage)

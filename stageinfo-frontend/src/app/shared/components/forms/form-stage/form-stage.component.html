@@ -62,10 +62,6 @@
                 <option *ngFor="let parcours of allParcours" [ngValue]="parcours?._id">{{ parcours.acronyme }}</option>
             </select>
         </div>
-      <div class="form-group-row">
-        <label for='files'>Select files</label>
-        <input id='files' type="file" (input)="fileChoosen($event)" >
-      </div>
       <!--  Description du stage -->
         <div class="form-group-row">
             <label      [for]="addStage ? 'addInputDescription':'editInputDescription'">Description</label>

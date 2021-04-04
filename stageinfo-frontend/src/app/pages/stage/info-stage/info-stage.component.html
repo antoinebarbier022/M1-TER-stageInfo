@@ -177,12 +177,38 @@
 <hr>
 <h2>Pièces Jointes</h2>
 <div id="pieces-jointes-stage">
-
-    <div class="card commentaire">
-        <div class="card-body">
-            <p *ngIf="stage?.fichier"><a href="{{ stage?.fichier}}" target="_blank">Rapport_de_stage2.pdf</a></p>
-        </div>
-    </div>
+    <app-card>
+        <table class="card-table table table-striped table-sm">
+            <thead>
+                <tr>
+                    <th scope="col">Nom du fichier </th>
+                    <th scope="col">Type</th>
+                    <th scope="col">Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Ajout des stages de la BDD -->
+                <tr *ngIf="stage?.fichier">
+                    <td><a [href]="stage?.fichier" target="_blank">{{ stage?.fichier}}</a></td>
+                    <td>pdf</td>
+                    
+                    <td class="table-action">
+                        <!-- Bouton edit => ouvre un modal avec le formulaire de modification -->
+                        <app-button-edit data-toggle="modal" (click)="selectedItem(stage)" data-target="#modifier"></app-button-edit>
+                        <!-- Bouton delete => ouvre un modal avec la demande de suppression -->
+                        <app-button-delete data-toggle="modal" (click)="selectedItem(stage)" data-target="#suppression"></app-button-delete>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <form> 
+            <div class="form-group-row">
+                <label for='files'>Select files</label>
+                <input id='files' type="file" (input)="fileChoosen($event)" >
+            </div>
+            <button class="btn btn-primary btn-sm" (click)="ajouterFichier()">Ajouter le fichier</button>
+        </form>
+    </app-card>
 </div>
 <hr>
 

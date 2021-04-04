@@ -27,7 +27,12 @@ export class StageService {
   }
 
   /* Ajouter un parcours */
-  addStage(data:StageModel, pdf: File):Observable<any>{
+  addStage(stage: StageModel) :Observable<any>{
+    return this.httpClient.post(this.urlBase+'/api/stage', stage);
+  }
+
+
+  addStageAvecFichier(data:StageModel, pdf: File):Observable<any>{
     const datastage = new FormData();
     datastage.append('data',JSON.stringify(data));
     datastage.append('pdf',pdf,data.titre);
@@ -44,11 +49,8 @@ export class StageService {
     return this.httpClient.delete(this.urlBase+'/api/stage/'+id);
   }
 
-  addStageSansFichier(stage: StageModel) :Observable<any>{
-    return this.httpClient.post(this.urlBase+'/api/stage', stage);
-  }
 
-  editStageWhitePdf(id:any, data:StageModel,pdf :File):Observable<any>{
+  editStageWithPdf(id:any, data:StageModel,pdf :File):Observable<any>{
     const datastage = new FormData();
     datastage.append('data',JSON.stringify(data));
     datastage.append('pdf',pdf,data.titre);
