@@ -8,6 +8,8 @@ import { Component, OnInit } from '@angular/core';
 })
 export class FicheSuiviComponent implements OnInit {
 
+  public readonly title: string = "Fiche de suivi du stage";
+
   constructor() { }
 
   ngOnInit(): void {
