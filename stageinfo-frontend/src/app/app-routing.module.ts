@@ -86,15 +86,10 @@ const routes: Routes = [
   },
 
   { path: 'saisir-stage', component: AddStageComponent, canActivate: [AuthGuardService, RoleGuard]},
-  
-  // temporaires
   { path: 'saisir-fiche-suivi', component: FicheSuiviComponent, resolve: {allParcours: AllParcoursResolver, allUsers: AllUsersResolver}},
   { path: 'saisir-fiche-notation', component: FicheNotationComponent, resolve: {allUsers: AllUsersResolver}},
-  { path: 'fiche-suivi-form', component: FormFicheSuiviComponent},
-  { path: 'fiche-notation-form', component: FormFicheNotationComponent},
 
   // route users
-  
   { path: 'liste-utilisateurs', component: ListUsersComponent, canActivate: [AuthGuardService, RoleGuard], resolve: { users: AllUsersResolver, allParcours: AllParcoursResolver, allEntreprises: AllEntreprisesResolver }},
   { path: 'liste-etudiants', component: ListEtudiantsComponent, canActivate: [AuthGuardService, RoleGuard], resolve: { AllEtudiants: AllEtudiantsResolver, allParcours: AllParcoursResolver }},
   { path: 'liste-utilisateurs/import-users', component: ImportUsersComponent, canActivate: [AuthGuardService, RoleGuard]},
