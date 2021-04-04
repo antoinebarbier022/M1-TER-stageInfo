@@ -1,5 +1,6 @@
 <form [formGroup]="ficheNotationForm" (ngSubmit)="onSubmitForm()">
     <h1>{{ title }}</h1>
+    
     <!-- Section infos étudiant -->
     <fieldset>
         <legend>Informations sur l'étudiant</legend>
@@ -106,7 +107,7 @@
 
     <hr>
 
-    <p>Fait le : (date actuelle)</p>
+    <p>Fait le : {{ todayNumber | date }}</p>
 
     <button class="btn btn-primary" type="submit">Valider</button>
 </form>

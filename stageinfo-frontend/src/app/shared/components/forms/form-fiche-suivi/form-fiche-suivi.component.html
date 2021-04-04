@@ -6,17 +6,7 @@
         <!-- Nom étudiant -->
         <div class="form-group-row">
             <label for="nom">Nom :</label>
-            <input type="text" id="nom" class="form-control" formControlName="nom">
-            <!--
-            <label for="typeahead-format">Nom :</label>
-            <input id="typeahead-format" type="text" class="form-control" [(ngModel)]="model" [ngbTypeahead]="search" [resultFormatter]="formatter" />
-            -->
-        </div>
-
-        <!-- Prénom étudiant -->
-        <div class="form-group-row">
-            <label for="prenom">Prénom :</label>
-            <input type="text" id="prenom" class="form-control" formControlName="prenom">
+            <input id="nom" type="text" class="form-control" formControlName="nom" [ngbTypeahead]="search" />
         </div>
 
         <!-- Parcours étudiant -->
@@ -130,7 +120,7 @@
 
     <hr>
 
-    <p>Fait le : DATE ACTUELLE</p>
+    <p>Fait le : {{ todayNumber | date }}</p>
 
     <button class="btn btn-primary" type="submit">Valider</button>
 </form>

@@ -20,6 +20,8 @@ export class FormFicheSuiviComponent implements OnInit {
 
   public model: any;
 
+  todayNumber: number = Date.now();
+
   // @ts-ignore
   ficheSuiviForm: FormGroup;
 
@@ -33,23 +35,19 @@ export class FormFicheSuiviComponent implements OnInit {
     this.initForm();
   }
 
-  /*
-  formatter = (result: string) => result.toUpperCase();
-
   search: OperatorFunction<string, readonly string[]> = (text$: Observable<string>) =>
     text$.pipe(
       debounceTime(200),
       distinctUntilChanged(),
-      map(term => term === '' ? []
-        : this.allUsers.filter(v => console.log(v)))
+      map(term => term === '' ? [] : this.allUsers.filter(x => x.role === 'etudiant')
+      .map(function(x){ return x.prenom + ' ' + x.nom;})
+      .filter(x => x.toLowerCase().indexOf(term.toLowerCase()) > -1).slice(0, 10))
   );
-  */
 
   initForm(){
     this.ficheSuiviForm = this.formBuilder.group({
       // Informations générales
       nom:['',Validators.required],
-      prenom:['',Validators.required],
       parcours:['',Validators.required],
       niveau:['',Validators.required],
       tuteur:['',Validators.required],

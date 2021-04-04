@@ -15,6 +15,8 @@ export class FormFicheNotationComponent implements OnInit {
 
   allUsers: Array<any>;
 
+  todayNumber: number = Date.now();
+
   // @ts-ignore
   ficheNotationForm: FormGroup;
 
