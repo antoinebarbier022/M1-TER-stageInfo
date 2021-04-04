@@ -14,10 +14,6 @@ export class FormFicheNotationComponent extends AutocompletionSearch implements 
 
   public readonly title: string = "Fiche de notation";
 
-  allUsers: Array<any>;
-
-  role: string = "admin";
-
   todayNumber: number = Date.now();
 
   // @ts-ignore
@@ -26,7 +22,8 @@ export class FormFicheNotationComponent extends AutocompletionSearch implements 
   constructor(private route: ActivatedRoute,
               private formBuilder: FormBuilder) { 
     super();
-    this.allUsers = this.route.snapshot.data.allUsers;
+    this.allItems = this.route.snapshot.data.allUsers;
+    
   }
 
   ngOnInit(): void {
