@@ -7,8 +7,8 @@ export class StageModel {
         public duree: string ="",
         public dateDebut: string = "",
         public niveauRequis: string ="",
-        public parcours : string ="",
-        public entreprise: string ="",
+        public parcours : string | any ="",
+        public entreprise: string | any ="",
         public competences: string ="",
         public conditions: string ="",
         public avantages: string = ""
