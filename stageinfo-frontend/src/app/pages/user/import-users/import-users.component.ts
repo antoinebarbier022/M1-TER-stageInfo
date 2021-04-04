@@ -17,7 +17,8 @@ export class ImportUsersComponent implements OnInit {
   uploaded = false;
   destroy$: Subject<boolean> = new Subject<boolean>();
   allParcours: any;
-  importForm: FormGroup | undefined;
+  // @ts-ignore
+  importForm: FormGroup ;
 
   private isCSV_Valid: boolean | undefined;
   constructor(  private route: ActivatedRoute,

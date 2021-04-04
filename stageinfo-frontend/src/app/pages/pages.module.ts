@@ -17,15 +17,14 @@ import { ParcoursModule } from './parcours/parcours.module';
 import { EntrepriseModule } from './entreprise/entreprise.module';
 import { SoutenanceModule } from './soutenance/soutenance.module';
 import { Error401Component } from './erreurs/error401/error401.component';
-import { ImportationCsvComponent } from './importation-csv/importation-csv.component';
 
 
 
 @NgModule({
   declarations: [
-    ExempleTemplateComponent, 
-    Error404Component, 
-    LoginComponent, Error401Component, ImportationCsvComponent,
+    ExempleTemplateComponent,
+    Error404Component,
+    LoginComponent, Error401Component,
    ],
   imports: [
     CommonModule,
@@ -42,8 +41,8 @@ import { ImportationCsvComponent } from './importation-csv/importation-csv.compo
     ParcoursModule
     ],
   exports:[
-    ExempleTemplateComponent, 
-    Error404Component, 
+    ExempleTemplateComponent,
+    Error404Component,
     LoginComponent,
 
     SharedModule,
