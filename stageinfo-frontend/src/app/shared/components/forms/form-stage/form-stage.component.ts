@@ -117,6 +117,7 @@ export class FormStageComponent implements OnInit {
       const formValue = this.stageForm.value;
       const stage = new StageModel(
         this.idStage,
+        this.selectedStage.etat,
         formValue['titre'],
         formValue['description'],
         formValue['duree'],

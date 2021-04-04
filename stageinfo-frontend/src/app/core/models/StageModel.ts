@@ -1,6 +1,7 @@
 export class StageModel {
     constructor(
         public _id: string ="",
+        public etat : string ="",
         public titre: string ="",
         public description: string ="",
         public duree: string ="",
