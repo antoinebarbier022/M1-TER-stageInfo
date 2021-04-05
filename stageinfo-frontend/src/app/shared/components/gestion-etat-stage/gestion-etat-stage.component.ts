@@ -50,6 +50,12 @@ export class GestionEtatStageComponent implements OnInit, OnDestroy {
         etudiant : form.value['selectEtudiant'],
       };
       this.changerEtat('reserve',newData);
+      // on met à jour l'objet local
+      var index = this.allEtudiant.findIndex(((obj: { _id: any; }) => obj._id == newData.etudiant));
+      this.stage.etudiant = {
+        _id: form.value['selectEtudiant'], 
+        nom: this.allEtudiant[index].nom, 
+        prenom:this.allEtudiant[index].prenom};
   }
 
   onSubmitAffectEtudiant(form: NgForm){
@@ -58,6 +64,12 @@ export class GestionEtatStageComponent implements OnInit, OnDestroy {
       etudiant : form.value['selectEtudiant'],
     };
     this.changerEtat('affectEtudiant',newData);
+    // on met à jour l'objet local
+    var index = this.allEtudiant.findIndex(((obj: { _id: any; }) => obj._id == newData.etudiant));
+    this.stage.etudiant = {
+      _id: form.value['selectEtudiant'], 
+      nom: this.allEtudiant[index].nom, 
+      prenom:this.allEtudiant[index].prenom};
   }
 
   onSubmitAffectTuteur(form: NgForm){
@@ -66,6 +78,12 @@ export class GestionEtatStageComponent implements OnInit, OnDestroy {
       tuteur : form.value['selectTuteur'],
     };
     this.changerEtat('affectTuteur',newData);
+    // on met à jour l'objet local
+    var index = this.allTuteur.findIndex(((obj: { _id: any; }) => obj._id == newData.tuteur));
+    this.stage.tuteur = {
+      _id: form.value['selectTuteur'], 
+      nom: this.allTuteur[index].nom, 
+      prenom: this.allTuteur[index].prenom};
   }
 
   onSubmitAffectRapporteur(form: NgForm){
@@ -74,6 +92,12 @@ export class GestionEtatStageComponent implements OnInit, OnDestroy {
       rapporteur : form.value['selectRapporteur'],
     };
     this.changerEtat('affectRapporteur',newData);
+    // on met à jour l'objet local
+    var index = this.allTuteur.findIndex(((obj: { _id: any; }) => obj._id == newData.rapporteur));
+    this.stage.rapporteur = {
+      _id: form.value['selectRapporteur'], 
+      nom: this.allTuteur[index].nom, 
+      prenom: this.allTuteur[index].prenom};
   }
 
   getState():string{
@@ -96,33 +120,40 @@ export class GestionEtatStageComponent implements OnInit, OnDestroy {
           etat: 'propose',
           dateValide: null,
         };
+        // on met à jour l'objet local
+        this.stage.dateValide = null;
         break;
       case 'refuse': // refuse to propose :  rien à changé à part l'état
         newData = {
           etat: 'propose',
           dateValide: null,
         };
+        // on met à jour l'objet local
+        this.stage.dateValide = null;
         break;
       case 'affectEtudiant': // affectEtudiant to valide : donc on enlève l'étudiant associé'
         newData = {
           etat: 'valide',
           etudiant: null,
-          tuteur: null,
-          rapporteur: null,
         };
+        // on met à jour l'objet local
+        this.stage.etudiant = null;
         break;
       case 'affectTuteur':
         newData = {
           etat: 'affectEtudiant',
           tuteur: null,
-          rapporteur: null,
         };
+        // on met à jour l'objet local
+        this.stage.tuteur = null;
         break;
       case 'affectRapporteur':
         newData = {
           etat: 'affectTuteur',
           rapporteur: null,
         };
+        // on met à jour l'objet local
+        this.stage.rapporteur = null;
         break;
       case 'termine':
         newData = {
@@ -144,6 +175,9 @@ export class GestionEtatStageComponent implements OnInit, OnDestroy {
       .subscribe((_res: any) => {
         console.log("L'état du stage "+ this.stage.titre + " est passé à ["+newState+"] !");
         this.stage.etat = newState;
+        if(this.stage.etat == 'valide'){
+          this.stage.dateValide = new Date();
+        }
       });
   }
 
