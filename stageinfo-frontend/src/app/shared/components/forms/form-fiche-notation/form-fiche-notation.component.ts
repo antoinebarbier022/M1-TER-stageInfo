@@ -38,7 +38,7 @@ export class FormFicheNotationComponent extends AutocompletionSearch implements 
       heure:['',Validators.required],
 
       // Représentant entreprise
-      nomRepresentant:['', [Validators.required, isRepresentantValidator(this.userItems)]],
+      nomRepresentant:['',[Validators.required, isRepresentantValidator(this.userItems)]],
 
       // Tuteur université 1
       nomTuteur1:['',Validators.required],
