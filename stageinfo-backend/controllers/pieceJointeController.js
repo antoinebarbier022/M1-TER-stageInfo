@@ -1,4 +1,5 @@
 const PieceJointe = require('../models/pieceJointeModel');
+const fs = require('fs');
 
 /**-----------------INSERTION DE PIECE______________________*/
 exports.createPieceJointe = (req, res, next) => {
@@ -27,29 +28,43 @@ exports.getOnePieceJointe = (req, res,next) => {
 };
 /***_______________________MODIFICATION DES PIECES________________*/
 
-exports.editPieceJointe = (req, res, next) =>{
-    const piecejointe = new PieceJointe ({
+exports.editPieceJointe = (req, res, next) => {
+    const piecejointe = new PieceJointe({
         _id: req.params.id,
-        ...req.body
+        nom: req.files[0].originalname,
+        chemin: `${req.protocol}://${req.get('host')}/docs/${req.files[0].filename}`
     });
-    PieceJointe.update({_id: req.params.id},piecejointe)
+    PieceJointe.findOne({_id: req.params.id})
+        .then((PJ) => {
+            const filename = PJ.chemin.split('/docs/')[1];
+            fs.unlink(`docs/${filename}`, () => {
+            });
+        });
+
+    PieceJointe.updateOne({_id: req.params.id}, piecejointe)
         .then(() => {
             res.status(201).json({
                 message: 'piece updated successfully!'
             });
         })
-        .catch((error) => { res.status(400).json({ error: error});});
+        .catch((error) => {
+            res.status(400).json({error: error});
+        });
 };
+
 
 /**__________________SUPPRESSION DES PIECES________________________**/
 
 exports.deleteOnePieceJointe = (req, res, next) => {
-    PieceJointe.deleteOne({_id: req.params.id})
-        .then(() => {
-            res.status(200).json({
-                message: 'PIECE DELETED!'
+    PieceJointe.findOne({_id: req.params.id})
+        .then((PJ) => {
+            const filename = PJ.chemin.split('/docs/')[1];
+            fs.unlink(`docs/${filename}`,() =>{
+                PieceJointe.deleteOne({_id: req.params.id})
+                    .then(() => res.status(200).json({message: 'objet supprimé'}))
+                    .catch(error => res.status(400).json({error}));
             });
-        })
+        } )
         .catch((error) => { res.status(400).json({ error: error});});
 };
 
