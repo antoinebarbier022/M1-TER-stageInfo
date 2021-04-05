@@ -119,6 +119,6 @@
 
     <p>Fait le : {{ todayNumber | date }}</p>
 
-    <button class="btn btn-primary" type="submit">Valider</button>
+    <button class="btn btn-primary" type="submit" [disabled]="ficheSuiviForm.invalid">Valider</button>
 </form>
 
