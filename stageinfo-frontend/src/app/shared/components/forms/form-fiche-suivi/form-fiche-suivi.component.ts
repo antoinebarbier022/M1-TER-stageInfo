@@ -47,14 +47,9 @@ export class FormFicheSuiviComponent extends AutocompletionSearch implements OnI
       niveau:['',Validators.required],
       tuteur:['',Validators.required],
       responsable:['',Validators.required],
-      
+
+      // Les échanges
       contactItems: this.formBuilder.array([this.createContactItem()]),
-      /*
-      // Contact 1
-      dateVisite:['',Validators.required],
-      typeContact:['', Validators.required],
-      commentaire:['', Validators.required],
-      */
       
       // Bilan stage
       dateDebut:['', Validators.required],
@@ -75,7 +70,6 @@ export class FormFicheSuiviComponent extends AutocompletionSearch implements OnI
     let champsRemplis = true;
 
     for(let item of this.contactItems.value){
-      console.log(item);
       if(item.dateVisite==="" || item.typeContact==="" || item.commentaire==="")
         champsRemplis = false;
     }
