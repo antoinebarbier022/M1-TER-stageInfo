@@ -120,7 +120,7 @@
             <select  id="inputEtudiantAffectation"  
                     class="form-control"
                     name="selectEtudiant" ngModel required>
-                <option [ngValue]="null" disabled selected>Selectionner un étudiant</option>
+                <option value="" disabled selected>Selectionner un étudiant</option>
                 <option *ngFor="let etudiant of allEtudiant" [ngValue]="etudiant?._id">{{ etudiant?.nom + ' ' + etudiant?.prenom }}</option>     
             </select>
     
@@ -139,10 +139,10 @@
             <select  id="inputEtudiantAffectation2"  
                     class="form-control"
                     name="selectEtudiant" ngModel required>
-                <option [ngValue]="null" disabled selected>Selectionner un étudiant</option>
+                <option value="" disabled selected>Selectionner un étudiant</option>
                 <option *ngFor="let etudiant of allEtudiant" [ngValue]="etudiant?._id">{{ etudiant?.nom + ' ' + etudiant?.prenom }}</option>     
             </select>
-            <button type="submit" class="btn btn-success btn-sm">Affecté l'étudiant</button>
+            <button type="submit" class="btn btn-success btn-sm" [disabled]="f.invalid">Affecté l'étudiant</button>
         </div>
     </form>
 </div>
@@ -166,10 +166,10 @@
             <select  id="inputTuteurAffectation"  
                     class="form-control"
                     name="selectTuteur" ngModel required>
-                <option [ngValue]="null" disabled selected>Selectionner un tuteur</option>
+                <option value="" disabled selected>Selectionner un tuteur</option>
                 <option *ngFor="let tuteur of allTuteur" [ngValue]="tuteur?._id">{{ tuteur?.nom + ' ' + tuteur?.prenom }}</option>     
             </select>
-            <button type="submit" class="btn btn-primary btn-sm">Affecter le tuteur</button>
+            <button type="submit" class="btn btn-primary btn-sm" [disabled]="f.invalid">Affecter le tuteur</button>
         </div>
     </form>
 </div>
@@ -190,10 +190,10 @@
             <select  id="inputRapporteurAffectation"  
                     class="form-control"
                     name="selectRapporteur" ngModel required>
-                <option [ngValue]="null" disabled selected>Selectionner un rapporteur</option>
+                <option value="" disabled selected>Selectionner un rapporteur</option>
                 <option *ngFor="let tuteur of allTuteur" [ngValue]="tuteur?._id">{{ tuteur?.nom + ' ' + tuteur?.prenom }}</option>     
             </select>
-            <button type="submit" class="btn btn-primary btn-sm">Affecter le rapporteur</button>
+            <button type="submit" class="btn btn-primary btn-sm" [disabled]="f.invalid">Affecter le rapporteur</button>
         </div>
     </form>
 </div>
