@@ -23,7 +23,7 @@
     <!-- Conditions du stage -->
     <app-card id="conditions-stage" title="Encadrants">
         <p *ngIf="stage?.tuteur?._id">Tuteur : <a [routerLink]="['/liste-utilisateurs/user', stage?.tuteur?._id]">{{ stage?.tuteur?.nom + ' ' + stage?.tuteur?.prenom }}</a></p>
-        <p *ngIf="stage?.entreprise?.representant">Représentant entreprise: <a [routerLink]="['/liste-utilisateurs/user', stage.entreprise?.representant]">{{ stage.entreprise?.representant ? 'undefined': 'undefined'}}</a></p>
+        <p *ngIf="stage?.entreprise?.representant">Représentant entreprise: <a [routerLink]="['/liste-utilisateurs/user', stage.entreprise?.representant?._id]">{{ stage.entreprise?.representant?._id ? stage.entreprise?.representant?.nom + ' '+ stage.entreprise?.representant?.prenom: ''}}</a></p>
         <p *ngIf="stage?.rapporteur?._id">Rapporteur : <a [routerLink]="['/liste-utilisateurs/user', stage?.rapporteur?._id]">{{ stage?.rapporteur?.nom + ' ' + stage?.rapporteur?.prenom }}</a></p>
     </app-card>
 
