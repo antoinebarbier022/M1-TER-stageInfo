@@ -80,7 +80,7 @@
         </table>
         <form>
             <div class="form-group-row">
-                <input id='files' type="file" (input)="fileChoosen($event)" >
+                <input id='files' type="file" (input)="fileChoosen($event)" accept="application/pdf">
             </div>
             <button class="btn btn-primary btn-sm" (click)="ajouterFichier()" [disabled]="!uploaded" >Ajouter le fichier</button>
         </form>

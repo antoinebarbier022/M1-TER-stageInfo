@@ -46,10 +46,11 @@ export class FormUserComponent implements OnInit {
   promotions = ["2016/2017", "2017/2018","2018/2019", "2019/2020", "2020/2021"];
 
   destroy$: Subject<boolean> = new Subject<boolean>();
+  errorMessage: any;
 
   constructor(private formBuilder: FormBuilder,
               private route:ActivatedRoute,
-              private userService: UserService) { 
+              private userService: UserService) {
     this.selectedUser = new UserModel();
     this.allParcours = this.route.snapshot.data.allParcours;
     this.allEntreprises = this.route.snapshot.data.allEntreprises;
@@ -80,7 +81,7 @@ export class FormUserComponent implements OnInit {
     if(!this.addUser){  // Si on est sur le formulaire edit parcours alors on remplie les champs
       this.idUser = this.selectedUser._id;
       this.setInputForm(this.selectedUser._id);
-    } 
+    }
     this.displaySection(this.selectedUser.role);
     this.onRoleValueChanges();
   }
@@ -88,7 +89,7 @@ export class FormUserComponent implements OnInit {
   initForm(){
     this.userForm = this.formBuilder.group({
       nom: ['',Validators.required],
-      prenom: ['',Validators.required], 
+      prenom: ['',Validators.required],
       email: ['',Validators.required],
       telephone: '',
       fax:'',
@@ -134,7 +135,7 @@ export class FormUserComponent implements OnInit {
       });
   }
 
-  
+
 
 
   onSubmitForm(){
@@ -160,7 +161,7 @@ export class FormUserComponent implements OnInit {
     );
 
     console.log(newUser);
-    
+
     if(this.addUser){
       this.ajouterUser(newUser);
     }
@@ -175,7 +176,11 @@ export class FormUserComponent implements OnInit {
       .subscribe((_res: any[]) => {
         console.log("User : "+ user.nom + " "+ user.prenom + " ajouté à la plateforme !");
         this.userForm.reset();  // on reset les données dans le forumulaire
-    });
+    },
+        error => {
+          this.errorMessage = error.message +user.email;
+        }
+    );
   }
 
   modifierUser(id:any, user:any){
