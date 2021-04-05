@@ -88,14 +88,14 @@ export class FormUserComponent implements OnInit {
     this.userForm = this.formBuilder.group({
       nom: ['',Validators.required],
       prenom: ['',Validators.required], 
-      email: ['',Validators.required],
+      email: ['', [Validators.required, Validators.email]],
       telephone: '',
       fax:'',
       password: ['',Validators.required],
       role: ['',Validators.required],
 
       // Étudiant
-      numeroEtudiant: '',
+      numeroEtudiant: [''],
       promotion:'',
       parcours:null,
 

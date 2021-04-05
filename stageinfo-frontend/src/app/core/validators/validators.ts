@@ -2,7 +2,21 @@
 /** Own validators are created here **/
 /*************************************/
 
-import { AbstractControl, ValidatorFn } from "@angular/forms";
+import { AbstractControl, FormControl, FormGroup, ValidatorFn, Validators } from "@angular/forms";
+
+/*
+* Lorsqu'on créer un utilisateur, si le rôle défini est étudiant
+* alors le champs Numéro étudiant devient requis.
+*/
+export let studentNumberRequiredValidator = (form: FormGroup) => {
+    /*
+    if(formGroup.value.role === 'etudiant'){
+        return Validators.required(formGroup.get('role')) ? { 'studentNumberRequired': true } : null;
+    }
+    */
+   console.log('here : ');
+   console.log(form);
+}
 
 /*
 * Vérifie que le nom saisi est bien celui d'un étudiant
