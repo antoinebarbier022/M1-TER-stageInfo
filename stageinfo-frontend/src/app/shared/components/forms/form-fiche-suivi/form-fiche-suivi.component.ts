@@ -70,12 +70,29 @@ export class FormFicheSuiviComponent extends AutocompletionSearch implements OnI
 
   addContactItem(): void {
     this.contactItems = this.ficheSuiviForm.get('contactItems') as FormArray;
-    this.contactItems.push(this.createContactItem());
+    console.log(this.contactItems.value);
+
+    let champsRemplis = true;
+
+    for(let item of this.contactItems.value){
+      console.log(item);
+      if(item.dateVisite==="" || item.typeContact==="" || item.commentaire==="")
+        champsRemplis = false;
+    }
+
+    if(champsRemplis)
+      this.contactItems.push(this.createContactItem());
+    else
+      alert('Vous devez remplir tous les champs précédents avant de pouvoir en ajouter d\'autres'); /* C'est temporaire on fera un truc mieux plus tard */
   }
 
   removeContactItem() {
     this.contactItems = this.ficheSuiviForm.get('contactItems') as FormArray;
-    this.contactItems.removeAt(-1);
+
+    if(this.contactItems.length > 1)
+      this.contactItems.removeAt(-1);
+    else
+      alert('Vous ne pouvez pas supprimer tous les items de contact !'); /* C'est temporaire on fera un truc mieux plus tard */
   }
 
   createContactItem(): FormGroup {
