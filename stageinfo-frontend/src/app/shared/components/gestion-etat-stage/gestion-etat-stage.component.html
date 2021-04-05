@@ -191,7 +191,13 @@
                     class="form-control"
                     name="selectRapporteur" ngModel required>
                 <option value="" disabled selected>Selectionner un rapporteur</option>
-                <option *ngFor="let tuteur of allTuteur" [ngValue]="tuteur?._id">{{ tuteur?.nom + ' ' + tuteur?.prenom }}</option>     
+                <!--Pour pas que le tuteur soit aussi le rapporteur, on n'affiche pas le tuteur dans la liste des tuteurs qui peuvent être selectionné comme rapporteurs-->
+                <ng-container *ngFor="let rapporteur of allTuteur" >
+                    <option 
+                        *ngIf="rapporteur?._id != stage.tuteur?._id"
+                        [ngValue]="rapporteur?._id">{{ rapporteur?.nom + ' ' + rapporteur?.prenom }}</option>   
+                </ng-container>
+                  
             </select>
             <button type="submit" class="btn btn-primary btn-sm" [disabled]="f.invalid">Affecter le rapporteur</button>
         </div>
