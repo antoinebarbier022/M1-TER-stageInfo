@@ -20,8 +20,9 @@ export let isStudentValidator = (userArray: Array<any>) : ValidatorFn => {
 */
 export let isRepresentantValidator = (userArray: Array<any>) : ValidatorFn => { 
     return (control: AbstractControl) : {[key: string]: boolean} | null => {
-        let array = userArray.filter(x => x.role === 'representant')
+        let array = userArray.filter(x => x.role === 'representantEntreprise')
                             .map(x => x.prenom + ' ' + x.nom);
+        
         return control.value !== undefined && array.includes(control.value)? null : {'isRepresentant': false};
     }
 }
