@@ -54,13 +54,13 @@
     <!-- Section échanges étudiant/tuteur -->
     <fieldset>
         <fieldset>
-            <!-- Date visite -->
+            <!-- Date visite 
             <div class="form-group-row">
                 <label for="dateVisite">Date de visite :</label>
                 <input type="date" id="dateVisite" class="form-control" formControlName="dateVisite">
             </div>
 
-            <!-- Type de contact -->
+            <!-- Type de contact 
             <div class="form-group-row">
                 <label for="typeContact">Type de contact :</label>
                 <select id="typeContact" class="form-control" formControlName="typeContact">
@@ -69,12 +69,40 @@
                 </select>
             </div>
 
-            <!-- Commentaire -->
+            <!-- Commentaire 
             <div class="form-group">
                 <label for="commentaire">Commentaire :</label>
                 <textarea id="commentaire" class="form-control" formControlName="commentaire" rows="3"></textarea>
             </div>
+            -->
         </fieldset>
+        
+        
+        <fieldset>
+            <legend>Test</legend>
+            <ng-container formArrayName="contactItems" *ngFor="let item of contactItemsSection.controls; let i = index">
+                <div [formGroupName]="i">
+                    <label for="dateVisite">Date de visite :</label>
+                    <input type="date" id="dateVisite" class="form-control">
+
+                    <label for="typeContact">Type de contact :</label>
+                    <select id="typeContact" class="form-control">
+                        <option value="" disabled selected>Type de contact</option>
+                        <option *ngFor="let x of contact" [ngValue]="x">{{ x }}</option>
+                    </select>
+
+                    <label for="commentaire">Commentaire :</label>
+                    <textarea id="commentaire" class="form-control" rows="3"></textarea>
+                </div>
+            </ng-container>
+        </fieldset>
+        
+        <button id="minus" type="button" class="btn btn-primary btn-floating">
+            <i class="fas fa-minus"></i>
+        </button>
+        <button id="add" type="button" class="btn btn-primary btn-floating" (click)="addContactItem()">
+            <i class="fas fa-plus"></i>
+        </button>
     </fieldset>
 
     <hr>

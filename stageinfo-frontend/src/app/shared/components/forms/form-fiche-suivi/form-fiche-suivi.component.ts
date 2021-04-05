@@ -25,7 +25,7 @@ export class FormFicheSuiviComponent extends AutocompletionSearch implements OnI
 
   // @ts-ignore
   ficheSuiviForm: FormGroup;
-  contactItems: FormArray;
+  contactItems = new FormArray([]);
 
   constructor(private route: ActivatedRoute,
               private formBuilder: FormBuilder) { 
@@ -62,6 +62,10 @@ export class FormFicheSuiviComponent extends AutocompletionSearch implements OnI
       bilan:['', Validators.required],
       embauche:['', Validators.required]
     });
+  }
+
+  get contactItemsSection() {
+    return this.ficheSuiviForm.get('contactItems') as FormArray
   }
 
   addContactItem(): void {

@@ -52,6 +52,11 @@ form{
     .btn-modifier{
         margin:0px 5px 0px 5px;
     }
+    button[id="add"], button[id="minus"]{
+        margin-right: 5px;
+        border-radius: 50%;
+    }
+
 }
 
 
