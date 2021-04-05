@@ -1,6 +1,6 @@
 <app-navigation [title]="stage.titre"></app-navigation>
 
-<div class="all-card">      
+<div class="all-card">
 
     <app-gestion-etat-stage id="status-stage" [stage]="stage"></app-gestion-etat-stage>
 
@@ -56,6 +56,7 @@
     <app-card>
         <table class="card-table table table-striped table-sm">
             <thead>
+            <p *ngIf="errorMessage" class="alert alert-danger">Pour modifier une Pièce Jointe veuillez choisir votre fichier en premier </p>
                 <tr>
                     <th scope="col">Nom du fichier </th>
                     <th scope="col">Type</th>
@@ -64,24 +65,24 @@
             </thead>
             <tbody>
                 <!-- Ajout des stages de la BDD -->
-                <tr *ngIf="stage?.fichier">
-                    <td><a [href]="stage?.fichier" target="_blank">{{ stage?.fichier}}</a></td>
+                <tr *ngFor="let p of stage.fichier ">
+                    <td><a [href]="p.chemin" target="_blank">{{ p.nom}}</a></td>
                     <td>pdf</td>
-                    
+
                     <td class="table-action">
                         <!-- Bouton edit => ouvre un modal avec le formulaire de modification -->
-                        <app-button-edit data-toggle="modal"  data-target="#modifier"></app-button-edit>
-                        <!-- Bouton delete => ouvre un modal avec la demande de suppression -->
-                        <app-button-delete data-toggle="modal"  data-target="#suppression"></app-button-delete>
+                        <app-button-edit data-toggle="modal" (click)="modifierFichier(p._id)"  data-target="#modifier" ></app-button-edit>
+
+                        <app-button-delete data-toggle="modal" (click)="supprimerFichier(p._id)" data-target="#suppression"></app-button-delete>
                     </td>
                 </tr>
             </tbody>
         </table>
-        <form> 
+        <form>
             <div class="form-group-row">
                 <input id='files' type="file" (input)="fileChoosen($event)" >
             </div>
-            <button class="btn btn-primary btn-sm" (click)="ajouterFichier()">Ajouter le fichier</button>
+            <button class="btn btn-primary btn-sm" (click)="ajouterFichier()" [disabled]="!uploaded" >Ajouter le fichier</button>
         </form>
     </app-card>
 </div>
