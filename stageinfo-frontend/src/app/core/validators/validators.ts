@@ -5,6 +5,13 @@
 import { AbstractControl, ValidatorFn } from "@angular/forms";
 
 /*
+* Vérification d'adresse email institutionnelle (um)
+*/
+export let umEmailAdressIsCorrectValidator = (control: AbstractControl) : { [key: string]: boolean } | null  => {
+    return control.value !== undefined && control.value !== null && control.value.match("^[a-z\-]+\.[a-z0-9\-]+@etu\.umontpellier\.fr$")? null : {'adresseEmailIsCorrect': false};
+}
+
+/*
 * Vérification avancé d'adresse email
 */
 export let emailAdressIsCorrectValidator = (control: AbstractControl) : { [key: string]: boolean } | null  => {
