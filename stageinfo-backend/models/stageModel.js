@@ -77,8 +77,8 @@ const stageSchema = Schema({
 
     
     ajouteur: {         type: Schema.Types.ObjectId, ref: 'User' }, // Personne qui ajoute le stage
-    tuteurEntreprise: { type: Schema.Types.ObjectId, ref: 'User' }, // tuteut entreprise == représentant entreprise ???
-    tuteurUniv: {       type: Schema.Types.ObjectId, ref: 'User' }, // Tuteur du stage
+    repEntreprise: { type: Schema.Types.ObjectId, ref: 'User' }, // représentant entreprise 
+    tuteur: {       type: Schema.Types.ObjectId, ref: 'User' }, // Tuteur du stage
     rapporteur: {       type: Schema.Types.ObjectId, ref: 'User' }, // rapporteur du stage
     etudiant: {         type: Schema.Types.ObjectId, ref: 'User' }, // étudiant affecté au stage
 

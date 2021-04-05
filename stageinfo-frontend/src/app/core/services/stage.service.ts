@@ -45,10 +45,17 @@ export class StageService {
   }
 
   /* changer l'état d'un stage */
-  editState(id:any, state:string):Observable<any>{
-    const newState = {
-      etat: state
-    };
+  editState(id:any, state:string, data:any=""):Observable<any>{
+    var newState;
+    if(!data){ // si data n'est pas spécifié (data contient les modifications à apporter donc la date/user en plus)
+      newState = {
+        etat: state
+      };
+    }else{
+      newState = data;
+    }
+    
+    console.log({message:'nouvel etat : ', etat: newState})
     return this.httpClient.put(this.urlBase+'/api/stage/'+ id+'/changement-etat', newState);
   }
 

@@ -78,7 +78,8 @@ const routes: Routes = [
       component: InfoStageComponent,
       canActivate: [AuthGuardService, RoleGuard],
       resolve: {
-        stage: StageResolver  // on associe un resolver à la route
+        stage: StageResolver,  // on associe un resolver à la route
+        allUsers: AllUsersResolver
       }
   },
 

@@ -114,6 +114,7 @@
             <input  type="text" 
                     [id]="addUser ? 'addUserNumEtudiant':'editUserNumEtudiant'"
                     [ngClass]="viewUser? 'form-control-plaintext' : 'form-control'"
+                    class="numero"
                     name="numEtudiant"
                     placeholder="{{ viewUser ? 'undefined' : 'Numéro Étudiant' }}"
                     [readonly]="viewUser"

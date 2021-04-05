@@ -57,8 +57,20 @@
 </div>
 
 <p>
-    <strong>Etat du stage : </strong>  <app-state-badge [state]="stage?.etat"></app-state-badge>
+    <strong>État du stage : </strong>  <app-state-badge [state]="stage?.etat"></app-state-badge><br>
+    <span class="date-change-etat">
+        Proposé par 
+        <a [routerLink]="['/liste-utilisateurs/user', stage?.ajouteur?._id]">{{ stage?.ajouteur?.nom + ' ' + stage?.ajouteur?.prenom }}</a> 
+        le <span class="date">{{ stage?.datePropose | date:'fullDate':'+0200':'fr' }}</span>
+    </span><br>
+    <span *ngIf="stage?.dateValide" class="date-change-etat">
+        Validé le <span class="date">{{ stage?.dateValide | date:'fullDate':'+0200':'fr' }}</span>
+    </span><br>
+    <span *ngIf="stage?.etudiant?._id" class="nom-etudiant-affecté">
+        Affecté à l'étudiant : <a [routerLink]="['/liste-utilisateurs/user', stage?.etudiant?._id]">{{ stage?.etudiant?.nom + ' ' + stage?.etudiant?.prenom }}</a>
+    </span>
 </p>
+
 
 
 
@@ -103,16 +115,18 @@
 </div>
 
 <div class="alert alert-valide" *ngIf="(getState() == 'valide') && ((getViewRole() =='repEntreprise') && (getRole() == 'admin')) || (getRole() == 'repEntreprise')">
-    <p><strong>Selectionner un étudiant pour ce stage :</strong>
-        <select id="inputEtudiantAffectation" class="form-control">
-            <option value="" disabled selected>Selectionner un étudiant</option>
-            <option value="1">Antoine</option>
-            <option value="2">El Mokthar</option>
-            <option value="3">Issakou</option>
-        </select>
-        <button class="btn btn btn-sm btn-success btn-sm"  
-                (click)="changerEtat('reserve')">Reservé le stage</button>
-    </p>
+    <form (ngSubmit)="onSubmitReserve(f)" #f="ngForm">
+        <p><strong>Selectionner un étudiant pour ce stage :</strong>
+            <select  id="inputEtudiantAffectation"  
+                    class="form-control"
+                    name="selectEtudiant" ngModel required>
+                <option value="" disabled selected>Selectionner un étudiant</option>
+                <option *ngFor="let etudiant of allEtudiant" [ngValue]="etudiant?._id">{{ etudiant?.nom + ' ' + etudiant?.prenom }}</option>     
+            </select>
+    
+            <button type="submit" class="btn btn btn-sm btn-success btn-sm"  [disabled]="f.invalid">Reservé le stage</button>
+        </p>
+    </form>
 </div>
 
 <!-- Troisième étape -->
@@ -120,15 +134,15 @@
 <div class="alert alert-valide" *ngIf="getState() == ('valide' || 'reserve') && ( ((getViewRole() =='respParcours') && (getRole() == 'admin')) || (getViewRole() =='admin' && getRole() == 'admin') || (getRole() == 'respParcours'))">
     <p><strong>Selectionner un étudiant pour ce stage :</strong><br>
     </p>
-    <form>
+    <form (ngSubmit)="onSubmitAffectEtudiant(f)" #f="ngForm">
         <div class="form-group-row">
-            <select id="inputEtudiantAffectation" class="form-control">
+            <select  id="inputEtudiantAffectation2"  
+                    class="form-control"
+                    name="selectEtudiant" ngModel required>
                 <option value="" disabled selected>Selectionner un étudiant</option>
-                <option value="1">Antoine</option>
-                <option value="2">El Mokthar</option>
-                <option value="3">Issakou</option>
+                <option *ngFor="let etudiant of allEtudiant" [ngValue]="etudiant?._id">{{ etudiant?.nom + ' ' + etudiant?.prenom }}</option>     
             </select>
-            <button class="btn btn-success btn-sm" (click)="changerEtat('affectEtudiant')">Affecté l'étudiant</button>
+            <button type="submit" class="btn btn-success btn-sm" [disabled]="f.invalid">Affecté l'étudiant</button>
         </div>
     </form>
 </div>
@@ -147,15 +161,15 @@
 <div class="alert alert-affectEtudiant" *ngIf="getState() == 'affectEtudiant' && (getViewRole() =='admin')">
     <p><strong>Affecter un tuteur</strong><br>
     </p>
-    <form>
+    <form (ngSubmit)="onSubmitAffectTuteur(f)" #f="ngForm">
         <div class="form-group-row">
-            <select id="inputEtudiantAffectation" class="form-control">
+            <select  id="inputTuteurAffectation"  
+                    class="form-control"
+                    name="selectTuteur" ngModel required>
                 <option value="" disabled selected>Selectionner un tuteur</option>
-                <option value="1">Antoine</option>
-                <option value="2">El Mokthar</option>
-                <option value="3">Issakou</option>
+                <option *ngFor="let tuteur of allTuteur" [ngValue]="tuteur?._id">{{ tuteur?.nom + ' ' + tuteur?.prenom }}</option>     
             </select>
-            <button class="btn btn-primary btn-sm" (click)="changerEtat('affectTuteur')">Affecter le tuteur</button>
+            <button type="submit" class="btn btn-primary btn-sm" [disabled]="f.invalid">Affecter le tuteur</button>
         </div>
     </form>
 </div>
@@ -171,15 +185,21 @@
 <div class="alert alert-affectRapporteur" *ngIf="getState() == 'affectTuteur' && (getViewRole() == ('admin'))">
     <p><strong>Affecter un rapporteur</strong><br>
     </p>
-    <form>
+    <form (ngSubmit)="onSubmitAffectRapporteur(f)" #f="ngForm">
         <div class="form-group-row">
-            <select id="inputEtudiantAffectation" class="form-control">
+            <select  id="inputRapporteurAffectation"  
+                    class="form-control"
+                    name="selectRapporteur" ngModel required>
                 <option value="" disabled selected>Selectionner un rapporteur</option>
-                <option value="1">Antoine</option>
-                <option value="2">El Mokthar</option>
-                <option value="3">Issakou</option>
+                <!--Pour pas que le tuteur soit aussi le rapporteur, on n'affiche pas le tuteur dans la liste des tuteurs qui peuvent être selectionné comme rapporteurs-->
+                <ng-container *ngFor="let rapporteur of allTuteur" >
+                    <option 
+                        *ngIf="rapporteur?._id != stage.tuteur?._id"
+                        [ngValue]="rapporteur?._id">{{ rapporteur?.nom + ' ' + rapporteur?.prenom }}</option>   
+                </ng-container>
+                  
             </select>
-            <button class="btn btn-primary btn-sm" (click)="changerEtat('affectRapporteur')">Affecter le rapporteur</button>
+            <button type="submit" class="btn btn-primary btn-sm" [disabled]="f.invalid">Affecter le rapporteur</button>
         </div>
     </form>
 </div>
