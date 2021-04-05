@@ -6,27 +6,25 @@
 
     <!-- Informations du stage -->
     <app-card id="information-stage" title="Informations">
-        <p>Titre : {{ stage?.titre }}</p>
+            <p>Niveau requis : {{ stage?.niveauRequis }}</p>
             <p>Parcours : {{ stage?.parcours?.acronyme }}</p>
             <p>Durée : {{ stage?.duree }} mois</p>
             <p>Date de début du stage : {{ stage?.datedebut | date:'fullDate':'+0200':'fr' }}</p>
     </app-card>
 
     <!-- Avantages du stage -->
-    <app-card id="avantages-stage" title="Avantages">
+    <app-card id="avantages-stage" title="Avantages, conditions et compétences">
         <p>Salaire : {{ stage?.salaire }}</p>
         <p>Avantages : {{ stage?.avantages }}</p>
+        <p>Conditions : {{ stage?.conditions}}</p>
+        <p>Compétences : {{ stage?.competences}}</p>
     </app-card>
 
     <!-- Conditions du stage -->
-    <app-card id="conditions-stage" title="Conditions">
-        <p>Niveau requis : {{ stage?.niveauRequis }}</p>
-        <p>Conditions : {{ stage?.conditions}}</p>
-        <br>
-        <p *ngIf="stage?.ajouteur?._id">Ajouteur : <a [routerLink]="['/liste-utilisateurs/user', stage?.ajouteur?._id]">{{ stage?.ajouteur?.nom + ' ' + stage?.ajouteur?.prenom }}</a></p>
-        <p *ngIf="stage?.tuteur?._id">tuteur : <a [routerLink]="['/liste-utilisateurs/user', stage?.tuteur?._id]">{{ stage?.tuteur?.nom + ' ' + stage?.tuteur?.prenom }}</a></p>
-        <p *ngIf="stage?.rapporteur?._id">rapporteur : <a [routerLink]="['/liste-utilisateurs/user', stage?.rapporteur?._id]">{{ stage?.rapporteur?.nom + ' ' + stage?.rapporteur?.prenom }}</a></p>
-        <p *ngIf="stage?.etudiant?._id">etudiant : <a [routerLink]="['/liste-utilisateurs/user', stage?.etudiant?._id]">{{ stage?.etudiant?.nom + ' ' + stage?.etudiant?.prenom }}</a></p>
+    <app-card id="conditions-stage" title="Encadrants">
+        <p *ngIf="stage?.tuteur?._id">Tuteur : <a [routerLink]="['/liste-utilisateurs/user', stage?.tuteur?._id]">{{ stage?.tuteur?.nom + ' ' + stage?.tuteur?.prenom }}</a></p>
+        <p *ngIf="stage?.entreprise?.representant">Représentant entreprise: <a [routerLink]="['/liste-utilisateurs/user', stage.entreprise?.representant]">{{ stage.entreprise?.representant ? 'undefined': 'undefined'}}</a></p>
+        <p *ngIf="stage?.rapporteur?._id">Rapporteur : <a [routerLink]="['/liste-utilisateurs/user', stage?.rapporteur?._id]">{{ stage?.rapporteur?.nom + ' ' + stage?.rapporteur?.prenom }}</a></p>
     </app-card>
 
     <!-- Description du stage -->
@@ -40,10 +38,7 @@
         <p>Adresse : {{ stage?.entreprise?.voie }}</p>
         <p>Site internet : <a [href]="stage?.entreprise?.siteweb" target="_blank">{{ stage?.entreprise?.siteweb }}</a> </p>
         <br>
-        <p>Tuteur dans l'entreprise: <a [routerLink]="['/liste-utilisateurs/user', stage.entreprise?.representant]">{{ stage.entreprise?.representant ? 'undefined': 'undefined'}}</a></p>
-        <p>Email :</p>
-        <p>tel : </p>
-        <p>fax :</p>
+
     </app-card>
 </div>
 

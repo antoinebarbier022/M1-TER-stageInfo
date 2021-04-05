@@ -58,8 +58,17 @@
 
 <p>
     <strong>État du stage : </strong>  <app-state-badge [state]="stage?.etat"></app-state-badge><br>
-    <span class="date-change-etat">Proposé le <span class="date">{{ stage?.datePropose | date:'fullDate':'+0200':'fr' }}</span></span><br>
-    <span class="date-change-etat">Validé le <span class="date">{{ stage?.dateValide | date:'fullDate':'+0200':'fr' }}</span></span>
+    <span class="date-change-etat">
+        Proposé par 
+        <a [routerLink]="['/liste-utilisateurs/user', stage?.ajouteur?._id]">{{ stage?.ajouteur?.nom + ' ' + stage?.ajouteur?.prenom }}</a> 
+        le <span class="date">{{ stage?.datePropose | date:'fullDate':'+0200':'fr' }}</span>
+    </span><br>
+    <span *ngIf="stage?.dateValide" class="date-change-etat">
+        Validé le <span class="date">{{ stage?.dateValide | date:'fullDate':'+0200':'fr' }}</span>
+    </span><br>
+    <span *ngIf="stage?.etudiant?._id" class="nom-etudiant-affecté">
+        Affecté à l'étudiant : <a [routerLink]="['/liste-utilisateurs/user', stage?.etudiant?._id]">{{ stage?.etudiant?.nom + ' ' + stage?.etudiant?.prenom }}</a>
+    </span>
 </p>
 
 
