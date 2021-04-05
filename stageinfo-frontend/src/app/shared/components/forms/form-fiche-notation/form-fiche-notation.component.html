@@ -6,7 +6,7 @@
         <!-- Nom étudiant -->
         <div class="form-group-row">
             <label for="nomEtudiant">Étudiant :</label>
-            <input id="nomEtudiant" type="text" class="form-control" formControlName="nomEtudiant" [ngbTypeahead]="searchUser" aria-describedby="nomEtudiantHelper" (click)="setRoleUser('etudiant')"/>
+            <input id="nomEtudiant" type="text" class="form-control" formControlName="nomEtudiant" [ngbTypeahead]="searchUser" aria-describedby="nomEtudiantHelper" (input)="setRoleUser('etudiant')"/>
             <small id="nomEtudiantHelper" class="form-text text-muted">Nom et prénom</small>
         </div>
     </fieldset>
@@ -34,7 +34,7 @@
         <fieldset>
             <div class="form-group-row">
                 <label for="nomRepresentant">Représentant :</label>
-                <input id="nomRepresentant" type="text" class="form-control" formControlName="nomRepresentant" [ngbTypeahead]="searchUser" (click)="setRoleUser('representantEntreprise')" aria-describedby="representantHelper"/>
+                <input id="nomRepresentant" type="text" class="form-control" formControlName="nomRepresentant" [ngbTypeahead]="searchUser" (input)="setRoleUser('representantEntreprise')" aria-describedby="representantHelper"/>
                 <small id="representantHelper" class="form-text text-muted">Représentant de l'entreprise</small>
             </div>
         </fieldset>
@@ -43,7 +43,7 @@
         <fieldset>
             <div class="form-group-row">
                 <label for="nomTuteur1">Tuteur principal :</label>
-                <input id="nomTuteur1" type="text" class="form-control" formControlName="nomTuteur1" [ngbTypeahead]="searchUser" (click)="setRoleUser('tuteur')" aria-describedby="nomTuteur1"/>
+                <input id="nomTuteur1" type="text" class="form-control" formControlName="nomTuteur1" [ngbTypeahead]="searchUser" (input)="setRoleUser('tuteur')" aria-describedby="nomTuteur1"/>
                 <small id="nomTuteur1Helper" class="form-text text-muted">Professeur encadrant 1</small>
             </div>
         </fieldset>
@@ -52,7 +52,7 @@
         <fieldset>
             <div class="form-group-row">
                 <label for="nomTuteur2">Tuteur secondaire :</label>
-                <input id="nomTuteur2" type="text" class="form-control" formControlName="nomTuteur2" [ngbTypeahead]="searchUser" (click)="setRoleUser('tuteur')" aria-describedby="nomTuteur2"/>
+                <input id="nomTuteur2" type="text" class="form-control" formControlName="nomTuteur2" [ngbTypeahead]="searchUser" (input)="setRoleUser('tuteur')" aria-describedby="nomTuteur2"/>
                 <small id="nomTuteur2Helper" class="form-text text-muted">Professeur encadrant 2</small>
             </div>
         </fieldset>
