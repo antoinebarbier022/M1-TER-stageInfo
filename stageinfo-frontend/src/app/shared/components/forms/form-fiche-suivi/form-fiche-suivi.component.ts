@@ -70,16 +70,17 @@ export class FormFicheSuiviComponent extends AutocompletionSearch implements OnI
 
   addContactItem(): void {
     this.contactItems = this.ficheSuiviForm.get('contactItems') as FormArray;
+
+
     this.contactItems.push(this.createContactItem());
   }
 
-  createContactItem(): FormGroup {
-    return this.formBuilder.group({
-      dateVisite:['',Validators.required],
-      typeContact:['', Validators.required],
-      commentaire:['', Validators.required]
-    });
+  removeContactItem() {
+    this.contactItems = this.ficheSuiviForm.get('contactItems') as FormArray;
+    this.contactItems.removeAt(-1);
   }
+
+  
   
   onSubmitForm() {
     const formValue = this.ficheSuiviForm.value;
