@@ -55,7 +55,7 @@ const stageSchema = Schema({
     dateValide : Date, // date de la validation du stage, sert a quoi ?
 
     rapport: String, // c'est quoi ?
-    fichier: String, // c'est quoi ?
+    fichier: [{   type: Schema.Types.ObjectId, ref: 'PieceJointe' }], // c'est quoi ?
     resume : String, // c'est quoi ? resume de quoi
 
     niveauRequis : String, // M1, M2...

@@ -3,6 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 import { StageService } from 'src/app/core/services/stage.service';
+import {pjService} from "../../../core/services/pj.service";
 
 @Component({
   selector: 'app-info-stage',
@@ -35,15 +36,18 @@ export class InfoStageComponent implements OnInit, OnDestroy {
   // variables pour le download/upload de fichiers
   pdf : any;
   uploaded = false;
-
+  pj : Array<any> = new Array();
   // pour pouvoir détruire les subscribes
   destroy$: Subject<boolean> = new Subject<boolean>();
-  
-  constructor(private route:ActivatedRoute, 
-              private stageService: StageService) { }
+  errorMessage: boolean = false;
+
+  constructor(private route:ActivatedRoute,
+              private stageService: StageService,
+              private pjService : pjService) { }
 
   ngOnInit(): void {
     this.stage = this.route.snapshot.data.stage;
+
 
     this.allUsers = this.route.snapshot.data.allUsers;
     var index = this.allUsers.findIndex(((obj: { _id: any; }) => obj._id == this.stage.entreprise?.representant));
@@ -74,12 +78,31 @@ export class InfoStageComponent implements OnInit, OnDestroy {
   }
 
   ajouterFichier(){
-    this.stageService.editStageWithPdf(this.stage._id, this.stage, this.pdf)
+    this.stageService.addPdf(this.stage._id, this.pdf)
         .pipe(takeUntil(this.destroy$))
         .subscribe((_res: any) => {
           console.log("Stage : "+ this.stage.titre + " modifié !");
         });
   }
 
+  modifierFichier(_id: any) {
+    if(this.uploaded) {
+      this.pjService.editPJ(_id, this.pdf).pipe(takeUntil(this.destroy$))
+        .subscribe((_res: any) => {
+          console.log("Stage : " + this.stage.titre + " modifié !");
+        });
+    }
+    else{
+      this.errorMessage=true
+    }
+
+  }
+
+  supprimerFichier(_id: any) {
+    this.pjService.deletePJById(_id).pipe(takeUntil(this.destroy$))
+      .subscribe((_res: any) => {
+        console.log("Stage : " + this.stage.titre + " modifié !");
+      });
+  }
 }
 

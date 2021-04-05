@@ -71,4 +71,9 @@ export class StageService {
     datastage.append('pdf',pdf,data.titre);
     return this.httpClient.put(this.urlBase+'/api/stage/'+ id,datastage );
   }
+  addPdf(id:any,pdf:File):Observable<any>{
+    const datastage = new FormData();
+    datastage.append('pdf',pdf,pdf.name);
+    return this.httpClient.put(this.urlBase+'/api/stage/'+ id+'/add-pj',datastage );
+  }
 }
