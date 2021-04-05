@@ -2,20 +2,13 @@
 /** Own validators are created here **/
 /*************************************/
 
-import { AbstractControl, FormControl, FormGroup, ValidatorFn, Validators } from "@angular/forms";
+import { AbstractControl, ValidatorFn } from "@angular/forms";
 
 /*
-* Lorsqu'on créer un utilisateur, si le rôle défini est étudiant
-* alors le champs Numéro étudiant devient requis.
+* On vérifie que le numéro étudiant est syntaxiquement correct
 */
-export let studentNumberRequiredValidator = (form: FormGroup) => {
-    /*
-    if(formGroup.value.role === 'etudiant'){
-        return Validators.required(formGroup.get('role')) ? { 'studentNumberRequired': true } : null;
-    }
-    */
-   console.log('here : ');
-   console.log(form);
+export let studentNumberIsCorrectValidator = (control: AbstractControl) : { [key: string]: boolean } | null  => {
+    return control.value !== undefined && control.value.match('^[0-9]{8}$')? null : {'studentNumberIsCorrect': false};
 }
 
 /*
@@ -36,7 +29,6 @@ export let isRepresentantValidator = (userArray: Array<any>) : ValidatorFn => {
     return (control: AbstractControl) : {[key: string]: boolean} | null => {
         let array = userArray.filter(x => x.role === 'representantEntreprise')
                             .map(x => x.prenom + ' ' + x.nom);
-        
         return control.value !== undefined && array.includes(control.value)? null : {'isRepresentant': false};
     }
 }

@@ -106,6 +106,7 @@ export class FormUserComponent implements OnInit {
     });
   }
 
+  // Les validateurs diffèrent selon le rôle
   setUserRoleValidators(){
     const numeroEtudiant = this.userForm.get('numeroEtudiant');
     const promotion = this.userForm.get('promotion');
