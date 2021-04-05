@@ -59,37 +59,19 @@ exports.getOneStage = ((req, res, next) => {
 // changement de l'état du stage
 exports.editState = (req, res, next) => {
   var stage;
-  switch (req.body.etat) {
-    case 'valide':
-      stage = {
-        etat: req.body.etat,
-        dateValide: req.body.etat == 'valide' ? new Date() : null,
-      };
-      break;
-    case 'affectEtudiant':
-        stage = {
-          etat: req.body.etat,
-          etudiant: req.body.etudiant,
-        };
-        break;
-    case 'affectTuteur':
-        stage = {
-          etat: req.body.etat,
-          tuteur: req.body.tuteur,
-        };
-        break;
-    case 'affectRapporteur':
-          stage = {
-            etat: req.body.etat,
-            rapporteur: req.body.rapporteur,
-          };
-          break;
-    default:
-      stage = {
-        etat: req.body.etat,
-      };
-      break;
+  if(req.body.etat == 'valide'){
+    stage = {
+      etat: req.body.etat,
+      dateValide: req.body.etat == 'valide' ? new Date() : null,
+      ...req.body
+    };
+  }else{
+    stage = {
+      etat: req.body.etat,
+      ...req.body
+    };
   }
+  
   console.log(stage);
   Stage.updateOne({_id: req.params.id}, stage)
       .then(() => {

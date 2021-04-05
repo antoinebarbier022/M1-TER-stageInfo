@@ -43,56 +43,37 @@ export class GestionEtatStageComponent implements OnInit, OnDestroy {
   }
 
   // pour ce component on utilise des formulaires avec la méthode template 
+
   onSubmitReserve(form: NgForm){
-    console.log(form.value['selectEtudiant']);
-    var newState = 'reserve';
-    var user = form.value['selectEtudiant'];
-    console.log(newState+ ' '+ user);
-    this.stageService.editState(this.stage._id, newState, user)
-      .pipe(takeUntil(this.destroy$))
-      .subscribe((_res: any) => {
-        console.log("L'état du stage "+ this.stage.titre + " est passé à ["+newState+"] !");
-        this.stage.etat = newState;
-      });
+      const newData = {
+        etat: 'reserve',
+        etudiant : form.value['selectEtudiant'],
+      };
+      this.changerEtat('reserve',newData);
   }
 
   onSubmitAffectEtudiant(form: NgForm){
-    console.log(form.value['selectEtudiant']);
-    var newState = 'affectEtudiant';
-    var user = form.value['selectEtudiant'];
-    console.log(newState+ ' '+ user);
-    this.stageService.editState(this.stage._id, newState, user)
-      .pipe(takeUntil(this.destroy$))
-      .subscribe((_res: any) => {
-        console.log("L'état du stage "+ this.stage.titre + " est passé à ["+newState+"] !");
-        this.stage.etat = newState;
-      });
+    const newData = {
+      etat: 'affectEtudiant',
+      etudiant : form.value['selectEtudiant'],
+    };
+    this.changerEtat('affectEtudiant',newData);
   }
 
   onSubmitAffectTuteur(form: NgForm){
-    console.log(form.value['selectTuteur']);
-    var newState = 'affectTuteur';
-    var user = form.value['selectTuteur'];
-    console.log(newState+ ' '+ user);
-    this.stageService.editState(this.stage._id, newState, user)
-      .pipe(takeUntil(this.destroy$))
-      .subscribe((_res: any) => {
-        console.log("L'état du stage "+ this.stage.titre + " est passé à ["+newState+"] !");
-        this.stage.etat = newState;
-      });
+    const newData = {
+      etat: 'affectTuteur',
+      tuteur : form.value['selectTuteur'],
+    };
+    this.changerEtat('affectTuteur',newData);
   }
 
   onSubmitAffectRapporteur(form: NgForm){
-    console.log(form.value['selectRapporteur']);
-    var newState = 'affectRapporteur';
-    var user = form.value['selectRapporteur'];
-    console.log(newState+ ' '+ user);
-    this.stageService.editState(this.stage._id, newState, user)
-      .pipe(takeUntil(this.destroy$))
-      .subscribe((_res: any) => {
-        console.log("L'état du stage "+ this.stage.titre + " est passé à ["+newState+"] !");
-        this.stage.etat = newState;
-      });
+    const newData = {
+      etat: 'affectRapporteur',
+      rapporteur : form.value['selectRapporteur'],
+    };
+    this.changerEtat('affectRapporteur',newData);
   }
 
   getState():string{
@@ -108,25 +89,57 @@ export class GestionEtatStageComponent implements OnInit, OnDestroy {
   }
 
   etatPrecedent():void{
+    var newData;
     switch(this.getState()){
-      case 'valide':
-        return this.changerEtat('propose');
-      case 'refuse':
-        return this.changerEtat('propose');
-      case 'affectEtudiant':
-        return this.changerEtat('valide');
+      case 'valide': // valide to propose :  donc on enlève la date de validation
+        newData = {
+          etat: 'propose',
+          dateValide: null,
+        };
+        break;
+      case 'refuse': // refuse to propose :  rien à changé à part l'état
+        newData = {
+          etat: 'propose',
+          dateValide: null,
+        };
+        break;
+      case 'affectEtudiant': // affectEtudiant to valide : donc on enlève l'étudiant associé'
+        newData = {
+          etat: 'valide',
+          etudiant: null,
+          tuteur: null,
+          rapporteur: null,
+        };
+        break;
       case 'affectTuteur':
-        return this.changerEtat('affectEtudiant');
+        newData = {
+          etat: 'affectEtudiant',
+          tuteur: null,
+          rapporteur: null,
+        };
+        break;
       case 'affectRapporteur':
-        return this.changerEtat('affectTuteur');
+        newData = {
+          etat: 'affectTuteur',
+          rapporteur: null,
+        };
+        break;
       case 'termine':
-        return this.changerEtat('affectRapporteur');
-
+        newData = {
+          etat: 'affectRapporteur'
+        };
+        break;
+      default:
+        newData = {
+          etat: 'propose',
+        };
+        break;
     }
+    return this.changerEtat(newData.etat,newData);
   }
 
-  changerEtat(newState:string){
-    this.stageService.editState(this.stage._id, newState)
+  changerEtat(newState:string, user:any=""){
+    this.stageService.editState(this.stage._id, newState, user)
       .pipe(takeUntil(this.destroy$))
       .subscribe((_res: any) => {
         console.log("L'état du stage "+ this.stage.titre + " est passé à ["+newState+"] !");
