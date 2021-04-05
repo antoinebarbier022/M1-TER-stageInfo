@@ -1,4 +1,5 @@
 import { Component, Input, OnDestroy, OnInit } from '@angular/core';
+import { NgForm } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
@@ -15,10 +16,12 @@ export class GestionEtatStageComponent implements OnInit, OnDestroy {
   @Input() stage:any;
 
   allUsers:any;
-
   allEtudiant:any;
-
   allTuteur:any;
+
+  selectEtudiant:any;
+  selectTuteur:any;
+  selectRapporteur:any;
 
   // pour pouvoir détruire les subscribes
   destroy$: Subject<boolean> = new Subject<boolean>();
@@ -37,6 +40,59 @@ export class GestionEtatStageComponent implements OnInit, OnDestroy {
     this.destroy$.next(true);
     // Now let's also unsubscribe from the subject itself:
     this.destroy$.unsubscribe();
+  }
+
+  // pour ce component on utilise des formulaires avec la méthode template 
+  onSubmitReserve(form: NgForm){
+    console.log(form.value['selectEtudiant']);
+    var newState = 'reserve';
+    var user = form.value['selectEtudiant'];
+    console.log(newState+ ' '+ user);
+    this.stageService.editState(this.stage._id, newState, user)
+      .pipe(takeUntil(this.destroy$))
+      .subscribe((_res: any) => {
+        console.log("L'état du stage "+ this.stage.titre + " est passé à ["+newState+"] !");
+        this.stage.etat = newState;
+      });
+  }
+
+  onSubmitAffectEtudiant(form: NgForm){
+    console.log(form.value['selectEtudiant']);
+    var newState = 'affectEtudiant';
+    var user = form.value['selectEtudiant'];
+    console.log(newState+ ' '+ user);
+    this.stageService.editState(this.stage._id, newState, user)
+      .pipe(takeUntil(this.destroy$))
+      .subscribe((_res: any) => {
+        console.log("L'état du stage "+ this.stage.titre + " est passé à ["+newState+"] !");
+        this.stage.etat = newState;
+      });
+  }
+
+  onSubmitAffectTuteur(form: NgForm){
+    console.log(form.value['selectTuteur']);
+    var newState = 'affectTuteur';
+    var user = form.value['selectTuteur'];
+    console.log(newState+ ' '+ user);
+    this.stageService.editState(this.stage._id, newState, user)
+      .pipe(takeUntil(this.destroy$))
+      .subscribe((_res: any) => {
+        console.log("L'état du stage "+ this.stage.titre + " est passé à ["+newState+"] !");
+        this.stage.etat = newState;
+      });
+  }
+
+  onSubmitAffectRapporteur(form: NgForm){
+    console.log(form.value['selectRapporteur']);
+    var newState = 'affectRapporteur';
+    var user = form.value['selectRapporteur'];
+    console.log(newState+ ' '+ user);
+    this.stageService.editState(this.stage._id, newState, user)
+      .pipe(takeUntil(this.destroy$))
+      .subscribe((_res: any) => {
+        console.log("L'état du stage "+ this.stage.titre + " est passé à ["+newState+"] !");
+        this.stage.etat = newState;
+      });
   }
 
   getState():string{

@@ -18,8 +18,8 @@ exports.getAllStage = ((req, res, next) => {
   .populate('parcours', 'acronyme')
 
   .populate('ajouteur', 'nom prenom')
-  .populate('tuteurEntreprise', 'nom prenom')
-  .populate('tuteurUniv', 'nom prenom')
+  .populate('repEntreprise', 'nom prenom')
+  .populate('tuteur', 'nom prenom')
   .populate('rapporteur', 'nom prenom')
   .populate('etudiant', 'nom prenom')
   .then(stages => res.status(200).json(stages))
@@ -47,8 +47,8 @@ exports.getOneStage = ((req, res, next) => {
   .populate('parcours', 'acronyme')
 
   .populate('ajouteur', 'nom prenom')
-  .populate('tuteurEntreprise', 'nom prenom')
-  .populate('tuteurUniv', 'nom prenom')
+  .populate('repEntreprise', 'nom prenom')
+  .populate('tuteur', 'nom prenom')
   .populate('rapporteur', 'nom prenom')
   .populate('etudiant', 'nom prenom')
 
@@ -58,14 +58,39 @@ exports.getOneStage = ((req, res, next) => {
 
 // changement de l'état du stage
 exports.editState = (req, res, next) => {
-  const stage = {
+  var stage;
+  switch (req.body.etat) {
+    case 'valide':
+      stage = {
         etat: req.body.etat,
         dateValide: req.body.etat == 'valide' ? new Date() : null,
-        etudiant: req.body.etat == 'affectEtudiant' ? req.body.etudiant : null,
-        tuteur: req.body.etat == 'affectTuteur' ? req.body.tuteur : null,
-        rapporteur: req.body.etat == 'affectRapporteur' ? req.body.tuteur : null,
-      }
-
+      };
+      break;
+    case 'affectEtudiant':
+        stage = {
+          etat: req.body.etat,
+          etudiant: req.body.etudiant,
+        };
+        break;
+    case 'affectTuteur':
+        stage = {
+          etat: req.body.etat,
+          tuteur: req.body.tuteur,
+        };
+        break;
+    case 'affectRapporteur':
+          stage = {
+            etat: req.body.etat,
+            rapporteur: req.body.rapporteur,
+          };
+          break;
+    default:
+      stage = {
+        etat: req.body.etat,
+      };
+      break;
+  }
+  console.log(stage);
   Stage.updateOne({_id: req.params.id}, stage)
       .then(() => {
           res.status(201).json({

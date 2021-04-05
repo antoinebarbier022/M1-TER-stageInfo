@@ -67,7 +67,7 @@ export class StageService {
         etat: state
       };
     }
-
+    console.log({message:'nouvel etat : ', etat: newState})
     return this.httpClient.put(this.urlBase+'/api/stage/'+ id+'/changement-etat', newState);
   }
 

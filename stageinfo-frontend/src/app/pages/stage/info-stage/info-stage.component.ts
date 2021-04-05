@@ -11,7 +11,6 @@ import { StageService } from 'src/app/core/services/stage.service';
 })
 export class InfoStageComponent implements OnInit, OnDestroy {
   stage : any;
-  allUsers :any;
   afuConfig = {
     uploadAPI: {
       url:"http://localhost:3000/upload"
@@ -44,7 +43,6 @@ export class InfoStageComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.stage = this.route.snapshot.data.stage;
-
   }
 
 
