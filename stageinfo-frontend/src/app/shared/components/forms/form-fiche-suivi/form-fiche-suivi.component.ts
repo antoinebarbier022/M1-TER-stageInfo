@@ -70,11 +70,13 @@ export class FormFicheSuiviComponent extends AutocompletionSearch implements OnI
 
   addContactItem(): void {
     this.contactItems = this.ficheSuiviForm.get('contactItems') as FormArray;
-
-    
     this.contactItems.push(this.createContactItem());
   }
 
+  removeContactItem() {
+    this.contactItems = this.ficheSuiviForm.get('contactItems') as FormArray;
+    this.contactItems.removeAt(-1);
+  }
 
   createContactItem(): FormGroup {
     return this.formBuilder.group({
