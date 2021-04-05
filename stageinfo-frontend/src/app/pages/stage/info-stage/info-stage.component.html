@@ -46,31 +46,32 @@
 <hr>
 <h2>Pièces Jointes</h2>
 <div id="pieces-jointes-stage">
+    <table class="card-table table table-striped table-bordered table-sm">
+        <thead>
+        <p *ngIf="errorMessage" class="alert alert-danger">Pour modifier une Pièce Jointe veuillez choisir votre fichier en premier </p>
+            <tr>
+                <th scope="col">Nom du fichier </th>
+                <th scope="col">Type</th>
+                <th scope="col">Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- Ajout des stages de la BDD -->
+            <tr *ngFor="let p of stage.fichier ">
+                <td><a [href]="p.chemin" target="_blank">{{ p.nom}}</a></td>
+                <td>pdf</td>
+
+                <td class="table-action">
+                    <!-- Bouton edit => ouvre un modal avec le formulaire de modification -->
+                    <app-button-edit data-toggle="modal" (click)="modifierFichier(p._id)"  data-target="#modifier" ></app-button-edit>
+
+                    <app-button-delete data-toggle="modal" (click)="supprimerFichier(p._id)" data-target="#suppression"></app-button-delete>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    
     <app-card>
-        <table class="card-table table table-striped table-sm">
-            <thead>
-            <p *ngIf="errorMessage" class="alert alert-danger">Pour modifier une Pièce Jointe veuillez choisir votre fichier en premier </p>
-                <tr>
-                    <th scope="col">Nom du fichier </th>
-                    <th scope="col">Type</th>
-                    <th scope="col">Actions</th>
-                </tr>
-            </thead>
-            <tbody>
-                <!-- Ajout des stages de la BDD -->
-                <tr *ngFor="let p of stage.fichier ">
-                    <td><a [href]="p.chemin" target="_blank">{{ p.nom}}</a></td>
-                    <td>pdf</td>
-
-                    <td class="table-action">
-                        <!-- Bouton edit => ouvre un modal avec le formulaire de modification -->
-                        <app-button-edit data-toggle="modal" (click)="modifierFichier(p._id)"  data-target="#modifier" ></app-button-edit>
-
-                        <app-button-delete data-toggle="modal" (click)="supprimerFichier(p._id)" data-target="#suppression"></app-button-delete>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
         <form>
             <div class="form-group-row">
                 <input id='files' type="file" (input)="fileChoosen($event)" >

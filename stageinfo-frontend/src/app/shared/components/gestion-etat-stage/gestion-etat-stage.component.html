@@ -149,7 +149,7 @@
 
 <!-- Quatrième étape -->
 <!-- Un enseignant peut choisir de devenir le tuteur du stage -->
-<div class="alert alert-affectEtudiant" *ngIf="getState() == 'affectEtudiant' && ((getViewRole() =='tuteur') && (getRole() == 'admin')) || (getRole() == 'tuteur')">
+<div class="alert alert-affectEtudiant" *ngIf="((getState() == 'affectEtudiant') || (getState() == 'reserve')) && ((getViewRole() =='tuteur') && (getRole() == 'admin')) || (getRole() == 'tuteur')">
     <p><strong></strong>
         <button class="btn btn-sm btn-outline-primary" style="margin:5px;" (click)="changerEtat('affectTuteur')">Devenir le tuteur de ce stage</button>
     </p>
@@ -158,7 +158,7 @@
     <p><strong>Information : </strong> Un étudiant à déja été affecté pour ce stage.</p>
 </div>
 <!-- Ou bien l'administrateur ou le responsable de stage peut affecté un tuteur -->
-<div class="alert alert-affectEtudiant" *ngIf="getState() == 'affectEtudiant' && (getViewRole() =='admin')">
+<div class="alert alert-affectEtudiant" *ngIf="((getState() == 'affectEtudiant') || (getState() == 'reserve')) && (getViewRole() =='admin')">
     <p><strong>Affecter un tuteur</strong><br>
     </p>
     <form (ngSubmit)="onSubmitAffectTuteur(f)" #f="ngForm">

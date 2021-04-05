@@ -170,15 +170,25 @@ export class GestionEtatStageComponent implements OnInit, OnDestroy {
   }
 
   changerEtat(newState:string, user:any=""){
+    // si l'utilisateur qui à créer le stage est un étudiant et que le stage est validé alors le stage est réservé à l'étudiant
+    if(newState == "valide" && this.isEtudiant(this.stage?.ajouteur?._id)){
+      newState = 'reserve'; // on passe à l'état réservé
+    }
     this.stageService.editState(this.stage._id, newState, user)
       .pipe(takeUntil(this.destroy$))
       .subscribe((_res: any) => {
         console.log("L'état du stage "+ this.stage.titre + " est passé à ["+newState+"] !");
         this.stage.etat = newState;
-        if(this.stage.etat == 'valide'){
+        if( (this.stage.etat == 'valide') || (this.stage.etat == 'reserve')){
           this.stage.dateValide = new Date();
         }
       });
+  }
+
+  isEtudiant(id:any):boolean{
+    
+    // si il ne trouve pas l'ajouteur dans la liste des étudiants alors ce n'est pas un étudiant
+    return this.allEtudiant.some(((obj: { _id: any; }) => obj._id == id ));
   }
 
 }

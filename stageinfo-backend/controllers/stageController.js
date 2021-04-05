@@ -14,7 +14,7 @@ exports.getAllStage = ((req, res, next) => {
   .populate('ficheSuivi')
   .populate('noteStage')
   .populate('visiteStage')
-      .populate('fichier', 'nom chemin')
+  .populate('fichier', 'nom chemin')
   .populate('entreprise')
   .populate('parcours', 'acronyme')
 
@@ -47,7 +47,7 @@ exports.getOneStage = ((req, res, next) => {
 
   .populate('entreprise')
   .populate('parcours', 'acronyme')
-      .populate('fichier', 'nom chemin')
+  .populate('fichier')
 
   .populate('ajouteur', 'nom prenom')
   .populate('repEntreprise', 'nom prenom')
