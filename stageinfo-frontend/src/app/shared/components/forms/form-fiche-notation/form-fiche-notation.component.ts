@@ -47,7 +47,7 @@ export class FormFicheNotationComponent extends AutocompletionSearch implements 
 
       // Commentaire & notation
       commentaire:['',Validators.required],
-      note:['', Validators.required]
+      note:['', [Validators.required, Validators.min(0), Validators.max(20)]]
     });
   }
   
