@@ -29,7 +29,7 @@ export let isRepresentantValidator = (userArray: Array<any>) : ValidatorFn => {
 /*
 * Vérifie que le nom saisi est bien celui d'un tuteur de l'université
 */
-export let isTuteurUniversite = (userArray: Array<any>) : ValidatorFn => { 
+export let isTuteurUniversiteValidator = (userArray: Array<any>) : ValidatorFn => { 
     return (control: AbstractControl) : {[key: string]: boolean} | null => {
         let array = userArray.filter(x => x.role === 'tuteur')
                             .map(x => x.prenom + ' ' + x.nom);
