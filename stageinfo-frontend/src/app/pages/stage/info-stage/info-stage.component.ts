@@ -75,6 +75,7 @@ export class InfoStageComponent implements OnInit, OnDestroy {
         .subscribe((_res: any) => {
           console.log("Stage : "+ this.stage.titre + " modifié !");
         });
+    this.stage = this.route.snapshot.data.stage;
   }
 
   modifierFichier(_id: any) {
@@ -82,7 +83,9 @@ export class InfoStageComponent implements OnInit, OnDestroy {
       this.pjService.editPJ(_id, this.pdf).pipe(takeUntil(this.destroy$))
         .subscribe((_res: any) => {
           console.log("Stage : " + this.stage.titre + " modifié !");
+          this.stage = this.route.snapshot.data.stage;
         });
+
     }
     else{
       this.errorMessage=true

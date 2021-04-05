@@ -21,6 +21,7 @@ export class ImportUsersComponent implements OnInit {
   importForm: FormGroup ;
 
   private isCSV_Valid: boolean | undefined;
+  errorMessage: any;
   constructor(  private route: ActivatedRoute,
                 private router: Router,
                 private papa: Papa,
@@ -52,7 +53,7 @@ export class ImportUsersComponent implements OnInit {
 
         var i:number;
         var _idparcours =null;
-        for(i=2;i<csvTableData.length;i++) {
+        for(i=2;i<3;i++) {
           for (var j =0;j<this.allParcours.length;j++){
             console.log(this.allParcours[j].acronyme.toLowerCase());
             if(csvTableData[i][5].toLowerCase().includes(this.allParcours[j].acronyme.toLowerCase())){
@@ -93,6 +94,10 @@ export class ImportUsersComponent implements OnInit {
       .subscribe((_res: any[]) => {
         console.log("User : "+ user.nom + " "+ user.prenom + " ajouté à la plateforme !");
 
-      });
+      },
+        error => {
+        this.errorMessage = error.error.errors.email.message;
+        console.log(error.error.errors)
+        });
   }
 }

@@ -18,13 +18,15 @@
 
                 <div class="form-group-row">
 
-                      <label for='files'>Select files <input id='files' type="file" (input)="fileChoosen($event)"  ></label>
+                      <label for='files'>Select files <input id='files' type="file" (input)="fileChoosen($event)"  accept=".csv"></label>
 
 
                 </div>
 
 
                 <button type="submit" style="float:right;" class="btn btn-sm btn-primary">Importer les utilisateurs</button>
+            <p *ngIf="errorMessage" class="alert alert-danger"> {{errorMessage}}</p>
+
               </form>
         </div>
     </div>
