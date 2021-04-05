@@ -1,4 +1,5 @@
 const Stage = require('../models/stageModel');
+const PJ = require('../models/pieceJointeModel')
 const fs = require('fs');
 const multer =require('../middleware/multer-config')
 
@@ -13,9 +14,10 @@ exports.getAllStage = ((req, res, next) => {
   .populate('ficheSuivi')
   .populate('noteStage')
   .populate('visiteStage')
-
+      .populate('fichier', 'nom chemin')
   .populate('entreprise')
   .populate('parcours', 'acronyme')
+
 
   .populate('ajouteur', 'nom prenom')
   .populate('tuteurEntreprise', 'nom prenom')
@@ -45,6 +47,7 @@ exports.getOneStage = ((req, res, next) => {
 
   .populate('entreprise')
   .populate('parcours', 'acronyme')
+      .populate('fichier', 'nom chemin')
 
   .populate('ajouteur', 'nom prenom')
   .populate('tuteurEntreprise', 'nom prenom')
@@ -139,7 +142,7 @@ exports.createStage = (req, res, next) => {
             ficheSuivi: req.body.ficheSuivi,
             noteStage: req.body.noteStage,
             visiteStage: req.body.visiteStage,
-
+            fichier : [],
             parcours: req.body.parcours,
             entreprise: req.body.entreprise,
 
@@ -159,8 +162,35 @@ exports.createStage = (req, res, next) => {
             .catch((error) => {
                 res.status(400).json({error: error});
             });
-    }
-    ;
+    };
+exports.addPJ= (req,res,next) => {
+    const pj = new PJ({
+        nom: req.files[0].originalname,
+        chemin : `${req.protocol}://${req.get('host')}/docs/${req.files[0].filename}`,
+        idStage : req.params.id
+    });
+    pj.save()
+        .then(() => {
+            const stage = {
+                $push: {fichier :pj._id},
+            }
+            Stage.updateOne({_id: req.params.id}, stage)
+                .then(() => {
+                    res.status(201).json({
+                        message: 'ajoute de la piece jointe du stage : '+ req.params.id +']'
+                    });
+                })
+                .catch((error) => {
+                    res.status(400).json({error: error});
+                });
+        })
+        .catch((error) => {
+            res.status(400).json({error: error});
+        });
+
+
+
+}
 
     /**
      * @api {put} /stage/:id Edit a Stage
