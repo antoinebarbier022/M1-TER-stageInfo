@@ -8,6 +8,8 @@ import { Subject } from 'rxjs';
 import { UserModel } from 'src/app/core/models/userModel';
 import { UserService } from 'src/app/core/services/user.service';
 
+import { studentNumberIsCorrectValidator } from 'src/app/core/validators/validators';
+
 
 @Component({
   selector: 'app-form-user',
@@ -87,13 +89,13 @@ export class FormUserComponent implements OnInit {
 
   initForm(){
     this.userForm = this.formBuilder.group({
-      nom: ['',Validators.required],
-      prenom: ['',Validators.required], 
+      nom: ['', Validators.required],
+      prenom: ['', Validators.required], 
       email: ['', [Validators.required, Validators.email]],
       telephone: [''],
       fax: [''],
-      password: ['',Validators.required],
-      role: ['',Validators.required],
+      password: ['', Validators.required],
+      role: ['', Validators.required],
 
       // Étudiant
       numeroEtudiant: [''],
@@ -116,7 +118,7 @@ export class FormUserComponent implements OnInit {
 
     this.userForm.get('role')?.valueChanges.subscribe(userRole => {
       if(userRole === 'etudiant'){
-        numeroEtudiant?.setValidators([Validators.required]);
+        numeroEtudiant?.setValidators([Validators.required, studentNumberIsCorrectValidator]);
         promotion?.setValidators([Validators.required]);
         parcours?.setValidators([Validators.required]);
 

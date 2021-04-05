@@ -8,7 +8,7 @@ import { AbstractControl, ValidatorFn } from "@angular/forms";
 * On vérifie que le numéro étudiant est syntaxiquement correct
 */
 export let studentNumberIsCorrectValidator = (control: AbstractControl) : { [key: string]: boolean } | null  => {
-    return control.value !== undefined && control.value.match('^[0-9]{8}$')? null : {'studentNumberIsCorrect': false};
+    return control.value !== undefined && control.value !== null && control.value.match('^[0-9]{8}$')? null : {'studentNumberIsCorrect': false};
 }
 
 /*
