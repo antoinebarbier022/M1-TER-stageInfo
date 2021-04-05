@@ -56,6 +56,7 @@ export class FormUserComponent implements OnInit {
 
   ngOnInit(): void {
     this.initForm();
+    this.setUserRoleValidators();
 
     if(!this.addUser){
       this.idUser = this.selectedUser._id;
@@ -89,19 +90,57 @@ export class FormUserComponent implements OnInit {
       nom: ['',Validators.required],
       prenom: ['',Validators.required], 
       email: ['', [Validators.required, Validators.email]],
-      telephone: '',
-      fax:'',
+      telephone: [''],
+      fax: [''],
       password: ['',Validators.required],
       role: ['',Validators.required],
 
       // Étudiant
       numeroEtudiant: [''],
-      promotion:'',
-      parcours:null,
+      promotion: [''],
+      parcours: [null],
 
       // Entreprise
-      fonction:'',
-      entreprise:null
+      fonction: [''],
+      entreprise: [null]
+    });
+  }
+
+  setUserRoleValidators(){
+    const numeroEtudiant = this.userForm.get('numeroEtudiant');
+    const promotion = this.userForm.get('promotion');
+    const parcours = this.userForm.get('parcours');
+    const fonction = this.userForm.get('fonction');
+    const entreprise = this.userForm.get('entreprise');
+
+    this.userForm.get('role')?.valueChanges.subscribe(userRole => {
+      if(userRole === 'etudiant'){
+        numeroEtudiant?.setValidators([Validators.required]);
+        promotion?.setValidators([Validators.required]);
+        parcours?.setValidators([Validators.required]);
+
+        fonction?.setValidators(null);
+        entreprise?.setValidators(null);
+        fonction?.reset();
+        entreprise?.reset();
+      }
+      else if(userRole === 'representantEntreprise'){
+        fonction?.setValidators([Validators.required]);
+        entreprise?.setValidators([Validators.required]);
+
+        numeroEtudiant?.setValidators(null);
+        promotion?.setValidators(null);
+        parcours?.setValidators(null);
+        numeroEtudiant?.reset();
+        promotion?.reset();
+        parcours?.reset();
+      }
+
+      numeroEtudiant?.updateValueAndValidity();
+      promotion?.updateValueAndValidity();
+      parcours?.updateValueAndValidity();
+      fonction?.updateValueAndValidity();
+      entreprise?.updateValueAndValidity();
     });
   }
 
