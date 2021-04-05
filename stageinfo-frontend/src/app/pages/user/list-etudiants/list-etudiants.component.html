@@ -28,7 +28,7 @@
             </thead>
             <tbody>
                 <tr *ngFor="let user of getItems()">
-                    <td class="numEtudiant">{{ user?.numeroEtudiant }}</td>
+                    <td class="numero">{{ user?.numeroEtudiant }}</td>
                     <td><a [routerLink]="['/liste-utilisateurs/user/', user._id]">{{ user.nom }} {{ user.prenom }}</a></td>
                     <td>{{ user.email }}</td>
                     <td><span class="badge badge-secondary">{{ user.parcours?.acronyme }}</span></td>
