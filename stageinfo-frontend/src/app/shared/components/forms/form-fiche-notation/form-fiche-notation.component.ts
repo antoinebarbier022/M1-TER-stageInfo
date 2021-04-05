@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { AutocompletionSearch } from 'src/app/shared/classes/autocompletion-search';
+import { isStudentValidator } from 'src/app/core/validators/validators';
 
 @Component({
   selector: 'app-form-fiche-notation',
@@ -30,7 +31,7 @@ export class FormFicheNotationComponent extends AutocompletionSearch implements 
   initForm(){
     this.ficheNotationForm = this.formBuilder.group({
       // Étudiant
-      nomEtudiant:['',Validators.required],
+      nomEtudiant:['', [Validators.required, isStudentValidator(this.userItems)]],
 
       // Soutenance
       date:['',Validators.required],
