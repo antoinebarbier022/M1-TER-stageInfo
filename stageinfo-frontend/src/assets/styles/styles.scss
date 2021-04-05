@@ -28,7 +28,10 @@ body{
 
 
 }
-
+    //les numéro possède tous la meme taille de character => meilleur lisibilité
+    .numero{
+        font-family: "courier";
+    }
 
     /* Let's get this party started */
     ::-webkit-scrollbar {

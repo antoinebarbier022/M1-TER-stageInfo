@@ -4,6 +4,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 import { StageModel } from 'src/app/core/models/StageModel';
+import { AuthService } from 'src/app/core/services/auth.service';
 import { StageService } from 'src/app/core/services/stage.service';
 @Component({
   selector: 'app-form-stage',
@@ -45,7 +46,8 @@ export class FormStageComponent implements OnInit {
   constructor(private formBuilder: FormBuilder,
     private route: ActivatedRoute,
     private router: Router,
-    private stageService: StageService) {
+    private stageService: StageService,
+    private authService: AuthService) {
 
     this.selectedStage = new StageModel();
     this.allParcours = this.route.snapshot.data.allParcours;
@@ -117,6 +119,7 @@ export class FormStageComponent implements OnInit {
       const formValue = this.stageForm.value;
       const stage = new StageModel(
         this.idStage,
+        this.authService.getUserid(),
         this.addStage ? 'propose' : this.selectedStage.etat,
         formValue['titre'],
         formValue['description'],

@@ -22,7 +22,7 @@
             <tbody>
                 <tr *ngFor="let parcours of getItems()">
                     <!-- On rajoute le pipe uppercase pour mettre l'acronyme tout le temps en majuscule-->
-                    <td>{{ parcours.acronyme | uppercase }}</td>
+                    <td><span class="badge badge-secondary">{{ parcours.acronyme | uppercase }}</span></td>
                     <td>{{ parcours.intitule }}</td>
                     <td>{{ parcours.niveau }}</td>
                     

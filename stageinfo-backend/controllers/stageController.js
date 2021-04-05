@@ -20,8 +20,8 @@ exports.getAllStage = ((req, res, next) => {
 
 
   .populate('ajouteur', 'nom prenom')
-  .populate('tuteurEntreprise', 'nom prenom')
-  .populate('tuteurUniv', 'nom prenom')
+  .populate('repEntreprise', 'nom prenom')
+  .populate('tuteur', 'nom prenom')
   .populate('rapporteur', 'nom prenom')
   .populate('etudiant', 'nom prenom')
   .then(stages => res.status(200).json(stages))
@@ -50,8 +50,8 @@ exports.getOneStage = ((req, res, next) => {
       .populate('fichier', 'nom chemin')
 
   .populate('ajouteur', 'nom prenom')
-  .populate('tuteurEntreprise', 'nom prenom')
-  .populate('tuteurUniv', 'nom prenom')
+  .populate('repEntreprise', 'nom prenom')
+  .populate('tuteur', 'nom prenom')
   .populate('rapporteur', 'nom prenom')
   .populate('etudiant', 'nom prenom')
 
@@ -61,10 +61,21 @@ exports.getOneStage = ((req, res, next) => {
 
 // changement de l'état du stage
 exports.editState = (req, res, next) => {
-  const stage = {
-        etat: req.body.etat,
-      }
-
+  var stage;
+  if(req.body.etat == 'valide'){
+    stage = {
+      etat: req.body.etat,
+      dateValide: req.body.etat == 'valide' ? new Date() : null,
+      ...req.body
+    };
+  }else{
+    stage = {
+      etat: req.body.etat,
+      ...req.body
+    };
+  }
+  
+  console.log(stage);
   Stage.updateOne({_id: req.params.id}, stage)
       .then(() => {
           res.status(201).json({
@@ -147,8 +158,8 @@ exports.createStage = (req, res, next) => {
             entreprise: req.body.entreprise,
 
             ajouteur: req.body.ajouteur,
-            tuteurEntreprise: req.body.tuteurEntreprise,
-            tuteurUniv: req.body.tuteurUniv,
+            repEntreprise: req.body.repEntreprise,
+            tuteur: req.body.tuteur,
             rapporteur: req.body.rapporteur,
             etudiant: req.body.etudiant,
         });

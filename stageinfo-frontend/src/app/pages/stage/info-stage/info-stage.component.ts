@@ -12,6 +12,7 @@ import {pjService} from "../../../core/services/pj.service";
 })
 export class InfoStageComponent implements OnInit, OnDestroy {
   stage : any;
+  allUsers:any;
   afuConfig = {
     uploadAPI: {
       url:"http://localhost:3000/upload"
@@ -46,8 +47,15 @@ export class InfoStageComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.stage = this.route.snapshot.data.stage;
-  console.log(this.stage)
 
+
+    this.allUsers = this.route.snapshot.data.allUsers;
+    var index = this.allUsers.findIndex(((obj: { _id: any; }) => obj._id == this.stage.entreprise?.representant));
+    this.stage.entreprise.representant = {
+      _id: this.stage.entreprise?.representant,
+      nom: this.allUsers[index].nom,
+      prenom: this.allUsers[index].prenom
+    }
   }
 
 
