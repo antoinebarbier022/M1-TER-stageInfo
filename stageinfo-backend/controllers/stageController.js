@@ -60,6 +60,10 @@ exports.getOneStage = ((req, res, next) => {
 exports.editState = (req, res, next) => {
   const stage = {
         etat: req.body.etat,
+        dateValide: req.body.etat == 'valide' ? new Date() : null,
+        etudiant: req.body.etat == 'affectEtudiant' ? req.body.etudiant : null,
+        tuteur: req.body.etat == 'affectTuteur' ? req.body.tuteur : null,
+        rapporteur: req.body.etat == 'affectRapporteur' ? req.body.tuteur : null,
       }
 
   Stage.updateOne({_id: req.params.id}, stage)
@@ -144,8 +148,8 @@ exports.createStage = (req, res, next) => {
             entreprise: req.body.entreprise,
 
             ajouteur: req.body.ajouteur,
-            tuteurEntreprise: req.body.tuteurEntreprise,
-            tuteurUniv: req.body.tuteurUniv,
+            repEntreprise: req.body.repEntreprise,
+            tuteur: req.body.tuteur,
             rapporteur: req.body.rapporteur,
             etudiant: req.body.etudiant,
         });

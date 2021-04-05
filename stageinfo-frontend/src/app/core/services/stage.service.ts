@@ -45,10 +45,29 @@ export class StageService {
   }
 
   /* changer l'état d'un stage */
-  editState(id:any, state:string):Observable<any>{
-    const newState = {
-      etat: state
-    };
+  editState(id:any, state:string, user:any=""):Observable<any>{
+    var newState;
+    if(state == 'affectEtudiant'){
+      newState = {
+        etat: state,
+        etudiant : user ? user : null,
+      };
+    }else if(state == 'affectTuteur'){
+      newState = {
+        etat: state,
+        tuteur : user ? user : null,
+      };
+    }else if(state == 'affectRapporteur'){
+      newState = {
+        etat: state,
+        rapporteur : user ? user : null,
+      };
+    }else{
+      newState = {
+        etat: state
+      };
+    }
+
     return this.httpClient.put(this.urlBase+'/api/stage/'+ id+'/changement-etat', newState);
   }
 

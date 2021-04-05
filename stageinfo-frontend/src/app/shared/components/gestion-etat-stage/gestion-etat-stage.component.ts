@@ -1,4 +1,5 @@
 import { Component, Input, OnDestroy, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 import { AuthService } from 'src/app/core/services/auth.service';
@@ -13,14 +14,24 @@ export class GestionEtatStageComponent implements OnInit, OnDestroy {
 
   @Input() stage:any;
 
-    // pour pouvoir détruire les subscribes
-    destroy$: Subject<boolean> = new Subject<boolean>();
+  allUsers:any;
+
+  allEtudiant:any;
+
+  allTuteur:any;
+
+  // pour pouvoir détruire les subscribes
+  destroy$: Subject<boolean> = new Subject<boolean>();
 
   constructor(private stageService:StageService, 
+              private route:ActivatedRoute, 
               private authService:AuthService) { 
   }
 
   ngOnInit(): void {
+    this.allUsers = this.route.snapshot.data.allUsers;
+    this.allEtudiant = this.allUsers.filter(((obj: { role: any; }) => obj.role == 'etudiant'));
+    this.allTuteur = this.allUsers.filter(((obj: { role: any; }) => obj.role == 'tuteur'));
   }
   ngOnDestroy() {
     this.destroy$.next(true);
