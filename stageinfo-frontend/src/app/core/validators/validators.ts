@@ -4,6 +4,12 @@
 
 import { AbstractControl, ValidatorFn } from "@angular/forms";
 
+/*
+* Vérification avancé d'adresse email
+*/
+export let emailAdressIsCorrectValidator = (control: AbstractControl) : { [key: string]: boolean } | null  => {
+    return control.value !== undefined && control.value !== null && control.value.match("/^[-!#-'*+\/-9=?^-~]+(?:\.[-!#-'*+\/-9=?^-~]+)*@[-!#-'*+\/-9=?^-~]+(?:\.[-!#-'*+\/-9=?^-~]+)+$/i")? null : {'adresseEmailIsCorrect': false};
+}
 
 /*
 * On vérifie que le numéro étudiant est syntaxiquement correct
