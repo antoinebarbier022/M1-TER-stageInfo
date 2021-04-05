@@ -33,6 +33,11 @@ body{
         font-family: "courier";
     }
 
+    // prendre en compte les sauts de ligne dans les textearea
+    .content-with-newline{
+        white-space: pre-wrap;
+    }
+
     /* Let's get this party started */
     ::-webkit-scrollbar {
         width: 5px;

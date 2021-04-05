@@ -47,7 +47,7 @@ export class InfoStageComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.stage = this.route.snapshot.data.stage;
-
+    console.log(this.stage);
 
     this.allUsers = this.route.snapshot.data.allUsers;
     var index = this.allUsers.findIndex(((obj: { _id: any; }) => obj._id == this.stage.entreprise?.representant));

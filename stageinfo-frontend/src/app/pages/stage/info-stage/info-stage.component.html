@@ -9,7 +9,7 @@
             <p>Niveau requis : {{ stage?.niveauRequis }}</p>
             <p>Parcours : {{ stage?.parcours?.acronyme }}</p>
             <p>Durée : {{ stage?.duree }} mois</p>
-            <p>Date de début du stage : {{ stage?.datedebut | date:'fullDate':'+0200':'fr' }}</p>
+            <p>Début du stage : {{ stage?.dateDebut| date:'fullDate':'+0200':'fr' }}</p>
     </app-card>
 
     <!-- Avantages du stage -->
@@ -29,7 +29,7 @@
 
     <!-- Description du stage -->
     <app-card id="description-stage" title="Description">
-        <p>{{ stage?.description }}</p>
+        <p class="content-with-newline">{{ stage?.description }}</p>
     </app-card>
 
     <!-- Informations sur l'entreprise du stage -->
