@@ -208,6 +208,7 @@ export class FormUserComponent implements OnInit {
     else{
       this.modifierUser(this.idUser, newUser);
     }
+    
   }
 
   ajouterUser(user:any){
