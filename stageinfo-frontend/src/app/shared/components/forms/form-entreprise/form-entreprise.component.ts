@@ -76,13 +76,13 @@ export class FormEntrepriseComponent implements OnInit {
       description:['',Validators.required],
 
       voie:['',Validators.required],
-      codePostal:['', Validators.required],
+      codePostal:['', [Validators.required, Validators.pattern('/^(?:[0-8]\d|9[0-8])\d{3}$/')]],
       ville:['', Validators.required],
       pays:['', Validators.required],
 
-      siteweb:['', Validators.required],
-      tel:['', Validators.required],
-      fax:['', Validators.required],
+      siteweb:[''],
+      tel:[''],
+      fax:[''],
       siret:['', Validators.required],
       nbSalaries:['', Validators.required],
       chiffreAffaire:['', Validators.required],
