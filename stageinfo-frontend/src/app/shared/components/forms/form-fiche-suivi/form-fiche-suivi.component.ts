@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, Validators } from '@angular/forms';
+import { FormBuilder, FormArray, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { AutocompletionSearch } from 'src/app/shared/classes/autocompletion-search';
 import { isStudentValidator } from 'src/app/core/validators/validators';
@@ -25,6 +25,7 @@ export class FormFicheSuiviComponent extends AutocompletionSearch implements OnI
 
   // @ts-ignore
   ficheSuiviForm: FormGroup;
+  //contactItems: FormArray;
 
   constructor(private route: ActivatedRoute,
               private formBuilder: FormBuilder) { 
@@ -46,11 +47,13 @@ export class FormFicheSuiviComponent extends AutocompletionSearch implements OnI
       niveau:['',Validators.required],
       tuteur:['',Validators.required],
       responsable:['',Validators.required],
-
+      
+      /*
       // Contact 1
       dateVisite:['',Validators.required],
       typeContact:['', Validators.required],
       commentaire:['', Validators.required],
+      */
       
       // Bilan stage
       dateDebut:['', Validators.required],
