@@ -5,10 +5,10 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { takeUntil } from 'rxjs/operators';
 import { Subject } from 'rxjs';
 
-import { UserModel } from 'src/app/core/models/userModel';
 import { UserService } from 'src/app/core/services/user.service';
 
 import { studentNumberIsCorrectValidator } from 'src/app/core/validators/validators';
+import { UserModel } from 'src/app/core/models/UserModel';
 
 
 @Component({

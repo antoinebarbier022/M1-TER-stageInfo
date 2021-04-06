@@ -6,7 +6,7 @@ import { ActivatedRoute } from '@angular/router';
 import { UserService } from 'src/app/core/services/user.service';
 
 import { CommonListingTable } from 'src/app/shared/classes/common-listing-table';
-import { UserModel } from '../../../core/models/userModel';
+import { UserModel } from 'src/app/core/models/UserModel';
 
 @Component({
   selector: 'app-list-users',

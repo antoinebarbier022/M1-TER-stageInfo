@@ -2,8 +2,8 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
+import { EntrepriseModel } from 'src/app/core/models/EntrepriseModel';
 
-import { EntrepriseModel } from '../../../core/models/entrepriseModel';
 import { EntrepriseService } from 'src/app/core/services/entreprise.service';
 
 import { CommonListingTable } from 'src/app/shared/classes/common-listing-table';

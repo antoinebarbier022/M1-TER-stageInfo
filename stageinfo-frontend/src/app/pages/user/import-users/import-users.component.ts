@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import {Subject} from "rxjs";
-import {ActivatedRoute, Router} from "@angular/router";
-import {Papa} from "ngx-papaparse";
-import {UserService} from "../../../core/services/user.service";
-import {UserModel} from "src/app/core/models/UserModel";
-import {takeUntil} from "rxjs/operators";
-import {FormBuilder, FormGroup, Validators} from "@angular/forms";
+import { Subject } from "rxjs";
+import { ActivatedRoute, Router } from "@angular/router";
+import { Papa } from "ngx-papaparse";
+import { takeUntil } from "rxjs/operators";
+import { FormBuilder, FormGroup, Validators } from "@angular/forms";
+import { UserModel } from 'src/app/core/models/UserModel';
+import { UserService } from 'src/app/core/services/user.service';
 
 @Component({
   selector: 'app-import-users',
