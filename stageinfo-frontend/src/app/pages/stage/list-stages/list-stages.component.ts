@@ -7,6 +7,7 @@ import { StageService } from 'src/app/core/services/stage.service';
 import { CommonListingTable } from 'src/app/shared/classes/common-listing-table';
 import { ActivatedRoute } from '@angular/router';
 import { StageModel } from 'src/app/core/models/StageModel';
+import { AuthService } from 'src/app/core/services/auth.service';
 
 @Component({
   selector: 'app-list-stages',
@@ -20,7 +21,9 @@ export class ListStagesComponent extends CommonListingTable implements OnInit {
   destroy$: Subject<boolean> = new Subject<boolean>();
   selectItem:any; // item qui est selectionné 
 
-  constructor(private route:ActivatedRoute, private stageService: StageService) {
+  constructor(private route:ActivatedRoute, 
+    private stageService: StageService,
+    private authService:AuthService) {
     super();
     this.visibleProperties = [
       { name: 'titre', sorted: false },
@@ -34,6 +37,39 @@ export class ListStagesComponent extends CommonListingTable implements OnInit {
 
   ngOnInit(): void {
     this.allItems = this.route.snapshot.data.allStages;
+  }
+
+  canEditStages():boolean{
+    switch (this.authService.getViewRole()) {
+      case 'invite':
+      case 'etudiant':
+      case 'tuteur':
+      case 'repEntreprise':
+        return false;
+      
+      case 'respParcours':
+      case 'secretaire':
+      case 'admin':
+        return true;
+      default:
+        return false;
+    }
+  }
+
+  stagesForRoles(allStage:any):any{
+    switch (this.authService.getViewRole()) {
+      case 'invite':
+      case 'etudiant':
+        return allStage.filter(((obj: { etat: any; }) => (obj.etat =='valide' || obj.etat =='reserve')));
+      case 'tuteur':
+      case 'repEntreprise':
+        return allStage.filter(((obj: { etat: any; }) => obj.etat != 'propose'));
+      
+      case 'respParcours':
+      case 'secretaire':
+      case 'admin':
+        return allStage;
+    }
   }
 
   ngOnDestroy() : void {
