@@ -59,7 +59,7 @@
             <!-- Ajout des stages de la BDD -->
             <tr *ngFor="let p of stage.fichier ">
                 <td><a [href]="p.chemin" target="_blank">{{ p.nom}}</a></td>
-                <td>pdf</td>
+                <td>{{p.extension}}</td>
 
                 <td class="table-action">
                     <!-- Bouton edit => ouvre un modal avec le formulaire de modification -->
@@ -70,7 +70,7 @@
             </tr>
         </tbody>
     </table>
-    
+
     <app-card>
         <form>
             <div class="form-group-row">
@@ -78,6 +78,10 @@
             </div>
             <button class="btn btn-primary btn-sm" (click)="ajouterFichier()" [disabled]="!uploaded" >Ajouter le fichier</button>
         </form>
+      <div *ngIf="alert" class="alert alert-success " role="alert">
+        
+        {{alert}}
+      </div>
     </app-card>
 </div>
 <hr>
