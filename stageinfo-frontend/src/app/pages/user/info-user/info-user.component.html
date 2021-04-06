@@ -14,6 +14,8 @@
     <app-card title="Stages">
         <!-- Card d'un stage -->
         <app-card-item-stage *ngFor="let stage of stages" [stage]="stage" ></app-card-item-stage>
+        <!-- Si aucun stage n'existe -->
+        <p class="message-aucun-stage" *ngIf="!stages.length">Il n'y a aucun stage associé à cet utilisateur.</p>
     </app-card>
 </div>
 
