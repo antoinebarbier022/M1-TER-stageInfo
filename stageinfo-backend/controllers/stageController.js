@@ -47,7 +47,7 @@ exports.getOneStage = ((req, res, next) => {
 
   .populate('entreprise')
   .populate('parcours', 'acronyme')
-      .populate('fichier', 'nom chemin')
+      .populate('fichier', 'nom chemin extension type')
 
   .populate('ajouteur', 'nom prenom')
   .populate('repEntreprise', 'nom prenom')
@@ -175,9 +175,15 @@ exports.createStage = (req, res, next) => {
             });
     };
 exports.addPJ= (req,res,next) => {
+    const ladate = new Date();
     const pj = new PJ({
-        nom: req.files[0].originalname,
+        ...JSON.parse(req.body.data),
+        nom: req.files[0].originalname.substring(0,req.files[0].originalname.indexOf('.')),
+        type:req.files[0].mimetype,
+        extension:req.files[0].originalname.substring(req.files[0].originalname.lastIndexOf('.') + 1),
         chemin : `${req.protocol}://${req.get('host')}/docs/${req.files[0].filename}`,
+        size:req.files[0].size,
+        annee:ladate.getFullYear(),
         idStage : req.params.id
     });
     pj.save()
