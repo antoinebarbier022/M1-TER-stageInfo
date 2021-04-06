@@ -4,7 +4,7 @@ import { Router } from "@angular/router";
 
 import { AuthService } from "../services/auth.service";
 import { UserService } from "../services/user.service";
-import { UserModel } from '../models/UserModel';
+import { UserModel } from '../../core/models/userModel';
 
 @Component({
   selector: 'app-header',

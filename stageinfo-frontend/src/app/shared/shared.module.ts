@@ -2,11 +2,14 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 // forms components
 import { FormUserComponent } from './components/forms/form-user/form-user.component';
 import { FormEntrepriseComponent } from './components/forms/form-entreprise/form-entreprise.component';
 import { FormParcoursComponent } from './components/forms/form-parcours/form-parcours.component';
+import { FormFicheSuiviComponent } from './components/forms/form-fiche-suivi/form-fiche-suivi.component';
+import { FormFicheNotationComponent } from './components/forms/form-fiche-notation/form-fiche-notation.component';
 
 // modal component
 import { ModalComponent } from './components/modal/modal.component';
@@ -53,6 +56,8 @@ import { GestionEtatStageComponent } from './components/gestion-etat-stage/gesti
     CardTableComponent, 
     FormStageComponent, 
     CardMapComponent, 
+    FormFicheSuiviComponent, 
+    FormFicheNotationComponent,
     StateBadgeComponent, 
     GestionEtatStageComponent
   ],
@@ -61,6 +66,7 @@ import { GestionEtatStageComponent } from './components/gestion-etat-stage/gesti
     RouterModule,
     FormsModule,
     ReactiveFormsModule,
+    NgbModule
   ],
   exports:[
     FormUserComponent, 
@@ -81,6 +87,8 @@ import { GestionEtatStageComponent } from './components/gestion-etat-stage/gesti
     CardTableComponent,
     FormStageComponent,
     CardMapComponent,
+    FormFicheSuiviComponent, 
+    FormFicheNotationComponent,
     StateBadgeComponent,
     GestionEtatStageComponent
   ]

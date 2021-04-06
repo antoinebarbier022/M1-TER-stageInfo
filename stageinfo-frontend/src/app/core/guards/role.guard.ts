@@ -100,6 +100,10 @@ export class RoleGuard implements CanActivate {
         return ['secretaire', 'responsableParcours', 'admin'].includes(role);
       case 'liste-parcours/info/:id':
         return ['secretaire', 'responsableParcours', 'admin'].includes(role);
+      case 'saisir-fiche-suivi' :
+        return ['secretaire', 'responsableParcours', 'admin'].includes(role); /* Il faudra peut être changer les rôles ici */
+      case 'saisir-fiche-notation' :
+        return ['secretaire', 'responsableParcours', 'admin'].includes(role); /* Il faudra peut être changer les rôles ici */
       default:
         return false;
     }

@@ -68,7 +68,7 @@ export class FormParcoursComponent implements OnInit, OnChanges {
       acronyme:['',Validators.required],
       niveau:['',Validators.required],
       intitule:['',Validators.required],
-      description:[''],
+      description:['', Validators.required],
       responsable:[null, Validators.required]
     });
   }

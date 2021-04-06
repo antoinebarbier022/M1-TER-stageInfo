@@ -3,7 +3,8 @@ import { FormBuilder, Validators } from '@angular/forms';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 
-import { EntrepriseModel } from '../../../../core/models/EntrepriseModel';
+import { EntrepriseModel } from 'src/app/core/models/entrepriseModel';
+
 import { EntrepriseService } from 'src/app/core/services/entreprise.service';
 import { ActivatedRoute } from '@angular/router';
 
@@ -75,13 +76,13 @@ export class FormEntrepriseComponent implements OnInit {
       description:['',Validators.required],
 
       voie:['',Validators.required],
-      codePostal:['', Validators.required],
+      codePostal:['', [Validators.required, Validators.pattern('/^(?:[0-8]\d|9[0-8])\d{3}$/')]],
       ville:['', Validators.required],
       pays:['', Validators.required],
 
-      siteweb:['', Validators.required],
-      tel:['', Validators.required],
-      fax:['', Validators.required],
+      siteweb:[''],
+      tel:[''],
+      fax:[''],
       siret:['', Validators.required],
       nbSalaries:['', Validators.required],
       chiffreAffaire:['', Validators.required],

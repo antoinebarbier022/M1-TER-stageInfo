@@ -20,6 +20,8 @@ import { ListEtudiantsComponent } from './pages/user/list-etudiants/list-etudian
 import { ListStagesComponent } from './pages/stage/list-stages/list-stages.component';
 import { InfoStageComponent } from './pages/stage/info-stage/info-stage.component';
 import { AddStageComponent } from './pages/stage/add-stage/add-stage.component';
+import { FormFicheSuiviComponent } from './shared/components/forms/form-fiche-suivi/form-fiche-suivi.component';
+import { FormFicheNotationComponent } from './shared/components/forms/form-fiche-notation/form-fiche-notation.component';
 
 // import entreprise
 import { ListEntreprisesComponent } from './pages/entreprise/list-entreprises/list-entreprises.component';
@@ -58,6 +60,8 @@ import { AllSoutenancesResolver } from './core/resolves/all-soutenances.resolver
 import { Error401Component } from './pages/erreurs/error401/error401.component';
 import { AllRespParcoursResolver } from './core/resolves/all-resp-parcours.resolver';
 import { AllEtudiantsResolver } from './core/resolves/all-etudiants.resolver';
+import { FicheSuiviComponent } from './pages/stage/fiche-suivi/fiche-suivi.component';
+import { FicheNotationComponent } from './pages/stage/fiche-notation/fiche-notation.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'liste-stages', pathMatch: 'full', canActivate: [AuthGuardService, RoleGuard]},
@@ -84,9 +88,10 @@ const routes: Routes = [
   },
 
   { path: 'saisir-stage', component: AddStageComponent, canActivate: [AuthGuardService, RoleGuard]},
+  { path: 'saisir-fiche-suivi', component: FicheSuiviComponent, canActivate: [AuthGuardService, RoleGuard], resolve: {allParcours: AllParcoursResolver, allUsers: AllUsersResolver}},
+  { path: 'saisir-fiche-notation', component: FicheNotationComponent, canActivate: [AuthGuardService, RoleGuard], resolve: {allUsers: AllUsersResolver}},
 
   // route users
-
   { path: 'liste-utilisateurs', component: ListUsersComponent, canActivate: [AuthGuardService, RoleGuard], resolve: { users: AllUsersResolver, allParcours: AllParcoursResolver, allEntreprises: AllEntreprisesResolver }},
   { path: 'liste-etudiants', component: ListEtudiantsComponent, canActivate: [AuthGuardService, RoleGuard], resolve: { AllEtudiants: AllEtudiantsResolver, allParcours: AllParcoursResolver }},
   { path: 'liste-utilisateurs/import-users', component: ImportUsersComponent, canActivate: [AuthGuardService, RoleGuard],resolve: {allParcours: AllParcoursResolver}},

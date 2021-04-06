@@ -5,9 +5,10 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { takeUntil } from 'rxjs/operators';
 import { Subject } from 'rxjs';
 
-import { UserModel } from 'src/app/core/models/UserModel';
-import { AuthService } from 'src/app/core/services/auth.service';
+import { UserModel } from 'src/app/core/models/userModel';
 import { UserService } from 'src/app/core/services/user.service';
+
+import { studentNumberIsCorrectValidator } from 'src/app/core/validators/validators';
 
 
 @Component({
@@ -57,6 +58,7 @@ export class FormUserComponent implements OnInit {
 
   ngOnInit(): void {
     this.initForm();
+    this.setUserRoleValidators();
 
     if(!this.addUser){
       this.idUser = this.selectedUser._id;
@@ -87,22 +89,61 @@ export class FormUserComponent implements OnInit {
 
   initForm(){
     this.userForm = this.formBuilder.group({
-      nom: ['',Validators.required],
-      prenom: ['',Validators.required], 
-      email: ['',Validators.required],
-      telephone: '',
-      fax:'',
-      password: ['',Validators.required],
-      role: ['',Validators.required],
+      nom: ['', Validators.required],
+      prenom: ['', Validators.required], 
+      email: ['', [Validators.required, Validators.email]],
+      telephone: [''],
+      fax: [''],
+      password: ['', Validators.required],
+      role: ['', Validators.required],
 
       // Étudiant
-      numeroEtudiant: '',
-      promotion:'',
-      parcours:null,
+      numeroEtudiant: [''],
+      promotion: [''],
+      parcours: [null],
 
       // Entreprise
-      fonction:'',
-      entreprise:null
+      fonction: [''],
+      entreprise: [null]
+    });
+  }
+
+  // Les validateurs diffèrent selon le rôle
+  setUserRoleValidators(){
+    const numeroEtudiant = this.userForm.get('numeroEtudiant');
+    const promotion = this.userForm.get('promotion');
+    const parcours = this.userForm.get('parcours');
+    const fonction = this.userForm.get('fonction');
+    const entreprise = this.userForm.get('entreprise');
+
+    this.userForm.get('role')?.valueChanges.subscribe(userRole => {
+      if(userRole === 'etudiant'){
+        numeroEtudiant?.setValidators([Validators.required, studentNumberIsCorrectValidator]);
+        promotion?.setValidators([Validators.required]);
+        parcours?.setValidators([Validators.required]);
+
+        fonction?.setValidators(null);
+        entreprise?.setValidators(null);
+        fonction?.reset();
+        entreprise?.reset();
+      }
+      else if(userRole === 'representantEntreprise'){
+        fonction?.setValidators([Validators.required]);
+        entreprise?.setValidators([Validators.required]);
+
+        numeroEtudiant?.setValidators(null);
+        promotion?.setValidators(null);
+        parcours?.setValidators(null);
+        numeroEtudiant?.reset();
+        promotion?.reset();
+        parcours?.reset();
+      }
+
+      numeroEtudiant?.updateValueAndValidity();
+      promotion?.updateValueAndValidity();
+      parcours?.updateValueAndValidity();
+      fonction?.updateValueAndValidity();
+      entreprise?.updateValueAndValidity();
     });
   }
 
@@ -167,6 +208,7 @@ export class FormUserComponent implements OnInit {
     else{
       this.modifierUser(this.idUser, newUser);
     }
+    
   }
 
   ajouterUser(user:any){
