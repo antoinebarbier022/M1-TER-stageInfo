@@ -21,6 +21,7 @@ export class ImportUsersComponent implements OnInit {
   importForm: FormGroup ;
 
   private isCSV_Valid: boolean | undefined;
+  errorMessage: any;
   constructor(  private route: ActivatedRoute,
                 private router: Router,
                 private papa: Papa,
@@ -93,6 +94,10 @@ export class ImportUsersComponent implements OnInit {
       .subscribe((_res: any[]) => {
         console.log("User : "+ user.nom + " "+ user.prenom + " ajouté à la plateforme !");
 
-      });
+      },
+        error => {
+          this.errorMessage = error.error.errors.email.message;
+          console.log(error.error.errors)
+        });
   }
 }
