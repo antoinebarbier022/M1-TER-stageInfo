@@ -96,8 +96,7 @@ export class ImportUsersComponent implements OnInit {
 
       },
         error => {
-          this.errorMessage = error.error.errors.email.message;
-          console.log(error.error.errors)
+          this.errorMessage += user.email+"\n";
         });
   }
 }
