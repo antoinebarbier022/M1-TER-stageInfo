@@ -3,11 +3,7 @@ const Schema = mongoose.Schema;
 
 const pieceJointeSchema = Schema({
     nom: String, 
-    type: String, 
-    date: Date,  // changement année par la date
-    size: Number,
-    content: String,
-    extension: String,
+    chemin : String,
 
     idUser: Schema.Types.ObjectId, 
     idStage: Schema.Types.ObjectId, 

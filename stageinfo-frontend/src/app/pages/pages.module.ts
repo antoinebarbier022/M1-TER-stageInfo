@@ -22,8 +22,8 @@ import { Error401Component } from './erreurs/error401/error401.component';
 
 @NgModule({
   declarations: [
-    ExempleTemplateComponent, 
-    Error404Component, 
+    ExempleTemplateComponent,
+    Error404Component,
     LoginComponent, Error401Component,
    ],
   imports: [
@@ -41,8 +41,8 @@ import { Error401Component } from './erreurs/error401/error401.component';
     ParcoursModule
     ],
   exports:[
-    ExempleTemplateComponent, 
-    Error404Component, 
+    ExempleTemplateComponent,
+    Error404Component,
     LoginComponent,
 
     SharedModule,

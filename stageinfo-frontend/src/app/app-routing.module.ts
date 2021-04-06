@@ -15,6 +15,7 @@ import { ImportUsersComponent } from './pages/user/import-users/import-users.com
 import { ListUsersComponent } from './pages/user/list-users/list-users.component';
 import { ListEtudiantsComponent } from './pages/user/list-etudiants/list-etudiants.component';
 
+
 // import stages
 import { ListStagesComponent } from './pages/stage/list-stages/list-stages.component';
 import { InfoStageComponent } from './pages/stage/info-stage/info-stage.component';
@@ -68,20 +69,21 @@ const routes: Routes = [
   { path: 'documentation', component: ExempleDocComponent, canActivate: [AuthGuardService, RoleGuard]},
 
   // routes stages
-  { path: 'liste-stages', 
-      component: ListStagesComponent, 
+  { path: 'liste-stages',
+      component: ListStagesComponent,
       canActivate: [AuthGuardService, RoleGuard],
       resolve: {
         allStages: AllStagesResolver,  // on associe un resolver à la route
-        allParcours: AllParcoursResolver, 
+        allParcours: AllParcoursResolver,
         allEntreprises: AllEntreprisesResolver
       }
   },
-  { path: 'liste-stages/:id', 
-      component: InfoStageComponent, 
+  { path: 'liste-stages/:id',
+      component: InfoStageComponent,
       canActivate: [AuthGuardService, RoleGuard],
       resolve: {
-        stage: StageResolver  // on associe un resolver à la route
+        stage: StageResolver,  // on associe un resolver à la route
+        allUsers: AllUsersResolver
       }
   },
 
@@ -92,18 +94,18 @@ const routes: Routes = [
   // route users
   { path: 'liste-utilisateurs', component: ListUsersComponent, canActivate: [AuthGuardService, RoleGuard], resolve: { users: AllUsersResolver, allParcours: AllParcoursResolver, allEntreprises: AllEntreprisesResolver }},
   { path: 'liste-etudiants', component: ListEtudiantsComponent, canActivate: [AuthGuardService, RoleGuard], resolve: { AllEtudiants: AllEtudiantsResolver, allParcours: AllParcoursResolver }},
-  { path: 'liste-utilisateurs/import-users', component: ImportUsersComponent, canActivate: [AuthGuardService, RoleGuard]},
+  { path: 'liste-utilisateurs/import-users', component: ImportUsersComponent, canActivate: [AuthGuardService, RoleGuard],resolve: {allParcours: AllParcoursResolver}},
   { path: 'liste-utilisateurs/add-user', component: AddUserComponent, canActivate: [AuthGuardService, RoleGuard]},
-  { path: 'liste-utilisateurs/edit-user/:id', 
-      component: EditUserComponent, 
+  { path: 'liste-utilisateurs/edit-user/:id',
+      component: EditUserComponent,
       canActivate: [AuthGuardService, RoleGuard],
       resolve: {
         user: UserResolver  // on associe un resolver à la route
       }
     },
   { path: 'liste-utilisateurs/edit-user-v2', component: EditUserV2Component, canActivate: [AuthGuardService, RoleGuard]},
-  { path: 'liste-utilisateurs/user/:id', 
-      component: InfoUserComponent, 
+  { path: 'liste-utilisateurs/user/:id',
+      component: InfoUserComponent,
       canActivate: [AuthGuardService, RoleGuard],
       resolve: {
         user: UserResolver  // on associe un resolver à la route
@@ -114,7 +116,7 @@ const routes: Routes = [
   //routes entreprise
   { path: 'liste-entreprises', component: ListEntreprisesComponent, canActivate: [AuthGuardService, RoleGuard], resolve: { entreprises: AllEntreprisesResolver, allUsers: AllUsersResolver, }},
   { path: 'liste-entreprises/:id', component: InfoEntrepriseComponent, canActivate: [AuthGuardService, RoleGuard], resolve: { entreprise: EntrepriseResolver, allUsers: AllUsersResolver }},
-  
+
   // route soutenance
   { path: 'liste-soutenances', component: ListSoutenancesComponent, canActivate: [AuthGuardService, RoleGuard], resolve: { soutenances: AllSoutenancesResolver }},
   { path: 'liste-soutenances/add-soutenance', component: AddSoutenanceComponent, canActivate: [AuthGuardService, RoleGuard]},

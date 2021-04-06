@@ -4,8 +4,8 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 import { StageModel } from 'src/app/core/models/StageModel';
+import { AuthService } from 'src/app/core/services/auth.service';
 import { StageService } from 'src/app/core/services/stage.service';
-
 @Component({
   selector: 'app-form-stage',
   templateUrl: './form-stage.component.html',
@@ -36,17 +36,18 @@ export class FormStageComponent implements OnInit {
   // pour pouvoir détruire les subscribes
   destroy$: Subject<boolean> = new Subject<boolean>();
 
-
   page: number = 1;
   nbMaxPage :number = 3;
 
 
+
   niveauRequis = ["Licence 3", "Master 1", "Master 2"];
 
-  constructor(private formBuilder: FormBuilder, 
+  constructor(private formBuilder: FormBuilder,
     private route: ActivatedRoute,
     private router: Router,
-    private stageService: StageService) {
+    private stageService: StageService,
+    private authService: AuthService) {
 
     this.selectedStage = new StageModel();
     this.allParcours = this.route.snapshot.data.allParcours;
@@ -105,8 +106,8 @@ export class FormStageComponent implements OnInit {
           duree:        this.stageData.duree,
           dateDebut:    this.stageData.dateDebut,
           niveauRequis: this.stageData.niveauRequis,
-          parcours:     this.stageData.parcours,
-          entreprise:   this.stageData.entreprise,
+          parcours:     this.stageData.parcours?._id,
+          entreprise:   this.stageData.entreprise?._id,
           competences:  this.stageData.competences,
           conditions:   this.stageData.conditions,
           avantages:    this.stageData.avantages,
@@ -118,6 +119,8 @@ export class FormStageComponent implements OnInit {
       const formValue = this.stageForm.value;
       const stage = new StageModel(
         this.idStage,
+        this.authService.getUserid(),
+        this.addStage ? 'propose' : this.selectedStage.etat,
         formValue['titre'],
         formValue['description'],
         formValue['duree'],
@@ -129,7 +132,7 @@ export class FormStageComponent implements OnInit {
         formValue['conditions'],
         formValue['avantages'],
       );
-      
+
       if(this.addStage){
         this.ajouterStage(stage);
       }else {
@@ -139,26 +142,65 @@ export class FormStageComponent implements OnInit {
     }
 
   ajouterStage(stage:any){
-    this.stageService.addStage(stage)
-    .pipe(takeUntil(this.destroy$))
-      .subscribe((_res: any) => {
-        console.log("Stage : "+ stage.titre + " ajouté à la plateforme !");
-        this.page = 1;
-        this.message = "Le stage "+ stage.titre + " à été ajouté à la plateforme !";
-        this.stageForm.reset();  // on reset les données dans le forumulaire
-    });
+    //if(!this.uploaded){
+      this.stageService.addStage(stage)
+      .pipe(takeUntil(this.destroy$))
+        .subscribe((_res: any) => {
+          console.log("Stage : "+ stage.titre + " ajouté à la plateforme !");
+          this.page = 1;
+          this.message = "Le stage "+ stage.titre + " à été ajouté à la plateforme !";
+          this.stageForm.reset();  // on reset les données dans le forumulaire
+      });
+    /*}else {
+      this.stageService.addStageAvecFichier(stage,this.pdf)
+        .pipe(takeUntil(this.destroy$))
+        .subscribe((_res: any) => {
+          console.log("Stage : "+ stage.titre + " ajouté à la plateforme !");
+          this.page = 1;
+          this.message = "Le stage "+ stage.titre + " à été ajouté à la plateforme !";
+          this.stageForm.reset();  // on reset les données dans le forumulaire
+        });}*/
   }
 
   modifierStage(stage:any){
-    this.stageService.editStage(stage._id, stage)
-    .pipe(takeUntil(this.destroy$))
-      .subscribe((_res: any) => {
-        console.log("Stage : "+ stage.titre + " modifié !");
-        this.page = 1;
-        this.message = "Stage modifié !";
-        this.stageForm.reset(); // on reset les données dans le forumulaire
-        this.stageEvent.emit(stage); // on envoie le parcours dans le component parent
-    });
+    //if(this.uploaded){
+      this.stageService.editStage(stage._id, stage)
+      .pipe(takeUntil(this.destroy$))
+        .subscribe((_res: any) => {
+          console.log("Stage : "+ stage.titre + " modifié !");
+          this.page = 1;
+          this.message = "Stage modifié !";
+          this.stageForm.reset(); // on reset les données dans le forumulaire
+          var idEntreprise = stage.entreprise;
+          var idParcours = stage.parcours;
+          var indexEntreprise = this.allEntreprises.findIndex(((obj: { _id: any; }) => obj._id == idEntreprise));
+          var indexParcours = this.allParcours.findIndex(((obj: { _id: any; }) => obj._id == idParcours));
+          
+          stage.entreprise = this.allEntreprises[indexEntreprise];
+          stage.parcours = this.allParcours[indexParcours];
+          console.log(stage);
+          this.stageEvent.emit(stage); // on envoie le stage dans le component parent
+      });
+    /*}else{
+      this.stageService.editStageWhitePdf(stage._id, stage,this.pdf)
+        .pipe(takeUntil(this.destroy$))
+        .subscribe((_res: any) => {
+          console.log("Stage : "+ stage.titre + " modifié !");
+          this.page = 1;
+          this.message = "Stage modifié !";
+          this.stageForm.reset(); // on reset les données dans le forumulaire
+                  // On met place les infos du responsable dans le tableau parcours
+        var idEntreprise = stage.entreprise;
+        var idParcours = stage.parcours;
+        var indexEntreprise = this.allEntreprises.findIndex(((obj: { _id: any; }) => obj._id == idEntreprise));
+        var indexParcours = this.allParcours.findIndex(((obj: { _id: any; }) => obj._id == idParcours));
+        
+        stage.entreprise = this.allEntreprises[indexEntreprise];
+        stage.parcours = this.allParcours[indexParcours];
+        console.log(stage);
+          this.stageEvent.emit(stage); // on envoie le parcours dans le component parent
+        });
+    }*/
   }
 
   displayFielset(theme : string) : boolean{
@@ -190,12 +232,12 @@ export class FormStageComponent implements OnInit {
   // Fonction qui permet de retourner true ou false pour pouvoir dire si on peut passé à la suite (bouton next)
   disabledNext() : boolean{
     switch (this.page) {
-      case 1: //page 1 
+      case 1: //page 1
         return false;
-      case 2: // page 2 
+      case 2: // page 2
         return false
-      case 3: // page 3 
-        return false; 
+      case 3: // page 3
+        return false;
 
       default:
         return false;
@@ -227,5 +269,9 @@ export class FormStageComponent implements OnInit {
       return false;
     }
   }
+
+
+
+
 
 }

@@ -1,175 +1,44 @@
 <app-navigation [title]="stage.titre"></app-navigation>
 
 <div class="all-card">
-    <div id="status-stage">
-        <ul class="nav-progress">
-            <li [ngClass]="'fieldset-active progress-first'">
-                <i class=""></i>
-                Stage proposé
-            </li>
-            <li [ngClass]="'fieldset-active progress-second' ">
-                <i class=""></i> 
-                Stage validé
-                
-            </li>
-            <li [ngClass]="'fieldset-active progress-second' ">
-                <i class=""></i> 
-                
-                Affecté à un étudiant
-            </li>
-            <li>
-                <i class=""></i> 
-                Associé à un tuteur
-            </li>
-            
-            <li >
-                <i class=""></i> 
-                Associé à un rapporteur
-            </li>
-            
-            <li >
-                <i class=""></i>
-                Stage Terminé
-            </li>
-        </ul>
-        
-        <div class="alert alert-primary">
-            <p><strong>Validation du stage :</strong><br>
-                Cliquez sur Valider pour valider le stage et pour qu'il soit visible par les étudiants.<br>
-                Cliquez sur Supprimer pour refuser le stage et le supprimer de la base de données.
-            </p>
-                <button class="btn btn-danger btn-sm" style="margin:5px;">Supprimer</button>
-                <button class="btn btn-primary btn-sm" style="margin:5px;">Valider</button>
-        </div>
-<!-- Autres messages de changement d'état du stage -->
-<!--
-        <div class="alert alert-primary">
-            <p>
-                <strong>Validation de l'affectation Tuteur/Stage: </strong>
-                <input type="text" readonly class="form-control" value="Antoine Barbier">
-            </p>
-                <button class="btn btn-danger btn-sm" style="margin:5px;">Refuser</button>
-                <button class="btn btn-primary btn-sm" style="margin:5px;">accepter</button>
-        </div>
 
-        <div class="alert alert-primary">
-            <p>
-                <strong>Validation de l'affectation Etudiant/Stage: </strong>
-                <input type="text" readonly class="form-control" value="Antoine Barbier">
-            </p>
-                <button class="btn btn-danger btn-sm" style="margin:5px;">Refuser</button>
-                <button class="btn btn-primary btn-sm" style="margin:5px;">accepter</button>
-        </div>
-
-        <div class="alert alert-primary">
-            <p>
-                <strong>Validation de l'affectation Rapporteur/Stage: </strong>
-                <input type="text" readonly class="form-control" value="Antoine Barbier">
-            </p>
-                <button class="btn btn-danger btn-sm" style="margin:5px;">Refuser</button>
-                <button class="btn btn-primary btn-sm" style="margin:5px;">accepter</button>
-        </div>
-        <div class="alert alert-primary">
-            <p><strong>Demande d'association Etudiant/Stage :</strong><br>
-            </p>
-            <form>
-                <div class="form-group-row">
-                    <label for="inputEtudiantAffectation">Étudiant : </label>
-                    <select id="inputEtudiantAffectation" class="form-control">
-                        <option value="" disabled selected>Selectionner un Étudiant</option>
-                        <option value="1">Antoine</option>
-                        <option value="2">El Mokthar</option>
-                        <option value="3">Issakou</option>
-                    </select>
-                    <button class="btn btn-primary btn-sm" style="margin:5px;">Envoyer la demande</button>
-                </div>
-            </form> 
-        </div>
-
-        <div class="alert alert-primary">
-            <p><strong>Demande d'association Tuteur/Stage :</strong><br>
-            </p>
-            <form>
-                <div class="form-group-row">
-                    <label for="inputEtudiantAffectation">Tuteur : </label>
-                    <select id="inputEtudiantAffectation" class="form-control">
-                        <option value="" disabled selected>Selectionner un tuteur</option>
-                        <option value="1">Antoine</option>
-                        <option value="2">El Mokthar</option>
-                        <option value="3">Issakou</option>
-                    </select>
-                    <button class="btn btn-primary btn-sm" style="margin:5px;">Envoyer la demande</button>
-                </div>
-            </form> 
-        </div>
-        
-        <div class="alert alert-primary">
-            <p><strong>Demande d'association Rapporteur/Stage :</strong><br>
-            </p>
-            <form>
-                <div class="form-group-row">
-                    <label for="inputEtudiantAffectation">Rapporteur : </label>
-                    <select id="inputEtudiantAffectation" class="form-control">
-                        <option value="" disabled selected>Selectionner un rapporteur</option>
-                        <option value="1">Antoine</option>
-                        <option value="2">El Mokthar</option>
-                        <option value="3">Issakou</option>
-                    </select>
-                    <button class="btn btn-primary btn-sm" style="margin:5px;">Envoyer la demande</button>
-                </div>
-            </form> 
-        </div>
-
-        <div class="alert alert-danger">
-            <p>
-                <strong>Message :</strong> Affectation refusé pour l'étudiant Antoine Barbier 
-            </p>
-        </div>
--->
-    </div>
+    <app-gestion-etat-stage id="status-stage" [stage]="stage"></app-gestion-etat-stage>
 
     <!-- Informations du stage -->
     <app-card id="information-stage" title="Informations">
-        <p>Titre : {{ stage?.titre }}</p>
+            <p>Niveau requis : {{ stage?.niveauRequis }}</p>
             <p>Parcours : {{ stage?.parcours?.acronyme }}</p>
             <p>Durée : {{ stage?.duree }} mois</p>
-            <p>Date de saisi du stage : {{ stage?.datePropose | date:'fullDate':'+0200':'fr' }}</p>
-            <p>Date de validation du stage : {{ stage?.dateValide | date:'fullDate':'+0200':'fr' }}</p>
-            <p>Date de début du stage : {{ stage?.datedebut | date:'fullDate':'+0200':'fr' }}</p>
+            <p>Début du stage : {{ stage?.dateDebut| date:'fullDate':'+0200':'fr' }}</p>
     </app-card>
 
     <!-- Avantages du stage -->
-    <app-card id="avantages-stage" title="Avantages">
+    <app-card id="avantages-stage" title="Avantages, conditions et compétences">
         <p>Salaire : {{ stage?.salaire }}</p>
         <p>Avantages : {{ stage?.avantages }}</p>
+        <p>Conditions : {{ stage?.conditions}}</p>
+        <p>Compétences : {{ stage?.competences}}</p>
     </app-card>
 
     <!-- Conditions du stage -->
-    <app-card id="conditions-stage" title="Conditions">
-        <p>Niveau requis : {{ stage?.niveauRequis }}</p>
-        <p>Conditions : {{ stage?.conditions}}</p>
-        <br>
-        <p>Ajouteur : {{ stage?.ajouteur?.nom + ' ' + stage?.ajouteur?.prenom }}</p>
-        <p>tuteurUniv : {{ stage?.tuteurUniv?.nom + ' ' + stage?.tuteurUniv?.prenom }}</p>
-        <p>rapporteur : {{ stage?.rapporteur?.nom + ' ' + stage?.rapporteur?.prenom }}</p>
-        <p>etudiant : {{ stage?.etudiant?.nom + ' ' + stage?.etudiant?.prenom }}</p>
+    <app-card id="conditions-stage" title="Encadrants">
+        <p *ngIf="stage?.tuteur?._id">Tuteur : <a [routerLink]="['/liste-utilisateurs/user', stage?.tuteur?._id]">{{ stage?.tuteur?.nom + ' ' + stage?.tuteur?.prenom }}</a></p>
+        <p *ngIf="stage?.entreprise?.representant">Représentant entreprise: <a [routerLink]="['/liste-utilisateurs/user', stage.entreprise?.representant?._id]">{{ stage.entreprise?.representant?._id ? stage.entreprise?.representant?.nom + ' '+ stage.entreprise?.representant?.prenom: ''}}</a></p>
+        <p *ngIf="stage?.rapporteur?._id">Rapporteur : <a [routerLink]="['/liste-utilisateurs/user', stage?.rapporteur?._id]">{{ stage?.rapporteur?.nom + ' ' + stage?.rapporteur?.prenom }}</a></p>
     </app-card>
 
     <!-- Description du stage -->
     <app-card id="description-stage" title="Description">
-        <p>{{ stage?.description }}</p>
+        <p class="content-with-newline">{{ stage?.description }}</p>
     </app-card>
-    
+
     <!-- Informations sur l'entreprise du stage -->
     <app-card id="entreprise-stage" title="Entreprise">
         <p>Nom : <a [routerLink]="['/liste-entreprises', stage?.entreprise?._id]">{{ stage?.entreprise?.nom }}</a> </p>
         <p>Adresse : {{ stage?.entreprise?.voie }}</p>
         <p>Site internet : <a [href]="stage?.entreprise?.siteweb" target="_blank">{{ stage?.entreprise?.siteweb }}</a> </p>
         <br>
-        <p>Tuteur dans l'entreprise: {{ stage?.entreprise }}</p>
-        <p>Email :</p>
-        <p>tel : </p>
-        <p>fax :</p>
+
     </app-card>
 </div>
 
@@ -177,14 +46,39 @@
 <hr>
 <h2>Pièces Jointes</h2>
 <div id="pieces-jointes-stage">
+    <table class="card-table table table-striped table-bordered table-sm">
+        <thead>
+        <p *ngIf="errorMessage" class="alert alert-danger">Pour modifier une Pièce Jointe veuillez choisir votre fichier en premier </p>
+            <tr>
+                <th scope="col">Nom du fichier </th>
+                <th scope="col">Type</th>
+                <th scope="col">Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- Ajout des stages de la BDD -->
+            <tr *ngFor="let p of stage.fichier ">
+                <td><a [href]="p.chemin" target="_blank">{{ p.nom}}</a></td>
+                <td>pdf</td>
+
+                <td class="table-action">
+                    <!-- Bouton edit => ouvre un modal avec le formulaire de modification -->
+                    <app-button-edit data-toggle="modal" (click)="modifierFichier(p._id)"  data-target="#modifier" ></app-button-edit>
+
+                    <app-button-delete data-toggle="modal" (click)="supprimerFichier(p._id)" data-target="#suppression"></app-button-delete>
+                </td>
+            </tr>
+        </tbody>
+    </table>
     
-    <div class="card commentaire">
-        <div class="card-body">
-            <p><a href="#">Fiche_entreprise.pdf</a></p>
-            <p><a href="#">Rapport_de_stage2.pdf</a></p>
-            <p><a href="#">Fiche_suivie.pdf</a></p>
-        </div>
-    </div>
+    <app-card>
+        <form>
+            <div class="form-group-row">
+                <input id='files' type="file" (input)="fileChoosen($event)" >
+            </div>
+            <button class="btn btn-primary btn-sm" (click)="ajouterFichier()" [disabled]="!uploaded" >Ajouter le fichier</button>
+        </form>
+    </app-card>
 </div>
 <hr>
 
@@ -205,7 +99,7 @@
             <div class="form-group">
                 <label for="inputComment">Ajouter un commentaire : </label>
                 <textarea   id="inputComment"
-                            class="form-control"  
+                            class="form-control"
                             rows="3"></textarea>
             </div>
             <button type="submit" class="btn btn-secondary btn-sm">Envoyer</button>

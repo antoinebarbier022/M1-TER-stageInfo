@@ -8,6 +8,8 @@
 @import 'foundation/form';
 @import 'foundation/badge';
 
+@import 'colors';
+
 
 
 body{
@@ -26,7 +28,15 @@ body{
 
 
 }
+    //les numéro possède tous la meme taille de character => meilleur lisibilité
+    .numero{
+        font-family: "courier";
+    }
 
+    // prendre en compte les sauts de ligne dans les textearea
+    .content-with-newline{
+        white-space: pre-wrap;
+    }
 
     /* Let's get this party started */
     ::-webkit-scrollbar {

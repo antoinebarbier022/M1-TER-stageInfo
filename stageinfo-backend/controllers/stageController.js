@@ -1,4 +1,7 @@
 const Stage = require('../models/stageModel');
+const PJ = require('../models/pieceJointeModel')
+const fs = require('fs');
+const multer =require('../middleware/multer-config')
 
 /**
  * @api {get} /stage Get all Stages
@@ -11,13 +14,14 @@ exports.getAllStage = ((req, res, next) => {
   .populate('ficheSuivi')
   .populate('noteStage')
   .populate('visiteStage')
-
+  .populate('fichier', 'nom chemin')
   .populate('entreprise')
   .populate('parcours', 'acronyme')
 
+
   .populate('ajouteur', 'nom prenom')
-  .populate('tuteurEntreprise', 'nom prenom')
-  .populate('tuteurUniv', 'nom prenom')
+  .populate('repEntreprise', 'nom prenom')
+  .populate('tuteur', 'nom prenom')
   .populate('rapporteur', 'nom prenom')
   .populate('etudiant', 'nom prenom')
   .then(stages => res.status(200).json(stages))
@@ -43,16 +47,45 @@ exports.getOneStage = ((req, res, next) => {
 
   .populate('entreprise')
   .populate('parcours', 'acronyme')
+  .populate('fichier')
 
   .populate('ajouteur', 'nom prenom')
-  .populate('tuteurEntreprise', 'nom prenom')
-  .populate('tuteurUniv', 'nom prenom')
+  .populate('repEntreprise', 'nom prenom')
+  .populate('tuteur', 'nom prenom')
   .populate('rapporteur', 'nom prenom')
   .populate('etudiant', 'nom prenom')
 
   .then(stage => res.status(200).json(stage))
   .catch(error => res.status(404).json({ error }))
 });
+
+// changement de l'état du stage
+exports.editState = (req, res, next) => {
+  var stage;
+  if(req.body.etat == 'valide'){
+    stage = {
+      etat: req.body.etat,
+      dateValide: req.body.etat == 'valide' ? new Date() : null,
+      ...req.body
+    };
+  }else{
+    stage = {
+      etat: req.body.etat,
+      ...req.body
+    };
+  }
+  
+  console.log(stage);
+  Stage.updateOne({_id: req.params.id}, stage)
+      .then(() => {
+          res.status(201).json({
+              message: 'Changement de l\'état du stage : '+ req.params.id + ' -> le nouvel état est [' + req.body.etat +']'
+          });
+      })
+      .catch((error) => {
+          res.status(400).json({error: error});
+      });
+};
 
 /**
  * @api {get} /stage Get Stage by keyword
@@ -83,182 +116,172 @@ exports.getStageByKeyword = ((req, res, next) => {
  * @apiGroup Stage
  */
 exports.createStage = (req, res, next) => {
-  console.log(req.body);
+    console.log(req.body.data);
+    let stage = new Stage();
+    if(req.files) {
+        const stageobject = JSON.parse(req.body.data);
+        delete stageobject._id;
+         stage = new Stage({
+            ...stageobject,
+            fichier: `${req.protocol}://${req.get('host')}/docs/${req.files[0].filename}`
+        });
+    } else {
+       stage = new Stage({
+            etat: req.body.etat,
 
-  const stage = new Stage({
-    etat: req.body.etat,
+            titre: req.body.titre,
+            description: req.body.description,
+            duree: req.body.duree,
 
-    titre: req.body.titre,
-    description: req.body.description,
-    duree: req.body.duree,
+            dateDebut: req.body.dateDebut,
+            datePropose: req.body.datePropose,
+            dateValide: req.body.dateValide,
 
-    dateDebut: req.body.date,
-    datePropose: req.body.datePropose,
-    dateValide: req.body.dateValide,
+            rapport: req.body.rapport,
+            resume: req.body.resume,
 
-    rapport: req.body.rapport,
-    fichier: req.body.fichier,
-    resume: req.body.resume,
+            niveauRequis: req.body.niveauRequis,
+            conditions: req.body.conditions,
+            objectifs: req.body.objectifs,
+            competences: req.body.competences,
 
-    niveauRequis: req.body.niveauRequis,
-    conditions: req.body.conditions,
-    objectifs: req.body.objectifs,
-    competences: req.body.competences,
-    
-    salaire: req.body.salaire,
-    avantages: req.body.avantages,
+            salaire: req.body.salaire,
+            avantages: req.body.avantages,
 
-    commentaires: [], // lors de la création du stage, il n'y a aucun commentaire
+            commentaires: [], // lors de la création du stage, il n'y a aucun commentaire
 
-    ficheSuivi: req.body.ficheSuivi,
-    noteStage: req.body.noteStage,
-    visiteStage: req.body.visiteStage,
+            ficheSuivi: req.body.ficheSuivi,
+            noteStage: req.body.noteStage,
+            visiteStage: req.body.visiteStage,
+            fichier : [],
+            parcours: req.body.parcours,
+            entreprise: req.body.entreprise,
 
-    parcours: req.body.parcours,
-    entreprise: req.body.entreprise,
-
-    ajouteur: req.body.ajouteur ,
-    tuteurEntreprise: req.body.tuteurEntreprise ,
-    tuteurUniv: req.body.tuteurUniv ,
-    rapporteur: req.body.rapporteur ,
-    etudiant: req.body.etudiant ,    
-
-
-    /*
-    ficheSuivi: {
-      dateDebut: req.body.dateDebut,
-      dateFin: req.body.dateFin,
-      commentaireBilan: req.body.commentaireBilan,
-      embauche: req.body.embauche,
-      commentaireEmbauche: req.body.commentaireEmbauche,
-      dateFiche: req.body.dateFiche
-    },
-
-    noteStage: {
-      date: req.body.dateNoteStage,
-      valeur: req.body.noteStage,
-      commentaire: req.body.commentaireNoteStage
-    },
-    parcours: req.body.parcours,
-    /*parcours: {
-      idParcours: req.body.idParcours,
-      nomComplet: req.body.nomCompletParcours
-    },
-
-    ajouteur: {
-      idAjouteur: req.body.idAjouteur,
-      nomComplet: req.body.nomCompletAjouteur
-    },
-    entreprise:req.body.entreprise,
-    /*
-    entreprise: {
-      idEntreprise: req.body.idEntreprise,
-      nomComplet: req.body.nomCompletEntreprise
-    },
-
-    tuteurUniv: {
-      idTuteurUniv: req.body.idTuteurUniv,
-      nomComplet: req.body.nomCompletTuteurUniv
-    },
-
-    tuteurEntreprise: {
-      idTuteurEntreprise: req.body.idTuteurEntreprise,
-      nomComplet: req.body.nomCompletTuteurEntreprise
-    },
-
-    rapporteur: {
-      idRapporteur: req.body.idRapporteur,
-      nomComplet: req.body.nomCompletRapporteur
-    },
-
-    etudiant: {
-      idEtudiant: req.body.idEtudiant,
-      nomComplet: req.body.nomCompletEtudiant
-    },
-
-    idVisite: {
-      typeContact: req.body.typeContact,
-      dateVisite: req.body.dateVisite,
-      commentaire: req.body.commentaireVisite
-    }*/
-
-  });
-
-  stage.save()
-    .then(() => {
-      res.status(201).json({
-        message: 'Post saved successfully!'
-      });
-    })
-    .catch((error) => { res.status(400).json({ error: error});});
-};
-
-/**
- * @api {put} /stage/:id Edit a Stage
- * @apiName EditStage
- * @apiGroup Stage
- *
- * @apiParam {Number} id Stage's unique ID.
- */
-exports.editStage = (req, res, next) => {
-  console.log(req.body);
-
-  const stage = new Stage({
-      _id: req.params.id,
-      ...req.body
-  });
-
-  Stage.updateOne({_id: req.params.id}, stage)
-    .then(() => {
-      res.status(201).json({
-        message: 'Stage updated successfully!'
-      });
-    })
-    .catch((error) => { res.status(400).json({ error: error});});
-};
-
-/**
- * @api {delete} /stage Delete a stage
- * @apiName DeleteOneStage
- * 
- * @apiGroup Stage
- *
- * @apiParam {Number} id Stage's unique ID.
- */
-exports.deleteOneStage = (req, res, next) => {
-  Stage.deleteOne({_id: req.params.id}).then(
-    () => {
-      res.status(200).json({
-        message: 'Stage deleted!'
-      });
+            ajouteur: req.body.ajouteur,
+            repEntreprise: req.body.repEntreprise,
+            tuteur: req.body.tuteur,
+            rapporteur: req.body.rapporteur,
+            etudiant: req.body.etudiant,
+        });
     }
-  ).catch(
-    (error) => {
-      res.status(400).json({
-        error: error
-      });
-    }
-  );
-};
+    stage.save()
+            .then(() => {
+                res.status(201).json({
+                    message: 'Post saved successfully!'
+                });
+            })
+            .catch((error) => {
+                res.status(400).json({error: error});
+            });
+    };
+exports.addPJ= (req,res,next) => {
+    const pj = new PJ({
+        nom: req.files[0].originalname,
+        chemin : `${req.protocol}://${req.get('host')}/docs/${req.files[0].filename}`,
+        idStage : req.params.id
+    });
+    pj.save()
+        .then(() => {
+            const stage = {
+                $push: {fichier :pj._id},
+            }
+            Stage.updateOne({_id: req.params.id}, stage)
+                .then(() => {
+                    res.status(201).json({
+                        message: 'ajoute de la piece jointe du stage : '+ req.params.id +']'
+                    });
+                })
+                .catch((error) => {
+                    res.status(400).json({error: error});
+                });
+        })
+        .catch((error) => {
+            res.status(400).json({error: error});
+        });
 
-/**
- * @api {delete} /stage Delete all stages
- * @apiName DeleteAllStage
- * @apiGroup Stage
- *
- */
-exports.deleteAllStage = (req, res, next) => {
-  Stage.deleteMany({}).then(
-    () => {
-      res.status(200).json({
-        message: 'All Stages deleted!'
-      });
-    }
-  ).catch(
-    (error) => {
-      res.status(400).json({
-        error: error
-      });
-    }
-  );
-};
+
+
+}
+
+    /**
+     * @api {put} /stage/:id Edit a Stage
+     * @apiName EditStage
+     * @apiGroup Stage
+     *
+     * @apiParam {Number} id Stage's unique ID.
+     */
+    exports.editStage = (req, res, next) => {
+        console.log(req.body);
+        console.log(req.files);
+
+        const stage  =
+        /*= req.files ?
+            {
+                ...JSON.parse(req.body.data),
+                fichier: `${req.protocol}://${req.get('host')}/docs/${req.files[0].filename}`,
+                _id: req.params.id
+            } : */{
+                ...req.body,
+                _id: req.params.id
+            }
+        console.log(stage);
+
+
+        Stage.updateOne({_id: req.params.id}, stage)
+            .then(() => {
+                res.status(201).json({
+                    message: 'Stage updated successfully!'
+                });
+            })
+            .catch((error) => {
+                res.status(400).json({error: error});
+                console.log({error: error});
+            });
+    };
+
+    /**
+     * @api {delete} /stage Delete a stage
+     * @apiName DeleteOneStage
+     *
+     * @apiGroup Stage
+     *
+     * @apiParam {Number} id Stage's unique ID.
+     */
+    exports.deleteOneStage = (req, res, next) => {
+        Stage.deleteOne({_id: req.params.id}).then(
+            () => {
+                res.status(200).json({
+                    message: 'Stage deleted!'
+                });
+            }
+        ).catch(
+            (error) => {
+                res.status(400).json({
+                    error: error
+                });
+            }
+        );
+    };
+
+    /**
+     * @api {delete} /stage Delete all stages
+     * @apiName DeleteAllStage
+     * @apiGroup Stage
+     *
+     */
+    exports.deleteAllStage = (req, res, next) => {
+        Stage.deleteMany({}).then(
+            () => {
+                res.status(200).json({
+                    message: 'All Stages deleted!'
+                });
+            }
+        ).catch(
+            (error) => {
+                res.status(400).json({
+                    error: error
+                });
+            }
+        );
+    };
+

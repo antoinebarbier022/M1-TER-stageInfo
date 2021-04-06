@@ -1,6 +1,33 @@
+
 const User = require('../models/userModel');
 const bcrypt = require('bcrypt');
 const jwt = require ('jsonwebtoken');
+const nodemailer = require("nodemailer");
+async function SendEmail(user) {
+
+    let transporter = nodemailer.createTransport({
+        service:'gmail',
+        auth: {
+            user: 'plateformestage2021@gmail.com', // generated ethereal user
+            pass: 'FDS2021.', // generated ethereal password
+        },
+    });
+
+    let info = await transporter.sendMail({
+        from: 'StageInfo', // sender address
+        to: user.email, // list of receivers
+        subject: "Activation de Votre compte", // Subject line
+
+        html: "<b>Bonjour,\n" +
+            "Votre compte Stage info a été crée" +
+            "</b>", // html body
+    });
+
+    console.log("Message sent: %s to %s", info.messageId,email);
+
+}
+
+SendEmail().catch(console.error);
 
 exports.getAllUser = ((req, res, next) => {
     User.find()
@@ -38,8 +65,10 @@ exports.getOneUser = ((req, res, next) => {
     .catch(error => res.status(404).json({ error }))
 });
 
+
 exports.addUser = (req, res, next) =>{
     console.log(req.body)
+    delete req.param._id;
     bcrypt.hash(req.body.password,10)
         .then(hash => {
             const user =new User({
@@ -59,12 +88,16 @@ exports.addUser = (req, res, next) =>{
                 
             });
             user.save()
-                .then(() => res.status(201).json({message: 'Utilisateur crée!'}))
+                .then(() => {res.status(201).json({message: 'Utilisateur crée!'})
+                    //SendEmail(user)
+
+                })
                 .catch(error => res.status(400).json({error}));
         })
         .catch(error => res.status(500).json({error}));
 
 };
+
 
 exports.login= (req, res, next) =>{
     User.findOne({email: req.body.email})
@@ -173,4 +206,20 @@ exports.getRole = ((req, res, next) => {
       }
     );
   };
+exports.deleteall = (req, res, next) => {
+    User.deleteMany({}).then(
+    () => {
+        res.status(200).json({
+            message: 'All Stages deleted!'
+        });
+    }
+).catch(
+    (error) => {
+        res.status(400).json({
+            error: error
+        });
+    }
+);
+};
+
 

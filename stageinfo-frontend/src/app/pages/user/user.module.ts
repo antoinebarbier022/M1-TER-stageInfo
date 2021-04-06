@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { BrowserModule } from '@angular/platform-browser'
 import { RouterModule } from '@angular/router';
-import { FormsModule } from '@angular/forms';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 
 import { SharedModule } from '../../shared/shared.module';
 
@@ -19,27 +19,28 @@ import { ListEtudiantsComponent } from './list-etudiants/list-etudiants.componen
 
 @NgModule({
   declarations: [
-    ProfileUserComponent, 
-    InfoUserComponent, 
-    ListUsersComponent, 
-    EditUserComponent, 
-    EditUserV2Component, 
-    AddUserComponent, 
-    ImportUsersComponent, 
+    ProfileUserComponent,
+    InfoUserComponent,
+    ListUsersComponent,
+    EditUserComponent,
+    EditUserV2Component,
+    AddUserComponent,
+    ImportUsersComponent,
     ListEtudiantsComponent],
-  imports: [
-    CommonModule,
-    BrowserModule,
-    RouterModule,
-    FormsModule,
-    SharedModule,
-  ],exports:[
-    ProfileUserComponent, 
-    InfoUserComponent, 
-    ListUsersComponent, 
-    EditUserComponent, 
-    EditUserV2Component, 
-    AddUserComponent, 
+    imports: [
+        CommonModule,
+        BrowserModule,
+        RouterModule,
+        FormsModule,
+        SharedModule,
+        ReactiveFormsModule,
+    ],exports:[
+    ProfileUserComponent,
+    InfoUserComponent,
+    ListUsersComponent,
+    EditUserComponent,
+    EditUserV2Component,
+    AddUserComponent,
     ImportUsersComponent,
     ListEtudiantsComponent],
 })
