@@ -18,6 +18,8 @@ router.delete('/', Admin, stageCtrl.deleteAllStage);
 
 // changement d'état d'un stage
 router.put('/:id/changement-etat', TuteurResp,stageCtrl.editState); // le responsable des stage peut modifier
+
+router.get('/related/:id', invite, stageCtrl.getAllStageRelatedToUser);
 router.put('/:id/add-pj',Etudiant,multer,stageCtrl.addPJ);
 
 module.exports = router;

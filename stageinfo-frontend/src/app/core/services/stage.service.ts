@@ -25,6 +25,10 @@ export class StageService {
   getStageById(id:any): Observable<any> {
     return this.httpClient.get(this.urlBase+'/api/stage/'+id);
   }
+  /* On récupère tous les stages qui ont un lien avec l'id user (ajouteur, tuteur, etudiant ...) */
+  getAllStageRelatedUser(id:any): Observable<any> {
+    return this.httpClient.get(this.urlBase+'/api/stage/related/'+id);
+  }
 
   /* Ajouter un stage */
   addStage(stage: StageModel) :Observable<any>{

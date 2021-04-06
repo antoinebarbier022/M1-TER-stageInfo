@@ -7,12 +7,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./card-item-stage.component.scss']
 })
 export class CardItemStageComponent implements OnInit {
-  @Input() title: string="";
-  @Input() date: string="";
-  @Input() state: string="";
-  @Input() entreprise: string="";
-
-  
+  @Input() stage: any;  
   constructor() { }
 
   ngOnInit(): void {

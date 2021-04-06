@@ -1,10 +1,10 @@
 <div class="card card-stage"> 
     <p class="stage-etat">
-        <span class="badge badge-danger">{{ state}}</span>
+        <app-state-badge [state]="stage?.etat"> {{ stage?.etat }} </app-state-badge>
     </p>
     <p class="stage-body">
-            <span class="stage-titre">{{ title }}</span><br>
-            <span class="stage-entreprise">{{ entreprise }}</span>
+            <span class="stage-titre">{{ stage?.titre }}</span><br>
+            <span class="stage-entreprise">{{ stage?.entreprise?.nom }}</span>
     </p>
-    <span class="stage-date">{{ date }}</span>
+    <span class="stage-date">{{ stage?.datePropose | date:'yyyy' }}</span>
 </div>
