@@ -31,7 +31,7 @@
                         </a>
                         <ul  *ngFor="let subitem of item.items" class="collapse list-unstyled" [id]="item.nom.split(' ').join('-')">
                             <li class="sidebar-item">
-                                <a class="sidebar-subitem" [routerLink]="subitem.lien">
+                                <a class="sidebar-subitem" [href]="subitem.lien">
                                     {{ subitem.nom }}
                                 </a>
                             </li>
