@@ -1,7 +1,10 @@
 const multer = require('multer');
 
 const MIME_TYPES = {
-    'application/pdf': 'pdf'
+    'application/pdf': 'pdf',
+    'application/msword' : 'doc',
+    'application/octet-stream' : 'doc'
+
 };
 
 const storage = multer.diskStorage({
