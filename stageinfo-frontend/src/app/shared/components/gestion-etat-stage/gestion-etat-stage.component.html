@@ -29,21 +29,6 @@
     </li>
 </ul>
 
-<div *ngIf="false" style="margin-bottom:10px;">
-    <button class="btn btn-primary btn-sm" (click)="changerEtat('propose')">Proposer</button>
-    <button class="btn btn-primary btn-sm" style="margin:5px;" (click)="changerEtat('refuse')">Refuser</button>
-    <button class="btn btn-primary btn-sm" style="margin:5px;" (click)="changerEtat('valide')">Valider</button>
-    
-    <button class="btn btn-primary btn-sm" style="margin:5px;" (click)="changerEtat('reserve')">Réserver</button>
-    
-    <button class="btn btn-primary btn-sm" style="margin:5px;" (click)="changerEtat('affectEtudiant')">Etudiant affecté</button>
-    <button class="btn btn-primary btn-sm" style="margin:5px;" (click)="changerEtat('affectTuteur')">Tuteur affecté</button>
-    <button class="btn btn-primary btn-sm" style="margin:5px;" (click)="changerEtat('affectRapporteur')">Rapporteur affecté</button>
-    
-    <button class="btn btn-primary btn-sm" style="margin:5px;" (click)="changerEtat('termine')">terminer</button>
-    
-</div>
-
 <div class="admin-change-state" *ngIf="!(getState() == 'propose')">
     <button *ngIf="(getViewRole() =='admin') && (getRole() == 'admin')"
     class="btn btn-outline-danger btn-sm" 
@@ -71,10 +56,6 @@
     </span>
 </p>
 
-
-
-
-
 <!-- Première étape du processus de gestion des états d'un stage-->
 <!-- On choisit de valider le stage ou de le refuser. -->
 <!-- Un stage valide pourra être vu par tous le monde, alors qu'un stage proposé sera seulement vu par l'admin, le responsable stage -->
@@ -87,126 +68,71 @@
         <button class="btn btn-warning btn-sm" style="margin:5px;" (click)="changerEtat('valide')">Valider</button>
 </div>
 
-<div class="alert alert-refuse" *ngIf="getState() == 'refuse'">
-    <p>
-        <strong>Le stage a été refusé.</strong> 
-    </p>
-</div>
-
-<div class="alert alert-valide" *ngIf="getState() == 'valide' && ((getViewRole() =='etudiant') && (getRole() == 'admin')) || (getRole() == 'etudiant')">
-    <p><strong>Pour postuler à ce stage, veuillez contacter l'entreprise.</strong><br>
-        Après l'accord de l'entreprise, veuillez signaler l'obtention de votre stage au responsable des stages.</p>
-        <button class="btn btn btn-sm btn-success btn-sm" >Contacter l'entreprise</button>
-        <button class="btn btn btn-sm btn-outline-success btn-sm" style="margin:5px;">Contacter le responsable</button>
-</div>
-
 <!-- Deuxième étape -->
 <!-- Apprès la validation, si l'ajouteur est un étudiant il est automatiquement reservé pour lui -->
 <!-- Cependant, l'étudiant peut rendre le stage en non reservé si il souhaite le laisser pour un autre étudiant -->
-<div class="alert alert-reserve" *ngIf="(getState() == 'reserve') && ((getViewRole() =='etudiant') && (getRole() == 'admin')) || (getRole() == 'etudiant')">
-    <p>Ce stage est déjà <strong>réservé</strong> à un étudiant. 
-    </p>
-</div>
-
-<div class="alert alert-reserve" *ngIf="(getState() == 'reserve') && ((getViewRole() =='etudiant') && (getRole() == 'admin')) || (getRole() == 'etudiant')">
-    <p><strong></strong>
-        <button class="btn btn btn-sm btn-outline-danger btn-sm"  (click)="changerEtat('valide')">Rendre ce stage disponible pour tous les étudiants</button>
-    </p>
-</div>
-
-<div class="alert alert-valide" *ngIf="(getState() == 'valide') && ((getViewRole() =='repEntreprise') && (getRole() == 'admin')) || (getRole() == 'repEntreprise')">
-    <form (ngSubmit)="onSubmitReserve(f)" #f="ngForm">
-        <p><strong>Selectionner un étudiant pour ce stage :</strong>
-            <select  id="inputEtudiantAffectation"  
-                    class="form-control"
-                    name="selectEtudiant" ngModel required>
-                <option value="" disabled selected>Selectionner un étudiant</option>
-                <option *ngFor="let etudiant of allEtudiant" [ngValue]="etudiant?._id">{{ etudiant?.nom + ' ' + etudiant?.prenom }}</option>     
-            </select>
-    
-            <button type="submit" class="btn btn btn-sm btn-success btn-sm"  [disabled]="f.invalid">Reservé le stage</button>
-        </p>
-    </form>
-</div>
 
 <!-- Troisième étape -->
 <!-- Le stage peut être affecté à un étudiant-->
-<div class="alert alert-valide" *ngIf="getState() == ('valide' || 'reserve') && ( ((getViewRole() =='respParcours') && (getRole() == 'admin')) || (getViewRole() =='admin' && getRole() == 'admin') || (getRole() == 'respParcours'))">
-    <p><strong>Selectionner un étudiant pour ce stage :</strong><br>
-    </p>
-    <form (ngSubmit)="onSubmitAffectEtudiant(f)" #f="ngForm">
-        <div class="form-group-row">
-            <select  id="inputEtudiantAffectation2"  
-                    class="form-control"
-                    name="selectEtudiant" ngModel required>
-                <option value="" disabled selected>Selectionner un étudiant</option>
-                <option *ngFor="let etudiant of allEtudiant" [ngValue]="etudiant?._id">{{ etudiant?.nom + ' ' + etudiant?.prenom }}</option>     
-            </select>
-            <button type="submit" class="btn btn-success btn-sm" [disabled]="f.invalid">Affecté l'étudiant</button>
-        </div>
-    </form>
-</div>
+
 
 <!-- Quatrième étape -->
 <!-- Un enseignant peut choisir de devenir le tuteur du stage -->
-<div class="alert alert-affectEtudiant" *ngIf="((getState() == 'affectEtudiant') || (getState() == 'reserve')) && ((getViewRole() =='tuteur') && (getRole() == 'admin')) || (getRole() == 'tuteur')">
-    <p><strong></strong>
-        <button class="btn btn-sm btn-outline-primary" style="margin:5px;" (click)="changerEtat('affectTuteur')">Devenir le tuteur de ce stage</button>
-    </p>
-</div>
-<div class="alert alert-affectEtudiant" *ngIf="getState() == 'affectEtudiant' && ((getViewRole() =='etudiant') && (getRole() == 'admin')) || (getRole() == 'etudiant')">
-    <p><strong>Information : </strong> Un étudiant à déja été affecté pour ce stage.</p>
-</div>
+
 <!-- Ou bien l'administrateur ou le responsable de stage peut affecté un tuteur -->
-<div class="alert alert-affectEtudiant" *ngIf="((getState() == 'affectEtudiant') || (getState() == 'reserve')) && (getViewRole() =='admin')">
-    <p><strong>Affecter un tuteur</strong><br>
-    </p>
-    <form (ngSubmit)="onSubmitAffectTuteur(f)" #f="ngForm">
-        <div class="form-group-row">
-            <select  id="inputTuteurAffectation"  
-                    class="form-control"
-                    name="selectTuteur" ngModel required>
-                <option value="" disabled selected>Selectionner un tuteur</option>
-                <option *ngFor="let tuteur of allTuteur" [ngValue]="tuteur?._id">{{ tuteur?.nom + ' ' + tuteur?.prenom }}</option>     
-            </select>
-            <button type="submit" class="btn btn-primary btn-sm" [disabled]="f.invalid">Affecter le tuteur</button>
-        </div>
-    </form>
-</div>
 
 <!-- Cinquième étape -->
 <!-- un enseignant peut choisir de devenir rapporteur du stage -->
-<div class="alert alert-affectRapporteur" *ngIf="getState() == 'affectTuteur' && ((getViewRole() =='tuteur') && (getRole() == 'admin')) || (getRole() == 'tuteur')">
-    <p><strong></strong>
-        <button class="btn btn-sm btn-outline-primary" (click)="changerEtat('affectRapporteur')">Devenir rapporteur de ce stage</button>
-    </p>
-</div>
+
 <!-- ou bien on peut afffecté un rapporteur au stage-->
-<div class="alert alert-affectRapporteur" *ngIf="getState() == 'affectTuteur' && (getViewRole() == ('admin'))">
-    <p><strong>Affecter un rapporteur</strong><br>
-    </p>
-    <form (ngSubmit)="onSubmitAffectRapporteur(f)" #f="ngForm">
-        <div class="form-group-row">
-            <select  id="inputRapporteurAffectation"  
-                    class="form-control"
-                    name="selectRapporteur" ngModel required>
-                <option value="" disabled selected>Selectionner un rapporteur</option>
-                <!--Pour pas que le tuteur soit aussi le rapporteur, on n'affiche pas le tuteur dans la liste des tuteurs qui peuvent être selectionné comme rapporteurs-->
-                <ng-container *ngFor="let rapporteur of allTuteur" >
-                    <option 
-                        *ngIf="rapporteur?._id != stage.tuteur?._id"
-                        [ngValue]="rapporteur?._id">{{ rapporteur?.nom + ' ' + rapporteur?.prenom }}</option>   
-                </ng-container>
-                  
-            </select>
-            <button type="submit" class="btn btn-primary btn-sm" [disabled]="f.invalid">Affecter le rapporteur</button>
-        </div>
-    </form>
-</div>
+
 
 <!-- Dernière étape -->
 <!-- Le stage est terminé une fois que la soutenance est passé (c'est le serveur qui s'occupe de faire cette vérification)-->
-<div class="alert alert-termine" *ngIf="getState() == 'termine'">
-    <p><strong>Stage terminé :</strong> La fiche du stage a été placé dans les archives.</p>
-</div>
 
+
+
+<!-- Affichage des différents messages d'informations -->
+<ng-container *ngFor="let message of messages">
+    <ng-container *ngFor="let role of message.role">
+        <ng-container *ngFor="let etat of message.etat">
+            <div *ngIf="afficheMessage(etat, role)" [class]="'alert alert-'+ etat">
+                <p [innerHTML]="message.content"></p>
+            </div>
+        </ng-container>
+    </ng-container>
+</ng-container>
+
+<!-- Affichage des différents messages de changement d'état (message button) -->
+<ng-container *ngFor="let message of messagesButton">
+    <ng-container *ngFor="let role of message.role">
+        <ng-container *ngFor="let etat of message.etat">
+            <div *ngIf="afficheMessage(etat, role)" [class]="'alert alert-'+ etat">
+                <button [class]="'btn btn-sm btn-outline-'+etat" (click)="changerEtat(message.newState)" [innerHTML]="message.content"></button>
+            </div>
+        </ng-container>
+    </ng-container>
+</ng-container>
+
+<!-- Affichage des différents messages de changement d'état (message select) -->
+<ng-container *ngFor="let message of messagesSelect">
+    <ng-container *ngFor="let role of message.role">
+        <ng-container *ngFor="let etat of message.etat">
+            <div *ngIf="afficheMessage(etat, role)" [class]="'alert alert-'+ etat">
+                <form (ngSubmit)="onSubmit(f,message.newState)" #f="ngForm">
+                    <div class="form-group-row">
+                        <label [for]="'input'+etat"> {{ message.label }}</label>
+                        <select [id]="'input'+ etat" class="form-control"
+                                [name]="message.name" ngModel required>
+                            <option value="" disabled selected>{{ message.default }}</option>
+                            <ng-container *ngFor="let user of message.dataTable">
+                                <option [ngValue]="user?._id">{{ user?.nom + ' ' + user?.prenom }}</option>   
+                            </ng-container>
+                        </select>
+                        <button type="submit" [class]="'btn  btn-sm btn-'+etat" [disabled]="f.invalid">{{ message.button}}</button>
+                    </div>
+                </form>
+            </div>
+        </ng-container>
+    </ng-container>
+</ng-container>

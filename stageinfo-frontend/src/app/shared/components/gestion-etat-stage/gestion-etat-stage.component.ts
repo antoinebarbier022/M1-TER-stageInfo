@@ -26,15 +26,87 @@ export class GestionEtatStageComponent implements OnInit, OnDestroy {
   // pour pouvoir détruire les subscribes
   destroy$: Subject<boolean> = new Subject<boolean>();
 
+  // variable init dans le constructeur qui contiennent tous les messages d'information et buton et select de changement d'état d'un stage
+  messages: any;
+  messagesButton: any ;
+  messagesSelect: any ;
+
   constructor(private stageService:StageService, 
               private route:ActivatedRoute, 
               private authService:AuthService) { 
-  }
 
-  ngOnInit(): void {
+    this.selectEtudiant="";
+    this.selectTuteur="";
+    this.selectRapporteur="";
+
     this.allUsers = this.route.snapshot.data.allUsers;
     this.allEtudiant = this.allUsers.filter(((obj: { role: any; }) => obj.role == 'etudiant'));
     this.allTuteur = this.allUsers.filter(((obj: { role: any; }) => obj.role == 'tuteur'));
+
+ 
+
+  }
+
+
+  ngOnInit(): void {
+
+    // type de role disponible : 
+    // - all : tous les roles
+    // - les roles normales
+    // - ajouteur : pour indiqué que la personne est l'ajouteur
+    this.messages = [
+      // stage refusé
+      { etat:['refuse'], role:['all'], content:"Le stage a été refusé."},
+      // stage validé
+      { etat:['valide'], role:['etudiant','invite'], content:"<strong>Pour postuler à ce stage, veuillez contacter l'entreprise.</strong><br> Après l'accord de l'entreprise, veuillez signaler l'obtention de votre stage au responsable des stages."},
+      // stage affecté à un étudiant
+      { etat:['affectEtudiant'], role:['etudiant','invite'], content:"Un étudiant à déja été affecté pour ce stage."},
+      // stage réservé
+      { etat:['reserve'], role:['etudiant','invite'], content:"Ce stage est déjà <strong>réservé</strong> à un étudiant."},
+      // stage affecté à un rapporteur
+      { etat:['affectRapporteur'], role:['all'], content:"<strong>Information :</strong> Le stage passera à l'état terminé une fois que le note du stage sera délivré."},
+      // stage terminé
+      { etat:['termine'], role:['all'], content:"<strong>Stage terminé :</strong> La fiche du stage a été placé dans les archives."},
+    ];
+
+    this.messagesButton = [
+      { etat:['affectEtudiant','reserve'], role:['tuteur'], newState:"affectTuteur", content:"Devenir le tuteur de ce stage"},
+      { etat:['affectTuteur'], role:['tuteur'], newState:"affectRapporteur", content:"Devenir le rapporteur de ce stage"},
+      { etat:['reserve'], role:['etudiant'], newState:"valide", content:"Rendre ce stage disponible pour tous les étudiants"},
+    ];
+    
+    this.messagesSelect = [
+      {  // selectionner un etudiant
+        etat:['valide'], // message s'affiche pour ses états 
+        role:['admin'],  // seulement pour ses roles
+        newState:"affectEtudiant",  // changement d'état vers newState
+        name:"selectEtudiant",  // nom pour le formulaire template
+        dataTable:this.allEtudiant,  // tableau des données proposées dans le select
+        label:"Affecter un étudiant",  
+        default:"Selectionner un étudiant", // option par default du select
+        button:"Affecter l'étudiant !!!!" // message du bouton submit
+      },
+      { // selectionner un tuteur
+        etat:['affectEtudiant','reserve'], 
+        role:['admin'], 
+        newState:"affectTuteur", 
+        name:"selectTuteur",
+        dataTable:this.allTuteur, 
+        label:"Affecter un tuteur", 
+        default:"Selectionner un tuteur",
+        button:"Affecter le tuteur !!!!"
+      },
+      { // selectionner un rapporteur
+        etat:['affectTuteur'], 
+        role:['admin'], 
+        newState:"affectRapporteur", 
+        name:"selectRapporteur",
+        dataTable: this.allTuteur.filter(((obj: { _id: any; }) => obj._id != this.stage.tuteur?._id)),  // on enleve le tuteur du stage de la liste des rapporteur potentiel
+        label:"Affecter un rapporteur", 
+        default:"Selectionner un rapporteur",
+        button:"Affecter le rapporteur !!!!"
+      },
+    ];
   }
   ngOnDestroy() {
     this.destroy$.next(true);
@@ -42,8 +114,30 @@ export class GestionEtatStageComponent implements OnInit, OnDestroy {
     this.destroy$.unsubscribe();
   }
 
-  // pour ce component on utilise des formulaires avec la méthode template 
+  afficheMessage(etat:string, role:string):boolean{
+    // l'admin avec la vu du role
+    if((role == 'all') || ((this.getRole() == role) && (role != 'admin')) || (this.getRole() == 'admin' && this.getViewRole() == role)){
+      if(this.getState() == etat){
+        return true;
+      }else{
+        return false;
+      }
+    }else{
+      return false;
+    }
+  }
 
+  onSubmit(form: NgForm,etat:string){
+    switch (etat) {
+      case 'reserve': this.onSubmitReserve(form); break;
+      case 'affectEtudiant': this.onSubmitAffectEtudiant(form); break;
+      case 'affectTuteur': this.onSubmitAffectTuteur(form); break;
+      case 'affectRapporteur': this.onSubmitAffectRapporteur(form); break;
+      default:
+        break;
+    }
+  }
+ 
   onSubmitReserve(form: NgForm){
       const newData = {
         etat: 'reserve',
@@ -186,7 +280,6 @@ export class GestionEtatStageComponent implements OnInit, OnDestroy {
   }
 
   isEtudiant(id:any):boolean{
-    
     // si il ne trouve pas l'ajouteur dans la liste des étudiants alors ce n'est pas un étudiant
     return this.allEtudiant.some(((obj: { _id: any; }) => obj._id == id ));
   }

@@ -45,6 +45,134 @@
     background-color: rgba($color-termine, .1);
 }
 
+//_________________________________
+
+.btn-propose{
+    color:#000;
+    background-color: $color-propose;
+}
+
+.btn-valide{
+    color:#fff;
+    background-color: $color-valide;
+}
+
+.btn-refuse{
+    color:#fff;
+    background-color: $color-refuse;
+}
+
+.btn-reserve{
+    color:#fff;
+    background-color: $color-reserve;
+}
+
+.btn-affectEtudiant{
+    color:#fff;
+    background-color: $color-affectEtudiant;
+}
+
+.btn-affectTuteur{
+    color:#fff;
+    background-color: $color-affectTuteur;
+}
+
+.btn-affectRapporteur{
+    color:#fff;
+    background-color: $color-affectRapporteur;
+}
+
+.btn-termine{
+    color:#fff;
+    background-color: $color-termine;
+}
+
+
+//------------------------------------
+
+
+.btn-outline-propose{
+    color:$color-propose;
+    border-color: $color-propose;
+}
+
+.btn-outline-valide{
+    color:$color-valide;
+    border-color: $color-valide;
+}
+
+.btn-outline-refuse{
+    color:$color-refuse;
+    border-color: $color-refuse;
+}
+
+.btn-outline-reserve{
+    color:$color-reserve;
+    border-color: $color-reserve;
+}
+
+.btn-outline-affectEtudiant{
+    color:$color-affectEtudiant;
+    border-color: $color-affectEtudiant;
+}
+
+.btn-outline-affectTuteur{
+    color:$color-affectTuteur;
+    border-color: $color-affectTuteur;
+}
+
+.btn-outline-affectRapporteur{
+    color:$color-affectRapporteur;
+    border-color: $color-affectRapporteur;
+}
+
+.btn-outline-termine{
+    color:$color-termine;
+    border-color: $color-termine;
+}
+
+//-----------------------------------
+
+.btn-outline-propose:hover{
+    color:#000;
+    background-color: $color-propose;
+}
+
+.btn-outline-valide:hover{
+    color:#fff;
+    background-color: $color-valide;
+}
+
+.btn-outline-refuse:hover{
+    color:#fff;
+    background-color: $color-refuse;
+}
+
+.btn-outline-reserve:hover{
+    color:#fff;
+    background-color: $color-reserve;
+}
+
+.btn-outline-affectEtudiant:hover{
+    color:#fff;
+    background-color: $color-affectEtudiant;
+}
+
+.btn-outline-affectTuteur:hover{
+    color:#fff;
+    background-color: $color-affectTuteur;
+}
+
+.btn-outline-affectRapporteur:hover{
+    color:#fff;
+    background-color: $color-affectRapporteur;
+}
+
+.btn-outline-termine:hover{
+    color:#fff;
+    background-color: $color-termine;
+}
+
 ul{
     padding:20px 40px;
     display: flex;
