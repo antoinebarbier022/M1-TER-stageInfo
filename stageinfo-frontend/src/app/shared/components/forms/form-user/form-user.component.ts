@@ -148,31 +148,25 @@ export class FormUserComponent implements OnInit {
   }
 
   setInputForm(id:any){
-    // récupération des données du user
-    this.userService.getUserById(id)
-      .pipe(takeUntil(this.destroy$))
-      .subscribe((_parcours: any) => {
-        this.user = _parcours;
-        // On set les données du user dans le formulaire
-        this.userForm.patchValue({
-          nom: _parcours.nom,
-          prenom: _parcours.prenom,
-          email: _parcours.email,
-          telephone: _parcours.telephone,
-          fax: _parcours.fax,
-          password: _parcours.password,
-          role: _parcours.role,
+  // On set les données du user dans le formulaire
+  this.userForm.patchValue({
+    nom: this.selectedUser.nom,
+    prenom: this.selectedUser.prenom,
+    email: this.selectedUser.email,
+    telephone: this.selectedUser.telephone,
+    fax: this.selectedUser.fax,
+    password: this.selectedUser.password,
+    role: this.selectedUser.role,
 
-          // Étudiant
-          numeroEtudiant: _parcours.numeroEtudiant,
-          promotion: _parcours.promotion,
-          parcours: _parcours.parcours?._id,
+    // Étudiant
+    numeroEtudiant: this.selectedUser.numeroEtudiant,
+    promotion: this.selectedUser.promotion,
+    parcours: this.selectedUser.parcours?._id,
 
-          // Entreprise
-          fonction: _parcours.fonction,
-          entreprise: _parcours.entreprise?._id
-        });
-      });
+    // Entreprise
+    fonction: this.selectedUser.fonction,
+    entreprise: this.selectedUser.entreprise?._id
+  });
   }
 
   
