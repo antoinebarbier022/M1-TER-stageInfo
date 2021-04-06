@@ -4,11 +4,15 @@ import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 import { StageService } from 'src/app/core/services/stage.service';
 import {pjService} from "../../../core/services/pj.service";
+import {MatSnackBar} from '@angular/material/snack-bar';
+import {Overlay} from "@angular/cdk/overlay";
+
 
 @Component({
   selector: 'app-info-stage',
   templateUrl: './info-stage.component.html',
-  styleUrls: ['./info-stage.component.scss']
+  styleUrls: ['./info-stage.component.scss'],
+  providers: [MatSnackBar,Overlay]
 })
 export class InfoStageComponent implements OnInit, OnDestroy {
   stage : any;
@@ -40,10 +44,14 @@ export class InfoStageComponent implements OnInit, OnDestroy {
   // pour pouvoir détruire les subscribes
   destroy$: Subject<boolean> = new Subject<boolean>();
   errorMessage: boolean = false;
+  alert: boolean=false;
 
   constructor(private route:ActivatedRoute,
               private stageService: StageService,
-              private pjService : pjService) { }
+              private pjService : pjService,
+              private _snackBar: MatSnackBar) {
+
+  }
 
   ngOnInit(): void {
     this.stage = this.route.snapshot.data.stage;
@@ -56,6 +64,11 @@ export class InfoStageComponent implements OnInit, OnDestroy {
       nom: this.allUsers[index].nom,
       prenom: this.allUsers[index].prenom
     }
+  }
+  openSnackBar(message: string, action: string) {
+    this._snackBar.open(message ,action, {
+      duration: 3000,
+    });
   }
 
 
@@ -82,7 +95,11 @@ export class InfoStageComponent implements OnInit, OnDestroy {
         .pipe(takeUntil(this.destroy$))
         .subscribe((_res: any) => {
           console.log("Stage : "+ this.stage.titre + " modifié !");
-        });
+          this.alert=true;
+        },
+          error => {  this.openSnackBar(error.message,"")
+          }
+        );
     this.stage = this.route.snapshot.data.stage;
   }
 
@@ -92,7 +109,12 @@ export class InfoStageComponent implements OnInit, OnDestroy {
         .subscribe((_res: any) => {
           console.log("Stage : " + this.stage.titre + " modifié !");
           this.stage = this.route.snapshot.data.stage;
-        });
+          this.openSnackBar("Fichier Modifié  ","")
+
+        },
+          error => {
+            this.openSnackBar(error.message, "")
+          });
 
     }
     else{
@@ -105,7 +127,12 @@ export class InfoStageComponent implements OnInit, OnDestroy {
     this.pjService.deletePJById(_id).pipe(takeUntil(this.destroy$))
       .subscribe((_res: any) => {
         console.log("Stage : " + this.stage.titre + " modifié !");
-      });
+        this.openSnackBar("Fichier Supprimer ","")
+
+      },
+        error => {
+          this.openSnackBar(error.message, "")
+        });
   }
 }
 

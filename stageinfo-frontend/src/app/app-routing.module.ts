@@ -106,7 +106,7 @@ const routes: Routes = [
         user: UserResolver  // on associe un resolver à la route
       },
   },
-  { path: 'profile', component: ProfileUserComponent, canActivate: [AuthGuardService, RoleGuard]},
+  { path: 'profile', component: ProfileUserComponent, canActivate: [AuthGuardService]},
 
   //routes entreprise
   { path: 'liste-entreprises', component: ListEntreprisesComponent, canActivate: [AuthGuardService, RoleGuard], resolve: { entreprises: AllEntreprisesResolver, allUsers: AllUsersResolver, }},

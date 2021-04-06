@@ -25,6 +25,7 @@ import { SharedModule } from './shared/shared.module';
 import { AuthInterceptor } from './core/interceptors/auth-interceptor';
 import { AngularFileUploaderModule } from "angular-file-uploader";
 import {PapaParseModule} from "ngx-papaparse";
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 // Par exemple pour obtenir les dates en fr
 registerLocaleData(localeFr, 'fr');
@@ -48,7 +49,8 @@ registerLocaleData(localeFr, 'fr');
 
     PagesModule,
     CoreModule,
-    SharedModule
+    SharedModule,
+    BrowserAnimationsModule
   ],
   providers: [
     {provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true},
