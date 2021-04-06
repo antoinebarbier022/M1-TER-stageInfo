@@ -42,9 +42,6 @@ export class GestionEtatStageComponent implements OnInit, OnDestroy {
     this.allUsers = this.route.snapshot.data.allUsers;
     this.allEtudiant = this.allUsers.filter(((obj: { role: any; }) => obj.role == 'etudiant'));
     this.allTuteur = this.allUsers.filter(((obj: { role: any; }) => obj.role == 'tuteur'));
-
- 
-
   }
 
 
@@ -72,7 +69,7 @@ export class GestionEtatStageComponent implements OnInit, OnDestroy {
     this.messagesButton = [
       { etat:['affectEtudiant','reserve'], role:['tuteur'], newState:"affectTuteur", content:"Devenir le tuteur de ce stage"},
       { etat:['affectTuteur'], role:['tuteur'], newState:"affectRapporteur", content:"Devenir le rapporteur de ce stage"},
-      { etat:['reserve'], role:['etudiant'], newState:"valide", content:"Rendre ce stage disponible pour tous les étudiants"},
+      { etat:['reserve'], role:['ajouteur'], newState:"valide", content:"Rendre ce stage disponible pour tous les étudiants"},
     ];
     
     this.messagesSelect = [
@@ -116,7 +113,7 @@ export class GestionEtatStageComponent implements OnInit, OnDestroy {
 
   afficheMessage(etat:string, role:string):boolean{
     // l'admin avec la vu du role
-    if((role == 'all') || ((this.getRole() == role) && (role != 'admin')) || (this.getRole() == 'admin' && this.getViewRole() == role)){
+    if( ( (role == 'ajouteur') && (this.ajouteurIsAuth())) || (role == 'all') || ((this.getRole() == role) && (role != 'admin')) || (this.getRole() == 'admin' && this.getViewRole() == role)){
       if(this.getState() == etat){
         return true;
       }else{
@@ -282,6 +279,10 @@ export class GestionEtatStageComponent implements OnInit, OnDestroy {
   isEtudiant(id:any):boolean{
     // si il ne trouve pas l'ajouteur dans la liste des étudiants alors ce n'est pas un étudiant
     return this.allEtudiant.some(((obj: { _id: any; }) => obj._id == id ));
+  }
+
+  ajouteurIsAuth():boolean{
+    return this.stage.ajouteur == this.authService.getUserid();
   }
 
 }
