@@ -75,7 +75,7 @@ exports.getOneStage = ((req, res, next) => {
 
   .populate('entreprise')
   .populate('parcours', 'acronyme')
-  .populate('fichier')
+  .populate('fichier', 'nom chemin extension' )
 
   .populate('ajouteur', 'nom prenom')
   .populate('repEntreprise', 'nom prenom')
