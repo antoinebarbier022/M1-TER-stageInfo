@@ -18,6 +18,7 @@ export class GestionEtatStageComponent implements OnInit, OnDestroy {
   allUsers:any;
   allEtudiant:any;
   allTuteur:any;
+  allRapporteur:any;
 
   selectEtudiant:any;
   selectTuteur:any;
@@ -45,7 +46,11 @@ export class GestionEtatStageComponent implements OnInit, OnDestroy {
   }
 
 
+
   ngOnInit(): void {
+
+    // on enleve le tuteur du stage de la liste des rapporteurs potentiel
+    this.allRapporteur = this.allTuteur.filter(((obj: { _id: any; }) => obj._id != this.stage.tuteur?._id))
 
     // type de role disponible : 
     // - all : tous les roles
@@ -78,7 +83,7 @@ export class GestionEtatStageComponent implements OnInit, OnDestroy {
         role:['admin'],  // seulement pour ses roles
         newState:"affectEtudiant",  // changement d'état vers newState
         name:"selectEtudiant",  // nom pour le formulaire template
-        dataTable:this.allEtudiant,  // tableau des données proposées dans le select
+        typeTable:'etudiant',  // type d'utilisateur dans le select
         label:"Affecter un étudiant",  
         default:"Selectionner un étudiant", // option par default du select
         button:"Affecter l'étudiant !!!!" // message du bouton submit
@@ -88,7 +93,7 @@ export class GestionEtatStageComponent implements OnInit, OnDestroy {
         role:['admin'], 
         newState:"affectTuteur", 
         name:"selectTuteur",
-        dataTable:this.allTuteur, 
+        typeTable:'tuteur', 
         label:"Affecter un tuteur", 
         default:"Selectionner un tuteur",
         button:"Affecter le tuteur !!!!"
@@ -98,13 +103,14 @@ export class GestionEtatStageComponent implements OnInit, OnDestroy {
         role:['admin'], 
         newState:"affectRapporteur", 
         name:"selectRapporteur",
-        dataTable: this.allTuteur.filter(((obj: { _id: any; }) => obj._id != this.stage.tuteur?._id)),  // on enleve le tuteur du stage de la liste des rapporteur potentiel
+        typeTable: 'rapporteur',
         label:"Affecter un rapporteur", 
         default:"Selectionner un rapporteur",
         button:"Affecter le rapporteur !!!!"
       },
     ];
   }
+
   ngOnDestroy() {
     this.destroy$.next(true);
     // Now let's also unsubscribe from the subject itself:
@@ -274,6 +280,20 @@ export class GestionEtatStageComponent implements OnInit, OnDestroy {
           this.stage.dateValide = new Date();
         }
       });
+  }
+
+  listeUser(type:string):any{
+    switch (type) {
+      case 'etudiant':
+        return this.allEtudiant;
+      case 'tuteur':
+        return this.allTuteur;
+      case 'rapporteur':
+        this.allRapporteur = this.allTuteur.filter(((obj: { _id: any; }) => obj._id != this.stage.tuteur?._id));
+        return this.allRapporteur;
+      default:
+        return this.allUsers;
+    }
   }
 
   isEtudiant(id:any):boolean{

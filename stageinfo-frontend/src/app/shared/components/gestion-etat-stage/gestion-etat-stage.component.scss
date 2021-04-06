@@ -213,3 +213,35 @@ ul{
     margin-top:15px;
     margin-bottom:0;
 }
+
+
+form{
+    fieldset{
+        margin-bottom: 10px;
+    }
+    .form-control-plaintext{
+        outline : none;
+    }
+    .form-group-row{
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+
+        label{
+            min-width:200px;
+            align-self:center;
+            text-align: left;
+            margin:0;
+        }
+        input, select{
+            padding:3px;
+        }
+        .btn{
+            min-width:200px;
+        }
+    }    
+}
+
+
+
+

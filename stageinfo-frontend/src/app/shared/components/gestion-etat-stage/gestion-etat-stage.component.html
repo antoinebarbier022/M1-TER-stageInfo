@@ -32,12 +32,11 @@
 <div class="admin-change-state" *ngIf="!(getState() == 'propose')">
     <button *ngIf="(getViewRole() =='admin') && (getRole() == 'admin')"
     class="btn btn-outline-danger btn-sm" 
-    style="margin:5px;"
     (click)="etatPrecedent()">Annuler le dernier changement d'état</button>
     
     <button *ngIf="getState() == 'affectRapporteur' && (getViewRole() =='admin') && (getRole() == 'admin')"
     class="btn btn-outline-secondary btn-sm" 
-    style="margin:5px;"
+    style="margin-left:5px;"
     (click)="changerEtat('termine')">Terminer</button>
 </div>
 
@@ -125,7 +124,7 @@
                         <select [id]="'input'+ etat" class="form-control"
                                 [name]="message.name" ngModel required>
                             <option value="" disabled selected>{{ message.default }}</option>
-                            <ng-container *ngFor="let user of message.dataTable">
+                            <ng-container *ngFor="let user of listeUser(message.typeTable)">
                                 <option [ngValue]="user?._id">{{ user?.nom + ' ' + user?.prenom }}</option>   
                             </ng-container>
                         </select>
