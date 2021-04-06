@@ -76,7 +76,7 @@ export class FormEntrepriseComponent implements OnInit {
       description:['',Validators.required],
 
       voie:['',Validators.required],
-      codePostal:['', [Validators.required, Validators.pattern('/^(?:[0-8]\d|9[0-8])\d{3}$/')]],
+      codePostal:['', [Validators.required ]], //Validators.pattern('/^(?:[0-8]\d|9[0-8])\d{3}$/')
       ville:['', Validators.required],
       pays:['', Validators.required],
 
