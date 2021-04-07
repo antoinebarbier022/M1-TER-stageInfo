@@ -8,6 +8,7 @@ import { CommonListingTable } from 'src/app/shared/classes/common-listing-table'
 import { ActivatedRoute } from '@angular/router';
 import { StageModel } from 'src/app/core/models/StageModel';
 import { AuthService } from 'src/app/core/services/auth.service';
+import { EtatStage } from 'src/app/core/enums/EtatStage';
 
 @Component({
   selector: 'app-list-stages',
@@ -60,10 +61,10 @@ export class ListStagesComponent extends CommonListingTable implements OnInit {
     switch (this.authService.getViewRole()) {
       case 'invite':
       case 'etudiant':
-        return allStage.filter(((obj: { etat: any; }) => (obj.etat =='valide' || obj.etat =='reserve')));
+        return allStage.filter(((obj: { etat: any; }) => (obj.etat ==EtatStage.VALIDE || obj.etat ==EtatStage.RESERVE)));
       case 'tuteur':
       case 'repEntreprise':
-        return allStage.filter(((obj: { etat: any; }) => obj.etat != 'propose'));
+        return allStage.filter(((obj: { etat: any; }) => obj.etat != EtatStage.PROPOSE));
       
       case 'respParcours':
       case 'secretaire':
