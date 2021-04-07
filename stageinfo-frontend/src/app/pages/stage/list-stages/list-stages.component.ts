@@ -9,6 +9,7 @@ import { ActivatedRoute } from '@angular/router';
 import { StageModel } from 'src/app/core/models/StageModel';
 import { AuthService } from 'src/app/core/services/auth.service';
 import { EtatStage } from 'src/app/core/enums/EtatStage';
+import { RoleUser } from 'src/app/core/enums/RoleUser';
 
 @Component({
   selector: 'app-list-stages',
@@ -42,15 +43,16 @@ export class ListStagesComponent extends CommonListingTable implements OnInit {
 
   canEditStages():boolean{
     switch (this.authService.getViewRole()) {
-      case 'invite':
-      case 'etudiant':
-      case 'tuteur':
-      case 'repEntreprise':
+      case RoleUser.INVITE:
+      case RoleUser.ETUDIANT:
+      case RoleUser.TUTEUR:
+      case RoleUser.REPRESENTANT_ENTREPRISE:
         return false;
       
-      case 'respParcours':
-      case 'secretaire':
-      case 'admin':
+      case RoleUser.RESPONSABLE_PARCOURS:
+      case RoleUser.SECRETAIRE:
+      case RoleUser.RESPONSABLE_STAGES:
+      case RoleUser.ADMIN:
         return true;
       default:
         return false;
@@ -59,16 +61,17 @@ export class ListStagesComponent extends CommonListingTable implements OnInit {
 
   stagesForRoles(allStage:any):any{
     switch (this.authService.getViewRole()) {
-      case 'invite':
-      case 'etudiant':
+      case RoleUser.INVITE:
+      case RoleUser.ETUDIANT:
         return allStage.filter(((obj: { etat: any; }) => (obj.etat ==EtatStage.VALIDE || obj.etat ==EtatStage.RESERVE)));
-      case 'tuteur':
-      case 'repEntreprise':
+      case RoleUser.TUTEUR:
+      case RoleUser.REPRESENTANT_ENTREPRISE:
         return allStage.filter(((obj: { etat: any; }) => obj.etat != EtatStage.PROPOSE));
       
-      case 'respParcours':
-      case 'secretaire':
-      case 'admin':
+      case RoleUser.RESPONSABLE_PARCOURS:
+      case RoleUser.SECRETAIRE:
+      case RoleUser.RESPONSABLE_STAGES:
+      case RoleUser.ADMIN:
         return allStage;
     }
   }
