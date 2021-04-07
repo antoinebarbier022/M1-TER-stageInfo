@@ -4,6 +4,7 @@ import { ActivatedRoute } from '@angular/router';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 import { EtatStage } from 'src/app/core/enums/EtatStage';
+import { RoleUser } from 'src/app/core/enums/RoleUser';
 import { AuthService } from 'src/app/core/services/auth.service';
 import { StageService } from 'src/app/core/services/stage.service';
 
@@ -171,15 +172,28 @@ export class GestionEtatStageComponent implements OnInit, OnDestroy {
   }
 
   onSubmitAffectTuteur(form: NgForm){
-    const newData = {
-      etat: EtatStage.AFFECT_TUTEUR,
-      tuteur : form.value['selectTuteur'],
-    };
+    var newData:any;
+    if(form.value['selectTuteur']){ // si true alors il est rempli
+      newData = {
+        etat: EtatStage.AFFECT_TUTEUR,
+        tuteur : form.value['selectTuteur'],
+      };
+    }else{ // alors c'est le tuteur lui meme qui est selectionné
+      if(this.authService.getRole() == RoleUser.TUTEUR){
+        newData = {
+          etat: EtatStage.AFFECT_TUTEUR,
+          tuteur : this.authService.getUserid(),
+        };
+      }else{
+        console.log("ERREUR : Le tuteur n'est pas selectionné !!!")
+      }
+    }
+    
     this.changerEtat(EtatStage.AFFECT_TUTEUR,newData);
     // on met à jour l'objet local
     var index = this.allTuteur.findIndex(((obj: { _id: any; }) => obj._id == newData.tuteur));
     this.stage.tuteur = {
-      _id: form.value['selectTuteur'], 
+      _id: newData.tuteur, 
       nom: this.allTuteur[index].nom, 
       prenom: this.allTuteur[index].prenom};
   }

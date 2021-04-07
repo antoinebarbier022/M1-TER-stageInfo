@@ -54,8 +54,8 @@ export class InfoStageComponent implements OnInit, OnDestroy {
     var index = this.allUsers.findIndex(((obj: { _id: any; }) => obj._id == this.stage.entreprise?.representant));
     this.stage.entreprise.representant = {
       _id: this.stage.entreprise?.representant,
-      nom: this.allUsers[index].nom,
-      prenom: this.allUsers[index].prenom
+      nom: this.allUsers[index]?.nom,
+      prenom: this.allUsers[index]?.prenom
     }
   }
 
