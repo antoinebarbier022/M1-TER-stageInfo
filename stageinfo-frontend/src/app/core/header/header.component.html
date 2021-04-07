@@ -28,21 +28,23 @@
 
         <!-- Test des roles-->
         <div id="changeRole" *ngIf="isAdmin()">
-          <p>real Role : {{ nameRole() }}</p>
+          <p>real Role : {{ nameRole(getRole()) }}</p>
           <div class="dropdown">
             <a class="dropdown-toggle btn btn-sm btn-secondary" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 Role : {{ nameViewRole() }}
             </a>
             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton" >
-                <a *ngFor="let role of allRoles | keyvalue" class="dropdown-item" (click)="setViewRole(role.value)">{{ allNamesRoles[role.key] }}</a>
-            </div>
+              <ng-container *ngFor="let role of allRoles">
+                <a class="dropdown-item" (click)="setViewRole(role)">{{ nameRole(role) }}</a>
+              </ng-container>
+             </div>
           </div>
           <div id="viewRole" class="custom-control custom-switch">
             <input type="checkbox" class="custom-control-input" id="customSwitch1" [checked]="getSwitch()" (change)="changeSwitch()" >
             <label class="custom-control-label" for="customSwitch1">View all sidebar routes</label>
           </div>
       </div>
-      <p *ngIf="!isAdmin()"> Vous êtes : {{ nameRole() }}</p>
+      <p *ngIf="!isAdmin()"> Vous êtes : {{ nameRole(getRole()) }}</p>
 
 
 

@@ -65,10 +65,6 @@ export class HeaderComponent implements OnInit, OnDestroy {
 
   }
 
-  ngOnChanges(){
-
-  }
-
   onLogout() {
     this.authService.logout();
 
@@ -79,7 +75,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
     this.sidebarEvent.emit(this.showSidebar);
   }
 
-  isAdmin(){
+  isAdmin():boolean{
     return this.getRole() == RoleUser.ADMIN;
   }
 
@@ -94,8 +90,8 @@ export class HeaderComponent implements OnInit, OnDestroy {
     return this.authService.getViewRole();
   }
 
-  nameRole(){
-    switch (this.getRole()) {
+  nameRole(role:RoleUser):any{
+    switch (role) {
       case RoleUser.INVITE:     return NameRoleUser.INVITE;
       case RoleUser.ETUDIANT:   return NameRoleUser.ETUDIANT;
       case RoleUser.TUTEUR:     return NameRoleUser.TUTEUR;
@@ -109,7 +105,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
     }
   }
 
-  nameViewRole(){
+  nameViewRole():any{
     switch (this.getViewRole()) {
       case RoleUser.INVITE:     return NameRoleUser.INVITE;
       case RoleUser.ETUDIANT:   return NameRoleUser.ETUDIANT;
