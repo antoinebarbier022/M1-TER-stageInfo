@@ -178,12 +178,14 @@ export class GestionEtatStageComponent implements OnInit, OnDestroy {
         etat: EtatStage.AFFECT_TUTEUR,
         tuteur : form.value['selectTuteur'],
       };
+      console.log("Le tuteur à été assigné par un haut responsable.");
     }else{ // alors c'est le tuteur lui meme qui est selectionné
-      if(this.authService.getRole() == RoleUser.TUTEUR){
+      if((this.authService.getRole() == RoleUser.TUTEUR) || (this.authService.getViewRole() == RoleUser.TUTEUR) ){
         newData = {
           etat: EtatStage.AFFECT_TUTEUR,
           tuteur : this.authService.getUserid(),
         };
+        console.log("Le tuteur à choisie le stage à tutorer.");
       }else{
         console.log("ERREUR : Le tuteur n'est pas selectionné !!!")
       }
@@ -191,25 +193,39 @@ export class GestionEtatStageComponent implements OnInit, OnDestroy {
     
     this.changerEtat(EtatStage.AFFECT_TUTEUR,newData);
     // on met à jour l'objet local
-    var index = this.allTuteur.findIndex(((obj: { _id: any; }) => obj._id == newData.tuteur));
+    var index = this.allUsers.findIndex(((obj: { _id: any; }) => obj._id == newData.tuteur));
     this.stage.tuteur = {
       _id: newData.tuteur, 
-      nom: this.allTuteur[index].nom, 
-      prenom: this.allTuteur[index].prenom};
+      nom: this.allUsers[index]?.nom, 
+      prenom: this.allUsers[index]?.prenom};
   }
 
   onSubmitAffectRapporteur(form: NgForm){
-    const newData = {
-      etat: EtatStage.AFFECT_RAPPORTEUR,
-      rapporteur : form.value['selectRapporteur'],
-    };
+    var newData:any;
+    if(form.value['selectTuteur']){ // si true alors il est rempli
+      newData = {
+        etat: EtatStage.AFFECT_RAPPORTEUR,
+        rapporteur : form.value['selectRapporteur'],
+      };
+      console.log("Le Rapporteur à été assigné par un haut responsable.");
+    }else{ // alors c'est le tuteur lui meme qui est selectionné
+      if((this.authService.getRole() == RoleUser.TUTEUR) || (this.authService.getViewRole() == RoleUser.TUTEUR) ){
+        newData = {
+          etat: EtatStage.AFFECT_RAPPORTEUR,
+          rapporteur : this.authService.getUserid(),
+        };
+        console.log("Le rapporteur à choisie le stage à rapporter .");
+      }else{
+        console.log("ERREUR : Le rapporteur n'est pas selectionné !!!")
+      }
+    }
     this.changerEtat(EtatStage.AFFECT_RAPPORTEUR,newData);
     // on met à jour l'objet local
-    var index = this.allTuteur.findIndex(((obj: { _id: any; }) => obj._id == newData.rapporteur));
+    var index = this.allUsers.findIndex(((obj: { _id: any; }) => obj._id == newData.rapporteur));
     this.stage.rapporteur = {
-      _id: form.value['selectRapporteur'], 
-      nom: this.allTuteur[index].nom, 
-      prenom: this.allTuteur[index].prenom};
+      _id: newData.rapporteur, 
+      nom: this.allUsers[index]?.nom, 
+      prenom: this.allUsers[index]?.prenom};
   }
 
   getState():string{
