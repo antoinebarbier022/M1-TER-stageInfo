@@ -17,161 +17,42 @@
     }
 }
 
-// couleur des alertes
-.alert-propose{
-    background-color: rgba($color-propose, .2);
-}
+$states: (
+    "propose": $color-propose, 
+    "valide": $color-valide, 
+    "refuse": $color-refuse,
+    "reserve": $color-reserve,
+    "affectEtudiant":$color-affectEtudiant,
+    "affectTuteur": $color-affectTuteur,
+    "affectRapporteur": $color-affectRapporteur,
+    "termine":$color-termine);
 
-.alert-valide{
-    background-color: rgba($color-valide, .2);
+@each $name, $color in $states {
+    .alert-#{$name} {
+        background-color: rgba($color, .2);
+    }
+    .btn-#{$name}{
+        color:#fff;
+        background-color: $color;
+    }
+    .btn-outline-#{$name}{
+        color:$color;
+        border-color: $color;
+    }
+    .btn-outline-#{$name}:hover{
+        color:#fff;
+        background-color: $color;
+    }
 }
-
-.alert-refuse{
-    background-color: rgba($color-refuse, .2);
-}
-.alert-reserve{
-    background-color: rgba($color-reserve, .2);
-}
-.alert-affectEtudiant{
-    background-color: rgba($color-affectEtudiant, .2);
-}
-.alert-affectTuteur{
-    background-color: rgba($color-affectTuteur, .2);
-}
-.alert-affectRapporteur{
-    background-color: rgba($color-affectRapporteur, .4);
-}
-.alert-termine{
-    background-color: rgba($color-termine, .1);
-}
-
-//_________________________________
 
 .btn-propose{
     color:#000;
-    background-color: $color-propose;
 }
-
-.btn-valide{
-    color:#fff;
-    background-color: $color-valide;
-}
-
-.btn-refuse{
-    color:#fff;
-    background-color: $color-refuse;
-}
-
-.btn-reserve{
-    color:#fff;
-    background-color: $color-reserve;
-}
-
-.btn-affectEtudiant{
-    color:#fff;
-    background-color: $color-affectEtudiant;
-}
-
-.btn-affectTuteur{
-    color:#fff;
-    background-color: $color-affectTuteur;
-}
-
-.btn-affectRapporteur{
-    color:#fff;
-    background-color: $color-affectRapporteur;
-}
-
-.btn-termine{
-    color:#fff;
-    background-color: $color-termine;
-}
-
-
-//------------------------------------
-
-
-.btn-outline-propose{
-    color:$color-propose;
-    border-color: $color-propose;
-}
-
-.btn-outline-valide{
-    color:$color-valide;
-    border-color: $color-valide;
-}
-
-.btn-outline-refuse{
-    color:$color-refuse;
-    border-color: $color-refuse;
-}
-
-.btn-outline-reserve{
-    color:$color-reserve;
-    border-color: $color-reserve;
-}
-
-.btn-outline-affectEtudiant{
-    color:$color-affectEtudiant;
-    border-color: $color-affectEtudiant;
-}
-
-.btn-outline-affectTuteur{
-    color:$color-affectTuteur;
-    border-color: $color-affectTuteur;
-}
-
-.btn-outline-affectRapporteur{
-    color:$color-affectRapporteur;
-    border-color: $color-affectRapporteur;
-}
-
-.btn-outline-termine{
-    color:$color-termine;
-    border-color: $color-termine;
-}
-
-//-----------------------------------
-
 .btn-outline-propose:hover{
     color:#000;
     background-color: $color-propose;
 }
 
-.btn-outline-valide:hover{
-    color:#fff;
-    background-color: $color-valide;
-}
-
-.btn-outline-refuse:hover{
-    color:#fff;
-    background-color: $color-refuse;
-}
-
-.btn-outline-reserve:hover{
-    color:#fff;
-    background-color: $color-reserve;
-}
-
-.btn-outline-affectEtudiant:hover{
-    color:#fff;
-    background-color: $color-affectEtudiant;
-}
-
-.btn-outline-affectTuteur:hover{
-    color:#fff;
-    background-color: $color-affectTuteur;
-}
-
-.btn-outline-affectRapporteur:hover{
-    color:#fff;
-    background-color: $color-affectRapporteur;
-}
-
-.btn-outline-termine:hover{
-    color:#fff;
-    background-color: $color-termine;
-}
 
 ul{
     padding:20px 40px;
