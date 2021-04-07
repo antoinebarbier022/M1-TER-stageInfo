@@ -5,7 +5,7 @@
     <app-gestion-etat-stage id="status-stage" [stage]="stage"></app-gestion-etat-stage>
 
     <!-- Informations du stage -->
-    <app-card id="information-stage" title="Informations">
+    <app-card [id]="displaySectionEncadrant() ? 'information-stage' : 'information-stage-etendu'" title="Informations">
             <p>Niveau requis : {{ stage?.niveauRequis }}</p>
             <p>Parcours : {{ stage?.parcours?.acronyme }}</p>
             <p>Durée : {{ stage?.duree }} mois</p>
@@ -20,8 +20,8 @@
         <p>Compétences : {{ stage?.competences}}</p>
     </app-card>
 
-    <!-- Conditions du stage -->
-    <app-card id="conditions-stage" title="Encadrants">
+    <!-- Encadrant du stage -->
+    <app-card *ngIf="displaySectionEncadrant()" id="encadrant-stage" title="Encadrants">
         <p *ngIf="stage?.tuteur?._id">Tuteur : <a [routerLink]="['/liste-utilisateurs/user', stage?.tuteur?._id]">{{ stage?.tuteur?.nom + ' ' + stage?.tuteur?.prenom }}</a></p>
         <p *ngIf="stage?.entreprise?.representant">Représentant entreprise: <a [routerLink]="['/liste-utilisateurs/user', stage.entreprise?.representant?._id]">{{ stage.entreprise?.representant?._id ? stage.entreprise?.representant?.nom + ' '+ stage.entreprise?.representant?.prenom: ''}}</a></p>
         <p *ngIf="stage?.rapporteur?._id">Rapporteur : <a [routerLink]="['/liste-utilisateurs/user', stage?.rapporteur?._id]">{{ stage?.rapporteur?.nom + ' ' + stage?.rapporteur?.prenom }}</a></p>
@@ -46,31 +46,33 @@
 <hr>
 <h2>Pièces Jointes</h2>
 <div id="pieces-jointes-stage">
-    <table class="card-table table table-striped table-bordered table-sm">
-        <thead>
+    <ng-container *ngif="stage?.fichier.length ; else conditionAucunePieceJointe">
         <p *ngIf="errorMessage" class="alert alert-danger">Pour modifier une Pièce Jointe veuillez choisir votre fichier en premier </p>
-            <tr>
-                <th scope="col">Nom du fichier </th>
-                <th scope="col">Type</th>
-                <th scope="col">Actions</th>
-            </tr>
-        </thead>
-        <tbody>
-            <!-- Ajout des stages de la BDD -->
-            <tr *ngFor="let p of stage.fichier ">
-                <td><a [href]="p.chemin" target="_blank">{{ p.nom}}</a></td>
-                <td>{{p.extension}}</td>
+        <table class="card-table table table-striped table-bordered table-sm">
+            <thead>
+                <tr>
+                    <th scope="col">Nom du fichier </th>
+                    <th scope="col">Type</th>
+                    <th scope="col">Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Ajout des stages de la BDD -->
+                <tr *ngFor="let p of stage.fichier ">
+                    <td><a [href]="p.chemin" target="_blank">{{ p.nom}}</a></td>
+                    <td>{{p.extension}}</td>
 
-                <td class="table-action">
-                    <!-- Bouton edit => ouvre un modal avec le formulaire de modification -->
-                    <app-button-edit data-toggle="modal" (click)="modifierFichier(p._id)"  data-target="#modifier" ></app-button-edit>
+                    <td class="table-action">
+                        <!-- Bouton edit => ouvre un modal avec le formulaire de modification -->
+                        <app-button-edit data-toggle="modal" (click)="modifierFichier(p._id)"  data-target="#modifier" ></app-button-edit>
 
-                    <app-button-delete data-toggle="modal" (click)="supprimerFichier(p._id)" data-target="#suppression"></app-button-delete>
-                </td>
-            </tr>
-        </tbody>
-    </table>
-
+                        <app-button-delete data-toggle="modal" (click)="supprimerFichier(p._id)" data-target="#suppression"></app-button-delete>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </ng-container>
+    <p #conditionAucunePieceJointe class="alert alert-secondary"> Aucune pièce jointe pour ce stage</p>
     <app-card>
         <div *ngIf="alert" class="alert alert-success " role="alert">{{ alert }}</div>
         <form>

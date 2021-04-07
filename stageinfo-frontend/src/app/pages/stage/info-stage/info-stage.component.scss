@@ -13,7 +13,7 @@
     gap: 15px 15px;
     grid-template-areas:
     "status status status"
-    "info conditions entreprise"
+    "info encadrant entreprise"
     "description description entreprise"
     "avantages avantages avantages";
 
@@ -26,6 +26,10 @@
     #informations-stage{
         grid-area: info;
     }
+    #information-stage-etendu{
+        grid-column-start: info;
+        grid-column-end: encadrant;
+    }
     #avantages-stage{
         grid-area: avantages;
     }
@@ -35,8 +39,8 @@
     #entreprise-stage{
         grid-area: entreprise;
     }
-    #conditions-stage{
-        grid-area: conditions;
+    #encadrant-stage{
+        grid-area: encadrant;
     }
 }
 

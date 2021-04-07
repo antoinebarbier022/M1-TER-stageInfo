@@ -5,6 +5,7 @@ import { HttpClient } from '@angular/common/http';
 import {HeaderComponent} from "../header/header.component";
 import jwtDecode from 'jwt-decode';
 import { IToken } from '../interfaces/itoken';
+import { RoleUser } from '../enums/RoleUser';
 
 @Injectable({
   providedIn: 'root'
@@ -15,8 +16,8 @@ export class AuthService {
   token: string | undefined;
   userId: string | undefined;
 
-  private role:any; // le vrai role de l'utilisateur
-  private email:any;
+  private role: any; // le vrai role de l'utilisateur
+  private email: any;
   private viewRole:any; // Pour le changement de role dans le header
   private viewAllRoute: boolean; // pour savoir si la sidebar affiche toutes les routes que voit un admin
 
@@ -60,8 +61,8 @@ export class AuthService {
     return this.viewRole;
   }
 
-  setViewRole(newRole: string ){
-    if(['admin', 'invite', 'etudiant','secretaire','respParcours','repEntreprise','tuteur'].includes(newRole)){
+  setViewRole(newRole: RoleUser ){
+    if([RoleUser.ADMIN, RoleUser.INVITE, RoleUser.ETUDIANT, RoleUser.SECRETAIRE, RoleUser.RESPONSABLE_PARCOURS,RoleUser.REPRESENTANT_ENTREPRISE,RoleUser.TUTEUR].includes(newRole)){
       this.viewRole = newRole;
     }
   }

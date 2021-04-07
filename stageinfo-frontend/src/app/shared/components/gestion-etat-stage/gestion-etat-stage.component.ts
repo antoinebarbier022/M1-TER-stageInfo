@@ -3,6 +3,7 @@ import { NgForm } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
+import { EtatStage } from 'src/app/core/enums/EtatStage';
 import { AuthService } from 'src/app/core/services/auth.service';
 import { StageService } from 'src/app/core/services/stage.service';
 
@@ -58,30 +59,30 @@ export class GestionEtatStageComponent implements OnInit, OnDestroy {
     // - ajouteur : pour indiqué que la personne est l'ajouteur
     this.messages = [
       // stage refusé
-      { etat:['refuse'], role:['all'], content:"Le stage a été refusé."},
+      { etat:[EtatStage.REFUSE], role:['all'], content:"Le stage a été refusé."},
       // stage validé
-      { etat:['valide'], role:['etudiant','invite'], content:"<strong>Pour postuler à ce stage, veuillez contacter l'entreprise.</strong><br> Après l'accord de l'entreprise, veuillez signaler l'obtention de votre stage au responsable des stages."},
+      { etat:[EtatStage.VALIDE], role:['etudiant','invite'], content:"<strong>Pour postuler à ce stage, veuillez contacter l'entreprise.</strong><br> Après l'accord de l'entreprise, veuillez signaler l'obtention de votre stage au responsable des stages."},
       // stage affecté à un étudiant
-      { etat:['affectEtudiant'], role:['etudiant','invite'], content:"Un étudiant à déja été affecté pour ce stage."},
+      { etat:[EtatStage.AFFECT_ETUDIANT], role:['etudiant','invite'], content:"Un étudiant à déja été affecté pour ce stage."},
       // stage réservé
-      { etat:['reserve'], role:['etudiant','invite'], content:"Ce stage est déjà <strong>réservé</strong> à un étudiant."},
+      { etat:[EtatStage.RESERVE], role:['etudiant','invite'], content:"Ce stage est déjà <strong>réservé</strong> à un étudiant."},
       // stage affecté à un rapporteur
-      { etat:['affectRapporteur'], role:['all'], content:"<strong>Information :</strong> Le stage passera à l'état terminé une fois que le note du stage sera délivré."},
+      { etat:[EtatStage.AFFECT_RAPPORTEUR], role:['all'], content:"<strong>Information :</strong> Le stage passera à l'état terminé une fois que le note du stage sera délivré."},
       // stage terminé
-      { etat:['termine'], role:['all'], content:"<strong>Stage terminé :</strong> La fiche du stage a été placé dans les archives."},
+      { etat:[EtatStage.TERMINE], role:['all'], content:"<strong>Stage terminé :</strong> La fiche du stage a été placé dans les archives."},
     ];
 
     this.messagesButton = [
-      { etat:['affectEtudiant','reserve'], role:['tuteur'], newState:"affectTuteur", content:"Devenir le tuteur de ce stage"},
-      { etat:['affectTuteur'], role:['tuteur'], newState:"affectRapporteur", content:"Devenir le rapporteur de ce stage"},
-      { etat:['reserve'], role:['ajouteur'], newState:"valide", content:"Rendre ce stage disponible pour tous les étudiants"},
+      { etat:[EtatStage.AFFECT_ETUDIANT,EtatStage.RESERVE], role:['tuteur'], newState:EtatStage.AFFECT_TUTEUR, content:"Devenir le tuteur de ce stage"},
+      { etat:[EtatStage.AFFECT_TUTEUR], role:['tuteur'], newState:EtatStage.AFFECT_RAPPORTEUR, content:"Devenir le rapporteur de ce stage"},
+      { etat:[EtatStage.RESERVE], role:['ajouteur'], newState:EtatStage.VALIDE, content:"Rendre ce stage disponible pour tous les étudiants"},
     ];
     
     this.messagesSelect = [
       {  // selectionner un etudiant
-        etat:['valide'], // message s'affiche pour ses états 
+        etat:[EtatStage.VALIDE], // message s'affiche pour ses états 
         role:['admin'],  // seulement pour ses roles
-        newState:"affectEtudiant",  // changement d'état vers newState
+        newState:EtatStage.AFFECT_ETUDIANT,  // changement d'état vers newState
         name:"selectEtudiant",  // nom pour le formulaire template
         typeTable:'etudiant',  // type d'utilisateur dans le select
         label:"Affecter un étudiant",  
@@ -89,9 +90,9 @@ export class GestionEtatStageComponent implements OnInit, OnDestroy {
         button:"Affecter l'étudiant !!!!" // message du bouton submit
       },
       { // selectionner un tuteur
-        etat:['affectEtudiant','reserve'], 
+        etat:[EtatStage.AFFECT_ETUDIANT, EtatStage.RESERVE], 
         role:['admin'], 
-        newState:"affectTuteur", 
+        newState:EtatStage.AFFECT_TUTEUR, 
         name:"selectTuteur",
         typeTable:'tuteur', 
         label:"Affecter un tuteur", 
@@ -99,9 +100,9 @@ export class GestionEtatStageComponent implements OnInit, OnDestroy {
         button:"Affecter le tuteur !!!!"
       },
       { // selectionner un rapporteur
-        etat:['affectTuteur'], 
+        etat:[EtatStage.AFFECT_TUTEUR], 
         role:['admin'], 
-        newState:"affectRapporteur", 
+        newState:EtatStage.AFFECT_RAPPORTEUR, 
         name:"selectRapporteur",
         typeTable: 'rapporteur',
         label:"Affecter un rapporteur", 
@@ -132,10 +133,10 @@ export class GestionEtatStageComponent implements OnInit, OnDestroy {
 
   onSubmit(form: NgForm,etat:string){
     switch (etat) {
-      case 'reserve': this.onSubmitReserve(form); break;
-      case 'affectEtudiant': this.onSubmitAffectEtudiant(form); break;
-      case 'affectTuteur': this.onSubmitAffectTuteur(form); break;
-      case 'affectRapporteur': this.onSubmitAffectRapporteur(form); break;
+      case EtatStage.RESERVE: this.onSubmitReserve(form); break;
+      case EtatStage.AFFECT_ETUDIANT: this.onSubmitAffectEtudiant(form); break;
+      case EtatStage.AFFECT_TUTEUR: this.onSubmitAffectTuteur(form); break;
+      case EtatStage.AFFECT_RAPPORTEUR: this.onSubmitAffectRapporteur(form); break;
       default:
         break;
     }
@@ -143,10 +144,10 @@ export class GestionEtatStageComponent implements OnInit, OnDestroy {
  
   onSubmitReserve(form: NgForm){
       const newData = {
-        etat: 'reserve',
+        etat: EtatStage.RESERVE,
         etudiant : form.value['selectEtudiant'],
       };
-      this.changerEtat('reserve',newData);
+      this.changerEtat(EtatStage.RESERVE,newData);
       // on met à jour l'objet local
       var index = this.allEtudiant.findIndex(((obj: { _id: any; }) => obj._id == newData.etudiant));
       this.stage.etudiant = {
@@ -157,10 +158,10 @@ export class GestionEtatStageComponent implements OnInit, OnDestroy {
 
   onSubmitAffectEtudiant(form: NgForm){
     const newData = {
-      etat: 'affectEtudiant',
+      etat: EtatStage.AFFECT_ETUDIANT,
       etudiant : form.value['selectEtudiant'],
     };
-    this.changerEtat('affectEtudiant',newData);
+    this.changerEtat(EtatStage.AFFECT_ETUDIANT,newData);
     // on met à jour l'objet local
     var index = this.allEtudiant.findIndex(((obj: { _id: any; }) => obj._id == newData.etudiant));
     this.stage.etudiant = {
@@ -171,10 +172,10 @@ export class GestionEtatStageComponent implements OnInit, OnDestroy {
 
   onSubmitAffectTuteur(form: NgForm){
     const newData = {
-      etat: 'affectTuteur',
+      etat: EtatStage.AFFECT_TUTEUR,
       tuteur : form.value['selectTuteur'],
     };
-    this.changerEtat('affectTuteur',newData);
+    this.changerEtat(EtatStage.AFFECT_TUTEUR,newData);
     // on met à jour l'objet local
     var index = this.allTuteur.findIndex(((obj: { _id: any; }) => obj._id == newData.tuteur));
     this.stage.tuteur = {
@@ -185,10 +186,10 @@ export class GestionEtatStageComponent implements OnInit, OnDestroy {
 
   onSubmitAffectRapporteur(form: NgForm){
     const newData = {
-      etat: 'affectRapporteur',
+      etat: EtatStage.AFFECT_RAPPORTEUR,
       rapporteur : form.value['selectRapporteur'],
     };
-    this.changerEtat('affectRapporteur',newData);
+    this.changerEtat(EtatStage.AFFECT_RAPPORTEUR,newData);
     // on met à jour l'objet local
     var index = this.allTuteur.findIndex(((obj: { _id: any; }) => obj._id == newData.rapporteur));
     this.stage.rapporteur = {
@@ -212,54 +213,54 @@ export class GestionEtatStageComponent implements OnInit, OnDestroy {
   etatPrecedent():void{
     var newData;
     switch(this.getState()){
-      case 'valide': // valide to propose :  donc on enlève la date de validation
+      case EtatStage.VALIDE: // valide to propose :  donc on enlève la date de validation
         newData = {
-          etat: 'propose',
+          etat: EtatStage.PROPOSE,
           dateValide: null,
         };
         // on met à jour l'objet local
         this.stage.dateValide = null;
         break;
-      case 'refuse': // refuse to propose :  rien à changé à part l'état
+      case EtatStage.REFUSE: // refuse to propose :  rien à changé à part l'état
         newData = {
-          etat: 'propose',
+          etat: EtatStage.PROPOSE,
           dateValide: null,
         };
         // on met à jour l'objet local
         this.stage.dateValide = null;
         break;
-      case 'affectEtudiant': // affectEtudiant to valide : donc on enlève l'étudiant associé'
+      case EtatStage.AFFECT_ETUDIANT: // affectEtudiant to valide : donc on enlève l'étudiant associé'
         newData = {
-          etat: 'valide',
+          etat: EtatStage.VALIDE,
           etudiant: null,
         };
         // on met à jour l'objet local
         this.stage.etudiant = null;
         break;
-      case 'affectTuteur':
+      case EtatStage.AFFECT_TUTEUR:
         newData = {
-          etat: 'affectEtudiant',
+          etat: EtatStage.AFFECT_ETUDIANT,
           tuteur: null,
         };
         // on met à jour l'objet local
         this.stage.tuteur = null;
         break;
-      case 'affectRapporteur':
+      case EtatStage.AFFECT_RAPPORTEUR:
         newData = {
-          etat: 'affectTuteur',
+          etat: EtatStage.AFFECT_TUTEUR,
           rapporteur: null,
         };
         // on met à jour l'objet local
         this.stage.rapporteur = null;
         break;
-      case 'termine':
+      case EtatStage.TERMINE:
         newData = {
-          etat: 'affectRapporteur'
+          etat: EtatStage.AFFECT_RAPPORTEUR
         };
         break;
       default:
         newData = {
-          etat: 'propose',
+          etat: EtatStage.PROPOSE,
         };
         break;
     }
@@ -268,15 +269,15 @@ export class GestionEtatStageComponent implements OnInit, OnDestroy {
 
   changerEtat(newState:string, user:any=""){
     // si l'utilisateur qui à créer le stage est un étudiant et que le stage est validé alors le stage est réservé à l'étudiant
-    if(newState == "valide" && this.isEtudiant(this.stage?.ajouteur?._id)){
-      newState = 'reserve'; // on passe à l'état réservé
+    if(newState == EtatStage.VALIDE && this.isEtudiant(this.stage?.ajouteur?._id)){
+      newState = EtatStage.RESERVE; // on passe à l'état réservé
     }
     this.stageService.editState(this.stage._id, newState, user)
       .pipe(takeUntil(this.destroy$))
       .subscribe((_res: any) => {
         console.log("L'état du stage "+ this.stage.titre + " est passé à ["+newState+"] !");
         this.stage.etat = newState;
-        if( (this.stage.etat == 'valide') || (this.stage.etat == 'reserve')){
+        if( (this.stage.etat == EtatStage.VALIDE) || (this.stage.etat == EtatStage.RESERVE)){
           this.stage.dateValide = new Date();
         }
       });

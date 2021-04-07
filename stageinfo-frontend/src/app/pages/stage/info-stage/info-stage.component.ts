@@ -59,6 +59,9 @@ export class InfoStageComponent implements OnInit, OnDestroy {
     }
   }
 
+  displaySectionEncadrant():boolean{
+    return this.stage.tuteur;
+  }
 
   ngOnDestroy() {
     this.destroy$.next(true);

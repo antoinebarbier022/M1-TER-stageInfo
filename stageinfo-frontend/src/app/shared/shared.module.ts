@@ -33,6 +33,7 @@ import { FormStageComponent } from './components/forms/form-stage/form-stage.com
 import { CardMapComponent } from './components/cards/card-map/card-map.component';
 import { StateBadgeComponent } from './components/badges/state-badge/state-badge.component';
 import { GestionEtatStageComponent } from './components/gestion-etat-stage/gestion-etat-stage.component';
+import { RoleBadgeComponent } from './components/badges/role-badge/role-badge.component';
 
 
 
@@ -59,7 +60,8 @@ import { GestionEtatStageComponent } from './components/gestion-etat-stage/gesti
     FormFicheSuiviComponent, 
     FormFicheNotationComponent,
     StateBadgeComponent, 
-    GestionEtatStageComponent
+    GestionEtatStageComponent, 
+    RoleBadgeComponent
   ],
   imports: [
     CommonModule,
@@ -90,7 +92,8 @@ import { GestionEtatStageComponent } from './components/gestion-etat-stage/gesti
     FormFicheSuiviComponent, 
     FormFicheNotationComponent,
     StateBadgeComponent,
-    GestionEtatStageComponent
+    GestionEtatStageComponent,
+    RoleBadgeComponent
   ]
 })
 export class SharedModule { }
