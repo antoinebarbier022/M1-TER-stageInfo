@@ -37,14 +37,7 @@
                     name="role"
                     formControlName="role">
                 <option value="" disabled selected>Selectionner un rôle</option>
-                <option *ngFor="let role of allRoles" [value]="role">{{ role }}</option>
-                <!--<option value="etudiant">Étudiant</option>
-                <option value="tuteur">Enseignant (Tuteur)</option>
-                <option value="secretaire">Secrétaire</option>
-                <option value="representantEntreprise">Représentant Entreprise</option>
-                <option value="responsableParcours">Responsable de parcours</option>
-                <option value="responsablePedagogique">Responsable pédagogique</option>
-                <option value="admin">Admin</option>-->
+                <option *ngFor="let role of allRoles" [value]="role">{{ nameRole(role) }}</option>
             </select>
         </div>
 

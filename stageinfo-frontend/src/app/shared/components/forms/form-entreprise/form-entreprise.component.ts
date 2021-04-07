@@ -7,6 +7,7 @@ import { EntrepriseModel } from 'src/app/core/models/EntrepriseModel';
 
 import { EntrepriseService } from 'src/app/core/services/entreprise.service';
 import { ActivatedRoute } from '@angular/router';
+import { RoleUser } from 'src/app/core/enums/RoleUser';
 
 @Component({
   selector: 'app-form-entreprise',
@@ -43,6 +44,8 @@ export class FormEntrepriseComponent implements OnInit {
     
   this.selectedEntreprise =  new EntrepriseModel();
   this.allUsers = this.route.snapshot.data.allUsers;
+  // seulement les representants
+  this.allUsers = this.allUsers.filter(((obj: { role: any; }) => obj.role == RoleUser.REPRESENTANT_ENTREPRISE));
   }
 
   ngOnInit(): void {
