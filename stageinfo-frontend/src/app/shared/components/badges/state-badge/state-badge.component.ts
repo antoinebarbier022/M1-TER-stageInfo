@@ -8,6 +8,7 @@ import { EtatStage, NameEtatStage } from 'src/app/core/enums/EtatStage';
 })
 export class StateBadgeComponent implements OnInit {
   @Input() state : string = "";
+  @Input() reduce : boolean = false;
   constructor() { 
     
   }

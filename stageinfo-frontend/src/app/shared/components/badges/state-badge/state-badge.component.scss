@@ -1,6 +1,10 @@
 // les variables couleurs sont importé du fichier scss colors
 @import '/src/assets/styles/colors.scss';
 
+:host{
+    cursor: default;
+}
+
 // couleur des état d'un stage
 .state-propose{
     color: #000;
