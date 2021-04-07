@@ -28,7 +28,6 @@
 
         <!-- Test des roles-->
         <div id="changeRole" *ngIf="isAdmin()">
-          <p>real Role : {{ nameRole(getRole()) }}</p>
           <div class="dropdown">
             <a class="dropdown-toggle btn btn-sm btn-secondary" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 Role : {{ nameViewRole() }}
@@ -41,7 +40,7 @@
           </div>
           <div id="viewRole" class="custom-control custom-switch">
             <input type="checkbox" class="custom-control-input" id="customSwitch1" [checked]="getSwitch()" (change)="changeSwitch()" >
-            <label class="custom-control-label" for="customSwitch1">View all sidebar routes</label>
+            <label class="custom-control-label" for="customSwitch1">All sidebar routes</label>
           </div>
       </div>
       <p *ngIf="!isAdmin()"> Vous êtes : {{ nameRole(getRole()) }}</p>
@@ -51,6 +50,7 @@
       <div id="navbarRight">
         <div class="dropdown" id="user-icon">
             <a class="dropdown-toggle" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              <app-role-badge class="role" [role]="getRole()"></app-role-badge>
               <span id="user-name">{{this.getEmail()}}</span>
               <i  class="sidebar-icon fa-lg fas fa-user-cog"></i>
             </a>

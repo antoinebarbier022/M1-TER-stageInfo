@@ -6,13 +6,15 @@ import { RouterModule } from '@angular/router';
 import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
 import { SidebarComponent } from './sidebar/sidebar.component';
+import { SharedModule } from '../shared/shared.module';
 
 @NgModule({
   declarations: [HeaderComponent, FooterComponent, SidebarComponent],
   imports: [
     CommonModule,
     BrowserModule,
-    RouterModule
+    RouterModule,
+    SharedModule,
   ],
   exports:[
     HeaderComponent, FooterComponent, SidebarComponent
