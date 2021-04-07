@@ -28,11 +28,12 @@ export class ListStagesComponent extends CommonListingTable implements OnInit {
     private authService:AuthService) {
     super();
     this.visibleProperties = [
+      { name: 'etat',sorted: false },
       { name: 'titre', sorted: false },
       { name: 'entreprise',sorted: false },
       { name: 'parcours',sorted: false },
       { name: 'duree',sorted: false },
-      { name: 'etat',sorted: false }
+
     ];
     this.selectItem = new StageModel();
   }

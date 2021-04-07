@@ -14,12 +14,12 @@
         <table class="card-table table table-striped table-sm">
             <thead>
                 <tr class="sorted">
-                    <th (click)="sortByAscendingDescendingOrder(4)" scope="col">Etat <i [style.color]=" visibleProperties[4].sorted ? 'grey' : 'silver' " class="fas fa-long-arrow-alt-up"></i> <i [style.color]=" !visibleProperties[4].sorted ? 'grey' : 'silver' " class="fas fa-long-arrow-alt-down"></i></th>
-                    <th (click)="sortByAscendingDescendingOrder(0)" scope="col">Titre <i [style.color]=" visibleProperties[0].sorted ? 'grey' : 'silver' " class="fas fa-long-arrow-alt-up"></i> <i [style.color]=" !visibleProperties[0].sorted ? 'grey' : 'silver' " class="fas fa-long-arrow-alt-down"></i></th>
-                    <th (click)="sortByAscendingDescendingOrder(1)" scope="col">Entreprise <i [style.color]=" visibleProperties[1].sorted ? 'grey' : 'silver' " class="fas fa-long-arrow-alt-up"></i> <i [style.color]=" !visibleProperties[1].sorted ? 'grey' : 'silver' " class="fas fa-long-arrow-alt-down"></i></th>
-                    <th (click)="sortByAscendingDescendingOrder(2)" scope="col">Parcours <i [style.color]=" visibleProperties[2].sorted ? 'grey' : 'silver' " class="fas fa-long-arrow-alt-up"></i> <i [style.color]=" !visibleProperties[2].sorted ? 'grey' : 'silver' " class="fas fa-long-arrow-alt-down"></i></th>
+                    <th (click)="sortByAscendingDescendingOrder(0)" scope="col">Etat <i [style.color]=" visibleProperties[0].sorted ? 'grey' : 'silver' " class="fas fa-long-arrow-alt-up"></i> <i [style.color]=" !visibleProperties[0].sorted ? 'grey' : 'silver' " class="fas fa-long-arrow-alt-down"></i></th>
+                    <th (click)="sortByAscendingDescendingOrder(1)" scope="col">Titre <i [style.color]=" visibleProperties[1].sorted ? 'grey' : 'silver' " class="fas fa-long-arrow-alt-up"></i> <i [style.color]=" !visibleProperties[1].sorted ? 'grey' : 'silver' " class="fas fa-long-arrow-alt-down"></i></th>
+                    <th (click)="sortByAscendingDescendingOrder(2)" scope="col">Entreprise <i [style.color]=" visibleProperties[2].sorted ? 'grey' : 'silver' " class="fas fa-long-arrow-alt-up"></i> <i [style.color]=" !visibleProperties[2].sorted ? 'grey' : 'silver' " class="fas fa-long-arrow-alt-down"></i></th>
+                    <th (click)="sortByAscendingDescendingOrder(3)" scope="col">Parcours <i [style.color]=" visibleProperties[3].sorted ? 'grey' : 'silver' " class="fas fa-long-arrow-alt-up"></i> <i [style.color]=" !visibleProperties[3].sorted ? 'grey' : 'silver' " class="fas fa-long-arrow-alt-down"></i></th>
                     <th scope="col">Promotions</th>
-                    <th (click)="sortByAscendingDescendingOrder(3)" scope="col">Duree <i [style.color]=" visibleProperties[3].sorted ? 'grey' : 'silver' " class="fas fa-long-arrow-alt-up"></i> <i [style.color]=" !visibleProperties[3].sorted ? 'grey' : 'silver' " class="fas fa-long-arrow-alt-down"></i></th>
+                    <th (click)="sortByAscendingDescendingOrder(4)" scope="col">Duree <i [style.color]=" visibleProperties[4].sorted ? 'grey' : 'silver' " class="fas fa-long-arrow-alt-up"></i> <i [style.color]=" !visibleProperties[4].sorted ? 'grey' : 'silver' " class="fas fa-long-arrow-alt-down"></i></th>
                     <th *ngIf="canEditStages()" scope="col">Actions</th>
                 </tr>
             </thead>

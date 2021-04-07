@@ -29,7 +29,7 @@ export class SidebarComponent implements OnInit {
   notesStage =              {icon:"fas fa-table",         nom:"Les notes des stages",     lien:"/note-de-stage", items:[]};
 
   saisirStage =             {icon:"fas fa-pencil-alt",    nom:"Proposer un stage",        lien:"/saisir-stage", items:[]};
-  saisirFicheSuivi =        {icon:"fas fa-pencil-alt",    nom:"Saisir fiche de suivie",   lien:"/saisir-fiche-suivi", items:[]};
+  saisirFicheSuivi =        {icon:"fas fa-pencil-alt",    nom:"Saisir fiche de suivi",   lien:"/saisir-fiche-suivi", items:[]};
   saisirFicheNotation =        {icon:"fas fa-pencil-alt",    nom:"Saisir fiche de notation",   lien:"/saisir-fiche-notation", items:[]};
 
   suiviEmbauche =           {icon:"fas fa-chart-bar",     nom:"Suivi d'embauche",         lien:"/suivi-embauche", items:[]};
