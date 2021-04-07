@@ -43,8 +43,8 @@ export class GestionEtatStageComponent implements OnInit, OnDestroy {
     this.selectRapporteur="";
 
     this.allUsers = this.route.snapshot.data.allUsers;
-    this.allEtudiant = this.allUsers.filter(((obj: { role: any; }) => obj.role == 'etudiant'));
-    this.allTuteur = this.allUsers.filter(((obj: { role: any; }) => obj.role == 'tuteur'));
+    this.allEtudiant = this.allUsers.filter(((obj: { role: any; }) => obj.role == RoleUser.ETUDIANT));
+    this.allTuteur = this.allUsers.filter(((obj: { role: any; }) => obj.role == RoleUser.TUTEUR));
   }
 
 
@@ -62,11 +62,13 @@ export class GestionEtatStageComponent implements OnInit, OnDestroy {
       // stage refusé
       { etat:[EtatStage.REFUSE], role:['all'], content:"Le stage a été refusé."},
       // stage validé
-      { etat:[EtatStage.VALIDE], role:['etudiant','invite'], content:"<strong>Pour postuler à ce stage, veuillez contacter l'entreprise.</strong><br> Après l'accord de l'entreprise, veuillez signaler l'obtention de votre stage au responsable des stages."},
+      { etat:[EtatStage.VALIDE], role:[RoleUser.ETUDIANT, RoleUser.INVITE], content:"<strong>Pour postuler à ce stage, veuillez contacter l'entreprise.</strong><br> Après l'accord de l'entreprise, veuillez signaler l'obtention de votre stage au responsable des stages."},
       // stage affecté à un étudiant
-      { etat:[EtatStage.AFFECT_ETUDIANT], role:['etudiant','invite'], content:"Un étudiant à déja été affecté pour ce stage."},
+      { etat:[EtatStage.AFFECT_ETUDIANT], role:[RoleUser.ETUDIANT, RoleUser.INVITE], content:"Un étudiant à déja été affecté pour ce stage."},
+      // stage affecté à un tuteur, on informe qu'il ne peut pas être le rapporteur de ce stage
+      { etat:[EtatStage.AFFECT_TUTEUR], role:['isTuteurOfStage'], content:"Vous êtes le tuteur du stage, ce qui implique que vous ne pouvez pas être le rapporteur de ce stage."},
       // stage réservé
-      { etat:[EtatStage.RESERVE], role:['etudiant','invite'], content:"Ce stage est déjà <strong>réservé</strong> à un étudiant."},
+      { etat:[EtatStage.RESERVE], role:[RoleUser.ETUDIANT, RoleUser.INVITE], content:"Ce stage est déjà <strong>réservé</strong> à un étudiant."},
       // stage affecté à un rapporteur
       { etat:[EtatStage.AFFECT_RAPPORTEUR], role:['all'], content:"<strong>Information :</strong> Le stage passera à l'état terminé une fois que le note du stage sera délivré."},
       // stage terminé
@@ -74,15 +76,15 @@ export class GestionEtatStageComponent implements OnInit, OnDestroy {
     ];
 
     this.messagesButton = [
-      { etat:[EtatStage.AFFECT_ETUDIANT,EtatStage.RESERVE], role:['tuteur'], newState:EtatStage.AFFECT_TUTEUR, content:"Devenir le tuteur de ce stage"},
-      { etat:[EtatStage.AFFECT_TUTEUR], role:['tuteur'], newState:EtatStage.AFFECT_RAPPORTEUR, content:"Devenir le rapporteur de ce stage"},
+      { etat:[EtatStage.AFFECT_ETUDIANT,EtatStage.RESERVE], role:[RoleUser.TUTEUR], newState:EtatStage.AFFECT_TUTEUR, content:"Devenir le tuteur de ce stage"},
+      { etat:[EtatStage.AFFECT_TUTEUR], role:[RoleUser.TUTEUR], newState:EtatStage.AFFECT_RAPPORTEUR, content:"Devenir le rapporteur de ce stage"},
       { etat:[EtatStage.RESERVE], role:['ajouteur'], newState:EtatStage.VALIDE, content:"Rendre ce stage disponible pour tous les étudiants"},
     ];
     
     this.messagesSelect = [
       {  // selectionner un etudiant
         etat:[EtatStage.VALIDE], // message s'affiche pour ses états 
-        role:['admin'],  // seulement pour ses roles
+        role:[RoleUser.ADMIN],  // seulement pour ses roles
         newState:EtatStage.AFFECT_ETUDIANT,  // changement d'état vers newState
         name:"selectEtudiant",  // nom pour le formulaire template
         typeTable:'etudiant',  // type d'utilisateur dans le select
@@ -92,7 +94,7 @@ export class GestionEtatStageComponent implements OnInit, OnDestroy {
       },
       { // selectionner un tuteur
         etat:[EtatStage.AFFECT_ETUDIANT, EtatStage.RESERVE], 
-        role:['admin'], 
+        role:[RoleUser.ADMIN], 
         newState:EtatStage.AFFECT_TUTEUR, 
         name:"selectTuteur",
         typeTable:'tuteur', 
@@ -102,7 +104,7 @@ export class GestionEtatStageComponent implements OnInit, OnDestroy {
       },
       { // selectionner un rapporteur
         etat:[EtatStage.AFFECT_TUTEUR], 
-        role:['admin'], 
+        role:[RoleUser.ADMIN], 
         newState:EtatStage.AFFECT_RAPPORTEUR, 
         name:"selectRapporteur",
         typeTable: 'rapporteur',
@@ -120,8 +122,18 @@ export class GestionEtatStageComponent implements OnInit, OnDestroy {
   }
 
   afficheMessage(etat:string, role:string):boolean{
+    // on vérifie si on est sur l'etat affectTuteur (on doit choisir un rapporteur), que le potentiel rapporteur ne soit pas tuteur (pour le cas du bouton devenir rapporteur)
+    if((etat == EtatStage.AFFECT_TUTEUR) && (role == RoleUser.TUTEUR) && (this.stage.tuteur?._id == this.authService.getUserid() )){
+      return false;
+    }
+
+    // message pour le tuteur du stage
+    if((this.getState() == etat) && (role == 'isTuteurOfStage') && (this.stage.tuteur?._id == this.authService.getUserid() ) &&  ( (this.getRole() == RoleUser.TUTEUR) || (this.getRole() == RoleUser.ADMIN && this.getViewRole() == RoleUser.TUTEUR))){
+      return true;
+    }
+
     // l'admin avec la vu du role
-    if( ( (role == 'ajouteur') && (this.ajouteurIsAuth())) || (role == 'all') || ((this.getRole() == role) && (role != 'admin')) || (this.getRole() == 'admin' && this.getViewRole() == role)){
+    if( ( (role == 'ajouteur') && (this.ajouteurIsAuth())) || (role == 'all') || ((this.getRole() == role) && (role != RoleUser.ADMIN)) || (this.getRole() == RoleUser.ADMIN && this.getViewRole() == role)){
       if(this.getState() == etat){
         return true;
       }else{
