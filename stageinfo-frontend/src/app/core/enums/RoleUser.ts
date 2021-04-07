@@ -9,5 +9,17 @@ export enum RoleUser {
     RESPONSABLE_PEDAGOGIQUE = 'respPedagogique', // celui qui gère les stages
     SECRETAIRE = 'secretaire',
     ADMIN = 'admin'
-
   }
+
+export enum NameRoleUser {
+  INVITE = 'Invité',
+  ETUDIANT = 'Étudiant',
+  TUTEUR = 'Tuteur',
+  REPRESENTANT_ENTREPRISE ="Représentant entreprise",
+  RESPONSABLE_PARCOURS = 'Responsable parcours',
+  RESPONSABLE_PEDAGOGIQUE = 'Responsable Pédagogique', // celui qui gère les stages
+  SECRETAIRE = 'Secretaire',
+  ADMIN = 'Admin',
+
+  UNDEFINED = "Non définie"
+}

@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { RoleUser } from 'src/app/core/enums/RoleUser';
+import { NameRoleUser, RoleUser } from 'src/app/core/enums/RoleUser';
 
 @Component({
   selector: 'app-role-badge',
@@ -21,25 +21,16 @@ export class RoleBadgeComponent implements OnInit {
 
   fullRoleName(){
     switch (this.role) {
-      case RoleUser.INVITE:
-        return "Invité";
-      case RoleUser.ETUDIANT:
-        return "Étudiant";
-      case RoleUser.TUTEUR:
-        return "Tuteur";
-      case RoleUser.REPRESENTANT_ENTREPRISE:
-        return "Représentant entreprise";
-      case RoleUser.RESPONSABLE_PARCOURS:
-        return "Responsable parcours";
-      case RoleUser.RESPONSABLE_PEDAGOGIQUE:
-        return "Responsable pédagogique";
-      case RoleUser.SECRETAIRE:
-        return "Secrétaire";
-      case RoleUser.ADMIN:
-        return "Admin";
-    
-      default:
-        return "Non définie";
+      case RoleUser.INVITE:     return NameRoleUser.INVITE;
+      case RoleUser.ETUDIANT:   return NameRoleUser.ETUDIANT;
+      case RoleUser.TUTEUR:     return NameRoleUser.TUTEUR;
+      case RoleUser.SECRETAIRE: return NameRoleUser.SECRETAIRE;
+      case RoleUser.ADMIN:      return NameRoleUser.ADMIN;
+      case RoleUser.REPRESENTANT_ENTREPRISE:  return NameRoleUser.REPRESENTANT_ENTREPRISE;
+      case RoleUser.RESPONSABLE_PARCOURS:     return NameRoleUser.RESPONSABLE_PARCOURS;
+      case RoleUser.RESPONSABLE_PEDAGOGIQUE:  return NameRoleUser.RESPONSABLE_PEDAGOGIQUE;
+
+      default: return NameRoleUser.UNDEFINED;
     }
   }
 }

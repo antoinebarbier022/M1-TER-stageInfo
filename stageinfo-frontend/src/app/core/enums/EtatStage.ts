@@ -12,3 +12,16 @@ export enum EtatStage {
 
     TERMINE = "termine" // Le stage à terminé une fois la soutenance passé (changement d'état en fonction de la date soutenance)
   }
+
+  export enum NameEtatStage {
+    PROPOSE = 'Proposé',
+    VALIDE = 'Validé',
+    REFUSE = 'Refusé',
+    RESERVE ="Réservé",
+    AFFECT_ETUDIANT = 'Étudiant affecté',
+    AFFECT_TUTEUR = 'Tuteur affecté', // celui qui gère les stages
+    AFFECT_RAPPORTEUR = 'Rapporteur affecté',
+    TERMINE = 'Terminé',
+    
+    UNDEFINED = "Non définie"
+  }

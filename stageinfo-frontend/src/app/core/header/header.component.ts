@@ -5,7 +5,7 @@ import { Router } from "@angular/router";
 import { AuthService } from "../services/auth.service";
 import { UserService } from "../services/user.service";
 import { UserModel } from '../../core/models/UserModel';
-import { RoleUser } from '../enums/RoleUser';
+import { NameRoleUser, RoleUser } from '../enums/RoleUser';
 
 @Component({
   selector: 'app-header',
@@ -25,6 +25,17 @@ export class HeaderComponent implements OnInit, OnDestroy {
     RoleUser.RESPONSABLE_PEDAGOGIQUE,
     RoleUser.SECRETAIRE,
     RoleUser.ADMIN,
+  ];
+
+  public allNamesRoles = [
+    NameRoleUser.INVITE,
+    NameRoleUser.ETUDIANT,
+    NameRoleUser.TUTEUR,
+    NameRoleUser.REPRESENTANT_ENTREPRISE,
+    NameRoleUser.RESPONSABLE_PARCOURS,
+    NameRoleUser.RESPONSABLE_PEDAGOGIQUE,
+    NameRoleUser.SECRETAIRE,
+    NameRoleUser.ADMIN,
   ];
 
   getSwitch():boolean{
@@ -72,16 +83,47 @@ export class HeaderComponent implements OnInit, OnDestroy {
     return this.getRole() == RoleUser.ADMIN;
   }
 
-  getRole(){
+  getRole():any{
     return this.authService.getRole();
   }
   getEmail(){
     return this.authService.getEmail();
   }
 
-  getViewRole(){ // on recupère le role de test
+  getViewRole():any{ // on recupère le role de test
     return this.authService.getViewRole();
   }
+
+  nameRole(){
+    switch (this.getRole()) {
+      case RoleUser.INVITE:     return NameRoleUser.INVITE;
+      case RoleUser.ETUDIANT:   return NameRoleUser.ETUDIANT;
+      case RoleUser.TUTEUR:     return NameRoleUser.TUTEUR;
+      case RoleUser.SECRETAIRE: return NameRoleUser.SECRETAIRE;
+      case RoleUser.ADMIN:      return NameRoleUser.ADMIN;
+      case RoleUser.REPRESENTANT_ENTREPRISE:  return NameRoleUser.REPRESENTANT_ENTREPRISE;
+      case RoleUser.RESPONSABLE_PARCOURS:     return NameRoleUser.RESPONSABLE_PARCOURS;
+      case RoleUser.RESPONSABLE_PEDAGOGIQUE:  return NameRoleUser.RESPONSABLE_PEDAGOGIQUE;
+
+      default: return NameRoleUser.UNDEFINED;
+    }
+  }
+
+  nameViewRole(){
+    switch (this.getViewRole()) {
+      case RoleUser.INVITE:     return NameRoleUser.INVITE;
+      case RoleUser.ETUDIANT:   return NameRoleUser.ETUDIANT;
+      case RoleUser.TUTEUR:     return NameRoleUser.TUTEUR;
+      case RoleUser.SECRETAIRE: return NameRoleUser.SECRETAIRE;
+      case RoleUser.ADMIN:      return NameRoleUser.ADMIN;
+      case RoleUser.REPRESENTANT_ENTREPRISE:  return NameRoleUser.REPRESENTANT_ENTREPRISE;
+      case RoleUser.RESPONSABLE_PARCOURS:     return NameRoleUser.RESPONSABLE_PARCOURS;
+      case RoleUser.RESPONSABLE_PEDAGOGIQUE:  return NameRoleUser.RESPONSABLE_PEDAGOGIQUE;
+
+      default: return NameRoleUser.UNDEFINED;
+    }
+  }
+
   setViewRole(role:RoleUser){
     this.authService.setViewRole(role);
   }
