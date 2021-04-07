@@ -1,3 +1,6 @@
+// les variables couleurs sont importé du fichier scss colors
+@import '/src/assets/styles/colors.scss';
+
 :host {             // host targets selector
     width: 100%;    // takes parent width        
     height: 100%;   // takes parent height   
@@ -59,3 +62,10 @@
     margin: 1rem;
 }
 
+#pieces-jointes-stage table{
+    background-color: $color-white;
+    // pour permettre le border radius sur la table
+    border-collapse: separate !important;
+    border-spacing: 0;
+    border-radius: 0.25rem;
+}

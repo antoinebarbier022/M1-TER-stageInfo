@@ -75,7 +75,7 @@ export class RoleGuard implements CanActivate {
       case 'liste-utilisateurs/edit-user-v2':
         return ['secretaire', 'admin'].includes(role);
       case 'liste-utilisateurs/user/:id':
-        return ['secretaire', 'admin'].includes(role);
+        return ['etudiant', 'representantEntreprise', 'tuteur', 'secretaire', 'responsableParcours', 'responsablePedagogique', 'admin', 'invite'].includes(role);
       case 'liste-entreprises':
         return ['secretaire', 'admin'].includes(role);
       case 'liste-entreprises/add-entreprise':
@@ -83,7 +83,7 @@ export class RoleGuard implements CanActivate {
       case 'liste-entreprises/edit-entreprise/:id':
         return ['secretaire', 'admin'].includes(role);
       case 'liste-entreprises/info/:id':
-        return ['secretaire', 'admin'].includes(role);
+        return ['etudiant', 'representantEntreprise', 'tuteur', 'secretaire', 'responsableParcours', 'responsablePedagogique', 'admin', 'invite'].includes(role);
       case 'liste-soutenances':
         return ['secretaire', 'admin'].includes(role);
       case 'liste-soutenances/add-soutenance':

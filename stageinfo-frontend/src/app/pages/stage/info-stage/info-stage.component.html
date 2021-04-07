@@ -72,16 +72,13 @@
     </table>
 
     <app-card>
+        <div *ngIf="alert" class="alert alert-success " role="alert">{{ alert }}</div>
         <form>
             <div class="form-group-row">
                 <input id='files' type="file" (input)="fileChoosen($event)"  accept="application/pdf,application/msword" >
             </div>
             <button class="btn btn-primary btn-sm" (click)="ajouterFichier()" [disabled]="!uploaded" >Ajouter le fichier</button>
         </form>
-      <div *ngIf="alert" class="alert alert-success " role="alert">
-
-        {{alert}}
-      </div>
     </app-card>
 </div>
 <hr>
