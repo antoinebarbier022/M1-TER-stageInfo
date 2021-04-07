@@ -64,11 +64,11 @@ export class ListStagesComponent extends CommonListingTable implements OnInit {
     switch (this.authService.getViewRole()) {
       case RoleUser.INVITE:
       case RoleUser.ETUDIANT:
-        return allStage.filter(((obj: { etat: any; }) => (obj.etat ==EtatStage.VALIDE || obj.etat ==EtatStage.RESERVE)));
-      case RoleUser.TUTEUR:
+        return allStage.filter(((obj: { etat: any; }) => (obj.etat == EtatStage.VALIDE)));
       case RoleUser.REPRESENTANT_ENTREPRISE:
         return allStage.filter(((obj: { etat: any; }) => obj.etat != EtatStage.PROPOSE));
-      
+      case RoleUser.TUTEUR:
+        return allStage.filter(((obj: { etat: any; }) => (obj.etat == EtatStage.AFFECT_ETUDIANT) || (obj.etat == EtatStage.AFFECT_TUTEUR) ));
       case RoleUser.RESPONSABLE_PARCOURS:
       case RoleUser.SECRETAIRE:
       case RoleUser.RESPONSABLE_STAGES:
