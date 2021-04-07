@@ -46,31 +46,33 @@
 <hr>
 <h2>Pièces Jointes</h2>
 <div id="pieces-jointes-stage">
-    <table class="card-table table table-striped table-bordered table-sm">
-        <thead>
+    <ng-container *ngif="stage?.fichier.length ; else conditionAucunePieceJointe">
         <p *ngIf="errorMessage" class="alert alert-danger">Pour modifier une Pièce Jointe veuillez choisir votre fichier en premier </p>
-            <tr>
-                <th scope="col">Nom du fichier </th>
-                <th scope="col">Type</th>
-                <th scope="col">Actions</th>
-            </tr>
-        </thead>
-        <tbody>
-            <!-- Ajout des stages de la BDD -->
-            <tr *ngFor="let p of stage.fichier ">
-                <td><a [href]="p.chemin" target="_blank">{{ p.nom}}</a></td>
-                <td>{{p.extension}}</td>
+        <table class="card-table table table-striped table-bordered table-sm">
+            <thead>
+                <tr>
+                    <th scope="col">Nom du fichier </th>
+                    <th scope="col">Type</th>
+                    <th scope="col">Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Ajout des stages de la BDD -->
+                <tr *ngFor="let p of stage.fichier ">
+                    <td><a [href]="p.chemin" target="_blank">{{ p.nom}}</a></td>
+                    <td>{{p.extension}}</td>
 
-                <td class="table-action">
-                    <!-- Bouton edit => ouvre un modal avec le formulaire de modification -->
-                    <app-button-edit data-toggle="modal" (click)="modifierFichier(p._id)"  data-target="#modifier" ></app-button-edit>
+                    <td class="table-action">
+                        <!-- Bouton edit => ouvre un modal avec le formulaire de modification -->
+                        <app-button-edit data-toggle="modal" (click)="modifierFichier(p._id)"  data-target="#modifier" ></app-button-edit>
 
-                    <app-button-delete data-toggle="modal" (click)="supprimerFichier(p._id)" data-target="#suppression"></app-button-delete>
-                </td>
-            </tr>
-        </tbody>
-    </table>
-
+                        <app-button-delete data-toggle="modal" (click)="supprimerFichier(p._id)" data-target="#suppression"></app-button-delete>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </ng-container>
+    <p #conditionAucunePieceJointe class="alert alert-secondary"> Aucune pièce jointe pour ce stage</p>
     <app-card>
         <div *ngIf="alert" class="alert alert-success " role="alert">{{ alert }}</div>
         <form>
