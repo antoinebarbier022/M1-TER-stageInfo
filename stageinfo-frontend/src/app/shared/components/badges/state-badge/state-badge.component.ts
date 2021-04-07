@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { EtatStage } from 'src/app/core/enums/EtatStage';
 
 @Component({
   selector: 'app-state-badge',
@@ -20,21 +21,21 @@ export class StateBadgeComponent implements OnInit {
 
   fullStateName(){
     switch (this.state) {
-      case "valide":
+      case EtatStage.VALIDE:
         return "Validé";
-        case "propose":
+        case EtatStage.PROPOSE:
           return "Proposé";
-          case "refuse":
+          case EtatStage.REFUSE:
             return "Refusé";
-          case "termine":
+          case EtatStage.TERMINE:
             return "Terminé";
-          case "reserve":
+          case EtatStage.RESERVE:
             return "Reservé";
-          case "affectEtudiant":
+          case EtatStage.AFFECT_ETUDIANT:
             return "Étudiant affecté";
-          case "affectTuteur":
+          case EtatStage.AFFECT_TUTEUR:
             return "Tuteur affecté";
-          case "affectRapporteur":
+          case EtatStage.AFFECT_RAPPORTEUR:
             return "Rapporteur affecté";
     
       default:

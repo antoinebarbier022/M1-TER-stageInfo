@@ -28,7 +28,7 @@
                 <tr *ngFor="let user of getItems()">
                     <td><a [routerLink]="['/liste-utilisateurs/user/', user._id]">{{ user.nom }} {{ user.prenom }}</a></td>
                     <td>{{ user.email }}</td>
-                    <td><span class="badge badge-danger">{{ user.role }}</span></td>
+                    <td><app-role-badge [role]="user?.role"> {{ user?.role }} </app-role-badge></td>
                     <td class="table-action">
                         <!-- Bouton edit => ouvre un modal avec le formulaire de modification -->
                         <app-button-edit data-toggle="modal" (click)="selectedItem(user)" data-target="#modifier"></app-button-edit>

@@ -1,0 +1,22 @@
+// les variables couleurs sont importé du fichier scss colors
+@import '/src/assets/styles/colors.scss';
+
+// couleur des état d'un stage
+.role-invite{
+    color: #000;
+    background-color: $color-propose;
+}
+
+.role-admin{
+    color: #fff;
+    background-color: $color-refuse;
+}
+
+.role-etudiant{
+    color: #fff;
+    background-color: $color-affectEtudiant;
+}
+.role-tuteur{
+    color: #fff;
+    background-color: $color-affectTuteur;
+}
