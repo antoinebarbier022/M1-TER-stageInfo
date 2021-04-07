@@ -25,9 +25,8 @@ export class ListUsersComponent extends CommonListingTable implements OnInit, On
     super();
     this.visibleProperties = [
       { name: 'nom', sorted: false },
-      { name: 'prenom', sorted: false },
       { name: 'email', sorted: false },
-      { name: 'role', sorted: false }
+      { name: 'role', sorted: false },
     ];
     this.selectItem = new UserModel();
   }
