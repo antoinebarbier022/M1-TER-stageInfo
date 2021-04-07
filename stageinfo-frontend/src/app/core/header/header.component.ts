@@ -22,8 +22,8 @@ export class HeaderComponent implements OnInit, OnDestroy {
     RoleUser.TUTEUR,
     RoleUser.REPRESENTANT_ENTREPRISE,
     RoleUser.RESPONSABLE_PARCOURS,
-    RoleUser.RESPONSABLE_PEDAGOGIQUE,
     RoleUser.SECRETAIRE,
+    RoleUser.RESPONSABLE_STAGES,
     RoleUser.ADMIN,
   ];
 
@@ -33,8 +33,8 @@ export class HeaderComponent implements OnInit, OnDestroy {
     NameRoleUser.TUTEUR,
     NameRoleUser.REPRESENTANT_ENTREPRISE,
     NameRoleUser.RESPONSABLE_PARCOURS,
-    NameRoleUser.RESPONSABLE_PEDAGOGIQUE,
     NameRoleUser.SECRETAIRE,
+    NameRoleUser.RESPONSABLE_STAGES,
     NameRoleUser.ADMIN,
   ];
 
@@ -99,7 +99,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
       case RoleUser.ADMIN:      return NameRoleUser.ADMIN;
       case RoleUser.REPRESENTANT_ENTREPRISE:  return NameRoleUser.REPRESENTANT_ENTREPRISE;
       case RoleUser.RESPONSABLE_PARCOURS:     return NameRoleUser.RESPONSABLE_PARCOURS;
-      case RoleUser.RESPONSABLE_PEDAGOGIQUE:  return NameRoleUser.RESPONSABLE_PEDAGOGIQUE;
+      case RoleUser.RESPONSABLE_STAGES:  return NameRoleUser.RESPONSABLE_STAGES;
 
       default: return NameRoleUser.UNDEFINED;
     }
@@ -114,7 +114,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
       case RoleUser.ADMIN:      return NameRoleUser.ADMIN;
       case RoleUser.REPRESENTANT_ENTREPRISE:  return NameRoleUser.REPRESENTANT_ENTREPRISE;
       case RoleUser.RESPONSABLE_PARCOURS:     return NameRoleUser.RESPONSABLE_PARCOURS;
-      case RoleUser.RESPONSABLE_PEDAGOGIQUE:  return NameRoleUser.RESPONSABLE_PEDAGOGIQUE;
+      case RoleUser.RESPONSABLE_STAGES:  return NameRoleUser.RESPONSABLE_STAGES;
 
       default: return NameRoleUser.UNDEFINED;
     }

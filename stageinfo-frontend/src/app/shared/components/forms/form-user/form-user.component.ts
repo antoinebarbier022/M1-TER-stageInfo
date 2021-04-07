@@ -41,7 +41,7 @@ export class FormUserComponent implements OnInit {
     RoleUser.TUTEUR,
     RoleUser.REPRESENTANT_ENTREPRISE,
     RoleUser.RESPONSABLE_PARCOURS,
-    RoleUser.RESPONSABLE_PEDAGOGIQUE,
+    RoleUser.RESPONSABLE_STAGES,
     RoleUser.SECRETAIRE,
     RoleUser.ADMIN,
   ];
@@ -255,7 +255,7 @@ export class FormUserComponent implements OnInit {
           break;
       case RoleUser.TUTEUR:
       case RoleUser.RESPONSABLE_PARCOURS:
-      case RoleUser.RESPONSABLE_PEDAGOGIQUE:
+      case RoleUser.RESPONSABLE_STAGES:
       case RoleUser.SECRETAIRE:
       case RoleUser.ADMIN:
           this.displaySectionEtudiant = false;
