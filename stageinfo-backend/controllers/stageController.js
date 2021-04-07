@@ -10,15 +10,8 @@ const multer =require('../middleware/multer-config')
  */
 exports.getAllStage = ((req, res, next) => {
   Stage.find()
-  .populate('commentaires')
-  .populate('ficheSuivi')
-  .populate('noteStage')
-  .populate('visiteStage')
-  .populate('fichier', 'nom chemin')
-  .populate('entreprise')
+  .populate('entreprise','nom')
   .populate('parcours', 'acronyme')
-
-
   .populate('ajouteur', 'nom prenom')
   .populate('repEntreprise', 'nom prenom')
   .populate('tuteur', 'nom prenom')
@@ -68,15 +61,8 @@ exports.getOneStage = ((req, res, next) => {
   Stage.findOne({
     _id: req.params.id
   })
-  .populate('commentaires')
-  .populate('ficheSuivi')
-  .populate('noteStage')
-  .populate('visiteStage')
-
-  .populate('entreprise')
+  .populate('entreprise','nom')
   .populate('parcours', 'acronyme')
-  .populate('fichier', 'nom chemin extension' )
-
   .populate('ajouteur', 'nom prenom')
   .populate('repEntreprise', 'nom prenom')
   .populate('tuteur', 'nom prenom')
