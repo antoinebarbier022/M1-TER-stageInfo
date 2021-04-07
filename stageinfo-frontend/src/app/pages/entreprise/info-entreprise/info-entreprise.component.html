@@ -41,10 +41,7 @@
     <app-card id="stages-entreprise" title="Stages">
         <!-- Card d'un stage -->
         <app-card-item-stage *ngFor="let stage of stages"
-            [title]="stage.titre" 
-            [state]="stage.etat"
-            [entreprise]="stage.entreprise"
-            [date]="stage.date">
+            [stage]="stage" >
         </app-card-item-stage>
     </app-card>
 </div>

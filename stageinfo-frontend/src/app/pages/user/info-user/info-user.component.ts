@@ -12,8 +12,9 @@ import { UserModel } from 'src/app/core/models/UserModel';
 export class InfoUserComponent implements OnInit {
 
   user:UserModel;
+  stages:any;
 
-  stages = [
+  stages2 = [
     { titre:"Stage Ingénieur SALESFORCE/CPQ", entreprise:"IBM Montpellier", etat:"terminé", date:"2015"},
     { titre:"Pilotage, conception et développement d'applications web.", entreprise:"SMILE", etat:"terminé", date:"2019"},
     { titre:"Administrateur Réseau / Système, Développement soft Interne", entreprise:"EIGHT.TECH", etat:"terminé", date:"2014"},
@@ -23,6 +24,7 @@ export class InfoUserComponent implements OnInit {
 
   constructor(private route:ActivatedRoute) { 
     this.user = this.route.snapshot.data.user; 
+    this.stages = this.route.snapshot.data.stages; 
     console.log(this.user);
   }
 

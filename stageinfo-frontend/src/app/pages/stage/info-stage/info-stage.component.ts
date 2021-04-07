@@ -40,6 +40,7 @@ export class InfoStageComponent implements OnInit, OnDestroy {
   // pour pouvoir détruire les subscribes
   destroy$: Subject<boolean> = new Subject<boolean>();
   errorMessage: boolean = false;
+  alert: any;
 
   constructor(private route:ActivatedRoute,
               private stageService: StageService,
@@ -82,6 +83,7 @@ export class InfoStageComponent implements OnInit, OnDestroy {
         .pipe(takeUntil(this.destroy$))
         .subscribe((_res: any) => {
           console.log("Stage : "+ this.stage.titre + " modifié !");
+          this.alert= "Fichier ajoutée!";
         });
   }
 
@@ -90,6 +92,7 @@ export class InfoStageComponent implements OnInit, OnDestroy {
       this.pjService.editPJ(_id, this.pdf).pipe(takeUntil(this.destroy$))
         .subscribe((_res: any) => {
           console.log("Stage : " + this.stage.titre + " modifié !");
+          this.alert= "Fichier modifié!";
         });
     }
     else{
@@ -102,6 +105,7 @@ export class InfoStageComponent implements OnInit, OnDestroy {
     this.pjService.deletePJById(_id).pipe(takeUntil(this.destroy$))
       .subscribe((_res: any) => {
         console.log("Stage : " + this.stage.titre + " modifié !");
+        this.alert="Fichier supprimé!";
       });
   }
 }

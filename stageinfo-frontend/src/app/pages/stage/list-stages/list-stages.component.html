@@ -8,7 +8,7 @@
     <app-nbItems entries [commonProperties]="commonProperties"></app-nbItems>
 
     <!-- Bouton ajouter => ouvre un modal avec le formulaire d'ajout -->
-    <app-button-add button1 data-toggle="modal" data-target="#ajouter"></app-button-add>
+    <app-button-add button1 *ngIf="canEditStages()" data-toggle="modal" data-target="#ajouter"></app-button-add>
     
     <div content>
         <table class="card-table table table-striped table-sm">
@@ -20,12 +20,12 @@
                     <th (click)="sortByAscendingDescendingOrder(2)" scope="col">Parcours <i [style.color]=" visibleProperties[2].sorted ? 'grey' : 'silver' " class="fas fa-long-arrow-alt-up"></i> <i [style.color]=" !visibleProperties[2].sorted ? 'grey' : 'silver' " class="fas fa-long-arrow-alt-down"></i></th>
                     <th scope="col">Promotions</th>
                     <th (click)="sortByAscendingDescendingOrder(3)" scope="col">Duree <i [style.color]=" visibleProperties[3].sorted ? 'grey' : 'silver' " class="fas fa-long-arrow-alt-up"></i> <i [style.color]=" !visibleProperties[3].sorted ? 'grey' : 'silver' " class="fas fa-long-arrow-alt-down"></i></th>
-                    <th scope="col">Actions</th>
+                    <th *ngIf="canEditStages()" scope="col">Actions</th>
                 </tr>
             </thead>
             <tbody>
                 <!-- Ajout des stages de la BDD -->
-                <tr *ngFor="let stage of getItems()">
+                <tr *ngFor="let stage of stagesForRoles(getItems())">
                     <td><app-state-badge [state]="stage?.etat"> {{ stage?.etat }} </app-state-badge></td>
                     <td><a [routerLink]="['/liste-stages', stage._id]">{{ stage.titre }}</a></td>
                     <td>{{ stage?.entreprise?.nom }}</td>
@@ -34,7 +34,7 @@
                     <td>2020 - 2021</td>
                     <td>{{ stage.duree ? stage.duree + ' mois' : '' }} </td>
                     
-                    <td class="table-action">
+                    <td *ngIf="canEditStages()" class="table-action">
                         <!-- Bouton edit => ouvre un modal avec le formulaire de modification -->
                         <app-button-edit data-toggle="modal" (click)="selectedItem(stage)" data-target="#modifier"></app-button-edit>
                         <!-- Bouton delete => ouvre un modal avec la demande de suppression -->
@@ -52,6 +52,7 @@
 <!---------------------------------------------------->
 <!-------------------- LES MODALS -------------------->
 <!---------------------------------------------------->
+<ng-container *ngIf="canEditStages()">
 
 <!-- Modal avec le formulaire de modification de l'objet selectionné -->
 <app-modal class="modal fade"
@@ -83,3 +84,5 @@
         <span title>Ajouter le stage</span>
         <app-form-stage content [addStage]="true" (stageEvent)="updateTable($event)" ></app-form-stage>
 </app-modal>
+
+</ng-container>

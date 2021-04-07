@@ -28,6 +28,34 @@ exports.getAllStage = ((req, res, next) => {
   .catch(error => res.status(404).json({ error }));
 });
 
+
+
+exports.getAllStageRelatedToUser = ((req, res, next) => {
+    Stage.find({
+        $or:[ 
+            {'ajouteur':req.params.id}, 
+            {'etudiant':req.params.id},
+            {'tuteur':req.params.id}, 
+            {'rapporteur':req.params.id},
+        ]})
+    .populate('commentaires')
+    .populate('ficheSuivi')
+    .populate('noteStage')
+    .populate('visiteStage')
+    .populate('fichier', 'nom chemin')
+    .populate('entreprise')
+    .populate('parcours', 'acronyme')
+  
+  
+    .populate('ajouteur', 'nom prenom')
+    .populate('repEntreprise', 'nom prenom')
+    .populate('tuteur', 'nom prenom')
+    .populate('rapporteur', 'nom prenom')
+    .populate('etudiant', 'nom prenom')
+    .then(stages => res.status(200).json(stages))
+    .catch(error => res.status(404).json({ error }));
+  });
+  
 /**
  * @api {get} /stage/:id Get a Stage
  * @apiName GetOneStage
@@ -47,7 +75,7 @@ exports.getOneStage = ((req, res, next) => {
 
   .populate('entreprise')
   .populate('parcours', 'acronyme')
-  .populate('fichier')
+  .populate('fichier', 'nom chemin extension' )
 
   .populate('ajouteur', 'nom prenom')
   .populate('repEntreprise', 'nom prenom')
@@ -58,6 +86,9 @@ exports.getOneStage = ((req, res, next) => {
   .then(stage => res.status(200).json(stage))
   .catch(error => res.status(404).json({ error }))
 });
+
+
+
 
 // changement de l'état du stage
 exports.editState = (req, res, next) => {
@@ -175,9 +206,15 @@ exports.createStage = (req, res, next) => {
             });
     };
 exports.addPJ= (req,res,next) => {
+    const ladate = new Date();
     const pj = new PJ({
-        nom: req.files[0].originalname,
+        ...JSON.parse(req.body.data),
+        nom: req.files[0].originalname.substring(0,req.files[0].originalname.indexOf('.')),
+        type:req.files[0].mimetype,
+        extension:req.files[0].originalname.substring(req.files[0].originalname.lastIndexOf('.') + 1),
         chemin : `${req.protocol}://${req.get('host')}/docs/${req.files[0].filename}`,
+        size:req.files[0].size,
+        annee:ladate.getFullYear(),
         idStage : req.params.id
     });
     pj.save()

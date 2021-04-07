@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
 import { StageModel } from '../models/StageModel';
+import {AuthService} from "./auth.service";
 
 @Injectable({
   providedIn: 'root'
@@ -13,7 +14,8 @@ export class StageService {
 
   private role:string = 'invite';
 
-  constructor(private httpClient: HttpClient) { }
+  constructor(private httpClient: HttpClient,
+              private authservice: AuthService) { }
 
 
   /* Récupération de tous les stages */
@@ -24,6 +26,10 @@ export class StageService {
   /* Récupération d'un stage avec son identifiant */
   getStageById(id:any): Observable<any> {
     return this.httpClient.get(this.urlBase+'/api/stage/'+id);
+  }
+  /* On récupère tous les stages qui ont un lien avec l'id user (ajouteur, tuteur, etudiant ...) */
+  getAllStageRelatedUser(id:any): Observable<any> {
+    return this.httpClient.get(this.urlBase+'/api/stage/related/'+id);
   }
 
   /* Ajouter un stage */
@@ -54,7 +60,7 @@ export class StageService {
     }else{
       newState = data;
     }
-    
+
     console.log({message:'nouvel etat : ', etat: newState})
     return this.httpClient.put(this.urlBase+'/api/stage/'+ id+'/changement-etat', newState);
   }
@@ -74,6 +80,7 @@ export class StageService {
   addPdf(id:any,pdf:File):Observable<any>{
     const datastage = new FormData();
     datastage.append('pdf',pdf,pdf.name);
+    datastage.append('data',JSON.stringify(({idUser:this.authservice.getUserid()})))
     return this.httpClient.put(this.urlBase+'/api/stage/'+ id+'/add-pj',datastage );
   }
 }

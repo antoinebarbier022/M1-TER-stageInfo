@@ -62,6 +62,7 @@ import { AllRespParcoursResolver } from './core/resolves/all-resp-parcours.resol
 import { AllEtudiantsResolver } from './core/resolves/all-etudiants.resolver';
 import { FicheSuiviComponent } from './pages/stage/fiche-suivi/fiche-suivi.component';
 import { FicheNotationComponent } from './pages/stage/fiche-notation/fiche-notation.component';
+import { AllStageOfUserResolver } from './core/resolves/all-stage-of-user.resolver';
 
 const routes: Routes = [
   { path: '', redirectTo: 'liste-stages', pathMatch: 'full', canActivate: [AuthGuardService, RoleGuard]},
@@ -101,6 +102,7 @@ const routes: Routes = [
       canActivate: [AuthGuardService, RoleGuard],
       resolve: {
         user: UserResolver  // on associe un resolver à la route
+        
       }
     },
   { path: 'liste-utilisateurs/edit-user-v2', component: EditUserV2Component, canActivate: [AuthGuardService, RoleGuard]},
@@ -108,14 +110,15 @@ const routes: Routes = [
       component: InfoUserComponent,
       canActivate: [AuthGuardService, RoleGuard],
       resolve: {
-        user: UserResolver  // on associe un resolver à la route
+        user: UserResolver,  // on associe un resolver à la route
+        stages: AllStageOfUserResolver
       },
   },
   { path: 'profile', component: ProfileUserComponent, canActivate: [AuthGuardService, RoleGuard]},
 
   //routes entreprise
   { path: 'liste-entreprises', component: ListEntreprisesComponent, canActivate: [AuthGuardService, RoleGuard], resolve: { entreprises: AllEntreprisesResolver, allUsers: AllUsersResolver, }},
-  { path: 'liste-entreprises/:id', component: InfoEntrepriseComponent, canActivate: [AuthGuardService, RoleGuard], resolve: { entreprise: EntrepriseResolver, allUsers: AllUsersResolver }},
+  { path: 'liste-entreprises/:id', component: InfoEntrepriseComponent, canActivate: [AuthGuardService, RoleGuard], resolve: { entreprise: EntrepriseResolver, allUsers: AllUsersResolver, stages: AllStageOfUserResolver }},
 
   // route soutenance
   { path: 'liste-soutenances', component: ListSoutenancesComponent, canActivate: [AuthGuardService, RoleGuard], resolve: { soutenances: AllSoutenancesResolver }},
