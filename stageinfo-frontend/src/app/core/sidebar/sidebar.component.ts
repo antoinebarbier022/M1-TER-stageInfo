@@ -4,6 +4,7 @@ import {Subscription} from "rxjs";
 import {AuthService} from "../services/auth.service";
 import {Router} from "@angular/router";
 import { TestService } from '../services/test.service';
+import { RoleUser } from '../enums/RoleUser';
 
 
 @Component({
@@ -184,18 +185,18 @@ export class SidebarComponent implements OnInit {
       return this.navigationSecretaire;
     }else{
       switch (this.authService.getViewRole()){
-        case "admin":
-        case "secretaire":
+        case RoleUser.ADMIN:
+        case RoleUser.SECRETAIRE:
           return this.navigationSecretaire;
-        case "etudiant":
+        case RoleUser.ETUDIANT:
           return this.navigationEtudiant;
-        case "tuteur":
+        case RoleUser.TUTEUR:
           return this.navigationTuteur;
-        case "respParcours":
+        case RoleUser.RESPONSABLE_PARCOURS:
           return this.navigationResponsableParcours;
-        case "repEntreprise":
+        case RoleUser.REPRESENTANT_ENTREPRISE:
           return this.navigationRepresentantEntreprise;
-        case "invite":
+        case RoleUser.INVITE:
             return this.navigationInvite;
         default:
           return this.navigationInvite;

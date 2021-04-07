@@ -29,7 +29,7 @@
         <div class="form-group-row">
             <label [for]="addUser ? 'addUserRole':'editUserRole'">Rôle</label>
             <div *ngIf="viewUser" class="form-select-plaintext">
-                <span class="badge badge-secondary">{{ user.role }}</span>
+                <span class="badge badge-secondary">{{ selectedUser.role }}</span>
             </div>
             <select [id]="addUser ? 'addUserRole':'editUserRole'"
                     *ngIf="!(viewUser)"
@@ -37,14 +37,14 @@
                     name="role"
                     formControlName="role">
                 <option value="" disabled selected>Selectionner un rôle</option>
-                <option value="invite">Invité</option>
-                <option value="etudiant">Étudiant</option>
+                <option *ngFor="let role of allRoles" [value]="role">{{ role }}</option>
+                <!--<option value="etudiant">Étudiant</option>
                 <option value="tuteur">Enseignant (Tuteur)</option>
                 <option value="secretaire">Secrétaire</option>
                 <option value="representantEntreprise">Représentant Entreprise</option>
                 <option value="responsableParcours">Responsable de parcours</option>
                 <option value="responsablePedagogique">Responsable pédagogique</option>
-                <option value="admin">Admin</option>
+                <option value="admin">Admin</option>-->
             </select>
         </div>
 
@@ -125,7 +125,7 @@
         <div class="form-group-row">
             <label [for]="addUser ? 'addUserPromotion':'editUserPromotion'">Promotion</label>
             <div *ngIf="viewUser" class="form-select-plaintext">
-                <span class="badge badge-secondary">{{ user?.promotion }}</span>
+                <span class="badge badge-secondary">{{ selectedUser?.promotion }}</span>
             </div>
             <select [id]="addUser ? 'addUserPromotion':'editUserPromotion'"
                     *ngIf="!(viewUser)"
@@ -142,7 +142,7 @@
             <label [for]="addUser ? 'addUserParcours':'editUserParcours'">Parcours</label>
             <div *ngIf="viewUser" class="form-select-plaintext">
                 <!-- ?. car on est pas sur qu'il soit défini -->
-                <span class="badge badge-secondary">{{ user?.parcours?.acronyme }}</span> 
+                <span class="badge badge-secondary">{{ selectedUser?.parcours?.acronyme }}</span> 
             </div>
             <select [id]="addUser ? 'addUserParcours':'editUserParcours'"
                     *ngIf="!(viewUser)"

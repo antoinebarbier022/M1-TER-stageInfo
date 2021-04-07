@@ -27,21 +27,14 @@
         </div>
 
         <!-- Test des roles-->
-        <div id="changeRole" *ngIf="getRole()=='admin'">
+        <div id="changeRole" *ngIf="isAdmin()">
           <p>real Role : {{ getRole()}}</p>
           <div class="dropdown">
             <a class="dropdown-toggle btn btn-sm btn-secondary" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 Role : {{ getViewRole() }}
             </a>
-            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton">
-                <a class="dropdown-item" (click)="setViewRole('invite')">invite</a>
-                <a class="dropdown-item" (click)="setViewRole('etudiant')">etudiant</a>
-                <a class="dropdown-item" (click)="setViewRole('tuteur')">tuteur</a>
-                <a class="dropdown-item" (click)="setViewRole('respParcours')">respParcours</a>
-                <a class="dropdown-item" (click)="setViewRole('repEntreprise')">repEntreprise</a>
-                <a class="dropdown-item" (click)="setViewRole('secretaire')">secretaire</a>
-                <a class="dropdown-item" (click)="setViewRole('admin')">admin</a>
-
+            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton" >
+                <a *ngFor="let role of allRoles" class="dropdown-item" (click)="setViewRole(role)">{{ role }}</a>
             </div>
           </div>
           <div id="viewRole" class="custom-control custom-switch">
@@ -49,7 +42,7 @@
             <label class="custom-control-label" for="customSwitch1">View all sidebar routes</label>
           </div>
       </div>
-      <p *ngIf="getRole()!='admin'"> Vous êtes : {{getRole()}}</p>
+      <p *ngIf="!isAdmin()"> Vous êtes : {{ getRole() }}</p>
 
 
 

@@ -5,6 +5,7 @@ import { Router } from "@angular/router";
 import { AuthService } from "../services/auth.service";
 import { UserService } from "../services/user.service";
 import { UserModel } from '../../core/models/UserModel';
+import { RoleUser } from '../enums/RoleUser';
 
 @Component({
   selector: 'app-header',
@@ -14,6 +15,17 @@ import { UserModel } from '../../core/models/UserModel';
 export class HeaderComponent implements OnInit, OnDestroy {
   public user: UserModel | undefined;
   public isAuth: boolean | undefined;
+
+  public allRoles = [
+    RoleUser.INVITE,
+    RoleUser.ETUDIANT,
+    RoleUser.TUTEUR,
+    RoleUser.REPRESENTANT_ENTREPRISE,
+    RoleUser.RESPONSABLE_PARCOURS,
+    RoleUser.RESPONSABLE_PEDAGOGIQUE,
+    RoleUser.SECRETAIRE,
+    RoleUser.ADMIN,
+  ];
 
   getSwitch():boolean{
     return this.authService.getViewAllRoute();
@@ -56,6 +68,10 @@ export class HeaderComponent implements OnInit, OnDestroy {
     this.sidebarEvent.emit(this.showSidebar);
   }
 
+  isAdmin(){
+    return this.getRole() == RoleUser.ADMIN;
+  }
+
   getRole(){
     return this.authService.getRole();
   }
@@ -66,7 +82,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
   getViewRole(){ // on recupère le role de test
     return this.authService.getViewRole();
   }
-  setViewRole(role:string){
+  setViewRole(role:RoleUser){
     this.authService.setViewRole(role);
   }
 

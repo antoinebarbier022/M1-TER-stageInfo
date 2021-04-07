@@ -9,6 +9,7 @@ import { UserService } from 'src/app/core/services/user.service';
 
 import { studentNumberIsCorrectValidator } from 'src/app/core/validators/validators';
 import { UserModel } from 'src/app/core/models/UserModel';
+import { RoleUser } from 'src/app/core/enums/RoleUser';
 
 
 @Component({
@@ -34,6 +35,17 @@ export class FormUserComponent implements OnInit {
   allParcours: any;
   allEntreprises: any;
 
+  public allRoles = [
+    RoleUser.INVITE,
+    RoleUser.ETUDIANT,
+    RoleUser.TUTEUR,
+    RoleUser.REPRESENTANT_ENTREPRISE,
+    RoleUser.RESPONSABLE_PARCOURS,
+    RoleUser.RESPONSABLE_PEDAGOGIQUE,
+    RoleUser.SECRETAIRE,
+    RoleUser.ADMIN,
+  ];
+
   // Boolean pour l'affichage des sections
   displaySectionEtudiant = false;
   displaySectionCoordonnees = false;
@@ -43,7 +55,6 @@ export class FormUserComponent implements OnInit {
   // @ts-ignore
   userForm: FormGroup;
 
-  //roles = ["invite", "etudiant","tuteur", "respEntreprise", "secretaire", "admin"];
   promotions = ["2016/2017", "2017/2018","2018/2019", "2019/2020", "2020/2021"];
 
   destroy$: Subject<boolean> = new Subject<boolean>();
@@ -117,7 +128,7 @@ export class FormUserComponent implements OnInit {
     const entreprise = this.userForm.get('entreprise');
 
     this.userForm.get('role')?.valueChanges.subscribe(userRole => {
-      if(userRole === 'etudiant'){
+      if(userRole === RoleUser.ETUDIANT){
         numeroEtudiant?.setValidators([Validators.required, studentNumberIsCorrectValidator]);
         promotion?.setValidators([Validators.required]);
         parcours?.setValidators([Validators.required]);
@@ -127,7 +138,7 @@ export class FormUserComponent implements OnInit {
         fonction?.reset();
         entreprise?.reset();
       }
-      else if(userRole === 'representantEntreprise'){
+      else if(userRole === RoleUser.REPRESENTANT_ENTREPRISE){
         fonction?.setValidators([Validators.required]);
         entreprise?.setValidators([Validators.required]);
 
@@ -232,26 +243,26 @@ export class FormUserComponent implements OnInit {
   displaySection(role : string){
 
     switch (role) {
-      case "representantEntreprise":
+      case RoleUser.REPRESENTANT_ENTREPRISE:
           this.displaySectionEtudiant = false;
           this.displaySectionCoordonnees = true;
           this.displaySectionEntreprise = true;
           break;
-      case "etudiant":
+      case RoleUser.ETUDIANT:
           this.displaySectionEtudiant = true;
           this.displaySectionCoordonnees = true;
           this.displaySectionEntreprise = false;
           break;
-      case "tuteur":
-      case "responsableParcours":
-      case "responsablePedagogique":
-      case "secretaire":
-      case "admin":
+      case RoleUser.TUTEUR:
+      case RoleUser.RESPONSABLE_PARCOURS:
+      case RoleUser.RESPONSABLE_PEDAGOGIQUE:
+      case RoleUser.SECRETAIRE:
+      case RoleUser.ADMIN:
           this.displaySectionEtudiant = false;
           this.displaySectionCoordonnees = true;
           this.displaySectionEntreprise = false;
           break;
-      case "invite":
+      case RoleUser.INVITE:
       default:
         this.displaySectionEtudiant = false;
         this.displaySectionCoordonnees = false;

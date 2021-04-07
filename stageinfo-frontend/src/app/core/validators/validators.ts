@@ -3,6 +3,7 @@
 /*************************************/
 
 import { AbstractControl, ValidatorFn } from "@angular/forms";
+import { RoleUser } from "../enums/RoleUser";
 
 /*
 * Vérification d'adresse email institutionnelle (um)
@@ -30,7 +31,7 @@ export let studentNumberIsCorrectValidator = (control: AbstractControl) : { [key
 */
 export let isStudentValidator = (userArray: Array<any>) : ValidatorFn => { 
     return (control: AbstractControl) : {[key: string]: boolean} | null => {
-        let array = userArray.filter(x => x.role === 'etudiant')
+        let array = userArray.filter(x => x.role === RoleUser.ETUDIANT)
                             .map(x => x.prenom + ' ' + x.nom);
         return control.value !== undefined && array.includes(control.value)? null : {'isStudent': false};
     }
@@ -41,7 +42,7 @@ export let isStudentValidator = (userArray: Array<any>) : ValidatorFn => {
 */
 export let isRepresentantValidator = (userArray: Array<any>) : ValidatorFn => { 
     return (control: AbstractControl) : {[key: string]: boolean} | null => {
-        let array = userArray.filter(x => x.role === 'representantEntreprise')
+        let array = userArray.filter(x => x.role === RoleUser.REPRESENTANT_ENTREPRISE)
                             .map(x => x.prenom + ' ' + x.nom);
         return control.value !== undefined && array.includes(control.value)? null : {'isRepresentant': false};
     }
@@ -52,7 +53,7 @@ export let isRepresentantValidator = (userArray: Array<any>) : ValidatorFn => {
 */
 export let isTuteurUniversiteValidator = (userArray: Array<any>) : ValidatorFn => { 
     return (control: AbstractControl) : {[key: string]: boolean} | null => {
-        let array = userArray.filter(x => x.role === 'tuteur')
+        let array = userArray.filter(x => x.role === RoleUser.TUTEUR)
                             .map(x => x.prenom + ' ' + x.nom);
         return control.value !== undefined && array.includes(control.value)? null : {'isTuteur': false};
     }
