@@ -14,12 +14,32 @@
         <table class="card-table table table-striped table-sm">
             <thead>
                 <tr class="sorted">
-                    <th (click)="sortByAscendingDescendingOrder(0)" scope="col">Etat <i [style.color]=" visibleProperties[0].sorted ? 'grey' : 'silver' " class="fas fa-long-arrow-alt-up"></i> <i [style.color]=" !visibleProperties[0].sorted ? 'grey' : 'silver' " class="fas fa-long-arrow-alt-down"></i></th>
-                    <th (click)="sortByAscendingDescendingOrder(1)" scope="col">Titre <i [style.color]=" visibleProperties[1].sorted ? 'grey' : 'silver' " class="fas fa-long-arrow-alt-up"></i> <i [style.color]=" !visibleProperties[1].sorted ? 'grey' : 'silver' " class="fas fa-long-arrow-alt-down"></i></th>
-                    <th (click)="sortByAscendingDescendingOrder(2)" scope="col">Entreprise <i [style.color]=" visibleProperties[2].sorted ? 'grey' : 'silver' " class="fas fa-long-arrow-alt-up"></i> <i [style.color]=" !visibleProperties[2].sorted ? 'grey' : 'silver' " class="fas fa-long-arrow-alt-down"></i></th>
-                    <th (click)="sortByAscendingDescendingOrder(3)" scope="col">Parcours <i [style.color]=" visibleProperties[3].sorted ? 'grey' : 'silver' " class="fas fa-long-arrow-alt-up"></i> <i [style.color]=" !visibleProperties[3].sorted ? 'grey' : 'silver' " class="fas fa-long-arrow-alt-down"></i></th>
+                    <th scope="col">
+                        <app-th-table-sort  (click)="sortByAscendingDescendingOrder(0)" [sorted]="visibleProperties[0].sorted">
+                            Etat
+                        </app-th-table-sort>
+                    </th>
+                    <th scope="col">
+                        <app-th-table-sort  (click)="sortByAscendingDescendingOrder(1)" [sorted]="visibleProperties[1].sorted">
+                            Titre
+                        </app-th-table-sort>
+                    </th>
+                    <th scope="col">
+                        <app-th-table-sort  (click)="sortByAscendingDescendingOrder(2)" [sorted]="visibleProperties[2].sorted">
+                            Entreprise
+                        </app-th-table-sort>
+                    </th>
+                    <th scope="col">
+                        <app-th-table-sort  (click)="sortByAscendingDescendingOrder(3)" [sorted]="visibleProperties[3].sorted">
+                            Parcours
+                        </app-th-table-sort>
+                    </th>
                     <th scope="col">Promotions</th>
-                    <th (click)="sortByAscendingDescendingOrder(4)" scope="col">Duree <i [style.color]=" visibleProperties[4].sorted ? 'grey' : 'silver' " class="fas fa-long-arrow-alt-up"></i> <i [style.color]=" !visibleProperties[4].sorted ? 'grey' : 'silver' " class="fas fa-long-arrow-alt-down"></i></th>
+                    <th scope="col">
+                        <app-th-table-sort  (click)="sortByAscendingDescendingOrder(4)" [sorted]="visibleProperties[4].sorted">
+                            Duree
+                        </app-th-table-sort>
+                    </th>
                     <th *ngIf="canEditStages()" scope="col">Actions</th>
                 </tr>
             </thead>
