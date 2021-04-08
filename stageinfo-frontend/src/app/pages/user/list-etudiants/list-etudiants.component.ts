@@ -22,10 +22,9 @@ export class ListEtudiantsComponent extends CommonListingTable implements OnInit
   constructor(private route:ActivatedRoute, private userService: UserService) { 
     super();
     this.visibleProperties = [
+      { name: 'numeroEtudiant', sorted: false },
       { name: 'nom', sorted: false },
-      { name: 'prenom', sorted: false },
       { name: 'email', sorted: false },
-      { name: 'role', sorted: false }
     ];
     this.selectItem = new UserModel();
     

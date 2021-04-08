@@ -28,7 +28,7 @@ export class RoleBadgeComponent implements OnInit {
       case RoleUser.ADMIN:      return NameRoleUser.ADMIN;
       case RoleUser.REPRESENTANT_ENTREPRISE:  return NameRoleUser.REPRESENTANT_ENTREPRISE;
       case RoleUser.RESPONSABLE_PARCOURS:     return NameRoleUser.RESPONSABLE_PARCOURS;
-      case RoleUser.RESPONSABLE_PEDAGOGIQUE:  return NameRoleUser.RESPONSABLE_PEDAGOGIQUE;
+      case RoleUser.RESPONSABLE_STAGES:  return NameRoleUser.RESPONSABLE_STAGES;
 
       default: return NameRoleUser.UNDEFINED;
     }

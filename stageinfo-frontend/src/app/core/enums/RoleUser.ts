@@ -6,7 +6,7 @@ export enum RoleUser {
     TUTEUR = 'tuteur',
     REPRESENTANT_ENTREPRISE ="repEntreprise",
     RESPONSABLE_PARCOURS = 'respParcours',
-    RESPONSABLE_PEDAGOGIQUE = 'respPedagogique', // celui qui gère les stages
+    RESPONSABLE_STAGES = 'respStages', // celui qui gère les stages
     SECRETAIRE = 'secretaire',
     ADMIN = 'admin'
   }
@@ -17,7 +17,7 @@ export enum NameRoleUser {
   TUTEUR = 'Tuteur',
   REPRESENTANT_ENTREPRISE ="Représentant entreprise",
   RESPONSABLE_PARCOURS = 'Responsable parcours',
-  RESPONSABLE_PEDAGOGIQUE = 'Responsable Pédagogique', // celui qui gère les stages
+  RESPONSABLE_STAGES = 'Responsable Stages', // celui qui gère les stages
   SECRETAIRE = 'Secretaire',
   ADMIN = 'Admin',
 

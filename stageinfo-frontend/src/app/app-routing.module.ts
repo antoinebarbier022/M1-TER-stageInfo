@@ -8,9 +8,6 @@ import { Error404Component } from './pages/erreurs/error404/error404.component';
 // import user
 import { ProfileUserComponent } from './pages/user/profile-user/profile-user.component';
 import { InfoUserComponent } from './pages/user/info-user/info-user.component';
-import { EditUserComponent } from './pages/user/edit-user/edit-user.component';
-import { EditUserV2Component } from './pages/user/edit-user-v2/edit-user-v2.component';
-import { AddUserComponent } from './pages/user/add-user/add-user.component';
 import { ImportUsersComponent } from './pages/user/import-users/import-users.component';
 import { ListUsersComponent } from './pages/user/list-users/list-users.component';
 import { ListEtudiantsComponent } from './pages/user/list-etudiants/list-etudiants.component';
@@ -96,16 +93,6 @@ const routes: Routes = [
   { path: 'liste-utilisateurs', component: ListUsersComponent, canActivate: [AuthGuardService, RoleGuard], resolve: { users: AllUsersResolver, allParcours: AllParcoursResolver, allEntreprises: AllEntreprisesResolver }},
   { path: 'liste-etudiants', component: ListEtudiantsComponent, canActivate: [AuthGuardService, RoleGuard], resolve: { AllEtudiants: AllEtudiantsResolver, allParcours: AllParcoursResolver }},
   { path: 'liste-utilisateurs/import-users', component: ImportUsersComponent, canActivate: [AuthGuardService, RoleGuard],resolve: {allParcours: AllParcoursResolver}},
-  { path: 'liste-utilisateurs/add-user', component: AddUserComponent, canActivate: [AuthGuardService, RoleGuard]},
-  { path: 'liste-utilisateurs/edit-user/:id',
-      component: EditUserComponent,
-      canActivate: [AuthGuardService, RoleGuard],
-      resolve: {
-        user: UserResolver  // on associe un resolver à la route
-        
-      }
-    },
-  { path: 'liste-utilisateurs/edit-user-v2', component: EditUserV2Component, canActivate: [AuthGuardService, RoleGuard]},
   { path: 'liste-utilisateurs/user/:id',
       component: InfoUserComponent,
       canActivate: [AuthGuardService, RoleGuard],

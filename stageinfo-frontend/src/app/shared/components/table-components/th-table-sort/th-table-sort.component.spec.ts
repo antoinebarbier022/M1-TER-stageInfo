@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { AddUserComponent } from './add-user.component';
+import { ThTableSortComponent } from './th-table-sort.component';
 
-describe('AddUserComponent', () => {
-  let component: AddUserComponent;
-  let fixture: ComponentFixture<AddUserComponent>;
+describe('ThTableSortComponent', () => {
+  let component: ThTableSortComponent;
+  let fixture: ComponentFixture<ThTableSortComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ AddUserComponent ]
+      declarations: [ ThTableSortComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(AddUserComponent);
+    fixture = TestBed.createComponent(ThTableSortComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

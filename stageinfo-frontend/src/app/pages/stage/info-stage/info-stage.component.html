@@ -46,7 +46,7 @@
 <hr>
 <h2>Pièces Jointes</h2>
 <div id="pieces-jointes-stage">
-    <ng-container *ngif="stage?.fichier.length ; else conditionAucunePieceJointe">
+    <ng-container *ngIf="stage?.fichier.length">
         <p *ngIf="errorMessage" class="alert alert-danger">Pour modifier une Pièce Jointe veuillez choisir votre fichier en premier </p>
         <table class="card-table table table-striped table-bordered table-sm">
             <thead>
@@ -72,7 +72,7 @@
             </tbody>
         </table>
     </ng-container>
-    <p #conditionAucunePieceJointe class="alert alert-secondary"> Aucune pièce jointe pour ce stage</p>
+    <p *ngIf="!(stage?.fichier.length)"class="alert alert-secondary"> Aucune pièce jointe pour ce stage</p>
     <app-card>
         <div *ngIf="alert" class="alert alert-success " role="alert">{{ alert }}</div>
         <form>

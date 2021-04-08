@@ -14,8 +14,8 @@ import { FormFicheNotationComponent } from './components/forms/form-fiche-notati
 // modal component
 import { ModalComponent } from './components/modal/modal.component';
 import { ListFilterComponent } from './components/cards/card-filter/card-filter.component';
-import { ListPaginationComponent } from './components/pagination/pagination.component';
-import { ListEntriesNumberComponent } from './components/nbItems/nbItems.component';
+import { ListPaginationComponent } from './components/table-components/pagination/pagination.component';
+import { ListEntriesNumberComponent } from './components/table-components/nbItems/nbItems.component';
 
 // navigation component
 import { NavigationComponent } from './components/navigation/navigation.component';
@@ -34,6 +34,7 @@ import { CardMapComponent } from './components/cards/card-map/card-map.component
 import { StateBadgeComponent } from './components/badges/state-badge/state-badge.component';
 import { GestionEtatStageComponent } from './components/gestion-etat-stage/gestion-etat-stage.component';
 import { RoleBadgeComponent } from './components/badges/role-badge/role-badge.component';
+import { ThTableSortComponent } from './components/table-components/th-table-sort/th-table-sort.component';
 
 
 
@@ -61,7 +62,8 @@ import { RoleBadgeComponent } from './components/badges/role-badge/role-badge.co
     FormFicheNotationComponent,
     StateBadgeComponent, 
     GestionEtatStageComponent, 
-    RoleBadgeComponent
+    RoleBadgeComponent,
+    ThTableSortComponent
   ],
   imports: [
     CommonModule,
@@ -93,7 +95,8 @@ import { RoleBadgeComponent } from './components/badges/role-badge/role-badge.co
     FormFicheNotationComponent,
     StateBadgeComponent,
     GestionEtatStageComponent,
-    RoleBadgeComponent
+    RoleBadgeComponent,
+    ThTableSortComponent
   ]
 })
 export class SharedModule { }

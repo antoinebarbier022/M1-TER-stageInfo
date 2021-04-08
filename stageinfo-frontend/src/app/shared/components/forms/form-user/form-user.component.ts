@@ -9,7 +9,7 @@ import { UserService } from 'src/app/core/services/user.service';
 
 import { studentNumberIsCorrectValidator } from 'src/app/core/validators/validators';
 import { UserModel } from 'src/app/core/models/UserModel';
-import { RoleUser } from 'src/app/core/enums/RoleUser';
+import { NameRoleUser, RoleUser } from 'src/app/core/enums/RoleUser';
 
 
 @Component({
@@ -41,10 +41,12 @@ export class FormUserComponent implements OnInit {
     RoleUser.TUTEUR,
     RoleUser.REPRESENTANT_ENTREPRISE,
     RoleUser.RESPONSABLE_PARCOURS,
-    RoleUser.RESPONSABLE_PEDAGOGIQUE,
+    RoleUser.RESPONSABLE_STAGES,
     RoleUser.SECRETAIRE,
     RoleUser.ADMIN,
   ];
+
+  
 
   // Boolean pour l'affichage des sections
   displaySectionEtudiant = false;
@@ -98,6 +100,21 @@ export class FormUserComponent implements OnInit {
     this.onRoleValueChanges();
   }
 
+  nameRole(role:RoleUser):any{
+    switch (role) {
+      case RoleUser.INVITE:     return NameRoleUser.INVITE;
+      case RoleUser.ETUDIANT:   return NameRoleUser.ETUDIANT;
+      case RoleUser.TUTEUR:     return NameRoleUser.TUTEUR;
+      case RoleUser.SECRETAIRE: return NameRoleUser.SECRETAIRE;
+      case RoleUser.ADMIN:      return NameRoleUser.ADMIN;
+      case RoleUser.REPRESENTANT_ENTREPRISE:  return NameRoleUser.REPRESENTANT_ENTREPRISE;
+      case RoleUser.RESPONSABLE_PARCOURS:     return NameRoleUser.RESPONSABLE_PARCOURS;
+      case RoleUser.RESPONSABLE_STAGES:  return NameRoleUser.RESPONSABLE_STAGES;
+
+      default: return NameRoleUser.UNDEFINED;
+    }
+  }
+  
   initForm(){
     this.userForm = this.formBuilder.group({
       nom: ['', Validators.required],
@@ -255,7 +272,7 @@ export class FormUserComponent implements OnInit {
           break;
       case RoleUser.TUTEUR:
       case RoleUser.RESPONSABLE_PARCOURS:
-      case RoleUser.RESPONSABLE_PEDAGOGIQUE:
+      case RoleUser.RESPONSABLE_STAGES:
       case RoleUser.SECRETAIRE:
       case RoleUser.ADMIN:
           this.displaySectionEtudiant = false;

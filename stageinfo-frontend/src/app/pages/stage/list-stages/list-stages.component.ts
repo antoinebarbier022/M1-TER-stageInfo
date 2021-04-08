@@ -9,6 +9,7 @@ import { ActivatedRoute } from '@angular/router';
 import { StageModel } from 'src/app/core/models/StageModel';
 import { AuthService } from 'src/app/core/services/auth.service';
 import { EtatStage } from 'src/app/core/enums/EtatStage';
+import { RoleUser } from 'src/app/core/enums/RoleUser';
 
 @Component({
   selector: 'app-list-stages',
@@ -27,11 +28,12 @@ export class ListStagesComponent extends CommonListingTable implements OnInit {
     private authService:AuthService) {
     super();
     this.visibleProperties = [
+      { name: 'etat',sorted: false },
       { name: 'titre', sorted: false },
       { name: 'entreprise',sorted: false },
       { name: 'parcours',sorted: false },
       { name: 'duree',sorted: false },
-      { name: 'etat',sorted: false }
+
     ];
     this.selectItem = new StageModel();
   }
@@ -42,15 +44,16 @@ export class ListStagesComponent extends CommonListingTable implements OnInit {
 
   canEditStages():boolean{
     switch (this.authService.getViewRole()) {
-      case 'invite':
-      case 'etudiant':
-      case 'tuteur':
-      case 'repEntreprise':
+      case RoleUser.INVITE:
+      case RoleUser.ETUDIANT:
+      case RoleUser.TUTEUR:
+      case RoleUser.REPRESENTANT_ENTREPRISE:
         return false;
       
-      case 'respParcours':
-      case 'secretaire':
-      case 'admin':
+      case RoleUser.RESPONSABLE_PARCOURS:
+      case RoleUser.SECRETAIRE:
+      case RoleUser.RESPONSABLE_STAGES:
+      case RoleUser.ADMIN:
         return true;
       default:
         return false;
@@ -59,16 +62,17 @@ export class ListStagesComponent extends CommonListingTable implements OnInit {
 
   stagesForRoles(allStage:any):any{
     switch (this.authService.getViewRole()) {
-      case 'invite':
-      case 'etudiant':
-        return allStage.filter(((obj: { etat: any; }) => (obj.etat ==EtatStage.VALIDE || obj.etat ==EtatStage.RESERVE)));
-      case 'tuteur':
-      case 'repEntreprise':
+      case RoleUser.INVITE:
+      case RoleUser.ETUDIANT:
+        return allStage.filter(((obj: { etat: any; }) => (obj.etat == EtatStage.VALIDE)));
+      case RoleUser.REPRESENTANT_ENTREPRISE:
         return allStage.filter(((obj: { etat: any; }) => obj.etat != EtatStage.PROPOSE));
-      
-      case 'respParcours':
-      case 'secretaire':
-      case 'admin':
+      case RoleUser.TUTEUR:
+        return allStage.filter(((obj: { etat: any; }) => (obj.etat == EtatStage.AFFECT_ETUDIANT) || (obj.etat == EtatStage.AFFECT_TUTEUR) ));
+      case RoleUser.RESPONSABLE_PARCOURS:
+      case RoleUser.SECRETAIRE:
+      case RoleUser.RESPONSABLE_STAGES:
+      case RoleUser.ADMIN:
         return allStage;
     }
   }

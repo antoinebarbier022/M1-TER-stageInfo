@@ -107,7 +107,10 @@
     <ng-container *ngFor="let role of message.role">
         <ng-container *ngFor="let etat of message.etat">
             <div *ngIf="afficheMessage(etat, role)" [class]="'alert alert-'+ etat">
-                <button [class]="'btn btn-sm btn-outline-'+etat" (click)="changerEtat(message.newState)" [innerHTML]="message.content"></button>
+                <form (ngSubmit)="onSubmit(f,message.newState)" #f="ngForm">
+                    <button type="submit" [class]="'btn btn-sm btn-outline-'+etat" [innerHTML]="message.content"></button>
+                </form>
+
             </div>
         </ng-container>
     </ng-container>
