@@ -43,14 +43,17 @@
             <label class="custom-control-label" for="customSwitch1">All sidebar routes</label>
           </div>
       </div>
-      <p *ngIf="!isAdmin()"> Vous êtes : {{ nameRole(getRole()) }}</p>
+      <p *ngIf="!isAdmin()"> 
+        Vous êtes : 
+        <app-role-badge *ngIf="!isAdmin()" class="role" [role]="getRole()"></app-role-badge>
+      </p>
 
 
 
       <div id="navbarRight">
         <div class="dropdown" id="user-icon">
             <a class="dropdown-toggle" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-              <app-role-badge class="role" [role]="getRole()"></app-role-badge>
+              <app-role-badge *ngIf="isAdmin()" class="role" [role]="getRole()"></app-role-badge>
               <span id="user-name">{{this.getEmail()}}</span>
               <i  class="sidebar-icon fa-lg fas fa-user-cog"></i>
             </a>
