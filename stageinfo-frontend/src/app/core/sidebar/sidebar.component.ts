@@ -15,6 +15,8 @@ import { RoleUser } from '../enums/RoleUser';
 export class SidebarComponent implements OnInit {
 
   // On défini tous les liens possibles de navigation
+  mesStages = {icon:"fas fa-clipboard-list",          nom:"Mes stages",       lien:"/mes-stages",       items:[]};
+
   listeStages =             {icon:"fas fa-list",          nom:"Listing des stages",       lien:"/liste-stages",       items:[]};
   listeSoutenances =        {icon:"fas fa-list",          nom:"Listing des soutenances",  lien:"/liste-soutenances",   items:[]};
   listeEntreprise =         {icon:"fas fa-list",          nom:"Listing des entreprises",  lien:"/liste-entreprises",   items:[]};
@@ -72,7 +74,7 @@ export class SidebarComponent implements OnInit {
   navigationEtudiant = [
     {
       title:"Stage",
-      items: [ this.listeStages, this.saisirStage, this.planningSoutenance]
+      items: [ this.mesStages, this.listeStages, this.planningSoutenance, this.saisirStage]
     },
     {
       title:"Besoin d'aide ?",
@@ -83,7 +85,7 @@ export class SidebarComponent implements OnInit {
   navigationTuteur = [
     {
       title:"Stage",
-      items: [ this.listeStages, this.saisirFicheSuivi, this.saisirFicheNotation, this.planningSoutenance]
+      items: [ this.mesStages, this.listeStages, this.planningSoutenance, this.saisirFicheSuivi, this.saisirFicheNotation,]
     },
     {
       title:"Statistique",
@@ -102,7 +104,7 @@ export class SidebarComponent implements OnInit {
   navigationRepresentantEntreprise = [
     {
       title:"Stage",
-      items: [ this.listeStages, this.saisirStage, this.saisirFicheSuivi, this.planningSoutenance]
+      items: [ this.mesStages, this.listeStages, this.planningSoutenance, this.saisirStage, this.saisirFicheSuivi]
     },
     {
       title:"Besoin d'aide ?",
@@ -158,6 +160,10 @@ export class SidebarComponent implements OnInit {
     {
       title:"Archivage",
       items: [ this.archivesRapports, this.archivesStages]
+    },
+    {
+      title:"Aide développeur",
+      items: [ this.documentation, this.gitlab]
     },
     {
       title:"Besoin d'aide ?",
