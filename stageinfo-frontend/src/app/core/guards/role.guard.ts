@@ -5,6 +5,7 @@ import { AuthService } from '../services/auth.service';
 import decode from 'jwt-decode';
 import jwtDecode from 'jwt-decode';
 import { IToken } from '../interfaces/itoken';
+import { RoleUser } from '../enums/RoleUser';
 
 @Injectable({
   providedIn: 'root'
@@ -49,61 +50,71 @@ export class RoleGuard implements CanActivate {
     return false;
   }
 
-  checkRoleAccess(role: string, route: string){
+  allRoleButNotInvite = [
+    RoleUser.ETUDIANT,
+    RoleUser.TUTEUR,
+    RoleUser.REPRESENTANT_ENTREPRISE,
+    RoleUser.RESPONSABLE_PARCOURS,
+    RoleUser.RESPONSABLE_STAGES,
+    RoleUser.SECRETAIRE,
+    RoleUser.ADMIN,
+  ];
+
+  allRole = [
+    RoleUser.INVITE,
+    RoleUser.ETUDIANT,
+    RoleUser.TUTEUR,
+    RoleUser.REPRESENTANT_ENTREPRISE,
+    RoleUser.RESPONSABLE_PARCOURS,
+    RoleUser.RESPONSABLE_STAGES,
+    RoleUser.SECRETAIRE,
+    RoleUser.ADMIN,
+  ];
+
+  checkRoleAccess(role: any, route: string){
 
     /* ['etudiant', 'representantEntreprise', 'tuteur', 'secretaire', 'responsableParcours', 'responsablePedagogique', 'admin', 'invite'] */
 
     switch(route){
-      case 'documentation':
-        return ['tuteurUniversite', 'responsableParcours', 'admin'].includes(role);
+      
+      // Tous les roles 
       case 'liste-stages':
-        return ['etudiant', 'representantEntreprise', 'tuteur', 'secretaire', 'responsableParcours', 'responsablePedagogique', 'admin', 'invite'].includes(role);
-      case 'liste-stages/:id':
-        return ['etudiant', 'representantEntreprise', 'tuteur', 'secretaire', 'responsableParcours', 'responsablePedagogique', 'admin', 'invite'].includes(role);
-      case 'saisir-stage':
-        return ['etudiant', 'representantEntreprise', 'tuteur', 'secretaire', 'admin'].includes(role);
-      case 'liste-utilisateurs':
-        return ['secretaire', 'admin'].includes(role);
-      case 'liste-etudiants':
-        return ['secretaire', 'admin'].includes(role);
-      case 'liste-utilisateurs/import-users':
-        return ['secretaire', 'admin'].includes(role);
-      case 'liste-utilisateurs/add-user':
-        return ['secretaire', 'admin'].includes(role);
-      case 'liste-utilisateurs/edit-user/:id':
-        return ['secretaire', 'admin'].includes(role);
-      case 'liste-utilisateurs/edit-user-v2':
-        return ['secretaire', 'admin'].includes(role);
-      case 'liste-utilisateurs/user/:id':
-        return ['etudiant', 'representantEntreprise', 'tuteur', 'secretaire', 'responsableParcours', 'responsablePedagogique', 'admin', 'invite'].includes(role);
+      case 'liste-stages/:id':  
       case 'liste-entreprises':
-        return ['secretaire', 'admin'].includes(role);
-      case 'liste-entreprises/add-entreprise':
-        return ['secretaire', 'admin'].includes(role);
-      case 'liste-entreprises/edit-entreprise/:id':
-        return ['secretaire', 'admin'].includes(role);
       case 'liste-entreprises/info/:id':
-        return ['etudiant', 'representantEntreprise', 'tuteur', 'secretaire', 'responsableParcours', 'responsablePedagogique', 'admin', 'invite'].includes(role);
+      case 'liste-utilisateurs': 
+      case 'liste-utilisateurs/user/:id': 
+        return this.allRole.includes(role);
+
+      // Tous les roles à l'exception de l'invité
+      case 'saisir-stage':        
+        return this.allRoleButNotInvite.includes(role);
+
+      // administrateur
+      case 'documentation':    
+      case 'liste-etudiants':
+      case 'liste-utilisateurs/import-users':
+        return [RoleUser.ADMIN].includes(role);
+
       case 'liste-soutenances':
-        return ['secretaire', 'admin'].includes(role);
       case 'liste-soutenances/add-soutenance':
-        return ['secretaire', 'admin'].includes(role);
       case 'liste-soutenances/edit-soutenance':
-        return ['secretaire', 'admin'].includes(role);
       case 'liste-soutenances/soutenance':
-        return ['secretaire', 'admin'].includes(role);
+        return [RoleUser.SECRETAIRE, RoleUser.ADMIN].includes(role);
+
+      // Secretaire, responsable parcours, admin  
       case 'liste-parcours':
-        return ['secretaire', 'responsableParcours', 'admin'].includes(role);
       case 'liste-parcours/add-parcours':
-        return ['secretaire', 'admin'].includes(role);
       case 'liste-parcours/edit-parcours/:id':
-        return ['secretaire', 'responsableParcours', 'admin'].includes(role);
       case 'liste-parcours/info/:id':
-        return ['secretaire', 'responsableParcours', 'admin'].includes(role);
-      case 'saisir-fiche-suivi' :
-        return ['secretaire', 'responsableParcours', 'admin'].includes(role); /* Il faudra peut être changer les rôles ici */
       case 'saisir-fiche-notation' :
-        return ['secretaire', 'responsableParcours', 'admin'].includes(role); /* Il faudra peut être changer les rôles ici */
+        return [RoleUser.SECRETAIRE,RoleUser.RESPONSABLE_STAGES, RoleUser.ADMIN].includes(role);
+      
+      // Etudiant, Secretaire, Responsable stage, admin
+      case 'saisir-fiche-suivi' :
+        return [RoleUser.ETUDIANT, RoleUser.SECRETAIRE, RoleUser.RESPONSABLE_STAGES, RoleUser.ADMIN].includes(role);
+
+      // Aucun accées pour les autres liens 
       default:
         return false;
     }
