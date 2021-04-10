@@ -42,47 +42,48 @@
     </app-card>
 </div>
 
-
-<hr>
-<h2>Pièces Jointes</h2>
-<div id="pieces-jointes-stage">
-    <ng-container *ngIf="stage?.fichier.length">
-        <p *ngIf="errorMessage" class="alert alert-danger">Pour modifier une Pièce Jointe veuillez choisir votre fichier en premier </p>
-        <table class="card-table table table-striped table-bordered table-sm">
-            <thead>
-                <tr>
-                    <th scope="col">Nom du fichier </th>
-                    <th scope="col">Type</th>
-                    <th scope="col">Actions</th>
-                </tr>
-            </thead>
-            <tbody>
-                <!-- Ajout des stages de la BDD -->
-                <tr *ngFor="let fichier of stage.fichier ">
-                    <td><a [href]="fichier.chemin" target="_blank">{{ fichier.nom }}</a></td>
-                    <td>{{ fichier.extension }}</td>
-
-                    <td class="table-action">
-                        <!-- Bouton edit => ouvre un modal avec le formulaire de modification -->
-                        <app-button-edit data-toggle="modal" (click)="selectedPieceJointe(fichier)"  data-target="#modifierFichier" ></app-button-edit>
-
-                        <app-button-delete data-toggle="modal" (click)="selectedPieceJointe(fichier)" data-target="#suppressionFichier"></app-button-delete>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-    </ng-container>
-    <p *ngIf="!(stage?.fichier.length)"class="alert alert-secondary"> Aucune pièce jointe pour ce stage</p>
-    <app-card>
-        <div *ngIf="alert" class="alert alert-success " role="alert">{{ alert }}</div>
-        <form>
-            <div class="form-group-row">
-                <input id='files' type="file" (input)="fileChoosen($event)"  accept="application/pdf,application/msword" >
-            </div>
-            <button class="btn btn-primary btn-sm" (click)="ajouterFichier()" [disabled]="!uploaded" >Ajouter le fichier</button>
-        </form>
-    </app-card>
-</div>
+<ng-container *ngIf="canEditStage()">
+    <hr>
+    <h2>Pièces Jointes</h2>
+    <div id="pieces-jointes-stage">
+        <ng-container *ngIf="stage?.fichier.length">
+            <p *ngIf="errorMessage" class="alert alert-danger">Pour modifier une Pièce Jointe veuillez choisir votre fichier en premier </p>
+            <table class="card-table table table-striped table-bordered table-sm">
+                <thead>
+                    <tr>
+                        <th scope="col">Nom du fichier </th>
+                        <th scope="col">Type</th>
+                        <th scope="col">Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Ajout des stages de la BDD -->
+                    <tr *ngFor="let fichier of stage.fichier ">
+                        <td><a [href]="fichier.chemin" target="_blank">{{ fichier.nom }}</a></td>
+                        <td>{{ fichier.extension }}</td>
+    
+                        <td class="table-action">
+                            <!-- Bouton edit => ouvre un modal avec le formulaire de modification -->
+                            <app-button-edit data-toggle="modal" (click)="selectedPieceJointe(fichier)"  data-target="#modifierFichier" ></app-button-edit>
+    
+                            <app-button-delete data-toggle="modal" (click)="selectedPieceJointe(fichier)" data-target="#suppressionFichier"></app-button-delete>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </ng-container>
+        <p *ngIf="!(stage?.fichier.length)"class="alert alert-secondary"> Aucune pièce jointe pour ce stage</p>
+        <app-card>
+            <div *ngIf="alert" class="alert alert-success " role="alert">{{ alert }}</div>
+            <form>
+                <div class="form-group-row">
+                    <input id='files' type="file" (input)="fileChoosen($event)"  accept="application/pdf,application/msword" >
+                </div>
+                <button class="btn btn-primary btn-sm" (click)="ajouterFichier()" [disabled]="!uploaded" >Ajouter le fichier</button>
+            </form>
+        </app-card>
+    </div>
+</ng-container>
 <hr>
 
 <h2>Commentaires sur le stage</h2>
