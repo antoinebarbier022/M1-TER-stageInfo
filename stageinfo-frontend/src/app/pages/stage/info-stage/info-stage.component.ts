@@ -2,6 +2,8 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
+import { RoleUser } from 'src/app/core/enums/RoleUser';
+import { AuthService } from 'src/app/core/services/auth.service';
 import { StageService } from 'src/app/core/services/stage.service';
 import {pjService} from "../../../core/services/pj.service";
 
@@ -42,8 +44,11 @@ export class InfoStageComponent implements OnInit, OnDestroy {
   errorMessage: boolean = false;
   alert: any;
 
+  selectPieceJointe:any; // piece jointe qui est selectionné 
+
   constructor(private route:ActivatedRoute,
               private stageService: StageService,
+              private authService: AuthService,
               private pjService : pjService) { }
 
   ngOnInit(): void {
@@ -59,8 +64,30 @@ export class InfoStageComponent implements OnInit, OnDestroy {
     }
   }
 
+  selectedPieceJointe(item:any){
+    this.selectPieceJointe = item;
+  }
+
   displaySectionEncadrant():boolean{
     return this.stage.tuteur;
+  }
+
+  canEditStage():boolean{
+    switch (this.authService.getViewRole()) {
+      case RoleUser.INVITE:
+      case RoleUser.ETUDIANT:
+      case RoleUser.TUTEUR:
+      case RoleUser.REPRESENTANT_ENTREPRISE:
+        return false;
+      
+      case RoleUser.RESPONSABLE_PARCOURS:
+      case RoleUser.SECRETAIRE:
+      case RoleUser.RESPONSABLE_STAGES:
+      case RoleUser.ADMIN:
+        return true;
+      default:
+        return false;
+    }
   }
 
   ngOnDestroy() {
@@ -104,11 +131,12 @@ export class InfoStageComponent implements OnInit, OnDestroy {
 
   }
 
-  supprimerFichier(_id: any) {
-    this.pjService.deletePJById(_id).pipe(takeUntil(this.destroy$))
+  supprimerFichier(id: any) {
+    this.pjService.deletePJById(id).pipe(takeUntil(this.destroy$))
       .subscribe((_res: any) => {
-        console.log("Stage : " + this.stage.titre + " modifié !");
         this.alert="Fichier supprimé!";
+        // On supprime la pièce jointe du tableau local des fichier (on sait qu'il est supprimer de la base de donnée donc on peut le supprimer sans recharger les données distantes)
+        this.stage.fichier = this.stage.fichier.filter((object: { _id: any; }) => { return object._id != id; });
       });
   }
 }

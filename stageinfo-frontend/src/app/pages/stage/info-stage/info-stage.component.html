@@ -58,15 +58,15 @@
             </thead>
             <tbody>
                 <!-- Ajout des stages de la BDD -->
-                <tr *ngFor="let p of stage.fichier ">
-                    <td><a [href]="p.chemin" target="_blank">{{ p.nom}}</a></td>
-                    <td>{{p.extension}}</td>
+                <tr *ngFor="let fichier of stage.fichier ">
+                    <td><a [href]="fichier.chemin" target="_blank">{{ fichier.nom }}</a></td>
+                    <td>{{ fichier.extension }}</td>
 
                     <td class="table-action">
                         <!-- Bouton edit => ouvre un modal avec le formulaire de modification -->
-                        <app-button-edit data-toggle="modal" (click)="modifierFichier(p._id)"  data-target="#modifier" ></app-button-edit>
+                        <app-button-edit data-toggle="modal" (click)="selectedPieceJointe(fichier)"  data-target="#modifierFichier" ></app-button-edit>
 
-                        <app-button-delete data-toggle="modal" (click)="supprimerFichier(p._id)" data-target="#suppression"></app-button-delete>
+                        <app-button-delete data-toggle="modal" (click)="selectedPieceJointe(fichier)" data-target="#suppressionFichier"></app-button-delete>
                     </td>
                 </tr>
             </tbody>
@@ -110,3 +110,25 @@
     </div>
 
 </div>
+
+
+
+<!---------------------------------------------------->
+<!-------------------- LES MODALS -------------------->
+<!---------------------------------------------------->
+<ng-container *ngIf="canEditStage()">
+    
+    <!-- Modal pour supprimer la pièce jointe selectionné -->
+    <app-modal class="modal fade"
+            tabindex="-1" 
+            role="dialog" 
+            id="suppressionFichier">
+        <span title> Supprimer la pièce jointe </span>
+        <p content>Confirmer la suppression de la pièce jointe : <strong>{{ selectPieceJointe }}</strong></p>
+        <button button1 type="button" class="btn btn-secondary btn-sm" data-dismiss="modal">Annuler</button>
+        <button button2 (click)="supprimerFichier(selectPieceJointe._id)" type="button" class="btn btn-danger btn-sm" data-dismiss="modal">Supprimer</button>
+    </app-modal>
+    
+
+    
+    </ng-container>
