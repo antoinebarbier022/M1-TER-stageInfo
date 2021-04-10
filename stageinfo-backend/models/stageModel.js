@@ -1,20 +1,6 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
-// Modèle pour le commentaire d'un stage
-const commentaireSchema = Schema({
-  idUser: {
-    type : Schema.Types.ObjectId,
-    ref : 'User'
-  },
-  dateCommentaire: {
-    type : Date,
-    default: new Date()
-  },
-  message: {
-    type : String,
-  },
-});
 
 // Modèle de la fiche de suivi
 const ficheSuiviSchema = Schema({
@@ -88,7 +74,7 @@ const stageSchema = Schema({
   });
   
   
-module.exports = mongoose.model('Commentaire', commentaireSchema);
+
 module.exports = mongoose.model('FicheSuivi', ficheSuiviSchema);
 module.exports = mongoose.model('NoteStage', noteStageSchema);
 module.exports = mongoose.model('VisiteStage', visiteStageSchema);

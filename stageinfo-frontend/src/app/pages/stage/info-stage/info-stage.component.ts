@@ -1,11 +1,12 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 import { RoleUser } from 'src/app/core/enums/RoleUser';
 import { AuthService } from 'src/app/core/services/auth.service';
 import { StageService } from 'src/app/core/services/stage.service';
-import {pjService} from "../../../core/services/pj.service";
+import { pjService } from "../../../core/services/pj.service";
 
 @Component({
   selector: 'app-info-stage',
@@ -46,22 +47,37 @@ export class InfoStageComponent implements OnInit, OnDestroy {
 
   selectPieceJointe:any; // piece jointe qui est selectionné 
 
-  constructor(private route:ActivatedRoute,
+  // formulaire d'ajout de commentaire sur le stage
+  // @ts-ignore
+  commentaireForm: FormGroup;
+  // @ts-ignore
+  errorMessage: String;
+
+  constructor(private formBuilder: FormBuilder,
+              private route:ActivatedRoute,
               private stageService: StageService,
               private authService: AuthService,
-              private pjService : pjService) { }
+              private pjService : pjService) { 
+                this.allUsers = this.route.snapshot.data.allUsers;
+              }
 
   ngOnInit(): void {
+    this.initFormComment();
     this.stage = this.route.snapshot.data.stage;
     console.log(this.stage);
 
-    this.allUsers = this.route.snapshot.data.allUsers;
     var index = this.allUsers.findIndex(((obj: { _id: any; }) => obj._id == this.stage.entreprise?.representant));
     this.stage.entreprise.representant = {
       _id: this.stage.entreprise?.representant,
       nom: this.allUsers[index]?.nom,
       prenom: this.allUsers[index]?.prenom
     }
+  }
+
+  initFormComment(){
+    this.commentaireForm = this.formBuilder.group({
+      commentaire:['',Validators.required]
+    });
   }
 
   selectedPieceJointe(item:any){
@@ -106,6 +122,29 @@ export class InfoStageComponent implements OnInit, OnDestroy {
   }
   onSubmitAddFiles(){
     this.ajouterFichier();
+  }
+
+  ajouterCommentaire(){
+    const formValue = this.commentaireForm.value;
+    var comment :any = {
+      idStage: this.stage._id,
+      idUser: this.authService.getUserid(),
+      dateCommentaire: new Date(),
+      message: formValue['commentaire'],
+    };
+    this.stageService.addCommentOnStage(this.stage._id, comment)
+      .pipe(takeUntil(this.destroy$))
+        .subscribe((_res: any) => {
+          console.log("Nouveau commentaire !");
+          comment._id = _res?._id;
+          this.stage.commentaires.push(comment);
+          this.commentaireForm.reset();
+        });
+  }
+
+  getCommentAuthor(idUser:any){
+    var index = this.allUsers.findIndex(((obj: { _id: any; }) => obj._id == idUser));
+    return this.allUsers[index]?.nom + " " + this.allUsers[index]?.prenom;
   }
 
   ajouterFichier(){

@@ -1,4 +1,5 @@
 const Stage = require('../models/stageModel');
+const Commentaire = require('../models/commentaireModel');
 const PJ = require('../models/pieceJointeModel')
 const fs = require('fs');
 const multer =require('../middleware/multer-config')
@@ -10,6 +11,7 @@ const multer =require('../middleware/multer-config')
  */
 exports.getAllStage = ((req, res, next) => {
   Stage.find()
+  .populate('commentaires')
   .populate('entreprise','nom')
   .populate('parcours', 'acronyme')
   .populate('ajouteur', 'nom prenom')
@@ -209,16 +211,17 @@ exports.addCommentOnStage = (req,res,next) => {
     comment.save()
         .then(() => {
             const stage = {
-                $push: {commentaires :pj._id},
+                $push: {commentaires :comment._id},
             }
             Stage.updateOne({_id: req.params.id}, stage)
                 .then(() => {
                     res.status(201).json({
-                        message: 'Ajoute d\'un commentaire sur le stage : ['+ req.params.id +']'
+                        message: 'Ajoute d\'un commentaire sur le stage : ['+ req.params.id +']',
+                        idCommentaire : comment._id
                     });
                 })
                 .catch((error) => {
-                    res.status(400).json({error: error});
+                    res.status(400).json({message: 'Une erreur est survenu lors de l\'update du stage ',error: error});
                 });
         })
         .catch((error) => {
