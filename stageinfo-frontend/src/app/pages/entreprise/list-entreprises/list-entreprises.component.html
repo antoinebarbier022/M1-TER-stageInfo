@@ -73,5 +73,5 @@
         id="ajouter">
         <span title>Ajouter une entreprise</span>
 
-    <app-form-entreprise content [addEntreprise]="true"> </app-form-entreprise>
+    <app-form-entreprise content [addEntreprise]="true" (entrepriseEvent)="addEntreprise($event)"> </app-form-entreprise>
 </app-modal>

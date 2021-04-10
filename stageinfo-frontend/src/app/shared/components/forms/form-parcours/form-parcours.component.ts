@@ -112,9 +112,21 @@ export class FormParcoursComponent implements OnInit, OnChanges {
   ajouterParcours(parcours:any){
     this.parcoursService.addParcours(parcours)
     .pipe(takeUntil(this.destroy$))
-      .subscribe((_res: any[]) => {
+      .subscribe((_res: any) => {
         console.log("Parcours : "+ parcours.acronyme + " ajouté à la plateforme !");
         this.parcoursForm.reset();  // on reset les données dans le forumulaire
+
+        parcours._id = _res.idParcours;
+        // On met place les infos du responsable dans le tableau parcours
+        var idResp = parcours.responsable;
+        var index = this.allResponsable.findIndex(((obj: { _id: any; }) => obj._id == idResp));
+      
+        parcours.responsable = { 
+          _id:idResp, 
+          nom:this.allResponsable[index]?.nom,
+          prenom:this.allResponsable[index]?.prenom
+        }
+        this.parcoursEvent.emit(parcours); // on envoie le parcours dans le component parent
     });
   }
 

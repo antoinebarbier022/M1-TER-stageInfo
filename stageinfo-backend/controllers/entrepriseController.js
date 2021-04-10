@@ -65,7 +65,8 @@ exports.createEntreprise = (req, res, next) => {
     entreprise.save()
         .then(() => {
             res.status(201).json({
-                message: 'Post saved successfully!'
+                message: 'Post saved successfully!',
+                idEntreprise: entreprise._id
             });
         })
         .catch((error) => { res.status(400).json({ error: error});});

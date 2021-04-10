@@ -132,15 +132,7 @@ export class FormEntrepriseComponent implements OnInit {
         this.idEntreprise,
         formValue['nom'],
         formValue['secteurActivite'],
-        formValue['description'],
-
-        /*new AdresseModel(
-          formValue['voie'],
-          formValue['codePostal'],
-          formValue['ville'],
-          formValue['pays'],
-        ), */
-       
+        formValue['description'],       
         formValue['voie'],
         formValue['codePostal'],
         formValue['ville'],
@@ -169,9 +161,21 @@ export class FormEntrepriseComponent implements OnInit {
   ajouterEntreprise(entreprise:any){
     this.parcoursService.addEntreprise(entreprise)
     .pipe(takeUntil(this.destroy$))
-      .subscribe((_res: any[]) => {
+      .subscribe((_res: any) => {
         console.log("Entreprise : "+ entreprise.nom +" ajouté sur la plateforme !");
         this.onReset(); // on reset les données dans le forumulaire
+        
+        entreprise._id = _res.idEntreprise;
+        // On met place les infos du representant dans le tableau entreprise local
+        var idRep = entreprise.representant;
+        var index = this.allUsers.findIndex(((obj: { _id: any; }) => obj._id == idRep));
+        console.log(this.allUsers)
+        entreprise.representant = { 
+          _id:idRep, 
+          nom:this.allUsers[index]?.nom,
+          prenom:this.allUsers[index]?.prenom
+        }
+        this.entrepriseEvent.emit(entreprise);
     });
   }
 
@@ -192,7 +196,7 @@ export class FormEntrepriseComponent implements OnInit {
           prenom:this.allUsers[index]?.prenom
         }
         this.onReset(); // on reset les données dans le forumulaire
-        this.entrepriseEvent.emit(entreprise); // on envoie le parcours dans le component parent
+        this.entrepriseEvent.emit(entreprise); // on envoie l'entreprise dans le component parent
     });
   }
 
