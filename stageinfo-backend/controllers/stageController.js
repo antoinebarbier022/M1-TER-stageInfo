@@ -35,7 +35,7 @@ exports.getAllStageRelatedToUser = ((req, res, next) => {
     .populate('ficheSuivi')
     .populate('noteStage')
     .populate('visiteStage')
-    .populate('fichier', 'nom chemin')
+    .populate('fichier')
     .populate('entreprise')
     .populate('parcours', 'acronyme')
   
@@ -58,16 +58,21 @@ exports.getAllStageRelatedToUser = ((req, res, next) => {
  *
  */
 exports.getOneStage = ((req, res, next) => {
-  Stage.findOne({
-    _id: req.params.id
-  })
-  .populate('entreprise','nom')
-  .populate('parcours', 'acronyme')
-  .populate('ajouteur', 'nom prenom')
-  .populate('repEntreprise', 'nom prenom')
-  .populate('tuteur', 'nom prenom')
-  .populate('rapporteur', 'nom prenom')
-  .populate('etudiant', 'nom prenom')
+    Stage.findOne({
+        _id: req.params.id
+    })
+    .populate('commentaires')
+    .populate('ficheSuivi')
+    .populate('noteStage')
+    .populate('visiteStage')
+    .populate('fichier')
+    .populate('entreprise')
+    .populate('parcours', 'acronyme')
+    .populate('ajouteur', 'nom prenom')
+    .populate('repEntreprise', 'nom prenom')
+    .populate('tuteur', 'nom prenom')
+    .populate('rapporteur', 'nom prenom')
+    .populate('etudiant', 'nom prenom')
 
   .then(stage => res.status(200).json(stage))
   .catch(error => res.status(404).json({ error }))
