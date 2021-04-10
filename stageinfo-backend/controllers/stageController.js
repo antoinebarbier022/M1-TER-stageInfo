@@ -189,13 +189,45 @@ exports.createStage = (req, res, next) => {
     stage.save()
             .then(() => {
                 res.status(201).json({
-                    message: 'Post saved successfully!'
+                    message: 'Création du stage réussie !',
+                    idStage: stage._id
                 });
             })
             .catch((error) => {
                 res.status(400).json({error: error});
             });
     };
+
+
+exports.addCommentOnStage = (req,res,next) => {
+    const comment = new Commentaire({
+        idUser: req.body.idUser,
+        dateCommentaire : new Date(),
+        message: req.body.message
+    });
+
+    comment.save()
+        .then(() => {
+            const stage = {
+                $push: {commentaires :pj._id},
+            }
+            Stage.updateOne({_id: req.params.id}, stage)
+                .then(() => {
+                    res.status(201).json({
+                        message: 'Ajoute d\'un commentaire sur le stage : ['+ req.params.id +']'
+                    });
+                })
+                .catch((error) => {
+                    res.status(400).json({error: error});
+                });
+        })
+        .catch((error) => {
+            res.status(400).json({error: error});
+        });
+
+};
+
+
 exports.addPJ= (req,res,next) => {
     const ladate = new Date();
     const pj = new PJ({

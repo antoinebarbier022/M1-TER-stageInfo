@@ -142,28 +142,31 @@ export class FormStageComponent implements OnInit {
     }
 
   ajouterStage(stage:any){
-    //if(!this.uploaded){
-      this.stageService.addStage(stage)
-      .pipe(takeUntil(this.destroy$))
-        .subscribe((_res: any) => {
-          console.log("Stage : "+ stage.titre + " ajouté à la plateforme !");
-          this.page = 1;
-          this.message = "Le stage "+ stage.titre + " à été ajouté à la plateforme !";
-          this.stageForm.reset();  // on reset les données dans le forumulaire
-      });
-    /*}else {
-      this.stageService.addStageAvecFichier(stage,this.pdf)
-        .pipe(takeUntil(this.destroy$))
-        .subscribe((_res: any) => {
-          console.log("Stage : "+ stage.titre + " ajouté à la plateforme !");
-          this.page = 1;
-          this.message = "Le stage "+ stage.titre + " à été ajouté à la plateforme !";
-          this.stageForm.reset();  // on reset les données dans le forumulaire
-        });}*/
+    this.stageService.addStage(stage)
+    .pipe(takeUntil(this.destroy$))
+      .subscribe((_res: any) => {
+        console.log(_res);
+        console.log("Stage : "+ stage.titre + " ajouté à la plateforme !");
+        this.page = 1;
+        this.message = "Le stage "+ stage.titre + " à été ajouté à la plateforme !";
+
+        stage._id = _res.idStage; // on place l'id du stage dans le stage créer afin de le renvoyer au component parent, pour qu'il le rajoute au tableau local
+
+        var idEntreprise = stage.entreprise;
+        var idParcours = stage.parcours;
+        var indexEntreprise = this.allEntreprises.findIndex(((obj: { _id: any; }) => obj._id == idEntreprise));
+        var indexParcours = this.allParcours.findIndex(((obj: { _id: any; }) => obj._id == idParcours));
+          
+        stage.entreprise = this.allEntreprises[indexEntreprise];
+        stage.parcours = this.allParcours[indexParcours];
+
+        this.stageEvent.emit(stage); // on envoie le stage dans le component parent
+        this.stageForm.reset();  // on reset les données dans le forumulaire
+    });
+
   }
 
   modifierStage(stage:any){
-    //if(this.uploaded){
       this.stageService.editStage(stage._id, stage)
       .pipe(takeUntil(this.destroy$))
         .subscribe((_res: any) => {
@@ -181,26 +184,7 @@ export class FormStageComponent implements OnInit {
           console.log(stage);
           this.stageEvent.emit(stage); // on envoie le stage dans le component parent
       });
-    /*}else{
-      this.stageService.editStageWhitePdf(stage._id, stage,this.pdf)
-        .pipe(takeUntil(this.destroy$))
-        .subscribe((_res: any) => {
-          console.log("Stage : "+ stage.titre + " modifié !");
-          this.page = 1;
-          this.message = "Stage modifié !";
-          this.stageForm.reset(); // on reset les données dans le forumulaire
-                  // On met place les infos du responsable dans le tableau parcours
-        var idEntreprise = stage.entreprise;
-        var idParcours = stage.parcours;
-        var indexEntreprise = this.allEntreprises.findIndex(((obj: { _id: any; }) => obj._id == idEntreprise));
-        var indexParcours = this.allParcours.findIndex(((obj: { _id: any; }) => obj._id == idParcours));
-        
-        stage.entreprise = this.allEntreprises[indexEntreprise];
-        stage.parcours = this.allParcours[indexParcours];
-        console.log(stage);
-          this.stageEvent.emit(stage); // on envoie le parcours dans le component parent
-        });
-    }*/
+
   }
 
   displayFielset(theme : string) : boolean{

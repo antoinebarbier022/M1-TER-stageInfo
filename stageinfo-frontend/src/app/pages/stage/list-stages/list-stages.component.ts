@@ -99,8 +99,14 @@ export class ListStagesComponent extends CommonListingTable implements OnInit {
   updateTable(item:any){
     // on cherche l'index de l'item modifié
     var index = this.allItems.findIndex(((obj: { _id: any; }) => obj._id == item._id));
-    console.log("index update : "+ index);
-    this.allItems[index] = item;  // On met a jour le tableau local avec les nouvelles datas
+    // si on ne trouve pas l'identifiant du stage cela signifie que c'est un nouveau stage
+    if(index == -1){
+      this.allItems.push(item); // on push le nouveau stage dans le tableau
+    }else{
+      console.log("index update : "+ index);
+      this.allItems[index] = item;  // On met a jour le tableau local avec les nouvelles datas
+    }
+
   }
 
   addStage(parcours:any){
