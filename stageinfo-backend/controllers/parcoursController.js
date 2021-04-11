@@ -51,7 +51,8 @@ exports.createParcours = (req, res, next) => {
     parcours.save()
         .then(() => {
             res.status(201).json({
-                message: 'Post saved successfully!'
+                message: 'Post saved successfully!',
+                idParcours: parcours._id
             });
         })
         .catch((error) => { res.status(400).json({ error: error});});

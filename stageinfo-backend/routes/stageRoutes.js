@@ -22,4 +22,7 @@ router.put('/:id/changement-etat', TuteurResp,stageCtrl.editState); // le respon
 router.get('/related/:id', invite, stageCtrl.getAllStageRelatedToUser);
 router.put('/:id/add-pj',Etudiant,multer,stageCtrl.addPJ);
 
+// ajouter un commentaire sur le stage
+router.put('/:id/comment',Etudiant,stageCtrl.addCommentOnStage);
+
 module.exports = router;

@@ -236,9 +236,12 @@ export class FormUserComponent implements OnInit {
   ajouterUser(user:any){
     this.userService.addUser(user)
     .pipe(takeUntil(this.destroy$))
-      .subscribe((_res: any[]) => {
+      .subscribe((_res: any) => {
         console.log("User : "+ user.nom + " "+ user.prenom + " ajouté à la plateforme !");
         this.userForm.reset();  // on reset les données dans le forumulaire
+        user._id = _res.idUser;
+        console.log({message:"emit du user au component parent", object: user})
+        this.userEvent.emit(user); // on envoie le parcours dans le component parent
     });
   }
 

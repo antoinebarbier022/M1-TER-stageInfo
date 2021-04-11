@@ -1,4 +1,5 @@
 const Stage = require('../models/stageModel');
+const Commentaire = require('../models/commentaireModel');
 const PJ = require('../models/pieceJointeModel')
 const fs = require('fs');
 const multer =require('../middleware/multer-config')
@@ -10,6 +11,7 @@ const multer =require('../middleware/multer-config')
  */
 exports.getAllStage = ((req, res, next) => {
   Stage.find()
+  .populate('commentaires')
   .populate('entreprise','nom')
   .populate('parcours', 'acronyme')
   .populate('ajouteur', 'nom prenom')
@@ -35,7 +37,7 @@ exports.getAllStageRelatedToUser = ((req, res, next) => {
     .populate('ficheSuivi')
     .populate('noteStage')
     .populate('visiteStage')
-    .populate('fichier', 'nom chemin')
+    .populate('fichier')
     .populate('entreprise')
     .populate('parcours', 'acronyme')
   
@@ -58,16 +60,21 @@ exports.getAllStageRelatedToUser = ((req, res, next) => {
  *
  */
 exports.getOneStage = ((req, res, next) => {
-  Stage.findOne({
-    _id: req.params.id
-  })
-  .populate('entreprise','nom')
-  .populate('parcours', 'acronyme')
-  .populate('ajouteur', 'nom prenom')
-  .populate('repEntreprise', 'nom prenom')
-  .populate('tuteur', 'nom prenom')
-  .populate('rapporteur', 'nom prenom')
-  .populate('etudiant', 'nom prenom')
+    Stage.findOne({
+        _id: req.params.id
+    })
+    .populate('commentaires')
+    .populate('ficheSuivi')
+    .populate('noteStage')
+    .populate('visiteStage')
+    .populate('fichier')
+    .populate('entreprise')
+    .populate('parcours', 'acronyme')
+    .populate('ajouteur', 'nom prenom')
+    .populate('repEntreprise', 'nom prenom')
+    .populate('tuteur', 'nom prenom')
+    .populate('rapporteur', 'nom prenom')
+    .populate('etudiant', 'nom prenom')
 
   .then(stage => res.status(200).json(stage))
   .catch(error => res.status(404).json({ error }))
@@ -184,13 +191,46 @@ exports.createStage = (req, res, next) => {
     stage.save()
             .then(() => {
                 res.status(201).json({
-                    message: 'Post saved successfully!'
+                    message: 'Création du stage réussie !',
+                    idStage: stage._id
                 });
             })
             .catch((error) => {
                 res.status(400).json({error: error});
             });
     };
+
+
+exports.addCommentOnStage = (req,res,next) => {
+    const comment = new Commentaire({
+        idUser: req.body.idUser,
+        dateCommentaire : new Date(),
+        message: req.body.message
+    });
+
+    comment.save()
+        .then(() => {
+            const stage = {
+                $push: {commentaires :comment._id},
+            }
+            Stage.updateOne({_id: req.params.id}, stage)
+                .then(() => {
+                    res.status(201).json({
+                        message: 'Ajoute d\'un commentaire sur le stage : ['+ req.params.id +']',
+                        idCommentaire : comment._id
+                    });
+                })
+                .catch((error) => {
+                    res.status(400).json({message: 'Une erreur est survenu lors de l\'update du stage ',error: error});
+                });
+        })
+        .catch((error) => {
+            res.status(400).json({error: error});
+        });
+
+};
+
+
 exports.addPJ= (req,res,next) => {
     const ladate = new Date();
     const pj = new PJ({

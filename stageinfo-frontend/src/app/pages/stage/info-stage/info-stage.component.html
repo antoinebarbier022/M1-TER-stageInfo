@@ -42,71 +42,95 @@
     </app-card>
 </div>
 
-
-<hr>
-<h2>Pièces Jointes</h2>
-<div id="pieces-jointes-stage">
-    <ng-container *ngIf="stage?.fichier.length">
-        <p *ngIf="errorMessage" class="alert alert-danger">Pour modifier une Pièce Jointe veuillez choisir votre fichier en premier </p>
-        <table class="card-table table table-striped table-bordered table-sm">
-            <thead>
-                <tr>
-                    <th scope="col">Nom du fichier </th>
-                    <th scope="col">Type</th>
-                    <th scope="col">Actions</th>
-                </tr>
-            </thead>
-            <tbody>
-                <!-- Ajout des stages de la BDD -->
-                <tr *ngFor="let p of stage.fichier ">
-                    <td><a [href]="p.chemin" target="_blank">{{ p.nom}}</a></td>
-                    <td>{{p.extension}}</td>
-
-                    <td class="table-action">
-                        <!-- Bouton edit => ouvre un modal avec le formulaire de modification -->
-                        <app-button-edit data-toggle="modal" (click)="modifierFichier(p._id)"  data-target="#modifier" ></app-button-edit>
-
-                        <app-button-delete data-toggle="modal" (click)="supprimerFichier(p._id)" data-target="#suppression"></app-button-delete>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-    </ng-container>
-    <p *ngIf="!(stage?.fichier.length)"class="alert alert-secondary"> Aucune pièce jointe pour ce stage</p>
-    <app-card>
-        <div *ngIf="alert" class="alert alert-success " role="alert">{{ alert }}</div>
-        <form>
-            <div class="form-group-row">
-                <input id='files' type="file" (input)="fileChoosen($event)"  accept="application/pdf,application/msword" >
-            </div>
-            <button class="btn btn-primary btn-sm" (click)="ajouterFichier()" [disabled]="!uploaded" >Ajouter le fichier</button>
-        </form>
-    </app-card>
-</div>
+<ng-container *ngIf="canEditStage()">
+    <hr>
+    <h2>Pièces Jointes</h2>
+    <div id="pieces-jointes-stage">
+        <ng-container *ngIf="stage?.fichier.length">
+            <p *ngIf="errorMessage" class="alert alert-danger">Pour modifier une Pièce Jointe veuillez choisir votre fichier en premier </p>
+            <table class="card-table table table-striped table-bordered table-sm">
+                <thead>
+                    <tr>
+                        <th scope="col">Nom du fichier </th>
+                        <th scope="col">Type</th>
+                        <th scope="col">Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Ajout des stages de la BDD -->
+                    <tr *ngFor="let fichier of stage.fichier ">
+                        <td><a [href]="fichier.chemin" target="_blank">{{ fichier.nom }}</a></td>
+                        <td>{{ fichier.extension }}</td>
+    
+                        <td class="table-action">
+                            <!-- Bouton edit => ouvre un modal avec le formulaire de modification -->
+                            <app-button-edit data-toggle="modal" (click)="selectedPieceJointe(fichier)"  data-target="#modifierFichier" ></app-button-edit>
+    
+                            <app-button-delete data-toggle="modal" (click)="selectedPieceJointe(fichier)" data-target="#suppressionFichier"></app-button-delete>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </ng-container>
+        <p *ngIf="!(stage?.fichier.length)"class="alert alert-secondary"> Aucune pièce jointe pour ce stage</p>
+        <app-card>
+            <div *ngIf="alert" class="alert alert-success " role="alert">{{ alert }}</div>
+            <form>
+                <div class="form-group-row">
+                    <input id='files' type="file" (input)="fileChoosen($event)"  accept="application/pdf,application/msword" >
+                </div>
+                <button class="btn btn-primary btn-sm" (click)="ajouterFichier()" [disabled]="!uploaded" >Ajouter le fichier</button>
+            </form>
+        </app-card>
+    </div>
+</ng-container>
 <hr>
 
 <h2>Commentaires sur le stage</h2>
 
 <div id="commentaires-stage">
     <!-- les commentaires du stages-->
-    <app-card-item-comment *ngFor="let comment of comments"
+    <app-card-item-comment *ngFor="let comment of stage.commentaires"
             [idUser]="comment.idUser"
-            [author]="comment.author"
-            [date]="comment.date">
-        <p>{{ comment.content }}</p>
+            [author]="getCommentAuthor(comment.idUser)"
+            [date]="comment.dateCommentaire">
+        <p>{{ comment.message }}</p>
     </app-card-item-comment>
 
     <!-- Ajouter un commentaire sur le stage -->
     <div class="add-comment">
-        <form>
+        <form [formGroup]="commentaireForm" (ngSubmit)="ajouterCommentaire()">
             <div class="form-group">
                 <label for="inputComment">Ajouter un commentaire : </label>
                 <textarea   id="inputComment"
                             class="form-control"
-                            rows="3"></textarea>
+                            rows="3"
+                            formControlName="commentaire"></textarea>
             </div>
             <button type="submit" class="btn btn-secondary btn-sm">Envoyer</button>
         </form>
     </div>
 
 </div>
+
+
+
+<!---------------------------------------------------->
+<!-------------------- LES MODALS -------------------->
+<!---------------------------------------------------->
+<ng-container *ngIf="canEditStage()">
+    
+    <!-- Modal pour supprimer la pièce jointe selectionné -->
+    <app-modal class="modal fade"
+            tabindex="-1" 
+            role="dialog" 
+            id="suppressionFichier">
+        <span title> Supprimer la pièce jointe </span>
+        <p content>Confirmer la suppression de la pièce jointe : <strong>{{ selectPieceJointe }}</strong></p>
+        <button button1 type="button" class="btn btn-secondary btn-sm" data-dismiss="modal">Annuler</button>
+        <button button2 (click)="supprimerFichier(selectPieceJointe._id)" type="button" class="btn btn-danger btn-sm" data-dismiss="modal">Supprimer</button>
+    </app-modal>
+    
+
+    
+    </ng-container>

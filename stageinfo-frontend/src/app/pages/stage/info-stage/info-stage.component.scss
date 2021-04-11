@@ -66,10 +66,14 @@
     margin: 1rem;
 }
 
-#pieces-jointes-stage table{
-    background-color: $color-white;
-    // pour permettre le border radius sur la table
-    border-collapse: separate !important;
-    border-spacing: 0;
-    border-radius: 0.25rem;
+#pieces-jointes-stage{
+    table{
+        background-color: #fff;
+        // pour permettre le border radius sur la table
+        border-collapse: separate !important;
+        border-spacing: 0;
+        border-radius: 0.25rem;
+    }
+
+
 }

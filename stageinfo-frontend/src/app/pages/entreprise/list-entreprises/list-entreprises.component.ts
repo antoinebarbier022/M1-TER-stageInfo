@@ -51,12 +51,15 @@ export class ListEntreprisesComponent extends CommonListingTable implements OnIn
   updateTable(item:any){
     // on cherche l'index de l'entreprise modifié
     var index = this.allItems.findIndex(((obj: { _id: any; }) => obj._id == item._id));
-    console.log("index update : "+ index);
-    this.allItems[index] = item;  // On met a jour le tableau local avec les nouvelles datas
+      console.log("index update : "+ index);
+      this.allItems[index] = item;  // On met a jour le tableau local avec les nouvelles datas
+
   }
 
   addEntreprise(item:any){
     console.log(item);
+    // ajout d'une nouvelle entreprise dans le tableau local
+    this.allItems.push(item);
   }
 
   /**
