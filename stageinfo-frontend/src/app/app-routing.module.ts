@@ -59,7 +59,7 @@ import { AllRespParcoursResolver } from './core/resolves/all-resp-parcours.resol
 import { AllEtudiantsResolver } from './core/resolves/all-etudiants.resolver';
 import { FicheSuiviComponent } from './pages/stage/fiche-suivi/fiche-suivi.component';
 import { FicheNotationComponent } from './pages/stage/fiche-notation/fiche-notation.component';
-import { FicheAppreciationStageComponent } from './pages/stage/fiche-appreciation/fiche-appreciation.component';
+import { FicheAppreciationComponent } from './pages/stage/fiche-appreciation/fiche-appreciation.component';
 import { AllStageOfUserResolver } from './core/resolves/all-stage-of-user.resolver';
 
 const routes: Routes = [

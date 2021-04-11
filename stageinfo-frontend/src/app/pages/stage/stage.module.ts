@@ -25,7 +25,7 @@ import { FicheAppreciationComponent } from './fiche-appreciation/fiche-appreciat
   ], 
   exports: [
     ListStagesComponent, 
-    AddStageComponent,
+    AddStageComponent
   ]
 })
 export class StageModule { }
