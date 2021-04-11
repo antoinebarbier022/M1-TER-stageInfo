@@ -7,6 +7,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class FicheAppreciationStageComponent implements OnInit {
 
+
   constructor() { }
 
   ngOnInit(): void {
