@@ -11,9 +11,10 @@ import { InfoStageComponent } from './info-stage/info-stage.component';
 import { AddStageComponent } from './add-stage/add-stage.component';
 import { FicheSuiviComponent } from './fiche-suivi/fiche-suivi.component';
 import { FicheNotationComponent } from './fiche-notation/fiche-notation.component';
+import { FicheAppreciationComponent } from './fiche-appreciation/fiche-appreciation.component';
 
 @NgModule({
-  declarations: [ListStagesComponent, InfoStageComponent, AddStageComponent, FicheSuiviComponent, FicheNotationComponent],
+  declarations: [ListStagesComponent, InfoStageComponent, AddStageComponent, FicheSuiviComponent, FicheNotationComponent, FicheAppreciationComponent],
   imports: [
     CommonModule,
     BrowserModule,
