@@ -35,6 +35,7 @@ import { StateBadgeComponent } from './components/badges/state-badge/state-badge
 import { GestionEtatStageComponent } from './components/gestion-etat-stage/gestion-etat-stage.component';
 import { RoleBadgeComponent } from './components/badges/role-badge/role-badge.component';
 import { ThTableSortComponent } from './components/table-components/th-table-sort/th-table-sort.component';
+import { FicheAppreciationStageComponent } from './components/forms/fiche-appreciation-stage/fiche-appreciation-stage.component';
 
 
 
@@ -63,7 +64,8 @@ import { ThTableSortComponent } from './components/table-components/th-table-sor
     StateBadgeComponent, 
     GestionEtatStageComponent, 
     RoleBadgeComponent,
-    ThTableSortComponent
+    ThTableSortComponent,
+    FicheAppreciationStageComponent
   ],
   imports: [
     CommonModule,
