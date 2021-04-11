@@ -13,9 +13,11 @@ export class FicheAppreciationStageComponent implements OnInit {
   // @ts-ignore
   ficheAppreciationForm: FormGroup;
 
-  constructor() { }
+  constructor(private route: ActivatedRoute,
+              private formBuilder: FormBuilder) { }
 
   ngOnInit(): void {
   }
+
 
 }
