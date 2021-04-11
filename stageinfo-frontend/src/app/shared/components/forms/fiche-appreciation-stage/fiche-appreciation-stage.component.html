@@ -1,7 +1,7 @@
-<form>
+<form [formGroup]="ficheAppreciationForm" (ngSubmit)="onSubmitForm()">
     <h1>{{ title }}</h1>
 
-    <fieldset [formGroup]="ficheAppreciationForm" (ngSubmit)="onSubmitForm()">
+    <fieldset>
         <!-- Nom étudiant -->
         <div class="form-group-row">
             <label>Étudiant :</label>
