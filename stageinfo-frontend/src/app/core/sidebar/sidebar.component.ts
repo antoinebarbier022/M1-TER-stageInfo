@@ -105,7 +105,7 @@ export class SidebarComponent implements OnInit {
   navigationRepresentantEntreprise = [
     {
       title:"Stage",
-      items: [ this.mesStages, this.listeStages, this.planningSoutenance, this.saisirStage, this.saisirFicheSuivi]
+      items: [ this.mesStages, this.listeStages, this.planningSoutenance, this.saisirStage, this.saisirFicheSuivi, this.saisirFicheAppreciation,]
     },
     {
       title:"Besoin d'aide ?",
@@ -148,7 +148,7 @@ export class SidebarComponent implements OnInit {
     },
     {
       title:"Stage",
-      items: [ this.saisirStage, this.saisirFicheSuivi, this.saisirFicheNotation, this.planningSoutenance]
+      items: [ this.saisirStage, this.saisirFicheSuivi, this.saisirFicheNotation, this.saisirFicheAppreciation, this.planningSoutenance]
     },
     {
       title:"Documents",
