@@ -18,6 +18,7 @@ export class FicheAppreciationStageComponent implements OnInit {
               private formBuilder: FormBuilder) { }
 
   ngOnInit(): void {
+    this.initForm();
   }
 
   initForm(){
