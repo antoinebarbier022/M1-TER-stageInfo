@@ -9,6 +9,9 @@ export class FicheAppreciationStageComponent implements OnInit {
 
   public readonly title: string = "Fiche d'appréciation du stage";
 
+  // @ts-ignore
+  ficheAppreciationForm: FormGroup;
+
   constructor() { }
 
   ngOnInit(): void {
