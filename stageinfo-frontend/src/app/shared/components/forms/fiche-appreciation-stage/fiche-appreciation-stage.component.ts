@@ -25,4 +25,9 @@ export class FicheAppreciationStageComponent implements OnInit {
     this.ficheAppreciationForm = this.formBuilder.group({});
   }
 
+  onSubmitForm() {
+    const formValue = this.ficheAppreciationForm.value;
+    console.log(formValue)
+  }
+
 }
