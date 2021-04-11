@@ -98,7 +98,8 @@ import { FicheAppreciationStageComponent } from './components/forms/fiche-apprec
     StateBadgeComponent,
     GestionEtatStageComponent,
     RoleBadgeComponent,
-    ThTableSortComponent
+    ThTableSortComponent,
+    FicheAppreciationStageComponent
   ]
 })
 export class SharedModule { }
