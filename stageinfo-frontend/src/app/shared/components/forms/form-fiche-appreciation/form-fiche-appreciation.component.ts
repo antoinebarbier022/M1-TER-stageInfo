@@ -3,9 +3,9 @@ import { FormBuilder, FormArray, FormGroup, Validators, Form } from '@angular/fo
 import { ActivatedRoute } from '@angular/router';
 
 @Component({
-  selector: 'app-fiche-appreciation-stage',
-  templateUrl: './fiche-appreciation-stage.component.html',
-  styleUrls: ['./fiche-appreciation-stage.component.scss']
+  selector: 'app-form-fiche-appreciation',
+  templateUrl: './form-fiche-appreciation.component.html',
+  styleUrls: ['./form-fiche-appreciation.component.scss']
 })
 export class FicheAppreciationStageComponent implements OnInit {
 

@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { FicheAppreciationStageComponent } from './fiche-appreciation-stage.component';
+import { FicheAppreciationStageComponent } from './form-fiche-appreciation.component';
 
 describe('FicheAppreciationStageComponent', () => {
   let component: FicheAppreciationStageComponent;
