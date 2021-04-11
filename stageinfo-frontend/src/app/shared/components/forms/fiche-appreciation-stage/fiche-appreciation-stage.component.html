@@ -1,7 +1,7 @@
 <form>
     <h1>{{ title }}</h1>
 
-    <fieldset>
+    <fieldset [formGroup]="ficheSuiviForm">
         <!-- Nom étudiant -->
         <div class="form-group-row">
             <label for="nom">Étudiant :</label>
