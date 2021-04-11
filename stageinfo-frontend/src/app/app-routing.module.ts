@@ -17,8 +17,9 @@ import { ListEtudiantsComponent } from './pages/user/list-etudiants/list-etudian
 import { ListStagesComponent } from './pages/stage/list-stages/list-stages.component';
 import { InfoStageComponent } from './pages/stage/info-stage/info-stage.component';
 import { AddStageComponent } from './pages/stage/add-stage/add-stage.component';
-import { FormFicheSuiviComponent } from './shared/components/forms/form-fiche-suivi/form-fiche-suivi.component';
-import { FormFicheNotationComponent } from './shared/components/forms/form-fiche-notation/form-fiche-notation.component';
+import { FicheSuiviComponent } from './pages/stage/fiche-suivi/fiche-suivi.component';
+import { FicheNotationComponent } from './pages/stage/fiche-notation/fiche-notation.component';
+import { FicheAppreciationComponent } from './pages/stage/fiche-appreciation/fiche-appreciation.component';
 
 // import entreprise
 import { ListEntreprisesComponent } from './pages/entreprise/list-entreprises/list-entreprises.component';
@@ -57,9 +58,6 @@ import { AllSoutenancesResolver } from './core/resolves/all-soutenances.resolver
 import { Error401Component } from './pages/erreurs/error401/error401.component';
 import { AllRespParcoursResolver } from './core/resolves/all-resp-parcours.resolver';
 import { AllEtudiantsResolver } from './core/resolves/all-etudiants.resolver';
-import { FicheSuiviComponent } from './pages/stage/fiche-suivi/fiche-suivi.component';
-import { FicheNotationComponent } from './pages/stage/fiche-notation/fiche-notation.component';
-import { FicheAppreciationComponent } from './pages/stage/fiche-appreciation/fiche-appreciation.component';
 import { AllStageOfUserResolver } from './core/resolves/all-stage-of-user.resolver';
 
 const routes: Routes = [
