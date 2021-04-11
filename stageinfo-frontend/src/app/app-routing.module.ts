@@ -59,6 +59,7 @@ import { AllRespParcoursResolver } from './core/resolves/all-resp-parcours.resol
 import { AllEtudiantsResolver } from './core/resolves/all-etudiants.resolver';
 import { FicheSuiviComponent } from './pages/stage/fiche-suivi/fiche-suivi.component';
 import { FicheNotationComponent } from './pages/stage/fiche-notation/fiche-notation.component';
+import { FicheAppreciationStageComponent } from './pages/stage/fiche-appreciation/fiche-appreciation.component';
 import { AllStageOfUserResolver } from './core/resolves/all-stage-of-user.resolver';
 
 const routes: Routes = [
@@ -88,7 +89,7 @@ const routes: Routes = [
   { path: 'saisir-stage', component: AddStageComponent, canActivate: [AuthGuardService, RoleGuard]},
   { path: 'saisir-fiche-suivi', component: FicheSuiviComponent, canActivate: [AuthGuardService, RoleGuard], resolve: {allParcours: AllParcoursResolver, allUsers: AllUsersResolver}},
   { path: 'saisir-fiche-notation', component: FicheNotationComponent, canActivate: [AuthGuardService, RoleGuard], resolve: {allUsers: AllUsersResolver}},
-
+  { path: 'saisir-fiche-appreciation', component: FicheNotationComponent, canActivate: [AuthGuardService, RoleGuard], resolve: {allUsers: AllUsersResolver}},
   // route users
   { path: 'liste-utilisateurs', component: ListUsersComponent, canActivate: [AuthGuardService, RoleGuard], resolve: { users: AllUsersResolver, allParcours: AllParcoursResolver, allEntreprises: AllEntreprisesResolver }},
   { path: 'liste-etudiants', component: ListEtudiantsComponent, canActivate: [AuthGuardService, RoleGuard], resolve: { AllEtudiants: AllEtudiantsResolver, allParcours: AllParcoursResolver }},
