@@ -18,9 +18,21 @@
         <table class="card-table table table-striped table-sm">
             <thead>
                 <tr>
-                    <th (click)="sortByAscendingDescendingOrder(0)" scope="col">Nom</th>
-                    <th (click)="sortByAscendingDescendingOrder(1)" scope="col">Email</th>
-                    <th (click)="sortByAscendingDescendingOrder(2)" scope="col">Role</th>
+                    <th scope="col">
+                        <app-th-table-sort  (click)="sortByAscendingDescendingOrder(0)" [sorted]="visibleProperties[0].sorted">
+                            Nom
+                        </app-th-table-sort>
+                    </th>
+                    <th scope="col">
+                        <app-th-table-sort  (click)="sortByAscendingDescendingOrder(1)" [sorted]="visibleProperties[1].sorted">
+                            Email
+                        </app-th-table-sort>
+                    </th>
+                    <th scope="col">
+                        <app-th-table-sort  (click)="sortByAscendingDescendingOrder(2)" [sorted]="visibleProperties[2].sorted">
+                            Role
+                        </app-th-table-sort>
+                    </th>
                     <th scope="col">Actions</th>
                 </tr>
             </thead>

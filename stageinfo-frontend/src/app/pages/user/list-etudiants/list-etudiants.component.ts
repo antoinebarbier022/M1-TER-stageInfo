@@ -25,6 +25,8 @@ export class ListEtudiantsComponent extends CommonListingTable implements OnInit
       { name: 'numeroEtudiant', sorted: false },
       { name: 'nom', sorted: false },
       { name: 'email', sorted: false },
+      { name: 'parcours.acronyme', sorted: false },
+      { name: 'promotion', sorted: false },
     ];
     this.selectItem = new UserModel();
     

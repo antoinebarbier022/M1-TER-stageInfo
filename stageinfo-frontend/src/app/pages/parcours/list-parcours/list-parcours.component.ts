@@ -28,7 +28,8 @@ export class ListParcoursComponent extends CommonListingTable implements OnInit,
     this.visibleProperties = [
       { name: 'acronyme', sorted: false},
       { name: 'intitule', sorted: false },
-      { name: 'niveau', sorted: false }
+      { name: 'niveau', sorted: false },
+      { name: 'responsable.nom', sorted: false }
 
     ];
     this.selectItem = new ParcoursModel();

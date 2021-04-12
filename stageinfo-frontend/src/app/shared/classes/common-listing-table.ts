@@ -31,10 +31,10 @@ export abstract class CommonListingTable {
     }
 
     protected compare(obj1: any, obj2: any, index: number) : number {
-        if(this.getNestedValue(obj1, this.visibleProperties[index].name) > this.getNestedValue(obj2, this.visibleProperties[index].name))
+        if(this.getNestedValue(obj1, this.visibleProperties[index]?.name) > this.getNestedValue(obj2, this.visibleProperties[index]?.name))
           return 1;
     
-        if(this.getNestedValue(obj2, this.visibleProperties[index].name) > this.getNestedValue(obj1, this.visibleProperties[index].name))
+        if(this.getNestedValue(obj2, this.visibleProperties[index]?.name) > this.getNestedValue(obj1, this.visibleProperties[index]?.name))
           return -1;
         
         return 0;
@@ -64,7 +64,7 @@ export abstract class CommonListingTable {
         let row = new Array();
         
         this.visibleProperties.forEach((prop: any) => {
-            row.push(this.getNestedValue(item, prop.name));
+            row.push(this.getNestedValue(item, prop?.name));
         });
         
         return keywords.every(word => row.join(' ').toLowerCase().includes(word));

@@ -30,8 +30,8 @@ export class ListStagesComponent extends CommonListingTable implements OnInit {
     this.visibleProperties = [
       { name: 'etat',sorted: false },
       { name: 'titre', sorted: false },
-      { name: 'entreprise',sorted: false },
-      { name: 'parcours',sorted: false },
+      { name: 'entreprise.nom',sorted: false },
+      { name: 'parcours.acronyme',sorted: false },
       { name: 'duree',sorted: false },
 
     ];
