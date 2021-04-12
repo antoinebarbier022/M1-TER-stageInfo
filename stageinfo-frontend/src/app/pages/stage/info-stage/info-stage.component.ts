@@ -46,6 +46,7 @@ export class InfoStageComponent implements OnInit, OnDestroy {
   alert: any;
 
   selectPieceJointe:any; // piece jointe qui est selectionné 
+  selectComment:any;
 
   // formulaire d'ajout de commentaire sur le stage
   // @ts-ignore
@@ -82,6 +83,10 @@ export class InfoStageComponent implements OnInit, OnDestroy {
 
   selectedPieceJointe(item:any){
     this.selectPieceJointe = item;
+  }
+
+  selectedComment(item:any){
+    this.selectComment = item;
   }
 
   displaySectionEncadrant():boolean{
@@ -139,6 +144,15 @@ export class InfoStageComponent implements OnInit, OnDestroy {
           comment._id = _res?._id;
           this.stage.commentaires.push(comment);
           this.commentaireForm.reset();
+        });
+  }
+
+  supprimerCommentaire(id:any){
+    this.stageService.deleteCommentOnStage(this.stage._id, id)
+      .pipe(takeUntil(this.destroy$))
+        .subscribe((_res: any) => {
+          console.log("Suppression du commentaire!");
+          this.stage.commentaires = this.stage.commentaires.filter((object: { _id: any; }) => { return object._id != id; });
         });
   }
 

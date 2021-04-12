@@ -66,6 +66,13 @@
     margin: 1rem;
 }
 
+#btnSupprimerCommentaire{
+    color:$color-refuse;
+}
+#btnSupprimerCommentaire:hover{
+    text-decoration: underline;
+}
+
 #pieces-jointes-stage{
     table{
         background-color: #fff;
