@@ -33,6 +33,8 @@ export class FormStageComponent implements OnInit {
   // @ts-ignore
   errorMessage: String;
 
+  isError:boolean = false;
+
   // pour pouvoir détruire les subscribes
   destroy$: Subject<boolean> = new Subject<boolean>();
 
@@ -114,6 +116,7 @@ export class FormStageComponent implements OnInit {
         });
       });
     }
+
     get stageFormControl() {
       return this.stageForm.controls;
     }
@@ -190,6 +193,25 @@ export class FormStageComponent implements OnInit {
 
   }
 
+  displayValidationInputStyle(input:any): any{
+    if(this.isError && input.errors?.required){
+      return  'form-control is-invalid';
+    }else if(this.isError){
+      return 'form-control is-valid';
+    }else{
+      return 'form-control';
+    }
+  }
+  displayValidationSelectStyle(input:any): any{
+    if(this.isError && input.errors?.required){
+      return  'custom-select is-invalid';
+    }else if(this.isError){
+      return 'custom-select is-valid';
+    }else{
+      return 'custom-select ';
+    }
+  }
+
   displayFielset(theme : string) : boolean{
     switch (theme) {
       case "stage": //page 0
@@ -217,29 +239,47 @@ export class FormStageComponent implements OnInit {
   }
 
   // Fonction qui permet de retourner true ou false pour pouvoir dire si on peut passé à la suite (bouton next)
-  disabledNext() : boolean{
+  validator() : boolean{
     switch (this.page) {
-      case 1: //page 1
-        return false;
-      case 2: // page 2
-        return false
-      case 3: // page 3
-        return false;
-
+      case 1: //page 1 
+        if( this.stageFormControl.titre.invalid || 
+          this.stageFormControl.niveauRequis.invalid ||
+          this.stageFormControl.parcours.invalid ||
+          this.stageFormControl.duree.invalid
+          ){
+          return false;
+        }else{
+          return true;
+        }
+        
+      case 2: // page 2 adresse
+        if( this.stageFormControl.entreprise.invalid){
+          return false;
+        }else{
+          return true;
+        }
       default:
         return false;
-    }
+      }
   }
 
   next(){
-    if(this.page < this.nbMaxPage){
-      this.page++;
+    if(this.validator()){
+      if(this.page < this.nbMaxPage){
+        this.page++;
+      }
+      this.isError = false;
+    }else{
+      this.isError = true;
     }
+
+    
   }
   pred(){
     if(this.page > 1){
       this.page--;
     }
+    this.isError = false;
   }
 
   lastPage() :boolean {

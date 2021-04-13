@@ -33,22 +33,18 @@
         <div class="form-group-row">
             <label  [for]="addStage ? 'addInputTitre':'editInputTitre'">Titre</label>
             <input  [id]="addStage ? 'addInputTitre':'editInputTitre'"
-                    type="text"
-                    class="form-control"
-                    placeholder="Titre du stage"
-                    name="titre"
-                    formControlName="titre" required>
+                type="text"
+                [class]="displayValidationInputStyle(stageFormControl.titre)"
+                placeholder="Titre du stage"
+                name="titre"
+                formControlName="titre" required>
         </div>
-        <!-- Title validator message-->
-        <small class="text-danger"
-        *ngIf="(stageFormControl.titre.touched) && stageFormControl.titre.errors?.required">
-            Titre is required
-        </small>
+        
         <!-- Niveau requis du stage -->
         <div class="form-group-row">
             <label  [for]="addStage ? 'addInputNiveauRequis':'editInputNiveauRequis'">Niveau requis</label>
             <select [id]="addStage ? 'addInputNiveauRequis':'editInputNiveauRequis'"
-                    class="form-control"
+                    [class]="displayValidationSelectStyle(stageFormControl.niveauRequis)"
                     name="niveauRequis"
                     formControlName="niveauRequis">
                 <option value="" disabled selected>Selectionner le niveau requis</option>
@@ -59,7 +55,7 @@
         <div class="form-group-row">
             <label  [for]="addStage ? 'addInputParcours':'editInputParcours'">Parcours</label>
             <select [id]="addStage ? 'addInputParcours':'editInputParcours'"
-                    class="form-control"
+                    [class]="displayValidationSelectStyle(stageFormControl.parcours)"
                     name="parcours"
                     formControlName="parcours">
                 <option [ngValue]="null" disabled selected>Selectionner le parcours</option>
@@ -82,9 +78,10 @@
             <label  [for]="addStage ? 'addInputDuree':'editInputDuree'">Durée</label>
             <input  [id]="addStage ? 'addInputDuree':'editInputDuree'"
                     type="number"
-                    class="form-control"
+                    [class]="displayValidationInputStyle(stageFormControl.duree)"
                     placeholder="Nombre de mois"
                     name="duree"
+                    min=1 max=6
                     formControlName="duree">
         </div>
 
@@ -105,7 +102,7 @@
         <div class="form-group-row">
             <label [for]="addStage ? 'addEntreprise':'editEntreprise'">Entreprise</label>
             <select [id]="addStage ? 'addEntreprise':'editEntreprise'"
-                    class="form-control"
+                    [class]="displayValidationSelectStyle(stageFormControl.entreprise)"
                     formControlName="entreprise">
                 <option [ngValue]="null" disabled selected>Selectionner l'entreprise</option>
                 <option *ngFor="let entreprise of allEntreprises" [ngValue]="entreprise?._id">{{ entreprise?.nom }}</option>
@@ -164,7 +161,6 @@
         <button *ngIf="!lastPage()"
             type="button" [id]="addStage ? 'addNextButton':'editNextButton'" name="nextButton" value="Next"
             (click)="next()"
-            [disabled]="disabledNext()"
             class="btn btn-primary btn-sm btn-next" >
             Suivant
         </button>
