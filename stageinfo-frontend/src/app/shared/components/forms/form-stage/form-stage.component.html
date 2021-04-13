@@ -26,8 +26,7 @@
     </button>
 </div>
 
-
-<form [formGroup]="stageForm" (ngSubmit)="onSubmitForm()">
+<form [formGroup]="stageForm" (ngSubmit)="onSubmitForm()" class="needs-validation" novalidate>
     <!-- Section informations du stage -->
     <fieldset *ngIf="displayFielset('stage')">
         <!-- Titre du stage -->
@@ -38,8 +37,13 @@
                     class="form-control"
                     placeholder="Titre du stage"
                     name="titre"
-                    formControlName="titre">
+                    formControlName="titre" required>
         </div>
+        <!-- Title validator message-->
+        <small class="text-danger"
+        *ngIf="(stageFormControl.titre.touched) && stageFormControl.titre.errors?.required">
+            Titre is required
+        </small>
         <!-- Niveau requis du stage -->
         <div class="form-group-row">
             <label  [for]="addStage ? 'addInputNiveauRequis':'editInputNiveauRequis'">Niveau requis</label>

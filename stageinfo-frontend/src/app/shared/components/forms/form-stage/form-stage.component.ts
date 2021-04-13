@@ -114,6 +114,9 @@ export class FormStageComponent implements OnInit {
         });
       });
     }
+    get stageFormControl() {
+      return this.stageForm.controls;
+    }
 
     onSubmitForm() {
       const formValue = this.stageForm.value;
