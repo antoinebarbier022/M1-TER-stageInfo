@@ -28,6 +28,8 @@ export class FormParcoursComponent implements OnInit, OnChanges {
   // @ts-ignore
   errorMessage: String;
 
+  isError:boolean = false;
+
   // pour pouvoir détruire les subscribes
   destroy$: Subject<boolean> = new Subject<boolean>();
 
@@ -68,7 +70,7 @@ export class FormParcoursComponent implements OnInit, OnChanges {
       acronyme:['',Validators.required],
       niveau:['',Validators.required],
       intitule:['',Validators.required],
-      description:['', Validators.required],
+      description:[''],
       responsable:[null, Validators.required]
     });
   }
@@ -91,21 +93,27 @@ export class FormParcoursComponent implements OnInit, OnChanges {
   }
 
   onSubmitForm() {
-    const formValue = this.parcoursForm.value;
-    const parcours = new ParcoursModel(
-      this.idParcours,
-      formValue['acronyme'],
-      formValue['niveau'],
-      formValue['intitule'],
-      formValue['description'],
-      formValue['responsable']
-    );
-    
-    if(this.addParcours){
-      this.ajouterParcours(parcours);
-    }else {
-      //alors on est dans editParcours
-      this.modifierParcours(this.idParcours, parcours);
+    if(!this.validator()){
+      this.isError = true;
+    }else{
+      this.isError = false;
+      const formValue = this.parcoursForm.value;
+      const parcours = new ParcoursModel(
+        this.idParcours,
+        formValue['acronyme'],
+        formValue['niveau'],
+        formValue['intitule'],
+        formValue['description'],
+        formValue['responsable']
+      );
+      
+      if(this.addParcours){
+        this.ajouterParcours(parcours);
+      }else {
+        //alors on est dans editParcours
+        this.modifierParcours(this.idParcours, parcours);
+      }
+      
     }
   }
 
@@ -151,4 +159,43 @@ export class FormParcoursComponent implements OnInit, OnChanges {
         this.parcoursEvent.emit(parcours); // on envoie le parcours dans le component parent
     });
   }
+
+  get parcoursFormControl() {
+    return this.parcoursForm.controls;
+  }
+
+  displayValidationSelectStyle(input:any): any{
+    if(this.isError && input.errors?.required){
+      return  'custom-select is-invalid';
+    }else if(this.isError){
+      return 'custom-select is-valid';
+    }else{
+      return 'custom-select ';
+    }
+  }
+
+  displayValidationInputStyle(input:any): any{
+    if(this.isError && input.errors?.required){
+      return  'form-control is-invalid';
+    }else if(this.isError){
+      return 'form-control is-valid';
+    }else{
+      return 'form-control';
+    }
+  }
+
+    // Fonction qui permet de retourner true ou false pour pouvoir dire si on peut passé à la suite (bouton next)
+    validator() : boolean{
+          if( this.parcoursFormControl.acronyme.invalid || 
+            this.parcoursFormControl.niveau.invalid ||
+            this.parcoursFormControl.intitule.invalid ||
+            this.parcoursFormControl.responsable.invalid
+            ){
+            return false;
+          }else{
+            return true;
+          }
+          
+    }
+
 }
