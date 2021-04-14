@@ -25,7 +25,9 @@ export class ListEntreprisesComponent extends CommonListingTable implements OnIn
   constructor(private route: ActivatedRoute, private entrepriseService: EntrepriseService) { 
     super();
     this.visibleProperties = [ 
-      { name: 'nom', sorted: false }
+      { name: 'nom', sorted: false },
+      { name: 'ville', sorted: false },
+      { name: 'representant.nom', sorted: false }
     ];
     this.selectItem = new EntrepriseModel();
   }

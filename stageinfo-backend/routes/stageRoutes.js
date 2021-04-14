@@ -24,5 +24,7 @@ router.put('/:id/add-pj',Etudiant,multer,stageCtrl.addPJ);
 
 // ajouter un commentaire sur le stage
 router.put('/:id/comment',Etudiant,stageCtrl.addCommentOnStage);
+//supprimer un commentaire
+router.delete('/:id/comment/:idComment',Etudiant,stageCtrl.deleteCommentOneStage);
 
 module.exports = router;

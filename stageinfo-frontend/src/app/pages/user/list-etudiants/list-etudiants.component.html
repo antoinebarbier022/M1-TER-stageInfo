@@ -18,11 +18,31 @@
         <table class="card-table table table-striped table-sm">
             <thead>
                 <tr>
-                    <th (click)="sortByAscendingDescendingOrder(0)" scope="col">N° Etudiant</th>
-                    <th (click)="sortByAscendingDescendingOrder(1)" scope="col">Nom </th>
-                    <th (click)="sortByAscendingDescendingOrder(2)" scope="col">Email</th>
-                    <th scope="col">Parcours</th>
-                    <th scope="col">Année Universitaire</th>
+                    <th scope="col">
+                        <app-th-table-sort  (click)="sortByAscendingDescendingOrder(0)" [sorted]="visibleProperties[0].sorted">
+                            N° Etudiant
+                        </app-th-table-sort>
+                    </th>
+                    <th scope="col">
+                        <app-th-table-sort  (click)="sortByAscendingDescendingOrder(1)" [sorted]="visibleProperties[1].sorted">
+                            Nom
+                        </app-th-table-sort>
+                    </th>
+                    <th scope="col">
+                        <app-th-table-sort  (click)="sortByAscendingDescendingOrder(2)" [sorted]="visibleProperties[2].sorted">
+                            Email
+                        </app-th-table-sort>
+                    </th>
+                    <th scope="col">
+                        <app-th-table-sort  (click)="sortByAscendingDescendingOrder(3)" [sorted]="visibleProperties[3].sorted">
+                            Parcours
+                        </app-th-table-sort>
+                    </th>
+                    <th scope="col">
+                        <app-th-table-sort  (click)="sortByAscendingDescendingOrder(4)" [sorted]="visibleProperties[4].sorted">
+                            Promotion
+                        </app-th-table-sort>
+                    </th>
                     <th scope="col">Actions</th>
                 </tr>
             </thead>

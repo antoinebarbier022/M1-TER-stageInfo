@@ -15,7 +15,7 @@ import { FormFicheNotationComponent } from './components/forms/form-fiche-notati
 import { ModalComponent } from './components/modal/modal.component';
 import { ListFilterComponent } from './components/cards/card-filter/card-filter.component';
 import { ListPaginationComponent } from './components/table-components/pagination/pagination.component';
-import { ListEntriesNumberComponent } from './components/table-components/nbItems/nbItems.component';
+import { ListEntriesNumberComponent } from './components/nbItems/nbItems.component';
 
 // navigation component
 import { NavigationComponent } from './components/navigation/navigation.component';

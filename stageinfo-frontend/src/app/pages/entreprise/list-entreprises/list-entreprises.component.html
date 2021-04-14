@@ -12,9 +12,21 @@
         <table class="card-table table table-striped table-sm">
             <thead>
                 <tr>
-                    <th (click)="sortByAscendingDescendingOrder(0)" scope="col">Entreprise</th>
-                    <th scope="col">Ville</th>
-                    <th scope="col">Représentant</th>
+                    <th scope="col">
+                        <app-th-table-sort  (click)="sortByAscendingDescendingOrder(0)" [sorted]="visibleProperties[0].sorted">
+                            Entreprise
+                        </app-th-table-sort>
+                    </th>
+                    <th scope="col">
+                        <app-th-table-sort  (click)="sortByAscendingDescendingOrder(1)" [sorted]="visibleProperties[1].sorted">
+                            Ville
+                        </app-th-table-sort>
+                    </th>
+                    <th scope="col">
+                        <app-th-table-sort  (click)="sortByAscendingDescendingOrder(2)" [sorted]="visibleProperties[2].sorted">
+                            Représentant
+                        </app-th-table-sort>
+                    </th>
                     <th scope="col">Actions</th>
                 </tr>
             </thead>

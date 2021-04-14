@@ -32,9 +32,9 @@ const stageSchema = Schema({
 
     etat: { type: String, default:'propose'},
 
-    titre: String,
+    titre: { type: String, required: true},
     description: String,
-    duree: String,
+    duree: { type: String, required: true},
     
     dateDebut: String, // début du stage
     datePropose: {type: Date, default: new Date()}, // date de la saisie du stage
@@ -58,11 +58,11 @@ const stageSchema = Schema({
     noteStage: {        type: Schema.Types.ObjectId, ref: 'NoteStage' },
     visiteStage: {      type: Schema.Types.ObjectId, ref: 'VisiteStage' },
 
-    parcours: {         type: Schema.Types.ObjectId, ref: 'Parcours' },
-    entreprise: {       type: Schema.Types.ObjectId, ref: 'Entreprise' },
+    parcours: {         type: Schema.Types.ObjectId, required: true, ref: 'Parcours' },
+    entreprise: {       type: Schema.Types.ObjectId, required: true, ref: 'Entreprise' },
 
     
-    ajouteur: {         type: Schema.Types.ObjectId, ref: 'User' }, // Personne qui ajoute le stage
+    ajouteur: {         type: Schema.Types.ObjectId, required: true, ref: 'User' }, // Personne qui ajoute le stage
     repEntreprise: { type: Schema.Types.ObjectId, ref: 'User' }, // représentant entreprise 
     tuteur: {       type: Schema.Types.ObjectId, ref: 'User' }, // Tuteur du stage
     rapporteur: {       type: Schema.Types.ObjectId, ref: 'User' }, // rapporteur du stage

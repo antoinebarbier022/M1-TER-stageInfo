@@ -69,6 +69,10 @@ export class StageService {
     return this.httpClient.put(this.urlBase+'/api/stage/'+ id +'/comment', data);
   }
 
+  deleteCommentOnStage(idStage:any, idComment:any): Observable<any>{
+    return this.httpClient.delete(this.urlBase+'/api/stage/'+idStage+'/comment/'+idComment);
+  }
+
   /* Suppression d'un stage avec son identifiant */
   deleteStageById(id:any): Observable<any>{
     return this.httpClient.delete(this.urlBase+'/api/stage/'+id);

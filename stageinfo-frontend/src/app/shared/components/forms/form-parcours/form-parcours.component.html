@@ -4,7 +4,7 @@
         <label [for]="addParcours ? 'addInputAcronyme':'editInputAcronyme'">Acronyme</label>
         <input  type="text" 
                 [id]="addParcours ? 'addInputAcronyme':'editInputAcronyme'"  
-                class="form-control"
+                [class]="displayValidationInputStyle(parcoursFormControl.acronyme)"
                 placeholder="Acronyme du parcours" 
                 name="parcoursAcronyme"
                 formControlName="acronyme">
@@ -13,7 +13,7 @@
     <div class="form-group-row">
         <label [for]="addParcours ? 'addInputNiveau':'editInputNiveau'">Niveau</label>
         <select [id]="addParcours ? 'addInputNiveau':'editInputNiveau'"
-                class="form-control" 
+                [class]="displayValidationSelectStyle(parcoursFormControl.niveau)"
                 name="niveau"
                 formControlName="niveau">
             <option value="" disabled selected>Selectionner le niveau</option>
@@ -27,7 +27,7 @@
         <label [for]="addParcours ? 'addInputIntitule':'editInputIntitule'">Intitule</label>
         <input  type="text" 
                 [id]="addParcours ? 'addInputIntitule':'editInputIntitule'" 
-                class="form-control"
+                [class]="displayValidationInputStyle(parcoursFormControl.intitule)"
                 placeholder="Intitule du parcours" 
                 name="parcoursIntitule"
                 formControlName="intitule">
@@ -36,7 +36,7 @@
     <div class="form-group-row">
         <label [for]="addParcours ? 'addInputDescription':'editInputDescription'">Description</label>
         <textarea   [id]="addParcours ? 'addInputDescription':'editInputDescription'"
-                    class="form-control"  
+                    class="form-control"
                     placeholder="Description du parcours"
                     rows="3"
                     name="parcoursDescription"
@@ -47,7 +47,7 @@
     <div class="form-group-row">
         <label [for]="addParcours ? 'addInputResponsable':'editInputResponsable'">Responsable</label>
         <select [id]="addParcours ? 'addInputResponsable':'editInputResponsable'"
-                class="form-control" 
+                [class]="displayValidationSelectStyle(parcoursFormControl.responsable)"
                 name="responsable"
                 formControlName="responsable">
             <option [ngValue]="null" disabled selected>Selectionner le responsable</option>
@@ -66,12 +66,20 @@
         Modifier
     </button>
     <!-- Si Ajouter un Parcours -->
-    <button *ngIf="addParcours"
-            type="submit" 
-            (click)="onSubmitForm()"
-            data-dismiss="modal"
-            class="btn btn-primary btn-sm btn-ajouter"
-            [disabled]="parcoursForm.invalid">
-        Ajouter
-    </button>
+    <ng-container *ngIf="addParcours">
+        <!-- en fonction de si le formulaire est valide ou non on met le data dismiss pour fermer le modal-->
+        <button *ngIf="parcoursForm.invalid" 
+                type="submit" 
+                (click)="onSubmitForm()"
+                class="btn btn-primary btn-sm btn-ajouter">
+            Ajouter
+        </button>
+        <button *ngIf="!parcoursForm.invalid" 
+                type="submit" 
+                (click)="onSubmitForm()"
+                data-dismiss="modal" 
+                class="btn btn-primary btn-sm btn-ajouter">
+            Ajouter
+        </button>
+    </ng-container>
 </form>

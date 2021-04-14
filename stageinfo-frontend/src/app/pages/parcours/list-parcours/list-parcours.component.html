@@ -12,10 +12,27 @@
         <table class="card-table table table-striped table-sm">
             <thead>
                 <tr>
-                    <th scope="col">Acronyme</th>
-                    <th scope="col">Intitule</th>
-                    <th scope="col">Niveau</th>
-                    <th scope="col">Responsable</th>
+                    <th scope="col">
+                        <app-th-table-sort  (click)="sortByAscendingDescendingOrder(0)" [sorted]="visibleProperties[0].sorted">
+                            Acronyme
+                        </app-th-table-sort>
+                    </th>
+                    <th scope="col">
+                        <app-th-table-sort  (click)="sortByAscendingDescendingOrder(1)" [sorted]="visibleProperties[1].sorted">
+                            Intitule
+                        </app-th-table-sort>
+                    </th>
+                    
+                    <th scope="col">
+                        <app-th-table-sort  (click)="sortByAscendingDescendingOrder(2)" [sorted]="visibleProperties[2].sorted">
+                            Niveau
+                        </app-th-table-sort>
+                    </th>
+                    <th scope="col">
+                        <app-th-table-sort  (click)="sortByAscendingDescendingOrder(3)" [sorted]="visibleProperties[3].sorted">
+                            Responsable
+                        </app-th-table-sort>
+                    </th>
                     <th scope="col">Actions</th>
                 </tr>
             </thead>

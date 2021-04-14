@@ -227,8 +227,25 @@ exports.addCommentOnStage = (req,res,next) => {
         .catch((error) => {
             res.status(400).json({error: error});
         });
-
 };
+
+exports.deleteCommentOneStage = (req, res, next) => {
+    Commentaire.deleteOne({_id: req.params.idComment}).then(
+        () => {
+            res.status(200).json({
+                message: 'Comment on stage deleted!'
+            });
+        }
+    ).catch(
+        (error) => {
+            res.status(400).json({
+                error: error
+            });
+        }
+    );
+};
+
+
 
 
 exports.addPJ= (req,res,next) => {
