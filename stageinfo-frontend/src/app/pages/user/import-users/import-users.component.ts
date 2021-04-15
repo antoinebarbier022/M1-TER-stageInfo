@@ -17,6 +17,7 @@ export class ImportUsersComponent implements OnInit {
   uploaded = false;
   destroy$: Subject<boolean> = new Subject<boolean>();
   allParcours: any;
+  allUser: any;
   // @ts-ignore
   importForm: FormGroup ;
 
@@ -24,14 +25,18 @@ export class ImportUsersComponent implements OnInit {
   errorMessage: any;
   alert: boolean=false;
   u: number = 0;
+  alert1: any;
   constructor(  private route: ActivatedRoute,
                 private router: Router,
                 private papa: Papa,
                 private userService: UserService,
-                private formBuilder: FormBuilder) {     this.allParcours = this.route.snapshot.data.allParcours;
+                private formBuilder: FormBuilder) {
+    this.allParcours = this.route.snapshot.data.allParcours;
+    this.allUser = this.route.snapshot.data.users;
   }
 
   ngOnInit(): void {
+
     this.initForm();
   }
   initForm(){
@@ -49,6 +54,7 @@ export class ImportUsersComponent implements OnInit {
         results.data !== undefined && results.data.length > 0 && results.errors.length === 0) {
         this.isCSV_Valid = true;
         let csvTableHeader = results.data[0];
+        console.log(this.allUser)
 
         let csvTableData = [...results.data.slice(1, results.data.length)];
         console.log( csvTableData[4]);
@@ -99,7 +105,19 @@ export class ImportUsersComponent implements OnInit {
           this.alert=true;
       },
         error => {
+
+          var index = this.allUser.findIndex(((obj: { email: any; }) => obj.email == user.email));
+          this.modifierUser(this.allUser[index]._id,user)
           this.errorMessage += user.email+"\n";
         });
+  }
+  modifierUser(id:any, user:any){
+    this.userService.updateUser(id, user)
+      .pipe(takeUntil(this.destroy$))
+      .subscribe((_res: any[]) => {
+        console.log("User : "+ user.nom + " "+ user.prenom + " modifié !");
+        this.alert1 += user.email+"\n";
+
+      });
   }
 }
