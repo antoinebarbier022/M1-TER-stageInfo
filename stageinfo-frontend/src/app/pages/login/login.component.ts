@@ -32,12 +32,14 @@ export class LoginComponent implements OnInit {
     const email = this.singinForm.get('email')?.value;
     const password = this.singinForm.get('password')?.value;
     this.authService.login(email,password).then(
+
       ()=> {
         // @ts-ignore
         this.router.navigate(['/']);
 
       },
       (error) =>{
+
         this.errorMessage = error.error.error;
       }
     );
