@@ -8,8 +8,8 @@ const router = express.Router();
 
 const entrepriseCtrl = require('../controllers/entrepriseController');
 
-router.get('/',Etudiant,entrepriseCtrl.getAllEntreprise);
-router.get('/:id',Etudiant, entrepriseCtrl.getOneEntreprise);
+router.get('/',invite,entrepriseCtrl.getAllEntreprise);
+router.get('/:id',invite, entrepriseCtrl.getOneEntreprise);
 router.put('/:id', Etudiant,entrepriseCtrl.editEntreprise);
 router.post('/', Etudiant,entrepriseCtrl.createEntreprise);
 router.delete('/',Admin, entrepriseCtrl.deleteAllEntreprise);
