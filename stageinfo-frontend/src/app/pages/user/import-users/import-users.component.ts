@@ -22,10 +22,10 @@ export class ImportUsersComponent implements OnInit {
   importForm: FormGroup ;
 
   private isCSV_Valid: boolean | undefined;
-  errorMessage: any;
+  errorMessage: string= "";
   alert: boolean=false;
   u: number = 0;
-  alert1: any;
+  alert1:string ="";
   constructor(  private route: ActivatedRoute,
                 private router: Router,
                 private papa: Papa,
@@ -115,7 +115,6 @@ export class ImportUsersComponent implements OnInit {
     this.userService.updateUser(id, user)
       .pipe(takeUntil(this.destroy$))
       .subscribe((_res: any[]) => {
-        console.log("User : "+ user.nom + " "+ user.prenom + " modifié !");
         this.alert1 += user.email+"\n";
 
       });
