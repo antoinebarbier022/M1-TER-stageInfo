@@ -103,12 +103,12 @@ exports.login= (req, res, next) =>{
     User.findOne({email: req.body.email})
         .then(user => {
             if(!user){
-                return res.status(401).json({error : 'utilisateur non trouvé'})
+                return res.status(402).json({error : 'Utilisateur non trouvé !!'})
             }
             bcrypt.compare(req.body.password, user.hash)
                 .then(valid => {
                     if (!valid) {
-                        return res.status(401).json({error : 'Mot de passe Incorrect !!'})
+                        return res.status(402).json({error : 'Mot de passe Incorrect !!'})
 
                     }
                     res.status(200).json({
