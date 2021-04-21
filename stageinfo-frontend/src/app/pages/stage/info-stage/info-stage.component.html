@@ -75,11 +75,18 @@
         <p *ngIf="!(stage?.fichier.length)"class="alert alert-secondary"> Aucune pièce jointe pour ce stage</p>
         <app-card>
             <div *ngIf="alert" class="alert alert-success " role="alert">{{ alert }}</div>
-            <form>
+          <form [formGroup]="PjForm" (ngSubmit)="onSubmitAddFiles()">
                 <div class="form-group-row">
                     <input id='files' type="file" (input)="fileChoosen($event)"  accept="application/pdf,application/msword" >
+                  <div class="form-group-row">
+                  <label for="typePj">Type de piece jointe :</label>
+                  <select id="typePj" class="form-control" formControlName="typePj">
+                    <option value="" disabled selected>Type de PJ</option>
+                    <option *ngFor="let x of type" [ngValue]="x">{{ x }}</option>
+                  </select>
+                  </div>
                 </div>
-                <button class="btn btn-primary btn-sm" (click)="ajouterFichier()" [disabled]="!uploaded" >Ajouter le fichier</button>
+                <button class="btn btn-primary btn-sm" type="submit" [disabled]="!uploaded" >Ajouter le fichier</button>
             </form>
         </app-card>
     </div>
