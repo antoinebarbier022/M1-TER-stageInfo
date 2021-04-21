@@ -86,7 +86,7 @@
                   </select>
                   </div>
                 </div>
-                <button class="btn btn-primary btn-sm" type="submit" [disabled]="!uploaded" >Ajouter le fichier</button>
+                <button class="btn btn-primary btn-sm" type="submit" [disabled]="!uploaded || PjForm.value['typePj'] =='' " >Ajouter le fichier</button>
             </form>
         </app-card>
     </div>

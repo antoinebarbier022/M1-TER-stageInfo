@@ -83,7 +83,7 @@ export class InfoStageComponent implements OnInit, OnDestroy {
 
   initFormPj(){
     this.PjForm = this.formBuilder.group({
-      typePj:["",Validators.required]
+      typePj:['',Validators.required]
     })
 
   }
