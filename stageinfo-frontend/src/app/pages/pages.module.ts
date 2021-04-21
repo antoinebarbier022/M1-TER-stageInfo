@@ -17,14 +17,14 @@ import { ParcoursModule } from './parcours/parcours.module';
 import { EntrepriseModule } from './entreprise/entreprise.module';
 import { SoutenanceModule } from './soutenance/soutenance.module';
 import { Error401Component } from './erreurs/error401/error401.component';
-
+import { Error500Component} from "./erreurs/error500/error500.component";
 
 
 @NgModule({
   declarations: [
     ExempleTemplateComponent,
     Error404Component,
-    LoginComponent, Error401Component,
+    LoginComponent, Error401Component,Error500Component,
    ],
   imports: [
     CommonModule,

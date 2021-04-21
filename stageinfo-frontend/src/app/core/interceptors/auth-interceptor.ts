@@ -22,7 +22,10 @@ export class AuthInterceptor implements HttpInterceptor {
       this.router.navigate(['/not-found'])
       return of(err.message);
     }
-
+    if (err.status === 500) {
+      this.router.navigate(['/error500'])
+      return of(err.message);
+    }
 
     return throwError(err);
   }
