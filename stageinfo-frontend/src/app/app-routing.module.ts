@@ -4,6 +4,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { ExempleTemplateComponent } from './pages/exempleTemplate/exempleTemplate.component';
 import { ExempleDocComponent } from './pages/documentation/exemple-doc/exemple-doc.component';
 import { Error404Component } from './pages/erreurs/error404/error404.component';
+import {Error500Component} from "./pages/erreurs/error500/error500.component";
 
 // import user
 import { ProfileUserComponent } from './pages/user/profile-user/profile-user.component';
@@ -122,6 +123,7 @@ const routes: Routes = [
 
   { path: 'error401', component: Error401Component, canActivate: [AuthGuardService]},
   { path: 'not-found', component: Error404Component, canActivate: [AuthGuardService]},
+  { path: 'error500', component: Error500Component},
   { path: '**', redirectTo: 'not-found', canActivate: []}
 ];
 
