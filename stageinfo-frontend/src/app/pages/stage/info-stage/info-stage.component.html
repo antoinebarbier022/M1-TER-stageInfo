@@ -60,7 +60,7 @@
                     <!-- Ajout des stages de la BDD -->
                     <tr *ngFor="let fichier of stage.fichier ">
                         <td><a [href]="fichier.chemin" target="_blank">{{ fichier.nom }}</a></td>
-                        <td>{{ fichier.extension }}</td>
+                        <td>{{ fichier.type }}</td>
 
                         <td class="table-action">
                             <!-- Bouton edit => ouvre un modal avec le formulaire de modification -->
