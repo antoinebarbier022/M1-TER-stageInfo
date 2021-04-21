@@ -127,7 +127,7 @@
             role="dialog"
             id="suppressionFichier">
         <span title> Supprimer la pièce jointe </span>
-        <p content>Confirmer la suppression de la pièce jointe : <strong>{{ selectPieceJointe.nom }}</strong></p>
+        <p content>Confirmer la suppression de la pièce jointe : <strong>{{ selectPieceJointe?.nom }}</strong></p>
         <button button1 type="button" class="btn btn-secondary btn-sm" data-dismiss="modal">Annuler</button>
         <button button2 (click)="supprimerFichier(selectPieceJointe._id)" type="button" class="btn btn-danger btn-sm" data-dismiss="modal">Supprimer</button>
     </app-modal>
