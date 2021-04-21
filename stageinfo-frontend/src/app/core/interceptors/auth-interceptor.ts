@@ -26,6 +26,12 @@ export class AuthInterceptor implements HttpInterceptor {
       this.router.navigate(['/error500'])
       return of(err.message);
     }
+    if (err.status === 0) {
+      this.auth.logout();
+      this.router.navigate(['/error500'])
+
+      return of(err.message);
+    }
 
     return throwError(err);
   }
