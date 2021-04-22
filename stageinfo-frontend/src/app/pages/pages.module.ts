@@ -45,6 +45,7 @@ import { ExportComponent } from './export/export.component';
     ExempleTemplateComponent,
     Error404Component,
     LoginComponent,
+    ExportComponent,
 
     SharedModule,
     UserModule,

@@ -3,6 +3,7 @@ import {concat} from "rxjs";
 import {AllStagesResolver} from "../../core/resolves/all-stages.resolver";
 import {ActivatedRoute, Router} from "@angular/router";
 import { CsvDataService } from 'src/app/core/services/CsvDataService';
+import {forEach} from "ol/geom/flat/segments";
 
 
 @Component({
@@ -23,6 +24,15 @@ export class ExportComponent implements OnInit {
 
    onSubmit(){
    console.log(this.Allstage)
-  CsvDataService.exportToCsv('test.csv', this.Allstage);
+     const datastage = new Array();
+   var j=0;
+for( var i =0;i<this.Allstage.length;i++){
+  if(this.Allstage[i].etudiant !=null) {
+    datastage[j] = {numetudiant: this.Allstage[i]?.etudiant?.numeroEtudiant,note:this.Allstage[i]?.noteStage?.valeur};
+    j++;
+  }
+}
+console.log(datastage)
+  //CsvDataService.exportToCsv('test.csv', datastage);
 }
 }
