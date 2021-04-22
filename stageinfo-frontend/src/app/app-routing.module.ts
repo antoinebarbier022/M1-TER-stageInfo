@@ -38,6 +38,7 @@ import { ConfigCalendrierSoutenancesComponent } from './pages/soutenance/config-
 
 //import login
 import { LoginComponent } from './pages/login/login.component';
+import {ExportComponent} from "./pages/export/export.component";
 
 
 // Importation des guards
@@ -120,7 +121,7 @@ const routes: Routes = [
 
   // config calendrier soutenance
   { path: 'configuration-calendrier-soutenances', component: ConfigCalendrierSoutenancesComponent, canActivate: [AuthGuardService, RoleGuard]},
-
+  {path: 'export',component:ExportComponent,resolve: {stages: AllStagesResolver, } },
   { path: 'error401', component: Error401Component, canActivate: [AuthGuardService]},
   { path: 'not-found', component: Error404Component, canActivate: [AuthGuardService]},
   { path: 'error500', component: Error500Component},
