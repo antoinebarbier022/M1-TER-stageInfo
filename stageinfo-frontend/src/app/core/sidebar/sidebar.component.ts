@@ -52,7 +52,7 @@ export class SidebarComponent implements OnInit {
   exporterCSV = {icon:"fas fa-file-csv", nom:"Exporter CSV", lien:"/", items:[
     {icon:"", nom:"Les stages", lien:"/stages-csv"},
     {icon:"", nom:"Les soutenances", lien:"/soutenances-csv"},
-    {icon:"", nom:"Les notes de stage", lien:"/notes-de-stage-csv"}]};
+    {icon:"", nom:"Les notes de stage", lien:"/export"}]};
 
   telechargerPDF = {icon:"fas fa-download", nom:"Télécharger", items:[
     {icon:"fas fa-border-all", nom:"Feuille de stage", lien:"/fiche-stage"},

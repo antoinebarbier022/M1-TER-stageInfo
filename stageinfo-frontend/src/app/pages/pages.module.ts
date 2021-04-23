@@ -25,7 +25,7 @@ import { ExportComponent } from './export/export.component';
   declarations: [
     ExempleTemplateComponent,
     Error404Component,
-    LoginComponent, Error401Component,Error500Component, ExportComponent,
+    LoginComponent, Error401Component,Error500Component,
    ],
   imports: [
     CommonModule,
@@ -45,7 +45,7 @@ import { ExportComponent } from './export/export.component';
     ExempleTemplateComponent,
     Error404Component,
     LoginComponent,
-    ExportComponent,
+
 
     SharedModule,
     UserModule,
