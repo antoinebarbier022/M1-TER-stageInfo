@@ -4,6 +4,7 @@ import {AllStagesResolver} from "../../core/resolves/all-stages.resolver";
 import {ActivatedRoute, Router} from "@angular/router";
 import { CsvDataService } from 'src/app/core/services/CsvDataService';
 import {forEach} from "ol/geom/flat/segments";
+import {FormBuilder, Validators} from "@angular/forms";
 
 
 @Component({
@@ -14,12 +15,18 @@ import {forEach} from "ol/geom/flat/segments";
 export class ExportComponent implements OnInit {
 
  Allstage : any
-  constructor(private route:ActivatedRoute) {  }
+  importForm: any;
+  constructor(private route:ActivatedRoute,
+              private formBuilder: FormBuilder) {  }
 
   ngOnInit(): void {
     this.Allstage = this.route.snapshot.data.stages;
-  // @ts-ignore
-    document.getElementById("export").addEventListener('click',() => {this.onSubmit()});
+    this.initForm()
+  }
+  initForm(){
+    this.importForm = this.formBuilder.group({
+      ann: ['',Validators.required],
+    });
   }
 
    onSubmit(){
