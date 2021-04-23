@@ -5,6 +5,7 @@ import { ExempleTemplateComponent } from './pages/exempleTemplate/exempleTemplat
 import { ExempleDocComponent } from './pages/documentation/exemple-doc/exemple-doc.component';
 import { Error404Component } from './pages/erreurs/error404/error404.component';
 import {Error500Component} from "./pages/erreurs/error500/error500.component";
+import {ExportStageComponent} from "./pages/export/export-stage/export-stage.component";
 
 // import user
 import { ProfileUserComponent } from './pages/user/profile-user/profile-user.component';
@@ -38,7 +39,7 @@ import { ConfigCalendrierSoutenancesComponent } from './pages/soutenance/config-
 
 //import login
 import { LoginComponent } from './pages/login/login.component';
-import {ExportComponent} from "./pages/export/export.component";
+import {ExportComponent} from "./pages/export/export-note/export.component";
 
 
 // Importation des guards
@@ -121,7 +122,8 @@ const routes: Routes = [
 
   // config calendrier soutenance
   { path: 'configuration-calendrier-soutenances', component: ConfigCalendrierSoutenancesComponent, canActivate: [AuthGuardService, RoleGuard]},
-  {path: 'export',component:ExportComponent,canActivate: [AuthGuardService],resolve: {stages: AllStagesResolver } },
+  {path: 'export-note',component:ExportComponent,canActivate: [AuthGuardService],resolve: {stages: AllStagesResolver } },
+  {path: 'export-stage',component:ExportStageComponent,canActivate: [AuthGuardService],resolve: {stages: AllStagesResolver } },
   { path: 'error401', component: Error401Component, canActivate: [AuthGuardService]},
   { path: 'not-found', component: Error404Component, canActivate: [AuthGuardService]},
   { path: 'error500', component: Error500Component},
