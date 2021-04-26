@@ -17,14 +17,16 @@ import { ParcoursModule } from './parcours/parcours.module';
 import { EntrepriseModule } from './entreprise/entreprise.module';
 import { SoutenanceModule } from './soutenance/soutenance.module';
 import { Error401Component } from './erreurs/error401/error401.component';
-
+import { Error500Component} from "./erreurs/error500/error500.component";
+import { ExportComponent } from './export/export-note/export.component';
+import { ExportStageComponent } from './export/export-stage/export-stage.component';
 
 
 @NgModule({
   declarations: [
     ExempleTemplateComponent,
     Error404Component,
-    LoginComponent, Error401Component,
+    LoginComponent, Error401Component,Error500Component, ExportStageComponent,ExportComponent
    ],
   imports: [
     CommonModule,
@@ -44,6 +46,7 @@ import { Error401Component } from './erreurs/error401/error401.component';
     ExempleTemplateComponent,
     Error404Component,
     LoginComponent,
+
 
     SharedModule,
     UserModule,

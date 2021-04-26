@@ -21,9 +21,9 @@ import { FicheNotationComponent } from './fiche-notation/fiche-notation.componen
     FormsModule,
     ReactiveFormsModule,
     SharedModule
-  ], 
+  ],
   exports: [
-    ListStagesComponent, 
+    ListStagesComponent,
     AddStageComponent,
   ]
 })

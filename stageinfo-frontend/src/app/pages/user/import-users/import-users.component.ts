@@ -7,6 +7,7 @@ import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { UserModel } from 'src/app/core/models/UserModel';
 import { UserService } from 'src/app/core/services/user.service';
 
+
 @Component({
   selector: 'app-import-users',
   templateUrl: './import-users.component.html',
@@ -46,6 +47,7 @@ export class ImportUsersComponent implements OnInit {
   }
   envoyer() {
     let reader: FileReader = new FileReader();
+
     reader.readAsText(this.csv, "UTF-8");
     reader.onload = ev => {
       const text = reader.result;

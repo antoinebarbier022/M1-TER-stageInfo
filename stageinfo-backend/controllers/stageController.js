@@ -18,7 +18,8 @@ exports.getAllStage = ((req, res, next) => {
   .populate('repEntreprise', 'nom prenom')
   .populate('tuteur', 'nom prenom')
   .populate('rapporteur', 'nom prenom')
-  .populate('etudiant', 'nom prenom')
+  .populate('noteStage', 'valeur')
+  .populate('etudiant', 'nom prenom numeroEtudiant')
   .then(stages => res.status(200).json(stages))
   .catch(error => res.status(404).json({ error }));
 });
@@ -43,10 +44,12 @@ exports.getAllStageRelatedToUser = ((req, res, next) => {
   
   
     .populate('ajouteur', 'nom prenom')
+
     .populate('repEntreprise', 'nom prenom')
     .populate('tuteur', 'nom prenom')
     .populate('rapporteur', 'nom prenom')
-    .populate('etudiant', 'nom prenom')
+    .populate('etudiant', 'nom prenom numeroEtudiant')
+        .populate('noteStage', 'valeur')
     .then(stages => res.status(200).json(stages))
     .catch(error => res.status(404).json({ error }));
   });
@@ -74,7 +77,8 @@ exports.getOneStage = ((req, res, next) => {
     .populate('repEntreprise', 'nom prenom')
     .populate('tuteur', 'nom prenom')
     .populate('rapporteur', 'nom prenom')
-    .populate('etudiant', 'nom prenom')
+    .populate('etudiant', 'nom prenom numeroEtudiant')
+        .populate('noteStage', 'valeur')
 
   .then(stage => res.status(200).json(stage))
   .catch(error => res.status(404).json({ error }))
@@ -253,7 +257,7 @@ exports.addPJ= (req,res,next) => {
     const pj = new PJ({
         ...JSON.parse(req.body.data),
         nom: req.files[0].originalname.substring(0,req.files[0].originalname.indexOf('.')),
-        type:req.files[0].mimetype,
+        type:req.body.type,
         extension:req.files[0].originalname.substring(req.files[0].originalname.lastIndexOf('.') + 1),
         chemin : `${req.protocol}://${req.get('host')}/docs/${req.files[0].filename}`,
         size:req.files[0].size,
