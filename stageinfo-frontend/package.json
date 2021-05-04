@@ -30,6 +30,7 @@
     "font-awesome": "^4.7.0",
     "jquery": "^3.5.1",
     "jwt-decode": "^3.1.2",
+    "ng-csv": "^0.3.6",
     "ngx-papaparse": "^3.0.4",
     "ol": "^6.5.0",
     "popper.js": "^1.16.1",

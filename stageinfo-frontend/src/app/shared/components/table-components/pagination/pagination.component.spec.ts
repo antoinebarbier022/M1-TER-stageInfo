@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { Error401Component } from './error401.component';
+import { ListPaginationComponent } from './pagination.component';
 
-describe('Error401Component', () => {
-  let component: Error401Component;
-  let fixture: ComponentFixture<Error401Component>;
+describe('ListPaginationComponent', () => {
+  let component: ListPaginationComponent;
+  let fixture: ComponentFixture<ListPaginationComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ Error401Component ]
+      declarations: [ ListPaginationComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(Error401Component);
+    fixture = TestBed.createComponent(ListPaginationComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

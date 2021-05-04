@@ -1,0 +1,14 @@
+:host{
+    display: flex;
+    padding: 1rem 1rem;
+    justify-content: space-between;
+    
+    .pagination{
+        .current-page{
+            background-color: #3f80ea;
+            color:white;
+        }
+    }
+
+
+}
