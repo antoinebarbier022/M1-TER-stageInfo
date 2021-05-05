@@ -1,4 +1,6 @@
-<app-navigation [title]="'Utilisateur : ' + user.nom + ' ' + user.prenom"></app-navigation>
+<app-navigation *ngIf="!myProfile" [title]="'Utilisateur : ' + user?.nom + ' ' + user?.prenom"></app-navigation>
+
+<h1 *ngIf="myProfile">Mon profile</h1>
 
 <div class="all-card">
     <app-card id="info-user" title="Informations Utilisateur">

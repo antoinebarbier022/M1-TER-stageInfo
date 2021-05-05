@@ -83,6 +83,7 @@ export class RoleGuard implements CanActivate {
       case 'liste-entreprises':
       case 'liste-entreprises/info/:id':
       case 'liste-utilisateurs': 
+      case 'profile': 
       case 'liste-utilisateurs/user/:id': 
         return this.allRole.includes(role);
 
