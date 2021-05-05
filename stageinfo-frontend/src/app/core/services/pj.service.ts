@@ -14,6 +14,7 @@ export class pjService {
   getAllPJ(): Observable<any> {
     return this.httpClient.get(this.urlBase+'/api/piecejointe');
   }
+  
   editPJ(id:any, pdf: File):Observable<any>{
     const datastage = new FormData();
     datastage.append('pdf',pdf,pdf.name);

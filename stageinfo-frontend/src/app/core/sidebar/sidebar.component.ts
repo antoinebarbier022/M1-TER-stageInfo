@@ -3,7 +3,6 @@ import { Component, OnInit } from '@angular/core';
 import {Subscription} from "rxjs";
 import {AuthService} from "../services/auth.service";
 import {Router} from "@angular/router";
-import { TestService } from '../services/test.service';
 import { RoleUser } from '../enums/RoleUser';
 
 
@@ -14,20 +13,24 @@ import { RoleUser } from '../enums/RoleUser';
 })
 export class SidebarComponent implements OnInit {
 
-  // On défini tous les liens possibles de navigation
+  // -----------------------------------------------------------------------------------------------
+  // ------- On défini tous les liens possibles de navigation --------------------------------------
+  // --- (les objets ci-dessous contiennt l'icon, le nom et le lien) -------------------------------
+  //-----(il y a aussi un tableau d'item dans le cas où on souhaite avoir un lien dropdown) --------
+  // -----------------------------------------------------------------------------------------------
   mesStages = {icon:"fas fa-clipboard-list",          nom:"Mes stages",       lien:"/mes-stages",       items:[]};
 
   listeStages =             {icon:"fas fa-list",          nom:"Listing des stages",       lien:"/liste-stages",       items:[]};
   listeSoutenances =        {icon:"fas fa-list",          nom:"Listing des soutenances",  lien:"/liste-soutenances",   items:[]};
   listeEntreprise =         {icon:"fas fa-list",          nom:"Listing des entreprises",  lien:"/liste-entreprises",   items:[]};
   listeUtilisateurs =       {icon:"fas fa-list",          nom:"Listing des utilisateurs", lien:"/liste-utilisateurs",   items:[]};
-  listeEtudiants =          {icon:"fas fa-list",  nom:"Listing des étudiants ",   lien:"/liste-etudiants", items:[]};
-  listeEnseignants =        {icon:"fas fa-list",  nom:"listing des enseignants",  lien:"/liste-enseignants", items:[]};
+  listeEtudiants =          {icon:"fas fa-list",          nom:"Listing des étudiants ",   lien:"/liste-etudiants", items:[]};
+  listeEnseignants =        {icon:"fas fa-list",          nom:"listing des enseignants",  lien:"/liste-enseignants", items:[]};
   listeParcours =           {icon:"fas fa-list",          nom:"Listing des parcours",     lien:"/liste-parcours",       items:[]};
   listeEtudiantsSansStage = {icon:"fas fa-user-friends",  nom:"Étudiant sans stages",     lien:"/etudiant-sans-stages", items:[]};
   listeSoutenancesNonPlanifie = {icon:"fas fa-list",      nom:"Listing des soutenances non planifiées", lien:"/listing-soutenance-non-planifie", items:[]};
 
-  planningSoutenance =       {icon:"fas fa-calendar-alt",  nom:"Planning de soutenance",    lien:"/planning-soutenance", items:[]};
+  planningSoutenance =      {icon:"fas fa-calendar-alt",  nom:"Planning de soutenance",    lien:"/planning-soutenance", items:[]};
   notesStage =              {icon:"fas fa-table",         nom:"Les notes des stages",     lien:"/note-de-stage", items:[]};
 
   saisirStage =             {icon:"fas fa-pencil-alt",    nom:"Proposer un stage",        lien:"/saisir-stage", items:[]};
@@ -60,6 +63,11 @@ export class SidebarComponent implements OnInit {
     {icon:"", nom:"Fiche de notation", lien:"http://localhost:3000/docs/Fiche_notation.doc"}]};
 
 
+  // -----------------------------------------------------------------------------------------------
+  // - Ci dessous sont déclaré les différents menu de navigation pour chaque role de la plateforme - 
+  // -----------------------------------------------------------------------------------------------
+
+  // --- Menu de navigation pour le role Invité ---
   navigationInvite = [
     {
       title:"Stage",
@@ -71,6 +79,7 @@ export class SidebarComponent implements OnInit {
     }
   ];
 
+  // --- Menu de navigation pour le role Etudiant ---
   navigationEtudiant = [
     {
       title:"Stage",
@@ -82,6 +91,7 @@ export class SidebarComponent implements OnInit {
     }
   ];
 
+  // --- Menu de navigation pour le role Tuteur ---
   navigationTuteur = [
     {
       title:"Stage",
@@ -101,6 +111,7 @@ export class SidebarComponent implements OnInit {
     }
   ];
 
+  // --- Menu de navigation pour le role Représentant entreprise ---
   navigationRepresentantEntreprise = [
     {
       title:"Stage",
@@ -112,6 +123,7 @@ export class SidebarComponent implements OnInit {
     }
   ];
 
+  // --- Menu de navigation pour le role Responsable Parcours ---
   navigationResponsableParcours = [
     {
       title:"Stage",
@@ -135,6 +147,11 @@ export class SidebarComponent implements OnInit {
     }
   ];
 
+  // --- Menu de navigation pour le role Responsable stage  ---
+
+  // ...
+
+  // --- Menu de navigation pour le role Secretaire ---
   navigationSecretaire = [
     {
       title:"Administration",
@@ -171,11 +188,16 @@ export class SidebarComponent implements OnInit {
     }
   ];
 
+  // --- Menu de navigation pour le role Administrateur ---
+
+
+  // ...
+
   public isAuth: boolean | undefined;
 
   private isAuthSub: Subscription | undefined;
-  constructor(private authService: AuthService,
-              private router: Router) { }
+
+  constructor(private authService: AuthService) { }
 
   ngOnInit(): void {
     this.isAuthSub = this.authService.isAuth$.subscribe(
@@ -186,10 +208,14 @@ export class SidebarComponent implements OnInit {
   }
 
   choixNavigation() : any{
+
+    // La première condition permet de savoir si l'on affiche tous les liens que peut voir un administrateur
     if(this.authService.getViewAllRoute()){
       // alors on peut voir la vue secretaire (par contre on aura des problème d'autorisation si on a pas les droits)
       return this.navigationSecretaire;
     }else{
+
+      // On choisi la vue de la barre de navigation en fonction du role autorisé à voir
       switch (this.authService.getViewRole()){
         case RoleUser.ADMIN:
         case RoleUser.SECRETAIRE:

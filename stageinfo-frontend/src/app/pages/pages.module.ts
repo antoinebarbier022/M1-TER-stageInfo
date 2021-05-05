@@ -5,7 +5,6 @@ import { RouterModule } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 
 import { Error404Component } from './erreurs/error404/error404.component';
-import { ExempleTemplateComponent } from './exempleTemplate/exempleTemplate.component';
 import { LoginComponent } from './login/login.component';
 import { ReactiveFormsModule } from "@angular/forms";
 
@@ -24,7 +23,6 @@ import { ExportStageComponent } from './export/export-stage/export-stage.compone
 
 @NgModule({
   declarations: [
-    ExempleTemplateComponent,
     Error404Component,
     LoginComponent, Error401Component,Error500Component, ExportStageComponent,ExportComponent
    ],
@@ -43,7 +41,6 @@ import { ExportStageComponent } from './export/export-stage/export-stage.compone
     ParcoursModule
     ],
   exports:[
-    ExempleTemplateComponent,
     Error404Component,
     LoginComponent,
 

@@ -38,13 +38,13 @@ export class InfoUserComponent implements OnInit {
     // si on est sur la page de profile alors on charge les données de l'utilisateur connecté
     if(this.myProfile){
       // On récupère les données de l'utilisateur connecté
-      this.userService.getUserById(this.authService.getUserid())
+      this.userService.getUserById(this.authService.getUserId())
           .pipe(takeUntil(this.destroy$))
           .subscribe((_res: UserModel) => {
             this.user = _res;
         });
         // on récupère les données des stages associé à l'utilisateur connecté
-        this.stageService.getAllStageRelatedUser(this.authService.getUserid())
+        this.stageService.getAllStageRelatedUser(this.authService.getUserId())
           .pipe(takeUntil(this.destroy$))
           .subscribe((_res: UserModel) => {
             this.stages = _res;

@@ -123,12 +123,12 @@ export class GestionEtatStageComponent implements OnInit, OnDestroy {
 
   afficheMessage(etat:string, role:string):boolean{
     // on vérifie si on est sur l'etat affectTuteur (on doit choisir un rapporteur), que le potentiel rapporteur ne soit pas tuteur (pour le cas du bouton devenir rapporteur)
-    if((etat == EtatStage.AFFECT_TUTEUR) && (role == RoleUser.TUTEUR) && (this.stage.tuteur?._id == this.authService.getUserid() )){
+    if((etat == EtatStage.AFFECT_TUTEUR) && (role == RoleUser.TUTEUR) && (this.stage.tuteur?._id == this.authService.getUserId() )){
       return false;
     }
 
     // message pour le tuteur du stage
-    if((this.getState() == etat) && (role == 'isTuteurOfStage') && (this.stage.tuteur?._id == this.authService.getUserid() ) &&  ( (this.getRole() == RoleUser.TUTEUR) || (this.getRole() == RoleUser.ADMIN && this.getViewRole() == RoleUser.TUTEUR))){
+    if((this.getState() == etat) && (role == 'isTuteurOfStage') && (this.stage.tuteur?._id == this.authService.getUserId() ) &&  ( (this.getRole() == RoleUser.TUTEUR) || (this.getRole() == RoleUser.ADMIN && this.getViewRole() == RoleUser.TUTEUR))){
       return true;
     }
 
@@ -195,7 +195,7 @@ export class GestionEtatStageComponent implements OnInit, OnDestroy {
       if((this.authService.getRole() == RoleUser.TUTEUR) || (this.authService.getViewRole() == RoleUser.TUTEUR) ){
         newData = {
           etat: EtatStage.AFFECT_TUTEUR,
-          tuteur : this.authService.getUserid(),
+          tuteur : this.authService.getUserId(),
         };
         console.log("Le tuteur à choisie le stage à tutorer.");
       }else{
@@ -224,7 +224,7 @@ export class GestionEtatStageComponent implements OnInit, OnDestroy {
       if((this.authService.getRole() == RoleUser.TUTEUR) || (this.authService.getViewRole() == RoleUser.TUTEUR) ){
         newData = {
           etat: EtatStage.AFFECT_RAPPORTEUR,
-          rapporteur : this.authService.getUserid(),
+          rapporteur : this.authService.getUserId(),
         };
         console.log("Le rapporteur à choisie le stage à rapporter .");
       }else{
@@ -345,7 +345,7 @@ export class GestionEtatStageComponent implements OnInit, OnDestroy {
   }
 
   ajouteurIsAuth():boolean{
-    return this.stage.ajouteur == this.authService.getUserid();
+    return this.stage.ajouteur == this.authService.getUserId();
   }
 
 }
