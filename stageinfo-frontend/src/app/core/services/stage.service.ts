@@ -85,9 +85,10 @@ export class StageService {
     datastage.append('pdf',pdf,data.titre);
     return this.httpClient.put(this.urlBase+'/api/stage/'+ id,datastage );
   }
-  addPdf(id:any,pdf:File):Observable<any>{
+  addPdf(id:any,pdf:File,Type:any):Observable<any>{
     const datastage = new FormData();
     datastage.append('pdf',pdf,pdf.name);
+    datastage.append('type',Type);
     datastage.append('data',JSON.stringify(({idUser:this.authservice.getUserid()})))
     return this.httpClient.put(this.urlBase+'/api/stage/'+ id+'/add-pj',datastage );
   }

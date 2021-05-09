@@ -51,9 +51,9 @@ export class SidebarComponent implements OnInit {
   contacterSupport =        {icon:"fas fa-comment",       nom:"Contacter le support", lien:"/support", items:[]};
 
   exporterCSV = {icon:"fas fa-file-csv", nom:"Exporter CSV", lien:"/", items:[
-    {icon:"", nom:"Les stages", lien:"/stages-csv"},
+    {icon:"", nom:"Les stages", lien:"/export-stage"},
     {icon:"", nom:"Les soutenances", lien:"/soutenances-csv"},
-    {icon:"", nom:"Les notes de stage", lien:"/notes-de-stage-csv"}]};
+    {icon:"", nom:"Les notes de stage", lien:"/export-note"}]};
 
   telechargerPDF = {icon:"fas fa-download", nom:"Télécharger", items:[
     {icon:"fas fa-border-all", nom:"Feuille de stage", lien:"/fiche-stage"},

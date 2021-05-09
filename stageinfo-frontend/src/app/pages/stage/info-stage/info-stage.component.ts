@@ -7,6 +7,7 @@ import { RoleUser } from 'src/app/core/enums/RoleUser';
 import { AuthService } from 'src/app/core/services/auth.service';
 import { StageService } from 'src/app/core/services/stage.service';
 import { pjService } from "../../../core/services/pj.service";
+import {TypePJ} from "../../../core/enums/TypePJ";
 
 @Component({
   selector: 'app-info-stage',
@@ -43,14 +44,18 @@ export class InfoStageComponent implements OnInit, OnDestroy {
   // pour pouvoir détruire les subscribes
   destroy$: Subject<boolean> = new Subject<boolean>();
   errorMessage: boolean = false;
+  type = [TypePJ.Descriptif, TypePJ.Rapport, TypePJ.Rapport_çonfidentiel,TypePJ.Convention];
   alert: any;
+  Select=document.getElementById('typePj');
 
-  selectPieceJointe:any; // piece jointe qui est selectionné 
+  selectPieceJointe:any; // piece jointe qui est selectionné
   selectComment:any;
 
   // formulaire d'ajout de commentaire sur le stage
   // @ts-ignore
   commentaireForm: FormGroup;
+  // @ts-ignore
+  PjForm: FormGroup
   // @ts-ignore
   errorMessage: String;
 
@@ -58,12 +63,13 @@ export class InfoStageComponent implements OnInit, OnDestroy {
               private route:ActivatedRoute,
               private stageService: StageService,
               private authService: AuthService,
-              private pjService : pjService) { 
+              private pjService : pjService) {
                 this.allUsers = this.route.snapshot.data.allUsers;
               }
 
   ngOnInit(): void {
     this.initFormComment();
+    this.initFormPj();
     this.stage = this.route.snapshot.data.stage;
     console.log(this.stage);
 
@@ -75,9 +81,16 @@ export class InfoStageComponent implements OnInit, OnDestroy {
     }
   }
 
+  initFormPj(){
+    this.PjForm = this.formBuilder.group({
+      typePj:['',Validators.required]
+    })
+
+  }
   initFormComment(){
     this.commentaireForm = this.formBuilder.group({
       commentaire:['',Validators.required]
+
     });
   }
 
@@ -100,7 +113,7 @@ export class InfoStageComponent implements OnInit, OnDestroy {
       case RoleUser.TUTEUR:
       case RoleUser.REPRESENTANT_ENTREPRISE:
         return false;
-      
+
       case RoleUser.RESPONSABLE_PARCOURS:
       case RoleUser.SECRETAIRE:
       case RoleUser.RESPONSABLE_STAGES:
@@ -126,7 +139,9 @@ export class InfoStageComponent implements OnInit, OnDestroy {
     }
   }
   onSubmitAddFiles(){
-    this.ajouterFichier();
+    const p = this.PjForm.value;
+    this.ajouterFichier(p['typePj']);
+
   }
 
   ajouterCommentaire(){
@@ -161,11 +176,14 @@ export class InfoStageComponent implements OnInit, OnDestroy {
     return this.allUsers[index]?.nom + " " + this.allUsers[index]?.prenom;
   }
 
-  ajouterFichier(){
-    this.stageService.addPdf(this.stage._id, this.pdf)
+  ajouterFichier(ty:any){
+    // @ts-ignore
+
+    this.stageService.addPdf(this.stage._id, this.pdf,ty)
         .pipe(takeUntil(this.destroy$))
         .subscribe((_res: any) => {
-          console.log("Stage : "+ this.stage.titre + " modifié !");
+          // @ts-ignore
+          console.log("Stage : "+ ty + " modifié !");
           this.alert= "Fichier ajoutée!";
         });
   }

@@ -22,10 +22,10 @@ import { FicheAppreciationComponent } from './fiche-appreciation/fiche-appreciat
     FormsModule,
     ReactiveFormsModule,
     SharedModule
-  ], 
+  ],
   exports: [
-    ListStagesComponent, 
-    AddStageComponent
+    ListStagesComponent,
+    AddStageComponent,
   ]
 })
 export class StageModule { }
