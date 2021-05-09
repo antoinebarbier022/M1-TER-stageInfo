@@ -125,7 +125,7 @@ export class FormStageComponent implements OnInit {
       const formValue = this.stageForm.value;
       const stage = new StageModel(
         this.idStage,
-        this.authService.getUserid(),
+        this.authService.getUserId(),
         this.addStage ? 'propose' : this.selectedStage.etat,
         formValue['titre'],
         formValue['description'],
@@ -272,8 +272,6 @@ export class FormStageComponent implements OnInit {
     }else{
       this.isError = true;
     }
-
-    
   }
   pred(){
     if(this.page > 1){

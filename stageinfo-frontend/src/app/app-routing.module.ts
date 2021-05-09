@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
-import { ExempleTemplateComponent } from './pages/exempleTemplate/exempleTemplate.component';
 import { ExempleDocComponent } from './pages/documentation/exemple-doc/exemple-doc.component';
 import { Error404Component } from './pages/erreurs/error404/error404.component';
 import {Error500Component} from "./pages/erreurs/error500/error500.component";
@@ -49,19 +48,19 @@ import { AuthGuard } from "./core/guards/login.guard";
 import { RoleGuard } from "./core/guards/role.guard";
 
 // Importation des resolver
-import { AllUsersResolver } from "./core/resolves/all-users.resolver";
-import { UserResolver } from "./core/resolves/user.resolver";
-import { AllStagesResolver } from "./core/resolves/all-stages.resolver";
-import { StageResolver } from "./core/resolves/stage.resolver";
-import { AllEntreprisesResolver } from './core/resolves/all-entreprises.resolver';
-import { EntrepriseResolver } from './core/resolves/entreprise.resolver';
-import { AllParcoursResolver } from './core/resolves/all-parcours.resolver';
-import { ParcoursResolver } from './core/resolves/parcours.resolver';
-import { AllSoutenancesResolver } from './core/resolves/all-soutenances.resolver';
+import { AllUsersResolver } from "./core/resolvers/all-users.resolver";
+import { UserResolver } from "./core/resolvers/user.resolver";
+import { AllStagesResolver } from "./core/resolvers/all-stages.resolver";
+import { StageResolver } from "./core/resolvers/stage.resolver";
+import { AllEntreprisesResolver } from './core/resolvers/all-entreprises.resolver';
+import { EntrepriseResolver } from './core/resolvers/entreprise.resolver';
+import { AllParcoursResolver } from './core/resolvers/all-parcours.resolver';
+import { ParcoursResolver } from './core/resolvers/parcours.resolver';
+import { AllSoutenancesResolver } from './core/resolvers/all-soutenances.resolver';
 import { Error401Component } from './pages/erreurs/error401/error401.component';
-import { AllRespParcoursResolver } from './core/resolves/all-resp-parcours.resolver';
-import { AllEtudiantsResolver } from './core/resolves/all-etudiants.resolver';
-import { AllStageOfUserResolver } from './core/resolves/all-stage-of-user.resolver';
+import { AllRespParcoursResolver } from './core/resolvers/all-resp-parcours.resolver';
+import { AllEtudiantsResolver } from './core/resolvers/all-etudiants.resolver';
+import { AllStageOfUserResolver } from './core/resolvers/all-stage-of-user.resolver';
 
 const routes: Routes = [
   { path: '', redirectTo: 'liste-stages', pathMatch: 'full', canActivate: [AuthGuardService, RoleGuard]},

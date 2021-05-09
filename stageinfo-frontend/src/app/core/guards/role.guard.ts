@@ -2,9 +2,6 @@ import { Injectable } from '@angular/core';
 import { CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot, UrlTree, Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { AuthService } from '../services/auth.service';
-import decode from 'jwt-decode';
-import jwtDecode from 'jwt-decode';
-import { IToken } from '../interfaces/itoken';
 import { RoleUser } from '../enums/RoleUser';
 
 @Injectable({
@@ -24,7 +21,6 @@ export class RoleGuard implements CanActivate {
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
 
-    //var role = this.auth.getRole();
     let role = this.auth.getRole();
     const path = route.url[0].path;
 
@@ -72,9 +68,6 @@ export class RoleGuard implements CanActivate {
   ];
 
   checkRoleAccess(role: any, route: string){
-
-    /* ['etudiant', 'representantEntreprise', 'tuteur', 'secretaire', 'responsableParcours', 'responsablePedagogique', 'admin', 'invite'] */
-
     switch(route){
       
       // Tous les roles 
@@ -83,6 +76,7 @@ export class RoleGuard implements CanActivate {
       case 'liste-entreprises':
       case 'liste-entreprises/info/:id':
       case 'liste-utilisateurs': 
+      case 'profile': 
       case 'liste-utilisateurs/user/:id': 
         return this.allRole.includes(role);
 
@@ -97,6 +91,7 @@ export class RoleGuard implements CanActivate {
       case 'saisir-fiche-appreciation':
         return [RoleUser.ADMIN].includes(role);
 
+      // administrateur et secrétaire
       case 'liste-soutenances':
       case 'liste-soutenances/add-soutenance':
       case 'liste-soutenances/edit-soutenance':
@@ -115,7 +110,7 @@ export class RoleGuard implements CanActivate {
       case 'saisir-fiche-suivi' :
         return [RoleUser.ETUDIANT, RoleUser.SECRETAIRE, RoleUser.RESPONSABLE_STAGES, RoleUser.ADMIN].includes(role);
 
-      // Aucun accées pour les autres liens 
+      // Aucun accées pour les autres liens du routerlink
       default:
         return false;
     }

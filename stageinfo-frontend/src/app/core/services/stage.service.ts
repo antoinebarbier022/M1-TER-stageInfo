@@ -23,7 +23,7 @@ export class StageService {
     return this.httpClient.get(this.urlBase+'/api/stage');
   }
 
-  /* Récupération d'un stage avec son identifiant */
+  /* Récupération d'un stage avec l'identifiant du stage */
   getStageById(id:any): Observable<any> {
     return this.httpClient.get(this.urlBase+'/api/stage/'+id);
   }
@@ -65,18 +65,38 @@ export class StageService {
     return this.httpClient.put(this.urlBase+'/api/stage/'+ id+'/changement-etat', newState);
   }
 
+  /* Suppression d'un stage en passant l'identifiant en paramètre */
+  deleteStageById(id:any): Observable<any>{
+    return this.httpClient.delete(this.urlBase+'/api/stage/'+id);
+  }
+
+  // -----------------------------
+  // -- Commentaires de stage ----
+  // -----------------------------
+
+  /**
+   * Ajouter un commentaire sur le stage
+   * @param id 
+   * @param data 
+   * @returns Observable
+   */
   addCommentOnStage(id:any, data:any):Observable<any>{
     return this.httpClient.put(this.urlBase+'/api/stage/'+ id +'/comment', data);
   }
 
+  /**
+   * Supprimer un commentaire en fonction de son id
+   * @param idStage identifiant du stage sur lequelle se trouve le commentaire
+   * @param idComment identifiant du commentaire à supprimer
+   * @returns Observable
+   */
   deleteCommentOnStage(idStage:any, idComment:any): Observable<any>{
     return this.httpClient.delete(this.urlBase+'/api/stage/'+idStage+'/comment/'+idComment);
   }
 
-  /* Suppression d'un stage avec son identifiant */
-  deleteStageById(id:any): Observable<any>{
-    return this.httpClient.delete(this.urlBase+'/api/stage/'+id);
-  }
+  // -----------------------------
+  // -- Pièce jointe de stage ----
+  // -----------------------------
 
 
   editStageWithPdf(id:any, data:StageModel,pdf :File):Observable<any>{
@@ -85,11 +105,12 @@ export class StageService {
     datastage.append('pdf',pdf,data.titre);
     return this.httpClient.put(this.urlBase+'/api/stage/'+ id,datastage );
   }
+
   addPdf(id:any,pdf:File,Type:any):Observable<any>{
     const datastage = new FormData();
     datastage.append('pdf',pdf,pdf.name);
     datastage.append('type',Type);
-    datastage.append('data',JSON.stringify(({idUser:this.authservice.getUserid()})))
+    datastage.append('data',JSON.stringify(({idUser:this.authservice.getUserId()})))
     return this.httpClient.put(this.urlBase+'/api/stage/'+ id+'/add-pj',datastage );
   }
 }
