@@ -88,6 +88,7 @@ export class RoleGuard implements CanActivate {
       case 'documentation':    
       case 'liste-etudiants':
       case 'liste-utilisateurs/import-users':
+      case 'saisir-fiche-appreciation':
         return [RoleUser.ADMIN].includes(role);
 
       // administrateur et secrétaire
