@@ -6,7 +6,7 @@
             <label [for]="addUser ? 'addUserPrenom':'editUserPrenom'">Prénom</label>
             <input  type="text" 
                     [id]="addUser ? 'addUserPrenom':'editUserPrenom'"
-                    [ngClass]="viewUser? 'form-control-plaintext' : 'form-control'"
+                    [ngClass]="viewUser? 'form-control-plaintext' : displayValidationInputStyle(userFormControl.prenom)"
                     placeholder="{{ viewUser ? 'undefined' : 'Prénom de l\'utilisateur' }}"
                     name="prenom"
                     [readonly]="viewUser"
@@ -18,7 +18,7 @@
             <label [for]="addUser ? 'addUserNom':'editUserNom'">Nom</label>
             <input  type="text" 
                     [id]="addUser ? 'addUserNom':'editUserNom'"  
-                    [ngClass]="viewUser? 'form-control-plaintext' : 'form-control'"
+                    [ngClass]="viewUser? 'form-control-plaintext' : displayValidationInputStyle(userFormControl.nom)"
                     placeholder="{{ viewUser ? 'undefined' : 'Nom de l\'utilisateur' }}"
                     name="nom"
                     [readonly]="viewUser"
@@ -33,7 +33,7 @@
             </div>
             <select [id]="addUser ? 'addUserRole':'editUserRole'"
                     *ngIf="!(viewUser)"
-                    [ngClass]="viewUser? 'form-control-plaintext' : 'form-control'" 
+                    [ngClass]="viewUser? 'form-control-plaintext' : displayValidationSelectStyle(userFormControl.role)" 
                     name="role"
                     formControlName="role">
                 <option value="" disabled selected>Selectionner un rôle</option>
@@ -46,7 +46,7 @@
             <label [for]="addUser ? 'addUserEmail':'editUserEmail'">Email</label>
             <input  type="text" 
                     [id]="addUser ? 'addUserEmail':'editUserEmail'"
-                    [ngClass]="viewUser? 'form-control-plaintext' : 'form-control'"
+                    [ngClass]="viewUser? 'form-control-plaintext' : displayValidationInputStyle(userFormControl.email)"
                     name="email"
                     placeholder="{{ viewUser ? 'undefined' : 'Email de l\'utilisateur' }}"
                     [readonly]="viewUser"
@@ -58,7 +58,7 @@
             <label [for]="addUser ? 'addUserPassword':'editUserPassword'">Mot de passe</label>
             <input  type="password" 
                     [id]="addUser ? 'addUserPassword':'editUserPassword'"
-                    [ngClass]="viewUser? 'form-control-plaintext' : 'form-control'"
+                    [ngClass]="viewUser? 'form-control-plaintext' : displayValidationInputStyle(userFormControl.password)"
                     name="password"
                     placeholder="{{ viewUser ? 'undefined' : 'Mot de passe' }}"
                     autocomplete="off"
@@ -106,7 +106,7 @@
             <label [for]="addUser ? 'addUserNumEtudiant':'editUserNumEtudiant'">Numéro</label>
             <input  type="text" 
                     [id]="addUser ? 'addUserNumEtudiant':'editUserNumEtudiant'"
-                    [ngClass]="viewUser? 'form-control-plaintext' : 'form-control'"
+                    [ngClass]="viewUser? 'form-control-plaintext' : displayValidationInputStyle(userFormControl.numeroEtudiant)"
                     class="numero"
                     name="numEtudiant"
                     placeholder="{{ viewUser ? 'undefined' : 'Numéro Étudiant' }}"
@@ -122,7 +122,7 @@
             </div>
             <select [id]="addUser ? 'addUserPromotion':'editUserPromotion'"
                     *ngIf="!(viewUser)"
-                    [ngClass]="viewUser? 'form-control-plaintext' : 'form-control'" 
+                    [ngClass]="viewUser? 'form-control-plaintext' : displayValidationSelectStyle(userFormControl.promotion)" 
                     name="promotionEtudiant"
                     formControlName="promotion">
                 <option value="" disabled selected>Selectionner la promotion</option>
@@ -139,7 +139,7 @@
             </div>
             <select [id]="addUser ? 'addUserParcours':'editUserParcours'"
                     *ngIf="!(viewUser)"
-                    [ngClass]="viewUser? 'form-control-plaintext' : 'form-control'" 
+                    [ngClass]="viewUser? 'form-control-plaintext' : displayValidationSelectStyle(userFormControl.parcours)" 
                     name="parcoursEtudiant"
                     formControlName="parcours">
                 <option [ngValue]="null" disabled selected>Selectionner le parcours</option>
@@ -163,7 +163,7 @@
             </div>
             <select [id]="addUser ? 'addUserEntreprise':'editUserEntreprise'"
                     *ngIf="!(viewUser)"
-                    [ngClass]="viewUser? 'form-control-plaintext' : 'form-control'" 
+                    [ngClass]="viewUser? 'form-control-plaintext' : displayValidationSelectStyle(userFormControl.entreprise)" 
                     formControlName="entreprise">
                 <option [ngValue]="null" disabled selected>Selectionner l'entreprise</option>
                 <option *ngFor="let entreprise of allEntreprises" [ngValue]="entreprise?._id">{{ entreprise?.nom }}</option>
@@ -175,7 +175,7 @@
             <label [for]="addUser ? 'addUserFonction':'editUserFonction'">Fonction</label>
             <input  type="text" 
                     [id]="addUser ? 'addUserFonction':'editUserFonction'"
-                    [ngClass]="viewUser? 'form-control-plaintext' : 'form-control'"
+                    [ngClass]="viewUser? 'form-control-plaintext' : displayValidationInputStyle(userFormControl.fonction)"
                     name="fonction"
                     placeholder="{{ viewUser ? 'undefined' : 'Fonction occupée dans l\'entreprise' }}"
                     [readonly]="viewUser"
@@ -198,23 +198,22 @@
         Modifier
     </button>
 
-    <!-- Si Ajouter un Parcours -->
-    <button *ngIf="addUser"
-            type="submit" 
-            (click)="onSubmitForm()"
-            data-dismiss="modal"
-            class="btn btn-primary btn-sm btn-ajouter"
-            [disabled]="userForm.invalid">
-        Ajouter
-    </button>
-
+    <!-- Si Ajouter un Utilisateur -->
+    <ng-container *ngIf="addUser">
+        <!-- en fonction de si le formulaire est valide ou non on met le data dismiss pour fermer le modal-->
+        <button *ngIf="userForm.invalid" 
+                type="submit" 
+                (click)="onSubmitForm()"
+                class="btn btn-primary btn-sm btn-ajouter">
+            Ajouter
+        </button>
+        <button *ngIf="!userForm.invalid" 
+                type="submit" 
+                (click)="onSubmitForm()"
+                data-dismiss="modal" 
+                class="btn btn-primary btn-sm btn-ajouter">
+            Ajouter
+        </button>
+    </ng-container>
 </form>
 
-<!-- Debut du Modal suppression utilisateur -->
-<app-modal  class="modal fade"
-            tabindex="-1"
-            role="dialog"
-            id="suppression-user"
-            title="Suppression Utilisateur">
-            <p>Confirmer la suppression de l'utilisateur.</p>
-</app-modal>

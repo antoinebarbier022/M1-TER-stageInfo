@@ -194,7 +194,7 @@ export class FormStageComponent implements OnInit {
   }
 
   displayValidationInputStyle(input:any): any{
-    if(this.isError && input.errors?.required){
+    if(this.isError && input.invalid){
       return  'form-control is-invalid';
     }else if(this.isError){
       return 'form-control is-valid';
@@ -203,7 +203,7 @@ export class FormStageComponent implements OnInit {
     }
   }
   displayValidationSelectStyle(input:any): any{
-    if(this.isError && input.errors?.required){
+    if(this.isError && input.invalid){
       return  'custom-select is-invalid';
     }else if(this.isError){
       return 'custom-select is-valid';

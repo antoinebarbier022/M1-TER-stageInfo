@@ -56,6 +56,10 @@ export class FormUserComponent implements OnInit {
 
   // @ts-ignore
   userForm: FormGroup;
+  // @ts-ignore
+  errorMessage: String;
+
+  isError:boolean = false;
 
   promotions = ["2016/2017", "2017/2018","2018/2019", "2019/2020", "2020/2021"];
 
@@ -202,35 +206,41 @@ export class FormUserComponent implements OnInit {
 
   onSubmitForm(){
     const formValue = this.userForm.value;
-    const newUser = new UserModel(
-      this.idUser,
-      formValue['nom'],
-      formValue['prenom'],
-      formValue['email'],
-      formValue['telephone'],
-      formValue['fax'],
-      formValue['password'],
-      formValue['role'],
+    if(!this.validator(formValue['role'])){
+      this.isError = true;
+    }else{
+      this.isError = false;
 
-      // Étudiant
-      formValue['numeroEtudiant'],
-      formValue['promotion'],
-      formValue['parcours'],
+      
+      const newUser = new UserModel(
+        this.idUser,
+        formValue['nom'],
+        formValue['prenom'],
+        formValue['email'],
+        formValue['telephone'],
+        formValue['fax'],
+        formValue['password'],
+        formValue['role'],
 
-      // Entreprise
-      formValue['fonction'],
-      formValue['entreprise']
-    );
+        // Étudiant
+        formValue['numeroEtudiant'],
+        formValue['promotion'],
+        formValue['parcours'],
 
-    console.log(newUser);
-    
-    if(this.addUser){
-      this.ajouterUser(newUser);
+        // Entreprise
+        formValue['fonction'],
+        formValue['entreprise']
+      );
+      console.log(newUser);
+  
+      if(this.addUser){
+        this.ajouterUser(newUser);
+      }
+      else{
+        this.modifierUser(this.idUser, newUser);
+      }
+
     }
-    else{
-      this.modifierUser(this.idUser, newUser);
-    }
-    
   }
 
   ajouterUser(user:any){
@@ -242,6 +252,7 @@ export class FormUserComponent implements OnInit {
         user._id = _res.idUser;
         console.log({message:"emit du user au component parent", object: user})
         this.userEvent.emit(user); // on envoie le parcours dans le component parent
+        this.userForm.reset(); 
     });
   }
 
@@ -252,7 +263,12 @@ export class FormUserComponent implements OnInit {
         console.log("User : "+ user.nom + " "+ user.prenom + " modifié !");
         this.userForm.reset(); // on reset les données dans le forumulaire
         this.userEvent.emit(user); // on envoie le parcours dans le component parent
-    });
+        this.userForm.reset(); 
+      });
+  }
+
+  get userFormControl() {
+    return this.userForm.controls;
   }
 
   ngOnDestroy() {
@@ -260,8 +276,27 @@ export class FormUserComponent implements OnInit {
     this.destroy$.unsubscribe();
   }
 
-  displaySection(role : string){
+  displayValidationSelectStyle(input:any): any{
+    if(this.isError && input.invalid){
+      return  'custom-select is-invalid';
+    }else if(this.isError){
+      return 'custom-select is-valid';
+    }else{
+      return 'custom-select ';
+    }
+  }
 
+  displayValidationInputStyle(input:any): any{
+    if(this.isError && input.invalid){
+      return  'form-control is-invalid';
+    }else if(this.isError){
+      return 'form-control is-valid';
+    }else{
+      return 'form-control';
+    }
+  }
+
+  displaySection(role : string){
     switch (role) {
       case RoleUser.REPRESENTANT_ENTREPRISE:
           this.displaySectionEtudiant = false;
@@ -288,6 +323,51 @@ export class FormUserComponent implements OnInit {
         this.displaySectionCoordonnees = false;
         this.displaySectionEntreprise = false;
         break;
+    }
+  }
+
+  // Fonction qui permet de retourner true ou false pour pouvoir dire si on peut passé à la suite (bouton next)
+  validator(role : string) : boolean{
+
+    // les éléments obligatoire qu'importe le role
+    var generalValidation = [
+      this.userFormControl.nom.invalid , 
+      this.userFormControl.prenom.invalid,
+      this.userFormControl.email.invalid,
+      this.userFormControl.password.invalid,
+      this.userFormControl.role.invalid,
+      ];
+
+    // validation spécifique à un étudiant
+    var etudiantValidation = [
+      this.userFormControl.numeroEtudiant.invalid,
+      this.userFormControl.promotion.invalid,
+      this.userFormControl.parcours.invalid
+      ];
+
+      // validation spécifique à un représentant entreprise
+    var entrepriseValidation = [
+      this.userFormControl.fonction.invalid, 
+      this.userFormControl.entreprise.invalid,
+      ];
+
+    switch (role) {
+      case RoleUser.REPRESENTANT_ENTREPRISE:
+          console.log("all validation is : " + generalValidation.every( e  => e == false) && entrepriseValidation.every( e  => e == false))
+          return generalValidation.every( e  => e == false) && 
+                  entrepriseValidation.every( e  => e == false);
+      case RoleUser.ETUDIANT:
+        return generalValidation.every( e  => e == false) && 
+        etudiantValidation.every( e  => e == false);
+      case RoleUser.TUTEUR:
+      case RoleUser.RESPONSABLE_PARCOURS:
+      case RoleUser.RESPONSABLE_STAGES:
+      case RoleUser.SECRETAIRE:
+      case RoleUser.ADMIN:
+      case RoleUser.INVITE:
+      default:
+        console.log("all validation is : " + generalValidation.every( e  => e == false))
+        return generalValidation.every( e  => e == false)
     }
   }
 }

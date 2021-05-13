@@ -13,13 +13,14 @@ import { ParcoursService } from 'src/app/core/services/parcours.service';
 })
 export class FormParcoursComponent implements OnInit, OnChanges {
   @Input() title: string ="";
+
   @Input() idParcours: string="";
   @Input() selectedParcours :ParcoursModel = new ParcoursModel();
+  @Output() parcoursEvent = new EventEmitter<ParcoursModel>();
 
   @Input() addParcours: boolean=false;
   @Input() editParcours: boolean=false;
 
-  @Output() parcoursEvent = new EventEmitter<ParcoursModel>();
 
   parcoursData: ParcoursModel = new ParcoursModel();
   allResponsable: any;
@@ -135,7 +136,8 @@ export class FormParcoursComponent implements OnInit, OnChanges {
           prenom:this.allResponsable[index]?.prenom
         }
         this.parcoursEvent.emit(parcours); // on envoie le parcours dans le component parent
-    });
+        this.parcoursForm.reset(); 
+      });
   }
 
   modifierParcours(id:any, parcours:ParcoursModel){
@@ -157,7 +159,8 @@ export class FormParcoursComponent implements OnInit, OnChanges {
 
         console.log(parcours);
         this.parcoursEvent.emit(parcours); // on envoie le parcours dans le component parent
-    });
+        this.parcoursForm.reset(); 
+      });
   }
 
   get parcoursFormControl() {
@@ -165,7 +168,7 @@ export class FormParcoursComponent implements OnInit, OnChanges {
   }
 
   displayValidationSelectStyle(input:any): any{
-    if(this.isError && input.errors?.required){
+    if(this.isError && input.invalid){
       return  'custom-select is-invalid';
     }else if(this.isError){
       return 'custom-select is-valid';
@@ -175,7 +178,7 @@ export class FormParcoursComponent implements OnInit, OnChanges {
   }
 
   displayValidationInputStyle(input:any): any{
-    if(this.isError && input.errors?.required){
+    if(this.isError && input.invalid){
       return  'form-control is-invalid';
     }else if(this.isError){
       return 'form-control is-valid';
