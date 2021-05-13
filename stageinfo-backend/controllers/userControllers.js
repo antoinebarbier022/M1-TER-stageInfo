@@ -3,7 +3,7 @@ const User = require('../models/userModel');
 const bcrypt = require('bcrypt');
 const jwt = require ('jsonwebtoken');
 const nodemailer = require("nodemailer");
-async function SendEmail(user,titre,message) {
+async function SendEmail(email,titre,message) {
 
     let transporter = nodemailer.createTransport({
         service:'gmail',
@@ -15,7 +15,7 @@ async function SendEmail(user,titre,message) {
 
     let info = await transporter.sendMail({
         from: 'StageInfo', // sender address
-        to: user.email, // list of receivers
+        to: email, // list of receivers
         subject: titre, // Subject line
 
         html: message, // html body
@@ -27,7 +27,7 @@ async function SendEmail(user,titre,message) {
 
 SendEmail().catch(console.error);
 exports.email = ((req,res,next) => {
-    SendEmail(req.user,req.titre,req.message);
+    SendEmail(req.email,req.titre,req.message);
 })
 exports.getAllUser = ((req, res, next) => {
     User.find()
