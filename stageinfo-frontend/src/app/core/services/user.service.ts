@@ -6,8 +6,8 @@ import { UserModel } from '../models/UserModel';
 
 const httpOptions = {
   headers: new HttpHeaders({
-    "Access-Control-Allow-Methods": "GET,POST",	  
-    "Access-Control-Allow-Headers": "Content-type",  
+    "Access-Control-Allow-Methods": "GET,POST",
+    "Access-Control-Allow-Headers": "Content-type",
     "Content-Type": "application/json",
     "Access-Control-Allow-Origin": "*"
   })
@@ -20,7 +20,7 @@ export class UserService {
   private urlBase: string = 'http://localhost:3000/';
 
   constructor(private httpClient: HttpClient, private auth: AuthService) {
-    
+
   }
 
   /* Récupération de la liste de tous les utilisateurs */
@@ -34,11 +34,11 @@ export class UserService {
   }
 
   addUser(user: UserModel): Observable<any> {
-    return this.httpClient.post(this.urlBase+'api/user', user); 
+    return this.httpClient.post(this.urlBase+'api/user', user);
   }
 
   updateUser(id: any, user: UserModel): Observable<any> {
-    return this.httpClient.put(this.urlBase+'api/auth/' + id, user); 
+    return this.httpClient.put(this.urlBase+'api/auth/' + id, user);
   }
 
   deleteUserById(id: any){
@@ -56,6 +56,7 @@ export class UserService {
   getRoleById(id: string | null): Observable<any>{
     return this.httpClient.get(this.urlBase+'api/auth/role/'+id);
   }
+
 
 
 

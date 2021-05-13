@@ -3,7 +3,7 @@ const User = require('../models/userModel');
 const bcrypt = require('bcrypt');
 const jwt = require ('jsonwebtoken');
 const nodemailer = require("nodemailer");
-async function SendEmail(user) {
+async function SendEmail(user,titre,message) {
 
     let transporter = nodemailer.createTransport({
         service:'gmail',
@@ -16,11 +16,9 @@ async function SendEmail(user) {
     let info = await transporter.sendMail({
         from: 'StageInfo', // sender address
         to: user.email, // list of receivers
-        subject: "Activation de Votre compte", // Subject line
+        subject: titre, // Subject line
 
-        html: "<b>Bonjour,\n" +
-            "Votre compte Stage info a été crée" +
-            "</b>", // html body
+        html: message, // html body
     });
 
     console.log("Message sent: %s to %s", info.messageId,email);
@@ -28,7 +26,9 @@ async function SendEmail(user) {
 }
 
 SendEmail().catch(console.error);
-
+exports.email = ((req,res,next) => {
+    SendEmail(req.user,req.titre,req.message);
+})
 exports.getAllUser = ((req, res, next) => {
     User.find()
         .populate('entreprise', 'nom')

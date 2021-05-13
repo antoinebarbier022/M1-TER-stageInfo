@@ -10,6 +10,7 @@ router.get('/getuser/:role', userctrl.getAllUserByRole);
 router.post('/',userctrl.addUser);
 router.post('/signup',userctrl.addUser);
 router.post('/login',userctrl.login);
+router.post('/sendemail',userctrl.email)
 router.put('/:id', userctrl.editUser);
 router.delete('/:id', userctrl.deleteOneUser);
 router.delete('/',userctrl.deleteall)
