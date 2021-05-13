@@ -56,13 +56,6 @@ export class UserService {
   getRoleById(id: string | null): Observable<any>{
     return this.httpClient.get(this.urlBase+'api/auth/role/'+id);
   }
-  sendEmail(email:any,titre:any,message:any):Observable<any>{
-    const datastage = new FormData();
-    datastage.append('email',email);
-    datastage.append('titre',titre);
-    datastage.append('message',message)
-    return this.httpClient.post(this.urlBase+'api/user/sendemail',datastage );
-  }
 
 
 

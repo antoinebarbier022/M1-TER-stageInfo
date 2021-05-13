@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {concat} from "rxjs";
-import {AllStagesResolver} from "../../../core/resolves/all-stages.resolver";
+import {AllStagesResolver} from "../../../core/resolvers/all-stages.resolver";
 import {ActivatedRoute, Router} from "@angular/router";
 import { CsvDataService } from 'src/app/core/services/CsvDataService';
 import {forEach} from "ol/geom/flat/segments";

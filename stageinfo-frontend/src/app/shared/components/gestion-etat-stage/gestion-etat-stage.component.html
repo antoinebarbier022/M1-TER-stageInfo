@@ -1,34 +1,4 @@
-<ul class="nav-progress" *ngIf="false">
-    <li [ngClass]="'fieldset-active progress-first'">
-        <i class=""></i>
-        Stage proposé
-    </li>
-    <li [ngClass]="'fieldset-active progress-second' ">
-        <i class=""></i>
-        Stage validé
-
-    </li>
-    <li [ngClass]="'fieldset-active progress-second' ">
-        <i class=""></i>
-
-        Affecté à un étudiant
-    </li>
-    <li>
-        <i class=""></i>
-        Associé à un tuteur
-    </li>
-
-    <li >
-        <i class=""></i>
-        Associé à un rapporteur
-    </li>
-
-    <li >
-        <i class=""></i>
-        Stage Terminé
-    </li>
-</ul>
-
+<!-- Les boutons définis ci dessous permettent à l'administrateur de changer les état du stages facilement en cas d'erreur par exemple -->
 <div class="admin-change-state" *ngIf="!(getState() == 'propose')">
     <button *ngIf="(getViewRole() =='admin') && (getRole() == 'admin')"
     class="btn btn-outline-danger btn-sm" 

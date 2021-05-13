@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { BehaviorSubject } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
-import {HeaderComponent} from "../header/header.component";
+
 import jwtDecode from 'jwt-decode';
 import { IToken } from '../interfaces/itoken';
 import { RoleUser } from '../enums/RoleUser';
@@ -32,6 +32,7 @@ export class AuthService {
     this.viewRole = this.role;
     this.viewAllRoute = false;
   }
+
   ngOnChanges(){
     if(this.isLoggedIn()) {
       const decodedToken = jwtDecode<IToken>(this.getJwtToken() || '');
@@ -112,16 +113,20 @@ export class AuthService {
         );
     });
   }
+
+
   getJwtToken() {
     return localStorage.getItem('JWT_TOKEN');
   }
-  getUserid(){
+  
+  getUserId(){
     return localStorage.getItem('userid');
+  }
 
-  }
   isLoggedIn() {
-    return !!this.getJwtToken() && !!this.getUserid();
+    return !!this.getJwtToken() && !!this.getUserId();
   }
+
   logout() {
     this.userId = '';
     this.token = '';

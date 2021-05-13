@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
-import { ExempleTemplateComponent } from './pages/exempleTemplate/exempleTemplate.component';
 import { ExempleDocComponent } from './pages/documentation/exemple-doc/exemple-doc.component';
 import { Error404Component } from './pages/erreurs/error404/error404.component';
 import {Error500Component} from "./pages/erreurs/error500/error500.component";
@@ -19,8 +18,9 @@ import { ListEtudiantsComponent } from './pages/user/list-etudiants/list-etudian
 import { ListStagesComponent } from './pages/stage/list-stages/list-stages.component';
 import { InfoStageComponent } from './pages/stage/info-stage/info-stage.component';
 import { AddStageComponent } from './pages/stage/add-stage/add-stage.component';
-import { FormFicheSuiviComponent } from './shared/components/forms/form-fiche-suivi/form-fiche-suivi.component';
-import { FormFicheNotationComponent } from './shared/components/forms/form-fiche-notation/form-fiche-notation.component';
+import { FicheSuiviComponent } from './pages/stage/fiche-suivi/fiche-suivi.component';
+import { FicheNotationComponent } from './pages/stage/fiche-notation/fiche-notation.component';
+import { FicheAppreciationComponent } from './pages/stage/fiche-appreciation/fiche-appreciation.component';
 
 // import entreprise
 import { ListEntreprisesComponent } from './pages/entreprise/list-entreprises/list-entreprises.component';
@@ -48,21 +48,19 @@ import { AuthGuard } from "./core/guards/login.guard";
 import { RoleGuard } from "./core/guards/role.guard";
 
 // Importation des resolver
-import { AllUsersResolver } from "./core/resolves/all-users.resolver";
-import { UserResolver } from "./core/resolves/user.resolver";
-import { AllStagesResolver } from "./core/resolves/all-stages.resolver";
-import { StageResolver } from "./core/resolves/stage.resolver";
-import { AllEntreprisesResolver } from './core/resolves/all-entreprises.resolver';
-import { EntrepriseResolver } from './core/resolves/entreprise.resolver';
-import { AllParcoursResolver } from './core/resolves/all-parcours.resolver';
-import { ParcoursResolver } from './core/resolves/parcours.resolver';
-import { AllSoutenancesResolver } from './core/resolves/all-soutenances.resolver';
+import { AllUsersResolver } from "./core/resolvers/all-users.resolver";
+import { UserResolver } from "./core/resolvers/user.resolver";
+import { AllStagesResolver } from "./core/resolvers/all-stages.resolver";
+import { StageResolver } from "./core/resolvers/stage.resolver";
+import { AllEntreprisesResolver } from './core/resolvers/all-entreprises.resolver';
+import { EntrepriseResolver } from './core/resolvers/entreprise.resolver';
+import { AllParcoursResolver } from './core/resolvers/all-parcours.resolver';
+import { ParcoursResolver } from './core/resolvers/parcours.resolver';
+import { AllSoutenancesResolver } from './core/resolvers/all-soutenances.resolver';
 import { Error401Component } from './pages/erreurs/error401/error401.component';
-import { AllRespParcoursResolver } from './core/resolves/all-resp-parcours.resolver';
-import { AllEtudiantsResolver } from './core/resolves/all-etudiants.resolver';
-import { FicheSuiviComponent } from './pages/stage/fiche-suivi/fiche-suivi.component';
-import { FicheNotationComponent } from './pages/stage/fiche-notation/fiche-notation.component';
-import { AllStageOfUserResolver } from './core/resolves/all-stage-of-user.resolver';
+import { AllRespParcoursResolver } from './core/resolvers/all-resp-parcours.resolver';
+import { AllEtudiantsResolver } from './core/resolvers/all-etudiants.resolver';
+import { AllStageOfUserResolver } from './core/resolvers/all-stage-of-user.resolver';
 
 const routes: Routes = [
   { path: '', redirectTo: 'liste-stages', pathMatch: 'full', canActivate: [AuthGuardService, RoleGuard]},
@@ -91,6 +89,7 @@ const routes: Routes = [
   { path: 'saisir-stage', component: AddStageComponent, canActivate: [AuthGuardService, RoleGuard]},
   { path: 'saisir-fiche-suivi', component: FicheSuiviComponent, canActivate: [AuthGuardService, RoleGuard], resolve: {allParcours: AllParcoursResolver, allUsers: AllUsersResolver}},
   { path: 'saisir-fiche-notation', component: FicheNotationComponent, canActivate: [AuthGuardService, RoleGuard], resolve: {allUsers: AllUsersResolver}},
+  { path: 'saisir-fiche-appreciation', component: FicheAppreciationComponent, canActivate: [AuthGuardService, RoleGuard], resolve: {allUsers: AllUsersResolver}},
 
   // route users
   { path: 'liste-utilisateurs', component: ListUsersComponent, canActivate: [AuthGuardService, RoleGuard], resolve: { users: AllUsersResolver, allParcours: AllParcoursResolver, allEntreprises: AllEntreprisesResolver }},
