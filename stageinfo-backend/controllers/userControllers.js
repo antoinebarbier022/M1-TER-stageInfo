@@ -25,7 +25,6 @@ async function SendEmail(email,titre,message) {
 
 }
 
-//SendEmail('marcbiggs1098@gmail.com','test','test').catch(console.error);
 
 exports.sEmail = ((req,res, next) => {
     console.log('req reçu')
@@ -95,7 +94,8 @@ exports.addUser = (req, res, next) =>{
             });
             user.save()
                 .then(() => {res.status(201).json({message: 'Utilisateur crée!', idUser: user._id})
-                    //SendEmail(user)
+                    SendEmail(user.email,'Création de compte StageINfo', 'Bonjour '+user.nom+', <br> Votre compte Stage info a été crée avec success' +
+                        ' <br> Email : '+user.email+'<br> Mot de passe :'+req.body.password + '<br>Pensez à modifié votre mot de passe,cordialement! ')
 
                 })
                 .catch(error => res.status(400).json({error}));

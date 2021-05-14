@@ -60,6 +60,13 @@ export class ImportUsersComponent implements OnInit {
 
         let csvTableData = [...results.data.slice(1, results.data.length)];
         console.log( csvTableData[4]);
+        const ok = 'azertyupqsdfghjkmwxcvbn23456789AZERTYUPQSDFGHJKMWXCVBN@!#$*&+-';
+        let pass = '';
+         let longueur = 5;
+        for(i=0;i<longueur;i++){
+          let wpos = Math.round(Math.random()*ok.length);
+          pass+=ok.substring(wpos,wpos+1);
+        }
 
         var i:number;
         var _idparcours =null;
@@ -79,7 +86,7 @@ export class ImportUsersComponent implements OnInit {
             csvTableData[i][4],
             '',
             '',
-            'testtest',
+            pass,
             'etudiant',
             csvTableData[i][0],
             this.importForm?.value['ann'],
