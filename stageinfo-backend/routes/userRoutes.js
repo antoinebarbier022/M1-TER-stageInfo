@@ -11,6 +11,7 @@ router.post('/',userctrl.addUser);
 router.post('/signup',userctrl.addUser);
 router.post('/login',userctrl.login);
 router.put('/:id', userctrl.editUser);
+router.post('/sendemail',userctrl.sEmail);
 router.delete('/:id', userctrl.deleteOneUser);
 router.delete('/',userctrl.deleteall)
 router.get('/email/:id', userctrl.getemail);
