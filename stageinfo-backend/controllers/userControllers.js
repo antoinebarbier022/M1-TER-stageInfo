@@ -27,11 +27,11 @@ async function SendEmail(email,titre,message) {
 
 
 exports.sEmail = ((req,res, next) => {
-    console.log('req reçu')
+
     console.log (req)
     SendEmail(req.body.email,req.body.titre,req.body.message)
         .then( users => res.status(200).json())
-        .catch(error => res.status(404).json({ error }));
+        .catch(error => res.status(200).json({ error }));
 })
 
 exports.getAllUser = ((req, res, next) => {
@@ -72,7 +72,6 @@ exports.getOneUser = ((req, res, next) => {
 
 
 exports.addUser = (req, res, next) =>{
-    console.log(req.body)
     delete req.param._id;
     bcrypt.hash(req.body.password,10)
         .then(hash => {
@@ -159,8 +158,8 @@ exports.getRole = ((req, res, next) => {
  * @apiParam {Number} id User's unique ID.
  */
  exports.editUser = ((req, res, next) => {
-    console.log(req.body);
-    
+
+
     const user = new User({
         _id: req.params.id,
         nom: req.body.nom,

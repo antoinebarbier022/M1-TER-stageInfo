@@ -6,8 +6,8 @@ import { UserModel } from '../models/UserModel';
 
 const httpOptions = {
   headers: new HttpHeaders({
-    "Access-Control-Allow-Methods": "GET,POST",	  
-    "Access-Control-Allow-Headers": "Content-type",  
+    "Access-Control-Allow-Methods": "GET,POST",
+    "Access-Control-Allow-Headers": "Content-type",
     "Content-Type": "application/json",
     "Access-Control-Allow-Origin": "*"
   })
@@ -33,12 +33,12 @@ export class UserService {
 
   /* Ajout d'un utilisateur */
   addUser(user: UserModel): Observable<any> {
-    return this.httpClient.post(this.urlBase+'api/user', user); 
+    return this.httpClient.post(this.urlBase+'api/user', user);
   }
 
   /* Modifier un utilisateur */
   updateUser(id: any, user: UserModel): Observable<any> {
-    return this.httpClient.put(this.urlBase+'api/auth/' + id, user); 
+    return this.httpClient.put(this.urlBase+'api/auth/' + id, user);
   }
 
   /* Supprimer un utilisateur */
@@ -49,6 +49,11 @@ export class UserService {
   /* Récupération de tous les utilisateurs en fonction d'un role entré en paramètre */
   getAllUserByRole(role: string): Observable<any> {
     return this.httpClient.get(this.urlBase+'api/user/role/'+role);
+  }
+  sendemail(email:any,titre:any,message:any):Observable<any>{
+    const datastage = {email:email,titre:titre,message:message}
+
+    return this.httpClient.post(this.urlBase+'api/user/sendemail',datastage );
   }
 }
 
