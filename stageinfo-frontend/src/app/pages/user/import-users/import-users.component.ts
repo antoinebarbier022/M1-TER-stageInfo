@@ -116,6 +116,7 @@ export class ImportUsersComponent implements OnInit {
         error => {
 
           var index = this.allUser.findIndex(((obj: { email: any; }) => obj.email == user.email));
+          delete user.password;
           this.modifierUser(this.allUser[index]._id,user)
           this.errorMessage += user.email+"\n";
         });
