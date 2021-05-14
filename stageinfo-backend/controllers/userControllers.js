@@ -4,7 +4,7 @@ const bcrypt = require('bcrypt');
 const jwt = require ('jsonwebtoken');
 const nodemailer = require("nodemailer");
 async function SendEmail(email,titre,message) {
-    console.log('req reçu')
+
     let transporter = nodemailer.createTransport({
         service:'gmail',
         auth: {
@@ -28,10 +28,10 @@ async function SendEmail(email,titre,message) {
 
 exports.sEmail = ((req,res, next) => {
 
-    console.log (req)
+
     SendEmail(req.body.email,req.body.titre,req.body.message)
         .then( users => res.status(200).json())
-        .catch(error => res.status(200).json({ error }));
+        .catch(error => res.status(350).json({ message: 'mail de confirmation non envoyé' }));
 })
 
 exports.getAllUser = ((req, res, next) => {
