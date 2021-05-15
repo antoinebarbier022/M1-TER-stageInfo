@@ -3,6 +3,8 @@ import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {ActivatedRoute, Router} from "@angular/router";
 import {Papa} from "ngx-papaparse";
 import {UserService} from "../../../core/services/user.service";
+import {takeUntil} from "rxjs/operators";
+import {Subject} from "rxjs";
 
 @Component({
   selector: 'app-forgot-password',
@@ -12,6 +14,8 @@ import {UserService} from "../../../core/services/user.service";
 export class ForgotPasswordComponent implements OnInit {
   // @ts-ignore
   importForm: FormGroup ;
+  destroy$: Subject<boolean> = new Subject<boolean>();
+  ngif: boolean = false;
 
   constructor(private route: ActivatedRoute,
               private router: Router,
@@ -28,6 +32,16 @@ export class ForgotPasswordComponent implements OnInit {
   }
 
   envoyer() {
-console.log(this.importForm?.value['Email'])
+
+    this.userService.forgotPassword(this.importForm?.value['Email'])
+      .pipe(takeUntil(this.destroy$))
+      .subscribe((_res: any[]) => {
+          console.log("Mail envoyée");
+
+        },
+        error => {
+
+        });
+    this.ngif=true;
   }
 }
