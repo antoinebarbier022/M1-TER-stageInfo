@@ -20,19 +20,19 @@
                 <form [formGroup]="singinForm" (ngSubmit)="onSubmit()">
                     <div class="form-group">
                         <label>Email</label>
-                        <input  class="form-control " 
-                                type="email" 
-                                id="email" 
-                                name="email" 
-                                formControlName="email" 
+                        <input  class="form-control "
+                                type="email"
+                                id="email"
+                                name="email"
+                                formControlName="email"
                                 placeholder="Enter your email">
                     </div>
                     <div class="form-group">
                         <label>Password</label>
-                        <input class="form-control " 
-                                type="password" id="password" 
-                                formControlName="password" 
-                                name="password" 
+                        <input class="form-control "
+                                type="password" id="password"
+                                formControlName="password"
+                                name="password"
                                 placeholder="Enter your password"
                                 autocomplete="off">
                     </div>
@@ -42,7 +42,7 @@
                         <label class="form-check-label" for="flexCheckDefault">
                             Remember me
                         </label>
-                        <a id="text-forgot-passord" routerLink="pages-reset-password.html">Forgot password?</a>
+                        <a id="text-forgot-passord" routerLink="/forgotpassword">Forgot password?</a>
                     </div>
 
                     <div class="text-center mt-3">
