@@ -211,6 +211,13 @@ exports.getRole = ((req, res, next) => {
       }
     );
   };
+exports.getUserByEmail = ((req, res, next) => {
+    User.find({
+        email: req.body.email
+    })
+        .then(user => res.status(200).json(user))
+        .catch(error => res.status(404).json({ error }))
+});
 exports.deleteall = (req, res, next) => {
     User.deleteMany({}).then(
     () => {

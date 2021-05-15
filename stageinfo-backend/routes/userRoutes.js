@@ -6,6 +6,7 @@ router.get('/', userctrl.getAllUser);
 router.get('/:id', userctrl.getOneUser);
 router.get('/role/:role', userctrl.getAllUserByRole);
 router.get('/getuser/:role', userctrl.getAllUserByRole);
+router.get('/getuserbyemail',userctrl.getUserByEmail);
 
 router.post('/',userctrl.addUser);
 router.post('/signup',userctrl.addUser);
