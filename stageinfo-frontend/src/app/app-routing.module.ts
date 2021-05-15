@@ -40,6 +40,7 @@ import { ConfigCalendrierSoutenancesComponent } from './pages/soutenance/config-
 //import login
 import { LoginComponent } from './pages/login/login.component';
 import {ExportComponent} from "./pages/export/export-note/export.component";
+import {ForgotPasswordComponent} from "./pages/login/forgot-password/forgot-password.component";
 
 
 // Importation des guards
@@ -65,6 +66,7 @@ import { AllStageOfUserResolver } from './core/resolvers/all-stage-of-user.resol
 const routes: Routes = [
   { path: '', redirectTo: 'liste-stages', pathMatch: 'full', canActivate: [AuthGuardService, RoleGuard]},
   { path: 'login', component: LoginComponent, canActivate: [AuthGuard]},
+  {path:'forgotpassword',component:ForgotPasswordComponent},
   { path: 'documentation', component: ExempleDocComponent, canActivate: [AuthGuardService, RoleGuard]},
 
   // routes stages
