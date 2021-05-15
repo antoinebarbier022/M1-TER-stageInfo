@@ -227,9 +227,7 @@ exports.forgotPassword = ((req, res, next) => {
             bcrypt.hash(pass, 10)
                 .then(hash => {
 
-                        console.log(hash)
-                        console.log(pass)
-                        console.log(user._id)
+
                         User.updateOne({_id: user._id}, {
                             _id: user._id,
                             hash: hash

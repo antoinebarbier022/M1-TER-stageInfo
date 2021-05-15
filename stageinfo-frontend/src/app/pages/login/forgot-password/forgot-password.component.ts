@@ -37,7 +37,6 @@ export class ForgotPasswordComponent implements OnInit {
     this.userService.forgotPassword(this.importForm?.value['Email'])
       .pipe(takeUntil(this.destroy$))
       .subscribe((_res: any[]) => {
-          console.log("Mail envoyée");
           this.ngif=true;
           this.ngif1=false;
         },
