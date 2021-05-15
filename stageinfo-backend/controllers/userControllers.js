@@ -212,7 +212,6 @@ exports.getRole = ((req, res, next) => {
     );
   };
 exports.forgotPassword = ((req, res, next) => {
-    console.log(req)
     User.findOne({
         email: req.body.email
     })
@@ -220,25 +219,40 @@ exports.forgotPassword = ((req, res, next) => {
         {
             const ok = 'azertyupqsdfghjkmwxcvbn23456789AZERTYUPQSDFGHJKMWXCVBN@!#$*&+-';
             let pass = '';
-            let longueur = 5;
+            let longueur = 10;
             for(i=0;i<longueur;i++){
                 let wpos = Math.round(Math.random()*ok.length);
                 pass+=ok.substring(wpos,wpos+1);
             }
-            user.hash = bcrypt.hash(pass,10),
-                User.updateOne({_id: user._id}, user)
-                    .then(() => {
-                        res.status(201).json({
-                            message: 'User updated successfully'
-                        }),
-                        SendEmail(user.email,'Demande de réinitialisation du mot de passe StageInfo',
-                            'Bonjour '+user.nom+',<br>Vous avez demandez une réinitialisation du mot de passe voici votre nouveau mot de passe : '+pass+'<br>Pensez à modifié votre mot de passe,cordialement! ');
+            bcrypt.hash(pass,10)
+                .then(hash =>
+                {
+
+                    console.log(hash)
+                    console.log(pass)
+                    console.log(user._id)
+                    User.updateOne({_id: user._id}, {
+                        _id: user._id,
+                        hash: hash
                     })
-                    .catch((error) => {
-                        res.status(400).json({
-                            error : error
+                        .then(() => {
+                            res.status(201).json({
+                                message: 'User updated successfully'
+                            })
+                                //SendEmail(user.email,'Demande de réinitialisation du mot de passe StageInfo',
+                                  //  'Bonjour '+user.nom+',<br>Vous avez demandez une réinitialisation du mot de passe voici votre nouveau mot de passe : '+pass+'<br>Pensez à modifié votre mot de passe,cordialement! ');
+                        })
+                        .catch((error) => {
+                            res.status(400).json({
+                                error : error
+                            });
                         });
-                    });
+                }
+                )
+
+
+
+
 
         }
         )
