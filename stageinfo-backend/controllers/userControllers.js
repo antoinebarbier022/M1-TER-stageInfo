@@ -238,9 +238,9 @@ exports.forgotPassword = ((req, res, next) => {
                         .then(() => {
                             res.status(201).json({
                                 message: 'User updated successfully'
-                            })
-                                //SendEmail(user.email,'Demande de réinitialisation du mot de passe StageInfo',
-                                  //  'Bonjour '+user.nom+',<br>Vous avez demandez une réinitialisation du mot de passe voici votre nouveau mot de passe : '+pass+'<br>Pensez à modifié votre mot de passe,cordialement! ');
+                            }),
+                                SendEmail(user.email,'Demande de réinitialisation du mot de passe StageInfo',
+                                   'Bonjour '+user.nom+',<br>Vous avez demandez une réinitialisation du mot de passe voici votre nouveau mot de passe : '+pass+'<br>Pensez à modifié votre mot de passe,cordialement! ');
                         })
                         .catch((error) => {
                             res.status(400).json({
