@@ -16,6 +16,7 @@ export class ForgotPasswordComponent implements OnInit {
   importForm: FormGroup ;
   destroy$: Subject<boolean> = new Subject<boolean>();
   ngif: boolean = false;
+  ngif1: boolean = false;
 
   constructor(private route: ActivatedRoute,
               private router: Router,
@@ -37,11 +38,12 @@ export class ForgotPasswordComponent implements OnInit {
       .pipe(takeUntil(this.destroy$))
       .subscribe((_res: any[]) => {
           console.log("Mail envoyée");
-
+          this.ngif=true;
+          this.ngif1=false;
         },
-        error => {
+        error => {this.ngif1=true
 
         });
-    this.ngif=true;
+
   }
 }

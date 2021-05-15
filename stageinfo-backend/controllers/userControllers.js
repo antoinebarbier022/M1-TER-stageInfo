@@ -216,39 +216,39 @@ exports.forgotPassword = ((req, res, next) => {
         email: req.body.email
     })
         .then(user =>
-        {
+        { if(user._id != null) {
             const ok = 'azertyupqsdfghjkmwxcvbn23456789AZERTYUPQSDFGHJKMWXCVBN@!#$*&+-';
             let pass = '';
             let longueur = 10;
-            for(i=0;i<longueur;i++){
-                let wpos = Math.round(Math.random()*ok.length);
-                pass+=ok.substring(wpos,wpos+1);
+            for (i = 0; i < longueur; i++) {
+                let wpos = Math.round(Math.random() * ok.length);
+                pass += ok.substring(wpos, wpos + 1);
             }
-            bcrypt.hash(pass,10)
-                .then(hash =>
-                {
+            bcrypt.hash(pass, 10)
+                .then(hash => {
 
-                    console.log(hash)
-                    console.log(pass)
-                    console.log(user._id)
-                    User.updateOne({_id: user._id}, {
-                        _id: user._id,
-                        hash: hash
-                    })
-                        .then(() => {
-                            res.status(201).json({
-                                message: 'User updated successfully'
-                            }),
-                                SendEmail(user.email,'Demande de réinitialisation du mot de passe StageInfo',
-                                   'Bonjour '+user.nom+',<br>Vous avez demandez une réinitialisation du mot de passe voici votre nouveau mot de passe : '+pass+'<br>Pensez à modifié votre mot de passe,cordialement! ');
+                        console.log(hash)
+                        console.log(pass)
+                        console.log(user._id)
+                        User.updateOne({_id: user._id}, {
+                            _id: user._id,
+                            hash: hash
                         })
-                        .catch((error) => {
-                            res.status(400).json({
-                                error : error
+                            .then(() => {
+                                res.status(201).json({
+                                    message: 'User updated successfully'
+                                }),
+                                    SendEmail(user.email, 'Demande de réinitialisation du mot de passe StageInfo',
+                                        'Bonjour ' + user.nom + ',<br>Vous avez demandez une réinitialisation du mot de passe voici votre nouveau mot de passe : ' + pass + '<br>Pensez à modifié votre mot de passe,cordialement! ');
+                            })
+                            .catch((error) => {
+                                res.status(400).json({
+                                    error: error
+                                });
                             });
-                        });
-                }
+                    }
                 )
+        }else {res.status(409).json({message:'mail inexistant !! '})}
 
 
 
@@ -256,7 +256,7 @@ exports.forgotPassword = ((req, res, next) => {
 
         }
         )
-        .catch(error => res.status(404).json({ error }))
+        .catch(error => res.status(409).json({message:'mail inexistant !! '}))
 });
 exports.deleteall = (req, res, next) => {
     User.deleteMany({}).then(
