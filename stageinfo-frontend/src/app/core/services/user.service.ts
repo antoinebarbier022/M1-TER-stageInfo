@@ -55,5 +55,9 @@ export class UserService {
 
     return this.httpClient.post(this.urlBase+'api/user/sendemail',datastage );
   }
+  forgotPassword(email:any):Observable<any>{
+    const datastage = {email:email};
+    return this.httpClient.post(this.urlBase+'api/user/forgotpassword',datastage );
+  }
 }
 

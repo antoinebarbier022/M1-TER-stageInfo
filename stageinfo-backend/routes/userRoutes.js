@@ -7,7 +7,7 @@ router.get('/:id', userctrl.getOneUser);
 router.get('/role/:role', userctrl.getAllUserByRole);
 router.get('/getuser/:role', userctrl.getAllUserByRole);
 
-router.post('/forgetpassword',userctrl.forgotPassword);
+router.post('/forgotpassword',userctrl.forgotPassword);
 router.post('/',userctrl.addUser);
 router.post('/signup',userctrl.addUser);
 router.post('/login',userctrl.login);
