@@ -1,6 +1,7 @@
 const Stage = require('../models/stageModel');
 const Commentaire = require('../models/commentaireModel');
 const PJ = require('../models/pieceJointeModel')
+const note = require('../models/noteModel')
 const fs = require('fs');
 const multer =require('../middleware/multer-config')
 
@@ -249,7 +250,34 @@ exports.deleteCommentOneStage = (req, res, next) => {
     );
 };
 
+exports.addNote = (req,res,next) => {
+    const laDate = new Date();
+    const laNote = new note({
+        date : laDate,
+        valeur: req.body.valeur,
+        commentaire : req.body.commentaire
+    })
+    laNote.save()
+        .then(()=>{
+            const stage = {
+                noteStage:laNote._id,
+            }
+            Stage.updateOne({_id: req.params.id}, stage)
+                .then(() => {
+                    res.status(201).json({
+                        message: 'ajoute de la note '+req.body.valeur +' sur  : '+ req.params.id +']'
 
+                    });
+                })
+                .catch((error) => {
+                    res.status(400).json({error: error});
+                });
+        })
+        .catch((error) => {
+            res.status(400).json({error: error});
+        });
+
+}
 
 
 exports.addPJ= (req,res,next) => {
