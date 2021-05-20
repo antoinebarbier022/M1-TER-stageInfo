@@ -13,11 +13,7 @@ const ficheSuiviSchema = Schema({
 });
 
 // Modèle de la fiche de suivi
-const noteStageSchema = Schema({
-  date: Date,
-  valeur: String,
-  commentaire: String,
-});
+
 
 const visiteStageSchema = Schema({
   typeContact: String,
@@ -76,7 +72,7 @@ const stageSchema = Schema({
   
 
 module.exports = mongoose.model('FicheSuivi', ficheSuiviSchema);
-module.exports = mongoose.model('NoteStage', noteStageSchema);
+
 module.exports = mongoose.model('VisiteStage', visiteStageSchema);
 
 module.exports = mongoose.model('Stage', stageSchema);
