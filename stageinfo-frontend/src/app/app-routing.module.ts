@@ -66,7 +66,7 @@ import { AllStageOfUserResolver } from './core/resolvers/all-stage-of-user.resol
 const routes: Routes = [
   { path: '', redirectTo: 'liste-stages', pathMatch: 'full', canActivate: [AuthGuardService, RoleGuard]},
   { path: 'login', component: LoginComponent, canActivate: [AuthGuard]},
-  {path:'forgotpassword',component:ForgotPasswordComponent},
+  {path:'forgotpassword',component:ForgotPasswordComponent,canActivate: [AuthGuard]},
   { path: 'documentation', component: ExempleDocComponent, canActivate: [AuthGuardService, RoleGuard]},
 
   // routes stages
