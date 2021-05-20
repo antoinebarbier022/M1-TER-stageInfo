@@ -119,7 +119,7 @@
         </form>
     </div>
   <hr>
-  <ng-container *ngIf="stage?.noteStage==null">
+  <ng-container *ngIf="stage?.noteStage==null && canEditNote() ">
     <H2>Fiche de Notation</H2>
     <form [formGroup]="ficheNotationForm" (ngSubmit)="onSubmitForm()">
       <fieldset>

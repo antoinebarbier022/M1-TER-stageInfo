@@ -116,6 +116,7 @@ export class InfoStageComponent implements OnInit, OnDestroy {
       case RoleUser.SECRETAIRE:
       case RoleUser.RESPONSABLE_STAGES:
       case RoleUser.REPRESENTANT_ENTREPRISE:
+
         return false;
       case RoleUser.TUTEUR:
       case RoleUser.ADMIN:
@@ -131,6 +132,7 @@ export class InfoStageComponent implements OnInit, OnDestroy {
       case RoleUser.ETUDIANT:
       case RoleUser.TUTEUR:
       case RoleUser.REPRESENTANT_ENTREPRISE:
+
         return false;
 
       case RoleUser.RESPONSABLE_PARCOURS:
@@ -234,6 +236,7 @@ export class InfoStageComponent implements OnInit, OnDestroy {
     const resulta = {commentaire : formValue.commentaire,note: formValue.note,id_stage:this.stage._id,id_user: this.authService.getUserId()}
     console.log(resulta)
     console.log(this.stage._id)
+    console.log(this.authService.getViewRole() == RoleUser.TUTEUR)
   }
 }
 
