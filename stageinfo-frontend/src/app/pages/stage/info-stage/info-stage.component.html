@@ -119,7 +119,7 @@
         </form>
     </div>
   <hr>
-  <ng-container>
+  <ng-container *ngIf="stage?.noteStage==null">
     <H2>Fiche de Notation</H2>
     <form [formGroup]="ficheNotationForm" (ngSubmit)="onSubmitForm()">
       <fieldset>
@@ -146,6 +146,14 @@
 
 
     </form>
+
+  </ng-container>
+  <ng-container *ngIf="stage?.noteStage != null">
+    <app-card  title="Note Du stage">
+      <p>Note : {{ stage.noteStage.valeur }}</p>
+      <p>Commentaire : {{ stage?.noteStage.commentaire}}</p>
+    </app-card>
+
 
   </ng-container>
 
