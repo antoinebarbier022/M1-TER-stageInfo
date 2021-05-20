@@ -51,7 +51,7 @@ const stageSchema = Schema({
 
     commentaires : [{   type: Schema.Types.ObjectId, ref: 'Commentaire' }],
     ficheSuivi: {       type: Schema.Types.ObjectId, ref: 'FicheSuivi' },
-    noteStage: {        type: Schema.Types.ObjectId, ref: 'NoteStage' },
+    noteStage: {        type: Schema.Types.ObjectId, ref: 'noteStage' },
     visiteStage: {      type: Schema.Types.ObjectId, ref: 'VisiteStage' },
 
     parcours: {         type: Schema.Types.ObjectId, required: true, ref: 'Parcours' },

@@ -19,7 +19,7 @@ exports.getAllStage = ((req, res, next) => {
   .populate('repEntreprise', 'nom prenom')
   .populate('tuteur', 'nom prenom')
   .populate('rapporteur', 'nom prenom')
-  .populate('noteStage', 'valeur')
+  .populate('noteStage', 'valeur commentaire')
   .populate('etudiant', 'nom prenom numeroEtudiant')
   .then(stages => res.status(200).json(stages))
   .catch(error => res.status(404).json({ error }));
@@ -50,7 +50,7 @@ exports.getAllStageRelatedToUser = ((req, res, next) => {
     .populate('tuteur', 'nom prenom')
     .populate('rapporteur', 'nom prenom')
     .populate('etudiant', 'nom prenom numeroEtudiant')
-        .populate('noteStage', 'valeur')
+        .populate('noteStage', 'valeur commentaire')
     .then(stages => res.status(200).json(stages))
     .catch(error => res.status(404).json({ error }));
   });
@@ -79,7 +79,7 @@ exports.getOneStage = ((req, res, next) => {
     .populate('tuteur', 'nom prenom')
     .populate('rapporteur', 'nom prenom')
     .populate('etudiant', 'nom prenom numeroEtudiant')
-        .populate('noteStage', 'valeur')
+        .populate('noteStage', 'valeur commentaire')
 
   .then(stage => res.status(200).json(stage))
   .catch(error => res.status(404).json({ error }))

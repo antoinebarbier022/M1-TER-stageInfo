@@ -21,7 +21,7 @@ router.put('/:id/changement-etat', TuteurResp,stageCtrl.editState); // le respon
 
 router.get('/related/:id', invite, stageCtrl.getAllStageRelatedToUser);
 router.put('/:id/add-pj',Etudiant,multer,stageCtrl.addPJ);
-router.put('/:id/add-note',stageCtrl.addNote)
+router.put('/:id/add-note',TuteurResp,stageCtrl.addNote)
 
 // ajouter un commentaire sur le stage
 router.put('/:id/comment',Etudiant,stageCtrl.addCommentOnStage);
