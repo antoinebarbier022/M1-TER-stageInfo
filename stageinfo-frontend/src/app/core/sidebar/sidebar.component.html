@@ -18,7 +18,7 @@
             <ul class="sidebar-nav">
                 <li *ngFor="let item of categorie.items" class="sidebar-item">
                     <span *ngIf="item.items.length == 0">
-                        <a [routerLink]="item.lien" >
+                        <a [routerLink]="item.lien" (click)="closeSideBar()">
                             <i  [class]="'sidebar-icon fa-lg ' + item.icon"></i>
                             <span class="sidebar-link">{{ item.nom }}</span>
                         </a>
@@ -33,7 +33,7 @@
                         </a>
                         <ul  *ngFor="let subitem of item.items" class="collapse list-unstyled" [id]="item.nom.split(' ').join('-')">
                             <li class="sidebar-item">
-                                <a class="sidebar-subitem" [href]="subitem.lien">
+                                <a class="sidebar-subitem" [href]="subitem.lien" (click)="closeSideBar()">
                                     {{ subitem.nom }}
                                 </a>
                             </li>

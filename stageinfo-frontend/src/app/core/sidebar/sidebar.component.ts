@@ -20,6 +20,15 @@ export class SidebarComponent implements OnInit {
     this.sidebarEvent.emit(this.showSidebar);
   }
 
+  closeSideBar(){
+    // si la sidebar est celle qui cache le contenu alors (responsive)
+    if(window.innerWidth <800){
+      this.showSidebar = false;
+      this.sidebarEvent.emit(this.showSidebar);
+    }
+
+  }
+
   // -----------------------------------------------------------------------------------------------
   // ------- On défini tous les liens possibles de navigation --------------------------------------
   // --- (les objets ci-dessous contiennt l'icon, le nom et le lien) -------------------------------
