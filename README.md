@@ -1,4 +1,4 @@
-#StageInfo
+# StageInfo
 
 ## Manuel d'instalation
 
