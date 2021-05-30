@@ -84,7 +84,7 @@ export class ListStagesComponent extends CommonListingTable implements OnInit {
       case RoleUser.ETUDIANT:
         return allStage.filter(((obj: { etat: any; }) => (obj.etat == EtatStage.VALIDE)));
       case RoleUser.REPRESENTANT_ENTREPRISE:
-        return allStage.filter(((obj: { etat: any; }) => obj.etat != EtatStage.PROPOSE));
+        return allStage.filter(((obj: { etat: any; }) => obj.etat != EtatStage.PROPOSE && obj.etat != EtatStage.REFUSE && obj.etat != EtatStage.TERMINE));
       case RoleUser.TUTEUR:
         return allStage.filter(((obj: { etat: any; }) => (obj.etat == EtatStage.AFFECT_ETUDIANT) || (obj.etat == EtatStage.AFFECT_TUTEUR) ));
       case RoleUser.RESPONSABLE_PARCOURS:

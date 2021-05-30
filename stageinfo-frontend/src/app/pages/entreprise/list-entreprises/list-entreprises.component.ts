@@ -90,8 +90,17 @@ export class ListEntreprisesComponent extends CommonListingTable implements OnIn
     this.destroy$.unsubscribe();
   }
 
+  currentRoleIsRepresentant(): boolean{
+    if(this.authService.getViewRole()==RoleUser.REPRESENTANT_ENTREPRISE || this.authService.getViewRole()==RoleUser.ADMIN ){
+      return true;
+    }else{
+      return false;
+    }
+  }
+
+  // true si le user courant est le représentant de l'entreprise 
   isRepresentant(idRepresentantEntreprise : String): boolean{
-    if(this.authService.getViewRole() && (this.authService.getUserId() == idRepresentantEntreprise)){
+    if(this.authService.getViewRole()==RoleUser.REPRESENTANT_ENTREPRISE && (this.authService.getUserId() == idRepresentantEntreprise)){
       return true;
     }else{
       return false;

@@ -27,7 +27,7 @@
                             Représentant
                         </app-th-table-sort>
                     </th>
-                    <th scope="col">Actions</th>
+                    <th *ngIf="currentRoleIsRepresentant()" scope="col">Actions</th>
                 </tr>
             </thead>
             <tbody>
