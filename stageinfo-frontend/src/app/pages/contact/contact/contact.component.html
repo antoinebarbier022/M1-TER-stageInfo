@@ -10,7 +10,7 @@
                     <label for="inputMessage">Contact : </label>
                     <span id="updateEmailForm">
                         <input id="inputEmail" class="form-control" type="email" formControlName="email" placeholder="contact@email.com">
-                        <button type="submit" id="buttonUpdateEmail" [disabled]="emailForm.invalid" class="btn btn-primary btn-sm">Mettre à jour</button>
+                        <button type="submit" id="buttonUpdateEmail" [disabled]="emailForm.pristine" class="btn btn-primary btn-sm">Mettre à jour</button>
                     
                     </span>
                     </div>
