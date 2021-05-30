@@ -10,7 +10,8 @@
     grid-template-areas:
     ". contact-section .";
     #contact-section{
-        grid-area: ccontact-section;
+        width: 100%;
+        grid-area: contact-section;
         .card-title{
             margin-bottom: 0 !important;
         }
@@ -20,12 +21,21 @@
     }
 }
 
-@media (max-width: 800px) {
+#updateEmailForm{
+    display: flex;
+    flex-direction: row;
+}
+
+#buttonUpdateEmail{
+    width:200px;
+}
+
+@media (max-width: 1000px) {
     .all-card{
         display: grid;
         grid-template-columns: 1fr;
         grid-template-areas:
-        "card-add-stage";
+        "contact-section";
     }
 }
 

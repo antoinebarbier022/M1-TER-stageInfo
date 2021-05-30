@@ -2,8 +2,23 @@
 
 <div class="all-card">
     <app-card id="contact-section">
-        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Labore sit quia nemo debitis animi, perspiciatis cum culpa dolorum ab nesciunt et! Maxime, debitis cupiditate aspernatur fugit alias quis quod voluptatum!</p>
-        <br>
+        <!-- Modifier l'email de contact  -->
+        
+        <div *ngIf="canEditEmail()" class="update-contact">
+            <form [formGroup]="emailForm" (ngSubmit)="updateContact()">
+                <div class="form-group">
+                    <label for="inputMessage">Contact : </label>
+                    <span id="updateEmailForm">
+                        <input id="inputEmail" class="form-control" type="email" formControlName="email" placeholder="contact@email.com">
+                        <button type="submit" id="buttonUpdateEmail" [disabled]="emailForm.invalid" class="btn btn-primary btn-sm">Mettre à jour</button>
+                    
+                    </span>
+                    </div>
+                
+            </form>
+        </div>
+
+
         <!-- Envoyer un message  -->
         <div class="send-message">
             <form [formGroup]="contactForm" (ngSubmit)="envoyerMessage()">
@@ -12,9 +27,13 @@
                     <textarea   id="inputMessage"
                                 class="form-control"
                                 rows="3"
+                                placeholder="Message..."
                                 formControlName="message"></textarea>
                 </div>
-                <button type="submit" [disabled]="contactForm.invalid"  class="btn btn-primary btn-sm">Envoyer</button>
+                <button type="submit" [disabled]="contactForm.invalid"  class="btn btn-primary btn-sm">
+                    {{ canEditEmail() ? "Tester l\'envoi" : "Envoyer" }}
+                </button>
+                
             </form>
         </div>    
     </app-card>
