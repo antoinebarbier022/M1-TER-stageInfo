@@ -5,12 +5,33 @@ aside{
     font-size: .85rem;
 }
 
+#button-menu{
+    display: none;
+}
 
 @media (max-width: 800px) {
     aside {
       position: absolute;
       z-index: 1;
   }
+  #website-title{
+    margin-left:10px !important;
+    }
+
+    #button-menu{
+        display: inline-block;
+        color: #e4e5e6;
+        margin-right:10px !important;
+    }
+}
+
+@media (max-width: 600px) {
+    aside {
+        width:100%;
+    }
+    #website-title{
+        margin-left:50px !important;
+        }
 }
 
 
@@ -37,6 +58,7 @@ nav{
 #website-title{
     color:#e9ecef;
     font-weight: 500;
+    margin: auto;
 }
 
 .sidebar-header{

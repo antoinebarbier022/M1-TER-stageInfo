@@ -26,7 +26,6 @@ export class SidebarComponent implements OnInit {
       this.showSidebar = false;
       this.sidebarEvent.emit(this.showSidebar);
     }
-
   }
 
   // -----------------------------------------------------------------------------------------------
@@ -39,6 +38,7 @@ export class SidebarComponent implements OnInit {
   listeStages =             {icon:"fas fa-list",          nom:"Listing des stages",       lien:"/liste-stages",       items:[]};
   listeSoutenances =        {icon:"fas fa-list",          nom:"Listing des soutenances",  lien:"/liste-soutenances",   items:[]};
   listeEntreprise =         {icon:"fas fa-list",          nom:"Listing des entreprises",  lien:"/liste-entreprises",   items:[]};
+  voirLesEntreprise =       {icon:"fas fa-list",          nom:"Voir les entreprises",  lien:"/liste-entreprises",   items:[]};
   listeUtilisateurs =       {icon:"fas fa-list",          nom:"Listing des utilisateurs", lien:"/liste-utilisateurs",   items:[]};
   listeEtudiants =          {icon:"fas fa-list",          nom:"Listing des étudiants ",   lien:"/liste-etudiants", items:[]};
   listeEnseignants =        {icon:"fas fa-list",          nom:"listing des enseignants",  lien:"/liste-enseignants", items:[]};
@@ -66,12 +66,12 @@ export class SidebarComponent implements OnInit {
   nousContacter =           {icon:"fas fa-comment",       nom:"Nous contacter",       lien:"/nous-contacter", items:[]};
 
   documentation =           {icon:"fas fa-book",          nom:"Documentation",        lien:"/documentation", items:[]};
-  gitlab =                  {icon:"fab fa-gitlab",        nom:"Lien du GitLab",       lien:"/gitlab", items:[]};
+  gitlab =                  {icon:"fab fa-gitlab",        nom:"Lien du GitLab",       lien:"https://gitlab.etu.umontpellier.fr/antoinebarbier/m1-ter-stageinfo/", items:[]};
   contacterSupport =        {icon:"fas fa-comment",       nom:"Contacter le support", lien:"/support", items:[]};
 
   exporterCSV = {icon:"fas fa-file-csv", nom:"Exporter CSV", lien:"/", items:[
     {icon:"", nom:"Les stages", lien:"/export-stage"},
-    {icon:"", nom:"Les soutenances", lien:"/soutenances-csv"},
+    //{icon:"", nom:"Les soutenances", lien:"/soutenances-csv"},
     {icon:"", nom:"Les notes de stage", lien:"/export-note"}]};
 
   telechargerPDF = {icon:"fas fa-download", nom:"Télécharger", items:[
@@ -79,6 +79,14 @@ export class SidebarComponent implements OnInit {
     {icon:"", nom:"Fiche entreprise", lien:"http://localhost:3000/docs/Fiche_appreciation_stage.doc"},
     {icon:"", nom:"Fiche de notation", lien:"http://localhost:3000/docs/Fiche_notation.doc"}]};
 
+    externalLink(link: String ){
+      if(link.charAt(0)=="/"){
+        return false;
+      }else{
+        return true;
+      }
+
+    }
 
   // -----------------------------------------------------------------------------------------------
   // - Ci dessous sont déclaré les différents menu de navigation pour chaque role de la plateforme - 
@@ -88,11 +96,17 @@ export class SidebarComponent implements OnInit {
   navigationInvite = [
     {
       title:"Stage",
-      items: [ this.listeStages, this.planningSoutenance]
+      items: [ 
+        this.listeStages, 
+        this.voirLesEntreprise
+        //this.planningSoutenance
+      ]
     },
     {
       title:"Besoin d'aide ?",
-      items: [ this.faq, this.nousContacter]
+      items: [ 
+        //this.faq, 
+        this.nousContacter]
     }
   ];
 
@@ -100,11 +114,18 @@ export class SidebarComponent implements OnInit {
   navigationEtudiant = [
     {
       title:"Stage",
-      items: [ this.mesStages, this.listeStages, this.planningSoutenance, this.saisirStage]
+      items: [ 
+        this.mesStages, 
+        this.listeStages, 
+        this.voirLesEntreprise,
+        //this.planningSoutenance, 
+        this.saisirStage]
     },
     {
       title:"Besoin d'aide ?",
-      items: [ this.faq, this.nousContacter]
+      items: [ 
+        //this.faq, 
+        this.nousContacter]
     }
   ];
 
@@ -112,8 +133,14 @@ export class SidebarComponent implements OnInit {
   navigationTuteur = [
     {
       title:"Stage",
-      items: [ this.mesStages, this.listeStages, this.planningSoutenance, this.saisirFicheSuivi, this.saisirFicheNotation,]
-    },
+      items: [ 
+        this.mesStages, 
+        this.listeStages, 
+        this.voirLesEntreprise,
+        //this.planningSoutenance, 
+        this.saisirFicheSuivi, 
+        this.saisirFicheNotation,]
+    },/*
     {
       title:"Statistique",
       items: [ this.suiviEmbauche, this.classementEntreprise]
@@ -121,10 +148,12 @@ export class SidebarComponent implements OnInit {
     {
       title:"Archivage",
       items: [ this.archivesRapports, this.archivesStages]
-    },
+    },*/
     {
       title:"Besoin d'aide ?",
-      items: [ this.faq, this.nousContacter]
+      items: [ 
+        //this.faq, 
+        this.nousContacter]
     }
   ];
 
@@ -132,11 +161,18 @@ export class SidebarComponent implements OnInit {
   navigationRepresentantEntreprise = [
     {
       title:"Stage",
-      items: [ this.mesStages, this.listeStages, this.planningSoutenance, this.saisirStage, this.saisirFicheSuivi, this.saisirFicheAppreciation,]
+      items: [ this.mesStages, 
+        this.listeStages, 
+        //this.planningSoutenance, 
+        this.saisirStage, 
+        this.saisirFicheSuivi, 
+        this.saisirFicheAppreciation,]
     },
     {
       title:"Besoin d'aide ?",
-      items: [ this.faq, this.nousContacter]
+      items: [ 
+        //this.faq, 
+        this.nousContacter]
     }
   ];
 
@@ -144,8 +180,15 @@ export class SidebarComponent implements OnInit {
   navigationResponsableParcours = [
     {
       title:"Stage",
-      items: [ this.listeStages, this.saisirFicheSuivi, this.saisirFicheNotation, this.planningSoutenance]
-    },
+      items: [ 
+        this.listeStages, 
+        this.voirLesEntreprise,
+        this.saisirStage, 
+        this.saisirFicheSuivi, 
+        this.saisirFicheNotation, 
+        //this.planningSoutenance
+      ]
+    },/*
     {
       title:"Documents",
       items: []
@@ -157,10 +200,12 @@ export class SidebarComponent implements OnInit {
     {
       title:"Archivage",
       items: [ this.archivesRapports, this.archivesStages]
-    },
+    },*/
     {
       title:"Besoin d'aide ?",
-      items: [ this.faq, this.nousContacter]
+      items: [ 
+        //this.faq, 
+        this.nousContacter]
     }
   ];
 
@@ -176,32 +221,43 @@ export class SidebarComponent implements OnInit {
                 this.listeUtilisateurs,
                 this.listeEtudiants,
                 this.listeEntreprise,
-                this.listeSoutenances,
+                //this.listeSoutenances,
                 this.listeParcours]
     },
     {
       title:"Stage",
-      items: [ this.saisirStage, this.saisirFicheSuivi, this.saisirFicheNotation, this.saisirFicheAppreciation, this.planningSoutenance]
+      items: [ 
+        this.saisirStage, 
+        this.saisirFicheSuivi, 
+        this.saisirFicheNotation, 
+        this.saisirFicheAppreciation, 
+        //this.planningSoutenance
+      ]
     },
     {
       title:"Documents",
       items: [ this.exporterCSV, this.telechargerPDF,]
-    },
+    },/*
     {
       title:"Statistique",
       items: [ this.suiviEmbauche, this.classementEntreprise]
     },
+    
     {
       title:"Archivage",
       items: [ this.archivesRapports, this.archivesStages]
-    },
+    },*/
     {
       title:"Aide développeur",
-      items: [ this.documentation, this.gitlab]
+      items: [ 
+        //this.documentation, 
+        this.gitlab]
     },
     {
       title:"Besoin d'aide ?",
-      items: [ this.faq, this.nousContacter]
+      items: [ 
+        //this.faq, 
+        this.nousContacter]
     }
   ];
 

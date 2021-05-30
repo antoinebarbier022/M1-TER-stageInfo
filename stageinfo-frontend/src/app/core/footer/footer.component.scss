@@ -17,3 +17,9 @@ footer{
     }
 }
 
+@media (max-width: 600px) {
+    footer{
+        display: none;
+    }
+}
+

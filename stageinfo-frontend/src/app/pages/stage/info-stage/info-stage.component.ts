@@ -13,6 +13,7 @@ import {
   isStudentValidator,
   isTuteurUniversiteValidator
 } from "../../../core/validators/validators";
+import { EtatStage } from 'src/app/core/enums/EtatStage';
 
 @Component({
   selector: 'app-info-stage',
@@ -109,20 +110,24 @@ export class InfoStageComponent implements OnInit, OnDestroy {
     return this.stage.tuteur;
   }
   canEditNote():boolean{
-    switch (this.authService.getViewRole()) {
-      case RoleUser.INVITE:
-      case RoleUser.ETUDIANT:
-      case RoleUser.RESPONSABLE_PARCOURS:
-      case RoleUser.SECRETAIRE:
-      case RoleUser.RESPONSABLE_STAGES:
-      case RoleUser.REPRESENTANT_ENTREPRISE:
-
-        return false;
-      case RoleUser.TUTEUR:
-      case RoleUser.ADMIN:
-        return true;
-      default:
-        return false;
+    if(this.stage?.etat == EtatStage.AFFECT_RAPPORTEUR){
+      switch (this.authService.getViewRole()) {
+        case RoleUser.INVITE:
+        case RoleUser.ETUDIANT:
+        case RoleUser.RESPONSABLE_PARCOURS:
+        case RoleUser.SECRETAIRE:
+        case RoleUser.RESPONSABLE_STAGES:
+        case RoleUser.REPRESENTANT_ENTREPRISE:
+  
+          return false;
+        case RoleUser.TUTEUR:
+        case RoleUser.ADMIN:
+          return true;
+        default:
+          return false;
+      }
+    }else{
+      return false;
     }
   }
 

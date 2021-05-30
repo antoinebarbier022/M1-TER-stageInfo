@@ -3,11 +3,17 @@
     <nav class="sidebar-content" >
 
         <!-- Title's website-->
-        <div class="navbar justify-content-center">
+        <div class="navbar">
             <a class="navbar-brand" id="website-title" (click)="changeDisplaySidebar()">
                 <i  class="sidebar-icon fa-lg fas fa-layer-group"></i>
                 StageInfo
             </a>
+
+      
+            <a id="button-menu" (click)="changeDisplaySidebar()">
+                <i class="fas fa-lg fa-times"></i>
+            </a>
+     
     
               
         </div>
@@ -17,8 +23,15 @@
             <p class="sidebar-header">{{ categorie.title }}</p>
             <ul class="sidebar-nav">
                 <li *ngFor="let item of categorie.items" class="sidebar-item">
-                    <span *ngIf="item.items.length == 0">
+                    <span *ngIf="item.items.length == 0 && !externalLink(item.lien)">
                         <a [routerLink]="item.lien" (click)="closeSideBar()">
+                            <i  [class]="'sidebar-icon fa-lg ' + item.icon"></i>
+                            <span class="sidebar-link">{{ item.nom }}</span>
+                        </a>
+                    </span>
+                    <!-- SI le lien est un liens vers une page externe-->
+                    <span *ngIf="item.items.length == 0 && externalLink(item.lien)">
+                        <a [href]="item.lien" target="_blank" (click)="closeSideBar()">
                             <i  [class]="'sidebar-icon fa-lg ' + item.icon"></i>
                             <span class="sidebar-link">{{ item.nom }}</span>
                         </a>
