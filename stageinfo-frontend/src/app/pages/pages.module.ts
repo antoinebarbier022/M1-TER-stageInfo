@@ -20,12 +20,13 @@ import { Error500Component} from "./erreurs/error500/error500.component";
 import { ExportComponent } from './export/export-note/export.component';
 import { ExportStageComponent } from './export/export-stage/export-stage.component';
 import { ForgotPasswordComponent } from './login/forgot-password/forgot-password.component';
+import { ContactComponent } from './contact/contact/contact.component';
 
 
 @NgModule({
   declarations: [
     Error404Component,
-    LoginComponent, Error401Component,Error500Component, ExportStageComponent,ExportComponent, ForgotPasswordComponent
+    LoginComponent, Error401Component,Error500Component, ExportStageComponent,ExportComponent, ForgotPasswordComponent, ContactComponent
    ],
   imports: [
     CommonModule,

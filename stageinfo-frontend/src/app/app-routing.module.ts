@@ -62,6 +62,7 @@ import { Error401Component } from './pages/erreurs/error401/error401.component';
 import { AllRespParcoursResolver } from './core/resolvers/all-resp-parcours.resolver';
 import { AllEtudiantsResolver } from './core/resolvers/all-etudiants.resolver';
 import { AllStageOfUserResolver } from './core/resolvers/all-stage-of-user.resolver';
+import { ContactComponent } from './pages/contact/contact/contact.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'liste-stages', pathMatch: 'full', canActivate: [AuthGuardService, RoleGuard]},
@@ -125,6 +126,8 @@ const routes: Routes = [
   { path: 'configuration-calendrier-soutenances', component: ConfigCalendrierSoutenancesComponent, canActivate: [AuthGuardService, RoleGuard]},
   {path: 'export-note',component:ExportComponent,canActivate: [AuthGuardService],resolve: {stages: AllStagesResolver } },
   {path: 'export-stage',component:ExportStageComponent,canActivate: [AuthGuardService],resolve: {stages: AllStagesResolver } },
+  
+  { path: 'nous-contacter', component: ContactComponent, canActivate: [AuthGuardService]},
   { path: 'error401', component: Error401Component, canActivate: [AuthGuardService]},
   { path: 'not-found', component: Error404Component, canActivate: [AuthGuardService]},
   { path: 'error500', component: Error500Component},

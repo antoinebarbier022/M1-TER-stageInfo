@@ -87,11 +87,16 @@ export class SidebarComponent implements OnInit {
   navigationInvite = [
     {
       title:"Stage",
-      items: [ this.listeStages, this.planningSoutenance]
+      items: [ 
+        this.listeStages, 
+        //this.planningSoutenance
+      ]
     },
     {
       title:"Besoin d'aide ?",
-      items: [ this.faq, this.nousContacter]
+      items: [ 
+        //this.faq, 
+        this.nousContacter]
     }
   ];
 
@@ -99,11 +104,17 @@ export class SidebarComponent implements OnInit {
   navigationEtudiant = [
     {
       title:"Stage",
-      items: [ this.mesStages, this.listeStages, this.planningSoutenance, this.saisirStage]
+      items: [ 
+        this.mesStages, 
+        this.listeStages, 
+        //this.planningSoutenance, 
+        this.saisirStage]
     },
     {
       title:"Besoin d'aide ?",
-      items: [ this.faq, this.nousContacter]
+      items: [ 
+        //this.faq, 
+        this.nousContacter]
     }
   ];
 
@@ -111,8 +122,13 @@ export class SidebarComponent implements OnInit {
   navigationTuteur = [
     {
       title:"Stage",
-      items: [ this.mesStages, this.listeStages, this.planningSoutenance, this.saisirFicheSuivi, this.saisirFicheNotation,]
-    },
+      items: [ 
+        this.mesStages, 
+        this.listeStages, 
+        //this.planningSoutenance, 
+        this.saisirFicheSuivi, 
+        this.saisirFicheNotation,]
+    },/*
     {
       title:"Statistique",
       items: [ this.suiviEmbauche, this.classementEntreprise]
@@ -120,10 +136,12 @@ export class SidebarComponent implements OnInit {
     {
       title:"Archivage",
       items: [ this.archivesRapports, this.archivesStages]
-    },
+    },*/
     {
       title:"Besoin d'aide ?",
-      items: [ this.faq, this.nousContacter]
+      items: [ 
+        //this.faq, 
+        this.nousContacter]
     }
   ];
 
@@ -131,11 +149,18 @@ export class SidebarComponent implements OnInit {
   navigationRepresentantEntreprise = [
     {
       title:"Stage",
-      items: [ this.mesStages, this.listeStages, this.planningSoutenance, this.saisirStage, this.saisirFicheSuivi, this.saisirFicheAppreciation,]
+      items: [ this.mesStages, 
+        this.listeStages, 
+        //this.planningSoutenance, 
+        this.saisirStage, 
+        this.saisirFicheSuivi, 
+        this.saisirFicheAppreciation,]
     },
     {
       title:"Besoin d'aide ?",
-      items: [ this.faq, this.nousContacter]
+      items: [ 
+        //this.faq, 
+        this.nousContacter]
     }
   ];
 
@@ -143,8 +168,13 @@ export class SidebarComponent implements OnInit {
   navigationResponsableParcours = [
     {
       title:"Stage",
-      items: [ this.listeStages, this.saisirFicheSuivi, this.saisirFicheNotation, this.planningSoutenance]
-    },
+      items: [ 
+        this.listeStages, 
+        this.saisirFicheSuivi, 
+        this.saisirFicheNotation, 
+        //this.planningSoutenance
+      ]
+    },/*
     {
       title:"Documents",
       items: []
@@ -156,10 +186,12 @@ export class SidebarComponent implements OnInit {
     {
       title:"Archivage",
       items: [ this.archivesRapports, this.archivesStages]
-    },
+    },*/
     {
       title:"Besoin d'aide ?",
-      items: [ this.faq, this.nousContacter]
+      items: [ 
+        //this.faq, 
+        this.nousContacter]
     }
   ];
 
@@ -180,27 +212,38 @@ export class SidebarComponent implements OnInit {
     },
     {
       title:"Stage",
-      items: [ this.saisirStage, this.saisirFicheSuivi, this.saisirFicheNotation, this.saisirFicheAppreciation, this.planningSoutenance]
+      items: [ 
+        this.saisirStage, 
+        this.saisirFicheSuivi, 
+        this.saisirFicheNotation, 
+        this.saisirFicheAppreciation, 
+        //this.planningSoutenance
+      ]
     },
     {
       title:"Documents",
       items: [ this.exporterCSV, this.telechargerPDF,]
-    },
+    },/*
     {
       title:"Statistique",
       items: [ this.suiviEmbauche, this.classementEntreprise]
     },
+    
     {
       title:"Archivage",
       items: [ this.archivesRapports, this.archivesStages]
-    },
+    },*/
     {
       title:"Aide développeur",
-      items: [ this.documentation, this.gitlab]
+      items: [ 
+        //this.documentation, 
+        this.gitlab]
     },
     {
       title:"Besoin d'aide ?",
-      items: [ this.faq, this.nousContacter]
+      items: [ 
+        //this.faq, 
+        this.nousContacter]
     }
   ];
 
