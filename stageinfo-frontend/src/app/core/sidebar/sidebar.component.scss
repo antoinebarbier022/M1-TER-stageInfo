@@ -4,6 +4,16 @@ aside{
     background-color: #293042;
     font-size: .85rem;
 }
+
+
+@media (max-width: 800px) {
+    aside {
+      position: absolute;
+      z-index: 1;
+  }
+}
+
+
 nav{
     padding-bottom:10rem;
 }
