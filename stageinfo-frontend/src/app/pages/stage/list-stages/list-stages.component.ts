@@ -79,19 +79,24 @@ export class ListStagesComponent extends CommonListingTable implements OnInit {
   }
 
   stagesForRoles(allStage:any):any{
+    this.allItems = this.route.snapshot.data.allStages;
     switch (this.authService.getViewRole()) {
       case RoleUser.INVITE:
       case RoleUser.ETUDIANT:
-        return allStage.filter(((obj: { etat: any; }) => (obj.etat == EtatStage.VALIDE)));
+        this.allItems = this.allItems.filter(((obj: { etat: any; }) => (obj.etat == EtatStage.VALIDE)));
+        return this.allItems;
       case RoleUser.REPRESENTANT_ENTREPRISE:
-        return allStage.filter(((obj: { etat: any; }) => obj.etat != EtatStage.PROPOSE && obj.etat != EtatStage.REFUSE && obj.etat != EtatStage.TERMINE));
+        this.allItems = this.allItems.filter(((obj: { etat: any; }) => obj.etat != EtatStage.PROPOSE && obj.etat != EtatStage.REFUSE && obj.etat != EtatStage.TERMINE));
+        return this.allItems;
       case RoleUser.TUTEUR:
-        return allStage.filter(((obj: { etat: any; }) => (obj.etat == EtatStage.AFFECT_ETUDIANT) || (obj.etat == EtatStage.AFFECT_TUTEUR) ));
+        this.allItems = this.allItems.filter(((obj: { etat: any; }) => (obj.etat == EtatStage.AFFECT_ETUDIANT) || (obj.etat == EtatStage.AFFECT_TUTEUR) ));
+        return this.allItems;
       case RoleUser.RESPONSABLE_PARCOURS:
       case RoleUser.SECRETAIRE:
       case RoleUser.RESPONSABLE_STAGES:
       case RoleUser.ADMIN:
-        return allStage;
+        this.allItems = this.route.snapshot.data.allStages;
+        return this.allItems;
     }
   }
 
