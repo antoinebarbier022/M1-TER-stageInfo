@@ -7,6 +7,8 @@ import { UserService } from 'src/app/core/services/user.service';
 
 import { CommonListingTable } from 'src/app/shared/classes/common-listing-table';
 import { UserModel } from 'src/app/core/models/UserModel';
+import { RoleUser } from 'src/app/core/enums/RoleUser';
+import { AuthService } from 'src/app/core/services/auth.service';
 
 @Component({
   selector: 'app-list-users',
@@ -21,7 +23,9 @@ export class ListUsersComponent extends CommonListingTable implements OnInit, On
 
   selectItem: UserModel; // item qui est selectionné 
 
-  constructor(private route:ActivatedRoute, private userService: UserService) { 
+  constructor(private route:ActivatedRoute, 
+    private authService:AuthService,
+    private userService: UserService) { 
     super();
     this.visibleProperties = [
       { name: 'nom', sorted: false },
@@ -82,6 +86,40 @@ export class ListUsersComponent extends CommonListingTable implements OnInit, On
   ngOnDestroy() {
     this.destroy$.next(true);
     this.destroy$.unsubscribe();
+  }
+
+  canEditUser():boolean{
+    switch (this.authService.getViewRole()) {
+      case RoleUser.INVITE:
+      case RoleUser.ETUDIANT:
+      case RoleUser.TUTEUR:
+      case RoleUser.REPRESENTANT_ENTREPRISE:
+      case RoleUser.RESPONSABLE_PARCOURS:
+        return false;
+      case RoleUser.SECRETAIRE:
+      case RoleUser.RESPONSABLE_STAGES:
+      case RoleUser.ADMIN:
+        return true;
+      default:
+        return false;
+    }
+  }
+
+  canAddUser():boolean{
+    switch (this.authService.getViewRole()) {
+      case RoleUser.INVITE:
+      case RoleUser.ETUDIANT:
+      case RoleUser.TUTEUR:
+      case RoleUser.REPRESENTANT_ENTREPRISE:
+      case RoleUser.RESPONSABLE_PARCOURS:
+        return false;
+      case RoleUser.SECRETAIRE:
+      case RoleUser.RESPONSABLE_STAGES:
+      case RoleUser.ADMIN:
+        return true;
+      default:
+        return false;
+    }
   }
 
 }

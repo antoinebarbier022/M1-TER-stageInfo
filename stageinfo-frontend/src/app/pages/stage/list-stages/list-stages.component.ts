@@ -42,7 +42,7 @@ export class ListStagesComponent extends CommonListingTable implements OnInit {
     this.allItems = this.route.snapshot.data.allStages;
   }
 
-  canEditStages():boolean{
+  canEditStage():boolean{
     switch (this.authService.getViewRole()) {
       case RoleUser.INVITE:
       case RoleUser.ETUDIANT:
@@ -60,13 +60,31 @@ export class ListStagesComponent extends CommonListingTable implements OnInit {
     }
   }
 
+
+  canAddStage():boolean{
+    switch (this.authService.getViewRole()) {
+      case RoleUser.INVITE:
+        return false;
+      case RoleUser.ETUDIANT:
+      case RoleUser.TUTEUR:
+      case RoleUser.REPRESENTANT_ENTREPRISE:
+      case RoleUser.RESPONSABLE_PARCOURS:
+      case RoleUser.SECRETAIRE:
+      case RoleUser.RESPONSABLE_STAGES:
+      case RoleUser.ADMIN:
+        return true;
+      default:
+        return false;
+    }
+  }
+
   stagesForRoles(allStage:any):any{
     switch (this.authService.getViewRole()) {
       case RoleUser.INVITE:
       case RoleUser.ETUDIANT:
         return allStage.filter(((obj: { etat: any; }) => (obj.etat == EtatStage.VALIDE)));
       case RoleUser.REPRESENTANT_ENTREPRISE:
-        return allStage.filter(((obj: { etat: any; }) => obj.etat != EtatStage.PROPOSE));
+        return allStage.filter(((obj: { etat: any; }) => obj.etat != EtatStage.PROPOSE && obj.etat != EtatStage.REFUSE && obj.etat != EtatStage.TERMINE));
       case RoleUser.TUTEUR:
         return allStage.filter(((obj: { etat: any; }) => (obj.etat == EtatStage.AFFECT_ETUDIANT) || (obj.etat == EtatStage.AFFECT_TUTEUR) ));
       case RoleUser.RESPONSABLE_PARCOURS:

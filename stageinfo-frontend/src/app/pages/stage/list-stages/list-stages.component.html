@@ -8,7 +8,7 @@
     <app-nbItems entries [commonProperties]="commonProperties"></app-nbItems>
 
     <!-- Bouton ajouter => ouvre un modal avec le formulaire d'ajout -->
-    <app-button-add button1 *ngIf="canEditStages()" data-toggle="modal" data-target="#ajouter"></app-button-add>
+    <app-button-add button1 *ngIf="canAddStage()" data-toggle="modal" data-target="#ajouter"></app-button-add>
     
     <div content class="table-responsive">
         <table class="card-table table table-striped table-sm">
@@ -40,7 +40,7 @@
                             Duree
                         </app-th-table-sort>
                     </th>
-                    <th *ngIf="canEditStages()" scope="col">Actions</th>
+                    <th *ngIf="canEditStage()" scope="col">Actions</th>
                 </tr>
             </thead>
             <tbody>
@@ -54,7 +54,7 @@
                     <td>2020 - 2021</td>
                     <td>{{ stage.duree ? stage.duree + ' mois' : '' }} </td>
                     
-                    <td *ngIf="canEditStages()" class="table-action">
+                    <td *ngIf="canEditStage()" class="table-action">
                         <!-- Bouton edit => ouvre un modal avec le formulaire de modification -->
                         <app-button-edit data-toggle="modal" (click)="selectedItem(stage)" data-target="#modifier"></app-button-edit>
                         <!-- Bouton delete => ouvre un modal avec la demande de suppression -->
@@ -72,7 +72,7 @@
 <!---------------------------------------------------->
 <!-------------------- LES MODALS -------------------->
 <!---------------------------------------------------->
-<ng-container *ngIf="canEditStages()">
+<ng-container>
 
 <!-- Modal avec le formulaire de modification de l'objet selectionné -->
 <app-modal class="modal fade"

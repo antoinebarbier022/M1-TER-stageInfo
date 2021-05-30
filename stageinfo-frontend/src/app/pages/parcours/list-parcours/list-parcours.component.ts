@@ -2,7 +2,9 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
+import { RoleUser } from 'src/app/core/enums/RoleUser';
 import { ParcoursModel } from 'src/app/core/models/ParcoursModel';
+import { AuthService } from 'src/app/core/services/auth.service';
 import { ParcoursService } from 'src/app/core/services/parcours.service';
 
 import { CommonListingTable } from 'src/app/shared/classes/common-listing-table';
@@ -23,6 +25,7 @@ export class ListParcoursComponent extends CommonListingTable implements OnInit,
   selectItem:any; // item qui est selectionné 
 
   constructor(private route:ActivatedRoute,
+              private authService:AuthService,
               private parcoursService: ParcoursService) { 
     super();
     this.visibleProperties = [
@@ -93,4 +96,38 @@ export class ListParcoursComponent extends CommonListingTable implements OnInit,
     // Now let's also unsubscribe from the subject itself:
     this.destroy$.unsubscribe();
   }
+  canEditParcours():boolean{
+    switch (this.authService.getViewRole()) {
+      case RoleUser.INVITE:
+      case RoleUser.ETUDIANT:
+      case RoleUser.TUTEUR:
+      case RoleUser.REPRESENTANT_ENTREPRISE:
+        return false;
+      case RoleUser.RESPONSABLE_PARCOURS:
+      case RoleUser.SECRETAIRE:
+      case RoleUser.RESPONSABLE_STAGES:
+      case RoleUser.ADMIN:
+        return true;
+      default:
+        return false;
+    }
+  }
+
+  canAddParcours():boolean{
+    switch (this.authService.getViewRole()) {
+      case RoleUser.INVITE:
+      case RoleUser.ETUDIANT:
+      case RoleUser.TUTEUR:
+      case RoleUser.REPRESENTANT_ENTREPRISE:
+        return false;
+      case RoleUser.RESPONSABLE_PARCOURS:
+      case RoleUser.SECRETAIRE:
+      case RoleUser.RESPONSABLE_STAGES:
+      case RoleUser.ADMIN:
+        return true;
+      default:
+        return false;
+    }
+  }
+  
 }

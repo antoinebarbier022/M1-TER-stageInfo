@@ -7,9 +7,9 @@
     <app-nbItems entries [commonProperties]="commonProperties"></app-nbItems>
     
     <!-- Bouton ajouter => ouvre un modal avec le formulaire d'ajout -->
-    <app-button-add button1 data-toggle="modal" data-target="#ajouter"></app-button-add>
+    <app-button-add button1 *ngIf="canAddUser()" data-toggle="modal" data-target="#ajouter"></app-button-add>
         
-    <button button2 routerLink="/liste-utilisateurs/import-users" style="margin-left:5px; " class="btn btn-secondary btn-sm">
+    <button button2 *ngIf="canAddUser()" routerLink="/liste-utilisateurs/import-users" style="margin-left:5px; " class="btn btn-secondary btn-sm">
         <i style="margin-right:5px;" class="fas fa-file-import"></i>
         importer
     </button>
@@ -33,7 +33,7 @@
                             Role
                         </app-th-table-sort>
                     </th>
-                    <th scope="col">Actions</th>
+                    <th *ngIf="canEditUser()" scope="col">Actions</th>
                 </tr>
             </thead>
             <tbody>
@@ -41,7 +41,7 @@
                     <td><a [routerLink]="['/liste-utilisateurs/user/', user._id]">{{ user.nom }} {{ user.prenom }}</a></td>
                     <td>{{ user.email }}</td>
                     <td><app-role-badge [role]="user?.role"> {{ user?.role }} </app-role-badge></td>
-                    <td class="table-action">
+                    <td *ngIf="canEditUser()" class="table-action">
                         <!-- Bouton edit => ouvre un modal avec le formulaire de modification -->
                         <app-button-edit data-toggle="modal" (click)="selectedItem(user)" data-target="#modifier"></app-button-edit>
                         <!-- Bouton delete => ouvre un modal avec la demande de suppression -->
