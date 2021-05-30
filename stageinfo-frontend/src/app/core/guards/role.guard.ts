@@ -88,7 +88,6 @@ export class RoleGuard implements CanActivate {
       case 'documentation':    
       case 'liste-etudiants':
       case 'liste-utilisateurs/import-users':
-      case 'saisir-fiche-appreciation':
         return [RoleUser.ADMIN].includes(role);
 
       // administrateur et secrétaire
@@ -96,7 +95,8 @@ export class RoleGuard implements CanActivate {
       case 'liste-soutenances/add-soutenance':
       case 'liste-soutenances/edit-soutenance':
       case 'liste-soutenances/soutenance':
-        return [RoleUser.SECRETAIRE, RoleUser.ADMIN].includes(role);
+      case 'saisir-fiche-appreciation':
+        return [RoleUser.SECRETAIRE,RoleUser.RESPONSABLE_STAGES, RoleUser.ADMIN].includes(role);
 
       // Secretaire, responsable parcours, admin  
       case 'liste-parcours':
