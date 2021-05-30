@@ -6,7 +6,6 @@
 .all-card{
     display: grid;
     grid-template-columns: 1fr 4fr 1fr;
-    gap: 15px 15px;
     grid-template-areas:
     ". card-add-stage .";
     #add-stage{
@@ -17,6 +16,15 @@
         .card-header{
             padding-bottom: 0;
         }
+    }
+}
+
+@media (max-width: 800px) {
+    .all-card{
+        display: grid;
+        grid-template-columns: 1fr;
+        grid-template-areas:
+        "card-add-stage";
     }
 }
 
