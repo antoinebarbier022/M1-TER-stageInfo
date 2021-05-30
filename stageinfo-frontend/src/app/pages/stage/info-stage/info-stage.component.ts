@@ -8,6 +8,11 @@ import { AuthService } from 'src/app/core/services/auth.service';
 import { StageService } from 'src/app/core/services/stage.service';
 import { pjService } from "../../../core/services/pj.service";
 import {TypePJ} from "../../../core/enums/TypePJ";
+import {
+  isRepresentantValidator,
+  isStudentValidator,
+  isTuteurUniversiteValidator
+} from "../../../core/validators/validators";
 
 @Component({
   selector: 'app-info-stage',
@@ -23,7 +28,10 @@ export class InfoStageComponent implements OnInit, OnDestroy {
     }
   };
   lien: any;
-
+  //fiche de notation
+  todayNumber: number = Date.now();
+  // @ts-ignore
+  ficheNotationForm: FormGroup;
 
   // variables pour le download/upload de fichiers
   pdf : any;
@@ -58,6 +66,7 @@ export class InfoStageComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.initFormComment();
     this.initFormPj();
+    this.initFormNote();
     this.stage = this.route.snapshot.data.stage;
     console.log(this.stage);
 
@@ -72,8 +81,14 @@ export class InfoStageComponent implements OnInit, OnDestroy {
   initFormPj(){
     this.PjForm = this.formBuilder.group({
       typePj:['',Validators.required]
-    })
+    });
+  }
+  initFormNote(){
+    this.ficheNotationForm = this.formBuilder.group({
 
+      commentaire:['',Validators.required],
+      note:['', [Validators.required, Validators.min(0), Validators.max(20)]]
+    });
   }
   initFormComment(){
     this.commentaireForm = this.formBuilder.group({
@@ -93,6 +108,23 @@ export class InfoStageComponent implements OnInit, OnDestroy {
   displaySectionEncadrant():boolean{
     return this.stage.tuteur;
   }
+  canEditNote():boolean{
+    switch (this.authService.getViewRole()) {
+      case RoleUser.INVITE:
+      case RoleUser.ETUDIANT:
+      case RoleUser.RESPONSABLE_PARCOURS:
+      case RoleUser.SECRETAIRE:
+      case RoleUser.RESPONSABLE_STAGES:
+      case RoleUser.REPRESENTANT_ENTREPRISE:
+
+        return false;
+      case RoleUser.TUTEUR:
+      case RoleUser.ADMIN:
+        return true;
+      default:
+        return false;
+    }
+  }
 
   canEditStage():boolean{
     switch (this.authService.getViewRole()) {
@@ -100,6 +132,7 @@ export class InfoStageComponent implements OnInit, OnDestroy {
       case RoleUser.ETUDIANT:
       case RoleUser.TUTEUR:
       case RoleUser.REPRESENTANT_ENTREPRISE:
+
         return false;
 
       case RoleUser.RESPONSABLE_PARCOURS:
@@ -196,6 +229,18 @@ export class InfoStageComponent implements OnInit, OnDestroy {
         this.alert="Fichier supprimé!";
         // On supprime la pièce jointe du tableau local des fichier (on sait qu'il est supprimer de la base de donnée donc on peut le supprimer sans recharger les données distantes)
         this.stage.fichier = this.stage.fichier.filter((object: { _id: any; }) => { return object._id != id; });
+      });
+  }
+  onSubmitForm() {
+    const formValue = this.ficheNotationForm.value;
+    const resulta = {commentaire : formValue.commentaire,note: formValue.note,id_stage:this.stage._id,id_user: this.authService.getUserId()}
+    console.log(resulta)
+    console.log(this.stage._id)
+    console.log(this.authService.getViewRole() == RoleUser.TUTEUR)
+    this.stageService.addNote(this.stage._id,formValue.note,formValue.commentaire)
+      .subscribe((_res: any) => {
+        this.alert="note rajoutée";
+
       });
   }
 }

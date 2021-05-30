@@ -13,11 +13,7 @@ const ficheSuiviSchema = Schema({
 });
 
 // Modèle de la fiche de suivi
-const noteStageSchema = Schema({
-  date: Date,
-  valeur: String,
-  commentaire: String,
-});
+
 
 const visiteStageSchema = Schema({
   typeContact: String,
@@ -55,7 +51,7 @@ const stageSchema = Schema({
 
     commentaires : [{   type: Schema.Types.ObjectId, ref: 'Commentaire' }],
     ficheSuivi: {       type: Schema.Types.ObjectId, ref: 'FicheSuivi' },
-    noteStage: {        type: Schema.Types.ObjectId, ref: 'NoteStage' },
+    noteStage: {        type: Schema.Types.ObjectId, ref: 'noteStage' },
     visiteStage: {      type: Schema.Types.ObjectId, ref: 'VisiteStage' },
 
     parcours: {         type: Schema.Types.ObjectId, required: true, ref: 'Parcours' },
@@ -76,7 +72,7 @@ const stageSchema = Schema({
   
 
 module.exports = mongoose.model('FicheSuivi', ficheSuiviSchema);
-module.exports = mongoose.model('NoteStage', noteStageSchema);
+
 module.exports = mongoose.model('VisiteStage', visiteStageSchema);
 
 module.exports = mongoose.model('Stage', stageSchema);

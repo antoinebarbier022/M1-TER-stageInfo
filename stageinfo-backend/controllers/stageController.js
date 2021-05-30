@@ -1,6 +1,7 @@
 const Stage = require('../models/stageModel');
 const Commentaire = require('../models/commentaireModel');
 const PJ = require('../models/pieceJointeModel')
+const note = require('../models/noteModel')
 const fs = require('fs');
 const multer =require('../middleware/multer-config')
 
@@ -18,7 +19,7 @@ exports.getAllStage = ((req, res, next) => {
   .populate('repEntreprise', 'nom prenom')
   .populate('tuteur', 'nom prenom')
   .populate('rapporteur', 'nom prenom')
-  .populate('noteStage', 'valeur')
+  .populate('noteStage', 'valeur commentaire')
   .populate('etudiant', 'nom prenom numeroEtudiant')
   .then(stages => res.status(200).json(stages))
   .catch(error => res.status(404).json({ error }));
@@ -49,7 +50,7 @@ exports.getAllStageRelatedToUser = ((req, res, next) => {
     .populate('tuteur', 'nom prenom')
     .populate('rapporteur', 'nom prenom')
     .populate('etudiant', 'nom prenom numeroEtudiant')
-        .populate('noteStage', 'valeur')
+        .populate('noteStage', 'valeur commentaire')
     .then(stages => res.status(200).json(stages))
     .catch(error => res.status(404).json({ error }));
   });
@@ -78,7 +79,7 @@ exports.getOneStage = ((req, res, next) => {
     .populate('tuteur', 'nom prenom')
     .populate('rapporteur', 'nom prenom')
     .populate('etudiant', 'nom prenom numeroEtudiant')
-        .populate('noteStage', 'valeur')
+        .populate('noteStage', 'valeur commentaire')
 
   .then(stage => res.status(200).json(stage))
   .catch(error => res.status(404).json({ error }))
@@ -249,7 +250,37 @@ exports.deleteCommentOneStage = (req, res, next) => {
     );
 };
 
+exports.addNote = (req,res,next) => {
+    const laDate = new Date();
+    console.log(req)
+    console.log(req.body)
 
+    const laNote = new note({
+        date : laDate,
+        valeur: req.body.valeur,
+        commentaire : req.body.commentaire
+    })
+    laNote.save()
+        .then(()=>{
+            const stage = {
+                noteStage:laNote._id,
+            }
+            Stage.updateOne({_id: req.params.id}, stage)
+                .then(() => {
+                    res.status(201).json({
+                        message: 'ajoute de la note '+req.body.valeur +' sur  : '+ req.params.id +']'
+
+                    });
+                })
+                .catch((error) => {
+                    res.status(400).json({error: error});
+                });
+        })
+        .catch((error) => {
+            res.status(400).json({error: error});
+        });
+
+}
 
 
 exports.addPJ= (req,res,next) => {
