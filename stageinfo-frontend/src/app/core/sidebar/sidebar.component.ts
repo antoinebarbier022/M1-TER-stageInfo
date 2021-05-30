@@ -292,6 +292,7 @@ export class SidebarComponent implements OnInit {
       switch (this.authService.getViewRole()){
         case RoleUser.ADMIN:
         case RoleUser.SECRETAIRE:
+        case RoleUser.RESPONSABLE_STAGES:
           return this.navigationSecretaire;
         case RoleUser.ETUDIANT:
           return this.navigationEtudiant;

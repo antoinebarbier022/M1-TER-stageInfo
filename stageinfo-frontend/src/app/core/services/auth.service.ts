@@ -63,7 +63,7 @@ export class AuthService {
   }
 
   setViewRole(newRole: RoleUser ){
-    if([RoleUser.ADMIN, RoleUser.INVITE, RoleUser.ETUDIANT, RoleUser.SECRETAIRE, RoleUser.RESPONSABLE_PARCOURS,RoleUser.REPRESENTANT_ENTREPRISE,RoleUser.TUTEUR].includes(newRole)){
+    if([RoleUser.ADMIN, RoleUser.INVITE, RoleUser.ETUDIANT, RoleUser.SECRETAIRE, RoleUser.RESPONSABLE_PARCOURS, RoleUser.RESPONSABLE_STAGES, RoleUser.REPRESENTANT_ENTREPRISE,RoleUser.TUTEUR].includes(newRole)){
       this.viewRole = newRole;
     }
   }
