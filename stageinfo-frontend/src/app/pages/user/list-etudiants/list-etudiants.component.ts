@@ -2,7 +2,9 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
+import { RoleUser } from 'src/app/core/enums/RoleUser';
 import { UserModel } from 'src/app/core/models/UserModel';
+import { AuthService } from 'src/app/core/services/auth.service';
 import { UserService } from 'src/app/core/services/user.service';
 import { CommonListingTable } from 'src/app/shared/classes/common-listing-table';
 
@@ -19,7 +21,10 @@ export class ListEtudiantsComponent extends CommonListingTable implements OnInit
 
   selectItem:any; // item qui est selectionné 
 
-  constructor(private route:ActivatedRoute, private userService: UserService) { 
+  constructor(
+    private route:ActivatedRoute, 
+    private authService:AuthService,
+    private userService: UserService) { 
     super();
     this.visibleProperties = [
       { name: 'numeroEtudiant', sorted: false },
@@ -85,5 +90,38 @@ export class ListEtudiantsComponent extends CommonListingTable implements OnInit
     this.destroy$.unsubscribe();
   }
 
+  canEditUser():boolean{
+    switch (this.authService.getViewRole()) {
+      case RoleUser.INVITE:
+      case RoleUser.ETUDIANT:
+      case RoleUser.TUTEUR:
+      case RoleUser.REPRESENTANT_ENTREPRISE:
+      case RoleUser.RESPONSABLE_PARCOURS:
+        return false;
+      case RoleUser.SECRETAIRE:
+      case RoleUser.RESPONSABLE_STAGES:
+      case RoleUser.ADMIN:
+        return true;
+      default:
+        return false;
+    }
+  }
+
+  canAddUser():boolean{
+    switch (this.authService.getViewRole()) {
+      case RoleUser.INVITE:
+      case RoleUser.ETUDIANT:
+      case RoleUser.TUTEUR:
+      case RoleUser.REPRESENTANT_ENTREPRISE:
+      case RoleUser.RESPONSABLE_PARCOURS:
+        return false;
+      case RoleUser.SECRETAIRE:
+      case RoleUser.RESPONSABLE_STAGES:
+      case RoleUser.ADMIN:
+        return true;
+      default:
+        return false;
+    }
+  }
 
 }

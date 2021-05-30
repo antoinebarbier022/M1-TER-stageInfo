@@ -42,7 +42,7 @@ export class ListStagesComponent extends CommonListingTable implements OnInit {
     this.allItems = this.route.snapshot.data.allStages;
   }
 
-  canEditStages():boolean{
+  canEditStage():boolean{
     switch (this.authService.getViewRole()) {
       case RoleUser.INVITE:
       case RoleUser.ETUDIANT:
@@ -50,6 +50,24 @@ export class ListStagesComponent extends CommonListingTable implements OnInit {
       case RoleUser.REPRESENTANT_ENTREPRISE:
         return false;
       
+      case RoleUser.RESPONSABLE_PARCOURS:
+      case RoleUser.SECRETAIRE:
+      case RoleUser.RESPONSABLE_STAGES:
+      case RoleUser.ADMIN:
+        return true;
+      default:
+        return false;
+    }
+  }
+
+
+  canAddStage():boolean{
+    switch (this.authService.getViewRole()) {
+      case RoleUser.INVITE:
+        return false;
+      case RoleUser.ETUDIANT:
+      case RoleUser.TUTEUR:
+      case RoleUser.REPRESENTANT_ENTREPRISE:
       case RoleUser.RESPONSABLE_PARCOURS:
       case RoleUser.SECRETAIRE:
       case RoleUser.RESPONSABLE_STAGES:

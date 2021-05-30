@@ -2,7 +2,9 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
+import { RoleUser } from 'src/app/core/enums/RoleUser';
 import { EntrepriseModel } from 'src/app/core/models/EntrepriseModel';
+import { AuthService } from 'src/app/core/services/auth.service';
 
 import { EntrepriseService } from 'src/app/core/services/entreprise.service';
 
@@ -22,7 +24,9 @@ export class ListEntreprisesComponent extends CommonListingTable implements OnIn
 
   selectItem:any; // item qui est selectionné 
 
-  constructor(private route: ActivatedRoute, private entrepriseService: EntrepriseService) { 
+  constructor(private route: ActivatedRoute, 
+    private authService:AuthService,
+    private entrepriseService: EntrepriseService) { 
     super();
     this.visibleProperties = [ 
       { name: 'nom', sorted: false },
@@ -86,4 +90,46 @@ export class ListEntreprisesComponent extends CommonListingTable implements OnIn
     this.destroy$.unsubscribe();
   }
 
+  isRepresentant(idRepresentantEntreprise : String): boolean{
+    if(this.authService.getViewRole() && (this.authService.getUserId() == idRepresentantEntreprise)){
+      return true;
+    }else{
+      return false;
+    }
+  }
+
+  canEditEntreprise():boolean{
+    switch (this.authService.getViewRole()) {
+      case RoleUser.INVITE:
+      case RoleUser.ETUDIANT:
+        
+      case RoleUser.TUTEUR:
+      case RoleUser.REPRESENTANT_ENTREPRISE:
+      case RoleUser.RESPONSABLE_PARCOURS:
+        return false;
+      case RoleUser.SECRETAIRE:
+      case RoleUser.RESPONSABLE_STAGES:
+      case RoleUser.ADMIN:
+        return true;
+      default:
+        return false;
+    }
+  }
+
+  canAddEntreprise():boolean{
+    switch (this.authService.getViewRole()) {
+      case RoleUser.INVITE:
+        return false;
+      case RoleUser.ETUDIANT:
+      case RoleUser.TUTEUR:
+      case RoleUser.REPRESENTANT_ENTREPRISE:
+      case RoleUser.RESPONSABLE_PARCOURS:
+      case RoleUser.SECRETAIRE:
+      case RoleUser.RESPONSABLE_STAGES:
+      case RoleUser.ADMIN:
+        return true;
+      default:
+        return false;
+    }
+  }
 }

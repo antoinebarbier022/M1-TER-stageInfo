@@ -12,7 +12,7 @@ ul{
     margin:0;
     list-style-type: none;
     //background-color: #f7f9fc;
-    z-index: 1;
+    z-index: -1;
     li{
         display: flex;
         flex-direction: column;
@@ -29,7 +29,7 @@ ul{
         
         padding:5px;
         border-radius: 100%;
-        z-index: 1;
+        z-index: 0;
         background-color:white;
     }
     .fieldset-active{
@@ -42,43 +42,48 @@ ul{
         }
     }
 }
+/**
+* ON commnte la ligne de progression car il y a un bug
+
+
 ul::before {
     content: '';
     position: absolute;
-    top:60px;
+    top:85px;
     left:0px;
     width:100%;
-    flex: 1 2 auto; /* the first digint is 'flex-grow: 1', helps elemet to occupy all free space */ 
+    flex: 1 2 auto; // the first digint is 'flex-grow: 1', helps elemet to occupy all free space 
     border-top: dashed 2px #49505793;
     
   }
   .progress-first::after {
     content: '';
     position: absolute;
-    top:60px;
+    top:85px;
     left:0px;
     width:20%;
-    flex: 1 2 auto; /* the first digint is 'flex-grow: 1', helps elemet to occupy all free space */ 
+    flex: 1 2 auto; // the first digint is 'flex-grow: 1', helps elemet to occupy all free space 
     border-top: solid 2px #495057;
   }
   .progress-second::after {
     content: '';
     position: absolute;
-    top:60px;
+    top:85px;
     left:0px;
     width:50%;
-    flex: 1 2 auto; /* the first digint is 'flex-grow: 1', helps elemet to occupy all free space */ 
+    flex: 1 2 auto; // the first digint is 'flex-grow: 1', helps elemet to occupy all free space 
     border-top: solid 2px #495057;
   }
   .progress-third::after {
     content: '';
     position: absolute;
-    top:60px;
+    top:85px;
     left:0px;
     width:80%;
-    flex: 1 2 auto; /* the first digint is 'flex-grow: 1', helps elemet to occupy all free space */ 
+    flex: 1 2 auto; // the first digint is 'flex-grow: 1', helps elemet to occupy all free space 
     border-top: solid 2px #495057;
   }
+  */
 
 hr{
     margin: 5px 0 5px 0;

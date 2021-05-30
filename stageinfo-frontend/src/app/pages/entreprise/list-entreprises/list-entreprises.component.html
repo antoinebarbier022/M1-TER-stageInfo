@@ -6,7 +6,7 @@
     <app-nbItems entries [commonProperties]="commonProperties"></app-nbItems>
 
     <!-- Bouton ajouter => ouvre un modal avec le formulaire d'ajout -->
-    <app-button-add button1 data-toggle="modal" data-target="#ajouter"></app-button-add>
+    <app-button-add button1 *ngIf="canAddEntreprise()"  data-toggle="modal" data-target="#ajouter"></app-button-add>
     
     <div content class="table-responsive">
         <table class="card-table table table-striped table-sm">
@@ -35,7 +35,7 @@
                     <td><a [routerLink]="['/liste-entreprises', entreprise._id]">{{ entreprise.nom }}</a></td>
                     <td>{{ entreprise.ville }}</td>
                     <td><a [routerLink]="['/liste-utilisateurs/user', entreprise?.representant?._id]">{{ entreprise?.representant?._id ? entreprise?.representant?.nom + ' ' + entreprise?.representant?.prenom : ''}}</a></td>
-                    <td class="table-action">
+                    <td *ngIf="canEditEntreprise() || isRepresentant(entreprise?.representant?._id)" class="table-action">
                         <!-- Bouton edit => ouvre un modal avec le formulaire de modification -->
                         <app-button-edit data-toggle="modal" (click)="selectedItem(entreprise)" data-target="#modifier"></app-button-edit>
                         <!-- Bouton delete => ouvre un modal avec la demande de suppression -->
