@@ -3,9 +3,8 @@ const Admin = require('../middleware/authAdmin');
 
 const router = express.Router();
 
-const emailContactCtrl = require('../controllers/creneauController');
+const emailContactCtrl = require('../controllers/emailContactController');
 
-router.get('/',Admin, emailContactCtrl.getAllEmail);
-router.post('/', Admin,emailContactCtrl.createEmail);
-router.put('/:id', Admin,emailContactCtrl.editEmail);
+router.get('/', Admin,emailContactCtrl.getAllEmail);
+router.put('/', Admin,emailContactCtrl.editEmail);
 module.exports = router;
