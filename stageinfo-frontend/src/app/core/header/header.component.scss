@@ -66,3 +66,32 @@ nav{
         
     }
 }
+
+#website-titleCss{
+    display: none;
+}
+
+@media (max-width: 1100px) {
+    .link-text-menu, #viewRole{
+      display: none;
+  }
+}
+
+@media (max-width: 800px) {
+    .link-text-menu, #badge-role{
+      display: none;
+  }
+  #changeRole, #viewRole{
+      display: none;
+  }
+  #website-titleCss{
+    display: inline-block;
+}
+}
+
+@media (max-width: 600px) {
+    #website-titleCss{
+        text-align: center;
+        margin: auto;
+    }
+}

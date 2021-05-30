@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 
 import {Subscription} from "rxjs";
 import {AuthService} from "../services/auth.service";
@@ -12,6 +12,13 @@ import { RoleUser } from '../enums/RoleUser';
   styleUrls: ['./sidebar.component.scss']
 })
 export class SidebarComponent implements OnInit {
+  @Output() sidebarEvent = new EventEmitter<boolean>();
+  @Input() showSidebar = true;
+
+  changeDisplaySidebar() {
+    this.showSidebar = !this.showSidebar;
+    this.sidebarEvent.emit(this.showSidebar);
+  }
 
   // -----------------------------------------------------------------------------------------------
   // ------- On défini tous les liens possibles de navigation --------------------------------------
