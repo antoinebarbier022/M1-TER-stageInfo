@@ -2,7 +2,7 @@
     <div class="card-header">
         <p class="card-title">
             <span class="comment-author">
-                <a routerLink="/liste-utilisateurs/user">
+                <a [routerLink]="['/liste-utilisateurs/user', idUser]">
                     {{ author }}
                 </a>
             </span>

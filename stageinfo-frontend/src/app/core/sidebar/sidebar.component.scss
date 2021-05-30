@@ -14,20 +14,24 @@ aside{
       position: absolute;
       z-index: 1;
   }
+  #website-title{
+    margin-left:10px !important;
+    }
+
+    #button-menu{
+        display: inline-block;
+        color: #e4e5e6;
+        margin-right:20px !important;
+    }
 }
 
 @media (max-width: 600px) {
     aside {
         width:100%;
     }
-  #website-title{
-    margin-left:50px !important;
-    }
-    #button-menu{
-        display: inline-block;
-        color: #e4e5e6;
-        margin-right:20px !important;
-    }
+    #website-title{
+        margin-left:50px !important;
+        }
 }
 
 
