@@ -14,7 +14,7 @@ exports.getAllStage = ((req, res, next) => {
   Stage.find()
   .populate('commentaires')
   .populate('entreprise','nom')
-  .populate('parcours', 'acronyme')
+  .populate('parcours', 'acronyme niveau')
   .populate('ajouteur', 'nom prenom')
   .populate('repEntreprise', 'nom prenom')
   .populate('tuteur', 'nom prenom')
