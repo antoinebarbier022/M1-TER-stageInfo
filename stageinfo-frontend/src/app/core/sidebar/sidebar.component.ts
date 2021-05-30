@@ -38,6 +38,7 @@ export class SidebarComponent implements OnInit {
   listeStages =             {icon:"fas fa-list",          nom:"Listing des stages",       lien:"/liste-stages",       items:[]};
   listeSoutenances =        {icon:"fas fa-list",          nom:"Listing des soutenances",  lien:"/liste-soutenances",   items:[]};
   listeEntreprise =         {icon:"fas fa-list",          nom:"Listing des entreprises",  lien:"/liste-entreprises",   items:[]};
+  voirLesEntreprise =       {icon:"fas fa-list",          nom:"Voir les entreprises",  lien:"/liste-entreprises",   items:[]};
   listeUtilisateurs =       {icon:"fas fa-list",          nom:"Listing des utilisateurs", lien:"/liste-utilisateurs",   items:[]};
   listeEtudiants =          {icon:"fas fa-list",          nom:"Listing des étudiants ",   lien:"/liste-etudiants", items:[]};
   listeEnseignants =        {icon:"fas fa-list",          nom:"listing des enseignants",  lien:"/liste-enseignants", items:[]};
@@ -89,6 +90,7 @@ export class SidebarComponent implements OnInit {
       title:"Stage",
       items: [ 
         this.listeStages, 
+        this.voirLesEntreprise
         //this.planningSoutenance
       ]
     },
@@ -107,6 +109,7 @@ export class SidebarComponent implements OnInit {
       items: [ 
         this.mesStages, 
         this.listeStages, 
+        this.voirLesEntreprise,
         //this.planningSoutenance, 
         this.saisirStage]
     },
@@ -125,6 +128,7 @@ export class SidebarComponent implements OnInit {
       items: [ 
         this.mesStages, 
         this.listeStages, 
+        this.voirLesEntreprise,
         //this.planningSoutenance, 
         this.saisirFicheSuivi, 
         this.saisirFicheNotation,]
@@ -170,6 +174,8 @@ export class SidebarComponent implements OnInit {
       title:"Stage",
       items: [ 
         this.listeStages, 
+        this.voirLesEntreprise,
+        this.saisirStage, 
         this.saisirFicheSuivi, 
         this.saisirFicheNotation, 
         //this.planningSoutenance

@@ -93,6 +93,44 @@
 </ng-container>
 <hr>
 
+    
+  <div *ngIf="stage?.noteStage==null && canEditNote()">
+    <H2>Fiche de Notation</H2>
+    <form [formGroup]="ficheNotationForm" (ngSubmit)="onSubmitForm()">
+      <fieldset>
+        <!-- Commentaire -->
+        <div class="form-group">
+          <label for="commentaire">Commentaire :</label>
+          <textarea
+            id="commentaire"
+            class="form-control"
+            formControlName="commentaire"
+            rows="3"
+            placeholder="">
+            </textarea>
+        </div>
+
+        <!-- Note -->
+        <div class="form-group">
+          <label for="note">Note :</label>
+          <input id="note" type="number" class="form-control" formControlName="note" step="1" min="0" max="20" value="10">
+        </div>
+      </fieldset>
+      <button class="btn btn-primary" type="submit" [disabled]="ficheNotationForm.invalid">Valider</button>
+
+    </form>
+    <hr>
+</div>
+
+<ng-container *ngIf="stage?.noteStage != null">
+  <app-card  title="Note Du stage">
+    <p>Note : {{ stage.noteStage.valeur }}</p>
+    <p>Commentaire : {{ stage?.noteStage.commentaire}}</p>
+  </app-card>
+  <hr>
+</ng-container>
+
+
 <h2>Commentaires sur le stage</h2>
 
 <div id="commentaires-stage">
@@ -119,45 +157,6 @@
         </form>
     </div>
   <hr>
-  <ng-container *ngIf="stage?.noteStage==null && canEditNote() ">
-    <H2>Fiche de Notation</H2>
-    <form [formGroup]="ficheNotationForm" (ngSubmit)="onSubmitForm()">
-      <fieldset>
-        <!-- Commentaire -->
-        <div class="form-group">
-          <label for="commentaire">Commentaire :</label>
-          <textarea
-            id="commentaire"
-            class="form-control"
-            formControlName="commentaire"
-            rows="3"
-            placeholder="">
-            </textarea>
-        </div>
-
-        <!-- Note -->
-        <div class="form-group">
-          <label for="note">Note :</label>
-          <input id="note" type="number" class="form-control" formControlName="note" step="1" min="0" max="20" value="10">
-        </div>
-      </fieldset>
-      <button class="btn btn-primary" type="submit" [disabled]="ficheNotationForm.invalid">Valider</button>
-      <hr>
-
-
-    </form>
-
-  </ng-container>
-  <ng-container *ngIf="stage?.noteStage != null">
-    <app-card  title="Note Du stage">
-      <p>Note : {{ stage.noteStage.valeur }}</p>
-      <p>Commentaire : {{ stage?.noteStage.commentaire}}</p>
-    </app-card>
-
-
-  </ng-container>
-
-
 </div>
 
 
