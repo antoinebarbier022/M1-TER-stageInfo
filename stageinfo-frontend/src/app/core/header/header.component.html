@@ -52,7 +52,7 @@
             <label class="custom-control-label" for="customSwitch1">All sidebar routes</label>
           </div>
       </div>
-      <p *ngIf="!isAdmin()"> 
+      <p id="infoRole" *ngIf="!isAdmin()"> 
         Vous êtes : 
         <app-role-badge *ngIf="!isAdmin()" class="role" [role]="getRole()"></app-role-badge>
       </p>
