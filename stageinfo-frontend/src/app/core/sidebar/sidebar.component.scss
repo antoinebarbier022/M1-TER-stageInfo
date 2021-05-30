@@ -13,6 +13,12 @@ aside{
   }
 }
 
+@media (max-width: 600px) {
+    aside {
+        width:100%;
+  }
+}
+
 
 nav{
     padding-bottom:10rem;

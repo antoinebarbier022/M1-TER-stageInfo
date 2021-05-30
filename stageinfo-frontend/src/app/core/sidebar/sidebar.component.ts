@@ -26,7 +26,6 @@ export class SidebarComponent implements OnInit {
       this.showSidebar = false;
       this.sidebarEvent.emit(this.showSidebar);
     }
-
   }
 
   // -----------------------------------------------------------------------------------------------
