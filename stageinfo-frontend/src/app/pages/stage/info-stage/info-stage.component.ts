@@ -237,6 +237,11 @@ export class InfoStageComponent implements OnInit, OnDestroy {
     console.log(resulta)
     console.log(this.stage._id)
     console.log(this.authService.getViewRole() == RoleUser.TUTEUR)
+    this.stageService.addNote(this.stage._id,formValue.note,formValue.commentaire)
+      .subscribe((_res: any) => {
+        this.alert="note rajoutée";
+
+      });
   }
 }
 

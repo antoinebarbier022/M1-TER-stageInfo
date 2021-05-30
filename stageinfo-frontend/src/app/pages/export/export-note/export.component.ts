@@ -39,7 +39,7 @@ for( var i =0;i<this.Allstage.length;i++){
     j++;
   }
 }
-console.log(datastage)
-  //CsvDataService.exportToCsv('test.csv', datastage);
+
+  CsvDataService.exportToCsv('test.csv', datastage);
 }
 }

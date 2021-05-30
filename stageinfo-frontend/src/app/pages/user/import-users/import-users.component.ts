@@ -62,7 +62,7 @@ export class ImportUsersComponent implements OnInit {
         console.log( csvTableData[4]);
         const ok = 'azertyupqsdfghjkmwxcvbn23456789AZERTYUPQSDFGHJKMWXCVBN@!#$*&+-';
         let pass = '';
-         let longueur = 5;
+         let longueur = 10;
         for(i=0;i<longueur;i++){
           let wpos = Math.round(Math.random()*ok.length);
           pass+=ok.substring(wpos,wpos+1);

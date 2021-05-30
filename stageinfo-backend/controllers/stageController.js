@@ -252,6 +252,9 @@ exports.deleteCommentOneStage = (req, res, next) => {
 
 exports.addNote = (req,res,next) => {
     const laDate = new Date();
+    console.log(req)
+    console.log(req.body)
+
     const laNote = new note({
         date : laDate,
         valeur: req.body.valeur,

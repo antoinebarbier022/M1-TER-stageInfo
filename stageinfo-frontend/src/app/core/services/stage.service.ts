@@ -76,8 +76,8 @@ export class StageService {
 
   /**
    * Ajouter un commentaire sur le stage
-   * @param id 
-   * @param data 
+   * @param id
+   * @param data
    * @returns Observable
    */
   addCommentOnStage(id:any, data:any):Observable<any>{
@@ -112,5 +112,9 @@ export class StageService {
     datastage.append('type',Type);
     datastage.append('data',JSON.stringify(({idUser:this.authservice.getUserId()})))
     return this.httpClient.put(this.urlBase+'/api/stage/'+ id+'/add-pj',datastage );
+  }
+  addNote(id:any,note:any,commentaire:any):Observable<any>{
+    const datastage = {valeur:note,commentaire:commentaire};
+    return this.httpClient.put(this.urlBase+'/api/stage/'+ id+'/add-note',datastage)
   }
 }
