@@ -66,12 +66,12 @@ export class SidebarComponent implements OnInit {
   nousContacter =           {icon:"fas fa-comment",       nom:"Nous contacter",       lien:"/nous-contacter", items:[]};
 
   documentation =           {icon:"fas fa-book",          nom:"Documentation",        lien:"/documentation", items:[]};
-  gitlab =                  {icon:"fab fa-gitlab",        nom:"Lien du GitLab",       lien:"/gitlab", items:[]};
+  gitlab =                  {icon:"fab fa-gitlab",        nom:"Lien du GitLab",       lien:"https://gitlab.etu.umontpellier.fr/antoinebarbier/m1-ter-stageinfo/", items:[]};
   contacterSupport =        {icon:"fas fa-comment",       nom:"Contacter le support", lien:"/support", items:[]};
 
   exporterCSV = {icon:"fas fa-file-csv", nom:"Exporter CSV", lien:"/", items:[
     {icon:"", nom:"Les stages", lien:"/export-stage"},
-    {icon:"", nom:"Les soutenances", lien:"/soutenances-csv"},
+    //{icon:"", nom:"Les soutenances", lien:"/soutenances-csv"},
     {icon:"", nom:"Les notes de stage", lien:"/export-note"}]};
 
   telechargerPDF = {icon:"fas fa-download", nom:"Télécharger", items:[
@@ -79,6 +79,14 @@ export class SidebarComponent implements OnInit {
     {icon:"", nom:"Fiche entreprise", lien:"http://localhost:3000/docs/Fiche_appreciation_stage.doc"},
     {icon:"", nom:"Fiche de notation", lien:"http://localhost:3000/docs/Fiche_notation.doc"}]};
 
+    externalLink(link: String ){
+      if(link.charAt(0)=="/"){
+        return false;
+      }else{
+        return true;
+      }
+
+    }
 
   // -----------------------------------------------------------------------------------------------
   // - Ci dessous sont déclaré les différents menu de navigation pour chaque role de la plateforme - 
@@ -213,7 +221,7 @@ export class SidebarComponent implements OnInit {
                 this.listeUtilisateurs,
                 this.listeEtudiants,
                 this.listeEntreprise,
-                this.listeSoutenances,
+                //this.listeSoutenances,
                 this.listeParcours]
     },
     {
