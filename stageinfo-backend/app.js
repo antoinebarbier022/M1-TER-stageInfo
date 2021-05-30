@@ -12,6 +12,7 @@ const entrepriseRoutes= require('./routes/entrepriseRouters');
 const creneauRoutes = require('./routes/creneauRouters');
 const soutenanceRoutes = require('./routes/soutenanceRouters');
 const parcoursRoutes = require('./routes/parcoursRouters');
+const emailRoutes = require('./routes/emailContactRouters')
 const path = require("path");
 
 const app = express();
@@ -35,6 +36,7 @@ app.use('/api/stage', stageRoutes);
 app.use('/api/salle', salleRoutes);
 app.use('/api/auth', userRoutes);
 app.use('/docs',express.static(path.join(__dirname,'docs')));
+app.use('/contact',emailRoutes);
 
 app.use('/api/user', userRoutes);
 app.use('/api/parcours', parcoursRoutes);

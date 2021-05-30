@@ -28,7 +28,7 @@ export class InfoUserComponent implements OnInit {
   constructor(private route:ActivatedRoute,
     private authService: AuthService,
     private userService: UserService,
-    private stageService: StageService) { 
+    private stageService: StageService) {
 
       this.user = new UserModel();
       this.stages = Array<StageModel>();
@@ -46,12 +46,12 @@ export class InfoUserComponent implements OnInit {
         // on récupère les données des stages associé à l'utilisateur connecté
         this.stageService.getAllStageRelatedUser(this.authService.getUserId())
           .pipe(takeUntil(this.destroy$))
-          .subscribe((_res: UserModel) => {
-            this.stages = _res;
+            .subscribe((_res: UserModel) => {
+              this.stages = _res;
         });
     }else{
-      this.user = this.route.snapshot.data.user;    
-      this.stages = this.route.snapshot.data.stages; 
+      this.user = this.route.snapshot.data.user;
+      this.stages = this.route.snapshot.data.stages;
     }
   }
 

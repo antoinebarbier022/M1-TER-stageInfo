@@ -50,11 +50,18 @@ export class UserService {
   getAllUserByRole(role: string): Observable<any> {
     return this.httpClient.get(this.urlBase+'api/user/role/'+role);
   }
-  sendemail(email:any,titre:any,message:any):Observable<any>{
+  sendEmail(email:any,titre:any,message:any):Observable<any>{
     const datastage = {email:email,titre:titre,message:message}
 
     return this.httpClient.post(this.urlBase+'api/user/sendemail',datastage );
   }
+  editEmailContact(email:any):Observable<any>{
+    const dataemail = {email:email}
+    return this.httpClient.put(this.urlBase+'contact',dataemail)
+  }
+  getEmailContact(): Observable<any> {
+  return this.httpClient.get(this.urlBase+'contact');
+}
   forgotPassword(email:any):Observable<any>{
     const datastage = {email:email};
     return this.httpClient.post(this.urlBase+'api/user/forgotpassword',datastage );
