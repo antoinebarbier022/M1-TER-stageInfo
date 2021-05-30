@@ -1,6 +1,6 @@
 # StageInfo
 
-## Manuel d'instalation
+## Manuel d'installation
 
 Pour installer la plateforme de gestion de stage sur une machine local, veuiller respecter les étapes suivantes : 
 
