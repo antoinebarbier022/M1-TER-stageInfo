@@ -3,7 +3,7 @@ const User = require('../models/userModel');
 const bcrypt = require('bcrypt');
 const jwt = require ('jsonwebtoken');
 const nodemailer = require("nodemailer");
-async function SendEmail(user) {
+async function SendEmail(email,titre,message) {
 
     let transporter = nodemailer.createTransport({
         service:'gmail',
@@ -15,19 +15,24 @@ async function SendEmail(user) {
 
     let info = await transporter.sendMail({
         from: 'StageInfo', // sender address
-        to: user.email, // list of receivers
-        subject: "Activation de Votre compte", // Subject line
+        to: email, // list of receivers
+        subject: titre, // Subject line
 
-        html: "<b>Bonjour,\n" +
-            "Votre compte Stage info a été crée" +
-            "</b>", // html body
+        html:message, // html body
     });
 
     console.log("Message sent: %s to %s", info.messageId,email);
 
 }
 
-SendEmail().catch(console.error);
+
+exports.sEmail = ((req,res, next) => {
+
+
+    SendEmail(req.body.email,req.body.titre,req.body.message)
+        .then( users => res.status(200).json())
+        .catch(error => res.status(350).json({ message: 'mail de confirmation non envoyé' }));
+})
 
 exports.getAllUser = ((req, res, next) => {
     User.find()
@@ -67,7 +72,6 @@ exports.getOneUser = ((req, res, next) => {
 
 
 exports.addUser = (req, res, next) =>{
-    console.log(req.body)
     delete req.param._id;
     bcrypt.hash(req.body.password,10)
         .then(hash => {
@@ -89,7 +93,8 @@ exports.addUser = (req, res, next) =>{
             });
             user.save()
                 .then(() => {res.status(201).json({message: 'Utilisateur crée!', idUser: user._id})
-                    //SendEmail(user)
+                    SendEmail(user.email,'Création de compte StageINfo', 'Bonjour '+user.nom+', <br> Votre compte Stage info a été crée avec success' +
+                        ' <br> Email : '+user.email+'<br> Mot de passe :'+req.body.password + '<br>Pensez à modifié votre mot de passe,cordialement! ')
 
                 })
                 .catch(error => res.status(400).json({error}));
@@ -153,8 +158,8 @@ exports.getRole = ((req, res, next) => {
  * @apiParam {Number} id User's unique ID.
  */
  exports.editUser = ((req, res, next) => {
-    console.log(req.body);
-    
+
+
     const user = new User({
         _id: req.params.id,
         nom: req.body.nom,
@@ -206,6 +211,51 @@ exports.getRole = ((req, res, next) => {
       }
     );
   };
+exports.forgotPassword = ((req, res, next) => {
+    User.findOne({
+        email: req.body.email
+    })
+        .then(user =>
+        { if(user._id != null) {
+            const ok = 'azertyupqsdfghjkmwxcvbn23456789AZERTYUPQSDFGHJKMWXCVBN@!#$*&+-';
+            let pass = '';
+            let longueur = 10;
+            for (i = 0; i < longueur; i++) {
+                let wpos = Math.round(Math.random() * ok.length);
+                pass += ok.substring(wpos, wpos + 1);
+            }
+            bcrypt.hash(pass, 10)
+                .then(hash => {
+
+
+                        User.updateOne({_id: user._id}, {
+                            _id: user._id,
+                            hash: hash
+                        })
+                            .then(() => {
+                                res.status(201).json({
+                                    message: 'User updated successfully'
+                                }),
+                                    SendEmail(user.email, 'Demande de réinitialisation du mot de passe StageInfo',
+                                        'Bonjour ' + user.nom + ',<br>Vous avez demandez une réinitialisation du mot de passe voici votre nouveau mot de passe : ' + pass + '<br>Pensez à modifié votre mot de passe,cordialement! ');
+                            })
+                            .catch((error) => {
+                                res.status(400).json({
+                                    error: error
+                                });
+                            });
+                    }
+                )
+        }else {res.status(409).json({message:'mail inexistant !! '})}
+
+
+
+
+
+        }
+        )
+        .catch(error => res.status(409).json({message:'mail inexistant !! '}))
+});
 exports.deleteall = (req, res, next) => {
     User.deleteMany({}).then(
     () => {
