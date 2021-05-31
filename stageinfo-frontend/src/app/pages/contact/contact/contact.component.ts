@@ -16,13 +16,14 @@ export class ContactComponent implements OnInit {
   // @ts-ignore
   emailForm: FormGroup;
   email:String = '';
+  alert: Boolean =false;
   destroy$: Subject<boolean> = new Subject<boolean>();
 
   // @ts-ignore
   contactForm: FormGroup;
   // @ts-ignore
   errorMessage: String;
-  alert: boolean=false;
+
 
   constructor(
     private formBuilder: FormBuilder,
@@ -67,8 +68,8 @@ export class ContactComponent implements OnInit {
             .pipe()
             .subscribe((_res: any) => {
                 console.log('email envoyé')
-              // @ts-ignore
-                alert=true;
+
+                this.alert=true;
               },
               error => {
 
