@@ -79,6 +79,13 @@ export class SidebarComponent implements OnInit {
     {icon:"", nom:"Fiche entreprise", lien:"http://localhost:3000/docs/Fiche_appreciation_stage.doc"},
     {icon:"", nom:"Fiche de notation", lien:"http://localhost:3000/docs/Fiche_notation.doc"}]};
 
+    telechargerPDFEtudiant = {icon:"fas fa-download", nom:"Télécharger", items:[
+      {icon:"fas fa-border-all", nom:"Feuille de stage", lien:"/fiche-stage"},
+      {icon:"", nom:"Fiche entreprise", lien:"http://localhost:3000/docs/Fiche_appreciation_stage.doc"}]};
+  
+      telechargerPDFEntreprise = {icon:"fas fa-download", nom:"Télécharger", items:[
+        {icon:"", nom:"Fiche entreprise", lien:"http://localhost:3000/docs/Fiche_appreciation_stage.doc"}]};
+    
     externalLink(link: String ){
       if(link.charAt(0)=="/"){
         return false;
@@ -103,6 +110,10 @@ export class SidebarComponent implements OnInit {
       ]
     },
     {
+      title:"Documents",
+      items: [ this.telechargerPDFEtudiant,]
+    },
+    {
       title:"Besoin d'aide ?",
       items: [ 
         //this.faq, 
@@ -120,6 +131,10 @@ export class SidebarComponent implements OnInit {
         this.voirLesEntreprise,
         //this.planningSoutenance, 
         this.saisirStage]
+    },
+    {
+      title:"Documents",
+      items: [ this.telechargerPDFEtudiant,]
     },
     {
       title:"Besoin d'aide ?",
@@ -168,6 +183,11 @@ export class SidebarComponent implements OnInit {
         this.saisirFicheSuivi, 
         this.saisirFicheAppreciation,]
     },
+    {
+      title:"Documents",
+      items: [ this.telechargerPDFEntreprise,]
+    },
+
     {
       title:"Besoin d'aide ?",
       items: [ 
