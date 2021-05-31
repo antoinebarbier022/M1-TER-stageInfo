@@ -245,7 +245,8 @@ export class FormStageComponent implements OnInit {
         if( this.stageFormControl.titre.invalid || 
           this.stageFormControl.niveauRequis.invalid ||
           this.stageFormControl.parcours.invalid ||
-          this.stageFormControl.duree.invalid
+          this.stageFormControl.duree.invalid ||
+          this.stageFormControl.dateDebut.invalid
           ){
           return false;
         }else{

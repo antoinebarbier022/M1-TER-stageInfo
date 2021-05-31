@@ -42,6 +42,17 @@ export class ListStagesComponent extends CommonListingTable implements OnInit {
     this.allItems = this.route.snapshot.data.allStages;
   }
 
+  getPromotion(dateDebut: string): String{
+    var annee1 = Number(new Date(dateDebut).getFullYear().toString()) - 1;
+    var annee2 = Number(new Date(dateDebut).getFullYear().toString());
+    if(annee1 || annee2){
+      return annee1.toString() + "/" + annee2.toString();
+    }else{
+      return "";
+    }
+    
+  }
+
   canEditStage():boolean{
     switch (this.authService.getViewRole()) {
       case RoleUser.INVITE:

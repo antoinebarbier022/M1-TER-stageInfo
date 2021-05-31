@@ -90,7 +90,7 @@
             <label  [for]="addStage ? 'addInputDateDebut':'editInputDateDebut'">Date de début</label>
             <input  [id]="addStage ? 'addInputDateDebut':'editInputDateDebut'"
                     type="date"
-                    class="form-control"
+                    [class]="displayValidationSelectStyle(stageFormControl.dateDebut)"
                     name="dateDebut"
                     formControlName="dateDebut">
         </div>

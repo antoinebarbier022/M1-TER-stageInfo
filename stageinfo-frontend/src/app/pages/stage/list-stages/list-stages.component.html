@@ -51,7 +51,7 @@
                     <td>{{ stage?.entreprise?.nom }}</td>
                     <td><span class="badge badge-secondary">{{ stage?.parcours?.acronyme }}</span></td>
                     <!-- <td>{{ stage.promotions }}</td>-->
-                    <td>2020 - 2021</td>
+                    <td>{{ getPromotion(stage.dateDebut)}}</td>
                     <td>{{ stage.duree ? stage.duree + ' mois' : '' }} </td>
                     
                     <td *ngIf="canEditStage()" class="table-action">
