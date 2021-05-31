@@ -52,6 +52,7 @@ exports.getAllStageRelatedToUser = ((req, res, next) => {
     .populate('rapporteur', 'nom prenom')
     .populate('etudiant', 'nom prenom numeroEtudiant')
         .populate('noteStage', 'valeur commentaire')
+    .sort('-datePropose')
     .then(stages => res.status(200).json(stages))
     .catch(error => res.status(404).json({ error }));
   });

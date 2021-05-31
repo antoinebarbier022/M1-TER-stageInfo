@@ -90,7 +90,11 @@ const routes: Routes = [
       }
   },
 
-  { path: 'saisir-stage', component: AddStageComponent, canActivate: [AuthGuardService, RoleGuard]},
+  { path: 'saisir-stage', component: AddStageComponent, canActivate: [AuthGuardService, RoleGuard],resolve: {
+    allStages: AllStagesResolver,  // on associe un resolver à la route
+    allParcours: AllParcoursResolver,
+    allEntreprises: AllEntreprisesResolver
+  }},
   { path: 'saisir-fiche-suivi', component: FicheSuiviComponent, canActivate: [AuthGuardService, RoleGuard], resolve: {allParcours: AllParcoursResolver, allUsers: AllUsersResolver}},
   { path: 'saisir-fiche-notation', component: FicheNotationComponent, canActivate: [AuthGuardService, RoleGuard], resolve: {allUsers: AllUsersResolver}},
   { path: 'saisir-fiche-appreciation', component: FicheAppreciationComponent, canActivate: [AuthGuardService, RoleGuard], resolve: {allUsers: AllUsersResolver}},
