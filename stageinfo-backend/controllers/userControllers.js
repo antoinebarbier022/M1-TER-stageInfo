@@ -27,11 +27,11 @@ async function SendEmail(email,titre,message) {
 
 
 exports.sEmail = ((req,res, next) => {
-
+console.log(req.body)
 
     SendEmail(req.body.email,req.body.titre,req.body.message)
         .then( users => res.status(200).json())
-        .catch(error => res.status(350).json({ message: 'mail de confirmation non envoyé' }));
+        .catch(error => res.status(350).json({ error}));
 })
 
 exports.getAllUser = ((req, res, next) => {
