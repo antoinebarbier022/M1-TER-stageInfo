@@ -22,6 +22,7 @@ export class ContactComponent implements OnInit {
   contactForm: FormGroup;
   // @ts-ignore
   errorMessage: String;
+  alert: boolean=false;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -29,12 +30,25 @@ export class ContactComponent implements OnInit {
     private userService: UserService ) { }
 
   ngOnInit(): void {
+
+
     this.contactForm = this.formBuilder.group({
       message:['', Validators.required]
     });
+    this.userService.getEmailContact()
+      .pipe(takeUntil(this.destroy$))
+      .subscribe((_res: any) => {
+          this.email=_res.email;
+          this.emailForm = this.formBuilder.group({
+            email:[this.email, [Validators.required,Validators.email]]
+          });
+        },
+        error => {
 
+          console.log(error)
+        });
     this.emailForm = this.formBuilder.group({
-      email:['', Validators.required]
+      email:[this.email, [Validators.required,Validators.email]]
     });
 
   }
@@ -47,7 +61,26 @@ export class ContactComponent implements OnInit {
     };
     this.userService.getEmailContact()
       .pipe(takeUntil(this.destroy$))
-      .subscribe()
+      .subscribe((_res: any) => {
+          this.email=_res.email;
+          this.userService.sendEmail(this.email,'Contact StageInfo','Mail envoyé par '+this.authService.getEmail()+'<br>" '+data.message+' " ')
+            .pipe()
+            .subscribe((_res: any) => {
+                console.log('email envoyé')
+              // @ts-ignore
+                alert=true;
+              },
+              error => {
+
+                console.log(error)
+              });
+
+        },
+        error => {
+
+          console.log(error)
+        });
+
   }
 
 

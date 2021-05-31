@@ -28,7 +28,7 @@ exports.editEmail = ((req, res, next) => {
 
     const email = new Email({
         _id: '60b40384dfad1220980d17a9',
-        email: req.body.email
+        email: req.body.email.email
     });
 
     Email.updateOne({_id: '60b40384dfad1220980d17a9'}, email)
