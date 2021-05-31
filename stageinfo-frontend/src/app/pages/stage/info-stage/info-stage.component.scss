@@ -10,13 +10,14 @@
     width: auto;
     display: grid;
     grid-template-columns: minmax(230px, 1fr) 1fr minmax(230px, 1fr);
-    grid-template-rows: auto 1fr auto auto;
+    grid-template-rows: auto 1fr auto auto auto;
     gap: 15px 15px;
     grid-template-areas:
     "status status status"
     "info encadrant entreprise"
     "description description entreprise"
-    "avantages avantages avantages";
+    "avantages avantages avantages"
+    "note-stage note-stage note-stage";
 
     margin: 1rem;
 
@@ -42,6 +43,11 @@
     }
     #encadrant-stage{
         grid-area: encadrant;
+    }
+
+    #section-note-stage{
+        grid-area: note-stage;
+    
     }
 }
 
@@ -91,7 +97,7 @@
     .all-card {
         width: auto;
       grid-template-columns: auto;
-      grid-template-rows: auto auto auto auto auto auto;
+      grid-template-rows: auto auto auto auto auto auto auto;
       row-gap: 15px;
       column-gap: 0px;
       grid-template-areas:
@@ -100,6 +106,7 @@
       "encadrant"
       "entreprise"
       "description"
-      "avantages";
+      "avantages"
+      "note-stage";
     }
   }
