@@ -63,6 +63,7 @@ import { AllRespParcoursResolver } from './core/resolvers/all-resp-parcours.reso
 import { AllEtudiantsResolver } from './core/resolvers/all-etudiants.resolver';
 import { AllStageOfUserResolver } from './core/resolvers/all-stage-of-user.resolver';
 import { ContactComponent } from './pages/contact/contact/contact.component';
+import { MesStagesComponent } from './pages/stage/mes-stages/mes-stages.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'liste-stages', pathMatch: 'full', canActivate: [AuthGuardService, RoleGuard]},
@@ -107,7 +108,7 @@ const routes: Routes = [
       },
   },
   { path: 'profile', component: ProfileUserComponent, canActivate: [AuthGuardService, RoleGuard]},
-
+  { path: 'mes-stages', component: MesStagesComponent, canActivate: [AuthGuardService, RoleGuard]},
   //routes entreprise
   { path: 'liste-entreprises', component: ListEntreprisesComponent, canActivate: [AuthGuardService, RoleGuard], resolve: { entreprises: AllEntreprisesResolver, allUsers: AllUsersResolver, }},
   { path: 'liste-entreprises/:id', component: InfoEntrepriseComponent, canActivate: [AuthGuardService, RoleGuard], resolve: { entreprise: EntrepriseResolver, allUsers: AllUsersResolver, stages: AllStageOfUserResolver }},

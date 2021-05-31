@@ -78,6 +78,7 @@ export class RoleGuard implements CanActivate {
       case 'liste-utilisateurs': 
       case 'profile': 
       case 'liste-utilisateurs/user/:id': 
+      case 'mes-stages':
         return this.allRole.includes(role);
 
       // Tous les roles à l'exception de l'invité

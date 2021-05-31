@@ -1,0 +1,11 @@
+<h1 >Mes stages associées</h1>
+
+<div class="all-card">
+    <!-- Les stages associées à l'utilisateur -->
+    <app-card>
+        <!-- Card d'un stage -->
+        <app-card-item-stage *ngFor="let stage of stages" [stage]="stage" ></app-card-item-stage>
+        <!-- Si aucun stage n'existe -->
+        <p class="message-aucun-stage" *ngIf="!stages.length">Il n'y a aucun stage associé à cet utilisateur.</p>
+    </app-card>
+</div>
