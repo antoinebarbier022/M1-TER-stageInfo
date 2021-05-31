@@ -33,13 +33,19 @@ export class ExportComponent implements OnInit {
    console.log(this.Allstage)
      const datastage = new Array();
    var j=0;
+    const data= this.importForm.value;
+
 for( var i =0;i<this.Allstage.length;i++){
   if(this.Allstage[i].etudiant !=null) {
-    datastage[j] = {numetudiant: this.Allstage[i]?.etudiant?.numeroEtudiant,note:this.Allstage[i]?.noteStage?.valeur};
-    j++;
+    var date=  new Date(this.Allstage[i].dateDebut);
+    if(date.getFullYear() == Number(data['ann'])){
+      datastage[j] = {numetudiant: this.Allstage[i]?.etudiant?.numeroEtudiant,note:this.Allstage[i]?.noteStage?.valeur};
+      j++;
+    }
+
   }
 }
 
-  CsvDataService.exportToCsv('test.csv', datastage);
+  CsvDataService.exportToCsv('Note-stage-'+data['ann']+'.csv', datastage);
 }
 }

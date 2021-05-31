@@ -27,10 +27,10 @@ export class ExportStageComponent implements OnInit {
   onSubmit(){
     const datastage = new Array();
     for( var i =0;i<this.Allstage.length;i++){
-      if(this.Allstage[i].etudiant !=null) {
+
         datastage[i] = {titre:this.Allstage[i].titre,description:this.Allstage[i].description,duree:this.Allstage[i].duree,dateDebut:this.Allstage[i].dateDebut,parcours:this.Allstage[i].parcours.acronyme+' '+this.Allstage[i].parcours.niveau,entreprise:this.Allstage[i].entreprise.nom,ajouteur:this.Allstage[i].ajouteur.nom,note:this.Allstage[i].noteStage?.valeur};
 
-      }
+
     }
 console.log(datastage)
     CsvDataService.exportToCsv('test.csv', datastage);
