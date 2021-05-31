@@ -21,6 +21,7 @@ exports.getAllStage = ((req, res, next) => {
   .populate('rapporteur', 'nom prenom')
   .populate('noteStage', 'valeur commentaire')
   .populate('etudiant', 'nom prenom numeroEtudiant')
+  .sort('-datePropose')
   .then(stages => res.status(200).json(stages))
   .catch(error => res.status(404).json({ error }));
 });
