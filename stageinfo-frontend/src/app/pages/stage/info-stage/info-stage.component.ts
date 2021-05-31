@@ -246,7 +246,21 @@ export class InfoStageComponent implements OnInit, OnDestroy {
       .subscribe((_res: any) => {
         this.alert="note rajoutée";
 
+        // On passe le stage en mode terminé
+        this.stageTermine();
       });
   }
+
+
+  stageTermine(){
+    var newState = EtatStage.TERMINE; // on passe à l'état réservé
+    this.stageService.editState(this.stage._id, newState)
+      .pipe(takeUntil(this.destroy$))
+      .subscribe((_res: any) => {
+        console.log("L'état du stage "+ this.stage.titre + " est passé à ["+newState+"] !");
+        this.stage.etat = newState;
+      });
+  }
+
 }
 

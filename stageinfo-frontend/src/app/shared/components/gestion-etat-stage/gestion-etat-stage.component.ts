@@ -297,6 +297,7 @@ export class GestionEtatStageComponent implements OnInit, OnDestroy {
         break;
       case EtatStage.TERMINE:
         newData = {
+          noteStage: null,
           etat: EtatStage.AFFECT_RAPPORTEUR
         };
         break;
