@@ -25,7 +25,7 @@ export class ExportComponent implements OnInit {
   }
   initForm(){
     this.importForm = this.formBuilder.group({
-      ann: ['',Validators.required],
+      annee: ['',Validators.required],
     });
   }
 
@@ -38,7 +38,7 @@ export class ExportComponent implements OnInit {
 for( var i =0;i<this.Allstage.length;i++){
   if(this.Allstage[i].etudiant !=null) {
     var date=  new Date(this.Allstage[i].dateDebut);
-    if(date.getFullYear() == Number(data['ann'])){
+    if(date.getFullYear() == Number(data['annee'])){
       datastage[j] = {numetudiant: this.Allstage[i]?.etudiant?.numeroEtudiant,note:this.Allstage[i]?.noteStage?.valeur};
       j++;
     }
@@ -46,6 +46,6 @@ for( var i =0;i<this.Allstage.length;i++){
   }
 }
 
-  CsvDataService.exportToCsv('Note-stage-'+data['ann']+'.csv', datastage);
+  CsvDataService.exportToCsv('Note-stage-'+data['annee']+'.csv', datastage);
 }
 }
