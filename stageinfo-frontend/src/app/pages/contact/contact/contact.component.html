@@ -7,7 +7,7 @@
         <div *ngIf="canEditEmail()" class="update-contact">
             <form [formGroup]="emailForm" (ngSubmit)="updateContact()">
                 <div class="form-group">
-                    <label for="inputMessage">Contact : </label>
+                    <label for="inputMessage">Email de contact : </label>
                     <span id="updateEmailForm">
                         <input id="inputEmail" class="form-control" type="email" formControlName="email" placeholder="contact@email.com">
                         <button type="submit" id="buttonUpdateEmail" [disabled]="emailForm.invalid" class="btn btn-primary btn-sm">Mettre à jour</button>
@@ -16,6 +16,7 @@
                     </div>
 
             </form>
+            <br>
         </div>
 
 
@@ -23,7 +24,7 @@
         <div class="send-message">
             <form [formGroup]="contactForm" (ngSubmit)="envoyerMessage()">
                 <div class="form-group">
-                    <label for="inputMessage">Contacter  : </label>
+                    <label for="inputMessage">Nous contacter : </label>
                     <textarea   id="inputMessage"
                                 class="form-control"
                                 rows="3"
