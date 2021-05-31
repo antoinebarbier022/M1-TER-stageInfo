@@ -24,7 +24,7 @@
         <p>{{ entreprise.pays }}</p>
     </app-card>-->
 
-    <app-card-map id="adresse-entreprise" [adresse]="entreprise.voie" [codePostal]="entreprise.codePostal" title="Localisation">
+    <app-card-map id="adresse-entreprise" [adresseEntreprise]="getAdresseEntreprise()" title="Localisation">
         <p>{{ entreprise.voie }}</p>
         <p>{{ entreprise.ville }} - {{ entreprise.codePostal }}</p>
         <p>{{ entreprise.pays }}</p>

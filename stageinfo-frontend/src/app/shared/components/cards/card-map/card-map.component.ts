@@ -26,8 +26,7 @@ import { takeUntil } from 'rxjs/operators';
 })
 export class CardMapComponent implements OnInit, OnDestroy {
   @Input() title: string = "";
-  @Input() adresse: string = "";
-  @Input() codePostal: string = "";
+  @Input() adresseEntreprise: string = "";
   map:any;
   marker: any;
   vectorSource: any;
@@ -43,8 +42,7 @@ export class CardMapComponent implements OnInit, OnDestroy {
   constructor( private localisationService: LocalisationService) { }
 
   ngOnInit(){
-    if(this.adresse.length >=1 && this.codePostal.length >= 1){
-      this.localisationService.getInfoAdresse(this.adresse + " "+ this.codePostal)
+      this.localisationService.getInfoAdresse(this.adresseEntreprise)
       .pipe(takeUntil(this.destroy$))
         .subscribe((_data: any) => {
           console.log(_data.features[0].geometry.coordinates);
@@ -95,9 +93,6 @@ export class CardMapComponent implements OnInit, OnDestroy {
           
   
       });
-    }else{
-      console.log("ERROR CHARGEMENT DE L'ADRESSE !!!")
-    }
 
   }
 

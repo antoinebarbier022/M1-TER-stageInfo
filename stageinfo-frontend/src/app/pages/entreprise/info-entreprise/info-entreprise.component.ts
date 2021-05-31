@@ -29,4 +29,8 @@ export class InfoEntrepriseComponent implements OnInit {
     this.entreprise = this.route.snapshot.data.entreprise;  
   }
 
+  getAdresseEntreprise(){
+    return this.entreprise.voie + " "+ this.entreprise.codePostal+ " " + this.entreprise.ville;
+  }
+
 }
