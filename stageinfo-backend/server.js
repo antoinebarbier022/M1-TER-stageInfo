@@ -1,5 +1,9 @@
 const http = require('http');
+const cors = require('cors');
 const app = require('./app');
+
+app.use(cors());
+
 
 const normalizePort = val => {
   const port = parseInt(val, 10);

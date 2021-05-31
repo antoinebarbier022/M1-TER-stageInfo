@@ -1,0 +1,10 @@
+{
+    "/api/localisation": {
+      "target": "https://api-adresse.data.gouv.fr/search/?q=",
+      "secure": true,
+      "changeOrigin": true,
+      "pathRewrite": {
+        "^/api": ""
+      }
+    }
+  }

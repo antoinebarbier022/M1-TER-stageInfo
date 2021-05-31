@@ -24,7 +24,7 @@
         <p>{{ entreprise.pays }}</p>
     </app-card>-->
 
-    <app-card-map id="adresse-entreprise" title="Localisation">
+    <app-card-map id="adresse-entreprise" [adresse]="entreprise.voie" [codePostal]="entreprise.codePostal" title="Localisation">
         <p>{{ entreprise.voie }}</p>
         <p>{{ entreprise.ville }} - {{ entreprise.codePostal }}</p>
         <p>{{ entreprise.pays }}</p>
@@ -38,10 +38,14 @@
     </app-card>
 
     <!-- Les stages associées à l'entreprise -->
-    <app-card id="stages-entreprise" title="Stages">
-        <!-- Card d'un stage -->
-        <app-card-item-stage *ngFor="let stage of stages"
-            [stage]="stage" >
-        </app-card-item-stage>
-    </app-card>
+
+    <ng-container *ngIf="false">
+        <app-card id="stages-entreprise" title="Stages">
+            <!-- Card d'un stage -->
+            <app-card-item-stage *ngFor="let stage of stages"
+                [stage]="stage" >
+            </app-card-item-stage>
+        </app-card>
+    </ng-container>
+    
 </div>
